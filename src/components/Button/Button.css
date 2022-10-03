@@ -1,0 +1,33 @@
+button {
+    border: 2px solid;
+    border-radius: 6px;
+    padding: 4px 6px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: 0.2s;
+}
+
+button .left-svg {
+    margin-right: 0.5em;
+    background-color: inherit;
+}
+
+button .right-svg {
+    margin-left: 0.5em;
+    background-color: inherit;
+}
+
+button:disabled{
+    filter: brightness(var(--disabled-brightness));
+}
+
+button:hover:enabled {
+    filter: brightness(var(--hover-brightness));
+}
+
+button:active:enabled {
+    transition: 0.1s;
+    transform: scale(0.95);
+
+    filter: brightness(var(--active-brightness));
+}

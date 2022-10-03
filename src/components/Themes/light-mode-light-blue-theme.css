@@ -1,0 +1,33 @@
+:root {
+    --primary-color: rgb(102, 217, 252);
+    --secondary-color: #fff;
+    --background-color: #fff;
+
+    --hover-brightness: 0.93;
+    --active-brightness: 0.875;
+}
+
+.container {
+    padding: 1rem;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--background-color);
+}
+
+/* BUTTON SECTION START */
+button {
+    border-color: var(--primary-color);
+    background-color: var(--background-color);
+    color: var(--primary-color);
+}
+
+button:hover:enabled {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+button:active:enabled {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+/* BUTTON SECTION END */

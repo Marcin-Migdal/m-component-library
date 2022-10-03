@@ -1,0 +1,38 @@
+:root {
+    --primary-color: #fff;
+    --secondary-color: #383838;
+    --background-color: #383838;
+
+    --active-brightness: 0.9; 
+}
+
+.container {
+    padding: 1rem;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--background-color);
+}
+
+/* BUTTON SECTION START */
+button {
+    border-color: var(--primary-color);
+    background-color: var(--background-color);
+    color: var(--primary-color);
+}
+
+button:disabled{
+    background-color: #646464;
+}
+
+button:hover:enabled {
+    border-color: var(--secondary-color);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+button:active:enabled {
+    border-color: var(--secondary-color);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+/* BUTTON SECTION END */

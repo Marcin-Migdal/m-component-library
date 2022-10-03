@@ -1,0 +1,35 @@
+:root {
+    --primary-color: #686868;
+    --secondary-color: #fff;
+    --background-color: #fff;
+
+    --hover-brightness: 1.3;
+    --active-brightness: 1.5;
+}
+
+.container {
+    padding: 1rem;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--background-color);
+}
+
+/* BUTTON SECTION START */
+button {
+    border-color: var(--primary-color);
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+button:hover:enabled {
+    border-color: var(--secondary-color);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+button:active:enabled {
+    border-color: var(--secondary-color);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+/* BUTTON SECTION END */

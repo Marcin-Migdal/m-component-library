@@ -1,28 +1,50 @@
 {
-    "name": "morti-component-library",
-    "version": "0.0.1",
-    "description": "",
-    "scripts": {
-        "rollup": "rollup -c"
-    },
-    "author": "Marcin-Migdal",
-    "license": "ISC",
-    "devDependencies": {
-        "@rollup/plugin-commonjs": "^22.0.2",
-        "@rollup/plugin-node-resolve": "^13.3.0",
-        "@rollup/plugin-typescript": "^8.4.0",
-        "@types/react": "^18.0.18",
-        "react": "^18.2.0",
-        "rollup": "^2.79.0",
-        "rollup-plugin-dts": "^4.2.2",
-        "tslib": "^2.4.0",
-        "typescript": "^4.8.2"
-    },
-    "main": "dist/cjs/index.js",
-    "module": "dist/esm/index.js",
-    "files": [
-        "dist"
-    ],
-    "types": "dist/index.d.ts",
-    "dependencies": {}
+  "name": "@Marcin-Migdal/morti-component-library",
+  "version": "0.0.2",
+  "description": "React component library",
+  "scripts": {
+    "rollup": "rollup -c",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "author": "Marcin-Migdal",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.19.1",
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.4.0",
+    "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/builder-webpack4": "^6.5.12",
+    "@storybook/manager-webpack4": "^6.5.12",
+    "@storybook/react": "^6.5.12",
+    "@storybook/testing-library": "0.0.13",
+    "@types/react": "^18.0.18",
+    "babel-loader": "^8.2.5",
+    "postcss": "^8.4.16",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup": "^2.79.0",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-postcss": "^4.0.2",
+    "tslib": "^2.4.0",
+    "typescript": "^4.8.2"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "types": "dist/index.d.ts",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/Marcin-Migdal"
+  },
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
+    "@fortawesome/react-fontawesome": "^0.2.0"
+  }
 }
