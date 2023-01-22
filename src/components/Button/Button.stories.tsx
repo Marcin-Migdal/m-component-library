@@ -3,27 +3,28 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
-import Button from "./Button";
-import "../Themes/dark-mode-default-theme.css";
+import StoryButtonWrapper from "./StoryButtonWrapper";
+import "../Themes/dark-mode-light-blue-theme.css";
 import "../global-styles.css";
 
 library.add(fas);
 
 export default {
     title: "Morti-component-library/Button",
-    component: Button,
-} as ComponentMeta<typeof Button>;
+    component: StoryButtonWrapper,
+} as ComponentMeta<typeof StoryButtonWrapper>;
 
-const Template: ComponentStory<typeof Button> = (args) => (
+const Template: ComponentStory<typeof StoryButtonWrapper> = (args) => (
     <div className="container">
-        <Button {...args} />
+        <StoryButtonWrapper {...args} />
     </div>
 );
 
 export const buttonOne = Template.bind({});
 buttonOne.args = {
     label: "Button one",
-    onClick: () => console.log("Button one"),
+    icon: undefined,
+    variant: "text",
 };
 
 // TODO! sprawdzić jak np w material ui albo prime react wyglądają przyciski disabled w dark mode, spróbować to zaimitować

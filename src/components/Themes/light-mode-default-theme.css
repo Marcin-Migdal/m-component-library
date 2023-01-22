@@ -3,8 +3,8 @@
     --secondary-color: #fff;
     --background-color: #fff;
 
-    --hover-brightness: 1.3;
-    --active-brightness: 1.5;
+    --hover-brightness: 1.225;
+    --active-brightness: 1.225;
 }
 
 .container {
@@ -15,21 +15,50 @@
 }
 
 /* BUTTON SECTION START */
-button {
+/* VARIANT OUTLINED */
+button.outlined {
     border-color: var(--primary-color);
     background-color: var(--secondary-color);
     color: var(--primary-color);
 }
 
-button:hover:enabled {
+button.outlined:hover:enabled {
     border-color: var(--secondary-color);
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
 
-button:active:enabled {
+button.outlined:active:enabled {
     border-color: var(--secondary-color);
     background-color: var(--primary-color);
     color: var(--secondary-color);
+}
+
+/* VARIANT FULL */
+button.full {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+button.full:hover:enabled {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+button.full:active:enabled {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* VARIANT TEXT */
+button.text:hover:enabled {
+    background-color: var(--secondary-color);
+    filter: brightness(0.925);
+}
+
+button.text:active:enabled {
+    background-color: var(--secondary-color);
+    filter: brightness(0.85);
 }
 /* BUTTON SECTION END */

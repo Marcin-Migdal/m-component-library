@@ -17,7 +17,7 @@ button .right-svg {
     background-color: inherit;
 }
 
-button:disabled{
+button:disabled {
     filter: brightness(var(--disabled-brightness));
 }
 
@@ -30,4 +30,9 @@ button:active:enabled {
     transform: scale(0.95);
 
     filter: brightness(var(--active-brightness));
+}
+
+button.text {
+    background-color: transparent;
+    border: 2px solid transparent;
 }

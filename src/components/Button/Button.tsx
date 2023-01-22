@@ -1,20 +1,8 @@
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { MouseEvent } from "react";
+import React from "react";
+
+import { IButtonProps } from "./button-interfaces";
 import "./Button.css";
-
-type PositionType = "left" | "right";
-
-export interface IButtonProps {
-    label: string;
-    onClick: (e: MouseEvent<HTMLButtonElement>) => void;
-    disabled?: boolean;
-    busy?: boolean;
-    display?: boolean;
-    icon?: IconProp;
-    iconPosition?: PositionType;
-    className?: string;
-}
 
 const Button = (props: IButtonProps) => {
     const {
@@ -26,12 +14,14 @@ const Button = (props: IButtonProps) => {
         icon = undefined,
         iconPosition = "right",
         className = "",
+        type = undefined,
+        variant = "outlined",
     } = props;
 
     if (!display) return <></>;
 
     return (
-        <button className={`${className}`} onClick={(e) => onClick(e)} disabled={disabled || busy}>
+        <button className={`${className} ${variant}`} onClick={(e) => onClick(e)} disabled={disabled || busy} type={type}>
             {icon && iconPosition == "left" && <FontAwesomeIcon className="left-svg" icon={icon} />}
             {label}
             {busy ? (
