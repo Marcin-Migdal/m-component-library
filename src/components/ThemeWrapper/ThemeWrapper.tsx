@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { IThemeWrapper } from "./themes-interfaces";
+import { IThemeWrapper } from "./theme-wrapper-interfaces";
 
 const ThemeWrapper = ({ children, theme = "default-theme-light-mode" }: IThemeWrapper) => {
     const [ThemeComponent, setThemeComponent] = useState<any | undefined>(undefined);

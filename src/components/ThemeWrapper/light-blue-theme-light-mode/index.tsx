@@ -1,6 +1,6 @@
 import React from "react";
 
-import { IThemeProps } from "../themes-interfaces";
+import { IThemeProps } from "../theme-wrapper-interfaces";
 import "./style.css";
 
 export const LightBlueThemeLightMode = ({ children }: IThemeProps) => (

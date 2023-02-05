@@ -3,28 +3,26 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
-import StoryButtonWrapper from "./StoryButtonWrapper";
 import ThemeWrapper from "../ThemeWrapper";
 import "../global-styles.css";
+import Input from "./Input";
 
 library.add(fas);
 
 export default {
-    title: "Morti-component-library/Button",
-    component: StoryButtonWrapper,
-} as ComponentMeta<typeof StoryButtonWrapper>;
+    title: "Morti-component-library/Input",
+    component: Input,
+} as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<typeof StoryButtonWrapper> = (args) => (
+const Template: ComponentStory<typeof Input> = (args) => (
     <ThemeWrapper theme="light-blue-theme-light-mode">
-        <StoryButtonWrapper {...args} />
+        <Input {...args} />
     </ThemeWrapper>
 );
 
-export const buttonOne = Template.bind({});
-buttonOne.args = {
-    label: "Button one",
-    icon: undefined,
-    variant: "text",
+export const inputOne = Template.bind({});
+inputOne.args = {
+    placeHolder: "Text input",
 };
 
 // TODO! wymyślić jakiś roadwork, jakie componenty będę dodawał.
