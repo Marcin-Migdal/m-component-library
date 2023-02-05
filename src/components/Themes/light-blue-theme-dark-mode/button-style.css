@@ -1,65 +1,50 @@
-:root {
-    --primary-color: rgb(102, 217, 252);
-    --secondary-color: #383838;
-    --background-color: #383838;
-}
-
-.container {
-    padding: 1rem;
-    width: 100%;
-    height: 100vh;
-    background-color: var(--background-color);
-}
-
-/* BUTTON SECTION START */
 /* VARIANT OUTLINED */
-
-button.outlined {
+.light-blue-theme-dark-mode-container button.outlined {
     border-color: var(--primary-color);
     background-color: var(--background-color);
     color: var(--primary-color);
 }
 
-button.outlined:hover:enabled {
+.light-blue-theme-dark-mode-container button.outlined:hover:enabled {
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
 
-button.outlined:active:enabled {
+.light-blue-theme-dark-mode-container button.outlined:active:enabled {
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
 
 /* VARIANT FULL */
-button.full {
+.light-blue-theme-dark-mode-container button.full {
     border-color: var(--primary-color);
     background-color: var(--primary-color);
     color: var(--background-color);
 }
 
-button.full:hover:enabled {
+.light-blue-theme-dark-mode-container button.full:hover:enabled {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     filter: brightness(0.875);
 }
 
-button.full:active:enabled {
+.light-blue-theme-dark-mode-container button.full:active:enabled {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     filter: brightness(0.8);
 }
 
 /* VARIANT TEXT */
-button.text {
+.light-blue-theme-dark-mode-container button.text {
     color: var(--primary-color);
 }
 
-button.text:hover:enabled {
+.light-blue-theme-dark-mode-container button.text:hover:enabled {
     background-color: var(--background-color);
     filter: brightness(1.3);
 }
 
-button.text:active:enabled {
+.light-blue-theme-dark-mode-container button.text:active:enabled {
     background-color: var(--background-color);
     filter: brightness(1.45);
 }

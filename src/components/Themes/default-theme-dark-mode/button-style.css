@@ -1,72 +1,56 @@
-:root {
-    --primary-color: rgb(219, 219, 219);
-    --secondary-color: #383838;
-    --background-color: #383838;
-
-    --active-brightness: 0.9;
-}
-
-.container {
-    padding: 1rem;
-    width: 100%;
-    height: 100vh;
-    background-color: var(--background-color);
-}
-
-/* BUTTON SECTION START */
 /* VARIANT OUTLINED */
-button:disabled {
+.default-theme-dark-mode-container button:disabled {
     background-color: #646464;
 }
 
-button.outlined {
+.default-theme-dark-mode-container button.outlined {
     border-color: var(--primary-color);
     background-color: var(--background-color);
     color: var(--primary-color);
 }
 
-button.outlined:hover:enabled {
+.default-theme-dark-mode-container button.outlined:hover:enabled {
     border-color: var(--secondary-color);
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
 
-button.outlined:active:enabled {
+.default-theme-dark-mode-container button.outlined:active:enabled {
     border-color: var(--secondary-color);
     background-color: var(--primary-color);
     color: var(--secondary-color);
 }
 
 /* VARIANT FULL */
-button.full {
+.default-theme-dark-mode-container button.full {
     border-color: var(--primary-color);
     background-color: var(--primary-color);
     color: var(--background-color);
 }
 
-button.full:hover:enabled {
+.default-theme-dark-mode-container button.full:hover:enabled {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     filter: brightness(0.925);
 }
 
-button.full:active:enabled {
+.default-theme-dark-mode-container button.full:active:enabled {
     background-color: var(--primary-color);
     color: var(--secondary-color);
     filter: brightness(0.85);
 }
 
 /* VARIANT TEXT */
-button.text {
+.default-theme-dark-mode-container button.text {
     color: var(--primary-color);
 }
 
-button.text:hover:enabled {
+.default-theme-dark-mode-container button.text:hover:enabled {
     background-color: var(--background-color);
     filter: brightness(1.25);
 }
 
-button.text:active:enabled {
+.default-theme-dark-mode-container button.text:active:enabled {
     background-color: var(--background-color);
     filter: brightness(1.4);
 }
