@@ -4,7 +4,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 import StoryButtonWrapper from "./StoryButtonWrapper";
-import ThemeWrapper from "../Themes";
+import ThemeWrapper from "../Themes/ThemeWrapper";
 import "../global-styles.css";
 
 library.add(fas);
