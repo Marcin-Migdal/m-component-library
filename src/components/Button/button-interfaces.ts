@@ -5,6 +5,7 @@ export type PositionType = "left" | "right";
 export type VariantType = "outlined" | "full" | "text";
 
 export interface IButtonProps {
+    children?: any;
     label: string;
     onClick: (e: MouseEvent<HTMLButtonElement>) => void;
     disabled?: boolean;

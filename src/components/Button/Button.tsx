@@ -6,6 +6,7 @@ import "./Button.css";
 
 const Button = (props: IButtonProps) => {
     const {
+        children,
         label,
         onClick,
         disabled = false,
@@ -22,6 +23,7 @@ const Button = (props: IButtonProps) => {
 
     return (
         <button className={`${className} ${variant}`} onClick={(e) => onClick(e)} disabled={disabled || busy} type={type}>
+            {children}
             {icon && iconPosition == "left" && <FontAwesomeIcon className="left-svg" icon={icon} />}
             {label}
             {busy ? (
