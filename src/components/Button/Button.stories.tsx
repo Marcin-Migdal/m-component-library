@@ -15,7 +15,7 @@ export default {
 } as ComponentMeta<typeof StoryButtonWrapper>;
 
 const Template: ComponentStory<typeof StoryButtonWrapper> = (args) => (
-    <ThemeWrapper theme="light-blue-theme-light-mode">
+    <ThemeWrapper theme="light-blue-theme-dark-mode">
         <StoryButtonWrapper {...args} />
     </ThemeWrapper>
 );
@@ -26,5 +26,3 @@ buttonOne.args = {
     icon: undefined,
     variant: "text",
 };
-
-// TODO! wymyślić jakiś roadwork, jakie componenty będę dodawał.
