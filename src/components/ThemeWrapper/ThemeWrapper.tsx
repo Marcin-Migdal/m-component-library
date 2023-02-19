@@ -8,6 +8,7 @@ const ThemeWrapper = ({ children, theme = "default-theme-light-mode" }: IThemeWr
     useEffect(() => {
         const getTheme = async () =>
             import(`./${theme}/index`).then((ThemeComponent) => {
+                console.log(ThemeComponent);
                 setThemeComponent(ThemeComponent);
             });
 
