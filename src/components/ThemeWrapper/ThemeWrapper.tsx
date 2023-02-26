@@ -1,22 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
+import { LightBlueThemeDarkMode } from "./light-blue-theme-dark-mode";
+import { DefaultThemeLightMode } from "./default-theme-light-mode";
 import { IThemeWrapper } from "./theme-wrapper-interfaces";
 
 const ThemeWrapper = ({ children, theme = "default-theme-light-mode" }: IThemeWrapper) => {
-    const [themeComponent, setThemeComponent] = useState<any | undefined>(undefined);
+    const getTheme = () => {
+        switch (theme) {
+            case "light-blue-theme-dark-mode":
+                return <LightBlueThemeDarkMode children={children} />;
+            default:
+                return <DefaultThemeLightMode children={children} />;
+        }
+    };
 
-    useEffect(() => {
-        const getTheme = async () =>
-            import(`./${theme}/index`).then((ThemeComponent) => {
-                console.log(ThemeComponent);
-                setThemeComponent(ThemeComponent);
-            });
-
-        getTheme();
-    }, [theme]);
-
-    if (!themeComponent) return <>{console.log("nie dziala")}nie dziala</>;
-    return <>{themeComponent[Object.keys(themeComponent)[0]]({ children: children })}</>;
+    return <>{getTheme()}</>;
 };
 
 export default ThemeWrapper;

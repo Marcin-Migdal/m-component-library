@@ -15,7 +15,7 @@ export default {
 } as ComponentMeta<typeof Input>;
 
 const Template: ComponentStory<typeof Input> = (args) => (
-    <ThemeWrapper theme="light-blue-theme-light-mode">
+    <ThemeWrapper theme="light-blue-theme-dark-mode">
         <Input {...args} />
     </ThemeWrapper>
 );
