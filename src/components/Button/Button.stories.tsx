@@ -15,13 +15,14 @@ export default {
 } as ComponentMeta<typeof StoryButtonWrapper>;
 
 const Template: ComponentStory<typeof StoryButtonWrapper> = (args) => (
-    <ThemeWrapper>
+    <ThemeWrapper theme="light-blue-theme-dark-mode">
         <StoryButtonWrapper {...args} />
     </ThemeWrapper>
 );
 
 export const buttonOne = Template.bind({});
 buttonOne.args = {
-    label: "Test",
-    icon: "trash",
+    label: "Button one",
+    icon: undefined,
+    variant: "text",
 };

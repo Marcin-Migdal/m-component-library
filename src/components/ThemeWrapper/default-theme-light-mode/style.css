@@ -1,5 +1,3 @@
-@import "./button-style.css";
-
 .default-theme-light-mode-container {
     --primary-color: #686868;
     --secondary-color: #fff;
@@ -12,4 +10,52 @@
     width: 100%;
     height: 100vh;
     background-color: var(--background-color);
+}
+
+/*! BUTTON SECTION */
+/* VARIANT OUTLINED */
+.default-theme-light-mode-container button.outlined {
+    border-color: var(--primary-color);
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.default-theme-light-mode-container button.outlined:hover:enabled {
+    border-color: var(--secondary-color);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.default-theme-light-mode-container button.outlined:active:enabled {
+    border-color: var(--secondary-color);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* VARIANT FULL */
+.default-theme-light-mode-container button.full {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}
+
+.default-theme-light-mode-container button.full:hover:enabled {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.default-theme-light-mode-container button.full:active:enabled {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* VARIANT TEXT */
+.default-theme-light-mode-container button.text:hover:enabled {
+    background-color: var(--secondary-color);
+    filter: brightness(0.925);
+}
+
+.default-theme-light-mode-container button.text:active:enabled {
+    background-color: var(--secondary-color);
+    filter: brightness(0.85);
 }
