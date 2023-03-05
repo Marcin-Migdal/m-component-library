@@ -4,8 +4,9 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 import ThemeWrapper from "../ThemeWrapper";
+import { Input } from "./Input";
+
 import "../global-styles.css";
-import Input from "./Input";
 
 library.add(fas);
 
@@ -22,7 +23,6 @@ const Template: ComponentStory<typeof Input> = (args) => (
 
 export const inputOne = Template.bind({});
 inputOne.args = {
-    placeHolder: "Text input",
+    label: "Name",
+    labelType: "right",
 };
-
-// TODO! wymyślić jakiś roadwork, jakie componenty będę dodawał.
