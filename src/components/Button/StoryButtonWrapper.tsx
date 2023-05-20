@@ -3,7 +3,7 @@ import Button from "./Button";
 import React from "react";
 
 export interface IStoryButtonWrapperProps {
-    label: string;
+    text: string;
     disabled?: boolean;
     busy?: boolean;
     display?: boolean;

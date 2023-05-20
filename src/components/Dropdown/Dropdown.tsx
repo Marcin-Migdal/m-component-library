@@ -1,10 +1,10 @@
 import React, { ChangeEvent, useState } from "react";
 
-import { InputProps } from "./Input-interfaces";
+import { DropdownProps } from "./dropdown-interfaces";
 
-import "./Input.css";
+import "./Dropdown.css";
 
-const Input = ({
+const Dropdown = ({
     value = undefined,
     handleChange,
     onBlur,
@@ -15,7 +15,7 @@ const Input = ({
     type = "text",
     autoFocus = false,
     labelPercentageWidth = 30,
-}: InputProps) => {
+}: DropdownProps) => {
     const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
@@ -26,11 +26,11 @@ const Input = ({
     const handleBlur = (e: ChangeEvent<HTMLInputElement>) => {
         setIsFocused(false);
 
-        onBlur && onBlur(e, e.target.value);
+        onBlur && onBlur(e.target.value, e);
     };
 
     const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
-        if (handleChange) handleChange(e, e.target.value);
+        if (handleChange) handleChange(e.target.value, e);
         else setInternalValue(e.target.value);
     };
 
@@ -59,7 +59,7 @@ const Input = ({
                 <label
                     style={{
                         width: `${labelPercentageWidth}%`,
-                        left: labelType == "right" ? `${`${100 - labelPercentageWidth}%`}` : "0",
+                        left: labelType == "right" ? `${`${100 - labelPercentageWidth}%`}` : "unset",
                     }}
                     className={labelClasses}
                 >
@@ -70,4 +70,4 @@ const Input = ({
     );
 };
 
-export default Input;
+export default Dropdown;

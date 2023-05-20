@@ -1,0 +1,13 @@
+/*! CHECKBOX SECTION */
+.default-theme-light-mode-container .m-checkbox-container {
+    color: var(--input-text-color);
+}
+
+.default-theme-light-mode-container .m-checkbox {
+    border-color: var(--primary-color);
+}
+
+.default-theme-light-mode-container .m-checkbox:hover {
+    background: var(--light-grey-color) !important;
+    border-color: var(--grey-color) !important;
+}

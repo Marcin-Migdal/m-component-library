@@ -7,7 +7,7 @@ import "./Button.css";
 const Button = (props: IButtonProps) => {
     const {
         children,
-        label,
+        text,
         onClick,
         disabled = false,
         busy = false,
@@ -15,6 +15,7 @@ const Button = (props: IButtonProps) => {
         icon = undefined,
         iconPosition = "right",
         className = "",
+        style = {},
         type = undefined,
         variant = "outlined",
     } = props;
@@ -22,10 +23,10 @@ const Button = (props: IButtonProps) => {
     if (!display) return <></>;
 
     return (
-        <button className={`${className} ${variant}`} onClick={(e) => onClick(e)} disabled={disabled || busy} type={type}>
+        <button style={style} className={`${className} ${variant}`} onClick={(e) => onClick(e)} disabled={disabled || busy} type={type}>
             {children}
             {icon && iconPosition == "left" && <FontAwesomeIcon className="left-svg" icon={icon} />}
-            {label}
+            {text}
             {busy ? (
                 <FontAwesomeIcon className="right-svg" icon="circle-notch" spin />
             ) : icon && iconPosition == "right" ? (
