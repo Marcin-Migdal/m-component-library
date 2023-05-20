@@ -1,0 +1,21 @@
+/*! CHECKBOX SECTION */
+.light-blue-theme-light-mode-container .m-checkbox-container {
+    color: var(--primary-color);
+}
+
+.light-blue-theme-light-mode-container .m-checkbox {
+    border-color: var(--primary-color) !important;
+}
+
+.light-blue-theme-light-mode-container .m-checkbox:hover {
+    background: var(--light-blue-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.light-blue-theme-light-mode-container .m-checkbox-check-icon {
+    color: var(--primary-color) !important;
+}
+
+.light-blue-theme-light-mode-container .m-checkbox-label {
+    color: var(--primary-color);
+}

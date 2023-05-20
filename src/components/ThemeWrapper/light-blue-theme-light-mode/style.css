@@ -6,33 +6,9 @@
     --hover-brightness: 0.93;
     --active-brightness: 0.875;
 
-    padding: 1rem;
-    width: 100%;
-    height: 100vh;
-    background-color: var(--background-color);
-}
+    --input-text-color: #fff;
 
-/*! BUTTON SECTION */
-.light-blue-theme-light-mode-container button:hover:enabled {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-
-.light-blue-theme-light-mode-container button:active:enabled {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-
-/* VARIANT OUTLINED */
-.light-blue-theme-light-mode-container button.outlined {
-    border-color: var(--primary-color);
-    background-color: var(--background-color);
-    color: var(--primary-color);
-}
-
-/* VARIANT FULL */
-.light-blue-theme-light-mode-container button.full {
-    border-color: var(--primary-color);
-    background-color: var(--primary-color);
-    color: var(--background-color);
+    --light-blue-color: rgb(205, 241, 252);
+    --blue-color: rgb(169, 231, 250);
+    --dark-blue-color: rgb(144, 223, 247);
 }

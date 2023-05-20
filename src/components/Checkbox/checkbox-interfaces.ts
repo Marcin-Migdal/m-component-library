@@ -1,19 +1,13 @@
 import { ChangeEvent } from "react";
 
-export interface InputProps {
-    value?: string;
-    handleChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
-    onBlur?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+export interface CheckboxProps {
+    checked?: boolean;
+    name?: string;
+    onChange?: (event: ChangeEvent<HTMLInputElement>, value: boolean) => void;
     label?: string;
-    labelType?: "left" | "right" | "floating";
-    placeholder?: string;
-    defaultInternalValue?: string;
-    type?: InputTypes;
-    autoFocus?: boolean;
+    labelType?: "left" | "right";
     labelPercentageWidth?: LabelPercentageWidth;
 }
-
-export type InputTypes = "text" | "number" | "password";
 
 export type LabelPercentageWidth =
     | 15

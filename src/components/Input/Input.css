@@ -1,0 +1,72 @@
+.m-input-container {
+    position: relative;
+    margin-bottom: 16px;
+
+    --input-font-size: 16px;
+}
+
+.m-input-container .m-input {
+    color: inherit;
+    border: none;
+    outline: none;
+    height: 30px;
+    font-size: var(--input-font-size);
+    padding-left: 8px !important;
+    box-sizing: border-box;
+    border-radius: 6px;
+    transition: 0.2s ease-in-out;
+}
+
+.m-input-container .m-input.floating {
+    width: 100%;
+}
+
+.m-input-container .m-input.left {
+}
+
+.m-input-container .m-input.right {
+}
+
+.m-input-container .m-input:hover {
+    transition: 0.2s;
+}
+.m-input-container .m-input:focus {
+    transition: 0.1s;
+}
+
+.m-input-label {
+    color: inherit;
+    position: absolute;
+    font-size: var(--input-font-size);
+    padding-left: 0.35em;
+    pointer-events: none;
+    transition: 0.2s;
+}
+
+.m-input-label--floating {
+    transform-origin: 0 0;
+    /* transition: transform 0.2s ease-in-out, font-size 0.2s ease-in-out; */
+    transform: translate(2px, 3px);
+}
+
+.m-input-label--floating.filled,
+.m-input-label--floating.focused {
+    transform: translate(3px, -19px);
+    font-size: 12px;
+}
+
+.m-input-label--left,
+.m-input-label--right {
+    height: 30px;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+
+.m-input-label--left {
+    left: 0;
+}
+
+.m-input-label--right {
+}

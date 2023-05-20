@@ -6,6 +6,8 @@ import { DefaultThemeLightMode } from "./default-theme-light-mode";
 import { DefaultThemeDarkMode } from "./default-theme-dark-mode";
 import { IThemeWrapper } from "./theme-wrapper-interfaces";
 
+import "./style.css";
+
 const ThemeWrapper = ({ children, theme = "default-theme-light-mode" }: IThemeWrapper) => {
     const getTheme = () => {
         switch (theme) {

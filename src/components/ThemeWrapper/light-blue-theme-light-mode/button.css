@@ -1,0 +1,28 @@
+/*! BUTTON SECTION */
+.light-blue-theme-light-mode-container button {
+    color: var(--primary-color);
+}
+
+.light-blue-theme-light-mode-container button:hover:enabled {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+.light-blue-theme-light-mode-container button:active:enabled {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* VARIANT OUTLINED */
+.light-blue-theme-light-mode-container button.outlined {
+    border-color: var(--primary-color);
+    background-color: var(--background-color);
+    color: var(--primary-color);
+}
+
+/* VARIANT FULL */
+.light-blue-theme-light-mode-container button.full {
+    border-color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--background-color);
+}

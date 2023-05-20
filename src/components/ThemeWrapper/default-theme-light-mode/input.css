@@ -1,0 +1,20 @@
+/*! INPUT SECTION */
+.default-theme-light-mode-container .m-input-container {
+    color: var(--input-text-color);
+}
+
+.default-theme-light-mode-container .m-input {
+    background: var(--light-grey-color);
+}
+
+.default-theme-light-mode-container .m-input::placeholder {
+    color: var(--input-text-color);
+}
+
+.default-theme-light-mode-container .m-input-label {
+    color: var(--input-text-color);
+}
+
+.default-theme-light-mode-container .m-input:focus,
+.default-theme-light-mode-container .m-input:hover {
+}

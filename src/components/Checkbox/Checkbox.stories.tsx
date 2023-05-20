@@ -3,8 +3,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
+import StoryCheckboxWrapper from "./StoryCheckboxWrapper";
 import ThemeWrapper from "../ThemeWrapper";
-import StoryInputWrapper from "./StoryInputWrapper";
 
 import "../global-styles.css";
 
@@ -12,19 +12,19 @@ library.add(fas);
 
 export default {
     title: "Morti-component-library/Inputs",
-    component: StoryInputWrapper,
-} as ComponentMeta<typeof StoryInputWrapper>;
+    component: StoryCheckboxWrapper,
+} as ComponentMeta<typeof StoryCheckboxWrapper>;
 
-const Template: ComponentStory<typeof StoryInputWrapper> = (args) => (
+const Template: ComponentStory<typeof StoryCheckboxWrapper> = (args) => (
     <ThemeWrapper theme="light-blue-theme-light-mode">
-        <StoryInputWrapper {...args} />
+        <StoryCheckboxWrapper {...args} />
     </ThemeWrapper>
 );
 
-export const input = Template.bind({});
+export const checkbox = Template.bind({});
 
-input.args = {
-    label: "Name",
-    labelType: "right",
-    labelPercentageWidth: 20,
+checkbox.args = {
+    label: "Checkbox",
+    labelType: "left",
+    labelPercentageWidth: 30,
 };

@@ -1,21 +1,19 @@
 import { ChangeEvent } from "react";
 
-export interface InputProps {
+export interface DropdownProps {
     value?: string;
-    handleChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
-    onBlur?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+    handleChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void;
+    onBlur?: (value: string, event: ChangeEvent<HTMLInputElement>) => void;
     label?: string;
     labelType?: "left" | "right" | "floating";
     placeholder?: string;
     defaultInternalValue?: string;
-    type?: InputTypes;
+    type?: "text" | "number";
     autoFocus?: boolean;
     labelPercentageWidth?: LabelPercentageWidth;
 }
 
-export type InputTypes = "text" | "number" | "password";
-
-export type LabelPercentageWidth =
+type LabelPercentageWidth =
     | 15
     | 16
     | 17
