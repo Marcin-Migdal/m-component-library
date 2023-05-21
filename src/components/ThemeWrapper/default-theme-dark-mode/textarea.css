@@ -1,0 +1,22 @@
+/*! TEXTAREA SECTION */
+.default-theme-dark-mode-container .m-textarea-container {
+    color: var(--input-text-color);
+}
+
+.default-theme-dark-mode-container .m-textarea {
+    background: var(--input-background-color);
+}
+
+.default-theme-dark-mode-container .m-textarea:focus,
+.default-theme-dark-mode-container .m-textarea:hover {
+    filter: brightness(1.175);
+}
+
+.default-theme-dark-mode-container .m-textarea-label--floating.filled,
+.default-theme-dark-mode-container .m-textarea-label--floating.focused {
+    filter: brightness(1.7);
+}
+
+.default-theme-dark-mode-container .m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
+    background-color: var(--background-color);
+}

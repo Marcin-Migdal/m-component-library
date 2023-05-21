@@ -1,0 +1,85 @@
+.m-textarea-container {
+    position: relative;
+    margin-bottom: 16px;
+
+    --textarea-font-size: 16px;
+}
+
+.m-textarea-container .m-textarea {
+    border: none;
+    outline: none;
+    min-height: 30px;
+    /* height: 30px; */
+    font-size: var(--textarea-font-size);
+    padding-top: 4px;
+    padding-left: 8px !important;
+    box-sizing: border-box;
+    border-radius: 6px;
+    transition: 0.2s ease-in-out;
+    resize: vertical;
+}
+
+.m-textarea-container .m-textarea.floating {
+    width: 100%;
+}
+
+.m-textarea-container .m-textarea.left {
+}
+
+.m-textarea-container .m-textarea.right {
+}
+
+.m-textarea-container .m-textarea:hover {
+}
+.m-textarea-container .m-textarea:active {
+    transition: 0s !important;
+}
+
+.m-textarea-label {
+    color: inherit;
+    position: absolute;
+    font-size: var(--textarea-font-size);
+    padding-left: 0.35em;
+    pointer-events: none;
+    transition: 0.2s;
+}
+
+.m-textarea-label--floating {
+    transform-origin: 0 0;
+    /* transition: transform 0.2s ease-in-out, font-size 0.2s ease-in-out; */
+    transform: translate(2px, 3px);
+}
+
+.m-textarea-label--floating.filled,
+.m-textarea-label--floating.focused {
+    transform: translate(3px, -19px);
+    font-size: 12px;
+}
+
+.m-textarea-label--left,
+.m-textarea-label--right {
+    height: 30px;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+
+.m-textarea-label--left {
+    left: 0;
+}
+
+.m-textarea-label--right {
+}
+
+.m-textarea-container .m-textarea::-webkit-scrollbar {
+    width: 10px;
+}
+
+.m-textarea-container .m-textarea::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
+    border-radius: 30px;
+}

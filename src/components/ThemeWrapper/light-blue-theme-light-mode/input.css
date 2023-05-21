@@ -5,6 +5,7 @@
 
 .light-blue-theme-light-mode-container .m-input {
     background: var(--blue-color);
+    color: var(--input-text-color);
 }
 
 .light-blue-theme-light-mode-container .m-input::placeholder {

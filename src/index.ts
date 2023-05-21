@@ -1,7 +1,6 @@
 export * from "./components";
 
 // TODO! Add mask to input(text)
-// TODO! Textarea
 // TODO! Dropdown
 
 // TODO! figure out if i can add global interface, in which i will be able to store common interfaces, eq. LabelPercentageWidth
@@ -10,6 +9,9 @@ export * from "./components";
 // TODO! Image Component
 // TODO! Multi select Dropdown
 // TODO! Date input, with range
+
+//TODO! box-shadow for inputs
+
 // TODO! Side bar
 // TODO! Nav bar bar
 // TODO! Menu
