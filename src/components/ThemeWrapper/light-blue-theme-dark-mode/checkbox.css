@@ -15,3 +15,6 @@
 .light-blue-theme-dark-mode-container .m-checkbox-check-icon {
     color: var(--primary-color) !important;
 }
+.light-blue-theme-dark-mode-container .m-checkbox-label {
+    color: var(--primary-color);
+}

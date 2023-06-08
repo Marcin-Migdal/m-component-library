@@ -4,6 +4,7 @@ import { IThemeProps } from "../theme-wrapper-interfaces";
 
 // All component css
 import "./checkbox.css";
+import "./textarea.css";
 import "./button.css";
 import "./input.css";
 

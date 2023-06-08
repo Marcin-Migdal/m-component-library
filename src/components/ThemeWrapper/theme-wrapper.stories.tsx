@@ -3,6 +3,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
+import Textarea from "../Textarea/Textarea";
 import Checkbox from "../Checkbox/Checkbox";
 import ThemeWrapper from "../ThemeWrapper";
 import Button from "../Button/Button";
@@ -26,6 +27,7 @@ const Template: ComponentStory<typeof ThemeWrapper> = (args) => (
         </div>
         <Input label="label" labelType="floating" />
         <Checkbox label="label" labelType="right" labelPercentageWidth={80} />
+        <Textarea label="label" labelType="right" labelPercentageWidth={80} />
     </ThemeWrapper>
 );
 

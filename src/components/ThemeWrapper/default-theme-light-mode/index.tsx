@@ -3,6 +3,7 @@ import React from "react";
 import { IThemeProps } from "../theme-wrapper-interfaces";
 
 // All component css
+import "./textarea.css";
 import "./checkbox.css";
 import "./button.css";
 import "./input.css";

@@ -1,0 +1,24 @@
+/*! TEXTAREA SECTION */
+.default-theme-light-mode-container .m-textarea-container {
+    color: var(--input-text-color);
+}
+
+.default-theme-light-mode-container .m-textarea {
+    background: var(--light-grey-color);
+}
+
+.default-theme-light-mode-container .m-textarea::placeholder {
+    color: var(--input-text-color);
+}
+
+.default-theme-light-mode-container .m-textarea-label {
+    color: var(--input-text-color);
+}
+
+.default-theme-light-mode-container .m-textarea:focus,
+.default-theme-light-mode-container .m-textarea:hover {
+}
+
+.default-theme-light-mode-container .m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
+    background-color: var(--background-color);
+}

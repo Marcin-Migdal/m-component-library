@@ -1,7 +1,7 @@
 import React from "react";
 
-import { CUSTOM_INPUT_MASKS, INPUT_MASKS, InputTypes, LabelPercentageWidth } from "./Input-interfaces";
-import Input from "./Input";
+import { LabelPercentageWidth } from "./Textarea-interfaces";
+import Textarea from "./Textarea";
 
 export interface IStoryInputWrapperProps {
     value?: string;
@@ -9,14 +9,12 @@ export interface IStoryInputWrapperProps {
     labelType?: "left" | "right" | "floating";
     placeholder?: string;
     defaultInternalValue?: string;
-    type?: InputTypes;
     autoFocus?: boolean;
     labelPercentageWidth?: LabelPercentageWidth;
-    mask?: INPUT_MASKS | string;
-    customMask?: CUSTOM_INPUT_MASKS;
+    row?: number;
 }
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
-const StoryInputWrapper = (props: IStoryInputWrapperProps) => <Input {...props} />;
+const StoryInputWrapper = (props: IStoryInputWrapperProps) => <Textarea {...props} />;
 
 export default StoryInputWrapper;

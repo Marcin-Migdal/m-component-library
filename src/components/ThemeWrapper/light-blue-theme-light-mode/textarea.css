@@ -1,0 +1,35 @@
+/*! TEXTAREA SECTION */
+.light-blue-theme-light-mode-container .m-textarea-container {
+    color: var(--textarea-text-color);
+}
+
+.light-blue-theme-light-mode-container .m-textarea {
+    background: var(--blue-color);
+    color: var(--input-text-color);
+}
+
+.light-blue-theme-light-mode-container .m-textarea::placeholder {
+    color: var(--input-text-color);
+}
+
+.light-blue-theme-light-mode-container .m-textarea-label {
+    color: var(--primary-color);
+}
+
+.light-blue-theme-light-mode-container .m-textarea:focus,
+.light-blue-theme-light-mode-container .m-textarea:hover {
+    background: var(--dark-blue-color);
+}
+
+.light-blue-theme-light-mode-container .m-textarea-label--floating {
+    color: var(--textarea-text-color);
+}
+
+.light-blue-theme-light-mode-container .m-textarea-label--floating.filled,
+.light-blue-theme-light-mode-container .m-textarea-label--floating.focused {
+    color: var(--primary-color);
+}
+
+.light-blue-theme-light-mode-container .m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
+    background-color: var(--background-color);
+}

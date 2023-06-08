@@ -1,34 +1,16 @@
-import { InputState } from "react-input-mask";
 import { ChangeEvent } from "react";
 
-export interface InputProps {
+export interface TextareaProps {
     value?: string;
-    handleChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
-    onBlur?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+    handleChange?: (event: ChangeEvent<HTMLTextAreaElement>, value: string) => void;
+    onBlur?: (event: ChangeEvent<HTMLTextAreaElement>, value: string) => void;
     label?: string;
     labelType?: "left" | "right" | "floating";
     placeholder?: string;
     defaultInternalValue?: string;
-    type?: InputTypes;
     autoFocus?: boolean;
     labelPercentageWidth?: LabelPercentageWidth;
-
-    customMask?: CUSTOM_INPUT_MASKS;
-    mask?: INPUT_MASKS | string;
-    formatChars?: any;
-    onBeforeMaskedValueChange?: (newState: InputState, oldState: InputState, userInput: string) => InputState;
-}
-
-export type InputTypes = "text" | "number" | "password";
-
-export enum CUSTOM_INPUT_MASKS {
-    TIME = "time",
-}
-
-export enum INPUT_MASKS {
-    DATE = "99-99-9999",
-    CREDIT_CARD = "9999 9999 9999 9999",
-    ZIP_CODE = "99-999",
+    row?: number;
 }
 
 export type LabelPercentageWidth =
