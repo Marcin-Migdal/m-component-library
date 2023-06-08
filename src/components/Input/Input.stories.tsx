@@ -3,8 +3,8 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
-import ThemeWrapper from "../ThemeWrapper";
 import StoryInputWrapper from "./StoryInputWrapper";
+import ThemeWrapper from "../ThemeWrapper";
 
 import "../global-styles.css";
 
@@ -27,4 +27,6 @@ input.args = {
     label: "Name",
     labelType: "right",
     labelPercentageWidth: 20,
+    type: "text",
+    customMask: undefined,
 };

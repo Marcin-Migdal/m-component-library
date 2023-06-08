@@ -1,6 +1,5 @@
 export * from "./components";
 
-// TODO! Add mask to input(text)
 // TODO! Dropdown
 
 // TODO! figure out if i can add global interface, in which i will be able to store common interfaces, eq. LabelPercentageWidth

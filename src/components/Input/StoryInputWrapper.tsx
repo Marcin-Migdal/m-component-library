@@ -1,6 +1,6 @@
 import React from "react";
 
-import { InputTypes, LabelPercentageWidth } from "./Input-interfaces";
+import { CUSTOM_INPUT_MASKS, INPUT_MASKS, InputTypes, LabelPercentageWidth } from "./Input-interfaces";
 import Input from "./Input";
 
 export interface IStoryInputWrapperProps {
@@ -12,6 +12,8 @@ export interface IStoryInputWrapperProps {
     type?: InputTypes;
     autoFocus?: boolean;
     labelPercentageWidth?: LabelPercentageWidth;
+    mask?: INPUT_MASKS | string;
+    customMask?: CUSTOM_INPUT_MASKS;
 }
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
