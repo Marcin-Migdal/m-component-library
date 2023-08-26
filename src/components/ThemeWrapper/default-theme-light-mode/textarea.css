@@ -4,7 +4,7 @@
 }
 
 .default-theme-light-mode-container .m-textarea {
-    background: var(--light-grey-color);
+    background: var(--grey-color);
 }
 
 .default-theme-light-mode-container .m-textarea::placeholder {
@@ -17,6 +17,7 @@
 
 .default-theme-light-mode-container .m-textarea:focus,
 .default-theme-light-mode-container .m-textarea:hover {
+    background-color: var(--light-grey-color);
 }
 
 .default-theme-light-mode-container .m-textarea-container .m-textarea::-webkit-scrollbar-thumb {

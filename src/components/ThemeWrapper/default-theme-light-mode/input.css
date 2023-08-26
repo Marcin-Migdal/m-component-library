@@ -4,7 +4,7 @@
 }
 
 .default-theme-light-mode-container .m-input {
-    background: var(--light-grey-color);
+    background: var(--grey-color);
 }
 
 .default-theme-light-mode-container .m-input::placeholder {
@@ -17,4 +17,5 @@
 
 .default-theme-light-mode-container .m-input:focus,
 .default-theme-light-mode-container .m-input:hover {
+    background-color: var(--light-grey-color);
 }

@@ -8,6 +8,7 @@ import "./Input.css";
 const Input = (props: InputProps) => {
     const {
         value = undefined,
+        name = undefined,
         handleChange,
         onBlur,
         label,
@@ -23,9 +24,7 @@ const Input = (props: InputProps) => {
 
     let { mask = "", formatChars = undefined } = props;
 
-    console.log(customMask);
     if (customMask == CUSTOM_INPUT_MASKS.TIME) {
-        console.log("1");
         mask = "12:34";
         formatChars = {
             "1": "[0-2]",
@@ -49,16 +48,8 @@ const Input = (props: InputProps) => {
     };
 
     const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
-        if (handleChange) handleChange(e, e.target.value);
-        else setInternalValue(e.target.value);
-    };
-
-    const labelClasses = `m-input-label 
-    m-input-label--${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
-
-    const inputStyle: React.CSSProperties = {
-        marginLeft: labelType == "left" ? `${labelPercentageWidth}%` : "unset",
-        width: labelType == "floating" ? "100%" : `${100 - labelPercentageWidth}%`,
+        handleChange && handleChange(e, e.target.value);
+        setInternalValue(e.target.value);
     };
 
     const handleBeforeMaskedValueChange = (newState: InputState, oldState: InputState, userInput: string): InputState => {
@@ -81,9 +72,18 @@ const Input = (props: InputProps) => {
         }
     };
 
+    const labelClasses = `m-input-label 
+    m-input-label--${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
+
+    const inputStyle: React.CSSProperties = {
+        marginLeft: labelType == "left" ? `${labelPercentageWidth}%` : "unset",
+        width: labelType == "floating" ? "100%" : `${100 - labelPercentageWidth}%`,
+    };
+
     return (
         <div className="m-input-container">
             <InputMask
+                name={name}
                 mask={mask}
                 formatChars={formatChars}
                 className={`m-input ${labelType}`}
@@ -105,7 +105,7 @@ const Input = (props: InputProps) => {
                     }}
                     className={labelClasses}
                 >
-                    {label}
+                    {labelType == "floating" ? (isFocused || _value ? label : `${label}...`) : label}
                 </label>
             )}
         </div>

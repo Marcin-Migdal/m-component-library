@@ -1,6 +1,6 @@
 /*! TEXTAREA SECTION */
 .light-blue-theme-light-mode-container .m-textarea-container {
-    color: var(--textarea-text-color);
+    color: var(--input-text-color);
 }
 
 .light-blue-theme-light-mode-container .m-textarea {

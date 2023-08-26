@@ -6,6 +6,7 @@ import "./Textarea.css";
 
 const Textarea = ({
     value = undefined,
+    name = undefined,
     handleChange,
     onBlur,
     label,
@@ -30,8 +31,8 @@ const Textarea = ({
     };
 
     const onChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
-        if (handleChange) handleChange(e, e.target.value);
-        else setInternalValue(e.target.value);
+        handleChange && handleChange(e, e.target.value);
+        setInternalValue(e.target.value);
     };
 
     const labelClasses = `m-textarea-label 
@@ -45,6 +46,7 @@ const Textarea = ({
     return (
         <div className="m-textarea-container">
             <textarea
+                name={name}
                 rows={row}
                 style={inputStyle}
                 className={`m-textarea ${labelType}`}

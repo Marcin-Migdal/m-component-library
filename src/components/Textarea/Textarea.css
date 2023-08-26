@@ -9,7 +9,6 @@
     border: none;
     outline: none;
     min-height: 30px;
-    /* height: 30px; */
     font-size: var(--textarea-font-size);
     padding-top: 4px;
     padding-left: 8px !important;
@@ -17,6 +16,7 @@
     border-radius: 6px;
     transition: 0.2s ease-in-out;
     resize: vertical;
+    color: inherit;
 }
 
 .m-textarea-container .m-textarea.floating {
@@ -46,7 +46,6 @@
 
 .m-textarea-label--floating {
     transform-origin: 0 0;
-    /* transition: transform 0.2s ease-in-out, font-size 0.2s ease-in-out; */
     transform: translate(2px, 3px);
 }
 

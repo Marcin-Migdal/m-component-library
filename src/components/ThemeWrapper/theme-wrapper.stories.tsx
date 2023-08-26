@@ -5,6 +5,7 @@ import React from "react";
 
 import Textarea from "../Textarea/Textarea";
 import Checkbox from "../Checkbox/Checkbox";
+import Dropdown from "../Dropdown/Dropdown";
 import ThemeWrapper from "../ThemeWrapper";
 import Button from "../Button/Button";
 import Input from "../Input/Input";
@@ -25,9 +26,11 @@ const Template: ComponentStory<typeof ThemeWrapper> = (args) => (
             <Button style={{ marginRight: "5px" }} variant="full" text="btn text" onClick={() => {}} />
             <Button style={{ marginRight: "5px" }} variant="text" text="btn text" onClick={() => {}} />
         </div>
-        <Input label="label" labelType="floating" />
+        <Input label="label" labelType="floating" labelPercentageWidth={80} />
         <Checkbox label="label" labelType="right" labelPercentageWidth={80} />
         <Textarea label="label" labelType="right" labelPercentageWidth={80} />
+        <Dropdown label="label" labelType="right" labelPercentageWidth={80} />
+        <Dropdown label="label" labelType="right" labelPercentageWidth={80} options={options} />
     </ThemeWrapper>
 );
 
@@ -36,3 +39,8 @@ export const theme = Template.bind({});
 theme.args = {
     theme: "light-blue-theme-dark-mode",
 };
+
+const options = [
+    { label: "test 1", value: 1 },
+    { label: "test 2", value: 2 },
+];

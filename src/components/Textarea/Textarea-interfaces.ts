@@ -2,6 +2,7 @@ import { ChangeEvent } from "react";
 
 export interface TextareaProps {
     value?: string;
+    name?: string;
     handleChange?: (event: ChangeEvent<HTMLTextAreaElement>, value: string) => void;
     onBlur?: (event: ChangeEvent<HTMLTextAreaElement>, value: string) => void;
     label?: string;
