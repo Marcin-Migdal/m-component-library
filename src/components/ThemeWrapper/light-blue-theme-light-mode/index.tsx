@@ -7,10 +7,13 @@ import "./textarea.css";
 import "./checkbox.css";
 import "./button.css";
 import "./input.css";
+import "./dropdown.css";
 
 // Wrapper component css
 import "./style.css";
 
-export const LightBlueThemeLightMode = ({ children }: IThemeProps) => (
-    <div className="common-wrapper-container light-blue-theme-light-mode-container">{children}</div>
+export const LightBlueThemeLightMode = ({ children, customWrapperId }: IThemeProps) => (
+    <div className="common-wrapper-container light-blue-theme-light-mode-container" id={customWrapperId}>
+        {children}
+    </div>
 );

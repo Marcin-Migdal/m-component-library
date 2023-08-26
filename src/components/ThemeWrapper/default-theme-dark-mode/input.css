@@ -9,10 +9,19 @@
 
 .default-theme-dark-mode-container .m-input:focus,
 .default-theme-dark-mode-container .m-input:hover {
-    filter: brightness(1.175);
+    background-color: var(--light-grey-color);
+}
+
+.default-theme-dark-mode-container .m-input:not(:disabled):focus::placeholder,
+.default-theme-dark-mode-container .m-input:not(:disabled):hover::placeholder {
+    color: var(--placeholder-text-color);
+}
+
+.default-theme-dark-mode-container .m-input-label--floating {
+    color: var(--placeholder-text-color);
 }
 
 .default-theme-dark-mode-container .m-input-label--floating.filled,
 .default-theme-dark-mode-container .m-input-label--floating.focused {
-    filter: brightness(1.7);
+    color: var(--input-text-color);
 }

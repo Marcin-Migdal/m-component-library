@@ -3,6 +3,7 @@ import { ChangeEvent } from "react";
 
 export interface InputProps {
     value?: string;
+    name?: string;
     handleChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
     onBlur?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
     label?: string;

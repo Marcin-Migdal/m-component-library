@@ -8,6 +8,6 @@
 }
 
 .default-theme-light-mode-container .m-checkbox:hover {
-    background: var(--light-grey-color) !important;
+    background: var(--grey-color) !important;
     border-color: var(--grey-color) !important;
 }

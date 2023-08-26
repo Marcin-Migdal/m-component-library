@@ -8,17 +8,17 @@ import { IThemeWrapper } from "./theme-wrapper-interfaces";
 
 import "./style.css";
 
-const ThemeWrapper = ({ children, theme = "default-theme-light-mode" }: IThemeWrapper) => {
+const ThemeWrapper = ({ children, theme = "default-theme-light-mode", customWrapperId = "wrapper-root" }: IThemeWrapper) => {
     const getTheme = () => {
         switch (theme) {
             case "light-blue-theme-dark-mode":
-                return <LightBlueThemeDarkMode children={children} />;
+                return <LightBlueThemeDarkMode children={children} customWrapperId={customWrapperId} />;
             case "light-blue-theme-light-mode":
-                return <LightBlueThemeLightMode children={children} />;
+                return <LightBlueThemeLightMode children={children} customWrapperId={customWrapperId} />;
             case "default-theme-light-mode":
-                return <DefaultThemeLightMode children={children} />;
+                return <DefaultThemeLightMode children={children} customWrapperId={customWrapperId} />;
             case "default-theme-dark-mode":
-                return <DefaultThemeDarkMode children={children} />;
+                return <DefaultThemeDarkMode children={children} customWrapperId={customWrapperId} />;
         }
     };
 

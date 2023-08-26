@@ -1,19 +1,28 @@
-import { ChangeEvent } from "react";
-
 export interface DropdownProps {
-    value?: string;
-    handleChange?: (value: string, event: ChangeEvent<HTMLInputElement>) => void;
-    onBlur?: (value: string, event: ChangeEvent<HTMLInputElement>) => void;
+    value?: any;
+    name?: string;
+    disabled?: boolean;
+    handleChange?: (event: IDropdownChangeEvent, value: any | undefined) => void;
+    options?: any[];
+    labelKey?: string;
+    valueKey?: string;
     label?: string;
     labelType?: "left" | "right" | "floating";
     placeholder?: string;
-    defaultInternalValue?: string;
-    type?: "text" | "number";
-    autoFocus?: boolean;
     labelPercentageWidth?: LabelPercentageWidth;
+    clearable?: boolean;
 }
 
-type LabelPercentageWidth =
+export interface IDropdownChangeEvent extends React.MouseEvent<HTMLLIElement | SVGSVGElement, MouseEvent> {
+    target: IDropdownChangeEventTarget;
+}
+
+interface IDropdownChangeEventTarget extends EventTarget {
+    name?: string;
+    value: any;
+}
+
+export type LabelPercentageWidth =
     | 15
     | 16
     | 17
