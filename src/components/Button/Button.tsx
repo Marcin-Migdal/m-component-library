@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 import { IButtonProps } from "./button-interfaces";
+
 import "./Button.css";
 
 const Button = (props: IButtonProps) => {

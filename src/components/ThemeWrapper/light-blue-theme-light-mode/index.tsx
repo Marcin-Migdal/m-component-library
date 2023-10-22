@@ -8,9 +8,10 @@ import "./checkbox.css";
 import "./button.css";
 import "./input.css";
 import "./dropdown.css";
+import "./toast.css";
 
 // Wrapper component css
-import "./style.css";
+import "./color-variables.css";
 
 export const LightBlueThemeLightMode = ({ children, customWrapperId }: IThemeProps) => (
     <div className="common-wrapper-container light-blue-theme-light-mode-container" id={customWrapperId}>
