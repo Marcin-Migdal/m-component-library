@@ -29,17 +29,16 @@
     position: relative;
 
     display: flex;
-    align-items: center;
 
-    max-width: 225px !important;
-    padding: 12px 32px 12px 16px;
+    min-width: 344px;
+    max-width: 344px;
+
+    min-height: 70px;
     border-radius: 6px;
-
-    background-color: #777;
 
     margin-bottom: 5px;
 
-    font-size: 0.8rem;
+    font-size: 0.9rem;
 
     transition: transform var(250ms), opacity var(250ms), box-shadow var(250ms) ease-in-out;
 }
@@ -74,51 +73,57 @@
     }
 }
 
+.toasts-list .toast .text-content {
+    display: flex;
+    flex-direction: column;
+    padding: 11px 15px 15px 0;
+}
+
+.toasts-list .toast p {
+    width: fit-content;
+    padding: 0;
+    margin: 0px;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
 .toasts-list .toast span {
     display: inline-block;
 
     width: fit-content;
-    margin-left: 12px;
+    margin-top: 3px;
 }
 
 .toasts-list .toast svg:not(.close-icon) {
-    font-size: 1.25rem;
+    min-width: 30px;
+    min-height: 30px;
+    margin: 15px;
+}
+
+.toasts-list .toast.success svg:not(.close-icon) {
+    width: 27px;
+    height: 27px;
 }
 
 .toasts-list .toast svg.close-icon {
     position: absolute;
 
-    top: 4px;
-    right: 6px;
+    top: 8px;
+    right: 8px;
 
-    height: 12px;
-    width: 12px;
+    height: 16px;
+    width: 16px;
     transition: 0.25s;
 
-    padding: 2px;
+    padding: 4px;
 
     border-radius: 100%;
 }
 
-.toasts-list .toast svg.close-icon:hover {
-    background-color: #555;
-}
-
 .toasts-list .toast svg.close-icon:active {
-    background-color: #555;
-    transform: scale(0.85);
-}
-
-.toasts-list .toast.success svg:not(.close-icon) {
-    fill: rgb(16, 170, 16) !important;
-}
-
-.toasts-list .toast.failure svg:not(.close-icon) {
-    fill: rgb(226, 3, 3) !important;
-}
-
-.toasts-list .toast.warning svg:not(.close-icon) {
-    fill: rgb(0, 89, 255) !important;
+    transform: scale(0.8);
 }
 
 .toasts-list::-webkit-scrollbar {

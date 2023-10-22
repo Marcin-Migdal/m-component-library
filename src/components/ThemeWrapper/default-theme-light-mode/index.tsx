@@ -8,9 +8,10 @@ import "./checkbox.css";
 import "./button.css";
 import "./input.css";
 import "./dropdown.css";
+import "./toast.css";
 
 // Wrapper component css
-import "./style.css";
+import "./color-variables.css";
 
 export const DefaultThemeLightMode = ({ children, customWrapperId }: IThemeProps) => {
     return (

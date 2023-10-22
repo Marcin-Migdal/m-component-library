@@ -1,1 +1,1 @@
-export { default as ToastsList } from "./components/ToastsList";
+export { default } from "./ToastsContainer";

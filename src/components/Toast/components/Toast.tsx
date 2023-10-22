@@ -7,15 +7,19 @@ const iconMap: Record<ToastTypes, ReactNode> = {
     success: <SuccessIcon />,
     failure: <FailureIcon />,
     warning: <WarningIcon />,
+    information: <WarningIcon />,
 };
 
 export const Toast = ({ toast, onClose }: IToastProps) => {
-    const { type, message, id } = toast;
+    const { type, title, message, id } = toast;
 
     return (
         <div className={`toast ${type}`}>
             {iconMap[toast.type]}
-            {message && <span>{message}</span>}
+            <div className="text-content">
+                <p>{title}</p>
+                {message && <span>{message}</span>}
+            </div>
             <CloseIcon onClick={() => onClose(id)} />
         </div>
     );

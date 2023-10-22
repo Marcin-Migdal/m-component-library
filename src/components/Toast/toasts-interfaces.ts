@@ -1,12 +1,11 @@
-import { MouseEvent, MouseEventHandler } from "react";
-
-//! TOAST COMPONENTS
+//* TOAST COMPONENTS
 
 //! TOASTS LIST COMPONENTS
-export type ToastTypes = "success" | "failure" | "warning";
+export type ToastTypes = "success" | "failure" | "warning" | "information";
 
 export interface IToast {
-    message: MessageType;
+    title: TextType;
+    message: TextType;
     type: ToastTypes;
     id: number;
 }
@@ -16,7 +15,7 @@ export interface IToastProps {
     toast: IToast;
 }
 
-export type MessageType = String | undefined;
+export type TextType = String | undefined;
 
 //! ICON
 export interface ICloseIconProps {

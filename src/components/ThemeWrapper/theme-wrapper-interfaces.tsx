@@ -9,4 +9,8 @@ export interface IThemeProps {
     customWrapperId: string;
 }
 
-type ThemeTypes = "default-theme-dark-mode" | "default-theme-light-mode" | "light-blue-theme-dark-mode" | "light-blue-theme-light-mode";
+export type ThemeTypes =
+    | "default-theme-dark-mode"
+    | "default-theme-light-mode"
+    | "light-blue-theme-dark-mode"
+    | "light-blue-theme-light-mode";

@@ -1,11 +1,11 @@
 import React, { ForwardedRef, forwardRef, useImperativeHandle, useState } from "react";
 
-import { IToast, MessageType, ToastTypes } from "../toasts-interfaces";
-import { Toast } from "./Toast";
+import { IToast, TextType, ToastTypes } from "./toasts-interfaces";
+import { Toast } from "./components/Toast";
 
-import "../Toasts.css";
+import "./Toasts.css";
 
-type ToastsPositionTypes = "top-right" | "top-left" | "bottom-right" | "bottom-left";
+export type ToastsPositionTypes = "top-right" | "top-left" | "bottom-right" | "bottom-left";
 
 interface IToastProps {
     autoClose?: boolean;
@@ -13,7 +13,7 @@ interface IToastProps {
 }
 
 export type ToastHandler = {
-    handleAddToast: (type: ToastTypes, message: MessageType) => void;
+    handleAddToast: (type: ToastTypes, message: TextType) => void;
     handleClear: () => void;
 };
 
@@ -21,8 +21,8 @@ const ToastsContainer = ({ autoClose = true, toastsPosition }: IToastProps, ref:
     const [toasts, setToasts] = useState<IToast[]>([]);
 
     useImperativeHandle(ref, () => ({
-        handleAddToast: (type: ToastTypes, message: MessageType = undefined, toastDuration: number = 1500) => {
-            const newToast: IToast = { message: message, type: type, id: Date.now() };
+        handleAddToast: (type: ToastTypes, message: TextType = undefined, toastDuration: number = 1500) => {
+            const newToast: IToast = { title: type, message: message, type: type, id: Date.now() };
 
             setToasts((prevState) => [...prevState, newToast]);
 
