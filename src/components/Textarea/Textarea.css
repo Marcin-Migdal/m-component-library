@@ -1,6 +1,6 @@
 .m-textarea-container {
     position: relative;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 
     --textarea-font-size: 16px;
 }
@@ -51,7 +51,7 @@
 
 .m-textarea-label--floating.filled,
 .m-textarea-label--floating.focused {
-    transform: translate(3px, -19px);
+    transform: translate(3px, -17px);
     font-size: 12px;
 }
 

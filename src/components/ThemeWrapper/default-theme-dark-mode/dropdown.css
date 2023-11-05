@@ -1,46 +1,50 @@
 /*! DROPDOWN SECTION */
 .default-theme-dark-mode-container .m-dropdown-container {
-    color: var(--input-text-color);
+    color: var(--light-grey_200);
 }
 
 .default-theme-dark-mode-container .m-dropdown-container .m-dropdown-clear-icon:hover {
-    background: var(--light-grey-color);
+    background: var(--dark-grey_200);
 }
 
 .default-theme-dark-mode-container .m-dropdown {
-    background: var(--input-background-color);
+    background: var(--dark-grey_400);
 }
 
 .default-theme-dark-mode-container .m-dropdown:not(:disabled):focus,
 .default-theme-dark-mode-container .m-dropdown:not(:disabled):hover {
-    background-color: var(--light-grey-color);
+    background-color: var(--dark-grey_200);
 }
 
 .default-theme-dark-mode-container .m-dropdown:not(:disabled):focus,
 .default-theme-dark-mode-container .m-dropdown:not(:disabled):hover {
-    background-color: var(--light-grey-color);
+    background-color: var(--dark-grey_200);
 }
 
 .default-theme-dark-mode-container .m-dropdown:not(:disabled):focus::placeholder,
 .default-theme-dark-mode-container .m-dropdown:not(:disabled):hover::placeholder {
-    color: var(--placeholder-text-color) !important;
+    color: var(--light-grey_800) !important;
+}
+
+.default-theme-dark-mode-container .m-dropdown-list {
+    background-color: var(--dark-grey_400);
+    color: var(--light-grey_200);
+}
+
+.default-theme-dark-mode-container .m-dropdown-list .m-dropdown-list-item:not(.empty-message):hover {
+    background-color: var(--dark-grey_200);
+}
+
+.default-theme-dark-mode-container .m-dropdown-label--floating {
+    color: var(--light-grey_800);
 }
 
 .default-theme-dark-mode-container .m-dropdown-label--floating.filled,
 .default-theme-dark-mode-container .m-dropdown-label--floating.focused {
-    filter: brightness(1.7);
-}
-
-.default-theme-dark-mode-container .m-dropdown-list {
-    background-color: var(--input-background-color);
-    color: var(--input-text-color);
-}
-
-.default-theme-dark-mode-container .m-dropdown-list .m-dropdown-list-item:not(.empty-message):hover {
-    background-color: var(--light-grey-color);
+    color: var(--light-grey_200);
 }
 
 .default-theme-dark-mode-container .m-dropdown-list .m-dropdown-list-item:not(.empty-message):active,
 .default-theme-dark-mode-container .m-dropdown-list .m-dropdown-list-item:not(.empty-message).selected {
-    background-color: var(--light-grey-color);
+    background-color: var(--dark-grey_200);
 }

@@ -50,7 +50,7 @@
 
 .m-input-label--floating.filled,
 .m-input-label--floating.focused {
-    transform: translate(3px, -19px);
+    transform: translate(3px, -17px);
     font-size: 12px;
 }
 

@@ -6,7 +6,7 @@ export interface CheckboxProps {
     onChange?: (event: ChangeEvent<HTMLInputElement>, value: boolean) => void;
     label?: string;
     labelType?: "left" | "right";
-    labelPercentageWidth?: LabelPercentageWidth;
+    labelWidth?: LabelPercentageWidth;
 }
 
 export type LabelPercentageWidth =
@@ -75,4 +75,14 @@ export type LabelPercentageWidth =
     | 77
     | 78
     | 79
-    | 80;
+    | 80
+    | 81
+    | 82
+    | 83
+    | 84
+    | 85
+    | 86
+    | 87
+    | 88
+    | 89
+    | 90;

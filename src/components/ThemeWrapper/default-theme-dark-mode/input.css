@@ -1,27 +1,27 @@
 /*! INPUT SECTION */
 .default-theme-dark-mode-container .m-input-container {
-    color: var(--input-text-color);
+    color: var(--light-grey_200);
 }
 
 .default-theme-dark-mode-container .m-input {
-    background: var(--input-background-color);
+    background: var(--dark-grey_400);
 }
 
 .default-theme-dark-mode-container .m-input:focus,
 .default-theme-dark-mode-container .m-input:hover {
-    background-color: var(--light-grey-color);
+    background-color: var(--dark-grey_200);
 }
 
 .default-theme-dark-mode-container .m-input:not(:disabled):focus::placeholder,
 .default-theme-dark-mode-container .m-input:not(:disabled):hover::placeholder {
-    color: var(--placeholder-text-color);
+    color: var(--light-grey_800);
 }
 
 .default-theme-dark-mode-container .m-input-label--floating {
-    color: var(--placeholder-text-color);
+    color: var(--light-grey_800);
 }
 
 .default-theme-dark-mode-container .m-input-label--floating.filled,
 .default-theme-dark-mode-container .m-input-label--floating.focused {
-    color: var(--input-text-color);
+    color: var(--light-grey_200);
 }

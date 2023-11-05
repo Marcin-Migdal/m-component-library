@@ -32,5 +32,5 @@ export const dropdown = Template.bind({});
 dropdown.args = {
     label: "Name",
     labelType: "right",
-    labelPercentageWidth: 20,
+    labelWidth: 20,
 };

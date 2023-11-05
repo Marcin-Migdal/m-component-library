@@ -1,27 +1,31 @@
 /*! TEXTAREA SECTION */
 .default-theme-dark-mode-container .m-textarea-container {
-    color: var(--input-text-color);
+    color: var(--light-grey_200);
 }
 
 .default-theme-dark-mode-container .m-textarea {
-    background: var(--input-background-color);
+    background: var(--dark-grey_400);
 }
 
 .default-theme-dark-mode-container .m-textarea:focus,
 .default-theme-dark-mode-container .m-textarea:hover {
-    background-color: var(--light-grey-color);
+    background-color: var(--dark-grey_200);
 }
 
 .default-theme-dark-mode-container .m-textarea:not(:disabled):focus::placeholder,
 .default-theme-dark-mode-container .m-textarea:not(:disabled):hover::placeholder {
-    color: var(--placeholder-text-color);
+    color: var(--light-grey_800);
+}
+
+.default-theme-dark-mode-container .m-textarea-label--floating {
+    color: var(--light-grey_800);
 }
 
 .default-theme-dark-mode-container .m-textarea-label--floating.filled,
 .default-theme-dark-mode-container .m-textarea-label--floating.focused {
-    filter: brightness(1.7);
+    color: var(--light-grey_200);
 }
 
 .default-theme-dark-mode-container .m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
-    background-color: var(--background-color);
+    background-color: var(--dark-grey_600);
 }

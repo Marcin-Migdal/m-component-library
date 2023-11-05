@@ -16,7 +16,8 @@ const Dropdown = (props: DropdownProps) => {
         label,
         labelType = "floating",
         placeholder,
-        labelPercentageWidth = 30,
+        labelWidth = 30,
+        floatingInputWidth = 30,
         options = undefined,
         labelKey = "label",
         valueKey = "value",
@@ -58,7 +59,7 @@ const Dropdown = (props: DropdownProps) => {
             if (
                 isFocused &&
                 ref.current &&
-                !ref.current.contains(target) &&
+                (!ref.current.contains(target) || target?.className.includes("m-dropdown-container")) &&
                 (!target.getAttribute("data-id") || target.getAttribute("data-id") != uniqueDropdownId)
             ) {
                 setIsFocused(false);
@@ -104,15 +105,18 @@ const Dropdown = (props: DropdownProps) => {
         }
     };
 
+    const labelClasses = `m-dropdown-label
+    m-dropdown-label--${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
+
     const inputStyle: React.CSSProperties = {
-        marginLeft: labelType == "left" ? `${labelPercentageWidth}%` : "unset",
-        width: labelType == "floating" ? "100%" : `${100 - labelPercentageWidth}%`,
+        marginLeft: labelType == "left" ? `${labelWidth}%` : "unset",
+        width: labelType == "floating" ? `${floatingInputWidth}%` : `${100 - labelWidth}%`,
     };
 
     return (
         <div
             ref={ref}
-            className={`m-dropdown-container ${labelType == "floating" && isFocused ? "focused" : filterValue ? "filled" : ""} ${
+            className={`m-dropdown-container ${labelType == "floating" && isFocused ? "focused" : filterValue || _value ? "filled" : ""} ${
                 disabled ? "disabled" : ""
             }`}
         >
@@ -135,12 +139,12 @@ const Dropdown = (props: DropdownProps) => {
                 <label
                     data-id={uniqueDropdownId}
                     style={{
-                        width: `${labelPercentageWidth}%`,
-                        left: labelType == "right" ? `${`${100 - labelPercentageWidth}%`}` : "0",
+                        width: `${labelWidth}%`,
+                        left: labelType == "right" ? `${`${100 - labelWidth}%`}` : "0",
                     }}
-                    className={`m-dropdown-label m-dropdown-label--${labelType}`}
+                    className={labelClasses}
                 >
-                    {label}
+                    {labelType == "floating" ? (isFocused || _value ? label : `${label}...`) : label}
                 </label>
             )}
 
@@ -176,7 +180,7 @@ const Dropdown = (props: DropdownProps) => {
                         ) : (
                             <>
                                 <li data-id={uniqueDropdownId} className="m-dropdown-list-item empty-message">
-                                    No data to display
+                                    No options
                                 </li>
                             </>
                         )}

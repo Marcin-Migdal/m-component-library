@@ -14,7 +14,8 @@ const Textarea = ({
     placeholder,
     defaultInternalValue,
     autoFocus = false,
-    labelPercentageWidth = 30,
+    labelWidth = 30,
+    floatingInputWidth = 30,
     row = 4,
 }: TextareaProps) => {
     const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
@@ -39,8 +40,8 @@ const Textarea = ({
     m-textarea-label--${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
 
     const inputStyle: React.CSSProperties = {
-        marginLeft: labelType == "left" ? `${labelPercentageWidth}%` : "unset",
-        width: labelType == "floating" ? "100%" : `${100 - labelPercentageWidth}%`,
+        marginLeft: labelType == "left" ? `${labelWidth}%` : "unset",
+        width: labelType == "floating" ? `${floatingInputWidth}%` : `${100 - labelWidth}%`,
     };
 
     return (
@@ -60,12 +61,12 @@ const Textarea = ({
             {label && (
                 <label
                     style={{
-                        width: `${labelPercentageWidth}%`,
-                        left: labelType == "right" ? `${`${100 - labelPercentageWidth}%`}` : "0",
+                        width: `${labelWidth}%`,
+                        left: labelType == "right" ? `${`${100 - labelWidth}%`}` : "0",
                     }}
                     className={labelClasses}
                 >
-                    {label}
+                    {labelType == "floating" ? (isFocused || _value ? label : `${label}...`) : label}
                 </label>
             )}
         </div>

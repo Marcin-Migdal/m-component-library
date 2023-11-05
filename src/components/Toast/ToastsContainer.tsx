@@ -17,7 +17,7 @@ export type ToastHandler = {
     handleClear: () => void;
 };
 
-const ToastsContainer = ({ autoClose = true, toastsPosition }: IToastProps, ref: ForwardedRef<ToastHandler>) => {
+const ToastsContainer = ({ autoClose = true, toastsPosition = "top-right" }: IToastProps, ref: ForwardedRef<ToastHandler>) => {
     const [toasts, setToasts] = useState<IToast[]>([]);
 
     useImperativeHandle(ref, () => ({

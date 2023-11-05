@@ -1,18 +1,21 @@
 /*! CHECKBOX SECTION */
 .default-theme-dark-mode-container .m-checkbox-container {
-    color: var(--input-text-color);
+    color: var(--light-grey_200);
 }
 
 .default-theme-dark-mode-container .m-checkbox {
-    background: var(--background-color);
-    border-color: var(--light-grey-color) !important;
-    filter: brightness(1.65);
+    background: var(--dark-grey_300);
+    border-color: var(--light-grey_400) !important;
 }
 
 .default-theme-dark-mode-container .m-checkbox:hover {
-    filter: brightness(1.9);
+    background: var(--dark-grey_200);
 }
 
 .default-theme-dark-mode-container .m-checkbox-check-icon {
-    color: var(--light-grey-color) !important;
+    color: var(--light-grey_400) !important;
+}
+
+.default-theme-dark-mode-container .m-checkbox:hover .m-checkbox-check-icon {
+    color: var(--light-grey_300) !important;
 }

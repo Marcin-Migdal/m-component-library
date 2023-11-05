@@ -1,57 +1,45 @@
 /*! BUTTON SECTION */
 /* VARIANT OUTLINED */
-.default-theme-dark-mode-container button:disabled {
-    background-color: #646464;
+.default-theme-dark-mode-container .m-button.outlined {
+    border-color: var(--light-grey_200);
+    background-color: var(--dark-grey_600);
+    color: var(--light-grey_200);
 }
 
-.default-theme-dark-mode-container button.outlined {
-    border-color: var(--primary-color);
-    background-color: var(--background-color);
-    color: var(--primary-color);
+.default-theme-dark-mode-container .m-button.outlined:hover:enabled {
+    border-color: var(--dark-grey_600);
+    background-color: var(--light-grey_200);
+    color: var(--dark-grey_600);
 }
 
-.default-theme-dark-mode-container button.outlined:hover:enabled {
-    border-color: var(--secondary-color);
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-}
-
-.default-theme-dark-mode-container button.outlined:active:enabled {
-    border-color: var(--secondary-color);
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
+.default-theme-dark-mode-container .m-button.outlined:active:enabled {
+    border-color: var(--dark-grey_600);
+    background-color: var(--light-grey_200);
+    color: var(--dark-grey_600);
 }
 
 /* VARIANT FULL */
-.default-theme-dark-mode-container button.full {
-    border-color: var(--primary-color);
-    background-color: var(--primary-color);
-    color: var(--background-color);
+.default-theme-dark-mode-container .m-button.full {
+    border-color: var(--light-grey_200);
+    background-color: var(--light-grey_200);
+    color: var(--dark-grey_600);
 }
 
-.default-theme-dark-mode-container button.full:hover:enabled {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    filter: brightness(0.925);
-}
-
-.default-theme-dark-mode-container button.full:active:enabled {
-    background-color: var(--primary-color);
-    color: var(--secondary-color);
-    filter: brightness(0.85);
+.default-theme-dark-mode-container .m-button.full:hover:enabled {
+    border-color: var(--light-grey_600);
+    background-color: var(--light-grey_600);
+    color: var(--dark-grey_600);
 }
 
 /* VARIANT TEXT */
-.default-theme-dark-mode-container button.text {
-    color: var(--primary-color);
+.default-theme-dark-mode-container .m-button.text {
+    color: var(--light-grey_200);
 }
 
-.default-theme-dark-mode-container button.text:hover:enabled {
-    background-color: var(--background-color);
-    filter: brightness(1.25);
+.default-theme-dark-mode-container .m-button.text:hover:enabled {
+    background-color: var(--dark-grey_300);
 }
 
-.default-theme-dark-mode-container button.text:active:enabled {
-    background-color: var(--background-color);
-    filter: brightness(1.4);
+.default-theme-dark-mode-container .m-button.text:active:enabled {
+    background-color: var(--dark-grey_200);
 }

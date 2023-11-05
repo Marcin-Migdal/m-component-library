@@ -66,17 +66,17 @@
     padding-left: 0.35em;
     pointer-events: none;
     transition: 0.2s;
-    z-index: 10 !important;
+    z-index: 3 !important;
 }
 
 .m-dropdown-label--floating {
     transform-origin: 0 0;
-    transform: translate(2px, 3px);
+    transform: translate(2px, 1px);
 }
 
 .m-dropdown-container.focused .m-dropdown-label--floating,
 .m-dropdown-container.filled .m-dropdown-label--floating {
-    transform: translate(3px, -19px);
+    transform: translate(3px, -23px);
     font-size: 12px;
 }
 
@@ -103,7 +103,7 @@
     border-radius: 6px !important;
 
     list-style: none;
-    z-index: 3;
+    z-index: 5;
 
     margin: unset;
     margin-top: 5px;

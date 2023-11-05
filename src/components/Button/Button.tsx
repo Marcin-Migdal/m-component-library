@@ -24,7 +24,13 @@ const Button = (props: IButtonProps) => {
     if (!display) return <></>;
 
     return (
-        <button style={style} className={`${className} ${variant}`} onClick={(e) => onClick(e)} disabled={disabled || busy} type={type}>
+        <button
+            style={style}
+            className={`m-button ${variant} ${className}`}
+            onClick={(e) => onClick(e)}
+            disabled={disabled || busy}
+            type={type}
+        >
             {children}
             {icon && iconPosition == "left" && <FontAwesomeIcon className="left-svg" icon={icon} />}
             {text}

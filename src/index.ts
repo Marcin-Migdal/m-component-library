@@ -1,12 +1,10 @@
 export * from "./components";
 
 //TODO! CSS
-// TODO? add bordertop to sectionheader in storythemewrapper
-// TODO? add color variables, grey_100, grey_200 ... grey_900, and change css
-// TODO? delete filter: brightess(); css
-// TODO? box-shadow for inputs
+// TODO? box-shadow on focus for input, textarea, dropdown
+// TODO? clear icon i dropdown does not change color in all themes on hover, only in default dark mode
 
-// TODO! figure out if i can add global interface, in which i will be able to store common interfaces, eq. LabelPercentageWidth
+// TODO! figure out if i can add global interface, in which i will be able to store common interfaces, eq. LabelPercentageWidth, labelType
 
 // TODO! Input components
 // TODO? multi Dropdown

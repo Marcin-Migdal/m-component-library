@@ -1,9 +1,4 @@
 .common-wrapper-container {
-    padding: 1rem;
-    width: 100%;
-    height: 100vh;
-    background-color: var(--background-color);
-
     /* Common color variables across all themes */
     --success-color: rgb(30, 169, 100);
     --success-color-rgb: 30, 169, 100;
@@ -16,4 +11,58 @@
 
     --information-color: rgb(105, 108, 255);
     --information-color-rgb: 105, 108, 255;
+
+    /* all colors of grey across  all themes */
+    --white: rgb(255, 255, 255);
+    --black: rgb(0, 0, 0);
+
+    --light-grey_100: rgb(240, 240, 240);
+    --light-grey_200: rgb(225, 225, 225);
+    --light-grey_300: rgb(210, 210, 210);
+    --light-grey_400: rgb(195, 195, 195);
+    --light-grey_500: rgb(190, 190, 190);
+    --light-grey_600: rgb(175, 175, 175);
+    --light-grey_700: rgb(160, 160, 160);
+    --light-grey_800: rgb(145, 145, 145);
+
+    --dark-grey_100: rgb(130, 130, 130);
+    --dark-grey_200: rgb(115, 115, 115);
+    --dark-grey_300: rgb(100, 100, 100);
+    --dark-grey_400: rgb(85, 85, 85);
+    --dark-grey_500: rgb(70, 70, 70);
+    --dark-grey_600: rgb(55, 55, 55);
+    --dark-grey_700: rgb(40, 40, 40);
+    --dark-grey_800: rgb(25, 25, 25);
+
+    /* theme wrapper container styles */
+    padding: 1rem;
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--background-color);
+}
+
+.default-theme-light-mode-container {
+    --background-color: var(--white);
+}
+
+.default-theme-dark-mode-container {
+    --background-color: var(--dark-grey_600);
+}
+
+.light-blue-theme-dark-mode-container {
+    --primary-color_100: rgb(164, 231, 252);
+    --primary-color_150: rgb(148, 225, 248);
+    --primary-color_200: rgb(134, 223, 250);
+    --primary-color_250: rgb(120, 223, 255);
+    --primary-color_300: rgb(102, 217, 252);
+
+    --background-color: var(--dark-grey_600);
+}
+
+.light-blue-theme-light-mode-container {
+    --primary-color_100: rgb(164, 231, 252);
+    --primary-color_150: rgb(148, 225, 248);
+    --primary-color_200: rgb(134, 223, 250);
+    --primary-color_250: rgb(120, 223, 255);
+    --primary-color_300: rgb(115, 216, 247);
 }

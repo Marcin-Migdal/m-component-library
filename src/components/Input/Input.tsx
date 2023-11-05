@@ -17,7 +17,8 @@ const Input = (props: InputProps) => {
         defaultInternalValue,
         type = "text",
         autoFocus = false,
-        labelPercentageWidth = 30,
+        labelWidth: labelPercentageWidth = 30,
+        floatingInputWidth: floatingInputPercentageWidth = 100,
         customMask = undefined,
         onBeforeMaskedValueChange = undefined,
     } = props;
@@ -77,7 +78,7 @@ const Input = (props: InputProps) => {
 
     const inputStyle: React.CSSProperties = {
         marginLeft: labelType == "left" ? `${labelPercentageWidth}%` : "unset",
-        width: labelType == "floating" ? "100%" : `${100 - labelPercentageWidth}%`,
+        width: labelType == "floating" ? `${floatingInputPercentageWidth}%` : `${100 - labelPercentageWidth}%`,
     };
 
     return (
