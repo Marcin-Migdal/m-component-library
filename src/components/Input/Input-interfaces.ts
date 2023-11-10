@@ -12,7 +12,8 @@ export interface InputProps {
     defaultInternalValue?: string;
     type?: InputTypes;
     autoFocus?: boolean;
-    labelPercentageWidth?: LabelPercentageWidth;
+    labelWidth?: LabelPercentageWidth;
+    floatingInputWidth?: LabelPercentageWidth;
 
     customMask?: CUSTOM_INPUT_MASKS;
     mask?: INPUT_MASKS | string;
@@ -98,4 +99,14 @@ export type LabelPercentageWidth =
     | 77
     | 78
     | 79
-    | 80;
+    | 80
+    | 81
+    | 82
+    | 83
+    | 84
+    | 85
+    | 86
+    | 87
+    | 88
+    | 89
+    | 90;

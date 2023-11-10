@@ -10,9 +10,6 @@ import "./input.css";
 import "./dropdown.css";
 import "./toast.css";
 
-// Wrapper component css
-import "./color-variables.css";
-
 export const DefaultThemeLightMode = ({ children, customWrapperId }: IThemeProps) => {
     return (
         <div className="common-wrapper-container default-theme-light-mode-container" id={customWrapperId}>

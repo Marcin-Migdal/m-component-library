@@ -9,19 +9,28 @@
 
 .default-theme-dark-mode-container .m-input:focus,
 .default-theme-dark-mode-container .m-input:hover {
-    background-color: var(--light-grey-color);
+    background-color: var(--input-hover-background-color);
+}
+
+.default-theme-dark-mode-container .m-input:not(:disabled)::placeholder,
+.default-theme-dark-mode-container .m-input:not(:disabled)::placeholder {
+    color: var(--input-placeholder-color);
 }
 
 .default-theme-dark-mode-container .m-input:not(:disabled):focus::placeholder,
 .default-theme-dark-mode-container .m-input:not(:disabled):hover::placeholder {
-    color: var(--placeholder-text-color);
+    color: var(--input-hover-placeholder-color);
 }
 
 .default-theme-dark-mode-container .m-input-label--floating {
-    color: var(--placeholder-text-color);
+    color: var(--input-placeholder-color);
+}
+
+.default-theme-dark-mode-container .m-input:hover + .m-input-label--floating {
+    color: var(--input-hover-placeholder-color);
 }
 
 .default-theme-dark-mode-container .m-input-label--floating.filled,
 .default-theme-dark-mode-container .m-input-label--floating.focused {
-    color: var(--input-text-color);
+    color: var(--input-hover-placeholder-color);
 }

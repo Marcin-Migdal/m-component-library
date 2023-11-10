@@ -5,7 +5,14 @@ import { CheckboxProps } from "./checkbox-interfaces";
 
 import "./Checkbox.css";
 
-const Checkbox = ({ checked = false, name, onChange, label, labelType = "right", labelPercentageWidth = 30 }: CheckboxProps) => {
+const Checkbox = ({
+    checked = false,
+    name,
+    onChange,
+    label,
+    labelType = "right",
+    labelWidth: labelPercentageWidth = 30,
+}: CheckboxProps) => {
     const [isChecked, setIsChecked] = useState<boolean>(checked);
 
     useEffect(() => {

@@ -1,15 +1,12 @@
 .m-checkbox-container {
     position: relative;
-    margin-bottom: 16px;
-
-    --input-font-size: 16px;
+    margin-bottom: var(--input-margin-bottom);
 }
 
 .m-checkbox-container .m-checkbox-input-wrapper {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    height: 30px;
     width: fit-content;
 }
 
@@ -32,23 +29,24 @@
 .m-checkbox-container .m-checkbox-input-wrapper .m-checkbox {
     width: 20px;
     height: 20px;
-    margin: 0px !important;
-    border-radius: 6px !important;
-    border: 2px solid;
+    margin: 0px;
+    border-radius: var(--border-radius);
+    border: var(--checkbox-border);
     transition: 0.15s;
     position: relative;
+
+    cursor: pointer;
 }
 
 .m-checkbox-container .m-checkbox-label {
     position: absolute;
-    font-size: var(--input-font-size);
-    padding-left: 0.35em;
+    padding-left: var(--input-label-padding-left);
     pointer-events: none;
 }
 
 .m-checkbox-container .m-checkbox-label.left,
 .m-checkbox-container .m-checkbox-label.right {
-    height: 30px;
+    height: 100%;
     position: absolute;
     top: 0;
     display: flex;

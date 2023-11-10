@@ -1,38 +1,37 @@
-button {
-    border: 2px solid;
-    border-radius: 6px;
-    padding: 4px 6px;
+.m-button {
+    border: var(--btn-border);
+    border-radius: var(--border-radius);
+    margin-right: var(--btn-right-margin);
+    padding: 2px 5px;
+
     font-weight: 600;
     font-size: 1.1rem;
+
     transition: 0.2s;
+
+    cursor: pointer;
 }
 
-button .left-svg {
+.m-button .left-svg {
     margin-right: 0.5em;
     background-color: inherit;
 }
 
-button .right-svg {
+.m-button .right-svg {
     margin-left: 0.5em;
     background-color: inherit;
 }
 
-button:disabled {
-    filter: brightness(var(--disabled-brightness));
-}
-
-button:hover:enabled {
-    filter: brightness(var(--hover-brightness));
-}
-
-button:active:enabled {
+.m-button:active:enabled {
     transition: 0.1s;
     transform: scale(0.95);
-
-    filter: brightness(var(--active-brightness));
 }
 
-button.text {
+.m-button.text {
     background-color: transparent;
-    border: 2px solid transparent;
+    border-color: transparent;
+}
+
+.m-button:disabled {
+    opacity: 0.6;
 }

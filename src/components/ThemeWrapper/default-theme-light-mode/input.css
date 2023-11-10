@@ -1,21 +1,21 @@
 /*! INPUT SECTION */
 .default-theme-light-mode-container .m-input-container {
-    color: var(--input-text-color);
+    color: var(--dark-grey_400);
 }
 
 .default-theme-light-mode-container .m-input {
-    background: var(--grey-color);
+    background: var(--light-grey_400);
 }
 
 .default-theme-light-mode-container .m-input::placeholder {
-    color: var(--input-text-color);
+    color: var(--dark-grey_400);
 }
 
 .default-theme-light-mode-container .m-input-label {
-    color: var(--input-text-color);
+    color: var(--dark-grey_400);
 }
 
 .default-theme-light-mode-container .m-input:focus,
 .default-theme-light-mode-container .m-input:hover {
-    background-color: var(--light-grey-color);
+    background-color: var(--light-grey_200);
 }

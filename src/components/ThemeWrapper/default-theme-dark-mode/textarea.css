@@ -9,19 +9,32 @@
 
 .default-theme-dark-mode-container .m-textarea:focus,
 .default-theme-dark-mode-container .m-textarea:hover {
-    background-color: var(--light-grey-color);
+    background-color: var(--input-hover-background-color);
+}
+
+.default-theme-dark-mode-container .m-textarea:not(:disabled)::placeholder,
+.default-theme-dark-mode-container .m-textarea:not(:disabled)::placeholder {
+    color: var(--input-placeholder-color);
 }
 
 .default-theme-dark-mode-container .m-textarea:not(:disabled):focus::placeholder,
 .default-theme-dark-mode-container .m-textarea:not(:disabled):hover::placeholder {
-    color: var(--placeholder-text-color);
+    color: var(--input-hover-placeholder-color);
+}
+
+.default-theme-dark-mode-container .m-textarea-label--floating {
+    color: var(--input-placeholder-color);
+}
+
+.default-theme-dark-mode-container .m-textarea:hover + .m-textarea-label--floating {
+    color: var(--input-hover-placeholder-color);
 }
 
 .default-theme-dark-mode-container .m-textarea-label--floating.filled,
 .default-theme-dark-mode-container .m-textarea-label--floating.focused {
-    filter: brightness(1.7);
+    color: var(--input-hover-placeholder-color);
 }
 
 .default-theme-dark-mode-container .m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
-    background-color: var(--background-color);
+    background-color: var(--scrollbar-thumb-background-color);
 }

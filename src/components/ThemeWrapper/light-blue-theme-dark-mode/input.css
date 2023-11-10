@@ -1,19 +1,19 @@
 /*! INPUT SECTION */
 .light-blue-theme-dark-mode-container .m-input-container {
-    color: var(--primary-color);
+    color: var(--primary-color_300);
 }
 
 .light-blue-theme-dark-mode-container .m-input {
-    background: var(--input-background-color);
-    color: var(--primary-color);
+    background: var(--dark-grey_400);
+    color: var(--primary-color_300);
 }
 
 .light-blue-theme-dark-mode-container .m-input:focus,
 .light-blue-theme-dark-mode-container .m-input:hover {
-    filter: brightness(1.175);
+    background-color: var(--dark-grey_300);
 }
 
 .light-blue-theme-dark-mode-container .m-input-label--floating.filled,
 .light-blue-theme-dark-mode-container .m-input-label--floating.focused {
-    filter: brightness(1.1);
+    color: var(--primary-color_200);
 }

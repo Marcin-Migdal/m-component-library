@@ -1,9 +1,11 @@
 .common-wrapper-container {
+    /* theme wrapper container styles */
     padding: 1rem;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--background-color);
 
+    /* APP CSS VARIABLES  */
     /* Common color variables across all themes */
     --success-color: rgb(30, 169, 100);
     --success-color-rgb: 30, 169, 100;
@@ -16,4 +18,94 @@
 
     --information-color: rgb(105, 108, 255);
     --information-color-rgb: 105, 108, 255;
+
+    /* all colors of grey across  all themes */
+    --white: rgb(255, 255, 255);
+    --black: rgb(0, 0, 0);
+
+    --light-grey_100: rgb(240, 240, 240);
+    --light-grey_200: rgb(225, 225, 225);
+    --light-grey_300: rgb(210, 210, 210);
+    --light-grey_400: rgb(195, 195, 195);
+    --light-grey_500: rgb(190, 190, 190);
+    --light-grey_600: rgb(175, 175, 175);
+    --light-grey_700: rgb(160, 160, 160);
+    --light-grey_800: rgb(145, 145, 145);
+
+    --dark-grey_100: rgb(130, 130, 130);
+    --dark-grey_200: rgb(115, 115, 115);
+    --dark-grey_300: rgb(100, 100, 100);
+    --dark-grey_400: rgb(85, 85, 85);
+    --dark-grey_500: rgb(70, 70, 70);
+    --dark-grey_600: rgb(55, 55, 55);
+    --dark-grey_700: rgb(40, 40, 40);
+    --dark-grey_800: rgb(25, 25, 25);
+
+    --border-radius: 6px;
+    --checkbox-border: 2px solid;
+
+    --btn-border: 2px solid;
+    --btn-right-margin: 10px;
+
+    --input-height: 30px;
+    --input-margin-bottom: 16px;
+    --input-padding-left: 8px;
+    --input-font-size: 16px;
+    --input-label-padding-left: 0.35em;
+
+    --floating-label--font-size-active: 12px;
+    --floating-label-translate-x: 2px;
+    --floating-label-translate-y: 3px;
+    --floating-label-translate-x-active: 3px;
+    --floating-label-translate-y-active: -17px;
+}
+
+.default-theme-light-mode-container {
+    --background-color: var(--white);
+}
+
+.default-theme-dark-mode-container {
+    --background-color: var(--dark-grey_600);
+
+    --border-color: var(--light-grey_200);
+
+    --input-background-color: var(--dark-grey_400);
+    --input-hover-background-color: var(--dark-grey_200);
+
+    --input-text-color: var(--light-grey_200);
+    --input-placeholder-color: var(--light-grey_700);
+    --input-hover-placeholder-color: var(--light-grey_500);
+
+    --icon-hover-background-color: var(--dark-grey_200);
+    --scrollbar-thumb-background-color: var(--dark-grey_600);
+
+    --btn-full-color: var(--dark-grey_600);
+    --btn-full-background-color: var(--light-grey_200);
+    --btn-full-hover-background-color: var(--light-grey_600);
+
+    --btn-text-color: var(--light-grey_200);
+    --btn-text-hover-background-color: var(--dark-grey_300);
+    --btn-text-active-background-color: var(--dark-grey_200);
+}
+
+.light-blue-theme-dark-mode-container {
+    --primary-color_100: rgb(164, 231, 252);
+    --primary-color_150: rgb(148, 225, 248);
+    --primary-color_250: rgb(120, 223, 255);
+    --primary-color_200: rgb(134, 223, 250);
+    --primary-color_300: rgb(102, 217, 252);
+    --primary-color_400: rgb(85, 213, 252);
+    --primary-color_400: rgb(71, 207, 248);
+
+    --background-color: var(--dark-grey_600);
+}
+
+.light-blue-theme-light-mode-container {
+    --primary-color_100: rgb(164, 231, 252);
+    --primary-color_150: rgb(148, 225, 248);
+    --primary-color_200: rgb(134, 223, 250);
+    --primary-color_250: rgb(120, 223, 255);
+    --primary-color_300: rgb(115, 216, 247);
+    --primary-color_350: rgb(99, 213, 248);
+    --primary-color_400: rgb(86, 209, 247);
 }
