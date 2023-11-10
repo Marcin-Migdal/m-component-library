@@ -1,15 +1,15 @@
 /*! CHECKBOX SECTION */
 .default-theme-dark-mode-container .m-checkbox-container {
-    color: var(--light-grey_200);
+    color: var(--input-text-color);
 }
 
 .default-theme-dark-mode-container .m-checkbox {
-    background: var(--dark-grey_300);
-    border-color: var(--light-grey_400) !important;
+    background: var(--input-background-color);
+    border-color: var(--border-color) !important;
 }
 
 .default-theme-dark-mode-container .m-checkbox:hover {
-    background: var(--dark-grey_200);
+    background: var(--input-hover-background-color);
 }
 
 .default-theme-dark-mode-container .m-checkbox-check-icon {

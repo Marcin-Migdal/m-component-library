@@ -34,7 +34,7 @@
     max-width: 344px;
 
     min-height: 70px;
-    border-radius: 6px;
+    border-radius: var(--border-radius);
 
     margin-bottom: 5px;
 

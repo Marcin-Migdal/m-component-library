@@ -2,7 +2,7 @@ export * from "./components";
 
 //TODO! CSS
 // TODO? box-shadow on focus for input, textarea, dropdown
-// TODO? clear icon i dropdown does not change color in all themes on hover, only in default dark mode
+// TODO? add css variables for the rest of the themes
 
 // TODO! figure out if i can add global interface, in which i will be able to store common interfaces, eq. LabelPercentageWidth, labelType
 

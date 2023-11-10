@@ -1,45 +1,47 @@
 /*! BUTTON SECTION */
 /* VARIANT OUTLINED */
 .default-theme-dark-mode-container .m-button.outlined {
-    border-color: var(--light-grey_200);
-    background-color: var(--dark-grey_600);
-    color: var(--light-grey_200);
+    border-color: var(--border-color);
+    background-color: var(--background-color);
+    color: var(--border-color);
 }
 
 .default-theme-dark-mode-container .m-button.outlined:hover:enabled {
-    border-color: var(--dark-grey_600);
-    background-color: var(--light-grey_200);
-    color: var(--dark-grey_600);
+    background-color: var(--border-color);
+    color: var(--background-color);
 }
 
 .default-theme-dark-mode-container .m-button.outlined:active:enabled {
-    border-color: var(--dark-grey_600);
-    background-color: var(--light-grey_200);
-    color: var(--dark-grey_600);
+    background-color: var(--border-color);
+    color: var(--background-color);
 }
 
 /* VARIANT FULL */
 .default-theme-dark-mode-container .m-button.full {
-    border-color: var(--light-grey_200);
-    background-color: var(--light-grey_200);
-    color: var(--dark-grey_600);
+    border-color: var(--btn-full-background-color);
+    background-color: var(--btn-full-background-color);
+    color: var(--btn-full-color);
 }
 
 .default-theme-dark-mode-container .m-button.full:hover:enabled {
-    border-color: var(--light-grey_600);
-    background-color: var(--light-grey_600);
-    color: var(--dark-grey_600);
+    border-color: var(--btn-full-hover-background-color);
+    background-color: var(--btn-full-hover-background-color);
+}
+
+.default-theme-dark-mode-container .m-button.full:active:enabled {
+    border-color: var(--btn-full-hover-background-color);
+    background-color: var(--btn-full-hover-background-color);
 }
 
 /* VARIANT TEXT */
 .default-theme-dark-mode-container .m-button.text {
-    color: var(--light-grey_200);
+    color: var(--btn-text-color);
 }
 
 .default-theme-dark-mode-container .m-button.text:hover:enabled {
-    background-color: var(--dark-grey_300);
+    background-color: var(--btn-text-hover-background-color);
 }
 
 .default-theme-dark-mode-container .m-button.text:active:enabled {
-    background-color: var(--dark-grey_200);
+    background-color: var(--btn-text-active-background-color);
 }

@@ -1,27 +1,36 @@
 /*! INPUT SECTION */
 .default-theme-dark-mode-container .m-input-container {
-    color: var(--light-grey_200);
+    color: var(--input-text-color);
 }
 
 .default-theme-dark-mode-container .m-input {
-    background: var(--dark-grey_400);
+    background: var(--input-background-color);
 }
 
 .default-theme-dark-mode-container .m-input:focus,
 .default-theme-dark-mode-container .m-input:hover {
-    background-color: var(--dark-grey_200);
+    background-color: var(--input-hover-background-color);
+}
+
+.default-theme-dark-mode-container .m-input:not(:disabled)::placeholder,
+.default-theme-dark-mode-container .m-input:not(:disabled)::placeholder {
+    color: var(--input-placeholder-color);
 }
 
 .default-theme-dark-mode-container .m-input:not(:disabled):focus::placeholder,
 .default-theme-dark-mode-container .m-input:not(:disabled):hover::placeholder {
-    color: var(--light-grey_800);
+    color: var(--input-hover-placeholder-color);
 }
 
 .default-theme-dark-mode-container .m-input-label--floating {
-    color: var(--light-grey_800);
+    color: var(--input-placeholder-color);
+}
+
+.default-theme-dark-mode-container .m-input:hover + .m-input-label--floating {
+    color: var(--input-hover-placeholder-color);
 }
 
 .default-theme-dark-mode-container .m-input-label--floating.filled,
 .default-theme-dark-mode-container .m-input-label--floating.focused {
-    color: var(--light-grey_200);
+    color: var(--input-hover-placeholder-color);
 }

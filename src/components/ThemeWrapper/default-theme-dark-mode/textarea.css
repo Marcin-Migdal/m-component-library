@@ -1,31 +1,40 @@
 /*! TEXTAREA SECTION */
 .default-theme-dark-mode-container .m-textarea-container {
-    color: var(--light-grey_200);
+    color: var(--input-text-color);
 }
 
 .default-theme-dark-mode-container .m-textarea {
-    background: var(--dark-grey_400);
+    background: var(--input-background-color);
 }
 
 .default-theme-dark-mode-container .m-textarea:focus,
 .default-theme-dark-mode-container .m-textarea:hover {
-    background-color: var(--dark-grey_200);
+    background-color: var(--input-hover-background-color);
+}
+
+.default-theme-dark-mode-container .m-textarea:not(:disabled)::placeholder,
+.default-theme-dark-mode-container .m-textarea:not(:disabled)::placeholder {
+    color: var(--input-placeholder-color);
 }
 
 .default-theme-dark-mode-container .m-textarea:not(:disabled):focus::placeholder,
 .default-theme-dark-mode-container .m-textarea:not(:disabled):hover::placeholder {
-    color: var(--light-grey_800);
+    color: var(--input-hover-placeholder-color);
 }
 
 .default-theme-dark-mode-container .m-textarea-label--floating {
-    color: var(--light-grey_800);
+    color: var(--input-placeholder-color);
+}
+
+.default-theme-dark-mode-container .m-textarea:hover + .m-textarea-label--floating {
+    color: var(--input-hover-placeholder-color);
 }
 
 .default-theme-dark-mode-container .m-textarea-label--floating.filled,
 .default-theme-dark-mode-container .m-textarea-label--floating.focused {
-    color: var(--light-grey_200);
+    color: var(--input-hover-placeholder-color);
 }
 
 .default-theme-dark-mode-container .m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
-    background-color: var(--dark-grey_600);
+    background-color: var(--scrollbar-thumb-background-color);
 }

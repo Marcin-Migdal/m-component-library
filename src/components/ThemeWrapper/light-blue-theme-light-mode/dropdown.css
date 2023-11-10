@@ -3,6 +3,10 @@
     color: var(--white);
 }
 
+.light-blue-theme-light-mode-container .m-dropdown-container .m-dropdown-clear-icon:hover {
+    background: var(--primary-color_350);
+}
+
 .light-blue-theme-light-mode-container .m-dropdown {
     background: var(--primary-color_100);
     color: var(--white);

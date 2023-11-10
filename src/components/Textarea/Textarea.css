@@ -1,26 +1,20 @@
 .m-textarea-container {
     position: relative;
-    margin-bottom: 12px;
-
-    --textarea-font-size: 16px;
+    margin-bottom: calc(var(--input-margin-bottom) - 4px);
 }
 
 .m-textarea-container .m-textarea {
     border: none;
     outline: none;
-    min-height: 30px;
-    font-size: var(--textarea-font-size);
+    min-height: var(--input-height);
+    font-size: var(--input-font-size);
     padding-top: 4px;
-    padding-left: 8px !important;
+    padding-left: var(--input-padding-left) !important;
     box-sizing: border-box;
-    border-radius: 6px;
+    border-radius: var(--border-radius);
     transition: 0.2s ease-in-out;
     resize: vertical;
     color: inherit;
-}
-
-.m-textarea-container .m-textarea.floating {
-    width: 100%;
 }
 
 .m-textarea-container .m-textarea.left {
@@ -38,26 +32,25 @@
 .m-textarea-label {
     color: inherit;
     position: absolute;
-    font-size: var(--textarea-font-size);
-    padding-left: 0.35em;
+    padding-left: var(--input-label-padding-left);
     pointer-events: none;
     transition: 0.2s;
 }
 
 .m-textarea-label--floating {
     transform-origin: 0 0;
-    transform: translate(2px, 3px);
+    transform: translate(var(--floating-label-translate-x), var(--floating-label-translate-y));
 }
 
 .m-textarea-label--floating.filled,
 .m-textarea-label--floating.focused {
-    transform: translate(3px, -17px);
-    font-size: 12px;
+    transform: translate(var(--floating-label-translate-x-active), var(--floating-label-translate-y-active));
+    font-size: var(--floating-label--font-size-active);
 }
 
 .m-textarea-label--left,
 .m-textarea-label--right {
-    height: 30px;
+    height: 100%;
     position: absolute;
     top: 0;
     display: flex;

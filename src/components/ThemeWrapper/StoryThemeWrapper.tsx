@@ -26,15 +26,14 @@ const StoryThemeWrapper = ({ theme }: IStoryThemeWrapperProps) => {
                 text="BUTTON SECTION"
             />
             <div style={{ marginBottom: "20px" }}>
-                <Button style={{ marginRight: "5px" }} variant="outlined" text="btn text" onClick={() => {}} />
-                <Button style={{ marginRight: "5px" }} variant="full" text="btn text" onClick={() => {}} />
-                <Button style={{ marginRight: "5px" }} variant="text" text="btn text" onClick={() => {}} />
+                <Button variant="outlined" text="btn text" onClick={() => {}} />
+                <Button variant="full" text="btn text" onClick={() => {}} />
+                <Button variant="text" text="btn text" onClick={() => {}} />
             </div>
 
             <SectionHeader theme={theme} text="INPUT SECTION" />
 
             <Input label="label" labelType={inputLabelType} labelWidth={inputLabelWidth} floatingInputWidth={floatingInputWidth} />
-            <Checkbox label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} />
             <Textarea label="label" labelType={inputLabelType} labelWidth={inputLabelWidth} floatingInputWidth={floatingInputWidth} />
             <Dropdown label="label" labelType={inputLabelType} labelWidth={inputLabelWidth} floatingInputWidth={floatingInputWidth} />
             <Dropdown
@@ -44,18 +43,14 @@ const StoryThemeWrapper = ({ theme }: IStoryThemeWrapperProps) => {
                 options={options}
                 floatingInputWidth={floatingInputWidth}
             />
+            <Checkbox label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} />
 
             <SectionHeader theme={theme} text="TOAST SECTION" />
 
             <ToastsContainer ref={toastRef} />
             <div style={{ display: "flex" }}>
+                <Button text="Success toast" onClick={() => toastRef.current?.handleAddToast("success", "Sign in was successful")} />
                 <Button
-                    style={{ marginRight: "10px" }}
-                    text="Success toast"
-                    onClick={() => toastRef.current?.handleAddToast("success", "Sign in was successful")}
-                />
-                <Button
-                    style={{ marginRight: "10px" }}
                     text="Failure toast"
                     onClick={() =>
                         toastRef.current?.handleAddToast(
@@ -65,15 +60,10 @@ const StoryThemeWrapper = ({ theme }: IStoryThemeWrapperProps) => {
                     }
                 />
                 <Button
-                    style={{ marginRight: "10px" }}
                     text="Warning toast"
                     onClick={() => toastRef.current?.handleAddToast("warning", "Are you sure, you want to log out?")}
                 />
-                <Button
-                    style={{ marginRight: "10px" }}
-                    text="Information toast"
-                    onClick={() => toastRef.current?.handleAddToast("information", "You where singed out")}
-                />
+                <Button text="Information toast" onClick={() => toastRef.current?.handleAddToast("information", "You where singed out")} />
                 <Button style={{ marginRight: "10px" }} text="Clear toasts" onClick={() => toastRef.current?.handleClear()} />
             </div>
         </ThemeWrapper>

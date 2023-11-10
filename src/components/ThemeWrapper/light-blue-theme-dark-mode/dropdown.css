@@ -4,6 +4,10 @@
     z-index: 1 !important;
 }
 
+.light-blue-theme-dark-mode-container .m-dropdown-clear-icon:hover {
+    background: var(--dark-grey_200);
+}
+
 .light-blue-theme-dark-mode-container .m-dropdown {
     background: var(--dark-grey_400);
     color: var(--primary-color_300);
