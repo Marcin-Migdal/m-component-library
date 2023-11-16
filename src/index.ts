@@ -1,10 +1,6 @@
 export * from "./components";
 
-//TODO! CSS
-// TODO? box-shadow on focus for input, textarea, dropdown
-// TODO? add css variables for the rest of the themes
-
-// TODO! figure out if i can add global interface, in which i will be able to store common interfaces, eq. LabelPercentageWidth, labelType
+// TODO! LIB TEST
 
 // TODO! Input components
 // TODO? multi Dropdown
@@ -18,5 +14,6 @@ export * from "./components";
 // TODO? Dropdown Menu
 // TODO? Breadcrumb
 
-// TODO! Form with validation
 // TODO! TABLE
+
+// TODO! Form with validation

@@ -12,7 +12,7 @@ import "./toast.css";
 
 export const DefaultThemeLightMode = ({ children, customWrapperId }: IThemeProps) => {
     return (
-        <div className="common-wrapper-container default-theme-light-mode-container" id={customWrapperId}>
+        <div className="common-wrapper-container default-theme-light-mode-theme" id={customWrapperId}>
             {children}
         </div>
     );

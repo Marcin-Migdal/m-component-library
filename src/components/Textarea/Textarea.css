@@ -65,7 +65,7 @@
 }
 
 .m-textarea-container .m-textarea::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 .m-textarea-container .m-textarea::-webkit-scrollbar-track {

@@ -11,7 +11,7 @@ import "./dropdown.css";
 import "./toast.css";
 
 export const LightBlueThemeDarkMode = ({ children, customWrapperId }: IThemeProps) => (
-    <div className="common-wrapper-container light-blue-theme-dark-mode-container" id={customWrapperId}>
+    <div className="common-wrapper-container light-blue-theme-dark-mode-theme" id={customWrapperId}>
         {children}
     </div>
 );

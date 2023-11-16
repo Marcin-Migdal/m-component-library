@@ -1,47 +1,51 @@
 /*! BUTTON SECTION */
+.default-theme-dark-mode-theme .m-button:not(.text):focus {
+    box-shadow: var(--small-box-shadow) var(--box-shadow-color);
+}
+
 /* VARIANT OUTLINED */
-.default-theme-dark-mode-container .m-button.outlined {
+.default-theme-dark-mode-theme .m-button.outlined {
     border-color: var(--border-color);
     background-color: var(--background-color);
     color: var(--border-color);
 }
 
-.default-theme-dark-mode-container .m-button.outlined:hover:enabled {
+.default-theme-dark-mode-theme .m-button.outlined:hover:enabled {
     background-color: var(--border-color);
     color: var(--background-color);
 }
 
-.default-theme-dark-mode-container .m-button.outlined:active:enabled {
+.default-theme-dark-mode-theme .m-button.outlined:active:enabled {
     background-color: var(--border-color);
     color: var(--background-color);
 }
 
 /* VARIANT FULL */
-.default-theme-dark-mode-container .m-button.full {
+.default-theme-dark-mode-theme .m-button.full {
     border-color: var(--btn-full-background-color);
     background-color: var(--btn-full-background-color);
     color: var(--btn-full-color);
 }
 
-.default-theme-dark-mode-container .m-button.full:hover:enabled {
+.default-theme-dark-mode-theme .m-button.full:hover:enabled {
     border-color: var(--btn-full-hover-background-color);
     background-color: var(--btn-full-hover-background-color);
 }
 
-.default-theme-dark-mode-container .m-button.full:active:enabled {
+.default-theme-dark-mode-theme .m-button.full:active:enabled {
     border-color: var(--btn-full-hover-background-color);
     background-color: var(--btn-full-hover-background-color);
 }
 
 /* VARIANT TEXT */
-.default-theme-dark-mode-container .m-button.text {
+.default-theme-dark-mode-theme .m-button.text {
     color: var(--btn-text-color);
 }
 
-.default-theme-dark-mode-container .m-button.text:hover:enabled {
+.default-theme-dark-mode-theme .m-button.text:hover:enabled {
     background-color: var(--btn-text-hover-background-color);
 }
 
-.default-theme-dark-mode-container .m-button.text:active:enabled {
+.default-theme-dark-mode-theme .m-button.text:active:enabled {
     background-color: var(--btn-text-active-background-color);
 }

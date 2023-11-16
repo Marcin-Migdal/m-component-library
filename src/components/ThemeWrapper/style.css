@@ -24,28 +24,34 @@
     --black: rgb(0, 0, 0);
 
     --light-grey_100: rgb(240, 240, 240);
+    --light-grey_150: rgb(232, 232, 232);
     --light-grey_200: rgb(225, 225, 225);
     --light-grey_300: rgb(210, 210, 210);
     --light-grey_400: rgb(195, 195, 195);
-    --light-grey_500: rgb(190, 190, 190);
-    --light-grey_600: rgb(175, 175, 175);
-    --light-grey_700: rgb(160, 160, 160);
-    --light-grey_800: rgb(145, 145, 145);
+    --light-grey_500: rgb(180, 180, 180);
+    --light-grey_600: rgb(165, 165, 165);
+    --light-grey_700: rgb(150, 150, 150);
+    --light-grey_800: rgb(135, 135, 135);
 
-    --dark-grey_100: rgb(130, 130, 130);
-    --dark-grey_200: rgb(115, 115, 115);
-    --dark-grey_300: rgb(100, 100, 100);
-    --dark-grey_400: rgb(85, 85, 85);
-    --dark-grey_500: rgb(70, 70, 70);
-    --dark-grey_600: rgb(55, 55, 55);
-    --dark-grey_700: rgb(40, 40, 40);
-    --dark-grey_800: rgb(25, 25, 25);
+    --dark-grey_100: rgb(120, 120, 120);
+    --dark-grey_200: rgb(105, 105, 105);
+    --dark-grey_250: rgb(98, 98, 98);
+    --dark-grey_300: rgb(90, 90, 90);
+    --dark-grey_350: rgb(83, 83, 83);
+    --dark-grey_400: rgb(75, 75, 75);
+    --dark-grey_500: rgb(60, 60, 60);
+    --dark-grey_600: rgb(45, 45, 45);
+    --dark-grey_700: rgb(30, 30, 30);
+    --dark-grey_800: rgb(15, 15, 15);
 
     --border-radius: 6px;
     --checkbox-border: 2px solid;
 
     --btn-border: 2px solid;
     --btn-right-margin: 10px;
+
+    --small-box-shadow: 0px 0px 3px 1px;
+    --big-box-shadow: 0px 0px 3px 2px;
 
     --input-height: 30px;
     --input-margin-bottom: 16px;
@@ -60,47 +66,99 @@
     --floating-label-translate-y-active: -17px;
 }
 
-.default-theme-light-mode-container {
+.default-theme-light-mode-theme {
     --background-color: var(--white);
+
+    --border-color: var(--dark-grey_300);
+
+    --input-background-color: var(--light-grey_200);
+    --input-hover-background-color: var(--light-grey_300);
+
+    --input-text-color: var(--dark-grey_400);
+
+    --input-placeholder-color: var(--dark-grey_100);
+    --input-hover-placeholder-color: var(--dark-grey_200);
+
+    --icon-hover-background-color: var(--dark-grey_200);
+    --scrollbar-thumb-background-color: var(--light-grey_700);
+
+    --btn-full-color: var(--white);
+    --btn-full-background-color: var(--dark-grey_300);
+    --btn-full-hover-background-color: var(--light-grey_800);
+
+    --btn-text-color: var(--dark-grey_500);
+    --btn-text-hover-background-color: var(--light-grey_150);
+    --btn-text-active-background-color: var(--light-grey_200);
+
+    --btn-box-shadow-color: var(--dark-grey_300);
+    --input-box-shadow-color: var(--light-grey_800);
 }
 
-.default-theme-dark-mode-container {
-    --background-color: var(--dark-grey_600);
+.default-theme-dark-mode-theme {
+    --background-color: var(--dark-grey_500);
 
     --border-color: var(--light-grey_200);
 
-    --input-background-color: var(--dark-grey_400);
-    --input-hover-background-color: var(--dark-grey_200);
+    --input-background-color: var(--dark-grey_350);
+    --input-hover-background-color: var(--dark-grey_250);
 
     --input-text-color: var(--light-grey_200);
-    --input-placeholder-color: var(--light-grey_700);
-    --input-hover-placeholder-color: var(--light-grey_500);
+    --input-placeholder-color: var(--light-grey_600);
+    --input-hover-placeholder-color: var(--light-grey_300);
 
-    --icon-hover-background-color: var(--dark-grey_200);
-    --scrollbar-thumb-background-color: var(--dark-grey_600);
+    --icon-hover-background-color: var(--dark-grey_100);
+    --scrollbar-thumb-background-color: var(--dark-grey_500);
 
-    --btn-full-color: var(--dark-grey_600);
+    --btn-full-color: var(--dark-grey_500);
     --btn-full-background-color: var(--light-grey_200);
-    --btn-full-hover-background-color: var(--light-grey_600);
+    --btn-full-hover-background-color: var(--light-grey_500);
 
     --btn-text-color: var(--light-grey_200);
     --btn-text-hover-background-color: var(--dark-grey_300);
     --btn-text-active-background-color: var(--dark-grey_200);
+
+    --box-shadow-color: var(--light-grey_200);
 }
 
-.light-blue-theme-dark-mode-container {
+.light-blue-theme-dark-mode-theme {
     --primary-color_100: rgb(164, 231, 252);
     --primary-color_150: rgb(148, 225, 248);
     --primary-color_250: rgb(120, 223, 255);
     --primary-color_200: rgb(134, 223, 250);
     --primary-color_300: rgb(102, 217, 252);
     --primary-color_400: rgb(85, 213, 252);
-    --primary-color_400: rgb(71, 207, 248);
+    --primary-color_500: rgb(71, 207, 248);
 
-    --background-color: var(--dark-grey_600);
+    --background-color: var(--dark-grey_500);
+
+    --border-color: var(--primary-color_300);
+
+    --input-background-color: var(--dark-grey_350);
+    --input-hover-background-color: var(--dark-grey_250);
+
+    --input-text-color: var(--light-grey_200);
+    --input-placeholder-color: var(--light-grey_200);
+    --input-hover-placeholder-color: var(--primary-color_300);
+    --input-label-color: var(--primary-color_300);
+
+    --icon-hover-background-color: var(--dark-grey_100);
+    --scrollbar-thumb-background-color: var(--dark-grey_500);
+
+    --btn-full-color: var(--dark-grey_500);
+    --btn-full-background-color: var(--primary-color_300);
+    --btn-full-hover-background-color: var(--primary-color_100);
+
+    --btn-text-color: var(--primary-color_300);
+    --btn-text-hover-background-color: var(--dark-grey_300);
+    --btn-text-active-background-color: var(--dark-grey_200);
+
+    --box-shadow-color: var(--primary-color_200);
 }
 
-.light-blue-theme-light-mode-container {
+.light-blue-theme-light-mode-theme {
+    --primary-color_25: rgb(211, 243, 253);
+    --primary-color_50: rgb(191, 236, 250);
+    --primary-color_75: rgb(178, 235, 252);
     --primary-color_100: rgb(164, 231, 252);
     --primary-color_150: rgb(148, 225, 248);
     --primary-color_200: rgb(134, 223, 250);
@@ -108,4 +166,32 @@
     --primary-color_300: rgb(115, 216, 247);
     --primary-color_350: rgb(99, 213, 248);
     --primary-color_400: rgb(86, 209, 247);
+    --primary-color_500: rgb(69, 206, 248);
+
+    --background-color: var(--white);
+
+    --border-color: var(--primary-color_300);
+
+    --input-background-color: var(--primary-color_150);
+    --input-hover-background-color: var(--primary-color_300);
+
+    --input-text-color: var(--white);
+    --input-placeholder-color: var(--white);
+    --input-hover-placeholder-color: var(--primary-color_300);
+    --input-label-color: var(--primary-color_300);
+
+    --icon-hover-background-color: var(--primary-color_50);
+    --scrollbar-thumb-background-color: var(--light-grey_700);
+
+    --btn-full-color: var(--white);
+    --btn-full-background-color: var(--primary-color_300);
+    --btn-full-hover-background-color: var(--primary-color_100);
+
+    --btn-text-color: var(--primary-color_300);
+    --btn-text-hover-color: var(--primary-color_500);
+    --btn-text-hover-background-color: var(--light-grey_100);
+    --btn-text-active-background-color: var(--light-grey_150);
+
+    --btn-box-shadow-color: var(--primary-color_200);
+    --input-box-shadow-color: var(--primary-color_100);
 }

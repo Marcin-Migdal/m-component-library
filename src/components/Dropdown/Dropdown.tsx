@@ -57,7 +57,6 @@ const Dropdown = (props: DropdownProps) => {
             const target: HTMLElement = event.target as HTMLElement;
 
             if (
-                isFocused &&
                 ref.current &&
                 (!ref.current.contains(target) || target?.className.includes("m-dropdown-container")) &&
                 (!target.getAttribute("data-id") || target.getAttribute("data-id") != uniqueDropdownId)
@@ -66,12 +65,18 @@ const Dropdown = (props: DropdownProps) => {
             }
         };
 
+        const handleKeyPress = (event: KeyboardEvent) => {
+            if (event.code == "Escape") setIsFocused(false);
+        };
+
         document.addEventListener("click", handleClickOutside);
+        document.addEventListener("keydown", handleKeyPress);
 
         return () => {
             document.removeEventListener("click", handleClickOutside);
+            document.removeEventListener("keydown", handleKeyPress);
         };
-    }, [isFocused]);
+    }, []);
 
     const handleFocus = () => {
         setIsFocused(true);

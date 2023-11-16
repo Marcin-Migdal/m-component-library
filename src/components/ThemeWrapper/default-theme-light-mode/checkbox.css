@@ -1,12 +1,25 @@
 /*! CHECKBOX SECTION */
-.default-theme-light-mode-container .m-checkbox-container {
-    color: var(--dark-grey_400);
+.default-theme-light-mode-theme .m-checkbox-container {
+    color: var(--input-text-color);
 }
 
-.default-theme-light-mode-container .m-checkbox {
-    border-color: var(--dark-grey_300);
+.default-theme-light-mode-theme .m-checkbox {
+    background: var(--input-background-color);
+    border-color: var(--border-color) !important;
 }
 
-.default-theme-light-mode-container .m-checkbox:hover {
-    background: var(--light-grey_400) !important;
+.default-theme-light-mode-theme .m-checkbox:active {
+    box-shadow: var(--small-box-shadow) var(--input-box-shadow-color);
+}
+
+.default-theme-light-mode-theme .m-checkbox:hover {
+    background: var(--input-hover-background-color);
+}
+
+.default-theme-light-mode-theme .m-checkbox-check-icon {
+    color: var(--dark-grey_200) !important;
+}
+
+.default-theme-light-mode-theme .m-checkbox:hover .m-checkbox-check-icon {
+    color: var(--dark-grey_300) !important;
 }
