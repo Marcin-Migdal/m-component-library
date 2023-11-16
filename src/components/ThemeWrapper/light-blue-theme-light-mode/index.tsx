@@ -11,7 +11,7 @@ import "./dropdown.css";
 import "./toast.css";
 
 export const LightBlueThemeLightMode = ({ children, customWrapperId }: IThemeProps) => (
-    <div className="common-wrapper-container light-blue-theme-light-mode-container" id={customWrapperId}>
+    <div className="common-wrapper-container light-blue-theme-light-mode-theme" id={customWrapperId}>
         {children}
     </div>
 );

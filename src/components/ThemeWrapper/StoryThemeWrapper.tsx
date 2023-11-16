@@ -4,18 +4,20 @@ import { Input, Checkbox, Textarea, Dropdown, Button, ToastsContainer } from "..
 import { ToastHandler } from "../Toast/ToastsContainer";
 import { ThemeTypes } from "./theme-wrapper-interfaces";
 import ThemeWrapper from "./ThemeWrapper";
+import { InputLabelType, LabelPercentageWidth } from "../global-interfaces";
 
 export interface IStoryThemeWrapperProps {
     theme: ThemeTypes;
+    inputLabelType: InputLabelType;
 }
 
-const inputLabelWidth = 90;
-const floatingInputWidth = 50;
-const inputLabelType: any = "floating";
-const checkboxLabelType = inputLabelType == "floating" ? "right" : inputLabelType;
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
-const StoryThemeWrapper = ({ theme }: IStoryThemeWrapperProps) => {
+const StoryThemeWrapper = ({ theme, inputLabelType = "floating" }: IStoryThemeWrapperProps) => {
     const toastRef = useRef<ToastHandler>(null);
+
+    const checkboxLabelType = inputLabelType == "floating" ? "right" : inputLabelType;
+    const inputLabelWidth: LabelPercentageWidth | undefined = inputLabelType == "floating" ? 90 : 20;
+    const floatingInputWidth = 50;
 
     return (
         <ThemeWrapper theme={theme}>
@@ -33,11 +35,30 @@ const StoryThemeWrapper = ({ theme }: IStoryThemeWrapperProps) => {
 
             <SectionHeader theme={theme} text="INPUT SECTION" />
 
-            <Input label="label" labelType={inputLabelType} labelWidth={inputLabelWidth} floatingInputWidth={floatingInputWidth} />
-            <Textarea label="label" labelType={inputLabelType} labelWidth={inputLabelWidth} floatingInputWidth={floatingInputWidth} />
-            <Dropdown label="label" labelType={inputLabelType} labelWidth={inputLabelWidth} floatingInputWidth={floatingInputWidth} />
+            <Input
+                label="label"
+                placeholder="placeholder"
+                labelType={inputLabelType}
+                labelWidth={inputLabelWidth}
+                floatingInputWidth={floatingInputWidth}
+            />
+            <Textarea
+                label="label"
+                placeholder="placeholder"
+                labelType={inputLabelType}
+                labelWidth={inputLabelWidth}
+                floatingInputWidth={floatingInputWidth}
+            />
             <Dropdown
                 label="label"
+                placeholder="placeholder"
+                labelType={inputLabelType}
+                labelWidth={inputLabelWidth}
+                floatingInputWidth={floatingInputWidth}
+            />
+            <Dropdown
+                label="label"
+                placeholder="placeholder"
                 labelType={inputLabelType}
                 labelWidth={inputLabelWidth}
                 options={options}
@@ -88,7 +109,7 @@ const SectionHeader = ({ theme, text, style, headerStyle }: ISectionHeaderProps)
     return (
         <div
             style={{
-                width: "100%",
+                width: "calc(100% + 32px)",
                 borderTop: `1px solid ${theme.includes("theme-dark") ? "white" : "black"}`,
                 marginLeft: "-16px",
                 ...style,

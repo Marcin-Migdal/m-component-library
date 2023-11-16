@@ -1,25 +1,29 @@
 /*! CHECKBOX SECTION */
-.light-blue-theme-light-mode-container .m-checkbox-container {
-    color: var(--primary-color_300);
+.light-blue-theme-light-mode-theme .m-checkbox-container {
+    color: var(--input-text-color);
 }
 
-.light-blue-theme-light-mode-container .m-checkbox {
-    border-color: var(--primary-color_300) !important;
+.light-blue-theme-light-mode-theme .m-checkbox {
+    background: var(--white);
+    border-color: var(--border-color) !important;
 }
 
-.light-blue-theme-light-mode-container .m-checkbox:hover {
-    background: var(--primary-color_200) !important;
-    border-color: var(--primary-color_200) !important;
+.light-blue-theme-light-mode-theme .m-checkbox:hover {
+    background: var(--input-hover-background-color);
 }
 
-.light-blue-theme-light-mode-container .m-checkbox-check-icon {
+.light-blue-theme-light-mode-theme .m-checkbox:active {
+    box-shadow: var(--small-box-shadow) var(--input-box-shadow-color);
+}
+
+.light-blue-theme-light-mode-theme .m-checkbox-check-icon {
     color: var(--primary-color_300) !important;
 }
 
-.light-blue-theme-light-mode-container .m-checkbox-input-wrapper:hover .m-checkbox-check-icon {
+.light-blue-theme-light-mode-theme .m-checkbox:hover .m-checkbox-check-icon {
     color: var(--white) !important;
 }
 
-.light-blue-theme-light-mode-container .m-checkbox-label {
+.light-blue-theme-light-mode-theme .m-checkbox-label {
     color: var(--primary-color_300);
 }

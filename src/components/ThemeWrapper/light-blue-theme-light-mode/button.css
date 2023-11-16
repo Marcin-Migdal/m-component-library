@@ -1,39 +1,52 @@
 /*! BUTTON SECTION */
-.light-blue-theme-light-mode-container .m-button {
-    color: var(--primary-color_300);
-}
-
-.light-blue-theme-light-mode-container .m-button:hover:enabled {
-    background-color: var(--primary-color_300);
-    color: var(--white);
-}
-
-.light-blue-theme-light-mode-container .m-button:active:enabled {
-    background-color: var(--primary-color_300);
-    color: var(--white);
+.light-blue-theme-light-mode-theme .m-button:not(.text):focus {
+    box-shadow: var(--small-box-shadow) var(--btn-box-shadow-color);
 }
 
 /* VARIANT OUTLINED */
-.light-blue-theme-light-mode-container .m-button.outlined {
-    border-color: var(--primary-color_300);
-    background-color: var(--white);
-    color: var(--primary-color_300);
+.light-blue-theme-light-mode-theme .m-button.outlined {
+    border-color: var(--border-color);
+    background-color: var(--background-color);
+    color: var(--border-color);
+}
+
+.light-blue-theme-light-mode-theme .m-button.outlined:hover:enabled {
+    background-color: var(--border-color);
+    color: var(--background-color);
+}
+
+.light-blue-theme-light-mode-theme .m-button.outlined:active:enabled {
+    background-color: var(--border-color);
+    color: var(--background-color);
 }
 
 /* VARIANT FULL */
-.light-blue-theme-light-mode-container .m-button.full {
-    border-color: var(--primary-color_300);
-    background-color: var(--primary-color_300);
-    color: var(--white);
+.light-blue-theme-light-mode-theme .m-button.full {
+    border-color: var(--btn-full-background-color);
+    background-color: var(--btn-full-background-color);
+    color: var(--btn-full-color);
 }
 
-.light-blue-theme-light-mode-container .m-button.full:hover {
-    border-color: var(--primary-color_150);
-    background-color: var(--primary-color_150);
+.light-blue-theme-light-mode-theme .m-button.full:hover:enabled {
+    border-color: var(--btn-full-hover-background-color);
+    background-color: var(--btn-full-hover-background-color);
+}
+
+.light-blue-theme-light-mode-theme .m-button.full:active:enabled {
+    border-color: var(--btn-full-hover-background-color);
+    background-color: var(--btn-full-hover-background-color);
 }
 
 /* VARIANT TEXT */
-.light-blue-theme-light-mode-container .m-button.text:hover {
-    border-color: var(--primary-color_100);
-    background-color: var(--primary-color_100);
+.light-blue-theme-light-mode-theme .m-button.text {
+    color: var(--btn-text-color);
+}
+.light-blue-theme-light-mode-theme .m-button.text:hover {
+    color: var(--btn-text-hover-color);
+    background-color: var(--btn-text-hover-background-color);
+}
+
+.light-blue-theme-light-mode-theme .m-button.text:active:enabled {
+    color: var(--btn-text-hover-color);
+    background-color: var(--btn-text-active-background-color);
 }

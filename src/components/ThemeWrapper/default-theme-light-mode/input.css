@@ -1,21 +1,36 @@
 /*! INPUT SECTION */
-.default-theme-light-mode-container .m-input-container {
-    color: var(--dark-grey_400);
+.default-theme-light-mode-theme .m-input-container {
+    color: var(--input-text-color);
 }
 
-.default-theme-light-mode-container .m-input {
-    background: var(--light-grey_400);
+.default-theme-light-mode-theme .m-input {
+    background: var(--input-background-color);
 }
 
-.default-theme-light-mode-container .m-input::placeholder {
-    color: var(--dark-grey_400);
+.default-theme-light-mode-theme .m-input:focus {
+    box-shadow: var(--big-box-shadow) var(--input-box-shadow-color);
 }
 
-.default-theme-light-mode-container .m-input-label {
-    color: var(--dark-grey_400);
+.default-theme-light-mode-theme .m-input:focus,
+.default-theme-light-mode-theme .m-input:hover {
+    background-color: var(--input-hover-background-color);
 }
 
-.default-theme-light-mode-container .m-input:focus,
-.default-theme-light-mode-container .m-input:hover {
-    background-color: var(--light-grey_200);
+.default-theme-light-mode-theme .m-input:not(:disabled)::placeholder {
+    color: var(--input-placeholder-color);
+}
+
+.default-theme-light-mode-theme .m-input:not(:disabled):focus::placeholder,
+.default-theme-light-mode-theme .m-input:not(:disabled):hover::placeholder {
+    color: var(--input-hover-placeholder-color);
+}
+
+.default-theme-light-mode-theme .m-input-label--floating {
+    color: var(--input-placeholder-color);
+}
+
+.default-theme-light-mode-theme .m-input:hover + .m-input-label--floating,
+.default-theme-light-mode-theme .m-input-label--floating.filled,
+.default-theme-light-mode-theme .m-input-label--floating.focused {
+    color: var(--input-hover-placeholder-color);
 }

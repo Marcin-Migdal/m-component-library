@@ -1,23 +1,39 @@
 /*! TEXTAREA SECTION */
-.light-blue-theme-dark-mode-container .m-textarea-container {
-    color: var(--primary-color_300);
+.light-blue-theme-dark-mode-theme .m-textarea-container {
+    color: var(--input-text-color);
 }
 
-.light-blue-theme-dark-mode-container .m-textarea {
-    background: var(--dark-grey_400);
-    color: var(--primary-color_300);
+.light-blue-theme-dark-mode-theme .m-textarea {
+    background: var(--input-background-color);
 }
 
-.light-blue-theme-dark-mode-container .m-textarea:focus,
-.light-blue-theme-dark-mode-container .m-textarea:hover {
-    background-color: var(--dark-grey_300);
+.light-blue-theme-dark-mode-theme .m-textarea:focus {
+    box-shadow: var(--big-box-shadow) var(--box-shadow-color);
 }
 
-.light-blue-theme-dark-mode-container .m-textarea-label--floating.filled,
-.light-blue-theme-dark-mode-container .m-textarea-label--floating.focused {
-    color: var(--primary-color_200);
+.light-blue-theme-dark-mode-theme .m-textarea:focus,
+.light-blue-theme-dark-mode-theme .m-textarea:hover {
+    background-color: var(--input-hover-background-color);
 }
 
-.light-blue-theme-dark-mode-container .m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
-    background-color: var(--background-color);
+.light-blue-theme-dark-mode-theme .m-textarea:not(:disabled)::placeholder {
+    color: var(--input-placeholder-color);
+}
+
+.light-blue-theme-dark-mode-theme .m-textarea-label--right,
+.light-blue-theme-dark-mode-theme .m-textarea-label--left {
+    color: var(--input-label-color);
+}
+
+.light-blue-theme-dark-mode-theme .m-textarea-label--floating {
+    color: var(--input-placeholder-color);
+}
+
+.light-blue-theme-dark-mode-theme .m-textarea-label--floating.filled,
+.light-blue-theme-dark-mode-theme .m-textarea-label--floating.focused {
+    color: var(--input-hover-placeholder-color);
+}
+
+.light-blue-theme-dark-mode-theme .m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb-background-color);
 }
