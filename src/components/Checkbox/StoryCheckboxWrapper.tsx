@@ -1,11 +1,13 @@
 import React from "react";
+
+import { LabelPercentageWidth } from "../global-interfaces";
+import { CheckboxLabelType } from "./checkbox-interfaces";
 import Checkbox from "./Checkbox";
-import { LabelPercentageWidth } from "./checkbox-interfaces";
 
 export interface IStoryCheckboxWrapperProps {
     checked?: boolean;
     label?: string;
-    labelType?: "left" | "right";
+    labelType?: CheckboxLabelType;
     labelPercentageWidth?: LabelPercentageWidth;
 }
 

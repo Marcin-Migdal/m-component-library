@@ -4,16 +4,19 @@ export * from "./components";
 
 // TODO! Input components
 // TODO? multi Dropdown
-// TODO? Date input, with range
 // TODO? File Component
 // TODO? Image Component
+// TODO? Date input, with range
 
 // TODO! Navigational components
-// TODO? Side bar
+// TODO? Breadcrumb
 // TODO? Nav bar
 // TODO? Dropdown Menu
-// TODO? Breadcrumb
+// TODO? Side bar
 
-// TODO! TABLE
+//TODO! Data Display
+// TODO? TABLE
+// TODO? TREE
+// TODO? ACCORDION
 
 // TODO! Form with validation

@@ -1,17 +1,18 @@
 import React from "react";
 
-import { CUSTOM_INPUT_MASKS, INPUT_MASKS, InputTypes, LabelPercentageWidth } from "./Input-interfaces";
+import { CUSTOM_INPUT_MASKS, INPUT_MASKS, InputTypes } from "./Input-interfaces";
+import * as GlobalInterfaces from "../global-interfaces";
 import Input from "./Input";
 
 export interface IStoryInputWrapperProps {
     value?: string;
     label?: string;
-    labelType?: "left" | "right" | "floating";
+    labelType?: GlobalInterfaces.InputLabelType;
     placeholder?: string;
     defaultInternalValue?: string;
     type?: InputTypes;
     autoFocus?: boolean;
-    labelPercentageWidth?: LabelPercentageWidth;
+    labelPercentageWidth?: GlobalInterfaces.LabelPercentageWidth;
     mask?: INPUT_MASKS | string;
     customMask?: CUSTOM_INPUT_MASKS;
 }
