@@ -1,4 +1,5 @@
 export type InputLabelType = "left" | "right" | "floating";
+
 export type LabelPercentageWidth =
     | 15
     | 16

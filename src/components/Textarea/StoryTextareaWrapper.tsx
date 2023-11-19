@@ -1,16 +1,16 @@
 import React from "react";
 
-import { LabelPercentageWidth } from "./Textarea-interfaces";
+import * as GlobalInterfaces from "../global-interfaces";
 import Textarea from "./Textarea";
 
 export interface IStoryInputWrapperProps {
     value?: string;
     label?: string;
-    labelType?: "left" | "right" | "floating";
+    labelType?: GlobalInterfaces.InputLabelType;
     placeholder?: string;
     defaultInternalValue?: string;
     autoFocus?: boolean;
-    labelPercentageWidth?: LabelPercentageWidth;
+    labelPercentageWidth?: GlobalInterfaces.LabelPercentageWidth;
     row?: number;
 }
 
