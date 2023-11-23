@@ -1,12 +1,8 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 import StoryButtonWrapper from "./StoryButtonWrapper";
 import ThemeWrapper from "../ThemeWrapper";
-
-library.add(fas);
 
 export default {
     title: "Morti-component-library/Button",

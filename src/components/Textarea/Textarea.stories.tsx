@@ -1,12 +1,8 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { fas } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 import ThemeWrapper from "../ThemeWrapper";
-import Textarea from "./Textarea";
-
-library.add(fas);
+import { Textarea } from "./Textarea";
 
 export default {
     title: "Morti-component-library/Inputs",

@@ -4,7 +4,7 @@ import { TextareaProps } from "./Textarea-interfaces";
 
 import "./Textarea.css";
 
-const Textarea = ({
+export const Textarea = ({
     value = undefined,
     name = undefined,
     onChange,
@@ -72,5 +72,3 @@ const Textarea = ({
         </div>
     );
 };
-
-export default Textarea;
