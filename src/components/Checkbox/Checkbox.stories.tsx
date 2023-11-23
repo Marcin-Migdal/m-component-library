@@ -6,8 +6,6 @@ import React from "react";
 import StoryCheckboxWrapper from "./StoryCheckboxWrapper";
 import ThemeWrapper from "../ThemeWrapper";
 
-import "../global-styles.css";
-
 library.add(fas);
 
 export default {
@@ -17,7 +15,9 @@ export default {
 
 const Template: ComponentStory<typeof StoryCheckboxWrapper> = (args) => (
     <ThemeWrapper theme="light-blue-theme-light-mode">
-        <StoryCheckboxWrapper {...args} />
+        <div style={{ padding: "1rem" }}>
+            <StoryCheckboxWrapper {...args} />
+        </div>
     </ThemeWrapper>
 );
 

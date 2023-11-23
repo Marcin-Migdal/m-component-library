@@ -1,4 +1,12 @@
-export * from "./components";
+export { default as Button } from "./components/Button";
+export { default as ThemeWrapper } from "./components/ThemeWrapper";
+export { default as Input } from "./components/Input";
+export { default as Col } from "./components/Col";
+export { default as Row } from "./components/Row";
+export { default as Checkbox } from "./components/Checkbox";
+export { default as Textarea } from "./components/Textarea";
+export { default as Dropdown } from "./components/Dropdown";
+export { default as ToastsContainer } from "./components/Toast";
 
 // TODO! LIB TEST
 

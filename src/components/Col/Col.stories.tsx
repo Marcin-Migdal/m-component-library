@@ -5,8 +5,6 @@ import StoryColWrapper from "./StoryColWrapper";
 import ThemeWrapper from "../ThemeWrapper";
 import Row from "../Row/Row";
 
-import "../global-styles.css";
-
 export default {
     title: "Morti-component-library/Layout",
     component: StoryColWrapper,
@@ -14,9 +12,11 @@ export default {
 
 const Template: ComponentStory<typeof StoryColWrapper> = (args) => (
     <ThemeWrapper theme="default-theme-dark-mode">
-        <Row>
-            <StoryColWrapper {...args} />
-        </Row>
+        <div style={{ padding: "1rem" }}>
+            <Row>
+                <StoryColWrapper {...args} />
+            </Row>
+        </div>
     </ThemeWrapper>
 );
 

@@ -6,8 +6,6 @@ import React from "react";
 import ThemeWrapper from "../ThemeWrapper";
 import Textarea from "./Textarea";
 
-import "../global-styles.css";
-
 library.add(fas);
 
 export default {
@@ -17,7 +15,9 @@ export default {
 
 const Template: ComponentStory<typeof Textarea> = (args) => (
     <ThemeWrapper theme="light-blue-theme-light-mode">
-        <Textarea {...args} />
+        <div style={{ padding: "1rem" }}>
+            <Textarea {...args} />
+        </div>
     </ThemeWrapper>
 );
 

@@ -1,6 +1,6 @@
 import React, { CSSProperties, useRef } from "react";
 
-import { Input, Checkbox, Textarea, Dropdown, Button, ToastsContainer } from "..";
+import { Input, Checkbox, Textarea, Dropdown, Button, ToastsContainer } from "../..";
 import { InputLabelType, LabelPercentageWidth } from "../global-interfaces";
 import { ToastHandler } from "../Toast/ToastsContainer";
 import { ThemeTypes } from "./theme-wrapper-interfaces";
