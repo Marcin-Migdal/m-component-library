@@ -1,8 +1,7 @@
 .common-wrapper-container {
     /* theme wrapper container styles */
-    padding: 1rem;
     width: 100%;
-    min-height: 100vh;
+    min-height: 88vh;
     background-color: var(--background-color);
 
     /* APP CSS VARIABLES  */

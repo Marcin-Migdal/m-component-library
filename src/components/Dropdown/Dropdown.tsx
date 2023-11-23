@@ -12,12 +12,12 @@ const Dropdown = (props: DropdownProps) => {
         value = undefined,
         name = undefined,
         disabled = false,
-        handleChange,
+        onChange,
         label,
         labelType = "floating",
         placeholder,
         labelWidth = 30,
-        floatingInputWidth = 30,
+        floatingInputWidth = 100,
         options = undefined,
         labelKey = "label",
         valueKey = "value",
@@ -87,10 +87,10 @@ const Dropdown = (props: DropdownProps) => {
     };
 
     const handleDropdownChange = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: any): void => {
-        if (handleChange) {
-            let _e: IDropdownChangeEvent = { ...e, target: { ...e.target, value: selectedOption, name: name } };
+        if (onChange) {
+            let _e: IDropdownChangeEvent = { ...e, target: { ...e.target, value: selectedOption, name: name, type: "dropdown" } };
 
-            handleChange(_e, selectedOption);
+            onChange(_e, selectedOption);
         }
 
         setFilterValue("");
@@ -103,10 +103,10 @@ const Dropdown = (props: DropdownProps) => {
         setInternalValue(undefined);
         setIsFocused(false);
 
-        if (handleChange) {
-            let _e: IDropdownChangeEvent = { ...e, target: { ...e.target, value: undefined, name: name } };
+        if (onChange) {
+            let _e: IDropdownChangeEvent = { ...e, target: { ...e.target, value: undefined, name: name, type: "dropdown" } };
 
-            handleChange(_e, undefined);
+            onChange(_e, undefined);
         }
     };
 

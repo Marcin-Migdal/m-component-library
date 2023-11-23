@@ -5,7 +5,7 @@ import * as GlobalInterfaces from "../global-interfaces";
 export interface TextareaProps {
     value?: string;
     name?: string;
-    handleChange?: (event: ChangeEvent<HTMLTextAreaElement>, value: string) => void;
+    onChange?: (event: ChangeEvent<HTMLTextAreaElement>, value: string) => void;
     onBlur?: (event: ChangeEvent<HTMLTextAreaElement>, value: string) => void;
     label?: string;
     labelType?: GlobalInterfaces.InputLabelType;
@@ -13,6 +13,6 @@ export interface TextareaProps {
     defaultInternalValue?: string;
     autoFocus?: boolean;
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
-    floatingInputWidth?: GlobalInterfaces.LabelPercentageWidth;
+    floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
     row?: number;
 }

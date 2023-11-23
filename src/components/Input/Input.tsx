@@ -9,16 +9,17 @@ const Input = (props: InputProps) => {
     const {
         value = undefined,
         name = undefined,
-        handleChange,
+        disabled = false,
+        onChange,
         onBlur,
         label,
         labelType = "floating",
         placeholder,
+        labelWidth = 30,
+        floatingInputWidth = 100,
         defaultInternalValue,
         type = "text",
         autoFocus = false,
-        labelWidth: labelPercentageWidth = 30,
-        floatingInputWidth: floatingInputPercentageWidth = 100,
         customMask = undefined,
         onBeforeMaskedValueChange = undefined,
     } = props;
@@ -48,8 +49,8 @@ const Input = (props: InputProps) => {
         onBlur && onBlur(e, e.target.value);
     };
 
-    const onChange = (e: ChangeEvent<HTMLInputElement>): void => {
-        handleChange && handleChange(e, e.target.value);
+    const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+        onChange && onChange(e, e.target.value);
         setInternalValue(e.target.value);
     };
 
@@ -77,13 +78,14 @@ const Input = (props: InputProps) => {
     m-input-label--${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
 
     const inputStyle: React.CSSProperties = {
-        marginLeft: labelType == "left" ? `${labelPercentageWidth}%` : "unset",
-        width: labelType == "floating" ? `${floatingInputPercentageWidth}%` : `${100 - labelPercentageWidth}%`,
+        marginLeft: labelType == "left" ? `${labelWidth}%` : "unset",
+        width: labelType == "floating" ? `${floatingInputWidth}%` : `${100 - labelWidth}%`,
     };
 
     return (
         <div className="m-input-container">
             <InputMask
+                disabled={disabled}
                 name={name}
                 mask={mask}
                 formatChars={formatChars}
@@ -91,7 +93,7 @@ const Input = (props: InputProps) => {
                 type={type}
                 style={inputStyle}
                 value={_value}
-                onChange={onChange}
+                onChange={handleChange}
                 onBlur={handleBlur}
                 onFocus={handleFocus}
                 autoFocus={autoFocus}
@@ -101,8 +103,8 @@ const Input = (props: InputProps) => {
             {label && (
                 <label
                     style={{
-                        width: `${labelPercentageWidth}%`,
-                        left: labelType == "right" ? `${`${100 - labelPercentageWidth}%`}` : "0",
+                        width: `${labelWidth}%`,
+                        left: labelType == "right" ? `${`${100 - labelWidth}%`}` : "0",
                     }}
                     className={labelClasses}
                 >

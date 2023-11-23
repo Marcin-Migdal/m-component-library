@@ -5,14 +5,7 @@ import { CheckboxProps } from "./checkbox-interfaces";
 
 import "./Checkbox.css";
 
-const Checkbox = ({
-    checked = false,
-    name,
-    onChange,
-    label,
-    labelType = "right",
-    labelWidth: labelPercentageWidth = 30,
-}: CheckboxProps) => {
+const Checkbox = ({ checked = false, name, onChange, label, labelType = "right", labelWidth = 30 }: CheckboxProps) => {
     const [isChecked, setIsChecked] = useState<boolean>(checked);
 
     useEffect(() => {
@@ -27,8 +20,8 @@ const Checkbox = ({
     };
 
     const inputStyle: React.CSSProperties = {
-        marginLeft: labelType == "left" ? `${labelPercentageWidth}%` : "unset",
-        width: `${100 - labelPercentageWidth}%`,
+        marginLeft: labelType == "left" ? `${labelWidth}%` : "unset",
+        width: `${100 - labelWidth}%`,
     };
 
     return (
@@ -45,8 +38,8 @@ const Checkbox = ({
             {label && (
                 <label
                     style={{
-                        width: `${labelPercentageWidth}%`,
-                        left: labelType == "right" ? `${`${100 - labelPercentageWidth}%`}` : "unset",
+                        width: `${labelWidth}%`,
+                        left: labelType == "right" ? `${`${100 - labelWidth}%`}` : "unset",
                     }}
                     className={`m-checkbox-label ${labelType}`}
                 >

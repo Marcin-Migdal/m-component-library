@@ -1,10 +1,10 @@
 import React, { CSSProperties, useRef } from "react";
 
 import { Input, Checkbox, Textarea, Dropdown, Button, ToastsContainer } from "..";
+import { InputLabelType, LabelPercentageWidth } from "../global-interfaces";
 import { ToastHandler } from "../Toast/ToastsContainer";
 import { ThemeTypes } from "./theme-wrapper-interfaces";
 import ThemeWrapper from "./ThemeWrapper";
-import { InputLabelType, LabelPercentageWidth } from "../global-interfaces";
 
 export interface IStoryThemeWrapperProps {
     theme: ThemeTypes;
@@ -21,71 +21,76 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating" }: IStoryThemeWr
 
     return (
         <ThemeWrapper theme={theme}>
-            <SectionHeader
-                style={{ marginTop: "0px", borderTop: "none" }}
-                headerStyle={{ marginTop: "unset" }}
-                theme={theme}
-                text="BUTTON SECTION"
-            />
-            <div style={{ marginBottom: "20px" }}>
-                <Button variant="outlined" text="btn text" onClick={() => {}} />
-                <Button variant="full" text="btn text" onClick={() => {}} />
-                <Button variant="text" text="btn text" onClick={() => {}} />
-            </div>
-
-            <SectionHeader theme={theme} text="INPUT SECTION" />
-
-            <Input
-                label="label"
-                placeholder="placeholder"
-                labelType={inputLabelType}
-                labelWidth={inputLabelWidth}
-                floatingInputWidth={floatingInputWidth}
-            />
-            <Textarea
-                label="label"
-                placeholder="placeholder"
-                labelType={inputLabelType}
-                labelWidth={inputLabelWidth}
-                floatingInputWidth={floatingInputWidth}
-            />
-            <Dropdown
-                label="label"
-                placeholder="placeholder"
-                labelType={inputLabelType}
-                labelWidth={inputLabelWidth}
-                floatingInputWidth={floatingInputWidth}
-            />
-            <Dropdown
-                label="label"
-                placeholder="placeholder"
-                labelType={inputLabelType}
-                labelWidth={inputLabelWidth}
-                options={options}
-                floatingInputWidth={floatingInputWidth}
-            />
-            <Checkbox label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} />
-
-            <SectionHeader theme={theme} text="TOAST SECTION" />
-
-            <ToastsContainer ref={toastRef} />
-            <div style={{ display: "flex" }}>
-                <Button text="Success toast" onClick={() => toastRef.current?.handleAddToast("success", "Sign in was successful")} />
-                <Button
-                    text="Failure toast"
-                    onClick={() =>
-                        toastRef.current?.handleAddToast(
-                            "failure",
-                            "While sign in, error has occurred, error has occurred, error has occurred, error has occurred"
-                        )
-                    }
+            <div style={{ padding: "1rem" }}>
+                <SectionHeader
+                    style={{ marginTop: "0px", borderTop: "none" }}
+                    headerStyle={{ marginTop: "unset" }}
+                    theme={theme}
+                    text="BUTTON SECTION"
                 />
-                <Button
-                    text="Warning toast"
-                    onClick={() => toastRef.current?.handleAddToast("warning", "Are you sure, you want to log out?")}
+                <div style={{ marginBottom: "20px" }}>
+                    <Button variant="outlined" text="btn text" onClick={() => {}} />
+                    <Button variant="full" text="btn text" onClick={() => {}} />
+                    <Button variant="text" text="btn text" onClick={() => {}} />
+                </div>
+
+                <SectionHeader theme={theme} text="INPUT SECTION" />
+
+                <Input
+                    label="label"
+                    placeholder="placeholder"
+                    labelType={inputLabelType}
+                    labelWidth={inputLabelWidth}
+                    floatingInputWidth={floatingInputWidth}
                 />
-                <Button text="Information toast" onClick={() => toastRef.current?.handleAddToast("information", "You where singed out")} />
-                <Button style={{ marginRight: "10px" }} text="Clear toasts" onClick={() => toastRef.current?.handleClear()} />
+                <Textarea
+                    label="label"
+                    placeholder="placeholder"
+                    labelType={inputLabelType}
+                    labelWidth={inputLabelWidth}
+                    floatingInputWidth={floatingInputWidth}
+                />
+                <Dropdown
+                    label="label"
+                    placeholder="placeholder"
+                    labelType={inputLabelType}
+                    labelWidth={inputLabelWidth}
+                    floatingInputWidth={floatingInputWidth}
+                />
+                <Dropdown
+                    label="label"
+                    placeholder="placeholder"
+                    labelType={inputLabelType}
+                    labelWidth={inputLabelWidth}
+                    options={options}
+                    floatingInputWidth={floatingInputWidth}
+                />
+                <Checkbox label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} />
+
+                <SectionHeader theme={theme} text="TOAST SECTION" />
+
+                <ToastsContainer ref={toastRef} />
+                <div style={{ display: "flex" }}>
+                    <Button text="Success toast" onClick={() => toastRef.current?.handleAddToast("success", "Sign in was successful")} />
+                    <Button
+                        text="Failure toast"
+                        onClick={() =>
+                            toastRef.current?.handleAddToast(
+                                "failure",
+                                "While sign in, error has occurred, error has occurred, error has occurred, error has occurred"
+                            )
+                        }
+                    />
+                    <Button
+                        text="Warning toast"
+                        onClick={() => toastRef.current?.handleAddToast("warning", "Are you sure, you want to log out?")}
+                    />
+                    <Button
+                        text="Information toast"
+                        onClick={() => toastRef.current?.handleAddToast("information", "You where singed out")}
+                    />
+                    <Button style={{ marginRight: "10px" }} text="Clear toasts" onClick={() => toastRef.current?.handleClear()} />
+                </div>
             </div>
         </ThemeWrapper>
     );

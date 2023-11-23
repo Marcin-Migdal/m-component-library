@@ -7,7 +7,7 @@ import "./Textarea.css";
 const Textarea = ({
     value = undefined,
     name = undefined,
-    handleChange,
+    onChange,
     onBlur,
     label,
     labelType = "floating",
@@ -15,7 +15,7 @@ const Textarea = ({
     defaultInternalValue,
     autoFocus = false,
     labelWidth = 30,
-    floatingInputWidth = 30,
+    floatingInputWidth = 100,
     row = 4,
 }: TextareaProps) => {
     const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
@@ -31,8 +31,8 @@ const Textarea = ({
         onBlur && onBlur(e, e.target.value);
     };
 
-    const onChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
-        handleChange && handleChange(e, e.target.value);
+    const handleChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
+        onChange && onChange(e, e.target.value);
         setInternalValue(e.target.value);
     };
 
@@ -52,7 +52,7 @@ const Textarea = ({
                 style={inputStyle}
                 className={`m-textarea ${labelType}`}
                 value={_value}
-                onChange={onChange}
+                onChange={handleChange}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 placeholder={labelType == "floating" ? undefined : placeholder || (label ? `${label}...` : "")}
