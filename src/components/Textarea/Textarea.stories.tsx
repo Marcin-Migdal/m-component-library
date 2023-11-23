@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import React from "react";
 
 import ThemeWrapper from "../ThemeWrapper";
-import { Textarea } from "./Textarea";
+import Textarea from "./Textarea";
 
 export default {
     title: "Morti-component-library/Inputs",

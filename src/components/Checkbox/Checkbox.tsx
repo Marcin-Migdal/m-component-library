@@ -5,7 +5,7 @@ import { CheckboxProps } from "./checkbox-interfaces";
 
 import "./Checkbox.css";
 
-export const Checkbox = ({ checked = false, name, onChange, label, labelType = "right", labelWidth = 30 }: CheckboxProps) => {
+const Checkbox = ({ checked = false, name, onChange, label, labelType = "right", labelWidth = 30 }: CheckboxProps) => {
     const [isChecked, setIsChecked] = useState<boolean>(checked);
 
     useEffect(() => {
@@ -49,3 +49,5 @@ export const Checkbox = ({ checked = false, name, onChange, label, labelType = "
         </div>
     );
 };
+
+export default Checkbox;
