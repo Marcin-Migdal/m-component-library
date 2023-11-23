@@ -6,8 +6,6 @@ import React from "react";
 import ThemeWrapper from "../ThemeWrapper";
 import Dropdown from "./Dropdown";
 
-import "../global-styles.css";
-
 library.add(fas);
 
 export default {
@@ -23,7 +21,9 @@ const options = [
 
 const Template: ComponentStory<typeof Dropdown> = (args) => (
     <ThemeWrapper theme="light-blue-theme-dark-mode">
-        <Dropdown {...args} options={options} name="testDropdown" />
+        <div style={{ padding: "1rem" }}>
+            <Dropdown {...args} options={options} name="testDropdown" />
+        </div>
     </ThemeWrapper>
 );
 

@@ -1,8 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
+
+.common-wrapper-container * {
+    font-family: "Open Sans", sans-serif;
+}
+
 .common-wrapper-container {
     /* theme wrapper container styles */
-    padding: 1rem;
     width: 100%;
-    min-height: 100vh;
+    min-height: 88vh;
     background-color: var(--background-color);
 
     /* APP CSS VARIABLES  */

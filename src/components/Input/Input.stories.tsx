@@ -6,8 +6,6 @@ import React from "react";
 import StoryInputWrapper from "./StoryInputWrapper";
 import ThemeWrapper from "../ThemeWrapper";
 
-import "../global-styles.css";
-
 library.add(fas);
 
 export default {
@@ -17,7 +15,9 @@ export default {
 
 const Template: ComponentStory<typeof StoryInputWrapper> = (args) => (
     <ThemeWrapper theme="light-blue-theme-dark-mode">
-        <StoryInputWrapper {...args} />
+        <div style={{ padding: "1rem" }}>
+            <StoryInputWrapper {...args} />
+        </div>
     </ThemeWrapper>
 );
 

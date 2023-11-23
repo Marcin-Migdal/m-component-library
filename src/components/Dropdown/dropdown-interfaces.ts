@@ -4,7 +4,7 @@ export interface DropdownProps {
     value?: any;
     name?: string;
     disabled?: boolean;
-    handleChange?: (event: IDropdownChangeEvent, value: any | undefined) => void;
+    onChange?: (event: IDropdownChangeEvent, value: any | undefined) => void;
     options?: any[];
     labelKey?: string;
     valueKey?: string;
@@ -12,7 +12,7 @@ export interface DropdownProps {
     labelType?: GlobalInterfaces.InputLabelType;
     placeholder?: string;
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
-    floatingInputWidth?: GlobalInterfaces.LabelPercentageWidth;
+    floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
     clearable?: boolean;
 }
 
@@ -23,4 +23,5 @@ export interface IDropdownChangeEvent extends React.MouseEvent<HTMLLIElement | S
 interface IDropdownChangeEventTarget extends EventTarget {
     name?: string;
     value: any;
+    type: "dropdown";
 }

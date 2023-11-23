@@ -5,8 +5,6 @@ import React from "react";
 
 import StoryThemeWrapper from "./StoryThemeWrapper";
 
-import "../global-styles.css";
-
 library.add(fas);
 
 export default {

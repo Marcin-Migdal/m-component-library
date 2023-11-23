@@ -6,8 +6,6 @@ import React from "react";
 import StoryToastsWrapper from "./StoryToastsWrapper";
 import ThemeWrapper from "../ThemeWrapper";
 
-import "../global-styles.css";
-
 library.add(fas);
 
 export default {
@@ -17,7 +15,9 @@ export default {
 
 const Template: ComponentStory<typeof StoryToastsWrapper> = (args) => (
     <ThemeWrapper theme="light-blue-theme-dark-mode">
-        <StoryToastsWrapper />
+        <div style={{ padding: "1rem" }}>
+            <StoryToastsWrapper />
+        </div>
     </ThemeWrapper>
 );
 

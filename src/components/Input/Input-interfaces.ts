@@ -6,7 +6,8 @@ import * as GlobalInterfaces from "../global-interfaces";
 export interface InputProps {
     value?: string;
     name?: string;
-    handleChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+    disabled?: boolean;
+    onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
     onBlur?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
     label?: string;
     labelType?: GlobalInterfaces.InputLabelType;
@@ -15,7 +16,7 @@ export interface InputProps {
     type?: InputTypes;
     autoFocus?: boolean;
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
-    floatingInputWidth?: GlobalInterfaces.LabelPercentageWidth;
+    floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
 
     customMask?: CUSTOM_INPUT_MASKS;
     mask?: INPUT_MASKS | string;

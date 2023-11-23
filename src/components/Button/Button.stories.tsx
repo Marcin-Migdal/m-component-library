@@ -5,7 +5,6 @@ import React from "react";
 
 import StoryButtonWrapper from "./StoryButtonWrapper";
 import ThemeWrapper from "../ThemeWrapper";
-import "../global-styles.css";
 
 library.add(fas);
 
@@ -16,7 +15,9 @@ export default {
 
 const Template: ComponentStory<typeof StoryButtonWrapper> = (args) => (
     <ThemeWrapper theme="default-theme-dark-mode">
-        <StoryButtonWrapper {...args} />
+        <div style={{ padding: "1rem" }}>
+            <StoryButtonWrapper {...args} />
+        </div>
     </ThemeWrapper>
 );
 

@@ -12,6 +12,8 @@
     "devDependencies": {
         "@babel/core": "^7.19.1",
         "@fortawesome/fontawesome-svg-core": "^6.2.0",
+        "@fortawesome/free-solid-svg-icons": "^6.4.2",
+        "@fortawesome/react-fontawesome": "^0.2.0",
         "@rollup/plugin-commonjs": "^22.0.2",
         "@rollup/plugin-node-resolve": "^13.3.0",
         "@rollup/plugin-typescript": "^8.4.0",
@@ -47,9 +49,5 @@
     "types": "dist/index.d.ts",
     "publishConfig": {
         "registry": "https://npm.pkg.github.com/Marcin-Migdal"
-    },
-    "dependencies": {
-        "@fortawesome/free-solid-svg-icons": "^6.2.0",
-        "@fortawesome/react-fontawesome": "^0.2.0"
     }
 }
