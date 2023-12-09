@@ -4,10 +4,9 @@ import { CSSProperties, MouseEvent } from "react";
 export type PositionType = "left" | "right";
 export type VariantType = "outlined" | "full" | "text";
 
-export interface IButtonProps {
+interface IButtonCommonProps {
     children?: any;
     text: string;
-    onClick: (e: MouseEvent<HTMLButtonElement>) => void;
     disabled?: boolean;
     busy?: boolean;
     display?: boolean;
@@ -15,6 +14,22 @@ export interface IButtonProps {
     iconPosition?: PositionType;
     className?: string;
     style?: CSSProperties;
-    type?: "submit" | "reset" | "button";
     variant?: VariantType;
 }
+
+interface ITypeSubmitProps extends IButtonCommonProps {
+    onClick?: undefined;
+    type: "submit";
+}
+
+interface ITypeResetProps extends IButtonCommonProps {
+    onClick?: undefined;
+    type: "reset";
+}
+
+interface ITypeButtonProps extends IButtonCommonProps {
+    onClick: (e: MouseEvent<HTMLButtonElement>) => void;
+    type?: "button";
+}
+
+export type IButtonProps = ITypeButtonProps | ITypeSubmitProps | ITypeResetProps;

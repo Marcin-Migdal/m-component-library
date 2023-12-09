@@ -13,6 +13,6 @@ export interface IStoryButtonWrapperProps {
 }
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
-const StoryButtonWrapper = (props: IStoryButtonWrapperProps) => <Button {...props} onClick={() => {}} />;
+const StoryButtonWrapper = (props: IStoryButtonWrapperProps) => <Button {...props} onClick={() => console.log("on click")} />;
 
 export default StoryButtonWrapper;

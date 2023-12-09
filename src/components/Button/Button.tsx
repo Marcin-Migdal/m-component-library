@@ -17,7 +17,7 @@ const Button = (props: IButtonProps) => {
         iconPosition = "right",
         className = "",
         style = {},
-        type = undefined,
+        type = "button",
         variant = "outlined",
     } = props;
 
@@ -27,7 +27,9 @@ const Button = (props: IButtonProps) => {
         <button
             style={style}
             className={`m-button ${variant} ${className}`}
-            onClick={(e) => onClick(e)}
+            onClick={(e) => {
+                onClick && onClick(e);
+            }}
             disabled={disabled || busy}
             type={type}
         >
