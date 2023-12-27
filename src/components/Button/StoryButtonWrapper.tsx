@@ -10,6 +10,8 @@ export interface IStoryButtonWrapperProps {
     icon?: "trash" | "question" | "check" | "pen" | "car" | "car-side" | "cart-shopping" | "cart-plus";
     iconPosition?: PositionType;
     variant?: VariantType;
+    tooltip?: string;
+    disabledTooltip?: string;
 }
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.

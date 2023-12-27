@@ -8,6 +8,7 @@ export interface TextareaProps {
     onChange?: (event: ChangeEvent<HTMLTextAreaElement>, value: string) => void;
     onBlur?: (event: ChangeEvent<HTMLTextAreaElement>, value: string) => void;
     label?: string;
+    error?: string;
     labelType?: GlobalInterfaces.InputLabelType;
     placeholder?: string;
     defaultInternalValue?: string;

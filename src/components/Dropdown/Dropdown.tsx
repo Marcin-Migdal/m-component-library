@@ -6,6 +6,8 @@ import { v4 as uuId } from "uuid";
 import { DropdownProps, IDropdownChangeEvent } from "./dropdown-interfaces";
 
 import "./Dropdown.css";
+import { InputsLabel } from "../InputsLabel/InputsLabel";
+import { Tooltip } from "../Tooltip";
 
 const Dropdown = (props: DropdownProps) => {
     const {
@@ -14,6 +16,7 @@ const Dropdown = (props: DropdownProps) => {
         disabled = false,
         onChange,
         label,
+        error,
         labelType = "floating",
         placeholder,
         labelWidth = 30,
@@ -121,9 +124,9 @@ const Dropdown = (props: DropdownProps) => {
     return (
         <div
             ref={ref}
-            className={`m-dropdown-container ${labelType == "floating" && isFocused ? "focused" : filterValue || _value ? "filled" : ""} ${
-                disabled ? "disabled" : ""
-            }`}
+            className={`m-dropdown-container ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}  ${
+                error ? "error" : ""
+            } ${disabled ? "disabled" : ""}`}
         >
             {/* input placeholder, displays selected value, also work as a filter input */}
             <input
@@ -141,20 +144,26 @@ const Dropdown = (props: DropdownProps) => {
 
             {/* input label */}
             {label && (
-                <label
-                    data-id={uniqueDropdownId}
-                    style={{
-                        width: `${labelWidth}%`,
-                        left: labelType == "right" ? `${`${100 - labelWidth}%`}` : "0",
-                    }}
-                    className={labelClasses}
-                >
-                    {labelType == "floating" ? (isFocused || _value ? label : `${label}...`) : label}
-                </label>
+                <InputsLabel
+                    label={label}
+                    labelType={labelType}
+                    labelClasses={labelClasses}
+                    floatingInputWidth={floatingInputWidth}
+                    labelWidth={labelWidth}
+                    isFocused={isFocused}
+                    _value={_value}
+                    dataId={uniqueDropdownId}
+                />
             )}
 
             {/* input icons */}
-            <FontAwesomeIcon className="m-dropdown-icon" icon="angle-down" />
+            {error ? (
+                <Tooltip text="error" position="right" className="dropdown-error">
+                    <FontAwesomeIcon icon="exclamation-circle" />
+                </Tooltip>
+            ) : (
+                <FontAwesomeIcon className="m-dropdown-icon" icon="angle-down" />
+            )}
             {clearable && <FontAwesomeIcon className="m-dropdown-clear-icon" icon="close" onClick={(e) => handleClear(e)} />}
 
             {/* dropdown items */}

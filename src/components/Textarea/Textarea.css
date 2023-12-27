@@ -75,3 +75,21 @@
 .m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
     border-radius: 30px;
 }
+
+/* error section */
+.m-textarea-container.error .m-textarea {
+    border: 1px solid var(--failure-color);
+    color: var(--failure-color) !important;
+}
+
+.m-textarea-container.error .m-textarea:focus {
+    box-shadow: var(--big-box-shadow) var(--failure-color);
+}
+
+.m-textarea-container.error .m-textarea:not(:disabled)::placeholder {
+    color: var(--failure-color) !important;
+}
+
+.m-textarea-container.error .m-textarea-label--floating {
+    color: var(--failure-color) !important;
+}

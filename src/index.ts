@@ -7,8 +7,7 @@ export { default as Checkbox } from "./components/Checkbox";
 export { default as Textarea } from "./components/Textarea";
 export { default as Dropdown } from "./components/Dropdown";
 export { default as ToastsContainer } from "./components/Toast";
-
-// TODO! LIB TEST
+export { Tooltip } from "./components/Tooltip";
 
 // TODO! Input components
 // TODO? multi Dropdown
@@ -26,5 +25,3 @@ export { default as ToastsContainer } from "./components/Toast";
 // TODO? TABLE
 // TODO? TREE
 // TODO? ACCORDION
-
-// TODO! Form with validation

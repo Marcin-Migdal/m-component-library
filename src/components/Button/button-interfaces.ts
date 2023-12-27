@@ -15,6 +15,8 @@ interface IButtonCommonProps {
     className?: string;
     style?: CSSProperties;
     variant?: VariantType;
+    tooltip?: string;
+    disabledTooltip?: string;
 }
 
 interface ITypeSubmitProps extends IButtonCommonProps {

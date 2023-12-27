@@ -1,7 +1,10 @@
+import React, { CSSProperties, ChangeEvent, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import InputMask, { InputState } from "react-input-mask";
-import React, { ChangeEvent, useState } from "react";
 
 import { CUSTOM_INPUT_MASKS, InputProps } from "./Input-interfaces";
+import { InputsLabel } from "../InputsLabel/InputsLabel";
+import { Tooltip } from "../Tooltip";
 
 import "./Input.css";
 
@@ -13,6 +16,7 @@ const Input = (props: InputProps) => {
         onChange,
         onBlur,
         label,
+        error,
         labelType = "floating",
         placeholder,
         labelWidth = 30,
@@ -77,13 +81,13 @@ const Input = (props: InputProps) => {
     const labelClasses = `m-input-label 
     m-input-label--${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
 
-    const inputStyle: React.CSSProperties = {
+    const inputStyle: CSSProperties = {
         marginLeft: labelType == "left" ? `${labelWidth}%` : "unset",
         width: labelType == "floating" ? `${floatingInputWidth}%` : `${100 - labelWidth}%`,
     };
 
     return (
-        <div className="m-input-container">
+        <div className={`m-input-container ${error ? "error" : ""}`}>
             <InputMask
                 disabled={disabled}
                 name={name}
@@ -101,18 +105,25 @@ const Input = (props: InputProps) => {
                 beforeMaskedValueChange={handleBeforeMaskedValueChange}
             />
             {label && (
-                <label
-                    style={{
-                        width: `${labelWidth}%`,
-                        left: labelType == "right" ? `${`${100 - labelWidth}%`}` : "0",
-                    }}
-                    className={labelClasses}
-                >
-                    {labelType == "floating" ? (isFocused || _value ? label : `${label}...`) : label}
-                </label>
+                <InputsLabel
+                    label={label}
+                    labelType={labelType}
+                    labelClasses={labelClasses}
+                    floatingInputWidth={floatingInputWidth}
+                    labelWidth={labelWidth}
+                    isFocused={isFocused}
+                    _value={_value}
+                />
+            )}
+            {error && (
+                <Tooltip text="error" position="right" className="input-error">
+                    <FontAwesomeIcon icon="exclamation-circle" />
+                </Tooltip>
             )}
         </div>
     );
 };
 
 export default Input;
+
+// TODO! dodać czerwoną obramówkę inputa jak jest error

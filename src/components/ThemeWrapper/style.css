@@ -74,7 +74,7 @@
 .default-theme-light-mode-theme {
     --background-color: var(--white);
 
-    --border-color: var(--dark-grey_300);
+    --border-color: var(--dark-grey_200);
 
     --input-background-color: var(--light-grey_200);
     --input-hover-background-color: var(--light-grey_300);

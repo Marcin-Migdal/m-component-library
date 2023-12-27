@@ -10,6 +10,7 @@ export interface InputProps {
     onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
     onBlur?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
     label?: string;
+    error?: string;
     labelType?: GlobalInterfaces.InputLabelType;
     placeholder?: string;
     defaultInternalValue?: string;

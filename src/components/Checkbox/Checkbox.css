@@ -1,5 +1,8 @@
 .m-checkbox-container {
     position: relative;
+
+    display: flex;
+
     margin-bottom: var(--input-margin-bottom);
 }
 

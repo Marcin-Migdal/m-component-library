@@ -7,6 +7,7 @@ export interface CheckboxProps {
     name?: string;
     onChange?: (event: ChangeEvent<HTMLInputElement>, value: boolean) => void;
     label?: string;
+    error?: string;
     labelType?: CheckboxLabelType;
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
 }

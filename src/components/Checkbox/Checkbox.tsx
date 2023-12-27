@@ -1,11 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ChangeEvent, useEffect, useState } from "react";
 
+import { InputsLabel } from "../InputsLabel/InputsLabel";
 import { CheckboxProps } from "./checkbox-interfaces";
+import { Tooltip } from "../Tooltip";
 
 import "./Checkbox.css";
 
-const Checkbox = ({ checked = false, name, onChange, label, labelType = "right", labelWidth = 30 }: CheckboxProps) => {
+const Checkbox = ({ checked = false, name, onChange, label, error, labelType = "right", labelWidth = 30 }: CheckboxProps) => {
     const [isChecked, setIsChecked] = useState<boolean>(checked);
 
     useEffect(() => {
@@ -19,13 +21,15 @@ const Checkbox = ({ checked = false, name, onChange, label, labelType = "right",
         setIsChecked(_checked);
     };
 
+    const labelClasses: string = `m-checkbox-label ${labelType}`;
+
     const inputStyle: React.CSSProperties = {
         marginLeft: labelType == "left" ? `${labelWidth}%` : "unset",
         width: `${100 - labelWidth}%`,
     };
 
     return (
-        <div className="m-checkbox-container">
+        <div className="m-checkbox-container ">
             <div style={inputStyle}>
                 <label className={`m-checkbox-input-wrapper ${isChecked ? "checked" : ""}`}>
                     <input className="m-checkbox-input" type="checkbox" checked={isChecked} onChange={handleChange} name={name} />
@@ -34,17 +38,16 @@ const Checkbox = ({ checked = false, name, onChange, label, labelType = "right",
                     </span>
                 </label>
             </div>
-
-            {label && (
-                <label
-                    style={{
-                        width: `${labelWidth}%`,
-                        left: labelType == "right" ? `${`${100 - labelWidth}%`}` : "unset",
-                    }}
-                    className={`m-checkbox-label ${labelType}`}
+            {label && <InputsLabel label={label} labelType={labelType} labelClasses={labelClasses} labelWidth={labelWidth} />}
+            {error && (
+                <Tooltip
+                    text="error"
+                    position="right"
+                    className="checkbox-error"
+                    style={{ left: labelType == "left" ? `${labelWidth}%` : "unset" }}
                 >
-                    {label}
-                </label>
+                    <FontAwesomeIcon icon="exclamation-circle" />
+                </Tooltip>
             )}
         </div>
     );

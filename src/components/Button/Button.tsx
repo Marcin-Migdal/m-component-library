@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 import { IButtonProps } from "./button-interfaces";
+import { Tooltip } from "../Tooltip";
 
 import "./Button.css";
 
@@ -19,31 +20,35 @@ const Button = (props: IButtonProps) => {
         style = {},
         type = "button",
         variant = "outlined",
+        tooltip = "",
+        disabledTooltip = "",
     } = props;
 
     if (!display) return <></>;
 
     return (
-        <button
-            style={style}
-            className={`m-button ${variant} ${className}`}
-            onClick={(e) => {
-                onClick && onClick(e);
-            }}
-            disabled={disabled || busy}
-            type={type}
-        >
-            {children}
-            {icon && iconPosition == "left" && <FontAwesomeIcon className="left-svg" icon={icon} />}
-            {text}
-            {busy ? (
-                <FontAwesomeIcon className="right-svg" icon="circle-notch" spin />
-            ) : icon && iconPosition == "right" ? (
-                <FontAwesomeIcon className="right-svg" icon={icon} />
-            ) : (
-                <></>
-            )}
-        </button>
+        <Tooltip text={disabled ? disabledTooltip : tooltip} position="bottom" className="button-tooltip">
+            <button
+                style={style}
+                className={`m-button ${variant} ${className}`}
+                onClick={(e) => {
+                    onClick && onClick(e);
+                }}
+                disabled={disabled || busy}
+                type={type}
+            >
+                {children}
+                {icon && iconPosition == "left" && <FontAwesomeIcon className="left-svg" icon={icon} />}
+                {text}
+                {busy ? (
+                    <FontAwesomeIcon className="right-svg" icon="circle-notch" spin />
+                ) : icon && iconPosition == "right" ? (
+                    <FontAwesomeIcon className="right-svg" icon={icon} />
+                ) : (
+                    <></>
+                )}
+            </button>
+        </Tooltip>
     );
 };
 

@@ -1,6 +1,9 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ChangeEvent, useState } from "react";
 
+import { InputsLabel } from "../InputsLabel/InputsLabel";
 import { TextareaProps } from "./Textarea-interfaces";
+import { Tooltip } from "../Tooltip";
 
 import "./Textarea.css";
 
@@ -10,6 +13,7 @@ const Textarea = ({
     onChange,
     onBlur,
     label,
+    error,
     labelType = "floating",
     placeholder,
     defaultInternalValue,
@@ -45,7 +49,7 @@ const Textarea = ({
     };
 
     return (
-        <div className="m-textarea-container">
+        <div className={`m-textarea-container ${error ? "error" : ""}`}>
             <textarea
                 name={name}
                 rows={row}
@@ -59,15 +63,20 @@ const Textarea = ({
                 autoFocus={autoFocus}
             />
             {label && (
-                <label
-                    style={{
-                        width: `${labelWidth}%`,
-                        left: labelType == "right" ? `${`${100 - labelWidth}%`}` : "0",
-                    }}
-                    className={labelClasses}
-                >
-                    {labelType == "floating" ? (isFocused || _value ? label : `${label}...`) : label}
-                </label>
+                <InputsLabel
+                    label={label}
+                    labelType={labelType}
+                    labelClasses={labelClasses}
+                    floatingInputWidth={floatingInputWidth}
+                    labelWidth={labelWidth}
+                    isFocused={isFocused}
+                    _value={_value}
+                />
+            )}
+            {error && (
+                <Tooltip text="error" position="right" className="textarea-error">
+                    <FontAwesomeIcon icon="exclamation-circle" />
+                </Tooltip>
             )}
         </div>
     );

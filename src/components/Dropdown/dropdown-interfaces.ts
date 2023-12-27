@@ -9,6 +9,7 @@ export interface DropdownProps {
     labelKey?: string;
     valueKey?: string;
     label?: string;
+    error?: string;
     labelType?: GlobalInterfaces.InputLabelType;
     placeholder?: string;
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;

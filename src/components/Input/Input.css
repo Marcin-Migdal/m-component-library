@@ -63,3 +63,21 @@
 
 .m-input-label--right {
 }
+
+/* error section */
+.m-input-container.error .m-input {
+    border: 1px solid var(--failure-color);
+    color: var(--failure-color) !important;
+}
+
+.m-input-container.error .m-input:focus {
+    box-shadow: var(--big-box-shadow) var(--failure-color);
+}
+
+.m-input-container.error .m-input:not(:disabled)::placeholder {
+    color: var(--failure-color) !important;
+}
+
+.m-input-container.error .m-input-label--floating {
+    color: var(--failure-color) !important;
+}

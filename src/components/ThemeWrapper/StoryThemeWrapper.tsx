@@ -9,10 +9,11 @@ import ThemeWrapper from "./ThemeWrapper";
 export interface IStoryThemeWrapperProps {
     theme: ThemeTypes;
     inputLabelType: InputLabelType;
+    error?: string;
 }
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
-const StoryThemeWrapper = ({ theme, inputLabelType = "floating" }: IStoryThemeWrapperProps) => {
+const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "" }: IStoryThemeWrapperProps) => {
     const toastRef = useRef<ToastHandler>(null);
 
     const checkboxLabelType = inputLabelType == "floating" ? "right" : inputLabelType;
@@ -42,6 +43,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating" }: IStoryThemeWr
                     labelType={inputLabelType}
                     labelWidth={inputLabelWidth}
                     floatingInputWidth={floatingInputWidth}
+                    error={error}
                 />
                 <Textarea
                     label="label"
@@ -49,6 +51,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating" }: IStoryThemeWr
                     labelType={inputLabelType}
                     labelWidth={inputLabelWidth}
                     floatingInputWidth={floatingInputWidth}
+                    error={error}
                 />
                 <Dropdown
                     label="label"
@@ -56,6 +59,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating" }: IStoryThemeWr
                     labelType={inputLabelType}
                     labelWidth={inputLabelWidth}
                     floatingInputWidth={floatingInputWidth}
+                    error={error}
                 />
                 <Dropdown
                     label="label"
@@ -64,8 +68,9 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating" }: IStoryThemeWr
                     labelWidth={inputLabelWidth}
                     options={options}
                     floatingInputWidth={floatingInputWidth}
+                    error={error}
                 />
-                <Checkbox label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} />
+                <Checkbox label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} error={error} />
 
                 <SectionHeader theme={theme} text="TOAST SECTION" />
 
