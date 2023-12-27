@@ -41,7 +41,7 @@ const Checkbox = ({ checked = false, name, onChange, label, error, labelType = "
             {label && <InputsLabel label={label} labelType={labelType} labelClasses={labelClasses} labelWidth={labelWidth} />}
             {error && (
                 <Tooltip
-                    text="error"
+                    text={error}
                     position="right"
                     className="checkbox-error"
                     style={{ left: labelType == "left" ? `${labelWidth}%` : "unset" }}

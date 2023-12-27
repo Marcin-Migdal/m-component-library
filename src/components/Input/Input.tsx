@@ -116,7 +116,7 @@ const Input = (props: InputProps) => {
                 />
             )}
             {error && (
-                <Tooltip text="error" position="right" className="input-error">
+                <Tooltip text={error} position="right" className="input-error">
                     <FontAwesomeIcon icon="exclamation-circle" />
                 </Tooltip>
             )}

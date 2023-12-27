@@ -74,7 +74,7 @@ const Textarea = ({
                 />
             )}
             {error && (
-                <Tooltip text="error" position="right" className="textarea-error">
+                <Tooltip text={error} position="right" className="textarea-error">
                     <FontAwesomeIcon icon="exclamation-circle" />
                 </Tooltip>
             )}

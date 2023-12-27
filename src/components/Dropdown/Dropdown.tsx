@@ -158,7 +158,7 @@ const Dropdown = (props: DropdownProps) => {
 
             {/* input icons */}
             {error ? (
-                <Tooltip text="error" position="right" className="dropdown-error">
+                <Tooltip text={error} position="right" className="dropdown-error">
                     <FontAwesomeIcon icon="exclamation-circle" />
                 </Tooltip>
             ) : (
