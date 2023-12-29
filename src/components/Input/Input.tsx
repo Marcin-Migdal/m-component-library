@@ -1,10 +1,10 @@
-import React, { CSSProperties, ChangeEvent, useState } from "react";
+import React, { CSSProperties, ChangeEvent, useState, FocusEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import InputMask, { InputState } from "react-input-mask";
 
 import { CUSTOM_INPUT_MASKS, InputProps } from "./Input-interfaces";
 import { InputsLabel } from "../InputsLabel/InputsLabel";
-import { Tooltip } from "../Tooltip";
+import Tooltip from "../Tooltip";
 
 import "./Input.css";
 
@@ -47,7 +47,7 @@ const Input = (props: InputProps) => {
 
     const handleFocus = () => setIsFocused(true);
 
-    const handleBlur = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
         setIsFocused(false);
 
         onBlur && onBlur(e, e.target.value);
@@ -116,7 +116,7 @@ const Input = (props: InputProps) => {
                 />
             )}
             {error && (
-                <Tooltip text={error} position="right" className="input-error">
+                <Tooltip tooltipContent={error} position="left" className="input-error">
                     <FontAwesomeIcon icon="exclamation-circle" />
                 </Tooltip>
             )}

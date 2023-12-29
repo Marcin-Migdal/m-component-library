@@ -7,7 +7,7 @@ import { DropdownProps, IDropdownChangeEvent } from "./dropdown-interfaces";
 
 import "./Dropdown.css";
 import { InputsLabel } from "../InputsLabel/InputsLabel";
-import { Tooltip } from "../Tooltip";
+import Tooltip from "../Tooltip";
 
 const Dropdown = (props: DropdownProps) => {
     const {
@@ -158,7 +158,7 @@ const Dropdown = (props: DropdownProps) => {
 
             {/* input icons */}
             {error ? (
-                <Tooltip text={error} position="right" className="dropdown-error">
+                <Tooltip tooltipContent={error} position="left" className="dropdown-error">
                     <FontAwesomeIcon icon="exclamation-circle" />
                 </Tooltip>
             ) : (

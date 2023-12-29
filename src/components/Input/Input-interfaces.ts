@@ -1,5 +1,5 @@
 import { InputState } from "react-input-mask";
-import { ChangeEvent } from "react";
+import { ChangeEvent, FocusEvent } from "react";
 
 import * as GlobalInterfaces from "../global-interfaces";
 
@@ -8,7 +8,7 @@ export interface InputProps {
     name?: string;
     disabled?: boolean;
     onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
-    onBlur?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+    onBlur?: (event: FocusEvent<HTMLInputElement>, value: string) => void;
     label?: string;
     error?: string;
     labelType?: GlobalInterfaces.InputLabelType;
