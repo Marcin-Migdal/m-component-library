@@ -7,7 +7,8 @@ export { default as Checkbox } from "./components/Checkbox";
 export { default as Textarea } from "./components/Textarea";
 export { default as Dropdown } from "./components/Dropdown";
 export { default as ToastsContainer } from "./components/Toast";
-export { Tooltip } from "./components/Tooltip";
+export { default as Tooltip } from "./components/Tooltip";
+export { default as Form } from "./components/Form";
 
 // TODO! Input components
 // TODO? multi Dropdown

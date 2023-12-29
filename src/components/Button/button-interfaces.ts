@@ -1,5 +1,7 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { CSSProperties, MouseEvent } from "react";
+import { CSSProperties, MouseEvent, ReactNode } from "react";
+
+import { TooltipPositionTypes } from "../Tooltip/Tooltip";
 
 export type PositionType = "left" | "right";
 export type VariantType = "outlined" | "full" | "text";
@@ -15,8 +17,9 @@ interface IButtonCommonProps {
     className?: string;
     style?: CSSProperties;
     variant?: VariantType;
-    tooltip?: string;
-    disabledTooltip?: string;
+    tooltip?: ReactNode;
+    disabledTooltip?: ReactNode;
+    tooltipPosition?: TooltipPositionTypes;
 }
 
 interface ITypeSubmitProps extends IButtonCommonProps {

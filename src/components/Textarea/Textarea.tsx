@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useState, FocusEvent } from "react";
 
 import { InputsLabel } from "../InputsLabel/InputsLabel";
 import { TextareaProps } from "./Textarea-interfaces";
-import { Tooltip } from "../Tooltip";
+import Tooltip from "../Tooltip";
 
 import "./Textarea.css";
 
@@ -29,7 +29,7 @@ const Textarea = ({
 
     const handleFocus = () => setIsFocused(true);
 
-    const handleBlur = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const handleBlur = (e: FocusEvent<HTMLTextAreaElement>) => {
         setIsFocused(false);
 
         onBlur && onBlur(e, e.target.value);
@@ -74,7 +74,7 @@ const Textarea = ({
                 />
             )}
             {error && (
-                <Tooltip text={error} position="right" className="textarea-error">
+                <Tooltip tooltipContent={error} position="right" className="textarea-error">
                     <FontAwesomeIcon icon="exclamation-circle" />
                 </Tooltip>
             )}

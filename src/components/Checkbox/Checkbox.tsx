@@ -3,7 +3,7 @@ import React, { ChangeEvent, useEffect, useState } from "react";
 
 import { InputsLabel } from "../InputsLabel/InputsLabel";
 import { CheckboxProps } from "./checkbox-interfaces";
-import { Tooltip } from "../Tooltip";
+import Tooltip from "../Tooltip";
 
 import "./Checkbox.css";
 
@@ -41,8 +41,8 @@ const Checkbox = ({ checked = false, name, onChange, label, error, labelType = "
             {label && <InputsLabel label={label} labelType={labelType} labelClasses={labelClasses} labelWidth={labelWidth} />}
             {error && (
                 <Tooltip
-                    text={error}
-                    position="right"
+                    tooltipContent={error}
+                    position="left"
                     className="checkbox-error"
                     style={{ left: labelType == "left" ? `${labelWidth}%` : "unset" }}
                 >

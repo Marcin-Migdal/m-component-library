@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 import { IButtonProps } from "./button-interfaces";
-import { Tooltip } from "../Tooltip";
+import Tooltip from "../Tooltip";
 
 import "./Button.css";
 
@@ -22,12 +22,13 @@ const Button = (props: IButtonProps) => {
         variant = "outlined",
         tooltip = "",
         disabledTooltip = "",
+        tooltipPosition = "bottom",
     } = props;
 
     if (!display) return <></>;
 
     return (
-        <Tooltip text={disabled ? disabledTooltip : tooltip} position="bottom" className="button-tooltip">
+        <Tooltip tooltipContent={disabled ? disabledTooltip : tooltip} position={tooltipPosition} className="button-tooltip">
             <button
                 style={style}
                 className={`m-button ${variant} ${className}`}
