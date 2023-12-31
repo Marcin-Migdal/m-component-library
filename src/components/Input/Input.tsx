@@ -115,11 +115,11 @@ const Input = (props: InputProps) => {
                     _value={_value}
                 />
             )}
-            {error && (
+            {/* {error && (
                 <Tooltip tooltipContent={error} position="left" className="input-error">
                     <FontAwesomeIcon icon="exclamation-circle" />
                 </Tooltip>
-            )}
+            )} */}
         </div>
     );
 };

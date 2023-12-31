@@ -39,7 +39,7 @@ const Checkbox = ({ checked = false, name, onChange, label, error, labelType = "
                 </label>
             </div>
             {label && <InputsLabel label={label} labelType={labelType} labelClasses={labelClasses} labelWidth={labelWidth} />}
-            {error && (
+            {/* {error && (
                 <Tooltip
                     tooltipContent={error}
                     position="left"
@@ -48,7 +48,7 @@ const Checkbox = ({ checked = false, name, onChange, label, error, labelType = "
                 >
                     <FontAwesomeIcon icon="exclamation-circle" />
                 </Tooltip>
-            )}
+            )} */}
         </div>
     );
 };

@@ -12,12 +12,7 @@ const StoryFormWrapper = (props: IStoryFormWrapperProps) => {
     };
 
     return (
-        <Form<ISignUpState>
-            className="chat-form sign-in"
-            initialValues={signUpInitialValues}
-            handleSubmit={handleSubmit}
-            validationSchema={signUpValidationSchema}
-        >
+        <Form<ISignUpState> initialValues={signUpInitialValues} onSubmit={handleSubmit} validationSchema={signUpValidationSchema}>
             {({ values, errors, handleChange, handleBlur, isValid }) => (
                 <>
                     <Input

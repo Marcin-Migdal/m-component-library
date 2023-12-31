@@ -157,13 +157,13 @@ const Dropdown = (props: DropdownProps) => {
             )}
 
             {/* input icons */}
-            {error ? (
+            {/* {error ? (
                 <Tooltip tooltipContent={error} position="left" className="dropdown-error">
                     <FontAwesomeIcon icon="exclamation-circle" />
                 </Tooltip>
             ) : (
                 <FontAwesomeIcon className="m-dropdown-icon" icon="angle-down" />
-            )}
+            )} */}
             {clearable && <FontAwesomeIcon className="m-dropdown-clear-icon" icon="close" onClick={(e) => handleClear(e)} />}
 
             {/* dropdown items */}

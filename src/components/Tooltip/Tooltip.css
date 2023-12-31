@@ -1,124 +1,12 @@
 .tooltip {
-    position: relative;
-    display: inline-block;
-
-    --tooltip-text-margin: -6px;
-}
-
-.tooltip:hover .tooltip-text-container {
-    visibility: visible;
-    opacity: 0.65;
-}
-
-.tooltip .tooltip-text-container {
     position: absolute;
-
     width: 150px;
-
-    visibility: hidden;
-    opacity: 0;
-
-    z-index: 3;
-    transition: opacity 0.3s;
-}
-
-.tooltip .tooltip-text-container .tooltip-text {
-    position: relative;
-    width: fit-content;
-    max-width: 150px;
 
     padding: 5px 10px;
     border-radius: var(--border-radius);
 
-    background-color: var(--black);
+    background-color: var(--dark-grey_800);
+    opacity: 0.75;
     color: var(--white);
     font-size: 13px;
-}
-
-/*! TOOLTIP TEXT POSITION */
-/** TOP */
-.tooltip.top .tooltip-text-container {
-    top: var(--tooltip-text-margin);
-    left: calc(50% - var(--tooltip-text-margin));
-    transform: translate(-50%, -100%);
-}
-
-.tooltip.top .tooltip-text-container .tooltip-text {
-    margin: auto;
-}
-
-/** RIGHT */
-.tooltip.right .tooltip-text-container {
-    top: 50%;
-    left: calc(100% - var(--tooltip-text-margin));
-    transform: translate(0, -50%);
-}
-
-.tooltip.right .tooltip-text-container .tooltip-text {
-    margin-right: auto;
-}
-
-/** LEFT */
-.tooltip.left .tooltip-text-container {
-    top: 50%;
-    right: calc(100% - var(--tooltip-text-margin));
-    transform: translate(0, -50%);
-}
-
-.tooltip.left .tooltip-text-container .tooltip-text {
-    margin-left: auto;
-}
-
-/** BOTTOM */
-.tooltip.bottom .tooltip-text-container {
-    top: calc(100% - var(--tooltip-text-margin));
-    left: calc(50% - var(--tooltip-text-margin));
-    transform: translate(-50%, 0);
-}
-
-.tooltip.bottom .tooltip-text-container .tooltip-text {
-    margin: auto;
-}
-
-/*! INPUTS ERROR */
-.tooltip.checkbox-error,
-.tooltip.textarea-error,
-.tooltip.dropdown-error,
-.tooltip.input-error {
-    margin-left: -25px;
-
-    color: var(--failure-color);
-
-    --tooltip-text-margin: -14px;
-}
-
-.tooltip.checkbox-error {
-    position: absolute;
-
-    margin-left: calc(20px + 10px);
-
-    --tooltip-text-margin: -8px;
-}
-
-.tooltip.textarea-error {
-    position: absolute !important;
-    top: 50%;
-
-    transform: translate(0%, -50%);
-}
-
-/*! BUTTONS */
-/** TOP */
-.tooltip.top.button-tooltip .tooltip-text-container {
-    left: calc(50% - var(--btn-right-margin) / 2);
-}
-
-/** RIGHT */
-.tooltip.right.button-tooltip .tooltip-text-container {
-    left: calc(100% - var(--btn-right-margin) - var(--tooltip-text-margin));
-}
-
-/** BOTTOM */
-.tooltip.bottom.button-tooltip .tooltip-text-container {
-    left: calc(50% - var(--btn-right-margin) / 2);
 }

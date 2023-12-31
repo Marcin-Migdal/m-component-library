@@ -73,11 +73,11 @@ const Textarea = ({
                     _value={_value}
                 />
             )}
-            {error && (
+            {/* {error && (
                 <Tooltip tooltipContent={error} position="right" className="textarea-error">
                     <FontAwesomeIcon icon="exclamation-circle" />
                 </Tooltip>
-            )}
+            )} */}
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
+import React, { useRef } from "react";
 
 import { IButtonProps } from "./button-interfaces";
 import Tooltip from "../Tooltip";
@@ -25,11 +25,16 @@ const Button = (props: IButtonProps) => {
         tooltipPosition = "bottom",
     } = props;
 
+    const ref = useRef<HTMLButtonElement>(null);
+
     if (!display) return <></>;
 
+    const tooltipText = disabled ? disabledTooltip : tooltip;
+
     return (
-        <Tooltip tooltipContent={disabled ? disabledTooltip : tooltip} position={tooltipPosition} className="button-tooltip">
+        <>
             <button
+                ref={ref}
                 style={style}
                 className={`m-button ${variant} ${className}`}
                 onClick={(e) => {
@@ -49,7 +54,13 @@ const Button = (props: IButtonProps) => {
                     <></>
                 )}
             </button>
-        </Tooltip>
+
+            {tooltipText && (
+                <Tooltip targetRef={ref} position={tooltipPosition}>
+                    {tooltipText}
+                </Tooltip>
+            )}
+        </>
     );
 };
 
