@@ -1,10 +1,10 @@
 import React, { CSSProperties, ChangeEvent, useState, FocusEvent } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import InputMask, { InputState } from "react-input-mask";
 
+import { getInputsErrorStyle } from "../../../helpers/input-error-helpers";
+import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
+import { InputError } from "../_inputsComponents/InputError/InputError";
 import { CUSTOM_INPUT_MASKS, InputProps } from "./Input-interfaces";
-import { InputsLabel } from "../InputsLabel/InputsLabel";
-import Tooltip from "../Tooltip";
 
 import "./Input.css";
 
@@ -64,7 +64,7 @@ const Input = (props: InputProps) => {
         }
 
         let { value: newValue, selection: newSelection } = newState;
-        let { value: oldValue, selection: oldSelection } = oldState;
+        // let { value: oldValue, selection: oldSelection } = oldState;
 
         switch (CUSTOM_INPUT_MASKS.TIME) {
             case "time":
@@ -115,15 +115,9 @@ const Input = (props: InputProps) => {
                     _value={_value}
                 />
             )}
-            {/* {error && (
-                <Tooltip tooltipContent={error} position="left" className="input-error">
-                    <FontAwesomeIcon icon="exclamation-circle" />
-                </Tooltip>
-            )} */}
+            {error && <InputError style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)} className="input" error={error} />}
         </div>
     );
 };
 
 export default Input;
-
-// TODO! dodać czerwoną obramówkę inputa jak jest error

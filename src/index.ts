@@ -1,15 +1,28 @@
-export { default as Button } from "./components/Button";
 export { default as ThemeWrapper } from "./components/ThemeWrapper";
-export { default as Input } from "./components/Input/Input";
-export { default as Col } from "./components/Col";
-export { default as Row } from "./components/Row";
-export { default as Checkbox } from "./components/Checkbox";
-export { default as Textarea } from "./components/Textarea";
-export { default as Dropdown } from "./components/Dropdown";
+
+export { default as Input } from "./components/Inputs/Input/Input";
+export { default as Checkbox } from "./components/Inputs/Checkbox";
+export { default as Textarea } from "./components/Inputs/Textarea";
+export { default as Dropdown } from "./components/Inputs/Dropdown";
+
+export { default as Button } from "./components/Button";
+
+export { default as Col } from "./components/Layout/Col";
+export { default as Row } from "./components/Layout/Row";
+
 export { default as ToastsContainer } from "./components/Toast";
 export { default as Tooltip } from "./components/Tooltip";
+
 export { default as Form } from "./components/Form";
 
+//TODO* NOW
+// TODO! button variant "blur"
+// TODO! form with circulating blur
+// TODO! add generics to dropdown
+
+// TODO! not closing tooltip if cursor is over it (settimeout when closing tooltip, and canceling closing if onMouseEnter on tooltip ???)
+
+//TODO*LATER
 // TODO! Input components
 // TODO? multi Dropdown
 // TODO? File Component

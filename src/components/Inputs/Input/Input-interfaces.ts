@@ -1,7 +1,7 @@
 import { InputState } from "react-input-mask";
 import { ChangeEvent, FocusEvent } from "react";
 
-import * as GlobalInterfaces from "../global-interfaces";
+import * as GlobalInterfaces from "../../global-interfaces";
 
 export interface InputProps {
     value?: string;

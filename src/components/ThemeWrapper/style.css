@@ -45,7 +45,6 @@ body {
     --dark-grey_800: rgb(15, 15, 15);
 
     --border-radius: 6px;
-    --checkbox-border: 2px solid;
 
     --btn-border: 2px solid;
     --btn-right-margin: 10px;
@@ -59,11 +58,19 @@ body {
     --input-font-size: 16px;
     --input-label-padding-left: 0.35em;
 
+    --checkbox-input-size: 20px;
+    --checkbox-border-line-width: 2px;
+    --checkbox-border-line-style: solid;
+    --checkbox-border: var(--checkbox-border-line-width) var(--checkbox-border-line-style);
+
     --floating-label--font-size-active: 12px;
     --floating-label-translate-x: 2px;
     --floating-label-translate-y: 3px;
     --floating-label-translate-x-active: 3px;
     --floating-label-translate-y-active: -17px;
+
+    --error-icon-size: 16px;
+    --error-icon-margin: 8px;
 }
 
 .common-wrapper-container {
@@ -201,4 +208,18 @@ body {
 
     --btn-box-shadow-color: var(--primary-color_200);
     --input-box-shadow-color: var(--primary-color_100);
+}
+
+/* input error tooltip  */
+.error-icon {
+    position: absolute;
+    top: 50%;
+
+    width: var(--error-icon-size);
+    height: var(--error-icon-size);
+
+    color: var(--failure-color);
+
+    transform: translateY(-50%);
+    transition: 0.2s;
 }

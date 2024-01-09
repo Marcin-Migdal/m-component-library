@@ -6,7 +6,7 @@
 .m-textarea-container .m-textarea {
     border: none;
     outline: none;
-    min-height: var(--input-height);
+    height: 90px;
     font-size: var(--input-font-size);
     padding-top: 4px;
     padding-left: var(--input-padding-left) !important;
@@ -25,6 +25,7 @@
 
 .m-textarea-container .m-textarea:hover {
 }
+
 .m-textarea-container .m-textarea:active {
     transition: 0s !important;
 }
@@ -90,6 +91,6 @@
     color: var(--failure-color) !important;
 }
 
-.m-textarea-container.error .m-textarea-label--floating {
+.m-textarea-container.error .m-textarea-label {
     color: var(--failure-color) !important;
 }

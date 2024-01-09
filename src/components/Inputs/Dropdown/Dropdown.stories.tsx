@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import React from "react";
 
-import ThemeWrapper from "../ThemeWrapper";
+import ThemeWrapper from "../../ThemeWrapper";
 import Dropdown from "./Dropdown";
 
 export default {

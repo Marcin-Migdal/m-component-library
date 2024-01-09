@@ -1,9 +1,10 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ChangeEvent, useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { InputsLabel } from "../InputsLabel/InputsLabel";
+import { getCheckboxErrorStyle } from "../../../helpers/input-error-helpers";
+import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
 import { CheckboxProps } from "./checkbox-interfaces";
-import Tooltip from "../Tooltip";
+import { InputError } from "../_inputsComponents/InputError/InputError";
 
 import "./Checkbox.css";
 
@@ -29,7 +30,7 @@ const Checkbox = ({ checked = false, name, onChange, label, error, labelType = "
     };
 
     return (
-        <div className="m-checkbox-container ">
+        <div className={`m-checkbox-container ${error ? "error" : ""}`}>
             <div style={inputStyle}>
                 <label className={`m-checkbox-input-wrapper ${isChecked ? "checked" : ""}`}>
                     <input className="m-checkbox-input" type="checkbox" checked={isChecked} onChange={handleChange} name={name} />
@@ -39,16 +40,7 @@ const Checkbox = ({ checked = false, name, onChange, label, error, labelType = "
                 </label>
             </div>
             {label && <InputsLabel label={label} labelType={labelType} labelClasses={labelClasses} labelWidth={labelWidth} />}
-            {/* {error && (
-                <Tooltip
-                    tooltipContent={error}
-                    position="left"
-                    className="checkbox-error"
-                    style={{ left: labelType == "left" ? `${labelWidth}%` : "unset" }}
-                >
-                    <FontAwesomeIcon icon="exclamation-circle" />
-                </Tooltip>
-            )} */}
+            {error && <InputError style={getCheckboxErrorStyle(labelType, labelWidth)} className="checkbox" error={error} />}
         </div>
     );
 };

@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef } from "react";
 
+import { getTooltipPropsConfig } from "../Tooltip/internal-helpers";
 import { IButtonProps } from "./button-interfaces";
 import Tooltip from "../Tooltip";
 
@@ -22,14 +23,14 @@ const Button = (props: IButtonProps) => {
         variant = "outlined",
         tooltip = "",
         disabledTooltip = "",
-        tooltipPosition = "bottom",
+        tooltipConfig = getTooltipPropsConfig(disabled),
     } = props;
 
     const ref = useRef<HTMLButtonElement>(null);
 
     if (!display) return <></>;
 
-    const tooltipText = disabled ? disabledTooltip : tooltip;
+    const tooltipContent = disabled ? disabledTooltip : tooltip;
 
     return (
         <>
@@ -37,9 +38,7 @@ const Button = (props: IButtonProps) => {
                 ref={ref}
                 style={style}
                 className={`m-button ${variant} ${className}`}
-                onClick={(e) => {
-                    onClick && onClick(e);
-                }}
+                onClick={(e) => onClick && onClick(e)}
                 disabled={disabled || busy}
                 type={type}
             >
@@ -55,11 +54,7 @@ const Button = (props: IButtonProps) => {
                 )}
             </button>
 
-            {tooltipText && (
-                <Tooltip targetRef={ref} position={tooltipPosition}>
-                    {tooltipText}
-                </Tooltip>
-            )}
+            {tooltipContent && <Tooltip targetRef={ref} children={tooltipContent} {...getTooltipPropsConfig(disabled, tooltipConfig)} />}
         </>
     );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 
-import * as GlobalInterfaces from "../global-interfaces";
+import * as GlobalInterfaces from "../../global-interfaces";
 import Textarea from ".";
 
 export interface IStoryInputWrapperProps {

@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import React from "react";
 
 import StoryColWrapper from "./StoryColWrapper";
-import ThemeWrapper from "../ThemeWrapper";
+import ThemeWrapper from "../../ThemeWrapper";
 import Row from "../Row/Row";
 
 export default {

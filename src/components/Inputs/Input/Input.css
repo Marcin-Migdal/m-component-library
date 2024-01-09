@@ -78,6 +78,6 @@
     color: var(--failure-color) !important;
 }
 
-.m-input-container.error .m-input-label--floating {
+.m-input-container.error .m-input-label {
     color: var(--failure-color) !important;
 }

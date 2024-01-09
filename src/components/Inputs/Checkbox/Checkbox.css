@@ -16,7 +16,7 @@
 .m-checkbox-container .m-checkbox-input-wrapper .m-checkbox-check-icon {
     opacity: 0;
     position: absolute;
-    left: 2px;
+    left: 3px;
     top: 2px;
     transition: 0.15s;
 }
@@ -30,8 +30,8 @@
 }
 
 .m-checkbox-container .m-checkbox-input-wrapper .m-checkbox {
-    width: 20px;
-    height: 20px;
+    width: var(--checkbox-input-size);
+    height: var(--checkbox-input-size);
     margin: 0px;
     border-radius: var(--border-radius);
     border: var(--checkbox-border);
@@ -58,4 +58,25 @@
 
 .m-checkbox-container .m-checkbox-label.left {
     left: 0;
+}
+
+/* error section */
+.m-checkbox-container.error .m-checkbox {
+    border: 2px solid var(--failure-color) !important;
+    color: var(--failure-color) !important;
+}
+.m-checkbox-container.error .m-checkbox .m-checkbox-check-icon {
+    color: var(--failure-color) !important;
+}
+
+.m-checkbox-container.error .m-checkbox:focus {
+    box-shadow: var(--big-box-shadow) var(--failure-color);
+}
+
+.m-checkbox-container.error .m-checkbox:not(:disabled)::placeholder {
+    color: var(--failure-color) !important;
+}
+
+.m-checkbox-container.error .m-checkbox-label {
+    color: var(--failure-color) !important;
 }

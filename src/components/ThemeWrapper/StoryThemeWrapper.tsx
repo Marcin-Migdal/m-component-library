@@ -18,7 +18,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "" }: I
 
     const checkboxLabelType = inputLabelType == "floating" ? "right" : inputLabelType;
     const inputLabelWidth: LabelPercentageWidth | undefined = inputLabelType == "floating" ? 90 : 20;
-    const floatingInputWidth = 50;
+    const floatingInputWidth = 60;
 
     return (
         <ThemeWrapper theme={theme}>

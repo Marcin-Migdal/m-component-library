@@ -1,42 +1,43 @@
-import React, { CSSProperties, ReactNode, useEffect, useRef, useState, RefObject } from "react";
+import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { generateTooltipStyle } from "./internal-helpers";
+import { ITooltipProps, TargetElementType } from "./Tooltip-interfaces";
 
 import "./Tooltip.css";
 
-export type TooltipPositionTypes = "top" | "right" | "bottom" | "left";
-
-interface ITooltipProps {
-    targetRef: RefObject<HTMLElement>;
-    children: ReactNode;
-    className?: string;
-    position?: TooltipPositionTypes;
-    style?: CSSProperties;
-}
-
-// TODO! auto positions, flips tooltip position if tooltip does not fit
-// TODO! open delay
-// TODO! not closing tooltip if cursor is over it
-// TODO! passing tooltipMargin via props
-// TODO! changing all uses of Tooltip in this project
-
-const TooltipWrapper = ({ targetRef, children, position = "bottom", className = "", style = {} }: ITooltipProps) => {
+const TooltipWrapper = ({
+    targetRef,
+    children,
+    position = "bottom",
+    className = "",
+    style = {},
+    autoFixPosition = false,
+    openDelay = 0,
+    tooltipMargin = 6,
+    maxWidth = "150px",
+}: ITooltipProps) => {
     const tooltipRef = useRef<HTMLDivElement>(null);
 
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const [tooltipStyle, setTooltipStyle] = useState<CSSProperties | undefined>(undefined);
 
     useEffect(() => {
-        const targetElement: HTMLElement | null = targetRef.current;
+        const targetElement: TargetElementType | null = targetRef.current;
         const tooltipElement: HTMLDivElement | null = tooltipRef.current;
+        let timeoutId: NodeJS.Timeout | undefined = undefined;
 
         if (!targetElement) return;
 
-        const handleMouseEnter = () => setIsVisible(true);
+        const handleMouseEnter = () => {
+            timeoutId = setTimeout(() => {
+                setIsVisible(true);
+            }, openDelay);
+        };
 
         const handleMouseLeave = () => {
-            if (isVisible) {
+            if (timeoutId) clearTimeout(timeoutId);
+            else if (isVisible) {
                 setIsVisible(false);
                 setTooltipStyle(undefined);
             }
@@ -49,12 +50,12 @@ const TooltipWrapper = ({ targetRef, children, position = "bottom", className = 
         };
 
         // changes tooltip style
-        const changeTooltipStyle = (targetElement: HTMLElement, tooltipElement: HTMLDivElement | null) => {
+        const changeTooltipStyle = (targetElement: TargetElementType, tooltipElement: HTMLDivElement | null) => {
             // only when tooltip is visible and its ref is not undefined
             if (isVisible && tooltipElement) {
                 // calculates tooltip position using refs and returns it as a style
-                const _tooltipStyle = generateTooltipStyle(targetElement, tooltipElement, position);
-                setTooltipStyle({ ..._tooltipStyle, ...style });
+                const _tooltipStyle = generateTooltipStyle(targetElement, tooltipElement, position, autoFixPosition, tooltipMargin);
+                setTooltipStyle({ ..._tooltipStyle, ...style, maxWidth });
             }
         };
 
