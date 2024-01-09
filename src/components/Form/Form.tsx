@@ -15,14 +15,18 @@ interface IChildrenFormikData<T> {
 
 interface IFormProps<T> {
     initialValues: any;
-    handleSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void;
+    onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void;
     className?: string;
     children: (e: IChildrenFormikData<T>) => any;
     validationSchema: any;
 }
 
-function Form<T extends FormikValues = any>({ initialValues, handleSubmit, className = "", children, validationSchema }: IFormProps<T>) {
-    const formik = useFormik<T>({ initialValues: initialValues, onSubmit: handleSubmit, validationSchema: validationSchema });
+function Form<T extends FormikValues = any>({ initialValues, onSubmit, className = "", children, validationSchema }: IFormProps<T>) {
+    const formik = useFormik<T>({
+        initialValues: initialValues,
+        onSubmit: onSubmit,
+        validationSchema: validationSchema,
+    });
 
     const _errors = useMemo(() => filteredErrors<T>(formik.errors, formik.touched), [formik.errors, formik.touched]);
 

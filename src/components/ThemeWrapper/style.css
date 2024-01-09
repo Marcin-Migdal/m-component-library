@@ -1,16 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
 
-.common-wrapper-container * {
+* {
     font-family: "Open Sans", sans-serif;
 }
 
-.common-wrapper-container {
-    /* theme wrapper container styles */
-    width: 100%;
-    min-height: 88vh;
-    background-color: var(--background-color);
-
-    /* APP CSS VARIABLES  */
+/* APP CSS VARIABLES  */
+body {
     /* Common color variables across all themes */
     --success-color: rgb(30, 169, 100);
     --success-color-rgb: 30, 169, 100;
@@ -50,7 +45,6 @@
     --dark-grey_800: rgb(15, 15, 15);
 
     --border-radius: 6px;
-    --checkbox-border: 2px solid;
 
     --btn-border: 2px solid;
     --btn-right-margin: 10px;
@@ -64,11 +58,26 @@
     --input-font-size: 16px;
     --input-label-padding-left: 0.35em;
 
+    --checkbox-input-size: 20px;
+    --checkbox-border-line-width: 2px;
+    --checkbox-border-line-style: solid;
+    --checkbox-border: var(--checkbox-border-line-width) var(--checkbox-border-line-style);
+
     --floating-label--font-size-active: 12px;
     --floating-label-translate-x: 2px;
     --floating-label-translate-y: 3px;
     --floating-label-translate-x-active: 3px;
     --floating-label-translate-y-active: -17px;
+
+    --error-icon-size: 16px;
+    --error-icon-margin: 8px;
+}
+
+.common-wrapper-container {
+    /* theme wrapper container styles */
+    width: 100%;
+    min-height: 88vh;
+    background-color: var(--background-color);
 }
 
 .default-theme-light-mode-theme {
@@ -199,4 +208,18 @@
 
     --btn-box-shadow-color: var(--primary-color_200);
     --input-box-shadow-color: var(--primary-color_100);
+}
+
+/* input error tooltip  */
+.error-icon {
+    position: absolute;
+    top: 50%;
+
+    width: var(--error-icon-size);
+    height: var(--error-icon-size);
+
+    color: var(--failure-color);
+
+    transform: translateY(-50%);
+    transition: 0.2s;
 }

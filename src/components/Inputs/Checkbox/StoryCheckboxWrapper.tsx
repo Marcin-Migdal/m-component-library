@@ -1,6 +1,6 @@
 import React from "react";
 
-import { LabelPercentageWidth } from "../global-interfaces";
+import { LabelPercentageWidth } from "../../global-interfaces";
 import { CheckboxLabelType } from "./checkbox-interfaces";
 import Checkbox from "./Checkbox";
 

@@ -4,10 +4,11 @@ import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
 
 import { DropdownProps, IDropdownChangeEvent } from "./dropdown-interfaces";
+import { getInputsErrorStyle } from "../../../helpers/input-error-helpers";
+import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
+import { InputError } from "../_inputsComponents/InputError/InputError";
 
 import "./Dropdown.css";
-import { InputsLabel } from "../InputsLabel/InputsLabel";
-import Tooltip from "../Tooltip";
 
 const Dropdown = (props: DropdownProps) => {
     const {
@@ -158,9 +159,7 @@ const Dropdown = (props: DropdownProps) => {
 
             {/* input icons */}
             {error ? (
-                <Tooltip tooltipContent={error} position="left" className="dropdown-error">
-                    <FontAwesomeIcon icon="exclamation-circle" />
-                </Tooltip>
+                <InputError style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)} className="checkbox" error={error} />
             ) : (
                 <FontAwesomeIcon className="m-dropdown-icon" icon="angle-down" />
             )}

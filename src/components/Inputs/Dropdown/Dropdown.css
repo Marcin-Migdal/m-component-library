@@ -44,7 +44,7 @@
 }
 
 .m-dropdown-container.error .m-dropdown-clear-icon {
-    margin-left: -41px;
+    margin-left: -51px;
 }
 
 .m-dropdown-container .m-dropdown-icon {
@@ -64,7 +64,6 @@
     padding-left: var(--input-label-padding-left);
     pointer-events: none;
     transition: 0.2s;
-    z-index: 3 !important;
 }
 
 .m-dropdown-label--floating {
@@ -147,6 +146,6 @@
     color: var(--failure-color) !important;
 }
 
-.m-dropdown-container.error .m-dropdown-label--floating {
+.m-dropdown-container.error .m-dropdown-label {
     color: var(--failure-color) !important;
 }

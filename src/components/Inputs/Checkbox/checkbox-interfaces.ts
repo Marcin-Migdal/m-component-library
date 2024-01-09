@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
 
-import * as GlobalInterfaces from "../global-interfaces";
+import * as GlobalInterfaces from "../../global-interfaces";
 
 export interface CheckboxProps {
     checked?: boolean;

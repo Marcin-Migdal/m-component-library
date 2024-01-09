@@ -1,9 +1,9 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { ChangeEvent, useState, FocusEvent } from "react";
+import React, { ChangeEvent, useState, FocusEvent, useRef } from "react";
 
-import { InputsLabel } from "../InputsLabel/InputsLabel";
+import { getInputsErrorStyle } from "../../../helpers/input-error-helpers";
+import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
 import { TextareaProps } from "./Textarea-interfaces";
-import Tooltip from "../Tooltip";
+import { InputError } from "../_inputsComponents/InputError/InputError";
 
 import "./Textarea.css";
 
@@ -74,9 +74,7 @@ const Textarea = ({
                 />
             )}
             {error && (
-                <Tooltip tooltipContent={error} position="right" className="textarea-error">
-                    <FontAwesomeIcon icon="exclamation-circle" />
-                </Tooltip>
+                <InputError style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)} className="textarea" error={error} />
             )}
         </div>
     );

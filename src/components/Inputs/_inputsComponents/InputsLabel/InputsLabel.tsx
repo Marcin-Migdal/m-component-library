@@ -1,5 +1,5 @@
 import React from "react";
-import { FloatingInputWidth, InputLabelType, LabelPercentageWidth } from "../global-interfaces";
+import { FloatingInputWidth, InputLabelType, LabelPercentageWidth } from "../../../global-interfaces";
 
 interface IInputsLabelProps {
     label: string;

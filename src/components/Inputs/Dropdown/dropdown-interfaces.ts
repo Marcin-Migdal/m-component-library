@@ -1,4 +1,4 @@
-import * as GlobalInterfaces from "../global-interfaces";
+import * as GlobalInterfaces from "../../global-interfaces";
 
 export interface DropdownProps {
     value?: any;

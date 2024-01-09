@@ -1,7 +1,7 @@
 import React from "react";
 
 import { CUSTOM_INPUT_MASKS, INPUT_MASKS, InputTypes } from "./Input-interfaces";
-import * as GlobalInterfaces from "../global-interfaces";
+import * as GlobalInterfaces from "../../global-interfaces";
 import Input from "./Input";
 
 export interface IStoryInputWrapperProps {

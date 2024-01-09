@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import React from "react";
 
 import StoryCheckboxWrapper from "./StoryCheckboxWrapper";
-import ThemeWrapper from "../ThemeWrapper";
+import ThemeWrapper from "../../ThemeWrapper";
 
 export default {
     title: "Morti-component-library/Inputs",
