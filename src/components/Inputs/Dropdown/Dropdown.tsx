@@ -3,14 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
 
-import { DropdownProps, IDropdownChangeEvent } from "./dropdown-interfaces";
+import { ILabelValue, DropdownProps, IDropdownChangeEvent, OptionType } from "./dropdown-interfaces";
 import { getInputsErrorStyle } from "../../../helpers/input-error-helpers";
 import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
 import { InputError } from "../_inputsComponents/InputError/InputError";
 
 import "./Dropdown.css";
 
-const Dropdown = (props: DropdownProps) => {
+function Dropdown<T = ILabelValue>(props: DropdownProps<T>) {
     const {
         value = undefined,
         name = undefined,
@@ -26,14 +26,16 @@ const Dropdown = (props: DropdownProps) => {
         labelKey = "label",
         valueKey = "value",
         clearable = true,
+        readOnly = false,
+        filter = true,
     } = props;
 
-    const ref = useRef<HTMLDivElement>(null);
-    const inputRef = useRef<HTMLInputElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const filterRef = useRef<HTMLInputElement>(null);
 
-    const [internalValue, setInternalValue] = useState<any | undefined>(undefined);
+    const [internalValue, setInternalValue] = useState<OptionType<T> | undefined>(undefined);
     const [filterValue, setFilterValue] = useState<string>("");
-    const [dropdownOptions, setDropdownOptions] = useState<any[]>([]);
+    const [dropdownOptions, setDropdownOptions] = useState<OptionType<T>[]>([]);
 
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
@@ -45,9 +47,15 @@ const Dropdown = (props: DropdownProps) => {
         const filterOptions = () => {
             if (!options || options.length == 0) return;
 
-            let dropdownOptions: any[] = [];
+            let dropdownOptions: OptionType<T>[] = [];
 
-            if (filterValue) dropdownOptions = options.filter((option) => (option[labelKey] as string).includes(filterValue));
+            if (filterValue)
+                dropdownOptions = options.filter((option) => {
+                    let label: string | number = option[labelKey];
+                    label = typeof label === "string" ? label : label.toString();
+
+                    return label.includes(filterValue);
+                });
             else dropdownOptions = options;
 
             setDropdownOptions(dropdownOptions);
@@ -61,8 +69,8 @@ const Dropdown = (props: DropdownProps) => {
             const target: HTMLElement = event.target as HTMLElement;
 
             if (
-                ref.current &&
-                (!ref.current.contains(target) || target?.className.includes("m-dropdown-container")) &&
+                containerRef.current &&
+                (!containerRef.current.contains(target) || target?.className.includes("m-dropdown-container")) &&
                 (!target.getAttribute("data-id") || target.getAttribute("data-id") != uniqueDropdownId)
             ) {
                 setIsFocused(false);
@@ -90,7 +98,7 @@ const Dropdown = (props: DropdownProps) => {
         setFilterValue(e.target.value);
     };
 
-    const handleDropdownChange = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: any): void => {
+    const handleDropdownChange = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: OptionType<T>): void => {
         if (onChange) {
             let _e: IDropdownChangeEvent = { ...e, target: { ...e.target, value: selectedOption, name: name, type: "dropdown" } };
 
@@ -124,19 +132,20 @@ const Dropdown = (props: DropdownProps) => {
 
     return (
         <div
-            ref={ref}
+            ref={containerRef}
             className={`m-dropdown-container ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}  ${
                 error ? "error" : ""
             } ${disabled ? "disabled" : ""}`}
         >
             {/* input placeholder, displays selected value, also work as a filter input */}
             <input
-                ref={inputRef}
+                ref={filterRef}
                 disabled={disabled}
                 data-id={uniqueDropdownId}
                 className={`m-dropdown ${labelType}`}
                 type="text"
                 style={inputStyle}
+                readOnly={readOnly || !filter}
                 value={(isFocused ? filterValue : _value?.[labelKey]) || ""}
                 onChange={handleFilterChange}
                 onFocus={handleFocus}
@@ -152,7 +161,7 @@ const Dropdown = (props: DropdownProps) => {
                     floatingInputWidth={floatingInputWidth}
                     labelWidth={labelWidth}
                     isFocused={isFocused}
-                    _value={_value}
+                    isFilled={!!_value}
                     dataId={uniqueDropdownId}
                 />
             )}
@@ -167,41 +176,74 @@ const Dropdown = (props: DropdownProps) => {
 
             {/* dropdown items */}
             {isFocused &&
-                ref.current &&
-                inputRef.current &&
+                containerRef.current &&
+                filterRef.current &&
                 createPortal(
-                    <ul
-                        className="m-dropdown-list"
-                        style={{
-                            position: "absolute",
-                            top: ref.current.offsetTop + ref.current.offsetHeight,
-                            left: ref.current.offsetLeft,
-                            width: `${inputRef.current.clientWidth}px`,
-                        }}
-                        data-id={uniqueDropdownId}
-                    >
-                        {dropdownOptions && dropdownOptions.length > 0 ? (
-                            dropdownOptions.map((option) => (
-                                <li
-                                    data-id={uniqueDropdownId}
-                                    onClick={(e) => handleDropdownChange(e, option)}
-                                    className={`m-dropdown-list-item ${option[valueKey] == _value?.[valueKey] ? "selected" : ""}`}
-                                >
-                                    {option[labelKey]}
-                                </li>
-                            ))
-                        ) : (
-                            <>
-                                <li data-id={uniqueDropdownId} className="m-dropdown-list-item empty-message">
-                                    No options
-                                </li>
-                            </>
-                        )}
-                    </ul>,
+                    <DropdownOptions<T>
+                        containerElement={containerRef.current}
+                        filterElement={filterRef.current}
+                        uniqueDropdownId={uniqueDropdownId}
+                        handleDropdownChange={handleDropdownChange}
+                        dropdownOptions={dropdownOptions}
+                        value={_value}
+                        valueKey={valueKey as keyof OptionType<T>}
+                        labelKey={labelKey as keyof OptionType<T>}
+                    />,
                     document.getElementById("wrapper-root") as HTMLElement
                 )}
         </div>
     );
-};
+}
 
 export default Dropdown;
+
+interface IDropdownOptionsProps<T> {
+    containerElement: HTMLDivElement;
+    filterElement: HTMLInputElement;
+    uniqueDropdownId: string;
+    handleDropdownChange: (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: OptionType<T>) => void;
+    dropdownOptions: OptionType<T>[];
+    value: OptionType<T> | undefined;
+    valueKey: keyof T;
+    labelKey: keyof T;
+}
+
+function DropdownOptions<T = ILabelValue>({
+    containerElement,
+    filterElement,
+    uniqueDropdownId,
+    handleDropdownChange,
+    dropdownOptions,
+    value,
+    valueKey,
+    labelKey,
+}: IDropdownOptionsProps<T>) {
+    const optionsPosition: React.CSSProperties = {
+        position: "absolute",
+        top: containerElement.offsetTop + containerElement.offsetHeight,
+        left: containerElement.offsetLeft,
+        width: `${filterElement.clientWidth}px`,
+    };
+
+    return (
+        <ul className="m-dropdown-list" style={optionsPosition} data-id={uniqueDropdownId}>
+            {dropdownOptions && dropdownOptions.length > 0 ? (
+                dropdownOptions.map((option) => (
+                    <li
+                        data-id={uniqueDropdownId}
+                        onClick={(e) => handleDropdownChange(e, option)}
+                        className={`m-dropdown-list-item ${option[valueKey] == value?.[valueKey] ? "selected" : ""}`}
+                    >
+                        {option[labelKey]}
+                    </li>
+                ))
+            ) : (
+                <>
+                    <li data-id={uniqueDropdownId} className="m-dropdown-list-item empty-message">
+                        No options
+                    </li>
+                </>
+            )}
+        </ul>
+    );
+}

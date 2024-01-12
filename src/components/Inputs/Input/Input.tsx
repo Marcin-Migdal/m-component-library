@@ -112,7 +112,7 @@ const Input = (props: InputProps) => {
                     floatingInputWidth={floatingInputWidth}
                     labelWidth={labelWidth}
                     isFocused={isFocused}
-                    _value={_value}
+                    isFilled={!!_value}
                 />
             )}
             {error && <InputError style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)} className="input" error={error} />}

@@ -9,7 +9,7 @@ interface IInputsLabelProps {
 
     floatingInputWidth?: FloatingInputWidth;
     isFocused?: boolean;
-    _value?: string;
+    isFilled?: boolean;
 
     // Dropdown Props
     dataId?: string;
@@ -22,7 +22,7 @@ export const InputsLabel = ({
     floatingInputWidth,
     labelWidth,
     isFocused,
-    _value,
+    isFilled,
     dataId,
 }: IInputsLabelProps) => {
     return (
@@ -35,7 +35,7 @@ export const InputsLabel = ({
             }
             className={labelClasses}
         >
-            {labelType == "floating" ? (isFocused || _value ? label : `${label}...`) : label}
+            {labelType == "floating" ? (isFocused || isFilled ? label : `${label}...`) : label}
         </label>
     );
 };
