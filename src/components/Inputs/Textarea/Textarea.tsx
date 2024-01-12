@@ -70,7 +70,7 @@ const Textarea = ({
                     floatingInputWidth={floatingInputWidth}
                     labelWidth={labelWidth}
                     isFocused={isFocused}
-                    _value={_value}
+                    isFilled={!!_value}
                 />
             )}
             {error && (

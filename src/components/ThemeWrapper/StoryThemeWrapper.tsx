@@ -5,6 +5,7 @@ import { InputLabelType, LabelPercentageWidth } from "../global-interfaces";
 import { ToastHandler } from "../Toast/ToastsContainer";
 import { ThemeTypes } from "./theme-wrapper-interfaces";
 import ThemeWrapper from "./ThemeWrapper";
+import { ILabelValue } from "../Inputs/Dropdown/dropdown-interfaces";
 
 export interface IStoryThemeWrapperProps {
     theme: ThemeTypes;
@@ -61,7 +62,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "" }: I
                     floatingInputWidth={floatingInputWidth}
                     error={error}
                 />
-                <Dropdown
+                <Dropdown<ILabelValue<number>>
                     label="label"
                     placeholder="placeholder"
                     labelType={inputLabelType}
@@ -69,6 +70,12 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "" }: I
                     options={options}
                     floatingInputWidth={floatingInputWidth}
                     error={error}
+                    onChange={(event, selected) => {
+                        if (selected) {
+                            selected.value;
+                            selected.label;
+                        }
+                    }}
                 />
                 <Checkbox label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} error={error} />
 
@@ -103,9 +110,19 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "" }: I
 
 export default StoryThemeWrapper;
 
-const options = [
+const options: ILabelValue<number>[] = [
     { label: "test 1", value: 1 },
     { label: "test 2", value: 2 },
+];
+
+export type ILabelValue2 = {
+    name: string;
+    id: boolean;
+};
+
+const options2: ILabelValue2[] = [
+    { name: "test 1", id: true },
+    { name: "test 2", id: true },
 ];
 
 interface ISectionHeaderProps {

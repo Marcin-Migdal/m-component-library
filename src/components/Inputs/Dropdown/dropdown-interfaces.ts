@@ -1,13 +1,10 @@
 import * as GlobalInterfaces from "../../global-interfaces";
 
-export interface DropdownProps {
-    value?: any;
+export type DropdownProps<T> = {
+    value?: OptionType<T>;
     name?: string;
     disabled?: boolean;
-    onChange?: (event: IDropdownChangeEvent, value: any | undefined) => void;
-    options?: any[];
-    labelKey?: string;
-    valueKey?: string;
+    onChange?: (event: IDropdownChangeEvent, value: OptionType<T> | undefined) => void;
     label?: string;
     error?: string;
     labelType?: GlobalInterfaces.InputLabelType;
@@ -15,7 +12,20 @@ export interface DropdownProps {
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
     floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
     clearable?: boolean;
-}
+    readOnly?: boolean;
+    filter?: boolean;
+
+    options?: OptionType<T>[];
+    labelKey?: keyof T;
+    valueKey?: keyof T;
+};
+
+export type OptionType<T> = Record<keyof T, string | number>;
+
+export type ILabelValue<T = string> = {
+    value: T;
+    label: string;
+};
 
 export interface IDropdownChangeEvent extends React.MouseEvent<HTMLLIElement | SVGSVGElement, MouseEvent> {
     target: IDropdownChangeEventTarget;
