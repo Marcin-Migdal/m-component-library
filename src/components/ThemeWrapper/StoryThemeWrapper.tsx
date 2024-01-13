@@ -2,10 +2,10 @@ import React, { CSSProperties, useRef } from "react";
 
 import { Input, Checkbox, Textarea, Dropdown, Button, ToastsContainer } from "../..";
 import { InputLabelType, LabelPercentageWidth } from "../global-interfaces";
+import { ILabelValue } from "../Inputs/Dropdown/dropdown-interfaces";
 import { ToastHandler } from "../Toast/ToastsContainer";
 import { ThemeTypes } from "./theme-wrapper-interfaces";
 import ThemeWrapper from "./ThemeWrapper";
-import { ILabelValue } from "../Inputs/Dropdown/dropdown-interfaces";
 
 export interface IStoryThemeWrapperProps {
     theme: ThemeTypes;
@@ -31,9 +31,10 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "" }: I
                     text="BUTTON SECTION"
                 />
                 <div style={{ marginBottom: "20px" }}>
-                    <Button variant="outlined" text="btn text" onClick={() => {}} />
-                    <Button variant="full" text="btn text" onClick={() => {}} />
+                    <Button variant="outlined" text="btn outlined" onClick={() => {}} />
+                    <Button variant="full" text="btn full" onClick={() => {}} />
                     <Button variant="text" text="btn text" onClick={() => {}} />
+                    <Button variant="neon" text="btn neon" onClick={() => {}} />
                 </div>
 
                 <SectionHeader theme={theme} text="INPUT SECTION" />
@@ -82,7 +83,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "" }: I
                 <SectionHeader theme={theme} text="TOAST SECTION" />
 
                 <ToastsContainer ref={toastRef} />
-                <div style={{ display: "flex" }}>
+                <div>
                     <Button text="Success toast" onClick={() => toastRef.current?.handleAddToast("success", "Sign in was successful")} />
                     <Button
                         text="Failure toast"
@@ -113,6 +114,17 @@ export default StoryThemeWrapper;
 const options: ILabelValue<number>[] = [
     { label: "test 1", value: 1 },
     { label: "test 2", value: 2 },
+    { label: "test 3", value: 3 },
+    { label: "test 4", value: 4 },
+    { label: "test 5", value: 5 },
+    { label: "test 6", value: 6 },
+    { label: "test 7", value: 7 },
+    { label: "test 8", value: 8 },
+    { label: "test 9", value: 9 },
+    { label: "test 10", value: 10 },
+    { label: "test 11", value: 11 },
+    { label: "test 12", value: 12 },
+    { label: "test 13", value: 13 },
 ];
 
 export type ILabelValue2 = {

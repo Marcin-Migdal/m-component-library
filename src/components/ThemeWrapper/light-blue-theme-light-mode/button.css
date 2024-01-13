@@ -1,6 +1,6 @@
 /*! BUTTON SECTION */
 .light-blue-theme-light-mode-theme .m-button:not(.text):focus {
-    box-shadow: var(--small-box-shadow) var(--btn-box-shadow-color);
+    box-shadow: var(--small-box-shadow) var(--box-shadow-color);
 }
 
 /* VARIANT OUTLINED */
@@ -49,4 +49,26 @@
 .light-blue-theme-light-mode-theme .m-button.text:active:enabled {
     color: var(--btn-text-hover-color);
     background-color: var(--btn-text-active-background-color);
+}
+
+/* VARIANT NEON */
+.light-blue-theme-light-mode-theme .m-button.neon {
+    color: var(--btn-neon-color);
+    border-color: var(--btn-neon-color);
+
+    box-shadow: inset 0 0 0.5em 0.05em var(--btn-neon-color), 0 0 0.6em 0.07em var(--btn-neon-color);
+}
+
+.light-blue-theme-light-mode-theme .m-button.neon:hover:enabled,
+.light-blue-theme-light-mode-theme .m-button.neon:focus:enabled {
+    background-color: var(--btn-neon-hover-background-color);
+    color: var(--background-color);
+}
+
+.light-blue-theme-light-mode-theme .m-button.neon::before {
+    background: var(--btn-neon-color);
+}
+
+.light-blue-theme-light-mode-theme .m-button.neon::after {
+    box-shadow: 0 0 2em 0.4em var(--btn-neon-color);
 }

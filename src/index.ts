@@ -21,7 +21,6 @@ export { default as Form } from "./components/Form";
 // TODO* wyczyścić StoryThemeWrapper
 // TODO* upewnić się ze na pewno wszystkie typy i interface'y zostały przerobione
 
-// TODO! button variant "blur"
 // TODO! form with circulating blur
 
 // TODO! not closing tooltip if cursor is over it (settimeout when closing tooltip, and canceling closing if onMouseEnter on tooltip ???)

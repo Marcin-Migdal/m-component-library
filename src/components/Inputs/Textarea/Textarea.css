@@ -38,19 +38,19 @@
     transition: 0.2s;
 }
 
-.m-textarea-label--floating {
+.m-textarea-label.floating {
     transform-origin: 0 0;
     transform: translate(var(--floating-label-translate-x), var(--floating-label-translate-y));
 }
 
-.m-textarea-label--floating.filled,
-.m-textarea-label--floating.focused {
+.m-textarea-label.floating.filled,
+.m-textarea-label.floating.focused {
     transform: translate(var(--floating-label-translate-x-active), var(--floating-label-translate-y-active));
     font-size: var(--floating-label--font-size-active);
 }
 
-.m-textarea-label--left,
-.m-textarea-label--right {
+.m-textarea-label.left,
+.m-textarea-label.right {
     height: 100%;
     position: absolute;
     top: 0;
@@ -58,11 +58,11 @@
     align-items: center;
 }
 
-.m-textarea-label--left {
+.m-textarea-label.left {
     left: 0;
 }
 
-.m-textarea-label--right {
+.m-textarea-label.right {
 }
 
 .m-textarea-container .m-textarea::-webkit-scrollbar {
