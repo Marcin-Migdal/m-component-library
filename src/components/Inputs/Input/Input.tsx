@@ -78,8 +78,7 @@ const Input = (props: InputProps) => {
         }
     };
 
-    const labelClasses = `m-input-label 
-    m-input-label--${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
+    const labelClasses = `m-input-label ${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
 
     const inputStyle: CSSProperties = {
         marginLeft: labelType == "left" ? `${labelWidth}%` : "unset",

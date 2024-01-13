@@ -8,7 +8,7 @@
 }
 
 .default-theme-light-mode-theme .m-input:focus {
-    box-shadow: var(--big-box-shadow) var(--input-box-shadow-color);
+    box-shadow: var(--big-box-shadow) var(--box-shadow-color);
 }
 
 .default-theme-light-mode-theme .m-input:focus,
@@ -25,12 +25,17 @@
     color: var(--input-hover-placeholder-color);
 }
 
-.default-theme-light-mode-theme .m-input-label--floating {
+.default-theme-light-mode-theme .m-input-label.right,
+.default-theme-light-mode-theme .m-input-label.left {
+    color: var(--input-label-color) !important;
+}
+
+.default-theme-light-mode-theme .m-input-label.floating {
     color: var(--input-placeholder-color);
 }
 
-.default-theme-light-mode-theme .m-input:hover + .m-input-label--floating,
-.default-theme-light-mode-theme .m-input-label--floating.filled,
-.default-theme-light-mode-theme .m-input-label--floating.focused {
+.default-theme-light-mode-theme .m-input:hover + .m-input-label.floating,
+.default-theme-light-mode-theme .m-input-label.floating.filled,
+.default-theme-light-mode-theme .m-input-label.floating.focused {
     color: var(--input-hover-placeholder-color);
 }

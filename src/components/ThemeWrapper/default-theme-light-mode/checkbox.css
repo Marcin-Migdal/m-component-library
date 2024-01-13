@@ -9,7 +9,7 @@
 }
 
 .default-theme-light-mode-theme .m-checkbox:active {
-    box-shadow: var(--small-box-shadow) var(--input-box-shadow-color);
+    box-shadow: var(--small-box-shadow) var(--box-shadow-color);
 }
 
 .default-theme-light-mode-theme .m-checkbox:hover {
@@ -22,4 +22,9 @@
 
 .default-theme-light-mode-theme .m-checkbox:hover .m-checkbox-check-icon {
     color: var(--dark-grey_300) !important;
+}
+
+.default-theme-light-mode-theme .m-checkbox-label.right,
+.default-theme-light-mode-theme .m-checkbox-label.left {
+    color: var(--input-label-color) !important;
 }

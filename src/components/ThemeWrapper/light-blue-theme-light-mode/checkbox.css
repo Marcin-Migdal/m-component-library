@@ -13,7 +13,7 @@
 }
 
 .light-blue-theme-light-mode-theme .m-checkbox:active {
-    box-shadow: var(--small-box-shadow) var(--input-box-shadow-color);
+    box-shadow: var(--small-box-shadow) var(--box-shadow-color);
 }
 
 .light-blue-theme-light-mode-theme .m-checkbox-check-icon {

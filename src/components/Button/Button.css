@@ -1,13 +1,14 @@
 .m-button {
+    display: inline-block;
     border: var(--btn-border);
     border-radius: var(--border-radius);
     margin-right: var(--btn-right-margin);
-    padding: 2px 5px;
+    padding: 0.2em 0.6em;
 
     font-weight: 600;
     font-size: 1.1rem;
 
-    transition: 0.2s;
+    transition: 150ms linear;
 
     cursor: pointer;
 }
@@ -27,6 +28,7 @@
     transform: scale(0.95);
 }
 
+.m-button.neon,
 .m-button.text {
     background-color: transparent;
     border-color: transparent;
@@ -34,4 +36,49 @@
 
 .m-button:disabled {
     opacity: 0.6;
+}
+
+/* Neon variant styles*/
+.m-button.neon {
+    position: relative;
+
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.15), 0 0 0.125em currentColor;
+}
+
+.m-button.neon:hover:enabled,
+.m-button.neon:focus:enabled {
+    text-shadow: none;
+}
+
+.m-button.neon::before {
+    content: "";
+
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    transform: perspective(1em) rotateX(40deg) scale(1, 0.4);
+    filter: blur(1em);
+    opacity: 0.7;
+}
+
+.m-button.neon::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    opacity: 0;
+    transition: opacity 100ms linear;
+}
+
+.m-button.neon:hover:enabled::before,
+.m-button.neon:focus:enabled::before,
+.m-button.neon:hover:enabled::after,
+.m-button.neon:focus:enabled::after {
+    opacity: 1;
 }

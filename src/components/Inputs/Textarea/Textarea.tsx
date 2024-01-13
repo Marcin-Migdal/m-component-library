@@ -40,8 +40,7 @@ const Textarea = ({
         setInternalValue(e.target.value);
     };
 
-    const labelClasses = `m-textarea-label 
-    m-textarea-label--${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
+    const labelClasses = `m-textarea-label ${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
 
     const inputStyle: React.CSSProperties = {
         marginLeft: labelType == "left" ? `${labelWidth}%` : "unset",

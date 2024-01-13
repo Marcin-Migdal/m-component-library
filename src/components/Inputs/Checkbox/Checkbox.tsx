@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { getCheckboxErrorStyle } from "../../../helpers/input-error-helpers";
 import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
-import { CheckboxProps } from "./checkbox-interfaces";
 import { InputError } from "../_inputsComponents/InputError/InputError";
+import { CheckboxProps } from "./checkbox-interfaces";
 
 import "./Checkbox.css";
 

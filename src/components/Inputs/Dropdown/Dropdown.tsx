@@ -122,8 +122,7 @@ function Dropdown<T = ILabelValue>(props: DropdownProps<T>) {
         }
     };
 
-    const labelClasses = `m-dropdown-label
-    m-dropdown-label--${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
+    const labelClasses = `m-dropdown-label ${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
 
     const inputStyle: React.CSSProperties = {
         marginLeft: labelType == "left" ? `${labelWidth}%` : "unset",

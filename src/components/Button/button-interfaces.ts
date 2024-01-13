@@ -4,9 +4,9 @@ import { CSSProperties, MouseEvent, ReactNode } from "react";
 import { ITooltipProps } from "../Tooltip/Tooltip-interfaces";
 
 export type PositionType = "left" | "right";
-export type VariantType = "outlined" | "full" | "text";
+export type VariantType = "outlined" | "full" | "text" | "neon";
 
-interface IButtonCommonProps {
+type IButtonBaseProps = {
     children?: any;
     text: string;
     disabled?: boolean;
@@ -20,21 +20,21 @@ interface IButtonCommonProps {
     tooltip?: ReactNode;
     disabledTooltip?: ReactNode;
     tooltipConfig?: Partial<Omit<ITooltipProps, "targetRef">>;
-}
+};
 
-interface ITypeSubmitProps extends IButtonCommonProps {
+type ISubmitBtnProps = {
     onClick?: undefined;
     type: "submit";
-}
+};
 
-interface ITypeResetProps extends IButtonCommonProps {
+type IResetBtnProps = {
     onClick?: undefined;
     type: "reset";
-}
+};
 
-interface ITypeButtonProps extends IButtonCommonProps {
+type IBtnProps = {
     onClick: (e: MouseEvent<HTMLButtonElement>) => void;
     type?: "button";
-}
+};
 
-export type IButtonProps = ITypeButtonProps | ITypeSubmitProps | ITypeResetProps;
+export type IButtonProps = IButtonBaseProps & (IBtnProps | ISubmitBtnProps | IResetBtnProps);
