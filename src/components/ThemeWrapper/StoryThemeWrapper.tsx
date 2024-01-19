@@ -2,7 +2,6 @@ import React, { CSSProperties, useRef } from "react";
 
 import { Input, Checkbox, Textarea, Dropdown, Button, ToastsContainer } from "../..";
 import { InputLabelType, LabelPercentageWidth } from "../global-interfaces";
-import { ILabelValue } from "../Inputs/Dropdown/dropdown-interfaces";
 import { ToastHandler } from "../Toast/ToastsContainer";
 import { ThemeTypes } from "./theme-wrapper-interfaces";
 import ThemeWrapper from "./ThemeWrapper";
@@ -63,7 +62,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "" }: I
                     floatingInputWidth={floatingInputWidth}
                     error={error}
                 />
-                <Dropdown<ILabelValue<number>>
+                <Dropdown
                     label="label"
                     placeholder="placeholder"
                     labelType={inputLabelType}
@@ -71,12 +70,6 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "" }: I
                     options={options}
                     floatingInputWidth={floatingInputWidth}
                     error={error}
-                    onChange={(event, selected) => {
-                        if (selected) {
-                            selected.value;
-                            selected.label;
-                        }
-                    }}
                 />
                 <Checkbox label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} error={error} />
 
@@ -111,32 +104,12 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "" }: I
 
 export default StoryThemeWrapper;
 
-const options: ILabelValue<number>[] = [
+const options = [
     { label: "test 1", value: 1 },
     { label: "test 2", value: 2 },
     { label: "test 3", value: 3 },
     { label: "test 4", value: 4 },
-    { label: "test 5", value: 5 },
-    { label: "test 6", value: 6 },
-    { label: "test 7", value: 7 },
-    { label: "test 8", value: 8 },
-    { label: "test 9", value: 9 },
-    { label: "test 10", value: 10 },
-    { label: "test 11", value: 11 },
-    { label: "test 12", value: 12 },
-    { label: "test 13", value: 13 },
 ];
-
-export type ILabelValue2 = {
-    name: string;
-    id: boolean;
-};
-
-const options2: ILabelValue2[] = [
-    { name: "test 1", id: true },
-    { name: "test 2", id: true },
-];
-
 interface ISectionHeaderProps {
     theme: ThemeTypes;
     text: string;

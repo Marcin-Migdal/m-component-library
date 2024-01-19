@@ -1,16 +1,21 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, ReactElement, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
 
-import { ILabelValue, DropdownProps, IDropdownChangeEvent, OptionType } from "./dropdown-interfaces";
+import { DropdownProps, DropdownValue, IDropdownChangeEvent } from "./dropdown-interfaces";
 import { getInputsErrorStyle } from "../../../helpers/input-error-helpers";
 import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
 import { InputError } from "../_inputsComponents/InputError/InputError";
 
 import "./Dropdown.css";
 
-function Dropdown<T = ILabelValue>(props: DropdownProps<T>) {
+type ILabelValue = {
+    value: string | number;
+    label: string;
+};
+
+function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(props: DropdownProps<T>) {
     const {
         value = undefined,
         name = undefined,
@@ -22,9 +27,10 @@ function Dropdown<T = ILabelValue>(props: DropdownProps<T>) {
         placeholder,
         labelWidth = 30,
         floatingInputWidth = 100,
-        options = undefined,
+        options = [],
         labelKey = "label",
         valueKey = "value",
+
         clearable = true,
         readOnly = false,
         filter = true,
@@ -33,25 +39,25 @@ function Dropdown<T = ILabelValue>(props: DropdownProps<T>) {
     const containerRef = useRef<HTMLDivElement>(null);
     const filterRef = useRef<HTMLInputElement>(null);
 
-    const [internalValue, setInternalValue] = useState<OptionType<T> | undefined>(undefined);
+    const [internalValue, setInternalValue] = useState<DropdownValue<T>>(undefined);
     const [filterValue, setFilterValue] = useState<string>("");
-    const [dropdownOptions, setDropdownOptions] = useState<OptionType<T>[]>([]);
+    const [dropdownOptions, setDropdownOptions] = useState<T[]>([]);
 
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
     const [uniqueDropdownId] = useState<string>(uuId());
 
-    const _value = value != undefined ? value : internalValue;
+    const _value = value || internalValue;
 
     useEffect(() => {
         const filterOptions = () => {
             if (!options || options.length == 0) return;
 
-            let dropdownOptions: OptionType<T>[] = [];
+            let dropdownOptions: T[] = [];
 
             if (filterValue)
                 dropdownOptions = options.filter((option) => {
-                    let label: string | number = option[labelKey];
+                    let label = option[labelKey] as number | string;
                     label = typeof label === "string" ? label : label.toString();
 
                     return label.includes(filterValue);
@@ -98,11 +104,11 @@ function Dropdown<T = ILabelValue>(props: DropdownProps<T>) {
         setFilterValue(e.target.value);
     };
 
-    const handleDropdownChange = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: OptionType<T>): void => {
+    const handleDropdownChange = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: T): void => {
         if (onChange) {
-            let _e: IDropdownChangeEvent = { ...e, target: { ...e.target, value: selectedOption, name: name, type: "dropdown" } };
+            let _e: IDropdownChangeEvent<T> = { ...e, target: { ...e.target, value: selectedOption, name: name, type: "dropdown" } };
 
-            onChange(_e, selectedOption);
+            onChange(_e, selectedOption as T);
         }
 
         setFilterValue("");
@@ -116,7 +122,7 @@ function Dropdown<T = ILabelValue>(props: DropdownProps<T>) {
         setIsFocused(false);
 
         if (onChange) {
-            let _e: IDropdownChangeEvent = { ...e, target: { ...e.target, value: undefined, name: name, type: "dropdown" } };
+            let _e: IDropdownChangeEvent<T> = { ...e, target: { ...e.target, value: undefined, name: name, type: "dropdown" } };
 
             onChange(_e, undefined);
         }
@@ -185,8 +191,8 @@ function Dropdown<T = ILabelValue>(props: DropdownProps<T>) {
                         handleDropdownChange={handleDropdownChange}
                         dropdownOptions={dropdownOptions}
                         value={_value}
-                        valueKey={valueKey as keyof OptionType<T>}
-                        labelKey={labelKey as keyof OptionType<T>}
+                        valueKey={valueKey}
+                        labelKey={labelKey}
                     />,
                     document.getElementById("wrapper-root") as HTMLElement
                 )}
@@ -200,14 +206,14 @@ interface IDropdownOptionsProps<T> {
     containerElement: HTMLDivElement;
     filterElement: HTMLInputElement;
     uniqueDropdownId: string;
-    handleDropdownChange: (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: OptionType<T>) => void;
-    dropdownOptions: OptionType<T>[];
-    value: OptionType<T> | undefined;
+    handleDropdownChange: (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: T) => void;
+    dropdownOptions: T[];
+    value: T | undefined;
     valueKey: keyof T;
     labelKey: keyof T;
 }
 
-function DropdownOptions<T = ILabelValue>({
+function DropdownOptions<T>({
     containerElement,
     filterElement,
     uniqueDropdownId,
@@ -233,7 +239,7 @@ function DropdownOptions<T = ILabelValue>({
                         onClick={(e) => handleDropdownChange(e, option)}
                         className={`m-dropdown-list-item ${option[valueKey] == value?.[valueKey] ? "selected" : ""}`}
                     >
-                        {option[labelKey]}
+                        {option[labelKey] as ReactElement}
                     </li>
                 ))
             ) : (
