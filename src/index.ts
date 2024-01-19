@@ -16,13 +16,7 @@ export { default as Tooltip } from "./components/Tooltip";
 export { default as Form } from "./components/Form";
 
 //TODO* NOW
-// TODO* add generics to dropdown
-// TODO* ogarnąć OptionType, żeby na onChange drugi argument(selected) byś świadomy swoich typów jakie ma w danym polu, na ten moment jest to string| number
-// TODO* wyczyścić StoryThemeWrapper
-// TODO* upewnić się ze na pewno wszystkie typy i interface'y zostały przerobione
-
 // TODO! form with circulating blur
-
 // TODO! not closing tooltip if cursor is over it (settimeout when closing tooltip, and canceling closing if onMouseEnter on tooltip ???)
 
 //TODO*LATER
