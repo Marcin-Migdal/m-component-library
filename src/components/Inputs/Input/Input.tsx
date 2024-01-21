@@ -114,7 +114,7 @@ const Input = (props: InputProps) => {
                     isFilled={!!_value}
                 />
             )}
-            {error && <InputError style={getCheckboxErrorStyle(labelType, labelWidth)} className="input" error={error} />}
+            {error && <InputError style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)} className="input" error={error} />}
         </div>
     );
 };
