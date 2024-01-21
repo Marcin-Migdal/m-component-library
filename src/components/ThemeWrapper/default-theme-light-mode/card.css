@@ -1,0 +1,24 @@
+.default-theme-light-mode-theme .m-card {
+    background-color: var(--background-hover-color);
+    color: var(--input-text-color);
+}
+
+.default-theme-light-mode-theme .m-card.border {
+    border: var(--border) var(--border-color);
+}
+
+.default-theme-light-mode-theme .m-card.gradient-border-glow::after,
+.default-theme-light-mode-theme .m-card.gradient-border-glow::before,
+.default-theme-light-mode-theme .m-card.gradient-border::after,
+.default-theme-light-mode-theme .m-card.gradient-border::before {
+    background: conic-gradient(
+        from var(--gradient-angle),
+        var(--dark-grey_100),
+        var(--light-grey_500),
+        var(--light-grey_300),
+        var(--light-grey_150),
+        var(--light-grey_300),
+        var(--light-grey_500),
+        var(--dark-grey_100)
+    );
+}

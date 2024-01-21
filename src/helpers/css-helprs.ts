@@ -1,4 +1,4 @@
-type CssVariableNameType = "--checkbox-input-size" | "--checkbox-border-line-width" | "--error-icon-size" | "--error-icon-margin";
+type CssVariableNameType = "--checkbox-input-size" | "--border-width" | "--error-icon-size" | "--error-icon-margin";
 
 // Overloaded function signatures
 export function getCssVariable(element: HTMLElement, cssProperty: CssVariableNameType): string | undefined;

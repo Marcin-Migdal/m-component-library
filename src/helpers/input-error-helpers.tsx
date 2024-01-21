@@ -12,10 +12,10 @@ export const getInputsErrorStyle = (
     const errorIconMargin = parseInt(getCssVariable(document.body, "--error-icon-margin", "8px"));
 
     return labelType === "left"
-        ? { right: `${errorIconMargin}px` }
+        ? { right: 0 }
         : labelType === "right"
-        ? { right: `calc(${labelWidth}% + ${errorIconMargin}px)` }
-        : { left: `calc(${floatingInputWidth}% - ${errorIconSize}px - ${errorIconMargin}px)` };
+        ? { right: `calc(${labelWidth}%)` }
+        : { left: `calc(${floatingInputWidth}%` };
 };
 
 export const getCheckboxErrorStyle = (
@@ -24,7 +24,7 @@ export const getCheckboxErrorStyle = (
 ): CSSProperties => {
     const checkboxWidth = parseInt(getCssVariable(document.body, "--checkbox-input-size") || "20px");
     const errorIconMargin = parseInt(getCssVariable(document.body, "--error-icon-margin") || "8px");
-    const checkboxBorderLineWidth = parseInt(getCssVariable(document.body, "--checkbox-border-line-width") || "2px");
+    const checkboxBorderLineWidth = parseInt(getCssVariable(document.body, "--border-width") || "2px");
 
     const additionalDistance: string = `${checkboxWidth + errorIconMargin + 2 * checkboxBorderLineWidth}px`;
 

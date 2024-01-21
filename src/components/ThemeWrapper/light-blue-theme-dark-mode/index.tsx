@@ -9,6 +9,7 @@ import "./button.css";
 import "./input.css";
 import "./dropdown.css";
 import "./toast.css";
+import "./card.css";
 
 export const LightBlueThemeDarkMode = ({ children, customWrapperId }: IThemeProps) => (
     <div className="common-wrapper-container light-blue-theme-dark-mode-theme" id={customWrapperId}>

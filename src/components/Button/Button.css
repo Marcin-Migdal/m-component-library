@@ -1,6 +1,6 @@
 .m-button {
     display: inline-block;
-    border: var(--btn-border);
+    border: var(--border);
     border-radius: var(--border-radius);
     margin-right: var(--btn-right-margin);
     padding: 0.2em 0.6em;

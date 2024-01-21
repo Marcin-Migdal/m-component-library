@@ -18,6 +18,6 @@ export interface IStoryInputWrapperProps {
 }
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
-const StoryInputWrapper = (props: IStoryInputWrapperProps) => <Input {...props} />;
+const StoryInputWrapper = (props: IStoryInputWrapperProps) => <Input {...props} error="test" />;
 
 export default StoryInputWrapper;
