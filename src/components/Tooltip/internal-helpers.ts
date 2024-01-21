@@ -21,7 +21,7 @@ export const generateTooltipStyle = (
     switch (position) {
         case "top":
             tooltipPosition = {
-                top: targetTop - targetHeight - tooltipMargin + 3,
+                top: targetTop - targetHeight - tooltipMargin + 7,
                 left: targetLeft + targetWidth / 2 - tooltipWidth / 2,
             };
 

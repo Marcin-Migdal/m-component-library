@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 import { getCheckboxErrorStyle } from "../../../helpers/input-error-helpers";
 import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";

@@ -1,0 +1,23 @@
+.light-blue-theme-dark-mode-theme .m-card {
+    background-color: var(--background-hover-color);
+    color: var(--white);
+}
+
+.light-blue-theme-dark-mode-theme .m-card.border {
+    border: var(--border) var(--border-color);
+}
+
+.light-blue-theme-dark-mode-theme .m-card.gradient-border-glow::after,
+.light-blue-theme-dark-mode-theme .m-card.gradient-border-glow::before,
+.light-blue-theme-dark-mode-theme .m-card.gradient-border::after,
+.light-blue-theme-dark-mode-theme .m-card.gradient-border::before {
+    background: conic-gradient(
+        from var(--gradient-angle),
+        var(--primary-color_50),
+        var(--primary-color_250),
+        var(--primary-color_800),
+        var(--primary-color_800),
+        var(--primary-color_250),
+        var(--primary-color_50)
+    );
+}

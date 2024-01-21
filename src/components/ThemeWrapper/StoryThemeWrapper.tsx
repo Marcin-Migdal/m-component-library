@@ -1,7 +1,8 @@
 import React, { CSSProperties, useRef } from "react";
 
-import { Input, Checkbox, Textarea, Dropdown, Button, ToastsContainer } from "../..";
+import { Input, Checkbox, Textarea, Dropdown, Button, ToastsContainer, Card } from "../..";
 import { InputLabelType, LabelPercentageWidth } from "../global-interfaces";
+import { CardVariantTypes } from "../Panels/Card/card-interfaces";
 import { ToastHandler } from "../Toast/ToastsContainer";
 import { ThemeTypes } from "./theme-wrapper-interfaces";
 import ThemeWrapper from "./ThemeWrapper";
@@ -10,10 +11,11 @@ export interface IStoryThemeWrapperProps {
     theme: ThemeTypes;
     inputLabelType: InputLabelType;
     error?: string;
+    panelVariant?: CardVariantTypes;
 }
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
-const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "" }: IStoryThemeWrapperProps) => {
+const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", panelVariant = "default" }: IStoryThemeWrapperProps) => {
     const toastRef = useRef<ToastHandler>(null);
 
     const checkboxLabelType = inputLabelType == "floating" ? "right" : inputLabelType;
@@ -29,12 +31,11 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "" }: I
                     theme={theme}
                     text="BUTTON SECTION"
                 />
-                <div style={{ marginBottom: "20px" }}>
-                    <Button variant="outlined" text="btn outlined" onClick={() => {}} />
-                    <Button variant="full" text="btn full" onClick={() => {}} />
-                    <Button variant="text" text="btn text" onClick={() => {}} />
-                    <Button variant="neon" text="btn neon" onClick={() => {}} />
-                </div>
+
+                <Button variant="outlined" text="btn outlined" onClick={() => {}} />
+                <Button variant="full" text="btn full" onClick={() => {}} />
+                <Button variant="text" text="btn text" onClick={() => {}} />
+                <Button variant="neon" text="btn neon" onClick={() => {}} />
 
                 <SectionHeader theme={theme} text="INPUT SECTION" />
 
@@ -97,6 +98,24 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "" }: I
                     />
                     <Button style={{ marginRight: "10px" }} text="Clear toasts" onClick={() => toastRef.current?.handleClear()} />
                 </div>
+
+                <SectionHeader theme={theme} text="TOOLTIP SECTION" />
+
+                <Button tooltip="test" tooltipConfig={{ position: "top" }} variant="outlined" text="Top" onClick={() => {}} />
+                <Button tooltip="test" tooltipConfig={{ position: "bottom" }} variant="outlined" text="Bottom" onClick={() => {}} />
+                <Button tooltip="test" tooltipConfig={{ position: "right" }} variant="outlined" text="Right" onClick={() => {}} />
+                <Button tooltip="test" tooltipConfig={{ position: "left" }} variant="outlined" text="Left" onClick={() => {}} />
+
+                <SectionHeader theme={theme} text="PANEL SECTION" />
+
+                <Card variant={panelVariant} style={{ width: "300px" }}>
+                    <h2 style={{ width: "100%", textAlign: "center", marginTop: "0px" }}>Card title</h2>
+
+                    <span style={{ display: "inline-block", width: "100%" }}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+                        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+                    </span>
+                </Card>
             </div>
         </ThemeWrapper>
     );
@@ -124,6 +143,7 @@ const SectionHeader = ({ theme, text, style, headerStyle }: ISectionHeaderProps)
                 width: "calc(100% + 32px)",
                 borderTop: `1px solid ${theme.includes("theme-dark") ? "white" : "black"}`,
                 marginLeft: "-16px",
+                marginTop: "20px",
                 ...style,
             }}
         >

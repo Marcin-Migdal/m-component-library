@@ -1,11 +1,13 @@
+import { ReactNode } from "react";
+
 export interface IThemeWrapper {
-    children: any;
+    children: ReactNode;
     theme?: ThemeTypes;
     customWrapperId?: string;
 }
 
 export interface IThemeProps {
-    children: any;
+    children: ReactNode;
     customWrapperId: string;
 }
 

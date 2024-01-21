@@ -1,7 +1,7 @@
 import React, { CSSProperties, ChangeEvent, useState, FocusEvent } from "react";
 import InputMask, { InputState } from "react-input-mask";
 
-import { getInputsErrorStyle } from "../../../helpers/input-error-helpers";
+import { getCheckboxErrorStyle, getInputsErrorStyle } from "../../../helpers/input-error-helpers";
 import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
 import { InputError } from "../_inputsComponents/InputError/InputError";
 import { CUSTOM_INPUT_MASKS, InputProps } from "./Input-interfaces";
@@ -114,7 +114,7 @@ const Input = (props: InputProps) => {
                     isFilled={!!_value}
                 />
             )}
-            {error && <InputError style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)} className="input" error={error} />}
+            {error && <InputError style={getCheckboxErrorStyle(labelType, labelWidth)} className="input" error={error} />}
         </div>
     );
 };

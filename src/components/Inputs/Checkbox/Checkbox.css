@@ -16,8 +16,8 @@
 .m-checkbox-container .m-checkbox-input-wrapper .m-checkbox-check-icon {
     opacity: 0;
     position: absolute;
-    left: 3px;
-    top: 2px;
+    left: 2px;
+    top: 1px;
     transition: 0.15s;
 }
 
@@ -34,7 +34,7 @@
     height: var(--checkbox-input-size);
     margin: 0px;
     border-radius: var(--border-radius);
-    border: var(--checkbox-border);
+    border: var(--border);
     transition: 0.15s;
     position: relative;
 
