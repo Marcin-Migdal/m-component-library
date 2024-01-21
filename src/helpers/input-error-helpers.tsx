@@ -12,10 +12,10 @@ export const getInputsErrorStyle = (
     const errorIconMargin = parseInt(getCssVariable(document.body, "--error-icon-margin", "8px"));
 
     return labelType === "left"
-        ? { right: 0 }
+        ? { right: `${errorIconMargin}px` }
         : labelType === "right"
-        ? { right: `calc(${labelWidth}%)` }
-        : { left: `calc(${floatingInputWidth}%` };
+        ? { right: `calc(${labelWidth}% + ${errorIconMargin}px)` }
+        : { left: `calc(${floatingInputWidth}% - ${errorIconSize}px - ${errorIconMargin}px)` };
 };
 
 export const getCheckboxErrorStyle = (
