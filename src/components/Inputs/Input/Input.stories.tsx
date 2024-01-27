@@ -24,5 +24,4 @@ input.args = {
     labelType: "right",
     labelPercentageWidth: 20,
     type: "text",
-    customMask: undefined,
 };

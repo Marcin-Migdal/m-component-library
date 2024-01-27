@@ -1,12 +1,18 @@
 import React, { CSSProperties, ChangeEvent, useState, FocusEvent } from "react";
 import InputMask, { InputState } from "react-input-mask";
 
-import { getCheckboxErrorStyle, getInputsErrorStyle } from "../../../helpers/input-error-helpers";
+import { getInputsErrorStyle } from "../../../helpers/input-error-helpers";
 import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
 import { InputError } from "../_inputsComponents/InputError/InputError";
-import { CUSTOM_INPUT_MASKS, InputProps } from "./Input-interfaces";
+import { InputProps } from "./Input-interfaces";
 
 import "./Input.css";
+
+const defaultFormatChars = {
+    "9": "[0-9]",
+    a: "[A-Za-z]",
+    "*": "[A-Za-z0-9]",
+};
 
 const Input = (props: InputProps) => {
     const {
@@ -24,21 +30,9 @@ const Input = (props: InputProps) => {
         defaultInternalValue,
         type = "text",
         autoFocus = false,
-        customMask = undefined,
-        onBeforeMaskedValueChange = undefined,
+        mask = "",
+        advancedMask = undefined,
     } = props;
-
-    let { mask = "", formatChars = undefined } = props;
-
-    if (customMask == CUSTOM_INPUT_MASKS.TIME) {
-        mask = "12:34";
-        formatChars = {
-            "1": "[0-2]",
-            "2": "[0-9]",
-            "3": "[0-5]",
-            "4": "[0-9]",
-        };
-    }
 
     const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
     const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -58,25 +52,8 @@ const Input = (props: InputProps) => {
         setInternalValue(e.target.value);
     };
 
-    const handleBeforeMaskedValueChange = (newState: InputState, oldState: InputState, userInput: string): InputState => {
-        if (onBeforeMaskedValueChange) {
-            return onBeforeMaskedValueChange(newState, oldState, userInput);
-        }
-
-        let { value: newValue, selection: newSelection } = newState;
-        // let { value: oldValue, selection: oldSelection } = oldState;
-
-        switch (CUSTOM_INPUT_MASKS.TIME) {
-            case "time":
-                // Conditional mask for the 2nd digit base on the first digit
-                if (newValue.startsWith("2")) formatChars["2"] = "[0-3]";
-                // To block 24, 25, etc.
-                else formatChars["2"] = "[0-9]"; // To allow 05, 12, etc.
-                return { value: newValue, selection: newSelection };
-            default:
-                return { value: newValue, selection: newSelection };
-        }
-    };
+    const handleBeforeMaskedValueChange = (newState: InputState, oldState: InputState, userInput: string): InputState =>
+        advancedMask?.beforeChange(newState, oldState, userInput, advancedMask.formatChars) as InputState;
 
     const labelClasses = `m-input-label ${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
 
@@ -90,8 +67,6 @@ const Input = (props: InputProps) => {
             <InputMask
                 disabled={disabled}
                 name={name}
-                mask={mask}
-                formatChars={formatChars}
                 className={`m-input ${labelType}`}
                 type={type}
                 style={inputStyle}
@@ -101,7 +76,10 @@ const Input = (props: InputProps) => {
                 onFocus={handleFocus}
                 autoFocus={autoFocus}
                 placeholder={labelType == "floating" ? undefined : placeholder || (label ? `${label}...` : "")}
-                beforeMaskedValueChange={handleBeforeMaskedValueChange}
+                //! Mask Props
+                {...(advancedMask
+                    ? { ...advancedMask, beforeMaskedValueChange: handleBeforeMaskedValueChange }
+                    : { mask: mask, formatChars: defaultFormatChars })}
             />
             {label && (
                 <InputsLabel
