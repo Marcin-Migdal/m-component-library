@@ -27,9 +27,10 @@ export { default as Tooltip } from "./components/Tooltip";
 export { default as Card } from "./components/Panels/Card";
 
 //TODO* NOW
-// TODO! Input errors(not checkbox) have a problem with position
+// TODO! Input crashed everything because of mask functionality
+// TODO! Clicking on icons fires post request
 
-// TODO! Not closing tooltip if cursor is over it (settimeout when closing tooltip, and canceling closing if onMouseEnter on tooltip ??? OR some back-ground div under tooltip, that will be of size (tooltipSize + tooltipMargin) )
+// TODO? Not closing tooltip if cursor is over it (settimeout when closing tooltip, and canceling closing if onMouseEnter on tooltip ??? OR some back-ground div under tooltip, that will be of size (tooltipSize + tooltipMargin) )
 
 //TODO*LATER
 // TODO! ACCORDION
@@ -50,3 +51,5 @@ export { default as Card } from "./components/Panels/Card";
 //TODO! Data Display
 // TODO? TABLE
 // TODO? TREE
+
+//! add env. var. that will change depending if lib is used in this storybook or if used as installed dependency, then fix tooltip scroll problem that only occurs in story book
