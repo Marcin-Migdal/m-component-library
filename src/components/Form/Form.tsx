@@ -44,7 +44,7 @@ function Form<T extends FormikValues = any>({ initialValues, onSubmit, className
     };
 
     return (
-        <form onSubmit={formik.handleSubmit} className={className}>
+        <form onSubmit={formik.handleSubmit} className={`m-form ${className}`}>
             {children({
                 values: formik.values,
                 handleChange: _handleChange,

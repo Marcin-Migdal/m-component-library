@@ -6,12 +6,12 @@ import { DefaultThemeLightMode } from "./default-theme-light-mode";
 import { DefaultThemeDarkMode } from "./default-theme-dark-mode";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { IThemeWrapper } from "./theme-wrapper-interfaces";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 
 import "./style.css";
 
-// "as any" is needed because fortawesome dependencies install two different instances of "fontawesome-common-types" which causes error
-library.add(fas as any);
+library.add(fas, fab);
 
 const ThemeWrapper = ({ children, theme = "default-theme-light-mode", customWrapperId = "wrapper-root" }: IThemeWrapper) => {
     const getTheme = () => {

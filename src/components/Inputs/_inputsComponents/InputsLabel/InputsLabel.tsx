@@ -7,7 +7,6 @@ interface IInputsLabelProps {
     labelClasses: string;
     labelWidth: LabelPercentageWidth;
 
-    floatingInputWidth?: FloatingInputWidth;
     isFocused?: boolean;
     isFilled?: boolean;
 
@@ -15,22 +14,13 @@ interface IInputsLabelProps {
     dataId?: string;
 }
 
-export const InputsLabel = ({
-    labelType,
-    label,
-    labelClasses,
-    floatingInputWidth,
-    labelWidth,
-    isFocused,
-    isFilled,
-    dataId,
-}: IInputsLabelProps) => {
+export const InputsLabel = ({ labelType, label, labelClasses, labelWidth, isFocused, isFilled, dataId }: IInputsLabelProps) => {
     return (
         <label
             data-id={dataId}
             style={
                 labelType == "floating"
-                    ? { width: `${floatingInputWidth}%`, left: "0" }
+                    ? { width: `fit-content`, left: "0" }
                     : { width: `${labelWidth}%`, left: labelType == "right" ? `${`${100 - labelWidth}%`}` : "0" }
             }
             className={labelClasses}

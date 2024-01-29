@@ -1,6 +1,6 @@
 {
     "name": "@Marcin-Migdal/morti-component-library",
-    "version": "0.1.77",
+    "version": "0.1.78",
     "description": "React component library",
     "scripts": {
         "rollup": "rollup -c",
@@ -46,6 +46,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^6.5.1",
+        "@fortawesome/free-brands-svg-icons": "^6.5.1",
         "@fortawesome/free-solid-svg-icons": "^6.5.1",
         "@fortawesome/react-fontawesome": "^0.2.0",
         "@types/uuid": "^9.0.7",

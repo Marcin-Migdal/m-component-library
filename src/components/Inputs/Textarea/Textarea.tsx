@@ -66,7 +66,6 @@ const Textarea = ({
                     label={label}
                     labelType={labelType}
                     labelClasses={labelClasses}
-                    floatingInputWidth={floatingInputWidth}
                     labelWidth={labelWidth}
                     isFocused={isFocused}
                     isFilled={!!_value}

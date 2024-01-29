@@ -47,7 +47,7 @@ body {
     --dark-grey_700: rgb(30, 30, 30);
     --dark-grey_800: rgb(15, 15, 15);
 
-    --border-radius: 0.25em;
+    --border-radius: 0.2em;
     --border-width: 0.125em;
 
     --border: var(--border-width) solid;
@@ -57,7 +57,7 @@ body {
     --big-box-shadow: 0px 0px 3px 2px;
 
     --input-height: 30px;
-    --input-margin-bottom: 16px;
+    --input-margin-bottom: 18px;
     --input-padding-left: 8px;
     --input-font-size: 16px;
     --input-label-padding-left: 0.35em;
@@ -68,7 +68,7 @@ body {
     --floating-label-translate-x: 2px;
     --floating-label-translate-y: 3px;
     --floating-label-translate-x-active: 3px;
-    --floating-label-translate-y-active: -17px;
+    --floating-label-translate-y-active: -18px;
 
     --error-icon-size: 16px;
     --error-icon-margin: 8px;
