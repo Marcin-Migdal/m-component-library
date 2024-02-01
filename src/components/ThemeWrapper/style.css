@@ -82,8 +82,6 @@ body {
     height: 100vh;
     background: var(--background-color);
 
-    overflow: auto;
-
     z-index: 0;
 }
 

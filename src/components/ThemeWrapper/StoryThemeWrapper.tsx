@@ -62,6 +62,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                     labelWidth={inputLabelWidth}
                     floatingInputWidth={floatingInputWidth}
                     error={error}
+                    name="1"
                 />
                 <Dropdown
                     label="label"
@@ -71,6 +72,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                     options={options}
                     floatingInputWidth={floatingInputWidth}
                     error={error}
+                    name="2"
                 />
                 <Checkbox label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} error={error} />
 

@@ -1,39 +1,30 @@
-import { FormikErrors, FormikHelpers, FormikTouched, FormikValues, useFormik } from "formik";
-import React, { ChangeEvent, FocusEvent, useMemo } from "react";
+import React, { ChangeEvent, useMemo } from "react";
+import { FormikValues, useFormik } from "formik";
 
 import { filteredErrors } from "./internal-helpers";
+import { IFormProps } from "./Form-interfaces";
 
-interface IChildrenFormikData<T> {
-    values: T;
-    errors: Partial<FormikErrors<T>>;
-    allErrors: FormikErrors<T>;
-    touched: FormikTouched<T>;
-    handleChange: (e: ChangeEvent<any>) => void;
-    handleBlur: (e: FocusEvent<any, Element>) => void;
-    isValid: boolean;
-}
-
-interface IFormProps<T> {
-    initialValues: any;
-    onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void;
-    className?: string;
-    children: (e: IChildrenFormikData<T>) => any;
-    validationSchema: any;
-}
-
-function Form<T extends FormikValues = any>({ initialValues, onSubmit, className = "", children, validationSchema }: IFormProps<T>) {
-    const formik = useFormik<T>({
-        initialValues: initialValues,
-        onSubmit: onSubmit,
-        validationSchema: validationSchema,
-    });
+function Form<T extends FormikValues = any>({
+    initialValues,
+    onSubmit,
+    className = "",
+    children,
+    validationSchema,
+    handleValuesChange,
+    externalErrors = {},
+    onExternalErrorChange,
+}: IFormProps<T>) {
+    const formik = useFormik<T>({ initialValues: initialValues, onSubmit: onSubmit, validationSchema: validationSchema });
 
     const _errors = useMemo(() => filteredErrors<T>(formik.errors, formik.touched), [formik.errors, formik.touched]);
 
     const _handleChange = (e: ChangeEvent<any>) => {
-        const { name } = e.target;
+        const name = e.target.name;
 
-        formik.handleChange(e);
+        if (handleValuesChange) {
+            const _values = handleValuesChange(e, formik);
+            formik.setValues(_values, true);
+        } else formik.handleChange(e);
 
         if (formik.touched[name]) {
             const _touched = { ...formik.touched };
@@ -41,17 +32,21 @@ function Form<T extends FormikValues = any>({ initialValues, onSubmit, className
 
             formik.setTouched(_touched);
         }
+
+        if (onExternalErrorChange && externalErrors[name]) {
+            const _externalErrors = { ...externalErrors };
+            delete _externalErrors[name];
+
+            onExternalErrorChange(_externalErrors);
+        }
     };
 
     return (
         <form onSubmit={formik.handleSubmit} className={`m-form ${className}`}>
             {children({
-                values: formik.values,
+                ...formik,
                 handleChange: _handleChange,
-                errors: _errors,
-                allErrors: formik.errors,
-                touched: formik.touched,
-                handleBlur: formik.handleBlur,
+                errors: { ..._errors, ...externalErrors },
                 isValid: Object.keys(_errors).length === 0,
             })}
         </form>

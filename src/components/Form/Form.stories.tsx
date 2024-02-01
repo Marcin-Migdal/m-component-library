@@ -19,7 +19,4 @@ const Template: ComponentStory<typeof StoryFormWrapper> = (args) => (
 
 export const form = Template.bind({});
 
-form.args = {
-    autoClose: true,
-    toastsPosition: "top-right",
-};
+form.args = {};

@@ -26,13 +26,12 @@ export { default as Tooltip } from "./components/Tooltip";
 // Panels
 export { default as Card } from "./components/Panels/Card";
 
-//TODO* NOW
-// TODO! Input crashed everything because of mask functionality
-// TODO! Clicking on icons fires post request
+// Miscellaneous
+export { default as Icon } from "./components/Miscellaneous/Icon";
 
+//TODO* NOW
 // TODO? Not closing tooltip if cursor is over it (settimeout when closing tooltip, and canceling closing if onMouseEnter on tooltip ??? OR some back-ground div under tooltip, that will be of size (tooltipSize + tooltipMargin) )
 
-//TODO*LATER
 // TODO! ACCORDION
 // TODO! Change theme story wrapper to use accordion for each section
 
@@ -45,7 +44,7 @@ export { default as Card } from "./components/Panels/Card";
 // TODO! Navigational components
 // TODO? Breadcrumb
 // TODO? Nav bar
-// TODO? Dropdown Menu
+// TODO? Dropdown Menu (open on ref that can be attached to anything(button, icon))
 // TODO? Side bar
 
 //TODO! Data Display

@@ -1,3 +1,5 @@
+import { FocusEvent } from "react";
+
 import * as GlobalInterfaces from "../../global-interfaces";
 
 // spróbować rozdzielić DropdownProps żeby interface lepiej był w stanie rozpoznać, kiedy T istnieje, a kiedy T jest ILabelValue
@@ -7,6 +9,8 @@ type DropdownBaseProps<T> = {
     name?: string;
     disabled?: boolean;
     onChange?: (event: IDropdownChangeEvent<T>, value: DropdownValue<T>) => void;
+    onClear?: (event: IDropdownClearEvent<T>, value: DropdownValue<T>) => void;
+    onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
     label?: string;
     error?: string;
     labelType?: GlobalInterfaces.InputLabelType;
@@ -29,7 +33,11 @@ export type DropdownProps<T> = DropdownBaseProps<T> & (T extends ILabelValue ? P
 
 export type DropdownValue<T> = T | undefined;
 
-export interface IDropdownChangeEvent<T> extends React.MouseEvent<HTMLLIElement | SVGSVGElement, MouseEvent> {
+export interface IDropdownChangeEvent<T> extends React.MouseEvent<HTMLLIElement, MouseEvent> {
+    target: IDropdownChangeEventTarget<T>;
+}
+
+export interface IDropdownClearEvent<T> extends React.MouseEvent<SVGSVGElement, MouseEvent> {
     target: IDropdownChangeEventTarget<T>;
 }
 
@@ -42,4 +50,15 @@ interface IDropdownChangeEventTarget<T> extends EventTarget {
     name?: string;
     value: DropdownValue<T>;
     type: "dropdown";
+}
+
+export interface IDropdownOptionsProps<T> {
+    containerElement: HTMLDivElement;
+    filterElement: HTMLInputElement;
+    uniqueDropdownId: string;
+    handleDropdownChange: (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: T) => void;
+    dropdownOptions: T[];
+    value: T | undefined;
+    valueKey: keyof T;
+    labelKey: keyof T;
 }

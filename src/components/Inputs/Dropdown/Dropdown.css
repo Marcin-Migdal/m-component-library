@@ -50,6 +50,11 @@
 .m-dropdown-container .m-dropdown-icon {
     margin-left: -25px;
     z-index: 1 !important;
+    transition: 0.2s;
+}
+
+.m-dropdown-container.focused .m-dropdown-icon {
+    transform: rotateX(180deg);
 }
 
 .m-dropdown-container.disabled .m-dropdown-clear-icon,

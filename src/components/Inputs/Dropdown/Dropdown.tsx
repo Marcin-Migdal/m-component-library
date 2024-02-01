@@ -1,9 +1,9 @@
-import React, { ChangeEvent, ReactElement, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, ReactElement, useEffect, useRef, useState, MouseEvent as ReactMouseEvent, FocusEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
 
-import { DropdownProps, DropdownValue, IDropdownChangeEvent } from "./dropdown-interfaces";
+import { DropdownProps, DropdownValue, IDropdownChangeEvent, IDropdownClearEvent, IDropdownOptionsProps } from "./dropdown-interfaces";
 import { getInputsErrorStyle } from "../../../helpers/input-error-helpers";
 import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
 import { InputError } from "../_inputsComponents/InputError/InputError";
@@ -21,6 +21,8 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
         name = undefined,
         disabled = false,
         onChange,
+        onClear,
+        onFocus,
         label,
         error,
         labelType = "floating",
@@ -74,9 +76,11 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
         const handleClickOutside = (event: MouseEvent) => {
             const target: HTMLElement = event.target as HTMLElement;
 
+            if (!containerRef.current) return;
+
             if (
-                containerRef.current &&
-                (!containerRef.current.contains(target) || target?.className.includes("m-dropdown-container")) &&
+                (!containerRef.current.contains(target) ||
+                    (typeof target?.className == "string" && target?.className.includes("m-dropdown-container"))) &&
                 (!target.getAttribute("data-id") || target.getAttribute("data-id") != uniqueDropdownId)
             ) {
                 setIsFocused(false);
@@ -96,36 +100,38 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
         };
     }, []);
 
-    const handleFocus = () => {
-        setIsFocused(true);
-    };
-
     const handleFilterChange = (e: ChangeEvent<HTMLInputElement>): void => {
         setFilterValue(e.target.value);
     };
 
-    const handleDropdownChange = (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: T): void => {
+    const handleDropdownChange = (e: ReactMouseEvent<HTMLLIElement, MouseEvent>, selectedOption: T): void => {
+        setFilterValue("");
+        setInternalValue(selectedOption);
+        setIsFocused(false);
+
         if (onChange) {
             let _e: IDropdownChangeEvent<T> = { ...e, target: { ...e.target, value: selectedOption, name: name, type: "dropdown" } };
 
             onChange(_e, selectedOption as T);
         }
-
-        setFilterValue("");
-        setInternalValue(selectedOption);
-        setIsFocused(false);
     };
 
-    const handleClear = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    const handleClear = (e: ReactMouseEvent<SVGSVGElement, MouseEvent>) => {
         setFilterValue("");
         setInternalValue(undefined);
         setIsFocused(false);
 
-        if (onChange) {
-            let _e: IDropdownChangeEvent<T> = { ...e, target: { ...e.target, value: undefined, name: name, type: "dropdown" } };
+        if (onClear) {
+            let _e: IDropdownClearEvent<T> = { ...e, target: { ...e.target, value: undefined, name: name, type: "dropdown" } };
 
-            onChange(_e, undefined);
+            onClear(_e, undefined);
         }
+    };
+
+    const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+        onFocus && onFocus(e);
+
+        setIsFocused(true);
     };
 
     const labelClasses = `m-dropdown-label ${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
@@ -174,9 +180,9 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
             {error ? (
                 <InputError style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)} className="checkbox" error={error} />
             ) : (
-                <FontAwesomeIcon className="m-dropdown-icon" icon="angle-down" />
+                <FontAwesomeIcon className="m-dropdown-icon" icon="angle-down" onClick={() => setIsFocused(!isFocused)} />
             )}
-            {clearable && <FontAwesomeIcon className="m-dropdown-clear-icon" icon="close" onClick={(e) => handleClear(e)} />}
+            {clearable && _value && <FontAwesomeIcon className="m-dropdown-clear-icon" icon="close" onClick={handleClear} />}
 
             {/* dropdown items */}
             {isFocused &&
@@ -200,17 +206,6 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
 }
 
 export default Dropdown;
-
-interface IDropdownOptionsProps<T> {
-    containerElement: HTMLDivElement;
-    filterElement: HTMLInputElement;
-    uniqueDropdownId: string;
-    handleDropdownChange: (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: T) => void;
-    dropdownOptions: T[];
-    value: T | undefined;
-    valueKey: keyof T;
-    labelKey: keyof T;
-}
 
 function DropdownOptions<T>({
     containerElement,

@@ -1,5 +1,4 @@
 import { FormikErrors, FormikTouched } from "formik";
-import React, { ReactElement } from "react";
 
 export function filteredErrors<T>(errors: FormikErrors<T>, touched: FormikTouched<T>): Partial<FormikErrors<T>> {
     const filteredErrors: Partial<FormikErrors<T>> = {};
