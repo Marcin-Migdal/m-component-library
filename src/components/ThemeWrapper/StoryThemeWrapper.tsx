@@ -80,11 +80,11 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
 
                 <ToastsContainer ref={toastRef} />
                 <div>
-                    <Button text="Success toast" onClick={() => toastRef.current?.handleAddToast("success", "Sign in was successful")} />
+                    <Button text="Success toast" onClick={() => toastRef.current?.addToast("success", "Sign in was successful")} />
                     <Button
                         text="Failure toast"
                         onClick={() =>
-                            toastRef.current?.handleAddToast(
+                            toastRef.current?.addToast(
                                 "failure",
                                 "While sign in, error has occurred, error has occurred, error has occurred, error has occurred"
                             )
@@ -92,13 +92,10 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                     />
                     <Button
                         text="Warning toast"
-                        onClick={() => toastRef.current?.handleAddToast("warning", "Are you sure, you want to log out?")}
+                        onClick={() => toastRef.current?.addToast("warning", "Are you sure, you want to log out?")}
                     />
-                    <Button
-                        text="Information toast"
-                        onClick={() => toastRef.current?.handleAddToast("information", "You where singed out")}
-                    />
-                    <Button style={{ marginRight: "10px" }} text="Clear toasts" onClick={() => toastRef.current?.handleClear()} />
+                    <Button text="Information toast" onClick={() => toastRef.current?.addToast("information", "You where singed out")} />
+                    <Button style={{ marginRight: "10px" }} text="Clear toasts" onClick={() => toastRef.current?.clear()} />
                 </div>
 
                 <SectionHeader theme={theme} text="TOOLTIP SECTION" />

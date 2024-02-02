@@ -8,7 +8,7 @@ export { default as Textarea } from "./components/Inputs/Textarea";
 export { default as Dropdown } from "./components/Inputs/Dropdown";
 
 //Form
-export { default as Form } from "./components/Form";
+export { default as Form, FormErrorsType } from "./components/Form";
 
 // Buttons
 export { default as Button } from "./components/Button";
@@ -18,7 +18,7 @@ export { default as Col } from "./components/Layout/Col";
 export { default as Row } from "./components/Layout/Row";
 
 // Messages
-export { default as ToastsContainer } from "./components/Toast";
+export { default as ToastsContainer, ToastHandler } from "./components/Toast";
 
 // Overlay
 export { default as Tooltip } from "./components/Tooltip";

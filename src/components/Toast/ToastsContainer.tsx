@@ -13,15 +13,15 @@ interface IToastProps {
 }
 
 export type ToastHandler = {
-    handleAddToast: (type: ToastTypes, message: TextType) => void;
-    handleClear: () => void;
+    addToast: (type: ToastTypes, message: TextType) => void;
+    clear: () => void;
 };
 
 const ToastsContainer = ({ autoClose = true, toastsPosition = "top-right" }: IToastProps, ref: ForwardedRef<ToastHandler>) => {
     const [toasts, setToasts] = useState<IToast[]>([]);
 
     useImperativeHandle(ref, () => ({
-        handleAddToast: (type: ToastTypes, message: TextType = undefined, toastDuration: number = 1500) => {
+        addToast: (type: ToastTypes, message: TextType = undefined, toastDuration: number = 1500) => {
             const newToast: IToast = { title: type, message: message, type: type, id: Date.now() };
 
             setToasts((prevState) => [...prevState, newToast]);
@@ -32,7 +32,7 @@ const ToastsContainer = ({ autoClose = true, toastsPosition = "top-right" }: ITo
                 }, toastDuration);
             }
         },
-        handleClear: () => {
+        clear: () => {
             setToasts([]);
         },
     }));

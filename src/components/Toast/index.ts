@@ -1,1 +1,1 @@
-export { default } from "./ToastsContainer";
+export { default, ToastHandler } from "./ToastsContainer";
