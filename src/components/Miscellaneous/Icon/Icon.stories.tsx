@@ -7,9 +7,6 @@ import ThemeWrapper from "../../ThemeWrapper";
 export default {
     title: "Morti-component-library/Miscellaneous",
     component: StoryIconWrapper,
-    argTypes: {
-        iconPrefix: { control: "select" },
-    },
 } as ComponentMeta<typeof StoryIconWrapper>;
 
 const Template: ComponentStory<typeof StoryIconWrapper> = (args) => (

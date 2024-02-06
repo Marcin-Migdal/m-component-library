@@ -1,9 +1,10 @@
 .m-button {
     display: inline-block;
+
     border: var(--border);
     border-radius: var(--border-radius);
     margin-right: var(--btn-right-margin);
-    padding: 0.245em 0.6em;
+    padding: var(--button-padding);
 
     font-weight: 600;
     font-size: 1.1rem;

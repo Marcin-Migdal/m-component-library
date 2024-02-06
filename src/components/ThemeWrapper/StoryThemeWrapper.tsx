@@ -1,6 +1,6 @@
 import React, { CSSProperties, useRef } from "react";
 
-import { Input, Checkbox, Textarea, Dropdown, Button, ToastsContainer, Card } from "../..";
+import { Input, Checkbox, Textarea, Dropdown, Button, ToastsContainer, Card, ProgressSpinner } from "../..";
 import { InputLabelType, LabelPercentageWidth } from "../global-interfaces";
 import { CardVariantTypes } from "../Panels/Card/card-interfaces";
 import { ToastHandler } from "../Toast/ToastsContainer";
@@ -80,7 +80,14 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
 
                 <ToastsContainer ref={toastRef} />
                 <div>
-                    <Button text="Success toast" onClick={() => toastRef.current?.addToast("success", "Sign in was successful")} />
+                    <Button
+                        text="Success toast"
+                        onClick={() => {
+                            console.log(toastRef);
+
+                            toastRef.current?.addToast("success", "Sign in was successful");
+                        }}
+                    />
                     <Button
                         text="Failure toast"
                         onClick={() =>
@@ -110,11 +117,21 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                 <Card variant={panelVariant} style={{ width: "300px" }}>
                     <h2 style={{ width: "100%", textAlign: "center", marginTop: "0px" }}>Card title</h2>
 
+                    <Input
+                        label="label"
+                        placeholder="placeholder"
+                        labelType={inputLabelType}
+                        labelWidth={inputLabelWidth}
+                        floatingInputWidth={floatingInputWidth}
+                        error={error}
+                    />
+
                     <span style={{ display: "inline-block", width: "100%" }}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
                         aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
                     </span>
                 </Card>
+                <ProgressSpinner />
             </div>
         </ThemeWrapper>
     );

@@ -1,5 +1,5 @@
 .default-theme-light-mode-theme .m-card {
-    background-color: var(--background-hover-color);
+    background-color: var(--card-background-color);
     color: var(--input-text-color);
 }
 

@@ -24,7 +24,6 @@
     color: var(--light-grey_300) !important;
 }
 
-.default-theme-dark-mode-theme .m-checkbox-label.right,
-.default-theme-dark-mode-theme .m-checkbox-label.left {
+.default-theme-dark-mode-theme .m-checkbox-label {
     color: var(--input-label-color) !important;
 }

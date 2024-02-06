@@ -25,5 +25,5 @@
 }
 
 .light-blue-theme-dark-mode-theme .m-checkbox-label {
-    color: var(--primary-color_300);
+    color: var(--input-label-color);
 }

@@ -1,5 +1,5 @@
 .light-blue-theme-dark-mode-theme .m-card {
-    background-color: var(--background-hover-color);
+    background-color: var(--card-background-color);
     color: var(--white);
 }
 
