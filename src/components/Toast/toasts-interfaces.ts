@@ -1,6 +1,7 @@
 //* TOAST COMPONENTS
 
 //! TOASTS LIST COMPONENTS
+export type ToastsPositionTypes = "top-right" | "top-left" | "bottom-right" | "bottom-left";
 export type ToastTypes = "success" | "failure" | "warning" | "information";
 
 export interface IToast {

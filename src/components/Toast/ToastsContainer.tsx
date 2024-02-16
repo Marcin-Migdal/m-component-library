@@ -1,11 +1,9 @@
 import React, { ForwardedRef, forwardRef, useImperativeHandle, useState } from "react";
 
-import { IToast, TextType, ToastTypes } from "./toasts-interfaces";
+import { IToast, TextType, ToastTypes, ToastsPositionTypes } from "./toasts-interfaces";
 import { Toast } from "./components/Toast";
 
 import "./Toasts.css";
-
-export type ToastsPositionTypes = "top-right" | "top-left" | "bottom-right" | "bottom-left";
 
 interface IToastProps {
     autoClose?: boolean;
