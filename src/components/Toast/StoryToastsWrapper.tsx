@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 
-import ToastsContainer, { ToastHandler, ToastsPositionTypes } from "./ToastsContainer";
+import ToastsContainer, { ToastHandler } from "./ToastsContainer";
+import { ToastsPositionTypes } from "./toasts-interfaces";
 import Button from "../Button";
 
 export interface IStoryToastsWrapperProps {

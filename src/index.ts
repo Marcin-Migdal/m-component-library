@@ -18,7 +18,7 @@ export { default as Col } from "./components/Layout/Col";
 export { default as Row } from "./components/Layout/Row";
 
 // Messages
-export { default as ToastsContainer, ToastHandler } from "./components/Toast";
+export { default as ToastsContainer, ToastHandler, ToastTypes, ToastsPositionTypes } from "./components/Toast";
 
 // Overlay
 export { default as Tooltip } from "./components/Tooltip";
