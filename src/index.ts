@@ -11,7 +11,7 @@ export { default as Dropdown, DropdownProps } from "./components/Inputs/Dropdown
 export { default as Form, FormErrorsType } from "./components/Form";
 
 // Buttons
-export { default as Button } from "./components/Button";
+export { default as Button, IButtonProps } from "./components/Button";
 
 // Layout
 export { default as Col } from "./components/Layout/Col";
