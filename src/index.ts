@@ -2,10 +2,10 @@
 export { default as ThemeWrapper } from "./components/ThemeWrapper";
 
 // Inputs
-export { default as Input } from "./components/Inputs/Input/Input";
-export { default as Checkbox } from "./components/Inputs/Checkbox";
-export { default as Textarea } from "./components/Inputs/Textarea";
-export { default as Dropdown } from "./components/Inputs/Dropdown";
+export { default as Input, InputProps } from "./components/Inputs/Input";
+export { default as Checkbox, CheckboxProps } from "./components/Inputs/Checkbox";
+export { default as Textarea, TextareaProps } from "./components/Inputs/Textarea";
+export { default as Dropdown, DropdownProps } from "./components/Inputs/Dropdown";
 
 //Form
 export { default as Form, FormErrorsType } from "./components/Form";
@@ -31,6 +31,15 @@ export { default as Icon } from "./components/Miscellaneous/Icon";
 export { default as ProgressSpinner } from "./components/Miscellaneous/ProgressSpinner";
 
 //TODO* NOW
+
+//! TOOLTIP
+//? tooltip content nie może mieć break word
+//? dodać że toast się nie zamyka na on hover
+//? możliwość wysłania czasu trwania toast'a w funkcji addToast
+
+//! TOAST
+//? title powinien być wysyłany w funkcji addToast, oraz powinna być możliwość nadpisania default'owych tytułów, tytułami z tłumaczeniem
+
 // TODO? Not closing tooltip if cursor is over it (settimeout when closing tooltip, and canceling closing if onMouseEnter on tooltip ??? OR some back-ground div under tooltip, that will be of size (tooltipSize + tooltipMargin) )
 
 // TODO! ACCORDION
