@@ -32,14 +32,11 @@ export { default as ProgressSpinner } from "./components/Miscellaneous/ProgressS
 
 //TODO* NOW
 
-//! TOOLTIP
-//? tooltip content nie może mieć break word
-//? dodać że toast się nie zamyka na on hover
-//? możliwość wysłania czasu trwania toast'a w funkcji addToast
-
 //! TOAST
-//? title powinien być wysyłany w funkcji addToast, oraz powinna być możliwość nadpisania default'owych tytułów, tytułami z tłumaczeniem
+//? dodać że toast się nie zamyka na on hover
 
+//! TOOLTIP
+//? popsuł sie jak jest dużo tekstu
 // TODO? Not closing tooltip if cursor is over it (settimeout when closing tooltip, and canceling closing if onMouseEnter on tooltip ??? OR some back-ground div under tooltip, that will be of size (tooltipSize + tooltipMargin) )
 
 // TODO! ACCORDION
