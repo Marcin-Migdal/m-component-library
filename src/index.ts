@@ -2,23 +2,23 @@
 export { default as ThemeWrapper } from "./components/ThemeWrapper";
 
 // Inputs
-export { default as Input, InputProps } from "./components/Inputs/Input";
-export { default as Checkbox, CheckboxProps } from "./components/Inputs/Checkbox";
-export { default as Textarea, TextareaProps } from "./components/Inputs/Textarea";
-export { default as Dropdown, DropdownProps } from "./components/Inputs/Dropdown";
+export { default as Input, type InputProps } from "./components/Inputs/Input";
+export { default as Checkbox, type CheckboxProps } from "./components/Inputs/Checkbox";
+export { default as Textarea, type TextareaProps } from "./components/Inputs/Textarea";
+export { default as Dropdown, type DropdownProps } from "./components/Inputs/Dropdown";
 
 //Form
-export { default as Form, FormErrorsType } from "./components/Form";
+export { default as Form, type FormErrorsType } from "./components/Form";
 
 // Buttons
-export { default as Button, IButtonProps } from "./components/Button";
+export { default as Button, type IButtonProps } from "./components/Button";
 
 // Layout
 export { default as Col } from "./components/Layout/Col";
 export { default as Row } from "./components/Layout/Row";
 
 // Messages
-export { default as ToastsContainer, ToastHandler, ToastTypes, ToastsPositionTypes } from "./components/Toast";
+export { default as ToastsContainer, type ToastHandler, type ToastTypes, type ToastsPositionTypes } from "./components/Toast";
 
 // Overlay
 export { default as Tooltip } from "./components/Tooltip";
@@ -35,11 +35,8 @@ export { default as ProgressSpinner } from "./components/Miscellaneous/ProgressS
 //! TOOLTIP
 //? popsuł sie jak jest dużo tekstu
 
-//! TOAST
-//? możliwość wysłania czasu trwania toast'a w funkcji addToast
-//? dodać że toast się nie zamyka na on hover
-//? title powinien być wysyłany w funkcji addToast, oraz powinna być możliwość nadpisania default'owych tytułów, tytułami z tłumaczeniem
-
+//! TOOLTIP
+//? popsuł sie jak jest dużo tekstu
 // TODO? Not closing tooltip if cursor is over it (settimeout when closing tooltip, and canceling closing if onMouseEnter on tooltip ??? OR some back-ground div under tooltip, that will be of size (tooltipSize + tooltipMargin) )
 
 // TODO! ACCORDION

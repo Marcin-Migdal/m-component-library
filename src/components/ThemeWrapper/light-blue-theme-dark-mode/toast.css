@@ -1,34 +1,34 @@
-.toasts-list .toast.success {
+.light-blue-theme-dark-mode-theme .toasts-list .toast.success {
     --toast-color: var(--success-color);
-    --toast-color-rgb: var(--success-color-rgb);
+    --toast-background-color: var(--success-color-rgb);
 }
 
-.toasts-list .toast.failure {
+.light-blue-theme-dark-mode-theme .toasts-list .toast.failure {
     --toast-color: var(--failure-color);
-    --toast-color-rgb: var(--failure-color-rgb);
+    --toast-background-color: var(--failure-color-rgb);
 }
 
-.toasts-list .toast.warning {
+.light-blue-theme-dark-mode-theme .toasts-list .toast.warning {
     --toast-color: var(--warning-color);
-    --toast-color-rgb: var(--warning-color-rgb);
+    --toast-background-color: var(--warning-color-rgb);
 }
 
-.toasts-list .toast.information {
+.light-blue-theme-dark-mode-theme .toasts-list .toast.information {
     --toast-color: var(--information-color);
-    --toast-color-rgb: var(--information-color-rgb);
+    --toast-background-color: var(--information-color-rgb);
 }
 
-.toasts-list .toast {
+.light-blue-theme-dark-mode-theme .toasts-list .toast {
     color: var(--toast-color);
-    background-color: rgba(var(--toast-color-rgb), 0.15);
+    background-color: rgba(var(--toast-background-color), 0.15);
     border-left: 6px solid var(--toast-color);
 }
 
-.toasts-list .toast svg {
+.light-blue-theme-dark-mode-theme .toasts-list .toast svg {
     fill: var(--toast-color);
     background-color: transparent;
 }
 
-.toasts-list .toast svg.close-icon:hover {
-    background-color: rgba(var(--toast-color-rgb), 0.225);
+.light-blue-theme-dark-mode-theme .toasts-list .toast svg.close-icon:hover {
+    background-color: rgba(var(--toast-background-color), 0.225);
 }

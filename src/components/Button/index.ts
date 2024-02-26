@@ -1,2 +1,2 @@
 export { default } from "./Button";
-export { IButtonProps } from "./button-interfaces";
+export type { IButtonProps } from "./button-interfaces";

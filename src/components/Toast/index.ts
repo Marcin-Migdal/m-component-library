@@ -1,2 +1,2 @@
-export { default, ToastHandler } from "./ToastsContainer";
-export { ToastsPositionTypes, ToastTypes } from "./toasts-interfaces";
+export { default, type ToastHandler } from "./ToastsContainer";
+export type { ToastsPositionTypes, ToastTypes } from "./toasts-interfaces";
