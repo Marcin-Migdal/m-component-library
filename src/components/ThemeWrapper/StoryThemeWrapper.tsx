@@ -3,8 +3,8 @@ import React, { CSSProperties, useRef } from "react";
 import { Input, Checkbox, Textarea, Dropdown, Button, ToastsContainer, Card, ProgressSpinner } from "../..";
 import { InputLabelType, LabelPercentageWidth } from "../global-interfaces";
 import { CardVariantTypes } from "../Panels/Card/card-interfaces";
-import { ToastHandler } from "../Toast/ToastsContainer";
 import { ThemeTypes } from "./theme-wrapper-interfaces";
+import { ToastHandler } from "../Toast/ToastsContainer";
 import ThemeWrapper from "./ThemeWrapper";
 
 export interface IStoryThemeWrapperProps {
@@ -81,28 +81,31 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                 <ToastsContainer ref={toastRef} />
                 <div>
                     <Button
+                        style={{ marginTop: "10px" }}
                         text="Success toast"
-                        onClick={() => {
-                            console.log(toastRef);
-
-                            toastRef.current?.addToast("success", "Sign in was successful");
-                        }}
+                        onClick={() => toastRef.current?.addToast({ message: "Sign in was successful" })}
                     />
                     <Button
+                        style={{ marginTop: "10px" }}
                         text="Failure toast"
                         onClick={() =>
-                            toastRef.current?.addToast(
-                                "failure",
-                                "While sign in, error has occurred, error has occurred, error has occurred, error has occurred"
-                            )
+                            toastRef.current?.addToast({
+                                message: "While sign in, error has occurred, error has occurred, error has occurred, error has occurred",
+                                type: "failure",
+                            })
                         }
                     />
                     <Button
+                        style={{ marginTop: "10px" }}
                         text="Warning toast"
-                        onClick={() => toastRef.current?.addToast("warning", "Are you sure, you want to log out?")}
+                        onClick={() => toastRef.current?.addToast({ message: "Are you sure, you want to log out?", type: "warning" })}
                     />
-                    <Button text="Information toast" onClick={() => toastRef.current?.addToast("information", "You where singed out")} />
-                    <Button style={{ marginRight: "10px" }} text="Clear toasts" onClick={() => toastRef.current?.clear()} />
+                    <Button
+                        style={{ marginTop: "10px" }}
+                        text="Information toast"
+                        onClick={() => toastRef.current?.addToast({ message: "You where singed out", type: "information" })}
+                    />
+                    <Button style={{ marginTop: "10px" }} text="Clear toasts" onClick={() => toastRef.current?.clear()} />
                 </div>
 
                 <SectionHeader theme={theme} text="TOOLTIP SECTION" />
@@ -131,6 +134,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                         aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
                     </span>
                 </Card>
+                <SectionHeader theme={theme} text="MISCELLANEOUS" />
                 <ProgressSpinner />
             </div>
         </ThemeWrapper>

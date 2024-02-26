@@ -1,21 +1,21 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
-import { CloseIcon, FailureIcon, SuccessIcon, WarningIcon } from "./icons";
-import { IToastProps, ToastTypes } from "../toasts-interfaces";
+import { IToast } from "../toasts-interfaces";
+import { CloseIcon } from "./icons";
 
-const iconMap: Record<ToastTypes, ReactNode> = {
-    success: <SuccessIcon />,
-    failure: <FailureIcon />,
-    warning: <WarningIcon />,
-    information: <WarningIcon />,
-};
+export interface IToastProps {
+    onClose: (e: any) => void;
+    onMouseEnter: (toast: IToast) => void;
+    onMouseLeave: (toast: IToast) => void;
+    toast: IToast;
+}
 
-export const Toast = ({ toast, onClose }: IToastProps) => {
-    const { type, title, message, id } = toast;
+export const Toast = ({ toast, onClose, onMouseEnter, onMouseLeave }: IToastProps) => {
+    const { type, title, message, id, icon } = toast;
 
     return (
-        <div className={`toast ${type}`}>
-            {iconMap[toast.type]}
+        <div className={`toast ${type}`} onMouseEnter={() => onMouseEnter(toast)} onMouseLeave={() => onMouseLeave(toast)}>
+            {icon}
             <div className="text-content">
                 <p>{title}</p>
                 {message && <span>{message}</span>}

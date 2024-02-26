@@ -1,49 +1,84 @@
-import React, { ForwardedRef, forwardRef, useImperativeHandle, useState } from "react";
+import React, { ForwardedRef, forwardRef, useImperativeHandle, useRef, useState } from "react";
 
-import { IToast, TextType, ToastTypes, ToastsPositionTypes } from "./toasts-interfaces";
+import { IAddToastPayload, IToast, IToastPropsBase, ToastConfigType, ToastTypes } from "./toasts-interfaces";
+import { defaultToastConfig, getDefaultToastType } from "./utils";
 import { Toast } from "./components/Toast";
 
 import "./Toasts.css";
 
-interface IToastProps {
-    autoClose?: boolean;
-    toastsPosition?: ToastsPositionTypes;
-}
+type IToastProps<T = ToastTypes> = IToastPropsBase &
+    (T extends ToastTypes
+        ? { toastConfig?: ToastConfigType<ToastTypes> }
+        : { toastConfig: T extends string ? ToastConfigType<T> : ToastConfigType<string> });
 
-export type ToastHandler = {
-    addToast: (type: ToastTypes, message: TextType) => void;
+export type ToastHandler<T = ToastTypes> = {
+    addToast: (payload: IAddToastPayload<T>) => void;
     clear: () => void;
 };
 
-const ToastsContainer = ({ autoClose = true, toastsPosition = "top-right" }: IToastProps, ref: ForwardedRef<ToastHandler>) => {
+function ToastsContainer<T extends string>(
+    { autoClose = true, toastsPosition = "top-right", toastConfig = defaultToastConfig }: IToastProps<T>,
+    ref: ForwardedRef<ToastHandler<T>>
+) {
+    const timeoutRefs = useRef<Record<number, NodeJS.Timeout>>({});
+
     const [toasts, setToasts] = useState<IToast[]>([]);
 
     useImperativeHandle(ref, () => ({
-        addToast: (type: ToastTypes, message: TextType = undefined, toastDuration: number = 1500) => {
-            const newToast: IToast = { title: type, message: message, type: type, id: Date.now() };
+        addToast: (payload) => {
+            const { message, type = getDefaultToastType(toastConfig), title = type, toastDuration = 2000 } = payload;
+
+            const newToast: IToast = {
+                message,
+                type: toastConfig[type].type,
+                title,
+                id: Date.now(),
+                icon: toastConfig[type]?.icon,
+                toastDuration,
+            };
 
             setToasts((prevState) => [...prevState, newToast]);
 
-            if (autoClose) {
-                setTimeout(() => {
-                    handleCloseToast(newToast.id);
-                }, toastDuration);
-            }
+            handleToastAutoClose(newToast);
         },
         clear: () => {
             setToasts([]);
+            Object.values(timeoutRefs.current).forEach(clearTimeout);
+            timeoutRefs.current = {};
         },
     }));
 
     const handleCloseToast = (toastId: number) => setToasts((prevState) => prevState.filter((toast) => toast.id != toastId));
 
+    const handleMouseHover = (toast: IToast) => {
+        clearTimeout(timeoutRefs.current[toast.id]);
+    };
+
+    const handleToastAutoClose = (toast: IToast) => {
+        if (autoClose) {
+            timeoutRefs.current[toast.id] = setTimeout(() => {
+                handleCloseToast(toast.id);
+            }, toast.toastDuration);
+        }
+    };
+
     return (
         <div className={`toasts-list ${toastsPosition}`}>
             {toasts.map((toast) => (
-                <Toast key={toast.id} toast={toast} onClose={handleCloseToast} />
+                <Toast
+                    key={toast.id}
+                    toast={toast}
+                    onClose={handleCloseToast}
+                    onMouseEnter={handleMouseHover}
+                    onMouseLeave={handleToastAutoClose}
+                />
             ))}
         </div>
     );
-};
+}
 
-export default forwardRef(ToastsContainer);
+type ToastsContainerForwardRefType = <T extends string>(
+    props: IToastProps<T> & { ref?: React.ForwardedRef<ToastHandler<T>> }
+) => ReturnType<typeof ToastsContainer>;
+
+export default forwardRef(ToastsContainer) as ToastsContainerForwardRefType;

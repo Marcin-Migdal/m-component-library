@@ -77,6 +77,7 @@
     display: flex;
     flex-direction: column;
     padding: 11px 15px 15px 0;
+    margin-left: 15px;
 }
 
 .toasts-list .toast p {
@@ -99,7 +100,9 @@
 .toasts-list .toast svg:not(.close-icon) {
     min-width: 30px;
     min-height: 30px;
-    margin: 15px;
+    margin: auto;
+    margin-left: 15px;
+    margin-right: unset;
 }
 
 .toasts-list .toast.success svg:not(.close-icon) {
@@ -124,6 +127,11 @@
 
 .toasts-list .toast svg.close-icon:active {
     transform: scale(0.8);
+}
+
+.toasts-list .toast.toast_type_not_found {
+    color: var(--dark-grey_500) !important;
+    background-color: var(--light-grey_300) !important;
 }
 
 .toasts-list::-webkit-scrollbar {
