@@ -29,14 +29,10 @@ export { default as Card } from "./components/Panels/Card";
 // Miscellaneous
 export { default as Icon } from "./components/Miscellaneous/Icon";
 export { default as ProgressSpinner } from "./components/Miscellaneous/ProgressSpinner";
+ 
+//! CSS Variables refactor
 
-//TODO* NOW
-
-//! TOOLTIP
-//? popsuł sie jak jest dużo tekstu
-
-//! TOOLTIP
-//? popsuł sie jak jest dużo tekstu
+//! TOOLTIP 
 // TODO? Not closing tooltip if cursor is over it (settimeout when closing tooltip, and canceling closing if onMouseEnter on tooltip ??? OR some back-ground div under tooltip, that will be of size (tooltipSize + tooltipMargin) )
 
 // TODO! ACCORDION

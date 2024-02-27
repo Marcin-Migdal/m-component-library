@@ -87,7 +87,7 @@ body {
     /* theme wrapper container styles */
     position: relative;
 
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background: var(--background-color);
 
