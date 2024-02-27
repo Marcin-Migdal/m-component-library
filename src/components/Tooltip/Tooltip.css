@@ -1,6 +1,6 @@
 .tooltip {
     position: absolute;
-    /* width: fit-content; */
+    width: fit-content;
 
     padding: 5px 10px;
     border-radius: var(--border-radius);

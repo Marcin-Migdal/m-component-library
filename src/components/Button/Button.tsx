@@ -12,7 +12,7 @@ const Button = (props: IButtonProps) => {
         children,
         text,
         onClick,
-        disabled = true,
+        disabled = false,
         busy = false,
         display = true,
         icon = undefined,
@@ -22,7 +22,7 @@ const Button = (props: IButtonProps) => {
         type = "button",
         variant = "outlined",
         tooltip = "",
-        disabledTooltip = "test",
+        disabledTooltip = "",
         tooltipConfig = getTooltipPropsConfig(disabled),
     } = props;
 

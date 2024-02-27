@@ -49,13 +49,12 @@ export const generateTooltipStyle = (
                 left: targetLeft + targetWidth + tooltipMargin,
             };
 
-            if (autoFixPosition) {
+            if (autoFixPosition)
                 tooltipPosition = getAutoPosition(rectTarget, tooltipMargin, {
                     ...tooltipPosition,
                     width: tooltipWidth,
                     height: tooltipHeight,
                 });
-            }
 
             break;
         case "bottom":
@@ -78,13 +77,12 @@ export const generateTooltipStyle = (
                 left: targetLeft - tooltipWidth - tooltipMargin,
             };
 
-            if (autoFixPosition) {
+            if (autoFixPosition)
                 tooltipPosition = getAutoPosition(rectTarget, tooltipMargin, {
                     ...tooltipPosition,
                     width: tooltipWidth,
                     height: tooltipHeight,
                 });
-            }
 
             break;
     }
@@ -163,9 +161,7 @@ const getAutoPosition = (rectTarget: DOMRect, tooltipMargin: number, tooltipDime
             top: targetTop + targetHeight / 2 - tooltipHeight / 2,
             left: targetLeft - tooltipWidth - tooltipMargin,
         };
-    } else {
-        return { top: tooltipTop, left: tooltipLeft };
-    }
+    } else return { top: tooltipTop, left: tooltipLeft };
 };
 
 export const getTooltipPropsConfig = (
@@ -174,7 +170,7 @@ export const getTooltipPropsConfig = (
 ): Partial<Omit<ITooltipProps, "targetRef">> => {
     return {
         ...{
-            position: "right",
+            position: "bottom",
             openDelay: disabled ? 300 : 150,
             autoFixPosition: true,
         },
