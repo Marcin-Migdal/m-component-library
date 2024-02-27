@@ -1,2 +1,3 @@
 export { default, type ToastHandler } from "./ToastsContainer";
-export type { ToastsPositionTypes, ToastTypes } from "./toasts-interfaces";
+export type { ToastsPositionTypes, VariantTypes, ToastConfigType } from "./toasts-interfaces";
+export { defaultToastConfig } from "./utils";

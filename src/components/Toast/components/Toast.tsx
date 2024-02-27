@@ -5,16 +5,16 @@ import { CloseIcon } from "./icons";
 
 export interface IToastProps {
     onClose: (e: any) => void;
-    onMouseEnter: (toast: IToast) => void;
+    onMouseEnter: (toastId: number) => void;
     onMouseLeave: (toast: IToast) => void;
     toast: IToast;
 }
 
 export const Toast = ({ toast, onClose, onMouseEnter, onMouseLeave }: IToastProps) => {
-    const { type, title, message, id, icon } = toast;
+    const { variant, title, message, id, icon } = toast;
 
     return (
-        <div className={`toast ${type}`} onMouseEnter={() => onMouseEnter(toast)} onMouseLeave={() => onMouseLeave(toast)}>
+        <div className={`toast ${variant}`} onMouseEnter={() => onMouseEnter(toast.id)} onMouseLeave={() => onMouseLeave(toast)}>
             {icon}
             <div className="text-content">
                 <p>{title}</p>

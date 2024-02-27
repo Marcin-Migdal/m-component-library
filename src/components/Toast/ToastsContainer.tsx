@@ -1,17 +1,17 @@
 import React, { ForwardedRef, forwardRef, useImperativeHandle, useRef, useState } from "react";
 
-import { IAddToastPayload, IToast, IToastPropsBase, ToastConfigType, ToastTypes } from "./toasts-interfaces";
+import { IAddToastPayload, IToast, IToastPropsBase, ToastConfigType, VariantTypes } from "./toasts-interfaces";
 import { defaultToastConfig, getDefaultToastType } from "./utils";
 import { Toast } from "./components/Toast";
 
 import "./Toasts.css";
 
-type IToastProps<T = ToastTypes> = IToastPropsBase &
-    (T extends ToastTypes
-        ? { toastConfig?: ToastConfigType<ToastTypes> }
+type IToastProps<T = VariantTypes> = IToastPropsBase &
+    (T extends VariantTypes
+        ? { toastConfig?: ToastConfigType<VariantTypes> }
         : { toastConfig: T extends string ? ToastConfigType<T> : ToastConfigType<string> });
 
-export type ToastHandler<T = ToastTypes> = {
+export type ToastHandler<T = VariantTypes> = {
     addToast: (payload: IAddToastPayload<T>) => void;
     clear: () => void;
 };
@@ -26,17 +26,12 @@ function ToastsContainer<T extends string>(
 
     useImperativeHandle(ref, () => ({
         addToast: (payload) => {
-            const { message, type = getDefaultToastType(toastConfig), title = type, toastDuration = 2000 } = payload;
+            let toastType: string = payload.type ? payload.type : getDefaultToastType(toastConfig);
 
-            const newToast: IToast = {
-                message,
-                type: toastConfig[type].type,
-                title,
-                id: Date.now(),
-                icon: toastConfig[type]?.icon,
-                toastDuration,
-            };
+            const { title: defaultTitle, variant, icon } = toastConfig[toastType];
+            const { message, title, toastDuration = 2000 } = payload;
 
+            const newToast: IToast = { message, variant: variant, title: title || defaultTitle, id: Date.now(), icon: icon, toastDuration };
             setToasts((prevState) => [...prevState, newToast]);
 
             handleToastAutoClose(newToast);
@@ -50,9 +45,7 @@ function ToastsContainer<T extends string>(
 
     const handleCloseToast = (toastId: number) => setToasts((prevState) => prevState.filter((toast) => toast.id != toastId));
 
-    const handleMouseHover = (toast: IToast) => {
-        clearTimeout(timeoutRefs.current[toast.id]);
-    };
+    const handleMouseHover = (toastId: number) => clearTimeout(timeoutRefs.current[toastId]);
 
     const handleToastAutoClose = (toast: IToast) => {
         if (autoClose) {

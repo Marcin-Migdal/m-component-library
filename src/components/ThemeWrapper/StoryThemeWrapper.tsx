@@ -1,8 +1,10 @@
 import React, { CSSProperties, useRef } from "react";
 
 import { Input, Checkbox, Textarea, Dropdown, Button, ToastsContainer, Card, ProgressSpinner } from "../..";
+import { SuccessIcon, FailureIcon, WarningIcon } from "../Toast/components/icons";
 import { InputLabelType, LabelPercentageWidth } from "../global-interfaces";
 import { CardVariantTypes } from "../Panels/Card/card-interfaces";
+import { ToastConfigType } from "../Toast/toasts-interfaces";
 import { ThemeTypes } from "./theme-wrapper-interfaces";
 import { ToastHandler } from "../Toast/ToastsContainer";
 import ThemeWrapper from "./ThemeWrapper";
@@ -14,9 +16,16 @@ export interface IStoryThemeWrapperProps {
     panelVariant?: CardVariantTypes;
 }
 
+type NewToastTypes = "ok" | "not_ok";
+
+export const toastConfig: ToastConfigType<NewToastTypes> = {
+    ok: { icon: <SuccessIcon />, default: true, variant: "success", title: "ok" },
+    not_ok: { icon: <FailureIcon />, default: false, variant: "failure", title: "not_ok" },
+};
+
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
 const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", panelVariant = "default" }: IStoryThemeWrapperProps) => {
-    const toastRef = useRef<ToastHandler>(null);
+    const toastRef = useRef<ToastHandler<NewToastTypes>>(null);
 
     const checkboxLabelType = inputLabelType == "floating" ? "right" : inputLabelType;
     const inputLabelWidth: LabelPercentageWidth | undefined = inputLabelType == "floating" ? 90 : 20;
@@ -78,7 +87,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
 
                 <SectionHeader theme={theme} text="TOAST SECTION" />
 
-                <ToastsContainer ref={toastRef} />
+                <ToastsContainer ref={toastRef} toastConfig={toastConfig} />
                 <div>
                     <Button
                         style={{ marginTop: "10px" }}
@@ -91,11 +100,11 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                         onClick={() =>
                             toastRef.current?.addToast({
                                 message: "While sign in, error has occurred, error has occurred, error has occurred, error has occurred",
-                                type: "failure",
+                                type: "not_ok",
                             })
                         }
                     />
-                    <Button
+                    {/* <Button
                         style={{ marginTop: "10px" }}
                         text="Warning toast"
                         onClick={() => toastRef.current?.addToast({ message: "Are you sure, you want to log out?", type: "warning" })}
@@ -104,7 +113,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                         style={{ marginTop: "10px" }}
                         text="Information toast"
                         onClick={() => toastRef.current?.addToast({ message: "You where singed out", type: "information" })}
-                    />
+                    /> */}
                     <Button style={{ marginTop: "10px" }} text="Clear toasts" onClick={() => toastRef.current?.clear()} />
                 </div>
 
