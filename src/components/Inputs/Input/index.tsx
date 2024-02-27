@@ -1,2 +1,2 @@
 export { default } from "./Input";
-export { InputProps } from "./Input-interfaces";
+export type { InputProps } from "./Input-interfaces";

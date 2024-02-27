@@ -1,8 +1,8 @@
 import React, { CSSProperties, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
-import { generateTooltipStyle } from "./internal-helpers";
 import { ITooltipProps, TargetElementType } from "./Tooltip-interfaces";
+import { generateTooltipStyle } from "./internal-helpers";
 
 import "./Tooltip.css";
 
@@ -15,7 +15,7 @@ const TooltipWrapper = ({
     autoFixPosition = false,
     openDelay = 0,
     tooltipMargin = 6,
-    maxWidth = "150px",
+    maxWidth = 150,
 }: ITooltipProps) => {
     const tooltipRef = useRef<HTMLDivElement>(null);
 
@@ -23,6 +23,7 @@ const TooltipWrapper = ({
     const [tooltipStyle, setTooltipStyle] = useState<CSSProperties | undefined>(undefined);
 
     useEffect(() => {
+        //! EVENT LISTENER SECTION
         const targetElement: TargetElementType | null = targetRef.current;
         const tooltipElement: HTMLDivElement | null = tooltipRef.current;
         let timeoutId: NodeJS.Timeout | undefined = undefined;
@@ -49,17 +50,28 @@ const TooltipWrapper = ({
             targetElement.addEventListener("pointerout", handleMouseLeave);
         };
 
+        onInit();
+
+        //! TOOLTIP POSITION SECTION
         // changes tooltip style
         const changeTooltipStyle = (targetElement: TargetElementType, tooltipElement: HTMLDivElement | null) => {
             // only when tooltip is visible and its ref is not undefined
-            if (isVisible && tooltipElement) {
+
+            if (tooltipElement) {
                 // calculates tooltip position using refs and returns it as a style
-                const _tooltipStyle = generateTooltipStyle(targetElement, tooltipElement, position, autoFixPosition, tooltipMargin);
-                setTooltipStyle({ ..._tooltipStyle, ...style, maxWidth });
+                const _tooltipStyle = generateTooltipStyle(
+                    targetElement,
+                    tooltipElement,
+                    position,
+                    autoFixPosition,
+                    tooltipMargin,
+                    maxWidth
+                );
+
+                setTooltipStyle({ ..._tooltipStyle, ...style });
             }
         };
 
-        onInit();
         changeTooltipStyle(targetElement, tooltipElement);
 
         return () => {

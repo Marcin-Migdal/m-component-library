@@ -1,2 +1,2 @@
 export { default } from "./Form";
-export { FormErrorsType, UseFormikReturnType } from "./Form-interfaces";
+export type { FormErrorsType, UseFormikReturnType } from "./Form-interfaces";

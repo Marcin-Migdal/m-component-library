@@ -1,12 +1,20 @@
-import { TooltipPositionTypes, ITooltipPosition, ITooltipDimensions, ITooltipProps, TargetElementType } from "./Tooltip-interfaces";
+import {
+    TooltipPositionTypes,
+    ITooltipDimensions,
+    TargetElementType,
+    TooltipStyleType,
+    ITooltipPosition,
+    ITooltipProps,
+} from "./Tooltip-interfaces";
 
 export const generateTooltipStyle = (
     targetElement: TargetElementType,
     tooltipElement: HTMLDivElement,
     position: TooltipPositionTypes,
     autoFixPosition: boolean,
-    tooltipMargin: number
-): ITooltipPosition => {
+    tooltipMargin: number,
+    maxWidth: number
+): TooltipStyleType => {
     const scrollY = window.scrollY;
     const scrollX = window.scrollX;
 
@@ -14,7 +22,9 @@ export const generateTooltipStyle = (
     const rectTooltip = tooltipElement.getBoundingClientRect();
 
     const { top: targetTop, left: targetLeft, width: targetWidth, height: targetHeight } = rectTarget;
-    const { width: tooltipWidth, height: tooltipHeight } = rectTooltip;
+    let { width: tooltipWidth, height: tooltipHeight } = rectTooltip;
+
+    tooltipWidth = tooltipWidth > maxWidth ? maxWidth : tooltipWidth;
 
     let tooltipPosition: ITooltipPosition;
 
@@ -77,7 +87,7 @@ export const generateTooltipStyle = (
             break;
     }
 
-    return { top: tooltipPosition.top + scrollY, left: tooltipPosition.left + scrollX };
+    return { top: tooltipPosition.top + scrollY, left: tooltipPosition.left + scrollX, maxWidth: `${maxWidth}px` };
 };
 
 const getAutoPosition = (rectTarget: DOMRect, tooltipMargin: number, tooltipDimensions: ITooltipDimensions): ITooltipPosition => {
