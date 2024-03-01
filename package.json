@@ -1,6 +1,6 @@
 {
     "name": "@Marcin-Migdal/morti-component-library",
-    "version": "0.1.86",
+    "version": "0.1.87",
     "description": "React component library",
     "scripts": {
         "rollup": "rollup -c",
