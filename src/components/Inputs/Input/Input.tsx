@@ -32,6 +32,7 @@ const Input = (props: InputProps) => {
         autoFocus = false,
         mask = "",
         advancedMask = undefined,
+        ...otherProps
     } = props;
 
     const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
@@ -80,6 +81,7 @@ const Input = (props: InputProps) => {
                 {...(advancedMask
                     ? { ...advancedMask, beforeMaskedValueChange: handleBeforeMaskedValueChange }
                     : { mask: mask, formatChars: defaultFormatChars })}
+                {...otherProps}
             />
             {label && (
                 <InputsLabel

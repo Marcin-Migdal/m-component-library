@@ -13,6 +13,7 @@ function Form<T extends FormikValues = any>({
     handleValuesChange,
     externalErrors = {},
     onExternalErrorChange,
+    ...otherProps
 }: IFormProps<T>) {
     const formik = useFormik<T>({ initialValues: initialValues, onSubmit: onSubmit, validationSchema: validationSchema });
 
@@ -42,7 +43,7 @@ function Form<T extends FormikValues = any>({
     };
 
     return (
-        <form onSubmit={formik.handleSubmit} className={`m-form ${className}`}>
+        <form onSubmit={formik.handleSubmit} className={`m-form ${className}`} {...otherProps}>
             {children({
                 ...formik,
                 handleChange: _handleChange,

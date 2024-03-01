@@ -1,9 +1,9 @@
-import React, { ChangeEvent, useState, FocusEvent, useRef } from "react";
+import React, { ChangeEvent, useState, FocusEvent } from "react";
 
 import { getInputsErrorStyle } from "../../../helpers/input-error-helpers";
 import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
-import { TextareaProps } from "./Textarea-interfaces";
 import { InputError } from "../_inputsComponents/InputError/InputError";
+import { TextareaProps } from "./Textarea-interfaces";
 
 import "./Textarea.css";
 
@@ -21,6 +21,7 @@ const Textarea = ({
     labelWidth = 30,
     floatingInputWidth = 100,
     row = 4,
+    ...otherProps
 }: TextareaProps) => {
     const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
     const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -60,6 +61,7 @@ const Textarea = ({
                 onBlur={handleBlur}
                 placeholder={labelType == "floating" ? undefined : placeholder || (label ? `${label}...` : "")}
                 autoFocus={autoFocus}
+                {...otherProps}
             />
             {label && (
                 <InputsLabel

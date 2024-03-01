@@ -8,7 +8,16 @@ import { CheckboxProps } from "./checkbox-interfaces";
 
 import "./Checkbox.css";
 
-const Checkbox = ({ checked = false, name, onChange, label, error, labelType = "right", labelWidth = 30 }: CheckboxProps) => {
+const Checkbox = ({
+    checked = false,
+    name,
+    onChange,
+    label,
+    error,
+    labelType = "right",
+    labelWidth = 30,
+    ...otherProps
+}: CheckboxProps) => {
     const [isChecked, setIsChecked] = useState<boolean>(checked);
 
     useEffect(() => {
@@ -33,7 +42,14 @@ const Checkbox = ({ checked = false, name, onChange, label, error, labelType = "
         <div className={`m-checkbox-container ${error ? "error" : ""}`}>
             <div style={inputStyle}>
                 <label className={`m-checkbox-input-wrapper ${isChecked ? "checked" : ""}`}>
-                    <input className="m-checkbox-input" type="checkbox" checked={isChecked} onChange={handleChange} name={name} />
+                    <input
+                        className="m-checkbox-input"
+                        type="checkbox"
+                        checked={isChecked}
+                        onChange={handleChange}
+                        name={name}
+                        {...otherProps}
+                    />
                     <span className={`m-checkbox ${labelType}`}>
                         <FontAwesomeIcon className="m-checkbox-check-icon" icon="check" />
                     </span>

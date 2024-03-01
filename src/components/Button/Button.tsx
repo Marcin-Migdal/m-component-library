@@ -24,6 +24,7 @@ const Button = (props: IButtonProps) => {
         tooltip = "",
         disabledTooltip = "",
         tooltipConfig = getTooltipPropsConfig(disabled),
+        ...otherProps
     } = props;
 
     const ref = useRef<HTMLButtonElement>(null);
@@ -41,6 +42,7 @@ const Button = (props: IButtonProps) => {
                 onClick={(e) => onClick && onClick(e)}
                 disabled={disabled || busy}
                 type={type}
+                {...otherProps}
             >
                 {children}
                 {icon && iconPosition == "left" && <FontAwesomeIcon className="left-svg" icon={icon} />}

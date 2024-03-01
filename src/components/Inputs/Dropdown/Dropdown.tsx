@@ -36,6 +36,8 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
         clearable = true,
         readOnly = false,
         filter = true,
+
+        ...otherProps
     } = props;
 
     const containerRef = useRef<HTMLDivElement>(null);
@@ -147,6 +149,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
             className={`m-dropdown-container ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}  ${
                 error ? "error" : ""
             } ${disabled ? "disabled" : ""}`}
+            {...otherProps}
         >
             {/* input placeholder, displays selected value, also work as a filter input */}
             <input
