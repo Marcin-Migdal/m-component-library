@@ -1,8 +1,8 @@
-import React, { ChangeEvent, useState, FocusEvent } from "react";
+import React, { ChangeEvent, FocusEvent, useState } from "react";
 
-import { getInputsErrorStyle } from "../../../helpers/input-error-helpers";
-import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
 import { InputError } from "../_inputsComponents/InputError/InputError";
+import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
+import { getInputStyle, getInputsErrorStyle } from "../input-helpers";
 import { TextareaProps } from "./Textarea-interfaces";
 
 import "./Textarea.css";
@@ -14,7 +14,7 @@ const Textarea = ({
     onBlur,
     label,
     error,
-    labelType = "floating",
+    labelType = "left",
     placeholder,
     defaultInternalValue,
     autoFocus = false,
@@ -41,19 +41,12 @@ const Textarea = ({
         setInternalValue(e.target.value);
     };
 
-    const labelClasses = `m-textarea-label ${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
-
-    const inputStyle: React.CSSProperties = {
-        marginLeft: labelType == "left" ? `${labelWidth}%` : "unset",
-        width: labelType == "floating" ? `${floatingInputWidth}%` : `${100 - labelWidth}%`,
-    };
-
     return (
         <div className={`m-textarea-container ${error ? "error" : ""}`}>
             <textarea
                 name={name}
                 rows={row}
-                style={inputStyle}
+                style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
                 className={`m-textarea ${labelType}`}
                 value={_value}
                 onChange={handleChange}
@@ -67,7 +60,7 @@ const Textarea = ({
                 <InputsLabel
                     label={label}
                     labelType={labelType}
-                    labelClasses={labelClasses}
+                    inputClass="m-textarea-label"
                     labelWidth={labelWidth}
                     isFocused={isFocused}
                     isFilled={!!_value}

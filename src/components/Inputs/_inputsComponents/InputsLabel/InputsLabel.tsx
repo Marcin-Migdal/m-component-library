@@ -1,10 +1,10 @@
 import React from "react";
-import { FloatingInputWidth, InputLabelType, LabelPercentageWidth } from "../../../global-interfaces";
+import { InputLabelType, LabelPercentageWidth } from "../../../global-interfaces";
 
 interface IInputsLabelProps {
     label: string;
     labelType: InputLabelType;
-    labelClasses: string;
+    inputClass: string;
     labelWidth: LabelPercentageWidth;
 
     isFocused?: boolean;
@@ -14,7 +14,9 @@ interface IInputsLabelProps {
     dataId?: string;
 }
 
-export const InputsLabel = ({ labelType, label, labelClasses, labelWidth, isFocused, isFilled, dataId }: IInputsLabelProps) => {
+export const InputsLabel = ({ labelType, label, inputClass, labelWidth, isFocused, isFilled, dataId }: IInputsLabelProps) => {
+    const labelClasses = `${inputClass} ${labelType} ${labelType == "floating" && isFocused ? "focused" : isFilled ? "filled" : ""}`;
+
     return (
         <label
             data-id={dataId}

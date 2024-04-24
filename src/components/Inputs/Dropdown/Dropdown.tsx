@@ -1,12 +1,12 @@
-import React, { ChangeEvent, ReactElement, useEffect, useRef, useState, MouseEvent as ReactMouseEvent, FocusEvent } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { ChangeEvent, FocusEvent, ReactElement, MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
 
-import { DropdownProps, DropdownValue, IDropdownChangeEvent, IDropdownClearEvent, IDropdownOptionsProps } from "./dropdown-interfaces";
-import { getInputsErrorStyle } from "../../../helpers/input-error-helpers";
-import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
 import { InputError } from "../_inputsComponents/InputError/InputError";
+import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
+import { getInputStyle, getInputsErrorStyle } from "../input-helpers";
+import { DropdownProps, DropdownValue, IDropdownChangeEvent, IDropdownClearEvent, IDropdownOptionsProps } from "./dropdown-interfaces";
 
 import "./Dropdown.css";
 
@@ -25,7 +25,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
         onFocus,
         label,
         error,
-        labelType = "floating",
+        labelType = "left",
         placeholder,
         labelWidth = 30,
         floatingInputWidth = 100,
@@ -136,13 +136,6 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
         setIsFocused(true);
     };
 
-    const labelClasses = `m-dropdown-label ${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
-
-    const inputStyle: React.CSSProperties = {
-        marginLeft: labelType == "left" ? `${labelWidth}%` : "unset",
-        width: labelType == "floating" ? `${floatingInputWidth}%` : `${100 - labelWidth}%`,
-    };
-
     return (
         <div
             ref={containerRef}
@@ -158,7 +151,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
                 data-id={uniqueDropdownId}
                 className={`m-dropdown ${labelType}`}
                 type="text"
-                style={inputStyle}
+                style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
                 readOnly={readOnly || !filter}
                 value={(isFocused ? filterValue : _value?.[labelKey]) || ""}
                 onChange={handleFilterChange}
@@ -171,7 +164,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
                 <InputsLabel
                     label={label}
                     labelType={labelType}
-                    labelClasses={labelClasses}
+                    inputClass="m-dropdown-label"
                     labelWidth={labelWidth}
                     isFocused={isFocused}
                     isFilled={!!_value}

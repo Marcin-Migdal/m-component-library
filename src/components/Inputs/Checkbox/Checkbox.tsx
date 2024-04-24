@@ -1,23 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ChangeEvent, useEffect, useState } from "react";
 
-import { getCheckboxErrorStyle } from "../../../helpers/input-error-helpers";
-import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
 import { InputError } from "../_inputsComponents/InputError/InputError";
+import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
+import { getCheckboxErrorStyle, getInputStyle } from "../input-helpers";
 import { CheckboxProps } from "./checkbox-interfaces";
 
 import "./Checkbox.css";
 
-const Checkbox = ({
-    checked = false,
-    name,
-    onChange,
-    label,
-    error,
-    labelType = "right",
-    labelWidth = 30,
-    ...otherProps
-}: CheckboxProps) => {
+const Checkbox = ({ checked = false, name, onChange, label, error, labelType = "left", labelWidth = 30, ...otherProps }: CheckboxProps) => {
     const [isChecked, setIsChecked] = useState<boolean>(checked);
 
     useEffect(() => {
@@ -31,16 +22,9 @@ const Checkbox = ({
         setIsChecked(_checked);
     };
 
-    const labelClasses: string = `m-checkbox-label ${labelType}`;
-
-    const inputStyle: React.CSSProperties = {
-        marginLeft: labelType == "left" ? `${labelWidth}%` : "unset",
-        width: `${100 - labelWidth}%`,
-    };
-
     return (
         <div className={`m-checkbox-container ${error ? "error" : ""}`}>
-            <div style={inputStyle}>
+            <div style={getInputStyle(labelType, label, labelWidth, undefined)}>
                 <label className={`m-checkbox-input-wrapper ${isChecked ? "checked" : ""}`}>
                     <input
                         className="m-checkbox-input"
@@ -55,7 +39,7 @@ const Checkbox = ({
                     </span>
                 </label>
             </div>
-            {label && <InputsLabel label={label} labelType={labelType} labelClasses={labelClasses} labelWidth={labelWidth} />}
+            {label && <InputsLabel label={label} labelType={labelType} inputClass="m-input-label" labelWidth={labelWidth} />}
             {error && <InputError style={getCheckboxErrorStyle(labelType, labelWidth)} className="checkbox" error={error} />}
         </div>
     );

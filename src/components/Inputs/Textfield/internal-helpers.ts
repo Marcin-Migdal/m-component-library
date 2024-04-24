@@ -1,11 +1,11 @@
 import { InputState } from "react-input-mask";
 
-import { AdvancedMaskType, IFormatChars } from "./Input-interfaces";
+import { AdvancedMaskType, IFormatChars } from "./Textfield-interfaces";
 
-export type AdvancedInputMasksTypes = "TIME" | "DATE";
+export type AdvancedTextfieldMasksTypes = "TIME" | "DATE";
 
 export type AdvancedMasksConfig = {
-    [key in AdvancedInputMasksTypes]: AdvancedMaskType;
+    [key in AdvancedTextfieldMasksTypes]: AdvancedMaskType;
 };
 
 //! TIME mask handler

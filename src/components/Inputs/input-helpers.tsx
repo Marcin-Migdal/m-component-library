@@ -1,7 +1,9 @@
 import { CSSProperties } from "react";
 
-import * as GlobalInterfaces from "../components/global-interfaces";
-import { getCssVariable } from "./css-helprs";
+import { getCssVariable } from "../../helpers/css-helprs";
+import * as GlobalInterfaces from "../global-interfaces";
+import { InputLabelType } from "../global-interfaces";
+import { CheckboxLabelType } from "./Checkbox/checkbox-interfaces";
 
 export const getInputsErrorStyle = (
     labelType: GlobalInterfaces.InputLabelType,
@@ -30,3 +32,15 @@ export const getCheckboxErrorStyle = (
 
     return { left: labelType === "left" ? `calc(${labelWidth}% + ${additionalDistance})` : additionalDistance };
 };
+
+export function getInputStyle<T extends CheckboxLabelType | InputLabelType>(
+    labelType: T,
+    label: string | undefined,
+    labelWidth: GlobalInterfaces.LabelPercentageWidth,
+    floatingInputWidth: T extends CheckboxLabelType ? undefined : GlobalInterfaces.FloatingInputWidth
+): Pick<CSSProperties, "marginLeft" | "width"> {
+    return {
+        marginLeft: labelType === "left" && label ? `${labelWidth}%` : "unset",
+        width: labelType === "floating" ? `${floatingInputWidth}%` : label ? `${100 - labelWidth}%` : "100%",
+    };
+}

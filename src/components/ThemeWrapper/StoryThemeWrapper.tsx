@@ -1,13 +1,13 @@
 import React, { CSSProperties, useRef } from "react";
 
-import { Input, Checkbox, Textarea, Dropdown, Button, ToastsContainer, Card, ProgressSpinner } from "../..";
-import { SuccessIcon, FailureIcon, WarningIcon } from "../Toast/components/icons";
-import { InputLabelType, LabelPercentageWidth } from "../global-interfaces";
+import { Button, Card, Checkbox, Dropdown, ProgressSpinner, Textarea, Textfield, ToastsContainer } from "../..";
 import { CardVariantTypes } from "../Panels/Card/card-interfaces";
-import { ToastConfigType } from "../Toast/toasts-interfaces";
-import { ThemeTypes } from "./theme-wrapper-interfaces";
 import { ToastHandler } from "../Toast/ToastsContainer";
+import { FailureIcon, SuccessIcon } from "../Toast/components/icons";
+import { ToastConfigType } from "../Toast/toasts-interfaces";
+import { InputLabelType, LabelPercentageWidth } from "../global-interfaces";
 import ThemeWrapper from "./ThemeWrapper";
+import { ThemeTypes } from "./theme-wrapper-interfaces";
 
 export interface IStoryThemeWrapperProps {
     theme: ThemeTypes;
@@ -48,7 +48,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
 
                 <SectionHeader theme={theme} text="INPUT SECTION" />
 
-                <Input
+                <Textfield
                     label="label"
                     placeholder="placeholder"
                     labelType={inputLabelType}
@@ -129,7 +129,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                 <Card variant={panelVariant} style={{ width: "300px" }}>
                     <h2 style={{ width: "100%", textAlign: "center", marginTop: "0px" }}>Card title</h2>
 
-                    <Input
+                    <Textfield
                         label="label"
                         placeholder="placeholder"
                         labelType={inputLabelType}

@@ -2,10 +2,10 @@
 export { default as ThemeWrapper } from "./components/ThemeWrapper";
 
 // Inputs
-export { default as Input, type InputProps } from "./components/Inputs/Input";
 export { default as Checkbox, type CheckboxProps } from "./components/Inputs/Checkbox";
-export { default as Textarea, type TextareaProps } from "./components/Inputs/Textarea";
 export { default as Dropdown, type DropdownProps } from "./components/Inputs/Dropdown";
+export { default as Textarea, type TextareaProps } from "./components/Inputs/Textarea";
+export { default as Textfield, type InputProps } from "./components/Inputs/Textfield";
 
 //Form
 export { default as Form, type FormErrorsType } from "./components/Form";
@@ -19,7 +19,7 @@ export { default as Row } from "./components/Layout/Row";
 
 // Messages
 export { default as ToastsContainer, defaultToastConfig } from "./components/Toast";
-export type { ToastHandler, VariantTypes, ToastsPositionTypes, ToastConfigType } from "./components/Toast";
+export type { ToastConfigType, ToastHandler, ToastsPositionTypes, VariantTypes } from "./components/Toast";
 
 // Overlay
 export { default as Tooltip } from "./components/Tooltip";

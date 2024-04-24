@@ -1,20 +1,12 @@
 import React from "react";
 
-import * as GlobalInterfaces from "../../global-interfaces";
-import Textarea from ".";
+import Textarea, { TextareaProps } from ".";
 
-export interface IStoryInputWrapperProps {
-    value?: string;
-    label?: string;
-    labelType?: GlobalInterfaces.InputLabelType;
-    placeholder?: string;
-    defaultInternalValue?: string;
-    autoFocus?: boolean;
-    labelPercentageWidth?: GlobalInterfaces.LabelPercentageWidth;
-    row?: number;
-}
+export type IStoryInputWrapperProps = Omit<TextareaProps, "onChange" | "onBlur">;
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
-const StoryInputWrapper = (props: IStoryInputWrapperProps) => <Textarea {...props} />;
+const StoryInputWrapper = (props: IStoryInputWrapperProps) => (
+    <Textarea {...(props as TextareaProps)} onChange={(e) => console.log(e)} onBlur={(e) => console.log(e)} />
+);
 
 export default StoryInputWrapper;

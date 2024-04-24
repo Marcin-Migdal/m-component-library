@@ -1,4 +1,4 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
 import ThemeWrapper from "../../ThemeWrapper";
@@ -21,6 +21,5 @@ export const textarea = Template.bind({});
 
 textarea.args = {
     label: "Name",
-    labelType: "right",
     labelWidth: 20,
 };
