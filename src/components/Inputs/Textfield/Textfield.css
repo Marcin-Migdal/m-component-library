@@ -1,9 +1,27 @@
-.m-input-container {
+.m-textfield-container {
     position: relative;
     margin-bottom: var(--input-margin-bottom);
 }
 
-.m-input-container .m-input {
+.m-textfield-container.small {
+    --input-height: var(--small-input-height);
+    --input-font-size: var(--small-input-font-size);
+    --input-padding-left: var(--small-input-padding-left);
+}
+
+.m-textfield-container.medium {
+    --input-height: var(--medium-input-height);
+    --input-font-size: var(--medium-input-font-size);
+    --input-padding-left: var(--medium-input-padding-left);
+}
+
+.m-textfield-container.large {
+    --input-height: var(--large-input-height);
+    --input-font-size: var(--large-input-font-size);
+    --input-padding-left: var(--large-input-padding-left);
+}
+
+.m-textfield-container .m-textfield {
     border: none;
     outline: none;
     height: var(--input-height);
@@ -15,69 +33,23 @@
     color: inherit;
 }
 
-.m-input-container .m-input.left {
-}
-
-.m-input-container .m-input.right {
-}
-
-.m-input-container .m-input:hover {
+.m-textfield-container .m-textfield:hover {
     transition: 0.2s;
 }
-.m-input-container .m-input:focus {
+.m-textfield-container .m-textfield:focus {
     transition: 0.1s;
 }
 
-.m-input-label {
-    color: inherit;
-    position: absolute;
-    font-size: var(--input-font-size);
-    padding-left: var(--input-label-padding-left);
-    pointer-events: none;
-    transition: 0.2s;
-}
-
-.m-input-label.floating {
-    transform-origin: 0 0;
-    transform: translate(var(--floating-label-translate-x), var(--floating-label-translate-y));
-}
-
-.m-input-label.floating.filled,
-.m-input-label.floating.focused {
-    transform: translate(var(--floating-label-translate-x-active), var(--floating-label-translate-y-active));
-    font-size: var(--floating-label--font-size-active);
-}
-
-.m-input-label.left,
-.m-input-label.right {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    display: flex;
-    align-items: center;
-}
-
-.m-input-label.left {
-    left: 0;
-}
-
-.m-input-label.right {
-}
-
 /* error section */
-.m-input-container.error .m-input {
+.m-textfield-container.error .m-textfield {
     border: 1px solid var(--failure-color);
     color: var(--failure-color) !important;
 }
 
-.m-input-container.error .m-input:focus {
+.m-textfield-container.error .m-textfield:focus {
     box-shadow: var(--big-box-shadow) var(--failure-color);
 }
 
-.m-input-container.error .m-input:not(:disabled)::placeholder {
-    color: var(--failure-color) !important;
-}
-
-.m-input-container.error .m-input-label {
+.m-textfield-container.error .m-textfield:not(:disabled)::placeholder {
     color: var(--failure-color) !important;
 }

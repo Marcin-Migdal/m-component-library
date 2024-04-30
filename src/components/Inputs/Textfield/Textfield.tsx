@@ -32,6 +32,7 @@ const Textfield = (props: TextfieldProps) => {
         autoFocus = false,
         mask = "",
         advancedMask = undefined,
+        size = "small",
         ...otherProps
     } = props;
 
@@ -57,11 +58,11 @@ const Textfield = (props: TextfieldProps) => {
         advancedMask?.beforeChange(newState, oldState, userInput, advancedMask.formatChars) as InputState;
 
     return (
-        <div className={`m-input-container ${error ? "error" : ""}`}>
+        <div className={`m-textfield-container ${size} ${error ? "error" : ""}`}>
             <InputMask
                 disabled={disabled}
                 name={name}
-                className={`m-input ${labelType}`}
+                className={`m-textfield ${labelType}`}
                 type={type}
                 style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
                 value={_value}
@@ -80,7 +81,7 @@ const Textfield = (props: TextfieldProps) => {
                 <InputsLabel
                     label={label}
                     labelType={labelType}
-                    inputClass="m-input-label"
+                    className="textfield"
                     labelWidth={labelWidth}
                     isFocused={isFocused}
                     isFilled={!!_value}

@@ -21,6 +21,7 @@ const Textarea = ({
     labelWidth = 30,
     floatingInputWidth = 100,
     row = 4,
+    size = "small",
     ...otherProps
 }: TextareaProps) => {
     const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
@@ -42,7 +43,7 @@ const Textarea = ({
     };
 
     return (
-        <div className={`m-textarea-container ${error ? "error" : ""}`}>
+        <div className={`m-textarea-container ${size} ${error ? "error" : ""}`}>
             <textarea
                 name={name}
                 rows={row}
@@ -60,7 +61,7 @@ const Textarea = ({
                 <InputsLabel
                     label={label}
                     labelType={labelType}
-                    inputClass="m-textarea-label"
+                    className="textarea"
                     labelWidth={labelWidth}
                     isFocused={isFocused}
                     isFilled={!!_value}

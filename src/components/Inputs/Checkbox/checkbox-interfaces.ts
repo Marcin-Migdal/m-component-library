@@ -10,6 +10,7 @@ export interface CheckboxProps {
     error?: string;
     labelType?: CheckboxLabelType;
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
+    size?: GlobalInterfaces.InputSizeType;
 }
 
 export type CheckboxLabelType = Exclude<GlobalInterfaces.InputLabelType, "floating">;

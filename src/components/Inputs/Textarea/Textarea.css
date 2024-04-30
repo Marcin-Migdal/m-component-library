@@ -3,13 +3,31 @@
     margin-bottom: calc(var(--input-margin-bottom) - 4px);
 }
 
+.m-textarea-container.small {
+    --input-font-size: var(--small-input-font-size);
+    --input-textarea-height: var(--small-input-textarea-height);
+    --input-padding-left: var(--small-input-padding-left);
+}
+
+.m-textarea-container.medium {
+    --input-font-size: var(--medium-input-font-size);
+    --input-textarea-height: var(--medium-input-textarea-height);
+    --input-padding-left: var(--medium-input-padding-left);
+}
+
+.m-textarea-container.large {
+    --input-font-size: var(--large-input-font-size);
+    --input-textarea-height: var(--large-input-textarea-height);
+    --input-padding-left: var(--large-input-padding-left);
+}
+
 .m-textarea-container .m-textarea {
     border: none;
     outline: none;
-    height: 90px;
+    height: var(--input-textarea-height);
     font-size: var(--input-font-size);
     padding-top: 4px;
-    padding-left: var(--input-padding-left) !important;
+    padding-left: var(--input-padding-left);
     box-sizing: border-box;
     border-radius: var(--border-radius);
     transition: 0.2s ease-in-out;
@@ -17,52 +35,12 @@
     color: inherit;
 }
 
-.m-textarea-container .m-textarea.left {
-}
-
-.m-textarea-container .m-textarea.right {
-}
-
 .m-textarea-container .m-textarea:hover {
+    transition: 0.2s;
 }
 
 .m-textarea-container .m-textarea:active {
     transition: 0s !important;
-}
-
-.m-textarea-label {
-    color: inherit;
-    position: absolute;
-    padding-left: var(--input-label-padding-left);
-    pointer-events: none;
-    transition: 0.2s;
-}
-
-.m-textarea-label.floating {
-    transform-origin: 0 0;
-    transform: translate(var(--floating-label-translate-x), var(--floating-label-translate-y));
-}
-
-.m-textarea-label.floating.filled,
-.m-textarea-label.floating.focused {
-    transform: translate(var(--floating-label-translate-x-active), var(--floating-label-translate-y-active));
-    font-size: var(--floating-label--font-size-active);
-}
-
-.m-textarea-label.left,
-.m-textarea-label.right {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    display: flex;
-    align-items: center;
-}
-
-.m-textarea-label.left {
-    left: 0;
-}
-
-.m-textarea-label.right {
 }
 
 .m-textarea-container .m-textarea::-webkit-scrollbar {
@@ -88,9 +66,5 @@
 }
 
 .m-textarea-container.error .m-textarea:not(:disabled)::placeholder {
-    color: var(--failure-color) !important;
-}
-
-.m-textarea-container.error .m-textarea-label {
     color: var(--failure-color) !important;
 }

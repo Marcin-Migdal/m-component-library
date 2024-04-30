@@ -1,41 +1,26 @@
 /*! INPUT SECTION */
-.default-theme-dark-mode-theme .m-input-container {
+.default-theme-dark-mode-theme .m-textfield-container {
     color: var(--input-text-color);
 }
 
-.default-theme-dark-mode-theme .m-input {
+.default-theme-dark-mode-theme .m-textfield {
     background: var(--input-background-color);
 }
 
-.default-theme-dark-mode-theme .m-input:focus {
+.default-theme-dark-mode-theme .m-textfield:focus {
     box-shadow: var(--big-box-shadow) var(--box-shadow-color);
 }
 
-.default-theme-dark-mode-theme .m-input:focus,
-.default-theme-dark-mode-theme .m-input:hover {
+.default-theme-dark-mode-theme .m-textfield:focus,
+.default-theme-dark-mode-theme .m-textfield:hover {
     background-color: var(--input-hover-background-color);
 }
 
-.default-theme-dark-mode-theme .m-input:not(:disabled)::placeholder {
+.default-theme-dark-mode-theme .m-textfield:not(:disabled)::placeholder {
     color: var(--input-placeholder-color);
 }
 
-.default-theme-dark-mode-theme .m-input:not(:disabled):focus::placeholder,
-.default-theme-dark-mode-theme .m-input:not(:disabled):hover::placeholder {
-    color: var(--input-hover-placeholder-color);
-}
-
-.default-theme-dark-mode-theme .m-input-label.right,
-.default-theme-dark-mode-theme .m-input-label.left {
-    color: var(--input-label-color) !important;
-}
-
-.default-theme-dark-mode-theme .m-input-label.floating {
-    color: var(--input-placeholder-color);
-}
-
-.default-theme-dark-mode-theme .m-input:hover + .m-input-label.floating,
-.default-theme-dark-mode-theme .m-input-label.floating.filled,
-.default-theme-dark-mode-theme .m-input-label.floating.focused {
+.default-theme-dark-mode-theme .m-textfield:not(:disabled):focus::placeholder,
+.default-theme-dark-mode-theme .m-textfield:not(:disabled):hover::placeholder {
     color: var(--input-hover-placeholder-color);
 }

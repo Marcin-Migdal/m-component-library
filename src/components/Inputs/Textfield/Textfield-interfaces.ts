@@ -17,6 +17,7 @@ type BaseTextfieldProps = {
     autoFocus?: boolean;
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
     floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
+    size?: GlobalInterfaces.InputSizeType;
 } & ConditionalInputLabelType;
 
 export type TextfieldProps = BaseTextfieldProps & (BaseMaskTextfieldType | AdvancedMaskTextfieldType | NoMaskTextfieldType);

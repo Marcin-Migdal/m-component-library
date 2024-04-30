@@ -32,6 +32,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
         options = [],
         labelKey = "label",
         valueKey = "value",
+        size = "small",
 
         clearable = true,
         readOnly = false,
@@ -137,13 +138,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
     };
 
     return (
-        <div
-            ref={containerRef}
-            className={`m-dropdown-container ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}  ${
-                error ? "error" : ""
-            } ${disabled ? "disabled" : ""}`}
-            {...otherProps}
-        >
+        <div ref={containerRef} className={`m-dropdown-container ${size} ${error ? "error" : ""}`} {...otherProps}>
             {/* input placeholder, displays selected value, also work as a filter input */}
             <input
                 ref={filterRef}
@@ -164,7 +159,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
                 <InputsLabel
                     label={label}
                     labelType={labelType}
-                    inputClass="m-dropdown-label"
+                    className="dropdown"
                     labelWidth={labelWidth}
                     isFocused={isFocused}
                     isFilled={!!_value}

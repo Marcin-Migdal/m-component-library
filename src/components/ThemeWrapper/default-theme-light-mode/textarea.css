@@ -25,21 +25,6 @@
     color: var(--input-hover-placeholder-color);
 }
 
-.default-theme-light-mode-theme .m-textarea-label.right,
-.default-theme-light-mode-theme .m-textarea-label.left {
-    color: var(--input-label-color) !important;
-}
-
-.default-theme-light-mode-theme .m-textarea-label.floating {
-    color: var(--input-placeholder-color);
-}
-
-.default-theme-light-mode-theme .m-textarea:hover + .m-textarea-label.floating,
-.default-theme-light-mode-theme .m-textarea-label.floating.filled,
-.default-theme-light-mode-theme .m-textarea-label.floating.focused {
-    color: var(--input-hover-placeholder-color);
-}
-
 .default-theme-light-mode-theme .m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
     background-color: var(--background-color);
 }

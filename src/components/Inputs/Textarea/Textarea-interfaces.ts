@@ -15,4 +15,5 @@ export type TextareaProps = {
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
     floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
     row?: number;
+    size?: GlobalInterfaces.InputSizeType;
 } & ConditionalInputLabelType;

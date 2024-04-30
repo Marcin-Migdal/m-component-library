@@ -8,7 +8,17 @@ import { CheckboxProps } from "./checkbox-interfaces";
 
 import "./Checkbox.css";
 
-const Checkbox = ({ checked = false, name, onChange, label, error, labelType = "left", labelWidth = 30, ...otherProps }: CheckboxProps) => {
+const Checkbox = ({
+    checked = false,
+    name,
+    onChange,
+    label,
+    error,
+    labelType = "left",
+    labelWidth = 30,
+    size = "small",
+    ...otherProps
+}: CheckboxProps) => {
     const [isChecked, setIsChecked] = useState<boolean>(checked);
 
     useEffect(() => {
@@ -23,7 +33,7 @@ const Checkbox = ({ checked = false, name, onChange, label, error, labelType = "
     };
 
     return (
-        <div className={`m-checkbox-container ${error ? "error" : ""}`}>
+        <div className={`m-checkbox-container ${size} ${error ? "error" : ""}`}>
             <div style={getInputStyle(labelType, label, labelWidth, undefined)}>
                 <label className={`m-checkbox-input-wrapper ${isChecked ? "checked" : ""}`}>
                     <input
@@ -39,7 +49,7 @@ const Checkbox = ({ checked = false, name, onChange, label, error, labelType = "
                     </span>
                 </label>
             </div>
-            {label && <InputsLabel label={label} labelType={labelType} inputClass="m-input-label" labelWidth={labelWidth} />}
+            {label && <InputsLabel label={label} labelType={labelType} className="m-input-label" labelWidth={labelWidth} />}
             {error && <InputError style={getCheckboxErrorStyle(labelType, labelWidth)} className="checkbox" error={error} />}
         </div>
     );
