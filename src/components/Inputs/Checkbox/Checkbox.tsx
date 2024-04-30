@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 
 import { InputError } from "../_inputsComponents/InputError/InputError";
 import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
@@ -19,6 +19,7 @@ const Checkbox = ({
     size = "small",
     ...otherProps
 }: CheckboxProps) => {
+    const checkboxContainerRef = useRef<HTMLDivElement>(null);
     const [isChecked, setIsChecked] = useState<boolean>(checked);
 
     useEffect(() => {
@@ -33,7 +34,7 @@ const Checkbox = ({
     };
 
     return (
-        <div className={`m-checkbox-container ${size} ${error ? "error" : ""}`}>
+        <div ref={checkboxContainerRef} className={`m-checkbox-container ${size} ${error ? "error" : ""}`}>
             <div style={getInputStyle(labelType, label, labelWidth, undefined)}>
                 <label className={`m-checkbox-input-wrapper ${isChecked ? "checked" : ""}`}>
                     <input
@@ -50,7 +51,13 @@ const Checkbox = ({
                 </label>
             </div>
             {label && <InputsLabel label={label} labelType={labelType} className="m-input-label" labelWidth={labelWidth} />}
-            {error && <InputError style={getCheckboxErrorStyle(labelType, labelWidth)} className="checkbox" error={error} />}
+            {error && checkboxContainerRef.current && (
+                <InputError
+                    style={getCheckboxErrorStyle(checkboxContainerRef.current, labelType, labelWidth)}
+                    className="checkbox"
+                    error={error}
+                />
+            )}
         </div>
     );
 };
