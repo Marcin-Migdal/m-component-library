@@ -8,16 +8,28 @@
 /* APP CSS VARIABLES  */
 body {
     /* Common color variables across all themes */
+    --success-light-color: rgb(78, 201, 139);
     --success-color: rgb(30, 169, 100);
+    --success-dark-color: rgb(2, 114, 58);
+
     --success-color-rgb: 30, 169, 100;
 
-    --failure-color: rgb(245, 63, 63);
+    --failure-light-color: rgb(252, 98, 98);
+    --failure-color: rgb(245, 58, 58);
+    --failure-dark-color: rgb(189, 7, 7);
+
     --failure-color-rgb: 245, 63, 63;
 
-    --warning-color: rgb(235, 198, 77);
+    --warning-light-color: rgb(245, 215, 116);
+    --warning-color: rgb(233, 195, 72);
+    --warning-dark-color: rgb(212, 170, 31);
+
     --warning-color-rgb: 235, 198, 77;
 
-    --information-color: rgb(105, 108, 255);
+    --information-light-color: rgb(135, 137, 255);
+    --information-color: rgb(96, 98, 247);
+    --information-dark-color: rgb(63, 66, 221);
+
     --information-color-rgb: 105, 108, 255;
 
     /* all colors of grey across  all themes */
