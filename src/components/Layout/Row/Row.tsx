@@ -4,13 +4,24 @@ import "./Row.css";
 
 interface IRowProps {
     className?: string;
-    style?: CSSProperties;
+    style?: Omit<CSSProperties, "gap">;
     children?: any;
+    gap?: {
+        breakpoint: "sm" | "md" | "lg" | "xl";
+        gapSize?: string | number;
+    };
 }
 
-const Row = ({ className = "", style = {}, children }: IRowProps) => {
+const Row = ({ className = "", style = {}, children, gap }: IRowProps) => {
     return (
-        <div style={style} className={`m-grid-row ${className}`}>
+        <div
+            style={{
+                ...style,
+                //@ts-ignore
+                "--col-gap": gap?.gapSize ? gap.gapSize : "unset",
+            }}
+            className={`m-grid-row ${gap ? `col-${gap.breakpoint}-gap` : ""} ${className}`}
+        >
             {children}
         </div>
     );
