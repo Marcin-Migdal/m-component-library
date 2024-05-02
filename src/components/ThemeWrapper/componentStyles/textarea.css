@@ -1,0 +1,30 @@
+/*! TEXTAREA SECTION */
+.common-wrapper-container .m-textarea-container {
+    color: var(--input-text-color);
+}
+
+.common-wrapper-container .m-textarea {
+    background: var(--input-background-color);
+}
+
+.common-wrapper-container .m-textarea:focus {
+    box-shadow: var(--big-box-shadow) var(--box-shadow-color);
+}
+
+.common-wrapper-container .m-textarea:focus,
+.common-wrapper-container .m-textarea:hover {
+    background-color: var(--input-hover-background-color);
+}
+
+.common-wrapper-container .m-textarea:not(:disabled)::placeholder {
+    color: var(--input-placeholder-color);
+}
+
+.common-wrapper-container .m-textarea:not(:disabled):focus::placeholder,
+.common-wrapper-container .m-textarea:not(:disabled):hover::placeholder {
+    color: var(--input-hover-placeholder-color);
+}
+
+.common-wrapper-container .m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
+    background-color: var(--background-color);
+}

@@ -1,0 +1,15 @@
+.common-wrapper-container .m-card {
+    background-color: var(--card-background-color);
+    color: var(--white);
+}
+
+.common-wrapper-container .m-card.border {
+    border: var(--border) var(--border-color);
+}
+
+.common-wrapper-container .m-card.gradient-border-glow::after,
+.common-wrapper-container .m-card.gradient-border-glow::before,
+.common-wrapper-container .m-card.gradient-border::after,
+.common-wrapper-container .m-card.gradient-border::before {
+    background: conic-gradient(from var(--gradient-angle), var(--card-gradient-colors));
+}

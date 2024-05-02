@@ -1,0 +1,73 @@
+/*! BUTTON SECTION */
+.common-wrapper-container .m-button:not(.text):focus {
+    box-shadow: var(--small-box-shadow) var(--box-shadow-color);
+}
+
+/* VARIANT OUTLINED */
+.common-wrapper-container .m-button.outlined {
+    border-color: var(--border-color);
+    background-color: var(--background-color);
+    color: var(--border-color);
+}
+
+.common-wrapper-container .m-button.outlined:hover:enabled {
+    background-color: var(--border-color);
+    color: var(--background-color);
+}
+
+.common-wrapper-container .m-button.outlined:active:enabled {
+    background-color: var(--border-color);
+    color: var(--background-color);
+}
+
+/* VARIANT FULL */
+.common-wrapper-container .m-button.full {
+    border-color: var(--btn-full-background-color);
+    background-color: var(--btn-full-background-color);
+    color: var(--btn-full-color);
+}
+
+.common-wrapper-container .m-button.full:hover:enabled {
+    border-color: var(--btn-full-hover-background-color);
+    background-color: var(--btn-full-hover-background-color);
+}
+
+.common-wrapper-container .m-button.full:active:enabled {
+    border-color: var(--btn-full-hover-background-color);
+    background-color: var(--btn-full-hover-background-color);
+}
+
+/* VARIANT TEXT */
+.common-wrapper-container .m-button.text {
+    color: var(--btn-text-hover-color);
+}
+
+.common-wrapper-container .m-button.text:hover:enabled {
+    background-color: var(--btn-text-hover-background-color);
+}
+
+.common-wrapper-container .m-button.text:active:enabled {
+    background-color: var(--btn-text-active-background-color);
+}
+
+/* VARIANT NEON */
+.common-wrapper-container .m-button.neon {
+    color: var(--btn-neon-color);
+    border-color: var(--btn-neon-color);
+
+    box-shadow: inset 0 0 0.5em 0.05em var(--btn-neon-color), 0 0 0.6em 0.07em var(--btn-neon-color);
+}
+
+.common-wrapper-container .m-button.neon:hover:enabled,
+.common-wrapper-container .m-button.neon:focus:enabled {
+    background-color: var(--btn-neon-hover-background-color);
+    color: var(--background-color);
+}
+
+.common-wrapper-container .m-button.neon::before {
+    background: var(--btn-neon-color);
+}
+
+.common-wrapper-container .m-button.neon::after {
+    box-shadow: 0 0 2em 0.4em var(--btn-neon-color);
+}

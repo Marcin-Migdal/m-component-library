@@ -1,0 +1,26 @@
+/*! INPUT SECTION */
+.common-wrapper-container {
+    color: var(--input-text-color);
+}
+
+.common-wrapper-container .m-textfield {
+    background: var(--input-background-color);
+}
+
+.common-wrapper-container .m-textfield:focus {
+    box-shadow: var(--big-box-shadow) var(--box-shadow-color);
+}
+
+.common-wrapper-container .m-textfield:focus,
+.common-wrapper-container .m-textfield:hover {
+    background-color: var(--input-hover-background-color);
+}
+
+.common-wrapper-container .m-textfield:not(:disabled)::placeholder {
+    color: var(--input-placeholder-color);
+}
+
+.common-wrapper-container .m-textfield:not(:disabled):focus::placeholder,
+.common-wrapper-container .m-textfield:not(:disabled):hover::placeholder {
+    color: var(--input-hover-placeholder-color);
+}
