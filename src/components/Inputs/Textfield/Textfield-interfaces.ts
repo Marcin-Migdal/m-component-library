@@ -2,7 +2,6 @@ import { ChangeEvent, FocusEvent } from "react";
 import { InputState } from "react-input-mask";
 
 import * as GlobalInterfaces from "../../global-interfaces";
-import { ConditionalInputLabelType } from "../Input-interfaces";
 
 type BaseTextfieldProps = {
     value?: string;
@@ -18,7 +17,9 @@ type BaseTextfieldProps = {
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
     floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
     size?: GlobalInterfaces.InputSizeType;
-} & ConditionalInputLabelType;
+    label?: string;
+    labelType?: GlobalInterfaces.InputLabelType;
+};
 
 export type TextfieldProps = BaseTextfieldProps & (BaseMaskTextfieldType | AdvancedMaskTextfieldType | NoMaskTextfieldType);
 

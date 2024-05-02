@@ -1,7 +1,6 @@
 import { ChangeEvent, FocusEvent } from "react";
 
 import * as GlobalInterfaces from "../../global-interfaces";
-import { ConditionalInputLabelType } from "../Input-interfaces";
 
 export type TextareaProps = {
     value?: string;
@@ -16,4 +15,6 @@ export type TextareaProps = {
     floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
     row?: number;
     size?: GlobalInterfaces.InputSizeType;
-} & ConditionalInputLabelType;
+    label?: string;
+    labelType?: GlobalInterfaces.InputLabelType;
+};

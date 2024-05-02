@@ -1,9 +1,8 @@
 import { FocusEvent } from "react";
 
 import * as GlobalInterfaces from "../../global-interfaces";
+import { ConditionalInputLabelType } from "../Input-interfaces";
 
-// spróbować rozdzielić DropdownProps żeby interface lepiej był w stanie rozpoznać, kiedy T istnieje, a kiedy T jest ILabelValue
-// może wtedy na zewnątrz będzie lepiej w stanie jakiego typu są pola
 type DropdownBaseProps<T> = {
     value?: DropdownValue<T>;
     name?: string;
@@ -11,9 +10,7 @@ type DropdownBaseProps<T> = {
     onChange?: (event: IDropdownChangeEvent<T>, value: DropdownValue<T>) => void;
     onClear?: (event: IDropdownClearEvent<T>, value: DropdownValue<T>) => void;
     onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
-    label?: string;
     error?: string;
-    labelType?: GlobalInterfaces.InputLabelType;
     placeholder?: string;
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
     floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
@@ -23,7 +20,7 @@ type DropdownBaseProps<T> = {
     size?: GlobalInterfaces.InputSizeType;
 
     options?: T[];
-};
+} & ConditionalInputLabelType;
 
 export type DropdownCustomProps<T> = {
     labelKey: keyof T;

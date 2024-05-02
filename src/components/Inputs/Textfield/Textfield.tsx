@@ -32,7 +32,7 @@ const Textfield = (props: TextfieldProps) => {
         autoFocus = false,
         mask = "",
         advancedMask = undefined,
-        size = "small",
+        size = "medium",
         ...otherProps
     } = props;
 
