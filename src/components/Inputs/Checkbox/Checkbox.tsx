@@ -16,7 +16,7 @@ const Checkbox = ({
     error,
     labelType = "left",
     labelWidth = 30,
-    size = "small",
+    size = "medium",
     ...otherProps
 }: CheckboxProps) => {
     const checkboxContainerRef = useRef<HTMLDivElement>(null);
@@ -45,7 +45,7 @@ const Checkbox = ({
                         name={name}
                         {...otherProps}
                     />
-                    <span className={`m-checkbox ${labelType}`}>
+                    <span className={`m-input m-checkbox ${labelType}`}>
                         <FontAwesomeIcon className="m-checkbox-check-icon" icon="check" />
                     </span>
                 </label>

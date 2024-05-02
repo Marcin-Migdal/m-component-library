@@ -32,7 +32,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
         options = [],
         labelKey = "label",
         valueKey = "value",
-        size = "small",
+        size = "medium",
 
         clearable = true,
         readOnly = false,
@@ -144,7 +144,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
                 ref={filterRef}
                 disabled={disabled}
                 data-id={uniqueDropdownId}
-                className={`m-dropdown ${labelType}`}
+                className={`m-input m-dropdown ${labelType}`}
                 type="text"
                 style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
                 readOnly={readOnly || !filter}
