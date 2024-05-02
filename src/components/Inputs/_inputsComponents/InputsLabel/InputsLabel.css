@@ -1,0 +1,52 @@
+.m-input-label {
+    color: inherit;
+    position: absolute;
+    font-size: var(--input-font-size);
+    pointer-events: none;
+    transition: 0.2s;
+}
+
+.m-input-label.floating {
+    padding-left: var(--input-padding-left);
+}
+
+.m-input-label.floating:not(.textarea) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.m-input-label.floating.textarea {
+    top: calc(var(--input-padding-left) - 4px);
+}
+
+.m-input-label.floating.filled,
+.m-input-label.floating.focused {
+    top: 0;
+    transform: translateY(calc(-100% - 1px));
+    font-size: 0.75rem;
+}
+
+.m-input-label.left,
+.m-input-label.right {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+
+.m-input-label.left {
+    left: 0;
+}
+
+.m-input-label.right {
+    padding-left: var(--input-padding-left);
+}
+
+/* ! ERRORS */
+.m-checkbox-container.error .m-input-label,
+.m-dropdown-container.error .m-input-label,
+.m-textarea-container.error .m-input-label,
+.m-textfield-container.error .m-input-label {
+    color: var(--failure-color) !important;
+}

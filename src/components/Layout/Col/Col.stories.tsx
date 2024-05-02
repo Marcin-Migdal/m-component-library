@@ -1,9 +1,9 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
-import StoryColWrapper from "./StoryColWrapper";
 import ThemeWrapper from "../../ThemeWrapper";
 import Row from "../Row/Row";
+import StoryColWrapper from "./StoryColWrapper";
 
 export default {
     title: "Morti-component-library/Layout",

@@ -8,16 +8,28 @@
 /* APP CSS VARIABLES  */
 body {
     /* Common color variables across all themes */
+    --success-light-color: rgb(78, 201, 139);
     --success-color: rgb(30, 169, 100);
+    --success-dark-color: rgb(2, 114, 58);
+
     --success-color-rgb: 30, 169, 100;
 
-    --failure-color: rgb(245, 63, 63);
+    --failure-light-color: rgb(252, 98, 98);
+    --failure-color: rgb(245, 58, 58);
+    --failure-dark-color: rgb(189, 7, 7);
+
     --failure-color-rgb: 245, 63, 63;
 
-    --warning-color: rgb(235, 198, 77);
+    --warning-light-color: rgb(245, 215, 116);
+    --warning-color: rgb(233, 195, 72);
+    --warning-dark-color: rgb(212, 170, 31);
+
     --warning-color-rgb: 235, 198, 77;
 
-    --information-color: rgb(105, 108, 255);
+    --information-light-color: rgb(135, 137, 255);
+    --information-color: rgb(96, 98, 247);
+    --information-dark-color: rgb(63, 66, 221);
+
     --information-color-rgb: 105, 108, 255;
 
     /* all colors of grey across  all themes */
@@ -64,21 +76,34 @@ body {
     --button-padding: 0.245em 0.65em;
     --btn-right-margin: 10px;
 
-    /* Inputs */
-    --input-height: 30px;
+    /*! Inputs */
     --input-margin-bottom: 18px;
-    --input-padding-left: 8px;
-    --input-font-size: 16px;
-    --input-label-padding-left: 0.35em;
 
-    --checkbox-input-size: 22px;
+    /*? Small */
+    --small-input-height: 24px;
+    --small-input-padding-left: 6px;
+    --small-input-font-size: 16px;
 
-    --floating-label--font-size-active: 12px;
-    --floating-label-translate-x: 2px;
-    --floating-label-translate-y: 4px;
-    --floating-label-translate-x-active: 3px;
-    --floating-label-translate-y-active: -18px;
+    --small-input-textarea-height: 80px;
+    --small-input-checkbox-size: 18px;
 
+    /*? Medium */
+    --medium-input-height: 30px;
+    --medium-input-padding-left: 8px;
+    --medium-input-font-size: 16px;
+
+    --medium-input-textarea-height: 100px;
+    --medium-input-checkbox-size: 22px;
+
+    /*? Large */
+    --large-input-height: 36px;
+    --large-input-padding-left: 9px;
+    --large-input-font-size: 18px;
+
+    --large-input-textarea-height: 120px;
+    --large-input-checkbox-size: 26px;
+
+    /*? Input errors */
     --error-icon-size: 16px;
     --error-icon-margin: 8px;
 }

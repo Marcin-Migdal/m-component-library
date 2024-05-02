@@ -1,8 +1,8 @@
 import React, { ForwardedRef, forwardRef, useImperativeHandle, useRef, useState } from "react";
 
+import { Toast } from "./components/Toast";
 import { IAddToastPayload, IToast, IToastPropsBase, ToastConfigType, VariantTypes } from "./toasts-interfaces";
 import { defaultToastConfig, getDefaultToastType } from "./utils";
-import { Toast } from "./components/Toast";
 
 import "./Toasts.css";
 
@@ -28,7 +28,7 @@ function ToastsContainer<T extends string>(
         addToast: (payload) => {
             let toastType: string = payload.type ? payload.type : getDefaultToastType(toastConfig);
 
-            const { title: defaultTitle, variant, icon } = toastConfig[toastType];
+            const { title: defaultTitle, variant, icon } = (toastConfig as ToastConfigType<string>)[toastType];
             const { message, title, toastDuration = 2000 } = payload;
 
             const newToast: IToast = { message, variant: variant, title: title || defaultTitle, id: Date.now(), icon: icon, toastDuration };

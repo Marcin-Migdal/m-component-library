@@ -2,44 +2,48 @@ import { ChangeEvent, FocusEvent } from "react";
 import { InputState } from "react-input-mask";
 
 import * as GlobalInterfaces from "../../global-interfaces";
+import { ConditionalInputLabelType } from "../Input-interfaces";
 
-type BaseInputProps = {
+type BaseTextfieldProps = {
     value?: string;
     name?: string;
     disabled?: boolean;
     onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
     onBlur?: (event: FocusEvent<HTMLInputElement>, value: string) => void;
-    label?: string;
     error?: string;
-    labelType?: GlobalInterfaces.InputLabelType;
     placeholder?: string;
     defaultInternalValue?: string;
-    type?: InputTypes;
+    type?: TextfieldTypes;
     autoFocus?: boolean;
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
     floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
+    size?: GlobalInterfaces.InputSizeType;
+} & ConditionalInputLabelType;
+
+export type TextfieldProps = BaseTextfieldProps & (BaseMaskTextfieldType | AdvancedMaskTextfieldType | NoMaskTextfieldType);
+
+export type TextfieldTypes = "text" | "number" | "password";
+
+//* No mask interfaces
+type NoMaskTextfieldType = {
     advancedMask?: undefined;
     mask?: undefined;
 };
 
-export type InputProps = BaseInputProps | (Omit<BaseInputProps, "advancedMask" | "mask"> & (BaseMaskInputType | AdvancedMaskInputType));
-
-export type InputTypes = "text" | "number" | "password";
-
 //* Base mask interfaces
-export type BaseMaskInputType = {
+export type BaseMaskTextfieldType = {
     advancedMask?: undefined;
-    mask: INPUT_MASKS | string;
+    mask: TEXT_FIELD_MASKS | string;
 };
 
-export enum INPUT_MASKS {
+export enum TEXT_FIELD_MASKS {
     PHONE_NUMBER = "999-999-999",
     CREDIT_CARD = "9999 9999 9999 9999",
     ZIP_CODE = "99-999",
 }
 
 //* Advanced mask interfaces
-export type AdvancedMaskInputType = {
+export type AdvancedMaskTextfieldType = {
     mask?: undefined;
     advancedMask: AdvancedMaskType;
 };

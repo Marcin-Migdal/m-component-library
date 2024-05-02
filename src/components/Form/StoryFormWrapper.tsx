@@ -1,7 +1,7 @@
 import React from "react";
 import * as Yup from "yup";
 
-import { Button, Form, Input } from "../..";
+import { Button, Form, Textfield } from "../..";
 
 export interface IStoryFormWrapperProps {}
 
@@ -15,7 +15,7 @@ const StoryFormWrapper = (props: IStoryFormWrapperProps) => {
         <Form<ISignUpState> initialValues={signUpInitialValues} onSubmit={handleSubmit} validationSchema={signUpValidationSchema}>
             {({ values, errors, handleChange, handleBlur, isValid }) => (
                 <>
-                    <Input
+                    <Textfield
                         label="Username"
                         value={values.userName}
                         name="userName"
@@ -23,7 +23,7 @@ const StoryFormWrapper = (props: IStoryFormWrapperProps) => {
                         onBlur={handleBlur}
                         error={errors.userName}
                     />
-                    <Input
+                    <Textfield
                         label="Email"
                         value={values.email}
                         name="email"
@@ -31,7 +31,7 @@ const StoryFormWrapper = (props: IStoryFormWrapperProps) => {
                         onBlur={handleBlur}
                         error={errors.email}
                     />
-                    <Input
+                    <Textfield
                         type="password"
                         label="Password"
                         value={values.password}
@@ -40,7 +40,7 @@ const StoryFormWrapper = (props: IStoryFormWrapperProps) => {
                         onBlur={handleBlur}
                         error={errors.password}
                     />
-                    <Input
+                    <Textfield
                         type="password"
                         label="Verify Password"
                         value={values.verifyPassword}

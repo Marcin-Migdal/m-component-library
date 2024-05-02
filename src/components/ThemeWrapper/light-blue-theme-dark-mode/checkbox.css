@@ -23,7 +23,3 @@
 .light-blue-theme-dark-mode-theme .m-checkbox:hover .m-checkbox-check-icon {
     color: var(--primary-color_200) !important;
 }
-
-.light-blue-theme-dark-mode-theme .m-checkbox-label {
-    color: var(--input-label-color);
-}

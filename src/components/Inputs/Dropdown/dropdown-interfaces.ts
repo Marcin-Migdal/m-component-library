@@ -20,6 +20,7 @@ type DropdownBaseProps<T> = {
     clearable?: boolean;
     readOnly?: boolean;
     filter?: boolean;
+    size?: GlobalInterfaces.InputSizeType;
 
     options?: T[];
 };

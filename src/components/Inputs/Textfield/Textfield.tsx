@@ -1,12 +1,12 @@
-import React, { CSSProperties, ChangeEvent, useState, FocusEvent } from "react";
+import React, { ChangeEvent, FocusEvent, useState } from "react";
 import InputMask, { InputState } from "react-input-mask";
 
-import { getInputsErrorStyle } from "../../../helpers/input-error-helpers";
-import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
 import { InputError } from "../_inputsComponents/InputError/InputError";
-import { InputProps } from "./Input-interfaces";
+import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
+import { getInputStyle, getInputsErrorStyle } from "../input-helpers";
+import { TextfieldProps } from "./Textfield-interfaces";
 
-import "./Input.css";
+import "./Textfield.css";
 
 const defaultFormatChars = {
     "9": "[0-9]",
@@ -14,7 +14,7 @@ const defaultFormatChars = {
     "*": "[A-Za-z0-9]",
 };
 
-const Input = (props: InputProps) => {
+const Textfield = (props: TextfieldProps) => {
     const {
         value = undefined,
         name = undefined,
@@ -23,7 +23,7 @@ const Input = (props: InputProps) => {
         onBlur,
         label = undefined,
         error = undefined,
-        labelType = "floating",
+        labelType = "left",
         placeholder = undefined,
         labelWidth = 30,
         floatingInputWidth = 100,
@@ -32,6 +32,7 @@ const Input = (props: InputProps) => {
         autoFocus = false,
         mask = "",
         advancedMask = undefined,
+        size = "small",
         ...otherProps
     } = props;
 
@@ -56,21 +57,14 @@ const Input = (props: InputProps) => {
     const handleBeforeMaskedValueChange = (newState: InputState, oldState: InputState, userInput: string): InputState =>
         advancedMask?.beforeChange(newState, oldState, userInput, advancedMask.formatChars) as InputState;
 
-    const labelClasses = `m-input-label ${labelType} ${labelType == "floating" && isFocused ? "focused" : _value ? "filled" : ""}`;
-
-    const inputStyle: CSSProperties = {
-        marginLeft: labelType == "left" ? `${labelWidth}%` : "unset",
-        width: labelType == "floating" ? `${floatingInputWidth}%` : `${100 - labelWidth}%`,
-    };
-
     return (
-        <div className={`m-input-container ${error ? "error" : ""}`}>
+        <div className={`m-textfield-container ${size} ${error ? "error" : ""}`}>
             <InputMask
                 disabled={disabled}
                 name={name}
-                className={`m-input ${labelType}`}
+                className={`m-textfield ${labelType}`}
                 type={type}
-                style={inputStyle}
+                style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
                 value={_value}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -87,7 +81,7 @@ const Input = (props: InputProps) => {
                 <InputsLabel
                     label={label}
                     labelType={labelType}
-                    labelClasses={labelClasses}
+                    className="textfield"
                     labelWidth={labelWidth}
                     isFocused={isFocused}
                     isFilled={!!_value}
@@ -98,4 +92,4 @@ const Input = (props: InputProps) => {
     );
 };
 
-export default Input;
+export default Textfield;

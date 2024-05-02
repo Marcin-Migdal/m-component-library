@@ -1,0 +1,55 @@
+.m-textfield-container {
+    position: relative;
+    margin-bottom: var(--input-margin-bottom);
+}
+
+.m-textfield-container.small {
+    --input-height: var(--small-input-height);
+    --input-font-size: var(--small-input-font-size);
+    --input-padding-left: var(--small-input-padding-left);
+}
+
+.m-textfield-container.medium {
+    --input-height: var(--medium-input-height);
+    --input-font-size: var(--medium-input-font-size);
+    --input-padding-left: var(--medium-input-padding-left);
+}
+
+.m-textfield-container.large {
+    --input-height: var(--large-input-height);
+    --input-font-size: var(--large-input-font-size);
+    --input-padding-left: var(--large-input-padding-left);
+}
+
+.m-textfield-container .m-textfield {
+    border: none;
+    outline: none;
+    height: var(--input-height);
+    font-size: var(--input-font-size);
+    padding-left: var(--input-padding-left);
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    transition: 0.2s ease-in-out;
+    color: inherit;
+}
+
+.m-textfield-container .m-textfield:hover {
+    transition: 0.2s;
+}
+.m-textfield-container .m-textfield:focus {
+    transition: 0.1s;
+}
+
+/* error section */
+.m-textfield-container.error .m-textfield {
+    border: 1px solid var(--failure-color);
+    color: var(--failure-color) !important;
+}
+
+.m-textfield-container.error .m-textfield:focus {
+    box-shadow: var(--big-box-shadow) var(--failure-color);
+}
+
+.m-textfield-container.error .m-textfield:not(:disabled)::placeholder {
+    color: var(--failure-color) !important;
+}

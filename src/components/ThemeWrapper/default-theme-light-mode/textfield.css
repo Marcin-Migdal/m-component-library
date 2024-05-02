@@ -1,0 +1,26 @@
+/*! INPUT SECTION */
+.default-theme-light-mode-theme .m-textfield-container {
+    color: var(--input-text-color);
+}
+
+.default-theme-light-mode-theme .m-textfield {
+    background: var(--input-background-color);
+}
+
+.default-theme-light-mode-theme .m-textfield:focus {
+    box-shadow: var(--big-box-shadow) var(--box-shadow-color);
+}
+
+.default-theme-light-mode-theme .m-textfield:focus,
+.default-theme-light-mode-theme .m-textfield:hover {
+    background-color: var(--input-hover-background-color);
+}
+
+.default-theme-light-mode-theme .m-textfield:not(:disabled)::placeholder {
+    color: var(--input-placeholder-color);
+}
+
+.default-theme-light-mode-theme .m-textfield:not(:disabled):focus::placeholder,
+.default-theme-light-mode-theme .m-textfield:not(:disabled):hover::placeholder {
+    color: var(--input-hover-placeholder-color);
+}

@@ -1,21 +1,17 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 
 import Col from "./Col";
 
-export interface IStoryColWrapperProps {
-    sm?: number;
-    md?: number;
-    lg?: number;
-    xl?: number;
-    amountOfColumns?: number;
-}
+export type IStoryColWrapperProps = {
+    amountOfColumns: number;
+} & ComponentProps<typeof Col>;
 
 // This component is created only for storybook display purpose, I wanted to add some of the props.
-const StoryColWrapper = ({ sm = 12, md = 12, lg = 12, xl = 12, amountOfColumns = 1 }: IStoryColWrapperProps) => {
+const StoryColWrapper = ({ amountOfColumns = 1, ...other }: IStoryColWrapperProps) => {
     return (
         <>
-            {new Array(amountOfColumns).fill("").map((item, index) => (
-                <Col sm={sm} md={md} lg={lg} xl={xl}>
+            {new Array(amountOfColumns).fill("").map((_item, index) => (
+                <Col md={3} lgFlex={1}>
                     Columns {index + 1}
                 </Col>
             ))}
