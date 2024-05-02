@@ -1,8 +1,8 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
-import StoryCheckboxWrapper from "./StoryCheckboxWrapper";
 import ThemeWrapper from "../../ThemeWrapper";
+import StoryCheckboxWrapper from "./StoryCheckboxWrapper";
 
 export default {
     title: "Morti-component-library/Inputs",
@@ -22,5 +22,5 @@ export const checkbox = Template.bind({});
 checkbox.args = {
     label: "Checkbox",
     labelType: "left",
-    labelPercentageWidth: 30,
+    labelWidth: 30,
 };
