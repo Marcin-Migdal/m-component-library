@@ -5,7 +5,7 @@ export { default as ThemeWrapper } from "./components/ThemeWrapper";
 export { default as Checkbox, type CheckboxProps } from "./components/Inputs/Checkbox";
 export { default as Dropdown, type DropdownProps } from "./components/Inputs/Dropdown";
 export { default as Textarea, type TextareaProps } from "./components/Inputs/Textarea";
-export { default as Textfield, type InputProps } from "./components/Inputs/Textfield";
+export { default as Textfield, type TextfieldProps } from "./components/Inputs/Textfield";
 
 //Form
 export { default as Form, type FormErrorsType } from "./components/Form";
