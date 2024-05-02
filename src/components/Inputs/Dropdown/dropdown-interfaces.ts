@@ -1,7 +1,6 @@
 import { FocusEvent } from "react";
 
 import * as GlobalInterfaces from "../../global-interfaces";
-import { ConditionalInputLabelType } from "../Input-interfaces";
 
 type DropdownBaseProps<T> = {
     value?: DropdownValue<T>;
@@ -18,9 +17,11 @@ type DropdownBaseProps<T> = {
     readOnly?: boolean;
     filter?: boolean;
     size?: GlobalInterfaces.InputSizeType;
+    label?: string;
+    labelType?: GlobalInterfaces.InputLabelType;
 
     options?: T[];
-} & ConditionalInputLabelType;
+};
 
 export type DropdownCustomProps<T> = {
     labelKey: keyof T;

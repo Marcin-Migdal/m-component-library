@@ -1,0 +1,17 @@
+.common-wrapper-container .m-input-label.right,
+.common-wrapper-container .m-input-label.left {
+    color: var(--input-label-color);
+}
+
+.common-wrapper-container .m-input-label.floating {
+    color: var(--input-placeholder-color);
+}
+
+.common-wrapper-container .m-input-label.floating.filled,
+.common-wrapper-container .m-input-label.floating.focused {
+    color: var(--input-label-color);
+}
+
+.common-wrapper-container .m-input:hover + .m-input-label.floating:not(.filled):not(.focused) {
+    color: var(--input-hover-placeholder-color);
+}

@@ -21,7 +21,7 @@ const Textarea = ({
     labelWidth = 30,
     floatingInputWidth = 100,
     row = 4,
-    size = "small",
+    size = "medium",
     ...otherProps
 }: TextareaProps) => {
     const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
@@ -48,7 +48,7 @@ const Textarea = ({
                 name={name}
                 rows={row}
                 style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
-                className={`m-textarea ${labelType}`}
+                className={`m-input m-textarea ${labelType}`}
                 value={_value}
                 onChange={handleChange}
                 onFocus={handleFocus}

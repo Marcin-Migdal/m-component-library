@@ -1,0 +1,44 @@
+/*! DROPDOWN SECTION */
+.common-wrapper-container .m-dropdown-container {
+    color: var(--input-text-color);
+}
+
+.common-wrapper-container .m-dropdown-container .m-dropdown-clear-icon:hover {
+    background: var(--input-icon-hover-background-color);
+}
+
+.common-wrapper-container .m-dropdown {
+    background: var(--input-background-color);
+}
+
+.common-wrapper-container .m-dropdown:focus {
+    box-shadow: var(--big-box-shadow) var(--box-shadow-color);
+}
+
+.common-wrapper-container .m-dropdown:not(:disabled):focus,
+.common-wrapper-container .m-dropdown:not(:disabled):hover {
+    background-color: var(--input-hover-background-color);
+}
+
+.common-wrapper-container .m-dropdown:not(:disabled)::placeholder {
+    color: var(--input-placeholder-color);
+}
+
+.common-wrapper-container .m-dropdown:not(:disabled):focus::placeholder,
+.common-wrapper-container .m-dropdown:not(:disabled):hover::placeholder {
+    color: var(--input-hover-placeholder-color);
+}
+
+.common-wrapper-container .m-dropdown-list {
+    background-color: var(--input-background-color);
+    color: var(--input-text-color);
+}
+
+.common-wrapper-container .m-dropdown-list .m-dropdown-list-item:not(.empty-message):hover {
+    background-color: var(--input-hover-background-color);
+}
+
+.common-wrapper-container .m-dropdown-list .m-dropdown-list-item:not(.empty-message):active,
+.common-wrapper-container .m-dropdown-list .m-dropdown-list-item:not(.empty-message).selected {
+    background-color: var(--input-hover-background-color);
+}

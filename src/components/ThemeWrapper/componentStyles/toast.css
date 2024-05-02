@@ -1,34 +1,34 @@
-.light-blue-theme-light-mode-theme .toasts-list .toast.success {
+.common-wrapper-container .toasts-list .toast.success {
     --toast-color: var(--success-color);
     --toast-background-color: var(--success-color-rgb);
 }
 
-.light-blue-theme-light-mode-theme .toasts-list .toast.failure {
+.common-wrapper-container .toasts-list .toast.failure {
     --toast-color: var(--failure-color);
     --toast-background-color: var(--failure-color-rgb);
 }
 
-.light-blue-theme-light-mode-theme .toasts-list .toast.warning {
+.common-wrapper-container .toasts-list .toast.warning {
     --toast-color: var(--warning-color);
     --toast-background-color: var(--warning-color-rgb);
 }
 
-.light-blue-theme-light-mode-theme .toasts-list .toast.information {
+.common-wrapper-container .toasts-list .toast.information {
     --toast-color: var(--information-color);
     --toast-background-color: var(--information-color-rgb);
 }
 
-.light-blue-theme-light-mode-theme .toasts-list .toast {
+.common-wrapper-container .toasts-list .toast {
     color: var(--toast-color);
     background-color: rgba(var(--toast-background-color), 0.15);
     border-left: 6px solid var(--toast-color);
 }
 
-.light-blue-theme-light-mode-theme .toasts-list .toast svg {
+.common-wrapper-container .toasts-list .toast svg {
     fill: var(--toast-color);
     background-color: transparent;
 }
 
-.light-blue-theme-light-mode-theme .toasts-list .toast svg.close-icon:hover {
+.common-wrapper-container .toasts-list .toast svg.close-icon:hover {
     background-color: rgba(var(--toast-background-color), 0.225);
 }

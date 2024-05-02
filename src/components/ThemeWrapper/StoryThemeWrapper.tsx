@@ -126,7 +126,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
 
                 <SectionHeader theme={theme} text="PANEL SECTION" />
 
-                <Card variant={panelVariant} style={{ width: "300px" }}>
+                <Card variant={panelVariant} style={{ width: "300px", padding: "1rem" }}>
                     <h2 style={{ width: "100%", textAlign: "center", marginTop: "0px" }}>Card title</h2>
 
                     <Textfield

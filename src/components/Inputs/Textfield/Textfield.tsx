@@ -62,7 +62,7 @@ const Textfield = (props: TextfieldProps) => {
             <InputMask
                 disabled={disabled}
                 name={name}
-                className={`m-textfield ${labelType}`}
+                className={`m-input m-textfield ${labelType}`}
                 type={type}
                 style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
                 value={_value}
