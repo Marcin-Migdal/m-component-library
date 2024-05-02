@@ -52,7 +52,6 @@ interface IDropdownChangeEventTarget<T> extends EventTarget {
 }
 
 export interface IDropdownOptionsProps<T> {
-    containerElement: HTMLDivElement;
     filterElement: HTMLInputElement;
     uniqueDropdownId: string;
     handleDropdownChange: (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: T) => void;

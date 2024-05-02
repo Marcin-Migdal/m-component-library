@@ -1,5 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { ChangeEvent, FocusEvent, ReactElement, MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
+import React, {
+    CSSProperties,
+    ChangeEvent,
+    FocusEvent,
+    ReactElement,
+    MouseEvent as ReactMouseEvent,
+    useEffect,
+    useRef,
+    useState,
+} from "react";
 import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
 
@@ -41,7 +50,6 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
         ...otherProps
     } = props;
 
-    const containerRef = useRef<HTMLDivElement>(null);
     const filterRef = useRef<HTMLInputElement>(null);
 
     const [internalValue, setInternalValue] = useState<DropdownValue<T>>(undefined);
@@ -79,10 +87,10 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
         const handleClickOutside = (event: MouseEvent) => {
             const target: HTMLElement = event.target as HTMLElement;
 
-            if (!containerRef.current) return;
+            if (!filterRef.current) return;
 
             if (
-                (!containerRef.current.contains(target) ||
+                (!filterRef.current.contains(target) ||
                     (typeof target?.className == "string" && target?.className.includes("m-dropdown-container"))) &&
                 (!target.getAttribute("data-id") || target.getAttribute("data-id") != uniqueDropdownId)
             ) {
@@ -138,7 +146,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
     };
 
     return (
-        <div ref={containerRef} className={`m-dropdown-container ${size} ${error ? "error" : ""}`} {...otherProps}>
+        <div className={`m-dropdown-container ${size} ${error ? "error" : ""}`} {...otherProps}>
             {/* input placeholder, displays selected value, also work as a filter input */}
             <input
                 ref={filterRef}
@@ -177,11 +185,9 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
 
             {/* dropdown items */}
             {isFocused &&
-                containerRef.current &&
                 filterRef.current &&
                 createPortal(
                     <DropdownOptions<T>
-                        containerElement={containerRef.current}
                         filterElement={filterRef.current}
                         uniqueDropdownId={uniqueDropdownId}
                         handleDropdownChange={handleDropdownChange}
@@ -199,7 +205,6 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
 export default Dropdown;
 
 function DropdownOptions<T>({
-    containerElement,
     filterElement,
     uniqueDropdownId,
     handleDropdownChange,
@@ -208,11 +213,13 @@ function DropdownOptions<T>({
     valueKey,
     labelKey,
 }: IDropdownOptionsProps<T>) {
-    const optionsPosition: React.CSSProperties = {
+    const { left, top, height, width } = filterElement.getBoundingClientRect();
+
+    const optionsPosition: CSSProperties = {
         position: "absolute",
-        top: containerElement.offsetTop + containerElement.offsetHeight,
-        left: containerElement.offsetLeft,
-        width: `${filterElement.clientWidth}px`,
+        top: `${top + height}px`,
+        left: left,
+        width: width,
     };
 
     return (
