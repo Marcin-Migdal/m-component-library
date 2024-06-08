@@ -117,6 +117,8 @@ body {
     background: var(--background-color);
 
     z-index: 0;
+
+    color: var(--primary-text-color);
 }
 
 /* This style is only needed in storybook  */
@@ -127,6 +129,7 @@ body {
 .default-theme-light-mode {
     /** Background color */
     --background-color: var(--white);
+    --light-background-color: var(--light-grey_100);
     --background-hover-color: var(--light-grey_200);
     --background-active-color: var(--light-grey_250);
 
@@ -149,7 +152,7 @@ body {
     --btn-full-background-color: var(--dark-grey_300);
     --btn-full-hover-background-color: var(--light-grey_800);
 
-    --btn-text-color: var(--dark-grey_500);
+    --btn-text-color: var(--dark-grey_600);
     --btn-text-hover-color: var(--dark-grey_500);
     --btn-text-hover-background-color: var(--background-hover-color);
     --btn-text-active-background-color: var(--background-active-color);
@@ -161,18 +164,27 @@ body {
     --loader-color: var(--dark-grey_100);
 
     /* Card */
-    --card-background-color: var(--light-grey_100);
     --card-gradient-colors: var(--dark-grey_100), var(--light-grey_500), var(--light-grey_300), var(--light-grey_150), var(--light-grey_300),
         var(--light-grey_500), var(--dark-grey_100);
+
+    /* Overlay */
+    --overlay-background-color: rgba(145, 145, 145, 0.267);
+
+    /* Alert */
+    --border-top-color: var(--light-grey_800);
 
     /*? Common */
     --box-shadow-color: var(--dark-grey_100);
     --border-color: var(--dark-grey_200);
+
+    --primary-text-color: var(--dark-grey_500);
+    --secondary-text-color: var(--dark-grey_300);
 }
 
 .default-theme-dark-mode {
     /** Background color */
     --background-color: var(--dark-grey_500);
+    --light-background-color: var(--dark-grey_400);
     --background-hover-color: var(--dark-grey_325);
     --background-active-color: var(--dark-grey_250);
 
@@ -207,31 +219,39 @@ body {
     --loader-color: var(--light-grey_800);
 
     /* Card */
-    --card-background-color: var(--dark-grey_400);
     --card-gradient-colors: var(--dark-grey_300), var(--dark-grey_100), var(--light-grey_600), var(--light-grey_300), var(--light-grey_600),
         var(--dark-grey_100), var(--dark-grey_300);
+
+    /* Alert */
+    /* Overlay */
+    --overlay-background-color: rgba(146, 146, 146, 0.3);
+
+    /* Alert */
+    --border-top-color: var(--light-grey_600);
 
     /*? Common */
     --box-shadow-color: var(--light-grey_200);
     --border-color: var(--light-grey_200);
+
+    --primary-text-color: var(--white);
+    --secondary-text-color: var(--light-grey_200);
 }
 
 .light-blue-theme-light-mode {
     /*! Theme primary color palete */
     --primary-color_25: rgb(211, 243, 253);
     --primary-color_50: rgb(191, 236, 250);
-    --primary-color_75: rgb(178, 235, 252);
     --primary-color_100: rgb(164, 231, 252);
     --primary-color_150: rgb(148, 225, 248);
     --primary-color_200: rgb(134, 223, 250);
     --primary-color_250: rgb(120, 223, 255);
     --primary-color_300: rgb(115, 216, 247);
-    --primary-color_350: rgb(99, 213, 248);
     --primary-color_400: rgb(86, 209, 247);
     --primary-color_500: rgb(69, 206, 248);
 
     /** Background color */
     --background-color: var(--white);
+    --light-background-color: var(--light-grey_150);
     --background-hover-color: var(--light-grey_100);
     --background-active-color: var(--light-grey_200);
 
@@ -243,7 +263,7 @@ body {
     --input-placeholder-color: var(--dark-grey_100);
     --input-hover-placeholder-color: var(--dark-grey_200);
     --input-icon-hover-background-color: var(--dark-grey_200);
-    --input-label-color: var(--primary-color_300);
+    --input-label-color: var(--primary-color_400);
 
     --input-checkbox-icon: var(--primary-color_300);
     --input-checkbox-hover-icon: var(--primary-color_400);
@@ -266,14 +286,22 @@ body {
     --loader-color: var(--primary-color_300);
 
     /* Card */
-    --card-background-color: var(--light-grey_150);
     --card-gradient-colors: var(--primary-color_25), var(--primary-color_100), var(--primary-color_150), var(--primary-color_200),
         var(--primary-color_400), var(--primary-color_400), var(--primary-color_200), var(--primary-color_150), var(--primary-color_100),
         var(--primary-color_25);
 
+    /* Overlay */
+    --overlay-background-color: rgba(145, 145, 145, 0.267);
+
+    /* Alert */
+    --border-top-color: var(--primary-color_300);
+
     /*? Common */
     --box-shadow-color: var(--primary-color_200);
     --border-color: var(--primary-color_300);
+
+    --primary-text-color: var(--primary-color_400);
+    --secondary-text-color: var(--dark-grey_500);
 }
 
 .light-blue-theme-dark-mode {
@@ -281,7 +309,6 @@ body {
     --primary-color_50: rgb(181, 235, 252);
     --primary-color_100: rgb(164, 231, 252);
     --primary-color_150: rgb(148, 225, 248);
-    --primary-color_250: rgb(120, 223, 255);
     --primary-color_200: rgb(134, 223, 250);
     --primary-color_250: rgb(122, 219, 248);
     --primary-color_300: rgb(102, 217, 252);
@@ -293,6 +320,7 @@ body {
 
     /** Background color */
     --background-color: var(--dark-grey_500);
+    --light-background-color: var(--dark-grey_400);
     --background-hover-color: var(--dark-grey_325);
     --background-active-color: var(--dark-grey_250);
 
@@ -327,13 +355,157 @@ body {
     --loader-color: var(--primary-color_300);
 
     /* Card */
-    --card-background-color: var(--dark-grey_400);
     --card-gradient-colors: var(--primary-color_50), var(--primary-color_250), var(--primary-color_800), var(--primary-color_800),
         var(--primary-color_250), var(--primary-color_50);
+
+    /* Overlay */
+    --overlay-background-color: rgba(133, 133, 133, 0.3);
+
+    /* Alert */
+    --border-top-color: var(--primary-color_500);
 
     /*? Common */
     --box-shadow-color: var(--primary-color_200);
     --border-color: var(--primary-color_300);
+
+    --primary-text-color: var(--white);
+    --secondary-text-color: var(--primary-color_300);
+}
+
+.light-purple-theme-light-mode {
+    /*! Theme primary color palete */
+
+    --primary-color_25: rgb(254, 200, 252);
+    --primary-color_50: rgb(252, 181, 252);
+    --primary-color_100: rgb(248, 164, 252);
+    --primary-color_150: rgb(244, 148, 248);
+    --primary-color_200: rgb(241, 134, 250);
+    --primary-color_250: rgb(237, 122, 248);
+    --primary-color_300: rgb(234, 102, 252);
+    --primary-color_400: rgb(227, 85, 252);
+    --primary-color_500: rgb(220, 71, 248);
+
+    /** Background color */
+    --background-color: var(--white);
+    --light-background-color: var(--light-grey_150);
+    --background-hover-color: var(--light-grey_100);
+    --background-active-color: var(--light-grey_200);
+
+    /** Inputs colors */
+    --input-background-color: var(--background-hover-color);
+    --input-hover-background-color: var(--background-active-color);
+
+    --input-text-color: var(--dark-grey_400);
+    --input-placeholder-color: var(--dark-grey_100);
+    --input-hover-placeholder-color: var(--dark-grey_200);
+    --input-icon-hover-background-color: var(--dark-grey_200);
+    --input-label-color: var(--primary-color_400);
+
+    --input-checkbox-icon: var(--primary-color_300);
+    --input-checkbox-hover-icon: var(--primary-color_400);
+    --input-checkbox-background: var(--background-color);
+
+    /** Buttons */
+    --btn-full-color: var(--white);
+    --btn-full-background-color: var(--primary-color_300);
+    --btn-full-hover-background-color: var(--primary-color_100);
+
+    --btn-text-color: var(--primary-color_300);
+    --btn-text-hover-color: var(--primary-color_500);
+    --btn-text-hover-background-color: var(--primary-color_25);
+    --btn-text-active-background-color: var(--primary-color_25);
+
+    --btn-neon-color: var(--primary-color_300);
+    --btn-neon-hover-background-color: var(--primary-color_300);
+
+    /* Loader */
+    --loader-color: var(--primary-color_300);
+
+    /* Card */
+    --card-gradient-colors: var(--primary-color_25), var(--primary-color_100), var(--primary-color_150), var(--primary-color_200),
+        var(--primary-color_400), var(--primary-color_400), var(--primary-color_200), var(--primary-color_150), var(--primary-color_100),
+        var(--primary-color_25);
+
+    /* Overlay */
+    --overlay-background-color: rgba(145, 145, 145, 0.267);
+
+    /* Alert */
+    --border-top-color: var(--primary-color_300);
+
+    /*? Common */
+    --box-shadow-color: var(--primary-color_200);
+    --border-color: var(--primary-color_300);
+
+    --primary-text-color: var(--primary-color_400);
+    --secondary-text-color: var(--dark-grey_500);
+}
+
+.light-purple-theme-dark-mode {
+    /*! Theme primary color palete */
+    --primary-color_50: rgb(252, 181, 252);
+    --primary-color_100: rgb(248, 164, 252);
+    --primary-color_150: rgb(244, 148, 248);
+    --primary-color_200: rgb(241, 134, 250);
+    --primary-color_250: rgb(237, 122, 248);
+    --primary-color_300: rgb(234, 102, 252);
+    --primary-color_400: rgb(227, 85, 252);
+    --primary-color_500: rgb(220, 71, 248);
+    --primary-color_600: rgb(213, 54, 248);
+    --primary-color_700: rgb(206, 33, 250);
+    --primary-color_800: rgb(199, 12, 235);
+
+    /** Background color */
+    --background-color: var(--dark-grey_500);
+    --light-background-color: var(--dark-grey_400);
+    --background-hover-color: var(--dark-grey_325);
+    --background-active-color: var(--dark-grey_250);
+
+    /** Inputs colors */
+    --input-background-color: var(--background-hover-color);
+    --input-hover-background-color: var(--background-active-color);
+
+    --input-text-color: var(--light-grey_200);
+    --input-placeholder-color: var(--light-grey_600);
+    --input-hover-placeholder-color: var(--light-grey_300);
+    --input-icon-hover-background-color: var(--dark-grey_100);
+    --input-label-color: var(--primary-color_300);
+
+    --input-checkbox-icon: var(--primary-color_300);
+    --input-checkbox-hover-icon: var(--primary-color_200);
+    --input-checkbox-background: var(--input-background-color);
+
+    /** Buttons */
+    --btn-full-color: var(--background-color);
+    --btn-full-background-color: var(--primary-color_300);
+    --btn-full-hover-background-color: var(--primary-color_100);
+
+    --btn-text-color: var(--primary-color_300);
+    --btn-text-hover-color: var(--primary-color_300);
+    --btn-text-hover-background-color: var(--background-hover-color);
+    --btn-text-active-background-color: var(--background-active-color);
+
+    --btn-neon-color: var(--primary-color_300);
+    --btn-neon-hover-background-color: var(--primary-color_300);
+
+    /* Loader */
+    --loader-color: var(--primary-color_300);
+
+    /* Card */
+    --card-gradient-colors: var(--primary-color_50), var(--primary-color_250), var(--primary-color_800), var(--primary-color_800),
+        var(--primary-color_250), var(--primary-color_50);
+
+    /* Overlay */
+    --overlay-background-color: rgba(133, 133, 133, 0.3);
+
+    /* Alert */
+    --border-top-color: var(--primary-color_500);
+
+    /*? Common */
+    --box-shadow-color: var(--primary-color_200);
+    --border-color: var(--primary-color_300);
+
+    --primary-text-color: var(--white);
+    --secondary-text-color: var(--primary-color_300);
 }
 
 /* input error tooltip  */

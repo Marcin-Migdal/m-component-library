@@ -1,9 +1,7 @@
 /*! INPUT SECTION */
-.common-wrapper-container {
-    color: var(--input-text-color);
-}
 
 .common-wrapper-container .m-textfield {
+    color: var(--input-text-color);
     background: var(--input-background-color);
 }
 

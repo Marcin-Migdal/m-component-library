@@ -17,9 +17,9 @@ export { default as Button, type IButtonProps } from "./components/Button";
 export { default as Col } from "./components/Layout/Col";
 export { default as Row } from "./components/Layout/Row";
 
-// Messages
-export { default as ToastsContainer, defaultToastConfig } from "./components/Toast";
-export type { ToastConfigType, ToastHandler, ToastsPositionTypes, VariantTypes } from "./components/Toast";
+// Popups
+export { default as ToastsContainer, defaultToastConfig } from "./components/Popups/Toast";
+export type { ToastConfigType, ToastHandler, ToastsPositionTypes, VariantTypes } from "./components/Popups/Toast";
 
 // Overlay
 export { default as Tooltip } from "./components/Tooltip";
@@ -29,9 +29,10 @@ export { default as Card } from "./components/Panels/Card";
 
 // Miscellaneous
 export { default as Icon } from "./components/Miscellaneous/Icon";
+export { default as Overlay } from "./components/Miscellaneous/Overlay";
 export { default as ProgressSpinner } from "./components/Miscellaneous/ProgressSpinner";
  
-//! CSS Variables refactor
+//! TODO adding css variables for overlay and alert 
 
 //! TOOLTIP 
 // TODO? Not closing tooltip if cursor is over it (settimeout when closing tooltip, and canceling closing if onMouseEnter on tooltip ??? OR some back-ground div under tooltip, that will be of size (tooltipSize + tooltipMargin) )

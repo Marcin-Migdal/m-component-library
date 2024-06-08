@@ -1,11 +1,11 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
+import ThemeWrapper from "../../ThemeWrapper";
 import StoryToastsWrapper from "./StoryToastsWrapper";
-import ThemeWrapper from "../ThemeWrapper";
 
 export default {
-    title: "Morti-component-library",
+    title: "Morti-component-library/Popups",
     component: StoryToastsWrapper,
 } as ComponentMeta<typeof StoryToastsWrapper>;
 
