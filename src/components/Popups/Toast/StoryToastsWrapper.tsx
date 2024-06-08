@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
 
+import Button from "../../Button";
 import ToastsContainer, { ToastHandler } from "./ToastsContainer";
 import { ToastsPositionTypes } from "./toasts-interfaces";
-import Button from "../Button";
 
 export interface IStoryToastsWrapperProps {
     autoClose?: boolean;

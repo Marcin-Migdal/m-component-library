@@ -30,7 +30,6 @@
     box-sizing: border-box;
     border-radius: var(--border-radius);
     transition: 0.2s ease-in-out;
-    color: inherit;
 }
 
 .m-textfield-container .m-textfield:hover {

@@ -1,5 +1,5 @@
 .common-wrapper-container .m-card {
-    background-color: var(--card-background-color);
+    background-color: var(--light-background-color);
     color: var(--white);
 }
 

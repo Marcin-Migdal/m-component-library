@@ -1,13 +1,25 @@
 import React, { CSSProperties, useRef } from "react";
 
-import { Button, Card, Checkbox, Dropdown, ProgressSpinner, Textarea, Textfield, ToastsContainer } from "../..";
 import { CardVariantTypes } from "../Panels/Card/card-interfaces";
-import { ToastHandler } from "../Toast/ToastsContainer";
-import { FailureIcon, SuccessIcon } from "../Toast/components/icons";
-import { ToastConfigType } from "../Toast/toasts-interfaces";
+import Alert from "../Popups/Alerts/Alert";
+import { AlertHandler } from "../Popups/Alerts/hooks/useAlertOpen";
+import { FailureIcon, SuccessIcon } from "../Popups/Toast/components/icons";
 import { InputLabelType, LabelPercentageWidth } from "../global-interfaces";
 import ThemeWrapper from "./ThemeWrapper";
 import { ThemeTypes } from "./theme-wrapper-interfaces";
+
+import {
+    Button,
+    Card,
+    Checkbox,
+    Dropdown,
+    ProgressSpinner,
+    Textarea,
+    Textfield,
+    ToastConfigType,
+    ToastHandler,
+    ToastsContainer,
+} from "../..";
 
 export interface IStoryThemeWrapperProps {
     theme: ThemeTypes;
@@ -26,6 +38,7 @@ export const toastConfig: ToastConfigType<NewToastTypes> = {
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
 const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", panelVariant = "default" }: IStoryThemeWrapperProps) => {
     const toastRef = useRef<ToastHandler<NewToastTypes>>(null);
+    const alertRef = useRef<AlertHandler>(null);
 
     const checkboxLabelType = inputLabelType == "floating" ? "right" : inputLabelType;
     const inputLabelWidth: LabelPercentageWidth | undefined = inputLabelType == "floating" ? 90 : 20;
@@ -34,19 +47,14 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
     return (
         <ThemeWrapper theme={theme}>
             <div style={{ padding: "1rem" }}>
-                <SectionHeader
-                    style={{ marginTop: "0px", borderTop: "none" }}
-                    headerStyle={{ marginTop: "unset" }}
-                    theme={theme}
-                    text="BUTTON SECTION"
-                />
+                <SectionHeader style={{ marginTop: "0px", borderTop: "none" }} headerStyle={{ marginTop: "unset" }} text="BUTTON SECTION" />
 
                 <Button variant="outlined" text="btn outlined" onClick={() => {}} />
                 <Button variant="full" text="btn full" onClick={() => {}} />
                 <Button variant="text" text="btn text" onClick={() => {}} />
                 <Button variant="neon" text="btn neon" onClick={() => {}} />
 
-                <SectionHeader theme={theme} text="INPUT SECTION" />
+                <SectionHeader text="INPUT SECTION" />
 
                 <Textfield
                     label="label"
@@ -85,7 +93,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                 />
                 <Checkbox label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} error={error} />
 
-                <SectionHeader theme={theme} text="TOAST SECTION" />
+                <SectionHeader text="TOAST SECTION" />
 
                 <ToastsContainer ref={toastRef} toastConfig={toastConfig} />
                 <div>
@@ -104,30 +112,20 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                             })
                         }
                     />
-                    {/* <Button
-                        style={{ marginTop: "10px" }}
-                        text="Warning toast"
-                        onClick={() => toastRef.current?.addToast({ message: "Are you sure, you want to log out?", type: "warning" })}
-                    />
-                    <Button
-                        style={{ marginTop: "10px" }}
-                        text="Information toast"
-                        onClick={() => toastRef.current?.addToast({ message: "You where singed out", type: "information" })}
-                    /> */}
                     <Button style={{ marginTop: "10px" }} text="Clear toasts" onClick={() => toastRef.current?.clear()} />
                 </div>
 
-                <SectionHeader theme={theme} text="TOOLTIP SECTION" />
+                <SectionHeader text="TOOLTIP SECTION" />
 
                 <Button tooltip="test" tooltipConfig={{ position: "top" }} variant="outlined" text="Top" onClick={() => {}} />
                 <Button tooltip="test" tooltipConfig={{ position: "bottom" }} variant="outlined" text="Bottom" onClick={() => {}} />
                 <Button tooltip="test" tooltipConfig={{ position: "right" }} variant="outlined" text="Right" onClick={() => {}} />
                 <Button tooltip="test" tooltipConfig={{ position: "left" }} variant="outlined" text="Left" onClick={() => {}} />
 
-                <SectionHeader theme={theme} text="PANEL SECTION" />
+                <SectionHeader text="PANEL SECTION" />
 
                 <Card variant={panelVariant} style={{ width: "300px", padding: "1rem" }}>
-                    <h2 style={{ width: "100%", textAlign: "center", marginTop: "0px" }}>Card title</h2>
+                    <h2 style={{ width: "100%", textAlign: "center", marginTop: "0px", color: "var(--primary-text-color)" }}>Card title</h2>
 
                     <Textfield
                         label="label"
@@ -138,13 +136,26 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                         error={error}
                     />
 
-                    <span style={{ display: "inline-block", width: "100%" }}>
+                    <span style={{ display: "inline-block", width: "100%", color: "var(--primary-text-color)" }}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
                         aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
                     </span>
                 </Card>
-                <SectionHeader theme={theme} text="MISCELLANEOUS" />
+                <SectionHeader text="MISCELLANEOUS" />
                 <ProgressSpinner />
+                <SectionHeader text="ALERT" />
+
+                <Button text="Open alert" onClick={() => alertRef.current?.openAlert()} />
+                <Alert
+                    ref={alertRef}
+                    header={{ header: "Test header" }}
+                    footer={{
+                        onConfirmBtnClick: () => console.log("Confirm Button Click"),
+                        onDeclineBtnClick: () => console.log("Decline Button Click"),
+                    }}
+                >
+                    test
+                </Alert>
             </div>
         </ThemeWrapper>
     );
@@ -159,18 +170,17 @@ const options = [
     { label: "test 4", value: 4 },
 ];
 interface ISectionHeaderProps {
-    theme: ThemeTypes;
     text: string;
     style?: CSSProperties;
     headerStyle?: CSSProperties;
 }
 
-const SectionHeader = ({ theme, text, style, headerStyle }: ISectionHeaderProps) => {
+const SectionHeader = ({ text, style, headerStyle }: ISectionHeaderProps) => {
     return (
         <div
             style={{
                 width: "calc(100% + 32px)",
-                borderTop: `1px solid ${theme.includes("theme-dark") ? "white" : "black"}`,
+                borderTop: "1px solid var(--primary-text-color)",
                 marginLeft: "-16px",
                 marginTop: "20px",
                 ...style,
@@ -180,7 +190,7 @@ const SectionHeader = ({ theme, text, style, headerStyle }: ISectionHeaderProps)
                 style={{
                     ...headerStyle,
                     width: "100%",
-                    color: theme.includes("theme-dark") ? "white" : "black",
+                    color: "var(--primary-text-color)",
                     marginLeft: "16px",
                 }}
             >
