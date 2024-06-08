@@ -17,12 +17,10 @@ export { default as Button, type IButtonProps } from "./components/Button";
 export { default as Col } from "./components/Layout/Col";
 export { default as Row } from "./components/Layout/Row";
 
-// Popups
+// Popups 
+export * from "./components/Popups/Alerts";
 export { default as ToastsContainer, defaultToastConfig } from "./components/Popups/Toast";
 export type { ToastConfigType, ToastHandler, ToastsPositionTypes, VariantTypes } from "./components/Popups/Toast";
-
-// Overlay
-export { default as Tooltip } from "./components/Tooltip";
 
 // Panels
 export { default as Card } from "./components/Panels/Card";
@@ -31,8 +29,14 @@ export { default as Card } from "./components/Panels/Card";
 export { default as Icon } from "./components/Miscellaneous/Icon";
 export { default as Overlay } from "./components/Miscellaneous/Overlay";
 export { default as ProgressSpinner } from "./components/Miscellaneous/ProgressSpinner";
- 
-//! TODO adding css variables for overlay and alert 
+export { default as Tooltip } from "./components/Tooltip";
+
+// TODO! export refactor
+//?     moving ALL types to component types.ts file
+//?     changing all index.tsx file to index.ts, wrong file extension
+//?     exporting all types(mostly, only those that might be needed) in component index.ts
+//?     changing this file to export like this "export * from './<component_path>"
+//*     (options, to think about) aggregate all the exports of components like Miscellaneous, Inputs, Popups, in their respective folders in index.ts, then inly export here eq. "export * from "./components/Inputs";" under "// Inputs"
 
 //! TOOLTIP 
 // TODO? Not closing tooltip if cursor is over it (settimeout when closing tooltip, and canceling closing if onMouseEnter on tooltip ??? OR some back-ground div under tooltip, that will be of size (tooltipSize + tooltipMargin) )

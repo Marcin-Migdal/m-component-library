@@ -1,13 +1,6 @@
 import React from "react";
 
-export type AlertFooterProps = {
-    confirmBtnText?: string;
-    confirmBtnDisabled?: boolean;
-    onConfirmBtnClick?: () => void;
-    declineBtnText?: string;
-    declineBtnDisabled?: boolean;
-    onDeclineBtnClick?: () => void;
-};
+import { AlertFooterProps } from "../types";
 
 export const AlertFooter = ({
     confirmBtnText = "Confirm",

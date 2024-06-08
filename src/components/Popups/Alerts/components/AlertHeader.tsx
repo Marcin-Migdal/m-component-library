@@ -1,10 +1,7 @@
 import React from "react";
-import Icon from "../../../Miscellaneous/Icon";
 
-export type AlertHeaderProps = {
-    header?: string;
-    onClose: () => void;
-};
+import Icon from "../../../Miscellaneous/Icon";
+import { AlertHeaderProps } from "../types";
 
 export const AlertHeader = ({ header, onClose }: AlertHeaderProps) => {
     return (

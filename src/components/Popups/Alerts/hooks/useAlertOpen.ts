@@ -1,24 +1,5 @@
-import { ForwardedRef, useImperativeHandle, useState } from "react";
-
-export type AlertHandler = {
-    openAlert: () => void;
-    closeAlert: () => void;
-};
-
-type UseAlertOpenArgs = {
-    ref: ForwardedRef<AlertHandler>;
-};
-
-export enum AlertState {
-    CLOSED = "closed",
-    CLOSING = "closing",
-    OPENED = "opened",
-}
-
-type useAlertOpenResult = {
-    alertOpen: AlertState;
-    handleClose: () => void;
-};
+import { useImperativeHandle, useState } from "react";
+import { AlertState, UseAlertOpenArgs, useAlertOpenResult } from "../types";
 
 export const useAlertOpen = ({ ref }: UseAlertOpenArgs): useAlertOpenResult => {
     const [alertOpen, setAlertOpen] = useState<AlertState>(AlertState.CLOSED);

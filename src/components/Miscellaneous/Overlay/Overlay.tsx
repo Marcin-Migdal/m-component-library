@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 
 import "./Overlay.css";
 
-type OverlayProps = {
+export type OverlayProps = {
     onClick?: (event: React.MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
 };
 

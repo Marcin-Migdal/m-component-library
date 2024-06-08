@@ -1,15 +1,10 @@
 import React, { ForwardedRef, PropsWithChildren, forwardRef } from "react";
 
 import { AlertBody } from "./components/AlertBody";
-import { AlertFooter, AlertFooterProps } from "./components/AlertFooter";
-import { AlertHeader, AlertHeaderProps } from "./components/AlertHeader";
-import { AlertHandler, useAlertOpen } from "./hooks/useAlertOpen";
-
-export type AlertProps = {
-    className?: string;
-    header?: Omit<AlertHeaderProps, "onClose">;
-    footer?: AlertFooterProps;
-};
+import { AlertFooter } from "./components/AlertFooter";
+import { AlertHeader } from "./components/AlertHeader";
+import { useAlertOpen } from "./hooks/useAlertOpen";
+import { AlertHandler, AlertProps } from "./types";
 
 const Alert = (
     { children, className, header: headerProps, footer: footerProps }: PropsWithChildren<AlertProps>,
@@ -26,6 +21,8 @@ const Alert = (
     );
 };
 
-type AlertForwardRef = (props: PropsWithChildren<AlertProps> & { ref?: React.ForwardedRef<AlertHandler> }) => ReturnType<typeof Alert>;
+export type AlertForwardRef = (
+    props: PropsWithChildren<AlertProps> & { ref?: React.ForwardedRef<AlertHandler> }
+) => ReturnType<typeof Alert>;
 
 export default forwardRef(Alert) as AlertForwardRef;
