@@ -2,13 +2,13 @@ import React, { CSSProperties, useRef } from "react";
 
 import { CardVariantTypes } from "../Panels/Card/card-interfaces";
 import Alert from "../Popups/Alerts/Alert";
-import { AlertHandler } from "../Popups/Alerts/hooks/useAlertOpen";
 import { FailureIcon, SuccessIcon } from "../Popups/Toast/components/icons";
 import { InputLabelType, LabelPercentageWidth } from "../global-interfaces";
 import ThemeWrapper from "./ThemeWrapper";
 import { ThemeTypes } from "./theme-wrapper-interfaces";
 
 import {
+    AlertHandler,
     Button,
     Card,
     Checkbox,
