@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
 import ThemeWrapper from "../../ThemeWrapper";
-import { Overlay } from "./Overlay";
+import Overlay from "./Overlay";
 
 export default {
     title: "Morti-component-library/Miscellaneous",
