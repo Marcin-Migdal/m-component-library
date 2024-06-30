@@ -1,14 +1,14 @@
 import { ForwardedRef } from "react";
 
-export type AlertProps = {
+export type AlertProps<T> = {
     className?: string;
     header?: Omit<AlertHeaderProps, "onClose">;
-    footer?: AlertFooterProps;
+    footer?: Omit<AlertFooterProps<T>, "data">;
 };
 
 export type AlertBodyProps = {
     className?: string;
-    alertOpen: AlertState;
+    alertOpen: AlertOpenState;
     onClose: (event: React.MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
 };
 
@@ -17,31 +17,35 @@ export type AlertHeaderProps = {
     onClose: () => void;
 };
 
-export type AlertFooterProps = {
+export type AlertFooterProps<T> = {
     confirmBtnText?: string;
     confirmBtnDisabled?: boolean;
-    onConfirmBtnClick?: () => void;
+    onConfirmBtnClick?: (data: T) => void;
     declineBtnText?: string;
     declineBtnDisabled?: boolean;
-    onDeclineBtnClick?: () => void;
+    onDeclineBtnClick?: (data: T) => void;
+    data: T;
 };
 
-export type AlertHandler = {
-    openAlert: () => void;
+export type AlertHandler<T = unknown> = {
+    openAlert: (data?: T) => void;
     closeAlert: () => void;
 };
 
-export type UseAlertOpenArgs = {
-    ref: ForwardedRef<AlertHandler>;
+export type UseAlertOpenArgs<T> = {
+    ref: ForwardedRef<AlertHandler<T>>;
 };
 
-export enum AlertState {
+export type AlertState<T> = { openState: AlertOpenState; data: T | undefined };
+
+export enum AlertOpenState {
     CLOSED = "closed",
     CLOSING = "closing",
     OPENED = "opened",
 }
 
-export type useAlertOpenResult = {
-    alertOpen: AlertState;
+export type useAlertOpenResult<T> = {
+    alertOpen: AlertOpenState;
+    data: T | undefined;
     handleClose: () => void;
 };
