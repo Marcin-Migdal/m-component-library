@@ -11,11 +11,13 @@ export interface IAddToastPayload<T> {
     type?: T;
     title?: string;
     toastDuration?: number;
+    transformContent?: (content: string) => string;
 }
 
 export type IToastPropsBase = {
     autoClose?: boolean;
     toastsPosition?: ToastsPositionTypes;
+    transformContent?: (content: string) => string;
 };
 
 export type ToastConfigType<T extends string> = Record<T, { default: boolean; icon: ReactNode; variant: VariantTypes; title: string }>;
@@ -30,4 +32,4 @@ export interface IToast {
     icon: ReactNode;
 }
 
-export type TextType = String;
+export type TextType = string;

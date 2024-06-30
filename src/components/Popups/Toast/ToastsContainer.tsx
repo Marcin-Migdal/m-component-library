@@ -16,10 +16,9 @@ export type ToastHandler<T = VariantTypes> = {
     clear: () => void;
 };
 
-function ToastsContainer<T extends string>(
-    { autoClose = true, toastsPosition = "top-right", toastConfig = defaultToastConfig }: IToastProps<T>,
-    ref: ForwardedRef<ToastHandler<T>>
-) {
+function ToastsContainer<T extends string>(props: IToastProps<T>, ref: ForwardedRef<ToastHandler<T>>) {
+    const { autoClose = true, toastsPosition = "top-right", toastConfig = defaultToastConfig, transformContent } = props;
+
     const timeoutRefs = useRef<Record<number, NodeJS.Timeout>>({});
 
     const [toasts, setToasts] = useState<IToast[]>([]);
@@ -29,9 +28,20 @@ function ToastsContainer<T extends string>(
             let toastType: string = payload.type ? payload.type : getDefaultToastType(toastConfig);
 
             const { title: defaultTitle, variant, icon } = (toastConfig as ToastConfigType<string>)[toastType];
-            const { message, title, toastDuration = 2000 } = payload;
+            const { toastDuration = 2000, transformContent: transformSingularContent } = payload;
 
-            const newToast: IToast = { message, variant: variant, title: title || defaultTitle, id: Date.now(), icon: icon, toastDuration };
+            let message = payload.message;
+            let title = payload.title || defaultTitle;
+
+            if (transformSingularContent) {
+                message = transformSingularContent(message);
+                title = transformSingularContent(title);
+            } else if (transformContent) {
+                message = transformContent(message);
+                title = transformContent(title);
+            }
+
+            const newToast: IToast = { message, variant, title, id: Date.now(), icon, toastDuration };
             setToasts((prevState) => [...prevState, newToast]);
 
             handleToastAutoClose(newToast);
