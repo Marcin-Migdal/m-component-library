@@ -4,7 +4,7 @@ import InputMask, { InputState } from "react-input-mask";
 import { InputError } from "../_inputsComponents/InputError/InputError";
 import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
 import { getInputStyle, getInputsErrorStyle } from "../input-helpers";
-import { TextfieldProps } from "./Textfield-interfaces";
+import { AdvancedMaskType, TextfieldProps } from "./Textfield-interfaces";
 
 import "./Textfield.css";
 
@@ -54,12 +54,18 @@ const Textfield = (props: TextfieldProps) => {
         setInternalValue(e.target.value);
     };
 
-    const handleBeforeMaskedValueChange = (newState: InputState, oldState: InputState, userInput: string): InputState =>
-        advancedMask?.beforeChange(newState, oldState, userInput, advancedMask.formatChars) as InputState;
+    const handleBeforeMaskedValueChange =
+        (advancedMask: AdvancedMaskType) =>
+        (newState: InputState, oldState: InputState, userInput: string): InputState => {
+            if (!advancedMask.beforeChange) return newState;
+
+            return advancedMask.beforeChange(newState, oldState, userInput, advancedMask.formatChars);
+        };
 
     return (
         <div className={`m-textfield-container ${size} ${error ? "error" : ""}`}>
             <InputMask
+                maskChar={null}
                 disabled={disabled}
                 name={name}
                 className={`m-input m-textfield ${labelType}`}
@@ -73,7 +79,7 @@ const Textfield = (props: TextfieldProps) => {
                 placeholder={labelType == "floating" ? undefined : placeholder || (label ? `${label}...` : "")}
                 //! Mask Props
                 {...(advancedMask
-                    ? { ...advancedMask, beforeMaskedValueChange: handleBeforeMaskedValueChange }
+                    ? { ...advancedMask, beforeMaskedValueChange: handleBeforeMaskedValueChange(advancedMask) }
                     : { mask: mask, formatChars: defaultFormatChars })}
                 {...otherProps}
             />

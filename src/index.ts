@@ -31,6 +31,20 @@ export { default as Overlay } from "./components/Miscellaneous/Overlay";
 export { default as ProgressSpinner } from "./components/Miscellaneous/ProgressSpinner";
 export { default as Tooltip } from "./components/Tooltip";
 
+// Helpers
+export * from './helpers';
+
+// Hooks
+export * from './hooks';
+
+// TODO! export theme variable
+// TODO! dynamic theme functionality
+
+// TODO! input refactor
+//?     InputContainer wrapper
+//?     all containers classes changed to one class in preferably in InputContainer
+//?     change _value prefixes
+
 // TODO! export refactor
 //?     moving ALL types to component types.ts file
 //?     changing all index.tsx file to index.ts, wrong file extension

@@ -1,0 +1,29 @@
+.m-color-picker-container {
+    position: relative;
+    margin-bottom: var(--input-margin-bottom);
+}
+
+.m-color-picker-container.small {
+    --input-height: var(--small-input-height);
+    --input-font-size: var(--small-input-font-size);
+    --input-padding-left: var(--small-input-padding-left);
+}
+
+.m-color-picker-container.medium {
+    --input-height: var(--medium-input-height);
+    --input-font-size: var(--medium-input-font-size);
+    --input-padding-left: var(--medium-input-padding-left);
+}
+
+.m-color-picker-container.large {
+    --input-height: var(--large-input-height);
+    --input-font-size: var(--large-input-font-size);
+    --input-padding-left: var(--large-input-padding-left);
+}
+
+.m-color-picker-container .m-color-preview {
+    height: var(--input-height);
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    transition: 0.2s ease-in-out;
+}

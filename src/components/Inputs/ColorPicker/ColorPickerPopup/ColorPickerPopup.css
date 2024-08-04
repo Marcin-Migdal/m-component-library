@@ -1,0 +1,47 @@
+.color-picker-popup {
+    position: absolute;
+
+    width: 300px;
+
+    background-color: var(--light-background-color);
+    border-radius: var(--border-radius);
+    transition: 0.1s;
+}
+
+.color-picker-popup.mounted,
+.color-picker-popup.closing {
+    opacity: 0;
+}
+
+.color-picker-popup.opened {
+    opacity: 1;
+}
+
+.color-picker-popup .color-picker {
+    width: 100%;
+    aspect-ratio: 2 / 1;
+
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+}
+
+.color-picker-popup .middle-section {
+    display: flex;
+    padding: 1rem;
+}
+
+.color-picker-popup .middle-section .color-preview {
+    width: 50px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+}
+
+.color-picker-popup .bottom-section {
+    display: flex;
+    padding: 0 0.5rem 0.5rem 0.5rem;
+    gap: 0.5rem;
+}
+
+.color-picker-popup .bottom-section .m-textfield-container {
+    margin-bottom: unset;
+}
