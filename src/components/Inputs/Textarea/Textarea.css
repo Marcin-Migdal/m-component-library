@@ -1,6 +1,7 @@
 .m-textarea-container {
     position: relative;
     margin-bottom: calc(var(--input-margin-bottom) - 4px);
+    height: var(--input-textarea-height);
 }
 
 .m-textarea-container.small {

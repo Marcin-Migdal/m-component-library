@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
 
+    height: var(--input-height);
     margin-bottom: var(--input-margin-bottom);
 }
 

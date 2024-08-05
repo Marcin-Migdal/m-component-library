@@ -1,6 +1,7 @@
 .m-textfield-container {
     position: relative;
     margin-bottom: var(--input-margin-bottom);
+    height: var(--input-height);
 }
 
 .m-textfield-container.small {

@@ -1,0 +1,69 @@
+.m-slider-container {
+    position: relative;
+
+    margin-bottom: calc(var(--input-margin-bottom) - 4px);
+    height: var(--input-height);
+}
+
+.m-slider-container.small {
+    --input-height: var(--small-input-height);
+    --input-font-size: var(--small-input-font-size);
+    --input-padding-left: var(--small-input-padding-left);
+}
+
+.m-slider-container.medium {
+    --input-height: var(--medium-input-height);
+    --input-font-size: var(--medium-input-font-size);
+    --input-padding-left: var(--medium-input-padding-left);
+}
+
+.m-slider-container.large {
+    --input-height: var(--large-input-height);
+    --input-font-size: var(--large-input-font-size);
+    --input-padding-left: var(--large-input-padding-left);
+}
+
+.m-slider-container .m-slider {
+    height: var(--input-height);
+    margin: unset;
+}
+
+.m-slider-value-preview {
+    position: absolute;
+    font-size: 14px;
+
+    transform: translateX(-50%);
+}
+
+.m-slider-container .m-slider {
+    -webkit-appearance: none;
+    appearance: none;
+
+    height: 4px !important;
+    border-radius: 4px;
+    outline: none;
+
+    background: var(--white);
+
+    opacity: 0.7;
+    transition: opacity 0.15s ease-in-out;
+}
+
+.m-slider-container .m-slider:not(:disabled):hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.m-slider-container .m-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+
+    width: 14px;
+    height: 14px;
+    background: var(--primary-color_400);
+    border-radius: 50%;
+}
+
+.m-slider-container .m-slider:not(:disabled)::-webkit-slider-thumb {
+    cursor: pointer;
+}
