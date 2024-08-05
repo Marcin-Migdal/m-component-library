@@ -14,6 +14,7 @@ import {
     Checkbox,
     Dropdown,
     ProgressSpinner,
+    Slider,
     Textarea,
     Textfield,
     ToastConfigType,
@@ -81,6 +82,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                     error={error}
                     name="1"
                 />
+                <Slider min={0} max={100} label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} />
                 <Dropdown
                     label="label"
                     placeholder="placeholder"
@@ -91,6 +93,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                     error={error}
                     name="2"
                 />
+                <Slider min={0} max={100} label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} />
                 <Checkbox label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} error={error} />
 
                 <SectionHeader text="TOAST SECTION" />
