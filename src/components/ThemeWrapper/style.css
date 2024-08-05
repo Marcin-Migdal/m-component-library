@@ -147,6 +147,9 @@ body {
     --input-checkbox-hover-icon: var(--dark-grey_400);
     --input-checkbox-background: var(--background-color);
 
+    --slider-thumb-color: var(--dark-grey_800);
+    --slider-track-color: var(--input-hover-background-color);
+
     /** Buttons */
     --btn-full-color: var(--white);
     --btn-full-background-color: var(--dark-grey_300);
@@ -201,6 +204,9 @@ body {
     --input-checkbox-icon: var(--light-grey_300);
     --input-checkbox-hover-icon: var(--light-grey_200);
     --input-checkbox-background: var(--input-background-color);
+
+    --slider-thumb-color: var(--dark-grey_800);
+    --slider-track-color: var(--input-hover-background-color);
 
     /** Buttons */
     --btn-full-color: var(--background-color);
@@ -268,6 +274,9 @@ body {
     --input-checkbox-icon: var(--primary-color_300);
     --input-checkbox-hover-icon: var(--primary-color_400);
     --input-checkbox-background: var(--background-color);
+
+    --slider-thumb-color: var(--primary-color_400);
+    --slider-track-color: var(--input-hover-background-color);
 
     /** Buttons */
     --btn-full-color: var(--white);
@@ -338,6 +347,9 @@ body {
     --input-checkbox-hover-icon: var(--primary-color_200);
     --input-checkbox-background: var(--input-background-color);
 
+    --slider-thumb-color: var(--primary-color_400);
+    --slider-track-color: var(--input-hover-background-color);
+
     /** Buttons */
     --btn-full-color: var(--background-color);
     --btn-full-background-color: var(--primary-color_300);
@@ -404,6 +416,9 @@ body {
     --input-checkbox-icon: var(--primary-color_300);
     --input-checkbox-hover-icon: var(--primary-color_400);
     --input-checkbox-background: var(--background-color);
+
+    --slider-thumb-color: var(--primary-color_400);
+    --slider-track-color: var(--input-hover-background-color);
 
     /** Buttons */
     --btn-full-color: var(--white);
@@ -473,6 +488,9 @@ body {
     --input-checkbox-icon: var(--primary-color_300);
     --input-checkbox-hover-icon: var(--primary-color_200);
     --input-checkbox-background: var(--input-background-color);
+
+    --slider-thumb-color: var(--primary-color_400);
+    --slider-track-color: var(--input-hover-background-color);
 
     /** Buttons */
     --btn-full-color: var(--background-color);
