@@ -5,13 +5,13 @@ import { OpenStatus, useOpen } from "../../../hooks";
 import { InputError } from "../_inputsComponents/InputError/InputError";
 import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
 import { getInputsErrorStyle, getInputStyle } from "../input-helpers";
-import { ColorPickerProps, ColorType } from "./ColorPicker-interfaces";
+import { ColorPickerProps, defaultColorValue, ReturnedColorType, RgbValue } from "./ColorPicker-interfaces";
 import { ColorPickerPopup } from "./ColorPickerPopup/ColorPickerPopup";
+import { rgbToHex, rgbToHsl, valueToRgb } from "./helpers";
 
 import "./ColorPicker.css";
 
 const ColorPicker = ({
-    value: externalValue = undefined,
     name = undefined,
     disabled = false,
     onChange,
@@ -20,23 +20,38 @@ const ColorPicker = ({
     labelType = "left",
     labelWidth = 30,
     floatingInputWidth = 100,
-    defaultInternalValue = "red",
+    defaultInternalValue = defaultColorValue,
+    returnedColorType,
     size = "medium",
 }: ColorPickerProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
 
-    const { openStatus, toggleOpenStatus } = useOpen({ delay: 100 });
+    const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
 
-    const [internalValue, setInternalValue] = useState<ColorType | undefined>(defaultInternalValue);
+    const [value, setValue] = useState<RgbValue>(valueToRgb(defaultInternalValue));
     const [isFocused, setIsFocused] = useState<boolean>(false);
-
-    const value: ColorType | undefined = externalValue != undefined ? externalValue : internalValue;
 
     const handleFocus = () => setIsFocused(true);
 
-    const handleChange = (value: ColorType): void => {
-        onChange && onChange({ target: { name: name || "color-picker", value: value } });
-        setInternalValue(value);
+    const handleClose = () => {
+        handlePopupClose();
+    };
+
+    const handleChange = (value: RgbValue): void => {
+        setValue(value);
+
+        if (!onChange) {
+            return;
+        }
+
+        switch (returnedColorType) {
+            case ReturnedColorType.RGB:
+                return onChange({ target: { name: name || "color-picker", value: value } });
+            case ReturnedColorType.HSL:
+                return onChange({ target: { name: name || "color-picker", value: rgbToHsl(value.r, value.g, value.b) } });
+            case ReturnedColorType.HEX:
+                return onChange({ target: { name: name || "color-picker", value: rgbToHex(value.r, value.g, value.b) } });
+        }
     };
 
     return (
@@ -45,10 +60,11 @@ const ColorPicker = ({
                 <div
                     ref={containerRef}
                     className={`m-input m-color-preview ${labelType}`}
-                    onClick={toggleOpenStatus}
+                    onFocus={handleFocus}
+                    onClick={() => !disabled && toggleOpenStatus()}
                     style={{
                         ...getInputStyle(labelType, label, labelWidth, undefined),
-                        backgroundColor: value || "var(--input-background-color)",
+                        backgroundColor: `rgb(${value.r}, ${value.g}, ${value.b})`,
                     }}
                 />
                 {label && (
@@ -68,8 +84,14 @@ const ColorPicker = ({
             {containerRef.current &&
                 openStatus !== OpenStatus.CLOSED &&
                 createPortal(
-                    <ColorPickerPopup value={value} onChange={handleChange} className={openStatus} parentElement={containerRef.current} />,
-                    document.getElementById("wrapper-root") as HTMLElement
+                    <ColorPickerPopup
+                        value={value}
+                        onChange={handleChange}
+                        className={openStatus}
+                        parentElement={containerRef.current}
+                        handleClose={handleClose}
+                    />,
+                    document.body
                 )}
         </>
     );

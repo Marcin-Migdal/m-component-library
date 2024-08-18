@@ -1,23 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, {
-    CSSProperties,
-    ChangeEvent,
-    FocusEvent,
-    ReactElement,
-    MouseEvent as ReactMouseEvent,
-    useEffect,
-    useRef,
-    useState,
-} from "react";
+import React, { ChangeEvent, FocusEvent, MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
 
 import { InputError } from "../_inputsComponents/InputError/InputError";
 import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
 import { getInputStyle, getInputsErrorStyle } from "../input-helpers";
-import { DropdownProps, DropdownValue, IDropdownChangeEvent, IDropdownClearEvent, IDropdownOptionsProps } from "./dropdown-interfaces";
+import { DropdownProps, DropdownValue, IDropdownChangeEvent, IDropdownClearEvent } from "./dropdown-interfaces";
 
 import "./Dropdown.css";
+import { DropdownOptions } from "./DropdownOptions/DropdownOptions";
 
 type ILabelValue = {
     value: string | number;
@@ -196,51 +188,10 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
                         valueKey={valueKey}
                         labelKey={labelKey}
                     />,
-                    document.getElementById("wrapper-root") as HTMLElement
+                    document.body
                 )}
         </div>
     );
 }
 
 export default Dropdown;
-
-function DropdownOptions<T>({
-    filterElement,
-    uniqueDropdownId,
-    handleDropdownChange,
-    dropdownOptions,
-    value,
-    valueKey,
-    labelKey,
-}: IDropdownOptionsProps<T>) {
-    const { left, top, height, width } = filterElement.getBoundingClientRect();
-
-    const optionsPosition: CSSProperties = {
-        position: "absolute",
-        top: `${top + height}px`,
-        left: left,
-        width: width,
-    };
-
-    return (
-        <ul className="m-dropdown-list" style={optionsPosition} data-id={uniqueDropdownId}>
-            {dropdownOptions && dropdownOptions.length > 0 ? (
-                dropdownOptions.map((option) => (
-                    <li
-                        data-id={uniqueDropdownId}
-                        onClick={(e) => handleDropdownChange(e, option)}
-                        className={`m-dropdown-list-item ${option[valueKey] == value?.[valueKey] ? "selected" : ""}`}
-                    >
-                        {option[labelKey] as ReactElement}
-                    </li>
-                ))
-            ) : (
-                <>
-                    <li data-id={uniqueDropdownId} className="m-dropdown-list-item empty-message">
-                        No options
-                    </li>
-                </>
-            )}
-        </ul>
-    );
-}

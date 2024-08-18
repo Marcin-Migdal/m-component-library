@@ -1,5 +1,7 @@
 .color-picker-popup {
     position: absolute;
+    display: flex;
+    flex-direction: column;
 
     width: 300px;
 
@@ -17,16 +19,35 @@
     opacity: 1;
 }
 
-.color-picker-popup .color-picker {
+.color-picker-popup .color-picker-canvas {
+    position: relative;
+
     width: 100%;
     aspect-ratio: 2 / 1;
 
     border-top-left-radius: var(--border-radius);
     border-top-right-radius: var(--border-radius);
+
+    background-blend-mode: screen;
+}
+
+.color-picker-popup .color-picker-canvas .color-picker {
+    position: absolute;
+
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 0 2px black;
+
+    background-color: transparent;
 }
 
 .color-picker-popup .middle-section {
     display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
     padding: 1rem;
 }
 

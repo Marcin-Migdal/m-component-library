@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef } from "react";
 
-import { getTooltipPropsConfig } from "../Tooltip/internal-helpers";
-import { IButtonProps } from "./button-interfaces";
 import Tooltip from "../Tooltip";
+import { defaultTooltipConfig, getTooltipPropsConfig } from "../Tooltip/helpers/getTooltipPropsConfig";
+import { IButtonProps } from "./button-interfaces";
 
 import "./Button.css";
 
@@ -23,7 +23,7 @@ const Button = (props: IButtonProps) => {
         variant = "outlined",
         tooltip = "",
         disabledTooltip = "",
-        tooltipConfig = getTooltipPropsConfig(disabled),
+        tooltipConfig = defaultTooltipConfig,
         ...otherProps
     } = props;
 
@@ -56,7 +56,7 @@ const Button = (props: IButtonProps) => {
                 )}
             </button>
 
-            {tooltipContent && <Tooltip targetRef={ref} children={tooltipContent} {...getTooltipPropsConfig(disabled, tooltipConfig)} />}
+            {tooltipContent && <Tooltip targetRef={ref} children={tooltipContent} {...getTooltipPropsConfig(tooltipConfig)} />}
         </>
     );
 };

@@ -1,98 +1,123 @@
 import React, { ChangeEvent, useLayoutEffect, useRef, useState } from "react";
 
 import { getPosition } from "../../../../helpers/getPosition";
-import { GetPositionResponse } from "../../../../helpers/getPosition/getPosition-types";
+import { Position } from "../../../../helpers/getPosition/getPosition-types";
 import { OpenStatus } from "../../../../hooks";
 import Textfield from "../../Textfield";
 import { ADVANCED_MASKS_CONFIGS } from "../../Textfield/internal-helpers";
-import { ColorType } from "../ColorPicker-interfaces";
+import { RgbValue } from "../ColorPicker-interfaces";
+import { ColorPickerCanvas } from "../ColorPickerCanvas/ColorPickerCanvas";
+import { hslToRgb, rgbToHsl } from "../helpers";
+import { HueSliderCanvas } from "../HueSliderCanvas/HueSliderCanvas";
 
 import "./ColorPickerPopup.css";
 
 type ColorPickerPopupProps = {
-    value: ColorType | undefined;
-    onChange: (value: ColorType) => void;
+    value: RgbValue;
+    onChange: (value: RgbValue) => void;
     parentElement: HTMLDivElement | null;
     className: OpenStatus;
+    handleClose: () => void;
 };
 
-//! TODO getPosition
-//? when scroll is visible, calculation will probably be wrong, fix it
-//? improve function typing, try to overwrite the function definition, eq. in getCssProperty file
- 
-
-//! TODO color picking
-//? map value prop that comes initially to rgbValue format
-//? slider
-//? advanced logic for color picker
-
-type RgbValue = {
-    red: string;
-    green: string;
-    blue: string;
-};
-
-export const ColorPickerPopup = ({ value, onChange, parentElement, className }: ColorPickerPopupProps) => {
+export const ColorPickerPopup = ({ value, onChange, parentElement, className, handleClose }: ColorPickerPopupProps) => {
     const popupRef = useRef<HTMLDivElement>(null);
-    const [position, setPosition] = useState<GetPositionResponse>(undefined);
+    const [position, setPosition] = useState<Position | undefined>(undefined);
 
-    const [rgbValue, setRgbValue] = useState<RgbValue>({
-        red: "0",
-        green: "0",
-        blue: "0",
-    });
+    const [hueSliderValue, setHueSliderValue] = useState<number>(rgbToHsl(value.r, value.g, value.b).h);
+    const [rgbValue, setRgbValue] = useState<RgbValue>({ ...value });
 
     useLayoutEffect(() => {
-        const resizeObserver = new ResizeObserver(() => {
-            setPosition(getPosition(parentElement, popupRef.current, "auto-bottom"));
-        });
+        const calculatePopupPosition = () => {
+            setPosition(getPosition(parentElement, popupRef.current));
+        };
 
+        const handleClickOutside = (event: MouseEvent) => {
+            const target: HTMLElement = event.target as HTMLElement;
+
+            if (!popupRef.current || !parentElement) return;
+            if (!popupRef.current.contains(target) && !parentElement.contains(target)) {
+                handleClose();
+            }
+        };
+
+        const handleKeyPress = (event: KeyboardEvent) => {
+            if (event.code == "Escape") handleClose();
+        };
+
+        const resizeObserver = new ResizeObserver(calculatePopupPosition);
         resizeObserver.observe(document.body);
 
-        return () => resizeObserver.disconnect();
+        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("keydown", handleKeyPress);
+
+        return () => {
+            resizeObserver.disconnect();
+
+            document.removeEventListener("mousedown", handleClickOutside);
+            document.removeEventListener("keydown", handleKeyPress);
+        };
     }, []);
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleColorPick = (rgb: RgbValue) => {
+        setRgbValue(rgb);
+
+        onChange(rgbValue);
+    };
+
+    const handleHueSliderChange = (hue: number) => {
+        const { s, l } = rgbToHsl(rgbValue.r, rgbValue.g, rgbValue.b);
+
+        setHueSliderValue(hue);
+        setRgbValue(hslToRgb(hue, s, l));
+
+        onChange(rgbValue);
+    };
+
+    const handleRgbTextfieldChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-        const newRgbValue = { ...rgbValue, [name]: value };
+        const newRgbValue: RgbValue = { ...rgbValue, [name as keyof RgbValue]: parseInt(value) };
 
         setRgbValue(newRgbValue);
-        onChange(`rgb(${newRgbValue.red}, ${newRgbValue.green}, ${newRgbValue.blue})`);
+        setHueSliderValue(rgbToHsl(newRgbValue.r, newRgbValue.g, newRgbValue.b).h);
+
+        onChange(rgbValue);
     };
 
     return (
         <div ref={popupRef} className={`color-picker-popup ${className}`} style={{ ...position }}>
-            <div className="color-picker" style={{ backgroundColor: value }} />
+            <ColorPickerCanvas value={rgbValue} hue={hueSliderValue} onChange={handleColorPick} />
             <div className="middle-section">
-                <div className="color-preview" style={{ backgroundColor: value }}></div>
+                <div className="color-preview" style={{ backgroundColor: `rgb(${rgbValue.r},${rgbValue.g},${rgbValue.b})` }} />
+                <HueSliderCanvas hue={hueSliderValue} onChange={handleHueSliderChange} />
             </div>
             <div className="bottom-section">
                 <Textfield
-                    value={rgbValue.red}
+                    value={rgbValue.r.toString()}
                     advancedMask={ADVANCED_MASKS_CONFIGS.RGB}
-                    name="red"
+                    name="r"
                     label="R"
                     placeholder=" "
                     labelWidth={20}
-                    onChange={handleChange}
+                    onChange={handleRgbTextfieldChange}
                 />
                 <Textfield
-                    value={rgbValue.green}
+                    value={rgbValue.g.toString()}
                     advancedMask={ADVANCED_MASKS_CONFIGS.RGB}
-                    name="green"
+                    name="g"
                     label="G"
                     placeholder=" "
                     labelWidth={20}
-                    onChange={handleChange}
+                    onChange={handleRgbTextfieldChange}
                 />
                 <Textfield
-                    value={rgbValue.blue}
+                    value={rgbValue.b.toString()}
                     advancedMask={ADVANCED_MASKS_CONFIGS.RGB}
-                    name="blue"
+                    name="b"
                     label="B"
                     placeholder=" "
                     labelWidth={20}
-                    onChange={handleChange}
+                    onChange={handleRgbTextfieldChange}
                 />
             </div>
         </div>

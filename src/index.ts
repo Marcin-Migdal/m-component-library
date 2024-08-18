@@ -3,6 +3,7 @@ export { default as ThemeWrapper } from "./components/ThemeWrapper";
 
 // Inputs
 export { default as Checkbox, type CheckboxProps } from "./components/Inputs/Checkbox";
+export * from "./components/Inputs/ColorPicker";
 export { default as Dropdown, type DropdownProps } from "./components/Inputs/Dropdown";
 export { default as Slider } from "./components/Inputs/Slider";
 export { default as Textarea, type TextareaProps } from "./components/Inputs/Textarea";

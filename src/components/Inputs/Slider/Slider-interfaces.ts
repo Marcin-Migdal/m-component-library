@@ -1,5 +1,7 @@
 import * as GlobalInterfaces from "../../global-interfaces";
 
+export type ValuePreviewType = "top-dynamic" | "bottom-dynamic" | "top-static" | "bottom-static";
+
 export type SliderProps = {
     value?: number;
     min: number;
@@ -15,4 +17,5 @@ export type SliderProps = {
     labelType?: GlobalInterfaces.InputLabelType;
     hideValuePreview?: boolean;
     disabled?: boolean;
+    valuePreviewType?: ValuePreviewType;
 };

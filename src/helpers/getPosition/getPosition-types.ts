@@ -1,23 +1,17 @@
-export type TopPosition = {
-    bottom: number;
-    left: number;
-};
+export type Placement = "top" | "bottom" | "right" | "left";
 
-export type BottomPosition = {
+export type Position = {
     top: number;
     left: number;
+    width?: number;
+    positionType: Placement | "auto-top" | "auto-bottom" | "auto-right" | "auto-left" | "fit-top" | "fit-right" | "fit-bottom" | "fit-left";
 };
 
-export type RightPosition = {
-    top: number;
-    left: number;
+export type Config = {
+    autoPosition: boolean;
+    consumerHasParentWidth: boolean;
+    centerConsumer: boolean;
+    placement: Placement;
+    margin: number;
+    browserDeadZone: number;
 };
-
-export type LeftPosition = {
-    top: number;
-    right: number;
-};
-
-export type Placement = "top" | "bottom" | "right" | "left" | "auto-top" | "auto-bottom" | "auto-right" | "auto-left";
-
-export type GetPositionResponse = TopPosition | BottomPosition | RightPosition | LeftPosition | undefined;

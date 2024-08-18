@@ -2,6 +2,7 @@
     position: relative;
     margin-bottom: var(--input-margin-bottom);
     height: var(--input-height);
+    width: 100%;
 }
 
 .m-textfield-container.small {

@@ -1,96 +1,111 @@
-import { GetPositionResponse, Placement } from "./getPosition-types";
+import { Config, Position } from "./getPosition-types";
 import { getBottomPlacement, getLeftPlacement, getRightPlacement, getTopPlacement } from "./placements";
-import { validateBottomPlacement, validateLeftPlacement, validateRightPlacement, validateTopPlacement } from "./validators";
+import { invalidTopPlacement, validateBottomPlacement, validateLeftPlacement, validateRightPlacement } from "./validators";
+
+const defaultConfig: Config = {
+    autoPosition: true,
+    consumerHasParentWidth: false,
+    centerConsumer: false,
+    placement: "bottom",
+    margin: 8,
+    browserDeadZone: 8,
+};
 
 export const getPosition = (
-    targetElement: HTMLDivElement | null | undefined,
-    consumerElement: HTMLDivElement | null | undefined,
-    placement: Placement = "auto-bottom",
-    margin: number = 8,
-    browserDeadZone: number = margin
-): GetPositionResponse => {
-    if (!targetElement) return undefined;
+    targetElement: HTMLElement | null | undefined,
+    consumerElement: HTMLElement | null | undefined,
+    externalConfig?: Partial<Config>
+): Position | undefined => {
+    let position: Position | undefined = undefined;
 
-    const targetRect = targetElement.getBoundingClientRect();
-
-    switch (placement) {
-        case "top":
-            return getTopPlacement(targetRect, margin);
-        case "bottom":
-            return getBottomPlacement(targetRect, margin);
-        case "right":
-            return getRightPlacement(targetRect, margin);
-        case "left":
-            return getLeftPlacement(targetRect, margin);
+    if (!targetElement || !consumerElement) {
+        return position;
     }
 
-    if (!consumerElement) return undefined;
+    const { autoPosition, placement, margin, browserDeadZone, consumerHasParentWidth, centerConsumer }: Config = {
+        ...defaultConfig,
+        ...externalConfig,
+        browserDeadZone: externalConfig?.browserDeadZone
+            ? externalConfig.browserDeadZone
+            : externalConfig?.margin || defaultConfig.browserDeadZone,
+    };
 
+    const targetRect = targetElement.getBoundingClientRect();
     const consumerRect = consumerElement.getBoundingClientRect();
 
     switch (placement) {
-        case "auto-top": {
-            let position = getTopPlacement(targetRect, margin);
+        case "top": {
+            position = getTopPlacement(targetRect, consumerRect, margin, centerConsumer, false);
 
-            if (validateTopPlacement(position, consumerRect, browserDeadZone)) {
-                const autoPosition = getBottomPlacement(targetRect, margin);
+            if (autoPosition && invalidTopPlacement(position, browserDeadZone)) {
+                position = getBottomPlacement(targetRect, consumerRect, margin, centerConsumer, true);
 
-                if (validateBottomPlacement(autoPosition, consumerRect, browserDeadZone)) {
-                    return { top: browserDeadZone, left: autoPosition.left };
+                if (validateBottomPlacement(position, consumerRect, browserDeadZone)) {
+                    position = {
+                        top: browserDeadZone + window.scrollY,
+                        left: position.left,
+                        positionType: "fit-top",
+                    };
                 }
-
-                return autoPosition;
             }
 
-            return position;
+            break;
         }
 
-        case "auto-bottom": {
-            let position = getBottomPlacement(targetRect, margin);
+        case "bottom": {
+            position = getBottomPlacement(targetRect, consumerRect, margin, centerConsumer, false);
 
-            if (validateBottomPlacement(position, consumerRect, browserDeadZone)) {
-                const autoPosition = getTopPlacement(targetRect, margin);
+            if (autoPosition && validateBottomPlacement(position, consumerRect, browserDeadZone)) {
+                position = getTopPlacement(targetRect, consumerRect, margin, centerConsumer, true);
 
-                if (validateTopPlacement(autoPosition, consumerRect, browserDeadZone)) {
-                    return { top: browserDeadZone, left: autoPosition.left };
+                if (invalidTopPlacement(position, browserDeadZone)) {
+                    position = {
+                        top: window.scrollY + window.innerHeight - consumerRect.height - browserDeadZone,
+                        left: position.left,
+                        positionType: "fit-bottom",
+                    };
                 }
-
-                return autoPosition;
             }
 
-            return position;
+            break;
         }
 
-        case "auto-right": {
-            let position = getRightPlacement(targetRect, margin);
+        case "right": {
+            position = getRightPlacement(targetRect, consumerRect, margin, centerConsumer, false);
 
-            if (validateRightPlacement(position, consumerRect, browserDeadZone)) {
-                const autoPosition = getLeftPlacement(targetRect, margin);
+            if (autoPosition && validateRightPlacement(position, consumerRect, browserDeadZone)) {
+                position = getLeftPlacement(targetRect, consumerRect, margin, centerConsumer, true);
 
-                if (validateLeftPlacement(autoPosition, consumerRect, browserDeadZone)) {
-                    return { top: autoPosition.top, left: document.body.clientWidth - browserDeadZone - consumerRect.width };
+                if (validateLeftPlacement(position, browserDeadZone)) {
+                    position = {
+                        top: position.top,
+                        left: browserDeadZone + window.scrollX,
+                        positionType: "fit-right",
+                    };
                 }
-
-                return autoPosition;
             }
 
-            return position;
+            break;
         }
 
-        case "auto-left": {
-            let position = getLeftPlacement(targetRect, margin);
+        case "left": {
+            position = getLeftPlacement(targetRect, consumerRect, margin, centerConsumer, false);
 
-            if (validateLeftPlacement(position, consumerRect, browserDeadZone)) {
-                const autoPosition = getRightPlacement(targetRect, margin);
+            if (autoPosition && validateLeftPlacement(position, browserDeadZone)) {
+                position = getRightPlacement(targetRect, consumerRect, margin, centerConsumer, true);
 
-                if (validateRightPlacement(autoPosition, consumerRect, browserDeadZone)) {
-                    return { top: autoPosition.top, left: browserDeadZone };
+                if (validateRightPlacement(position, consumerRect, browserDeadZone)) {
+                    position = {
+                        top: position.top,
+                        left: browserDeadZone + window.scrollX,
+                        positionType: "fit-left",
+                    };
                 }
-
-                return autoPosition;
             }
 
-            return position;
+            break;
         }
     }
+
+    return !position ? undefined : !consumerHasParentWidth ? { ...position } : { ...position, width: targetRect.width };
 };

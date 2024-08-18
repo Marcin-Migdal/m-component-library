@@ -1,9 +1,9 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { CSSProperties, useLayoutEffect, useRef, useState } from "react";
 
 import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
 import { getInputStyle } from "../input-helpers";
 import { SliderProps } from "./Slider-interfaces";
-import { getValuePosition } from "./getValuePosition";
+import { getSliderValueDynamicStyle } from "./getSliderValueDynamicStyle";
 
 import "./Slider.css";
 
@@ -21,13 +21,14 @@ const Slider = ({
     size = "medium",
     name = undefined,
     hideValuePreview = false,
+    valuePreviewType = "bottom-dynamic",
     disabled = false,
 }: SliderProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const [internalValue, setValue] = useState<number>(initialValue || min);
 
-    const [sliderValuePosition, setSliderValuePosition] = useState<{ top: number; left: number } | undefined>(undefined);
+    const [sliderValueDynamicStyle, setSliderValueDynamicStyle] = useState<CSSProperties>({});
 
     const controlled = externalValue !== undefined;
     const value = controlled ? externalValue : internalValue;
@@ -37,12 +38,13 @@ const Slider = ({
             return;
         }
 
-        const observer = new ResizeObserver(() => {
-            if (!inputRef.current) {
-                return;
-            }
+        if (valuePreviewType.includes("static")) {
+            setSliderValueDynamicStyle({});
+            return;
+        }
 
-            setSliderValuePosition(getValuePosition(inputRef.current, max, value));
+        const observer = new ResizeObserver(() => {
+            inputRef.current && setSliderValueDynamicStyle(getSliderValueDynamicStyle(inputRef.current, max, value));
         });
 
         observer.observe(document.body);
@@ -51,7 +53,7 @@ const Slider = ({
         return () => {
             observer.disconnect();
         };
-    }, [value]);
+    }, [value, valuePreviewType]);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = parseFloat(event.target.value);
@@ -66,38 +68,44 @@ const Slider = ({
     };
 
     return (
-        <>
-            <div className={`m-slider-container ${size}`}>
-                <input
-                    disabled={disabled}
-                    ref={inputRef}
-                    type="range"
-                    name={name}
-                    min={min}
-                    max={max}
-                    step={step}
-                    value={value}
-                    onChange={handleChange}
-                    style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
-                    className="m-slider"
+        <div
+            className={`m-slider-container ${size}`}
+            style={{
+                // @ts-expect-error ts(2353) typescript do not recognize css variables
+                "--slider-value": value,
+            }}
+        >
+            <input
+                disabled={disabled}
+                ref={inputRef}
+                type="range"
+                name={name}
+                min={min}
+                max={max}
+                step={step}
+                value={value}
+                onChange={handleChange}
+                style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
+                className="m-slider"
+            />
+            {label && (
+                <InputsLabel
+                    label={label}
+                    labelType={labelType}
+                    className="slider"
+                    labelWidth={labelWidth}
+                    isFocused={false}
+                    isFilled={labelType === "floating" ? true : !!value}
                 />
-                {label && (
-                    <InputsLabel
-                        label={label}
-                        labelType={labelType}
-                        className="slider"
-                        labelWidth={labelWidth}
-                        isFocused={false}
-                        isFilled={labelType === "floating" ? true : !!value}
-                    />
-                )}
-            </div>
-            {!hideValuePreview && sliderValuePosition && (
-                <span className="m-slider-value-preview" style={sliderValuePosition}>
-                    {value}
-                </span>
             )}
-        </>
+            {!hideValuePreview && (
+                <div className="m-relative-value-container">
+                    <span className={`m-slider-value-preview ${valuePreviewType}`} style={sliderValueDynamicStyle}>
+                        {value}
+                    </span>
+                </div>
+            )}
+        </div>
     );
 };
 

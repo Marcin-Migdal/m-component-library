@@ -1,6 +1,7 @@
 .m-color-picker-container {
     position: relative;
     margin-bottom: var(--input-margin-bottom);
+    width: 100%;
 }
 
 .m-color-picker-container.small {
@@ -25,5 +26,4 @@
     height: var(--input-height);
     box-sizing: border-box;
     border-radius: var(--border-radius);
-    transition: 0.2s ease-in-out;
 }
