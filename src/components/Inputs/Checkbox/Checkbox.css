@@ -4,6 +4,7 @@
 
     margin-bottom: var(--input-margin-bottom);
     height: var(--input-height);
+    width: 100%;
 }
 
 .m-checkbox-container.small {

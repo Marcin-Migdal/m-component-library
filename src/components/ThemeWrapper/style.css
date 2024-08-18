@@ -110,13 +110,13 @@ body {
 
 .common-wrapper-container {
     /* theme wrapper container styles */
-    position: relative;
-
+    /* position: relative; */
+    /* 
     width: 100vw;
-    height: 100vh;
+    height: 100vh; */
     background: var(--background-color);
 
-    z-index: 0;
+    /* z-index: 0; */
 
     color: var(--primary-text-color);
 }

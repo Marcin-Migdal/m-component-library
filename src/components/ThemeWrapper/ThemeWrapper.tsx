@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -23,11 +23,11 @@ import "./style.css";
 library.add(fas, fab);
 
 const ThemeWrapper = ({ children, theme = "default-theme-light-mode", customWrapperId = "wrapper-root" }: IThemeWrapper) => {
-    return (
-        <div className={`common-wrapper-container ${theme}`} id={customWrapperId}>
-            {children}
-        </div>
-    );
+    useEffect(() => {
+        document.body.className = `common-wrapper-container ${theme}`;
+    }, []);
+
+    return <>{children}</>;
 };
 
 export default ThemeWrapper;

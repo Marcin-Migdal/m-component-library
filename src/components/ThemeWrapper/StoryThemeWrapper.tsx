@@ -12,8 +12,10 @@ import {
     Button,
     Card,
     Checkbox,
+    ColorPicker,
     Dropdown,
     ProgressSpinner,
+    ReturnedColorType,
     Slider,
     Textarea,
     Textfield,
@@ -42,7 +44,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
     const alertRef = useRef<AlertHandler>(null);
 
     const checkboxLabelType = inputLabelType == "floating" ? "right" : inputLabelType;
-    const inputLabelWidth: LabelPercentageWidth | undefined = inputLabelType == "floating" ? 90 : 20;
+    const inputLabelWidth: LabelPercentageWidth | undefined = inputLabelType == "floating" ? 90 : 35;
     const floatingInputWidth = 60;
 
     return (
@@ -82,7 +84,6 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                     error={error}
                     name="1"
                 />
-                <Slider min={0} max={100} label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} />
                 <Dropdown
                     label="label"
                     placeholder="placeholder"
@@ -93,7 +94,14 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                     error={error}
                     name="2"
                 />
-                <Slider min={0} max={100} label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} />
+                <Slider
+                    min={0}
+                    max={100}
+                    label="label"
+                    labelType={inputLabelType}
+                    labelWidth={inputLabelWidth}
+                    floatingInputWidth={floatingInputWidth}
+                />
                 <Checkbox label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} error={error} />
 
                 <SectionHeader text="TOAST SECTION" />
@@ -120,11 +128,19 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
 
                 <SectionHeader text="TOOLTIP SECTION" />
 
-                <Button tooltip="test" tooltipConfig={{ position: "top" }} variant="outlined" text="Top" onClick={() => {}} />
-                <Button tooltip="test" tooltipConfig={{ position: "bottom" }} variant="outlined" text="Bottom" onClick={() => {}} />
-                <Button tooltip="test" tooltipConfig={{ position: "right" }} variant="outlined" text="Right" onClick={() => {}} />
-                <Button tooltip="test" tooltipConfig={{ position: "left" }} variant="outlined" text="Left" onClick={() => {}} />
+                <Button tooltip="test" tooltipConfig={{ placement: "top" }} variant="outlined" text="Top" onClick={() => {}} />
+                <Button tooltip="test" tooltipConfig={{ placement: "bottom" }} variant="outlined" text="Bottom" onClick={() => {}} />
+                <Button tooltip="test" tooltipConfig={{ placement: "right" }} variant="outlined" text="Right" onClick={() => {}} />
+                <Button tooltip="test" tooltipConfig={{ placement: "left" }} variant="outlined" text="Left" onClick={() => {}} />
 
+                <ColorPicker
+                    labelType={checkboxLabelType}
+                    labelWidth={inputLabelWidth}
+                    floatingInputWidth={floatingInputWidth}
+                    label="test"
+                    returnedColorType={ReturnedColorType.RGB}
+                    onChange={(color) => console.log(color)}
+                />
                 <SectionHeader text="PANEL SECTION" />
 
                 <Card variant={panelVariant} style={{ width: "300px", padding: "1rem" }}>
@@ -182,7 +198,7 @@ const SectionHeader = ({ text, style, headerStyle }: ISectionHeaderProps) => {
     return (
         <div
             style={{
-                width: "calc(100% + 32px)",
+                width: "calc(100% + 111px)",
                 borderTop: "1px solid var(--primary-text-color)",
                 marginLeft: "-16px",
                 marginTop: "20px",

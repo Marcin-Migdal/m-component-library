@@ -52,7 +52,7 @@ export type AdvancedMaskTextfieldType = {
 export type AdvancedMaskType = {
     mask: string;
     formatChars: IFormatChars;
-    beforeChange: BeforeMaskedValueChangeType;
+    beforeChange?: BeforeMaskedValueChangeType;
 };
 
 export interface IFormatChars {

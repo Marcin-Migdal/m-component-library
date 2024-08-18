@@ -2,7 +2,7 @@ import { InputState } from "react-input-mask";
 
 import { AdvancedMaskType, IFormatChars } from "./Textfield-interfaces";
 
-export type AdvancedTextfieldMasksTypes = "TIME" | "DATE";
+export type AdvancedTextfieldMasksTypes = "TIME" | "DATE" | "RGB";
 
 export type AdvancedMasksConfig = {
     [key in AdvancedTextfieldMasksTypes]: AdvancedMaskType;
@@ -37,6 +37,15 @@ const handleDateBeforeChange = (newState: InputState, oldState: InputState, user
     return { value: newValue, selection: newSelection };
 };
 
+//! RGB mask handler
+const handleRGBBeforeChange = (newState: InputState): InputState => {
+    if (parseInt(newState.value) > 255) {
+        return { ...newState, value: "255" };
+    }
+
+    return newState;
+};
+
 export const ADVANCED_MASKS_CONFIGS: AdvancedMasksConfig = {
     TIME: {
         mask: "12:34",
@@ -61,5 +70,14 @@ export const ADVANCED_MASKS_CONFIGS: AdvancedMasksConfig = {
             "8": "[0-9]", // 9
         },
         beforeChange: handleDateBeforeChange,
+    },
+    RGB: {
+        mask: "123",
+        formatChars: {
+            "1": "[0-9]", // 0
+            "2": "[0-9]", // 1
+            "3": "[0-9]", // 2
+        },
+        beforeChange: handleRGBBeforeChange,
     },
 };

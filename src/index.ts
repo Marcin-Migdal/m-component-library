@@ -3,6 +3,7 @@ export { default as ThemeWrapper } from "./components/ThemeWrapper";
 
 // Inputs
 export { default as Checkbox, type CheckboxProps } from "./components/Inputs/Checkbox";
+export * from "./components/Inputs/ColorPicker";
 export { default as Dropdown, type DropdownProps } from "./components/Inputs/Dropdown";
 export { default as Slider } from "./components/Inputs/Slider";
 export { default as Textarea, type TextareaProps } from "./components/Inputs/Textarea";
@@ -31,6 +32,20 @@ export { default as Icon } from "./components/Miscellaneous/Icon";
 export { default as Overlay } from "./components/Miscellaneous/Overlay";
 export { default as ProgressSpinner } from "./components/Miscellaneous/ProgressSpinner";
 export { default as Tooltip } from "./components/Tooltip";
+
+// Helpers
+export * from './helpers';
+
+// Hooks
+export * from './hooks';
+
+// TODO! export theme variable
+// TODO! dynamic theme functionality
+
+// TODO! input refactor
+//?     InputContainer wrapper
+//?     all containers classes changed to one class in preferably in InputContainer
+//?     change _value prefixes
 
 // TODO! export refactor
 //?     moving ALL types to component types.ts file

@@ -1,22 +1,19 @@
-import React, { CSSProperties, useEffect, useRef, useState } from "react";
+import React, { CSSProperties, PropsWithChildren, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
+import { getPosition } from "../../helpers";
 import { ITooltipProps, TargetElementType } from "./Tooltip-interfaces";
-import { generateTooltipStyle } from "./internal-helpers";
 
 import "./Tooltip.css";
 
 const TooltipWrapper = ({
     targetRef,
     children,
-    position = "bottom",
     className = "",
     style = {},
-    autoFixPosition = false,
+    placement = "bottom",
     openDelay = 0,
-    tooltipMargin = 6,
-    maxWidth = 150,
-}: ITooltipProps) => {
+}: PropsWithChildren<ITooltipProps>) => {
     const tooltipRef = useRef<HTMLDivElement>(null);
 
     const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -59,16 +56,13 @@ const TooltipWrapper = ({
 
             if (tooltipElement) {
                 // calculates tooltip position using refs and returns it as a style
-                const _tooltipStyle = generateTooltipStyle(
-                    targetElement,
-                    tooltipElement,
-                    position,
-                    autoFixPosition,
-                    tooltipMargin,
-                    maxWidth
-                );
-
-                setTooltipStyle({ ..._tooltipStyle, ...style });
+                setTooltipStyle({
+                    ...getPosition(targetElement, tooltipRef.current, {
+                        placement,
+                        centerConsumer: true,
+                    }),
+                    ...style,
+                });
             }
         };
 
@@ -93,7 +87,13 @@ const TooltipWrapper = ({
 
 export default TooltipWrapper;
 
-const TooltipContent = ({ style, tooltipRef, children, className }: any) => {
+type TooltipContentProps = {
+    style: React.CSSProperties | undefined;
+    tooltipRef: React.RefObject<HTMLDivElement>;
+    className: string;
+};
+
+const TooltipContent = ({ children, style = {}, tooltipRef, className }: PropsWithChildren<TooltipContentProps>) => {
     return (
         <div ref={tooltipRef} className={`tooltip ${className}`} style={style}>
             {children}
