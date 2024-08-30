@@ -36,7 +36,7 @@ const Overlay = ({ children, onClick }: PropsWithChildren<OverlayProps>) => {
         <div tabIndex={0} ref={overlayRef} onClick={handleClick} className="m-overlay">
             {children}
         </div>,
-        document.getElementById("wrapper-root") as HTMLElement
+        document.body
     );
 };
 

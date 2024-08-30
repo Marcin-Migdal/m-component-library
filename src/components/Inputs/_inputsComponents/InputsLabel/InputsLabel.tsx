@@ -12,16 +12,27 @@ interface IInputsLabelProps {
 
     isFocused?: boolean;
     isFilled?: boolean;
+    forceFloating?: boolean;
 
     // Dropdown Props
     dataId?: string;
 }
 
-export const InputsLabel = ({ labelType, label, className, labelWidth, isFocused, isFilled, dataId }: IInputsLabelProps) => {
+export const InputsLabel = ({
+    labelType,
+    label,
+    className,
+    labelWidth,
+    isFocused = false,
+    isFilled = false,
+    forceFloating = false,
+    dataId,
+}: IInputsLabelProps) => {
     const labelClasses = `m-input-label ${className} ${labelType} ${
-        labelType == "floating" && isFocused ? "focused" : isFilled ? "filled" : ""
+        labelType == "floating" && isFocused ? "focused" : isFilled ? "filled" : forceFloating ? "forced-floating" : ""
     }`;
 
+    className === "slider" && console.log(labelClasses);
     return (
         <label
             data-id={dataId}
@@ -32,7 +43,7 @@ export const InputsLabel = ({ labelType, label, className, labelWidth, isFocused
             }
             className={labelClasses}
         >
-            {labelType == "floating" ? (isFocused || isFilled ? label : `${label}...`) : label}
+            {labelType == "floating" ? (isFocused || isFilled || forceFloating ? label : `${label}...`) : label}
         </label>
     );
 };

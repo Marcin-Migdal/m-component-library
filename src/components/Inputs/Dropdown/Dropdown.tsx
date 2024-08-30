@@ -3,13 +3,12 @@ import React, { ChangeEvent, FocusEvent, MouseEvent as ReactMouseEvent, useEffec
 import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
 
-import { InputError } from "../_inputsComponents/InputError/InputError";
-import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
+import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputStyle, getInputsErrorStyle } from "../input-helpers";
+import { DropdownOptions } from "./DropdownOptions/DropdownOptions";
 import { DropdownProps, DropdownValue, IDropdownChangeEvent, IDropdownClearEvent } from "./dropdown-interfaces";
 
 import "./Dropdown.css";
-import { DropdownOptions } from "./DropdownOptions/DropdownOptions";
 
 type ILabelValue = {
     value: string | number;
@@ -18,7 +17,7 @@ type ILabelValue = {
 
 function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(props: DropdownProps<T>) {
     const {
-        value = undefined,
+        value: externalValue = undefined,
         name = undefined,
         disabled = false,
         onChange,
@@ -38,8 +37,6 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
         clearable = true,
         readOnly = false,
         filter = true,
-
-        ...otherProps
     } = props;
 
     const filterRef = useRef<HTMLInputElement>(null);
@@ -52,7 +49,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
 
     const [uniqueDropdownId] = useState<string>(uuId());
 
-    const _value = value || internalValue;
+    const value = externalValue || internalValue;
 
     useEffect(() => {
         const filterOptions = () => {
@@ -138,7 +135,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
     };
 
     return (
-        <div className={`m-dropdown-container ${size} ${error ? "error" : ""}`} {...otherProps}>
+        <InputContainer disabled={disabled} className="m-dropdown-container" size={size} error={error}>
             {/* input placeholder, displays selected value, also work as a filter input */}
             <input
                 ref={filterRef}
@@ -148,7 +145,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
                 type="text"
                 style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
                 readOnly={readOnly || !filter}
-                value={(isFocused ? filterValue : _value?.[labelKey]) || ""}
+                value={(isFocused ? filterValue : value?.[labelKey]) || ""}
                 onChange={handleFilterChange}
                 onFocus={handleFocus}
                 placeholder={labelType == "floating" ? undefined : placeholder || (label ? `${label}...` : "")}
@@ -162,7 +159,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
                     className="dropdown"
                     labelWidth={labelWidth}
                     isFocused={isFocused}
-                    isFilled={!!_value}
+                    isFilled={!!value}
                     dataId={uniqueDropdownId}
                 />
             )}
@@ -173,7 +170,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
             ) : (
                 <FontAwesomeIcon className="m-dropdown-icon" icon="angle-down" onClick={() => setIsFocused(!isFocused)} />
             )}
-            {clearable && _value && <FontAwesomeIcon className="m-dropdown-clear-icon" icon="close" onClick={handleClear} />}
+            {clearable && value && <FontAwesomeIcon className="m-dropdown-clear-icon" icon="close" onClick={handleClear} />}
 
             {/* dropdown items */}
             {isFocused &&
@@ -184,13 +181,13 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
                         uniqueDropdownId={uniqueDropdownId}
                         handleDropdownChange={handleDropdownChange}
                         dropdownOptions={dropdownOptions}
-                        value={_value}
+                        value={value}
                         valueKey={valueKey}
                         labelKey={labelKey}
                     />,
                     document.body
                 )}
-        </div>
+        </InputContainer>
     );
 }
 

@@ -1,30 +1,3 @@
-.m-checkbox-container {
-    position: relative;
-    display: flex;
-
-    margin-bottom: var(--input-margin-bottom);
-    height: var(--input-height);
-    width: 100%;
-}
-
-.m-checkbox-container.small {
-    --checkbox-input-size: var(--small-input-checkbox-size);
-    --input-font-size: var(--small-input-font-size);
-    --input-padding-left: var(--small-input-padding-left);
-}
-
-.m-checkbox-container.medium {
-    --checkbox-input-size: var(--medium-input-checkbox-size);
-    --input-font-size: var(--medium-input-font-size);
-    --input-padding-left: var(--medium-input-padding-left);
-}
-
-.m-checkbox-container.large {
-    --checkbox-input-size: var(--large-input-checkbox-size);
-    --input-font-size: var(--large-input-font-size);
-    --input-padding-left: var(--large-input-padding-left);
-}
-
 .m-checkbox-container .m-checkbox-input-wrapper {
     display: flex;
     align-items: center;
@@ -59,6 +32,9 @@
     border: var(--border);
     transition: 0.15s;
     position: relative;
+}
+
+.m-checkbox-container:not(.disabled) .m-checkbox-input-wrapper .m-checkbox {
     cursor: pointer;
 }
 

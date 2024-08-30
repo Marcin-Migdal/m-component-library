@@ -1,14 +1,13 @@
 import React, { ChangeEvent, FocusEvent, useState } from "react";
 
-import { InputError } from "../_inputsComponents/InputError/InputError";
-import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
+import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputStyle, getInputsErrorStyle } from "../input-helpers";
 import { TextareaProps } from "./Textarea-interfaces";
 
 import "./Textarea.css";
 
 const Textarea = ({
-    value = undefined,
+    value: externalValue = undefined,
     name = undefined,
     onChange,
     onBlur,
@@ -22,12 +21,13 @@ const Textarea = ({
     floatingInputWidth = 100,
     row = 4,
     size = "medium",
+    disabled = false,
     ...otherProps
 }: TextareaProps) => {
     const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
-    const _value: string = value != undefined ? value : internalValue;
+    const value: string = externalValue != undefined ? externalValue : internalValue;
 
     const handleFocus = () => setIsFocused(true);
 
@@ -43,18 +43,19 @@ const Textarea = ({
     };
 
     return (
-        <div className={`m-textarea-container ${size} ${error ? "error" : ""}`}>
+        <InputContainer disabled={disabled} className="m-textarea-container" size={size} error={error}>
             <textarea
                 name={name}
                 rows={row}
                 style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
                 className={`m-input m-textarea ${labelType}`}
-                value={_value}
+                value={value}
                 onChange={handleChange}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
                 placeholder={labelType == "floating" ? undefined : placeholder || (label ? `${label}...` : "")}
                 autoFocus={autoFocus}
+                disabled={disabled}
                 {...otherProps}
             />
             {label && (
@@ -64,13 +65,13 @@ const Textarea = ({
                     className="textarea"
                     labelWidth={labelWidth}
                     isFocused={isFocused}
-                    isFilled={!!_value}
+                    isFilled={!!value}
                 />
             )}
             {error && (
                 <InputError style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)} className="textarea" error={error} />
             )}
-        </div>
+        </InputContainer>
     );
 };
 

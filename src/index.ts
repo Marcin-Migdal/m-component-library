@@ -39,20 +39,16 @@ export * from './helpers';
 // Hooks
 export * from './hooks';
 
-// TODO! export theme variable
-// TODO! dynamic theme functionality
-
-// TODO! input refactor
-//?     InputContainer wrapper
-//?     all containers classes changed to one class in preferably in InputContainer
-//?     change _value prefixes
-
 // TODO! export refactor
 //?     moving ALL types to component types.ts file
 //?     changing all index.tsx file to index.ts, wrong file extension
 //?     exporting all types(mostly, only those that might be needed) in component index.ts
 //?     changing this file to export like this "export * from './<component_path>"
 //*     (options, to think about) aggregate all the exports of components like Miscellaneous, Inputs, Popups, in their respective folders in index.ts, then inly export here eq. "export * from "./components/Inputs";" under "// Inputs"
+
+
+// TODO! dynamic theme functionality
+// TODO! export theme enum
 
 //! TOOLTIP 
 // TODO? Not closing tooltip if cursor is over it (settimeout when closing tooltip, and canceling closing if onMouseEnter on tooltip ??? OR some back-ground div under tooltip, that will be of size (tooltipSize + tooltipMargin) )
@@ -69,11 +65,11 @@ export * from './hooks';
 // TODO! Navigational components
 // TODO? Breadcrumb
 // TODO? Nav bar
-// TODO? Dropdown Menu (open on ref that can be attached to anything(button, icon))
+// TODO? Dropdown Menu (open on ref that can be attached to anything(button, icon, div) like context menu)
 // TODO? Side bar
 
 //TODO! Data Display
 // TODO? TABLE
 // TODO? TREE
 
-//! add env. var. that will change depending if lib is used in this storybook or if used as installed dependency, then fix tooltip scroll problem that only occurs in story book
+//* (NOT NEEDED AT THE MOMENT) add env. var. that will change depending if lib is used in this storybook or if used as installed dependency

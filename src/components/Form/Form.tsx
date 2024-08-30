@@ -1,8 +1,8 @@
-import React, { ChangeEvent, useMemo } from "react";
 import { FormikValues, useFormik } from "formik";
+import React, { ChangeEvent, useMemo } from "react";
 
-import { filteredErrors } from "./internal-helpers";
 import { IFormProps } from "./Form-interfaces";
+import { filteredErrors } from "./internal-helpers";
 
 function Form<T extends FormikValues = any>({
     initialValues,
@@ -23,8 +23,8 @@ function Form<T extends FormikValues = any>({
         const name = e.target.name;
 
         if (handleValuesChange) {
-            const _values = handleValuesChange(e, formik);
-            formik.setValues(_values, true);
+            const values = handleValuesChange(e, formik);
+            formik.setValues(values, true);
         } else formik.handleChange(e);
 
         if (formik.touched[name]) {

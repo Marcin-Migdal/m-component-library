@@ -1,7 +1,0 @@
-.common-wrapper-container .m-slider-container .m-slider {
-    background: var(--slider-track-color);
-}
-
-.common-wrapper-container .m-slider-container .m-slider::-webkit-slider-thumb {
-    background: var(--slider-thumb-color);
-}

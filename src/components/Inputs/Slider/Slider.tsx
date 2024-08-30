@@ -1,6 +1,6 @@
 import React, { CSSProperties, useLayoutEffect, useRef, useState } from "react";
 
-import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
+import { InputContainer, InputsLabel } from "../_inputsComponents";
 import { getInputStyle } from "../input-helpers";
 import { SliderProps } from "./Slider-interfaces";
 import { getSliderValueDynamicStyle } from "./getSliderValueDynamicStyle";
@@ -68,8 +68,10 @@ const Slider = ({
     };
 
     return (
-        <div
-            className={`m-slider-container ${size}`}
+        <InputContainer
+            disabled={disabled}
+            className="m-slider-container"
+            size={size}
             style={{
                 // @ts-expect-error ts(2353) typescript do not recognize css variables
                 "--slider-value": value,
@@ -86,7 +88,7 @@ const Slider = ({
                 value={value}
                 onChange={handleChange}
                 style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
-                className="m-slider"
+                className="m-input m-slider"
             />
             {label && (
                 <InputsLabel
@@ -94,8 +96,7 @@ const Slider = ({
                     labelType={labelType}
                     className="slider"
                     labelWidth={labelWidth}
-                    isFocused={false}
-                    isFilled={labelType === "floating" ? true : !!value}
+                    forceFloating={labelType === "floating"}
                 />
             )}
             {!hideValuePreview && (
@@ -105,7 +106,7 @@ const Slider = ({
                     </span>
                 </div>
             )}
-        </div>
+        </InputContainer>
     );
 };
 

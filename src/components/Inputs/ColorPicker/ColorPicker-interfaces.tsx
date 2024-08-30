@@ -7,25 +7,29 @@ export type ColorPickerOnChange<TValue> = (event: { target: { name: string; valu
 export type ColorPickerProps = {
     defaultInternalValue?: ColorValue;
     label?: string;
-    labelType?: GlobalInterfaces.SimpleInputLabelType;
+    labelType?: GlobalInterfaces.InputLabelType;
     size?: GlobalInterfaces.InputSizeType;
     name?: string;
     disabled?: boolean;
     error?: string;
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
     floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
+    onOpen?: () => void;
 } & (
     | {
           returnedColorType: ReturnedColorType.RGB;
           onChange: ColorPickerOnChange<RgbValue>;
+          onClose?: (value: RgbValue) => void;
       }
     | {
           returnedColorType: ReturnedColorType.HSL;
           onChange: ColorPickerOnChange<HslValue>;
+          onClose?: (value: HslValue) => void;
       }
     | {
           returnedColorType: ReturnedColorType.HEX;
           onChange: ColorPickerOnChange<string>;
+          onClose?: (value: string) => void;
       }
 );
 

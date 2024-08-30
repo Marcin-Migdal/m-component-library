@@ -1,9 +1,8 @@
 import React, { useRef, useState } from "react";
-
 import { createPortal } from "react-dom";
+
 import { OpenStatus, useOpen } from "../../../hooks";
-import { InputError } from "../_inputsComponents/InputError/InputError";
-import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
+import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle, getInputStyle } from "../input-helpers";
 import { ColorPickerProps, defaultColorValue, ReturnedColorType, RgbValue } from "./ColorPicker-interfaces";
 import { ColorPickerPopup } from "./ColorPickerPopup/ColorPickerPopup";
@@ -23,17 +22,35 @@ const ColorPicker = ({
     defaultInternalValue = defaultColorValue,
     returnedColorType,
     size = "medium",
+    onOpen,
+    onClose,
 }: ColorPickerProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
 
     const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
 
     const [value, setValue] = useState<RgbValue>(valueToRgb(defaultInternalValue));
-    const [isFocused, setIsFocused] = useState<boolean>(false);
 
-    const handleFocus = () => setIsFocused(true);
+    const handleOpen = () => {
+        onOpen && onOpen();
+        toggleOpenStatus();
+    };
 
     const handleClose = () => {
+        if (onClose) {
+            switch (returnedColorType) {
+                case ReturnedColorType.RGB:
+                    onClose(value);
+                    break;
+                case ReturnedColorType.HSL:
+                    onClose(rgbToHsl(value.r, value.g, value.b));
+                    break;
+                case ReturnedColorType.HEX:
+                    onClose(rgbToHex(value.r, value.g, value.b));
+                    break;
+            }
+        }
+
         handlePopupClose();
     };
 
@@ -56,14 +73,13 @@ const ColorPicker = ({
 
     return (
         <>
-            <div className={`m-color-picker-container ${size} ${error ? "error" : ""}`}>
+            <InputContainer disabled={disabled} className="m-color-picker-container" size={size} error={error}>
                 <div
                     ref={containerRef}
                     className={`m-input m-color-preview ${labelType}`}
-                    onFocus={handleFocus}
-                    onClick={() => !disabled && toggleOpenStatus()}
+                    onClick={() => !disabled && handleOpen()}
                     style={{
-                        ...getInputStyle(labelType, label, labelWidth, undefined),
+                        ...getInputStyle(labelType, label, labelWidth, floatingInputWidth),
                         backgroundColor: `rgb(${value.r}, ${value.g}, ${value.b})`,
                     }}
                 />
@@ -73,14 +89,13 @@ const ColorPicker = ({
                         labelType={labelType}
                         className="color-picker"
                         labelWidth={labelWidth}
-                        isFocused={isFocused}
-                        isFilled={!!value}
+                        forceFloating={labelType === "floating"}
                     />
                 )}
                 {error && (
                     <InputError style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)} className="input" error={error} />
                 )}
-            </div>
+            </InputContainer>
             {containerRef.current &&
                 openStatus !== OpenStatus.CLOSED &&
                 createPortal(

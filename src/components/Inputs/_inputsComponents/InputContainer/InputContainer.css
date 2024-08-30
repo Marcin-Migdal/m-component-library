@@ -1,0 +1,67 @@
+.m-input-container {
+    position: relative;
+    margin-bottom: var(--input-margin-bottom);
+    height: var(--input-height);
+    width: 100%;
+}
+
+.m-input-container.small {
+    --input-height: var(--small-input-height);
+    --input-font-size: var(--small-input-font-size);
+    --input-padding-left: var(--small-input-padding-left);
+}
+
+.m-input-container.medium {
+    --input-height: var(--medium-input-height);
+    --input-font-size: var(--medium-input-font-size);
+    --input-padding-left: var(--medium-input-padding-left);
+}
+
+.m-input-container.large {
+    --input-height: var(--large-input-height);
+    --input-font-size: var(--large-input-font-size);
+    --input-padding-left: var(--large-input-padding-left);
+}
+
+/* Textarea custom properties */
+.m-textarea-container.small {
+    --input-height: calc(var(--small-input-height) * 3.5);
+}
+
+.m-textarea-container.medium {
+    --input-height: calc(var(--medium-input-height) * 3.5);
+}
+
+.m-textarea-container.large {
+    --input-height: calc(var(--large-input-height) * 3.5);
+}
+
+/* Checkbox custom properties */
+.m-checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+.m-checkbox-container.small {
+    --checkbox-input-size: calc(var(--input-height) - 6px);
+}
+
+.m-checkbox-container.medium {
+    --checkbox-input-size: calc(var(--input-height) - 8px);
+}
+
+.m-checkbox-container.large {
+    --checkbox-input-size: calc(var(--input-height) - 10px);
+}
+
+/* Dropdown custom properties */
+.m-dropdown-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Slider custom properties */
+.m-slider-container {
+    display: flex;
+    align-items: center;
+}
