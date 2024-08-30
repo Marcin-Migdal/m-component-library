@@ -11,6 +11,7 @@ export type TextareaProps = {
     placeholder?: string;
     defaultInternalValue?: string;
     autoFocus?: boolean;
+    disabled?: boolean;
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
     floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
     row?: number;

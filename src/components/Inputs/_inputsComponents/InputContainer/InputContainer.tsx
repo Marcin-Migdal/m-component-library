@@ -1,0 +1,34 @@
+import React, { CSSProperties, forwardRef, PropsWithChildren } from "react";
+
+import * as GlobalInterfaces from "../../../global-interfaces";
+
+import "./InputContainer.css";
+
+type InputContainerProps = {
+    disabled: boolean;
+    className: string;
+    size: GlobalInterfaces.InputSizeType;
+    error?: string;
+    style?: CSSProperties;
+};
+
+function InputContainer(
+    { children, className, size, error, style = {}, disabled }: PropsWithChildren<InputContainerProps>,
+    ref?: React.ForwardedRef<HTMLDivElement>
+) {
+    return (
+        <div
+            ref={ref}
+            style={style}
+            className={`m-input-container ${className} ${size} ${error ? "error" : ""} ${disabled ? "disabled" : ""}`}
+        >
+            {children}
+        </div>
+    );
+}
+
+type ToastsContainerForwardRefType = (
+    props: PropsWithChildren<InputContainerProps> & { ref?: React.ForwardedRef<HTMLDivElement> }
+) => ReturnType<typeof InputContainer>;
+
+export default forwardRef(InputContainer) as ToastsContainerForwardRefType;

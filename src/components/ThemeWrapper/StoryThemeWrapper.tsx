@@ -29,6 +29,7 @@ export interface IStoryThemeWrapperProps {
     inputLabelType: InputLabelType;
     error?: string;
     panelVariant?: CardVariantTypes;
+    disabled?: boolean;
 }
 
 type NewToastTypes = "ok" | "not_ok";
@@ -39,7 +40,13 @@ export const toastConfig: ToastConfigType<NewToastTypes> = {
 };
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
-const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", panelVariant = "default" }: IStoryThemeWrapperProps) => {
+const StoryThemeWrapper = ({
+    theme,
+    inputLabelType = "floating",
+    error = "",
+    panelVariant = "default",
+    disabled,
+}: IStoryThemeWrapperProps) => {
     const toastRef = useRef<ToastHandler<NewToastTypes>>(null);
     const alertRef = useRef<AlertHandler>(null);
 
@@ -52,10 +59,10 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
             <div style={{ padding: "1rem" }}>
                 <SectionHeader style={{ marginTop: "0px", borderTop: "none" }} headerStyle={{ marginTop: "unset" }} text="BUTTON SECTION" />
 
-                <Button variant="outlined" text="btn outlined" onClick={() => {}} />
-                <Button variant="full" text="btn full" onClick={() => {}} />
-                <Button variant="text" text="btn text" onClick={() => {}} />
-                <Button variant="neon" text="btn neon" onClick={() => {}} />
+                <Button disabled={disabled} variant="outlined" text="btn outlined" onClick={() => {}} />
+                <Button disabled={disabled} variant="full" text="btn full" onClick={() => {}} />
+                <Button disabled={disabled} variant="text" text="btn text" onClick={() => {}} />
+                <Button disabled={disabled} variant="neon" text="btn neon" onClick={() => {}} />
 
                 <SectionHeader text="INPUT SECTION" />
 
@@ -66,6 +73,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                     labelWidth={inputLabelWidth}
                     floatingInputWidth={floatingInputWidth}
                     error={error}
+                    disabled={disabled}
                 />
                 <Textarea
                     label="label"
@@ -74,6 +82,8 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                     labelWidth={inputLabelWidth}
                     floatingInputWidth={floatingInputWidth}
                     error={error}
+                    value="test"
+                    disabled={disabled}
                 />
                 <Dropdown
                     label="label"
@@ -83,6 +93,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                     floatingInputWidth={floatingInputWidth}
                     error={error}
                     name="1"
+                    disabled={disabled}
                 />
                 <Dropdown
                     label="label"
@@ -93,6 +104,7 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                     floatingInputWidth={floatingInputWidth}
                     error={error}
                     name="2"
+                    disabled={disabled}
                 />
                 <Slider
                     min={0}
@@ -101,8 +113,19 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                     labelType={inputLabelType}
                     labelWidth={inputLabelWidth}
                     floatingInputWidth={floatingInputWidth}
+                    disabled={disabled}
                 />
-                <Checkbox label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} error={error} />
+                <Checkbox label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} error={error} disabled={disabled} />
+
+                <ColorPicker
+                    labelType={inputLabelType}
+                    labelWidth={inputLabelWidth}
+                    floatingInputWidth={floatingInputWidth}
+                    label="test"
+                    returnedColorType={ReturnedColorType.RGB}
+                    onChange={(color) => console.log(color)}
+                    disabled={disabled}
+                />
 
                 <SectionHeader text="TOAST SECTION" />
 
@@ -133,14 +156,6 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                 <Button tooltip="test" tooltipConfig={{ placement: "right" }} variant="outlined" text="Right" onClick={() => {}} />
                 <Button tooltip="test" tooltipConfig={{ placement: "left" }} variant="outlined" text="Left" onClick={() => {}} />
 
-                <ColorPicker
-                    labelType={checkboxLabelType}
-                    labelWidth={inputLabelWidth}
-                    floatingInputWidth={floatingInputWidth}
-                    label="test"
-                    returnedColorType={ReturnedColorType.RGB}
-                    onChange={(color) => console.log(color)}
-                />
                 <SectionHeader text="PANEL SECTION" />
 
                 <Card variant={panelVariant} style={{ width: "300px", padding: "1rem" }}>
@@ -169,8 +184,14 @@ const StoryThemeWrapper = ({ theme, inputLabelType = "floating", error = "", pan
                     ref={alertRef}
                     header={{ header: "Test header" }}
                     footer={{
-                        onConfirmBtnClick: () => console.log("Confirm Button Click"),
-                        onDeclineBtnClick: () => console.log("Decline Button Click"),
+                        onConfirmBtnClick: () => {
+                            alertRef.current?.closeAlert();
+                            console.log("Confirm Button Click");
+                        },
+                        onDeclineBtnClick: () => {
+                            alertRef.current?.closeAlert();
+                            console.log("Decline Button Click");
+                        },
                     }}
                 >
                     test
@@ -198,7 +219,7 @@ const SectionHeader = ({ text, style, headerStyle }: ISectionHeaderProps) => {
     return (
         <div
             style={{
-                width: "calc(100% + 111px)",
+                width: "calc(100% + 16px)",
                 borderTop: "1px solid var(--primary-text-color)",
                 marginLeft: "-16px",
                 marginTop: "20px",

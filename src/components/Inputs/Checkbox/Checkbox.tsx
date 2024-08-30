@@ -1,8 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 
-import { InputError } from "../_inputsComponents/InputError/InputError";
-import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
+import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getCheckboxErrorStyle, getInputStyle } from "../input-helpers";
 import { CheckboxProps } from "./checkbox-interfaces";
 
@@ -17,6 +16,7 @@ const Checkbox = ({
     labelType = "left",
     labelWidth = 30,
     size = "medium",
+    disabled = false,
     ...otherProps
 }: CheckboxProps) => {
     const checkboxContainerRef = useRef<HTMLDivElement>(null);
@@ -34,7 +34,7 @@ const Checkbox = ({
     };
 
     return (
-        <div ref={checkboxContainerRef} className={`m-checkbox-container ${size} ${error ? "error" : ""}`}>
+        <InputContainer disabled={disabled} ref={checkboxContainerRef} className="m-checkbox-container" size={size} error={error}>
             <div style={getInputStyle(labelType, label, labelWidth, undefined)}>
                 <label className={`m-checkbox-input-wrapper ${isChecked ? "checked" : ""}`}>
                     <input
@@ -43,6 +43,7 @@ const Checkbox = ({
                         checked={isChecked}
                         onChange={handleChange}
                         name={name}
+                        disabled={disabled}
                         {...otherProps}
                     />
                     <span className={`m-input m-checkbox ${labelType}`}>
@@ -58,7 +59,7 @@ const Checkbox = ({
                     error={error}
                 />
             )}
-        </div>
+        </InputContainer>
     );
 };
 

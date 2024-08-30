@@ -7,6 +7,8 @@
 
 /* APP CSS VARIABLES  */
 body {
+    margin: unset;
+
     /* Common color variables across all themes */
     --success-light-color: rgb(78, 201, 139);
     --success-color: rgb(30, 169, 100);
@@ -74,7 +76,7 @@ body {
 
     /* Button */
     --button-padding: 0.245em 0.65em;
-    --btn-right-margin: 10px;
+    --button-right-margin: 10px;
 
     /*! Inputs */
     --input-margin-bottom: 18px;
@@ -84,24 +86,15 @@ body {
     --small-input-padding-left: 6px;
     --small-input-font-size: 16px;
 
-    --small-input-textarea-height: 80px;
-    --small-input-checkbox-size: 18px;
-
     /*? Medium */
     --medium-input-height: 30px;
     --medium-input-padding-left: 8px;
     --medium-input-font-size: 16px;
 
-    --medium-input-textarea-height: 100px;
-    --medium-input-checkbox-size: 22px;
-
     /*? Large */
     --large-input-height: 36px;
     --large-input-padding-left: 9px;
     --large-input-font-size: 18px;
-
-    --large-input-textarea-height: 120px;
-    --large-input-checkbox-size: 26px;
 
     /*? Input errors */
     --error-icon-size: 16px;
@@ -109,21 +102,13 @@ body {
 }
 
 .common-wrapper-container {
-    /* theme wrapper container styles */
-    /* position: relative; */
-    /* 
     width: 100vw;
-    height: 100vh; */
+    height: 100vh;
+
     background: var(--background-color);
-
-    /* z-index: 0; */
-
     color: var(--primary-text-color);
-}
 
-/* This style is only needed in storybook  */
-.sb-show-main .common-wrapper-container {
-    overflow: auto;
+    overflow-x: hidden;
 }
 
 .default-theme-light-mode {
@@ -136,19 +121,15 @@ body {
     /** Inputs colors */
     --input-background-color: var(--background-hover-color);
     --input-hover-background-color: var(--background-active-color);
+    --input-disabled-background-color: var(--light-grey_100);
 
     --input-text-color: var(--dark-grey_400);
+    --input-disabled-text-color: var(--light-grey_700);
+
     --input-placeholder-color: var(--dark-grey_100);
     --input-hover-placeholder-color: var(--dark-grey_200);
-    --input-icon-hover-background-color: var(--dark-grey_200);
+
     --input-label-color: var(--dark-grey_400);
-
-    --input-checkbox-icon: var(--dark-grey_300);
-    --input-checkbox-hover-icon: var(--dark-grey_400);
-    --input-checkbox-background: var(--background-color);
-
-    --slider-thumb-color: var(--dark-grey_800);
-    --slider-track-color: var(--input-hover-background-color);
 
     /** Buttons */
     --btn-full-color: var(--white);
@@ -194,19 +175,15 @@ body {
     /** Inputs colors */
     --input-background-color: var(--background-hover-color);
     --input-hover-background-color: var(--background-active-color);
+    --input-disabled-background-color: var(--dark-grey_425);
 
     --input-text-color: var(--light-grey_200);
+    --input-disabled-text-color: var(--light-grey_800);
+
     --input-placeholder-color: var(--light-grey_600);
     --input-hover-placeholder-color: var(--light-grey_300);
-    --input-icon-hover-background-color: var(--dark-grey_100);
+
     --input-label-color: var(--light-grey_200);
-
-    --input-checkbox-icon: var(--light-grey_300);
-    --input-checkbox-hover-icon: var(--light-grey_200);
-    --input-checkbox-background: var(--input-background-color);
-
-    --slider-thumb-color: var(--dark-grey_800);
-    --slider-track-color: var(--input-hover-background-color);
 
     /** Buttons */
     --btn-full-color: var(--background-color);
@@ -257,26 +234,22 @@ body {
 
     /** Background color */
     --background-color: var(--white);
-    --light-background-color: var(--light-grey_150);
-    --background-hover-color: var(--light-grey_100);
-    --background-active-color: var(--light-grey_200);
+    --light-background-color: var(--light-grey_100);
+    --background-hover-color: var(--light-grey_200);
+    --background-active-color: var(--light-grey_250);
 
     /** Inputs colors */
     --input-background-color: var(--background-hover-color);
     --input-hover-background-color: var(--background-active-color);
+    --input-disabled-background-color: var(--light-grey_100);
 
     --input-text-color: var(--dark-grey_400);
+    --input-disabled-text-color: var(--light-grey_700);
+
     --input-placeholder-color: var(--dark-grey_100);
     --input-hover-placeholder-color: var(--dark-grey_200);
-    --input-icon-hover-background-color: var(--dark-grey_200);
+
     --input-label-color: var(--primary-color_400);
-
-    --input-checkbox-icon: var(--primary-color_300);
-    --input-checkbox-hover-icon: var(--primary-color_400);
-    --input-checkbox-background: var(--background-color);
-
-    --slider-thumb-color: var(--primary-color_400);
-    --slider-track-color: var(--input-hover-background-color);
 
     /** Buttons */
     --btn-full-color: var(--white);
@@ -336,19 +309,16 @@ body {
     /** Inputs colors */
     --input-background-color: var(--background-hover-color);
     --input-hover-background-color: var(--background-active-color);
+    --input-disabled-background-color: var(--input-background-color);
+    --input-disabled-background-color: var(--dark-grey_425);
 
     --input-text-color: var(--light-grey_200);
+    --input-disabled-text-color: var(--light-grey_800);
+
     --input-placeholder-color: var(--light-grey_600);
     --input-hover-placeholder-color: var(--light-grey_300);
-    --input-icon-hover-background-color: var(--dark-grey_100);
+
     --input-label-color: var(--primary-color_300);
-
-    --input-checkbox-icon: var(--primary-color_300);
-    --input-checkbox-hover-icon: var(--primary-color_200);
-    --input-checkbox-background: var(--input-background-color);
-
-    --slider-thumb-color: var(--primary-color_400);
-    --slider-track-color: var(--input-hover-background-color);
 
     /** Buttons */
     --btn-full-color: var(--background-color);
@@ -399,26 +369,22 @@ body {
 
     /** Background color */
     --background-color: var(--white);
-    --light-background-color: var(--light-grey_150);
-    --background-hover-color: var(--light-grey_100);
-    --background-active-color: var(--light-grey_200);
+    --light-background-color: var(--light-grey_100);
+    --background-hover-color: var(--light-grey_200);
+    --background-active-color: var(--light-grey_250);
 
     /** Inputs colors */
     --input-background-color: var(--background-hover-color);
     --input-hover-background-color: var(--background-active-color);
+    --input-disabled-background-color: var(--light-grey_100);
 
     --input-text-color: var(--dark-grey_400);
+    --input-disabled-text-color: var(--light-grey_700);
+
     --input-placeholder-color: var(--dark-grey_100);
     --input-hover-placeholder-color: var(--dark-grey_200);
-    --input-icon-hover-background-color: var(--dark-grey_200);
+
     --input-label-color: var(--primary-color_400);
-
-    --input-checkbox-icon: var(--primary-color_300);
-    --input-checkbox-hover-icon: var(--primary-color_400);
-    --input-checkbox-background: var(--background-color);
-
-    --slider-thumb-color: var(--primary-color_400);
-    --slider-track-color: var(--input-hover-background-color);
 
     /** Buttons */
     --btn-full-color: var(--white);
@@ -478,19 +444,15 @@ body {
     /** Inputs colors */
     --input-background-color: var(--background-hover-color);
     --input-hover-background-color: var(--background-active-color);
+    --input-disabled-background-color: var(--dark-grey_425);
 
     --input-text-color: var(--light-grey_200);
+    --input-disabled-text-color: var(--light-grey_800);
+
     --input-placeholder-color: var(--light-grey_600);
     --input-hover-placeholder-color: var(--light-grey_300);
-    --input-icon-hover-background-color: var(--dark-grey_100);
+
     --input-label-color: var(--primary-color_300);
-
-    --input-checkbox-icon: var(--primary-color_300);
-    --input-checkbox-hover-icon: var(--primary-color_200);
-    --input-checkbox-background: var(--input-background-color);
-
-    --slider-thumb-color: var(--primary-color_400);
-    --slider-track-color: var(--input-hover-background-color);
 
     /** Buttons */
     --btn-full-color: var(--background-color);

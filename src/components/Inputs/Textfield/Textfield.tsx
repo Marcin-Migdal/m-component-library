@@ -1,8 +1,7 @@
 import React, { ChangeEvent, FocusEvent, useState } from "react";
 import InputMask, { InputState } from "react-input-mask";
 
-import { InputError } from "../_inputsComponents/InputError/InputError";
-import { InputsLabel } from "../_inputsComponents/InputsLabel/InputsLabel";
+import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputStyle, getInputsErrorStyle } from "../input-helpers";
 import { AdvancedMaskType, TextfieldProps } from "./Textfield-interfaces";
 
@@ -16,7 +15,7 @@ const defaultFormatChars = {
 
 const Textfield = (props: TextfieldProps) => {
     const {
-        value = undefined,
+        value: externalValue = undefined,
         name = undefined,
         disabled = false,
         onChange,
@@ -39,7 +38,7 @@ const Textfield = (props: TextfieldProps) => {
     const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
-    const _value: string = value != undefined ? value : internalValue;
+    const value: string = externalValue != undefined ? externalValue : internalValue;
 
     const handleFocus = () => setIsFocused(true);
 
@@ -63,7 +62,7 @@ const Textfield = (props: TextfieldProps) => {
         };
 
     return (
-        <div className={`m-textfield-container ${size} ${error ? "error" : ""}`}>
+        <InputContainer disabled={disabled} className="m-textfield-container" size={size} error={error}>
             <InputMask
                 maskChar={null}
                 disabled={disabled}
@@ -71,7 +70,7 @@ const Textfield = (props: TextfieldProps) => {
                 className={`m-input m-textfield ${labelType}`}
                 type={type}
                 style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
-                value={_value}
+                value={value}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 onFocus={handleFocus}
@@ -90,11 +89,11 @@ const Textfield = (props: TextfieldProps) => {
                     className="textfield"
                     labelWidth={labelWidth}
                     isFocused={isFocused}
-                    isFilled={!!_value}
+                    isFilled={!!value}
                 />
             )}
             {error && <InputError style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)} className="input" error={error} />}
-        </div>
+        </InputContainer>
     );
 };
 

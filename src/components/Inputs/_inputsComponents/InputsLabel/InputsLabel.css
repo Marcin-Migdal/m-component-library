@@ -19,6 +19,7 @@
     top: calc(var(--input-padding-left) - 4px);
 }
 
+.m-input-label.floating.forced-floating,
 .m-input-label.floating.filled,
 .m-input-label.floating.focused {
     top: 0;

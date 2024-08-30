@@ -15,7 +15,7 @@ export const InputError = ({ style, className, error }: IInputErrorProps) => {
     return (
         <>
             <FontAwesomeIcon ref={tooltipRef} icon="exclamation-circle" className={`error-icon ${className}`} style={style} />
-            <Tooltip targetRef={tooltipRef} placement="right" autoFixPosition>
+            <Tooltip targetRef={tooltipRef} placement="right">
                 {error}
             </Tooltip>
         </>

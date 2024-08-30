@@ -16,7 +16,7 @@ export const DropdownOptions = <T,>({
     labelKey,
 }: IDropdownOptionsProps<T>) => {
     const ref = useRef<HTMLUListElement>(null);
-    const [position, setPosition] = useState<Position>();
+    const [position, setPosition] = useState<Position | { opacity: number } | undefined>({ opacity: 0 });
 
     useEffect(() => {
         if (!ref.current) {
@@ -29,15 +29,18 @@ export const DropdownOptions = <T,>({
     return (
         <ul ref={ref} className="m-dropdown-list" style={position} data-id={uniqueDropdownId}>
             {dropdownOptions && dropdownOptions.length > 0 ? (
-                dropdownOptions.map((option) => (
-                    <li
-                        data-id={uniqueDropdownId}
-                        onClick={(e) => handleDropdownChange(e, option)}
-                        className={`m-dropdown-list-item ${option[valueKey] == value?.[valueKey] ? "selected" : ""}`}
-                    >
-                        {option[labelKey] as ReactElement}
-                    </li>
-                ))
+                dropdownOptions.map((option) => {
+                    return (
+                        <li
+                            key={option[valueKey] as string}
+                            data-id={uniqueDropdownId}
+                            onClick={(e) => handleDropdownChange(e, option)}
+                            className={`m-dropdown-list-item ${option[valueKey] == value?.[valueKey] ? "selected" : ""}`}
+                        >
+                            {option[labelKey] as ReactElement}
+                        </li>
+                    );
+                })
             ) : (
                 <>
                     <li data-id={uniqueDropdownId} className="m-dropdown-list-item empty-message">

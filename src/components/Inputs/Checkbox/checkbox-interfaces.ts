@@ -4,6 +4,7 @@ import * as GlobalInterfaces from "../../global-interfaces";
 
 export interface CheckboxProps {
     checked?: boolean;
+    disabled?: boolean;
     name?: string;
     onChange?: (event: ChangeEvent<HTMLInputElement>, value: boolean) => void;
     error?: string;

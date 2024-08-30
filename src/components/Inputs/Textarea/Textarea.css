@@ -1,32 +1,7 @@
-.m-textarea-container {
-    position: relative;
-    margin-bottom: calc(var(--input-margin-bottom) - 4px);
-    height: var(--input-textarea-height);
-    width: 100%;
-}
-
-.m-textarea-container.small {
-    --input-font-size: var(--small-input-font-size);
-    --input-textarea-height: var(--small-input-textarea-height);
-    --input-padding-left: var(--small-input-padding-left);
-}
-
-.m-textarea-container.medium {
-    --input-font-size: var(--medium-input-font-size);
-    --input-textarea-height: var(--medium-input-textarea-height);
-    --input-padding-left: var(--medium-input-padding-left);
-}
-
-.m-textarea-container.large {
-    --input-font-size: var(--large-input-font-size);
-    --input-textarea-height: var(--large-input-textarea-height);
-    --input-padding-left: var(--large-input-padding-left);
-}
-
 .m-textarea-container .m-textarea {
     border: none;
     outline: none;
-    height: var(--input-textarea-height);
+    height: var(--input-height);
     font-size: var(--input-font-size);
     padding-top: 4px;
     padding-left: var(--input-padding-left);
