@@ -1,7 +1,8 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
-import ThemeWrapper from "../../ThemeWrapper";
+import { InputLabel } from "../../global-types";
+import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import Dropdown from "./Dropdown";
 
 export default {
@@ -27,6 +28,6 @@ export const dropdown = Template.bind({});
 
 dropdown.args = {
     label: "Name",
-    labelType: "right",
+    labelType: InputLabel.RIGHT,
     labelWidth: 20,
 };

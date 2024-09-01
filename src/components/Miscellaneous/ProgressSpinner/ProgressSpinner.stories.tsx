@@ -1,7 +1,7 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
-import ThemeWrapper from "../../ThemeWrapper";
+import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import ProgressSpinner from "./ProgressSpinner";
 
 export default {

@@ -1,6 +1,6 @@
 import React from "react";
 
-import Icon from "../../../Miscellaneous/Icon";
+import { Icon } from "../../../Miscellaneous/Icon";
 import { AlertHeaderProps } from "../types";
 
 export const AlertHeader = ({ header, onClose }: AlertHeaderProps) => {

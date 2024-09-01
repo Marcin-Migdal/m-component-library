@@ -8,7 +8,7 @@ export type AlertProps<T> = {
 
 export type AlertBodyProps = {
     className?: string;
-    alertOpen: AlertOpenState;
+    alertOpen: `${AlertOpenState}`;
     onClose: (event: React.MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
 };
 

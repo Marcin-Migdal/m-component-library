@@ -1,4 +1,4 @@
-import { HslValue } from "../ColorPicker-interfaces";
+import { HslValue } from "../types";
 
 export const rgbToHsl = (r: number, g: number, b: number): HslValue => {
     r /= 255;

@@ -1,13 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useRef } from "react";
 
-import Tooltip from "../Tooltip";
-import { defaultTooltipConfig, getTooltipPropsConfig } from "../Tooltip/helpers/getTooltipPropsConfig";
-import { IButtonProps } from "./button-interfaces";
+import { Tooltip } from "../Miscellaneous";
+import { defaultTooltipConfig, getTooltipPropsConfig } from "../Miscellaneous/Tooltip/helpers/getTooltipPropsConfig";
+import { ButtonIconPosition, ButtonProps } from "./types";
 
 import "./Button.css";
 
-const Button = (props: IButtonProps) => {
+const Button = (props: ButtonProps) => {
     const {
         children,
         text,
@@ -16,7 +16,7 @@ const Button = (props: IButtonProps) => {
         busy = false,
         display = true,
         icon = undefined,
-        iconPosition = "right",
+        iconPosition = ButtonIconPosition.RIGHT,
         className = "",
         style = {},
         type = "button",
@@ -45,11 +45,11 @@ const Button = (props: IButtonProps) => {
                 {...otherProps}
             >
                 {children}
-                {icon && iconPosition == "left" && <FontAwesomeIcon className="left-svg" icon={icon} />}
+                {icon && iconPosition === ButtonIconPosition.LEFT && <FontAwesomeIcon className="left-svg" icon={icon} />}
                 {text}
                 {busy ? (
                     <FontAwesomeIcon className="right-svg" icon="circle-notch" spin />
-                ) : icon && iconPosition == "right" ? (
+                ) : icon && iconPosition === ButtonIconPosition.RIGHT ? (
                     <FontAwesomeIcon className="right-svg" icon={icon} />
                 ) : (
                     <></>

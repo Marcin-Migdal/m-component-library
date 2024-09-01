@@ -3,12 +3,12 @@ import React, { ChangeEvent, useLayoutEffect, useRef, useState } from "react";
 import { getPosition } from "../../../../helpers/getPosition";
 import { Position } from "../../../../helpers/getPosition/getPosition-types";
 import { OpenStatus } from "../../../../hooks";
-import Textfield from "../../Textfield";
-import { ADVANCED_MASKS_CONFIGS } from "../../Textfield/internal-helpers";
-import { RgbValue } from "../ColorPicker-interfaces";
+import { Textfield } from "../../Textfield";
+import { ADVANCED_MASKS_CONFIGS } from "../../Textfield/helpers/advanced-masks-configs";
 import { ColorPickerCanvas } from "../ColorPickerCanvas/ColorPickerCanvas";
 import { hslToRgb, rgbToHsl } from "../helpers";
 import { HueSliderCanvas } from "../HueSliderCanvas/HueSliderCanvas";
+import { RgbValue } from "../types";
 
 import "./ColorPickerPopup.css";
 

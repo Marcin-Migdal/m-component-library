@@ -1,13 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { CSSProperties, MouseEventHandler } from "react";
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import React from "react";
 
-export interface IconProps {
-    icon?: IconProp;
-    onClick?: MouseEventHandler<SVGElement>;
-    className?: string;
-    style?: CSSProperties;
-}
+import { IconProps } from "./types";
 
 const Icon = ({ icon, onClick, className = "", style = {} }: IconProps) => {
     if (!icon) return <></>;

@@ -1,18 +1,9 @@
-import React, { CSSProperties } from "react";
+import React from "react";
 
 import "./Row.css";
+import { RowProps } from "./types";
 
-interface IRowProps {
-    className?: string;
-    style?: Omit<CSSProperties, "gap">;
-    children?: any;
-    gap?: {
-        breakpoint: "sm" | "md" | "lg" | "xl";
-        gapSize?: string | number;
-    };
-}
-
-const Row = ({ className = "", style = {}, children, gap }: IRowProps) => {
+const Row = ({ className = "", style = {}, children, gap }: RowProps) => {
     return (
         <div
             style={{

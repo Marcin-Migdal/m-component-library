@@ -1,75 +1,51 @@
-// Theme
-export { default as ThemeWrapper } from "./components/ThemeWrapper";
+export * from "./components/Button";
+export * from "./components/Form";
+export * from "./components/Inputs";
+export * from "./components/Layout";
+export * from "./components/Miscellaneous";
+export * from "./components/Panels/Card";
+export * from "./components/Popups";
+export * from "./components/ThemeWrapper";
 
-// Inputs
-export { default as Checkbox, type CheckboxProps } from "./components/Inputs/Checkbox";
-export * from "./components/Inputs/ColorPicker";
-export { default as Dropdown, type DropdownProps } from "./components/Inputs/Dropdown";
-export { default as Slider } from "./components/Inputs/Slider";
-export { default as Textarea, type TextareaProps } from "./components/Inputs/Textarea";
-export { default as Textfield, type TextfieldProps } from "./components/Inputs/Textfield";
+export * from "./helpers";
+export * from "./hooks";
 
-//Form
-export { default as Form, type FormErrorsType } from "./components/Form";
+//! VERSION 1.0.0 START
 
-// Buttons
-export { default as Button, type IButtonProps } from "./components/Button";
+//? theme (new branch)
+//*     dynamic theme functionality
+//*     export theme enum
 
-// Layout
-export { default as Col } from "./components/Layout/Col";
-export { default as Row } from "./components/Layout/Row";
+//? es lint (new branch)
+//*     implement es lint
+//*     fix all errors
 
-// Popups 
-export * from "./components/Popups/Alerts";
-export { default as ToastsContainer, defaultToastConfig } from "./components/Popups/Toast";
-export type { ToastConfigType, ToastHandler, ToastsPositionTypes, VariantTypes } from "./components/Popups/Toast";
+//! VERSION 1.0.0 END
 
-// Panels
-export { default as Card } from "./components/Panels/Card";
+//! VERSION 2.0.0 START
 
-// Miscellaneous
-export { default as Icon } from "./components/Miscellaneous/Icon";
-export { default as Overlay } from "./components/Miscellaneous/Overlay";
-export { default as ProgressSpinner } from "./components/Miscellaneous/ProgressSpinner";
-export { default as Tooltip } from "./components/Tooltip";
+//? TOOLTIP Not closing tooltip if cursor is over it (settimeout when closing tooltip, and canceling closing if onMouseEnter on tooltip ??? OR some back-ground div under tooltip, that will be of size (tooltipSize + tooltipMargin) )
 
-// Helpers
-export * from './helpers';
+//? ACCORDION component
 
-// Hooks
-export * from './hooks';
+//? Change theme story wrapper to use accordion for each section (should there also be a global trigger)
 
-// TODO! export refactor
-//?     moving ALL types to component types.ts file
-//?     changing all index.tsx file to index.ts, wrong file extension
-//?     exporting all types(mostly, only those that might be needed) in component index.ts
-//?     changing this file to export like this "export * from './<component_path>"
-//*     (options, to think about) aggregate all the exports of components like Miscellaneous, Inputs, Popups, in their respective folders in index.ts, then inly export here eq. "export * from "./components/Inputs";" under "// Inputs"
+//? New Input components
+//*     File Component
+//*     Image Component
+//*     Date input, with range
+//*     Multi Dropdown
 
+//? Navigational components
+//*     Breadcrumb
+//*     Nav bar
+//*     Dropdown Menu (open on ref that can be attached to anything(button, icon, div) like context menu)
+//*     Side bar
 
-// TODO! dynamic theme functionality
-// TODO! export theme enum
+//? Data Display components
+//*     TABLE
+//*     TREE
 
-//! TOOLTIP 
-// TODO? Not closing tooltip if cursor is over it (settimeout when closing tooltip, and canceling closing if onMouseEnter on tooltip ??? OR some back-ground div under tooltip, that will be of size (tooltipSize + tooltipMargin) )
+//? Unit testing of all(if possible) components
 
-// TODO! ACCORDION
-// TODO! Change theme story wrapper to use accordion for each section
-
-// TODO! Input components
-// TODO? Multi Dropdown
-// TODO? File Component
-// TODO? Image Component
-// TODO? Date input, with range
-
-// TODO! Navigational components
-// TODO? Breadcrumb
-// TODO? Nav bar
-// TODO? Dropdown Menu (open on ref that can be attached to anything(button, icon, div) like context menu)
-// TODO? Side bar
-
-//TODO! Data Display
-// TODO? TABLE
-// TODO? TREE
-
-//* (NOT NEEDED AT THE MOMENT) add env. var. that will change depending if lib is used in this storybook or if used as installed dependency
+//! VERSION 2.0.0 END

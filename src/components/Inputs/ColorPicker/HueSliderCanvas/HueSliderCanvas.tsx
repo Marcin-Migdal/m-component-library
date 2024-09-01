@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { useThrottling } from "../../../../hooks";
-import { CanvasCoordinates } from "../ColorPicker-interfaces";
 import { calculateIndicatorPosition, fillSliderGradientBackground, hslToRgb, rgbToHsl } from "../helpers";
+import { CanvasCoordinates } from "../types";
 
 import "./HueSliderCanvas.css";
 

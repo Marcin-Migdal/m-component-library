@@ -1,8 +1,10 @@
 import React, { ChangeEvent, FocusEvent, useState } from "react";
 
+import { InputLabel, InputSize } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
-import { getInputStyle, getInputsErrorStyle } from "../input-helpers";
-import { TextareaProps } from "./Textarea-interfaces";
+import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
+import { getInputStyle } from "../helpers/getInputStyle";
+import { TextareaProps } from "./types";
 
 import "./Textarea.css";
 
@@ -13,14 +15,14 @@ const Textarea = ({
     onBlur,
     label,
     error,
-    labelType = "left",
+    labelType = InputLabel.LEFT,
     placeholder,
     defaultInternalValue,
     autoFocus = false,
     labelWidth = 30,
     floatingInputWidth = 100,
     row = 4,
-    size = "medium",
+    size = InputSize.MEDIUM,
     disabled = false,
     ...otherProps
 }: TextareaProps) => {
@@ -53,7 +55,7 @@ const Textarea = ({
                 onChange={handleChange}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
-                placeholder={labelType == "floating" ? undefined : placeholder || (label ? `${label}...` : "")}
+                placeholder={labelType == InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
                 autoFocus={autoFocus}
                 disabled={disabled}
                 {...otherProps}

@@ -1,9 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 
+import { InputSize, SimpleInputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
-import { getCheckboxErrorStyle, getInputStyle } from "../input-helpers";
-import { CheckboxProps } from "./checkbox-interfaces";
+import { getCheckboxErrorStyle } from "../helpers/getCheckboxErrorStyle";
+import { getInputStyle } from "../helpers/getInputStyle";
+import { CheckboxProps } from "./types";
 
 import "./Checkbox.css";
 
@@ -13,9 +15,9 @@ const Checkbox = ({
     onChange,
     label,
     error,
-    labelType = "left",
+    labelType = SimpleInputLabel.LEFT,
     labelWidth = 30,
-    size = "medium",
+    size = InputSize.MEDIUM,
     disabled = false,
     ...otherProps
 }: CheckboxProps) => {

@@ -1,7 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
-import ThemeWrapper from "../../ThemeWrapper";
+import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import ColorPicker from "./ColorPicker";
 
 export default {

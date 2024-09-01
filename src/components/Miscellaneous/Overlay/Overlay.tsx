@@ -1,11 +1,9 @@
 import React, { PropsWithChildren, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
-import "./Overlay.css";
+import { OverlayProps } from "./types";
 
-export type OverlayProps = {
-    onClick?: (event: React.MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
-};
+import "./Overlay.css";
 
 const Overlay = ({ children, onClick }: PropsWithChildren<OverlayProps>) => {
     const overlayRef = useRef<HTMLDivElement>(null);

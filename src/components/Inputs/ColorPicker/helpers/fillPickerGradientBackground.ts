@@ -1,4 +1,4 @@
-import { RgbValue } from "../ColorPicker-interfaces";
+import { RgbValue } from "../types";
 import { hslToRgb } from "./hslToRgb";
 
 export const fillPickerGradientBackground = (ctx: CanvasRenderingContext2D, width: number, height: number, hue: number) => {
