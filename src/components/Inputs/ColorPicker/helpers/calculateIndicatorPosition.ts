@@ -1,4 +1,4 @@
-import { RgbValue } from "../ColorPicker-interfaces";
+import { RgbValue } from "../types";
 
 export const calculateIndicatorPosition = (
     ctx: CanvasRenderingContext2D,

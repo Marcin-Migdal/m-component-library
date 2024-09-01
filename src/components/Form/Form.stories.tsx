@@ -1,8 +1,8 @@
-import { ComponentStory, ComponentMeta } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
+import ThemeWrapper from "../ThemeWrapper/ThemeWrapper";
 import StoryFormWrapper from "./StoryFormWrapper";
-import ThemeWrapper from "../ThemeWrapper";
 
 export default {
     title: "Morti-component-library",

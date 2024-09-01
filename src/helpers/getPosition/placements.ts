@@ -1,4 +1,4 @@
-import { Position } from "./getPosition-types";
+import { CalculatedPosition, Position } from "./getPosition-types";
 
 export const getTopPlacement = (
     targetRect: DOMRect,
@@ -10,7 +10,7 @@ export const getTopPlacement = (
     return {
         top: targetRect.top - margin - consumerRect.height + window.scrollY,
         left: getVerticalLeftPosition(targetRect, consumerRect, centerConsumer),
-        positionType: auto ? "auto-top" : "top",
+        calculatedPosition: auto ? CalculatedPosition.AUTO_TOP : CalculatedPosition.TOP,
     };
 };
 
@@ -24,7 +24,7 @@ export const getBottomPlacement = (
     return {
         top: targetRect.bottom + margin + window.scrollY,
         left: getVerticalLeftPosition(targetRect, consumerRect, centerConsumer),
-        positionType: auto ? "auto-bottom" : "bottom",
+        calculatedPosition: auto ? CalculatedPosition.AUTO_BOTTOM : CalculatedPosition.BOTTOM,
     };
 };
 
@@ -38,7 +38,7 @@ export const getRightPlacement = (
     return {
         top: getHorizontalTopPosition(targetRect, consumerRect, centerConsumer),
         left: targetRect.right + margin + window.scrollX,
-        positionType: auto ? "auto-right" : "right",
+        calculatedPosition: auto ? CalculatedPosition.AUTO_RIGHT : CalculatedPosition.RIGHT,
     };
 };
 
@@ -52,7 +52,7 @@ export const getLeftPlacement = (
     return {
         top: getHorizontalTopPosition(targetRect, consumerRect, centerConsumer),
         left: targetRect.left - consumerRect.width - margin + window.scrollX,
-        positionType: auto ? "auto-left" : "left",
+        calculatedPosition: auto ? CalculatedPosition.AUTO_LEFT : CalculatedPosition.LEFT,
     };
 };
 

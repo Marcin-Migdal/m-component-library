@@ -1,16 +1,16 @@
 import React, { useRef } from "react";
 
-import Button from "../../Button";
-import ToastsContainer, { ToastHandler } from "./ToastsContainer";
-import { ToastsPositionTypes } from "./toasts-interfaces";
+import { Button } from "../../Button";
+import ToastsContainer from "./ToastsContainer";
+import { ToastHandler, ToastsPosition } from "./types";
 
-export interface IStoryToastsWrapperProps {
+export type StoryToastsWrapperProps = {
     autoClose?: boolean;
-    toastsPosition?: ToastsPositionTypes;
-}
+    toastsPosition?: ToastsPosition;
+};
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
-const StoryToastsWrapper = ({ autoClose = true, toastsPosition = "top-right" }: IStoryToastsWrapperProps) => {
+const StoryToastsWrapper = ({ autoClose = true, toastsPosition = "top-right" }: StoryToastsWrapperProps) => {
     const toastRef = useRef<ToastHandler>(null);
 
     return (

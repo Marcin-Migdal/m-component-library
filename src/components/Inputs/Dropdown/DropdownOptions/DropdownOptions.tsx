@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useRef, useState } from "react";
 
 import { getPosition } from "../../../../helpers";
 import { Position } from "../../../../helpers/getPosition/getPosition-types";
-import { IDropdownOptionsProps } from "../dropdown-interfaces";
+import { DropdownOptionsProps } from "../types";
 
 import "./DropdownOptions.css";
 
@@ -14,7 +14,7 @@ export const DropdownOptions = <T,>({
     value,
     valueKey,
     labelKey,
-}: IDropdownOptionsProps<T>) => {
+}: DropdownOptionsProps<T>) => {
     const ref = useRef<HTMLUListElement>(null);
     const [position, setPosition] = useState<Position | { opacity: number } | undefined>({ opacity: 0 });
 

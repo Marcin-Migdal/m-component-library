@@ -3,19 +3,21 @@ import React, { ChangeEvent, FocusEvent, MouseEvent as ReactMouseEvent, useEffec
 import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
 
+import { InputLabel, InputSize } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
-import { getInputStyle, getInputsErrorStyle } from "../input-helpers";
+import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
+import { getInputStyle } from "../helpers/getInputStyle";
 import { DropdownOptions } from "./DropdownOptions/DropdownOptions";
-import { DropdownProps, DropdownValue, IDropdownChangeEvent, IDropdownClearEvent } from "./dropdown-interfaces";
+import { DropdownChangeEvent, DropdownClearEvent, DropdownProps, DropdownValue } from "./types";
 
 import "./Dropdown.css";
 
-type ILabelValue = {
+type LabelValue = {
     value: string | number;
     label: string;
 };
 
-function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(props: DropdownProps<T>) {
+function Dropdown<T extends { [key: string]: string | number } = LabelValue>(props: DropdownProps<T>) {
     const {
         value: externalValue = undefined,
         name = undefined,
@@ -25,14 +27,14 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
         onFocus,
         label,
         error,
-        labelType = "left",
+        labelType = InputLabel.LEFT,
         placeholder,
         labelWidth = 30,
         floatingInputWidth = 100,
         options = [],
         labelKey = "label",
         valueKey = "value",
-        size = "medium",
+        size = InputSize.MEDIUM,
 
         clearable = true,
         readOnly = false,
@@ -110,7 +112,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
         setIsFocused(false);
 
         if (onChange) {
-            let _e: IDropdownChangeEvent<T> = { ...e, target: { ...e.target, value: selectedOption, name: name, type: "dropdown" } };
+            let _e: DropdownChangeEvent<T> = { ...e, target: { ...e.target, value: selectedOption, name: name, type: "dropdown" } };
 
             onChange(_e, selectedOption as T);
         }
@@ -122,7 +124,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
         setIsFocused(false);
 
         if (onClear) {
-            let _e: IDropdownClearEvent<T> = { ...e, target: { ...e.target, value: undefined, name: name, type: "dropdown" } };
+            let _e: DropdownClearEvent<T> = { ...e, target: { ...e.target, value: undefined, name: name, type: "dropdown" } };
 
             onClear(_e, undefined);
         }
@@ -148,7 +150,7 @@ function Dropdown<T extends { [key: string]: string | number } = ILabelValue>(pr
                 value={(isFocused ? filterValue : value?.[labelKey]) || ""}
                 onChange={handleFilterChange}
                 onFocus={handleFocus}
-                placeholder={labelType == "floating" ? undefined : placeholder || (label ? `${label}...` : "")}
+                placeholder={labelType == InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
             />
 
             {/* input label */}

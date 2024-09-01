@@ -1,7 +1,8 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
-import ThemeWrapper from "../../ThemeWrapper";
+import { SimpleInputLabel } from "../../global-types";
+import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import StoryCheckboxWrapper from "./StoryCheckboxWrapper";
 
 export default {
@@ -21,6 +22,6 @@ export const checkbox = Template.bind({});
 
 checkbox.args = {
     label: "Checkbox",
-    labelType: "left",
+    labelType: SimpleInputLabel.LEFT,
     labelWidth: 30,
 };

@@ -1,16 +1,8 @@
-import React, { CSSProperties, PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react";
 
-import { Optionalize } from "../../global-interfaces";
+import { ColProps } from "./types";
 
 import "./Col.css";
-
-type ColProps = {
-    className?: string;
-    style?: CSSProperties;
-} & Optionalize<{ sm: number }, { smFlex: number }> &
-    Optionalize<{ md: number }, { mdFlex: number }> &
-    Optionalize<{ lg: number }, { lgFlex: number }> &
-    Optionalize<{ xl: number }, { xlFlex: number }>;
 
 const Col = ({
     className = "",

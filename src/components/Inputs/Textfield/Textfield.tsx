@@ -1,9 +1,11 @@
 import React, { ChangeEvent, FocusEvent, useState } from "react";
 import InputMask, { InputState } from "react-input-mask";
 
+import { InputLabel, InputSize } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
-import { getInputStyle, getInputsErrorStyle } from "../input-helpers";
-import { AdvancedMaskType, TextfieldProps } from "./Textfield-interfaces";
+import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
+import { getInputStyle } from "../helpers/getInputStyle";
+import { AdvancedMaskType, TextfieldProps } from "./types";
 
 import "./Textfield.css";
 
@@ -22,7 +24,7 @@ const Textfield = (props: TextfieldProps) => {
         onBlur,
         label = undefined,
         error = undefined,
-        labelType = "left",
+        labelType = InputLabel.LEFT,
         placeholder = undefined,
         labelWidth = 30,
         floatingInputWidth = 100,
@@ -31,7 +33,7 @@ const Textfield = (props: TextfieldProps) => {
         autoFocus = false,
         mask = "",
         advancedMask = undefined,
-        size = "medium",
+        size = InputSize.MEDIUM,
         ...otherProps
     } = props;
 
@@ -75,7 +77,7 @@ const Textfield = (props: TextfieldProps) => {
                 onBlur={handleBlur}
                 onFocus={handleFocus}
                 autoFocus={autoFocus}
-                placeholder={labelType == "floating" ? undefined : placeholder || (label ? `${label}...` : "")}
+                placeholder={labelType == InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
                 //! Mask Props
                 {...(advancedMask
                     ? { ...advancedMask, beforeMaskedValueChange: handleBeforeMaskedValueChange(advancedMask) }

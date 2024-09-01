@@ -1,16 +1,9 @@
 import React from "react";
 
-import { IToast } from "../toasts-interfaces";
+import { ToastProps } from "../types";
 import { CloseIcon } from "./icons";
 
-export interface IToastProps {
-    onClose: (e: any) => void;
-    onMouseEnter: (toastId: number) => void;
-    onMouseLeave: (toast: IToast) => void;
-    toast: IToast;
-}
-
-export const Toast = ({ toast, onClose, onMouseEnter, onMouseLeave }: IToastProps) => {
+export const Toast = ({ toast, onClose, onMouseEnter, onMouseLeave }: ToastProps) => {
     const { variant, title, message, id, icon } = toast;
 
     return (

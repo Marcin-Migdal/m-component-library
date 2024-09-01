@@ -1,12 +1,12 @@
-import { Config, Position } from "./getPosition-types";
+import { CalculatedPosition, GetPositionConfig, Placement, Position } from "./getPosition-types";
 import { getBottomPlacement, getLeftPlacement, getRightPlacement, getTopPlacement } from "./placements";
 import { invalidTopPlacement, validateBottomPlacement, validateLeftPlacement, validateRightPlacement } from "./validators";
 
-const defaultConfig: Config = {
+const defaultConfig: GetPositionConfig = {
     autoPosition: true,
     consumerHasParentWidth: false,
     centerConsumer: false,
-    placement: "bottom",
+    placement: Placement.BOTTOM,
     margin: 8,
     browserDeadZone: 8,
 };
@@ -14,7 +14,7 @@ const defaultConfig: Config = {
 export const getPosition = (
     targetElement: HTMLElement | null | undefined,
     consumerElement: HTMLElement | null | undefined,
-    externalConfig?: Partial<Config>
+    externalConfig?: Partial<GetPositionConfig>
 ): Position | undefined => {
     let position: Position | undefined = undefined;
 
@@ -22,7 +22,7 @@ export const getPosition = (
         return position;
     }
 
-    const { autoPosition, placement, margin, browserDeadZone, consumerHasParentWidth, centerConsumer }: Config = {
+    const { autoPosition, placement, margin, browserDeadZone, consumerHasParentWidth, centerConsumer }: GetPositionConfig = {
         ...defaultConfig,
         ...externalConfig,
         browserDeadZone: externalConfig?.browserDeadZone
@@ -34,7 +34,7 @@ export const getPosition = (
     const consumerRect = consumerElement.getBoundingClientRect();
 
     switch (placement) {
-        case "top": {
+        case Placement.TOP: {
             position = getTopPlacement(targetRect, consumerRect, margin, centerConsumer, false);
 
             if (autoPosition && invalidTopPlacement(position, browserDeadZone)) {
@@ -44,7 +44,7 @@ export const getPosition = (
                     position = {
                         top: browserDeadZone + window.scrollY,
                         left: position.left,
-                        positionType: "fit-top",
+                        calculatedPosition: CalculatedPosition.FIT_TOP,
                     };
                 }
             }
@@ -52,7 +52,7 @@ export const getPosition = (
             break;
         }
 
-        case "bottom": {
+        case Placement.BOTTOM: {
             position = getBottomPlacement(targetRect, consumerRect, margin, centerConsumer, false);
 
             if (autoPosition && validateBottomPlacement(position, consumerRect, browserDeadZone)) {
@@ -62,7 +62,7 @@ export const getPosition = (
                     position = {
                         top: window.scrollY + window.innerHeight - consumerRect.height - browserDeadZone,
                         left: position.left,
-                        positionType: "fit-bottom",
+                        calculatedPosition: CalculatedPosition.FIT_BOTTOM,
                     };
                 }
             }
@@ -70,7 +70,7 @@ export const getPosition = (
             break;
         }
 
-        case "right": {
+        case Placement.RIGHT: {
             position = getRightPlacement(targetRect, consumerRect, margin, centerConsumer, false);
 
             if (autoPosition && validateRightPlacement(position, consumerRect, browserDeadZone)) {
@@ -80,7 +80,7 @@ export const getPosition = (
                     position = {
                         top: position.top,
                         left: browserDeadZone + window.scrollX,
-                        positionType: "fit-right",
+                        calculatedPosition: CalculatedPosition.FIT_RIGHT,
                     };
                 }
             }
@@ -88,7 +88,7 @@ export const getPosition = (
             break;
         }
 
-        case "left": {
+        case Placement.LEFT: {
             position = getLeftPlacement(targetRect, consumerRect, margin, centerConsumer, false);
 
             if (autoPosition && validateLeftPlacement(position, browserDeadZone)) {
@@ -98,7 +98,7 @@ export const getPosition = (
                     position = {
                         top: position.top,
                         left: browserDeadZone + window.scrollX,
-                        positionType: "fit-left",
+                        calculatedPosition: CalculatedPosition.FIT_LEFT,
                     };
                 }
             }

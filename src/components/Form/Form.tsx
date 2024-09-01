@@ -1,8 +1,8 @@
 import { FormikValues, useFormik } from "formik";
 import React, { ChangeEvent, useMemo } from "react";
 
-import { IFormProps } from "./Form-interfaces";
-import { filteredErrors } from "./internal-helpers";
+import { filteredErrors } from "./helpers/filteredErrors";
+import { FormProps } from "./types";
 
 function Form<T extends FormikValues = any>({
     initialValues,
@@ -14,7 +14,7 @@ function Form<T extends FormikValues = any>({
     externalErrors = {},
     onExternalErrorChange,
     ...otherProps
-}: IFormProps<T>) {
+}: FormProps<T>) {
     const formik = useFormik<T>({ initialValues: initialValues, onSubmit: onSubmit, validationSchema: validationSchema });
 
     const _errors = useMemo(() => filteredErrors<T>(formik.errors, formik.touched), [formik.errors, formik.touched]);

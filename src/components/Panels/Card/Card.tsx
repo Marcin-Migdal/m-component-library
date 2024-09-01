@@ -1,10 +1,10 @@
 import React from "react";
 
-import { ICardProps } from "./card-interfaces";
+import { CardProps } from "./types";
 
 import "./style.css";
 
-const Card = ({ children, variant = "default", className = "", style = {} }: ICardProps) => {
+const Card = ({ children, variant = "default", className = "", style = {} }: CardProps) => {
     return (
         <div style={style} className={`m-card ${className} ${variant}`}>
             {children}

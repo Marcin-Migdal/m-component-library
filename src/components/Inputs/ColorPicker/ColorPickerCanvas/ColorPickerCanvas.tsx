@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
 import { useThrottling } from "../../../../hooks";
-import { CanvasCoordinates, RgbValue } from "../ColorPicker-interfaces";
 import { calculateIndicatorPosition, fillPickerGradientBackground } from "../helpers";
+import { CanvasCoordinates, RgbValue } from "../types";
 
 import "./ColorPickerCanvas.css";
 

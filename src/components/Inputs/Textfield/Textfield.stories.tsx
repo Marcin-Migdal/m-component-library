@@ -1,7 +1,8 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
-import ThemeWrapper from "../../ThemeWrapper";
+import { InputLabel } from "../../global-types";
+import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import StoryTextfieldWrapper from "./StoryTextfieldWrapper";
 
 export default {
@@ -21,7 +22,7 @@ export const textfield = Template.bind({});
 
 textfield.args = {
     label: "Name",
-    labelType: "floating",
+    labelType: InputLabel.FLOATING,
     placeholder: "Name...",
     labelWidth: 20,
     type: "text",

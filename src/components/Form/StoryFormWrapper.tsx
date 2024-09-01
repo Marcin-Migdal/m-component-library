@@ -3,16 +3,16 @@ import * as Yup from "yup";
 
 import { Button, Form, Textfield } from "../..";
 
-export interface IStoryFormWrapperProps {}
+export type StoryFormWrapperProps = {};
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
-const StoryFormWrapper = (props: IStoryFormWrapperProps) => {
-    const handleSubmit = (values: ISignUpState) => {
+const StoryFormWrapper = (props: StoryFormWrapperProps) => {
+    const handleSubmit = (values: SignUpState) => {
         console.log(values);
     };
 
     return (
-        <Form<ISignUpState> initialValues={signUpInitialValues} onSubmit={handleSubmit} validationSchema={signUpValidationSchema}>
+        <Form<SignUpState> initialValues={signUpInitialValues} onSubmit={handleSubmit} validationSchema={signUpValidationSchema}>
             {({ values, errors, handleChange, handleBlur, isValid }) => (
                 <>
                     <Textfield
@@ -58,14 +58,14 @@ const StoryFormWrapper = (props: IStoryFormWrapperProps) => {
 
 export default StoryFormWrapper;
 
-interface ISignUpState {
+type SignUpState = {
     email: string;
     userName: string;
     password: string;
     verifyPassword: string;
-}
+};
 
-const signUpInitialValues: ISignUpState = {
+const signUpInitialValues: SignUpState = {
     email: "",
     userName: "",
     password: "",

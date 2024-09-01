@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 
-import Overlay from "../../../Miscellaneous/Overlay";
+import { Overlay } from "../../../Miscellaneous/Overlay";
 import { AlertBodyProps, AlertOpenState } from "../types";
 
 import "../Alert.css";

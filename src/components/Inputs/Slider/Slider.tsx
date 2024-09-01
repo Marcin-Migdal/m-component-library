@@ -1,9 +1,10 @@
 import React, { CSSProperties, useLayoutEffect, useRef, useState } from "react";
 
+import { InputLabel, InputSize } from "../../global-types";
 import { InputContainer, InputsLabel } from "../_inputsComponents";
-import { getInputStyle } from "../input-helpers";
-import { SliderProps } from "./Slider-interfaces";
+import { getInputStyle } from "../helpers/getInputStyle";
 import { getSliderValueDynamicStyle } from "./getSliderValueDynamicStyle";
+import { SliderProps } from "./types";
 
 import "./Slider.css";
 
@@ -15,10 +16,10 @@ const Slider = ({
     initialValue,
     onChange,
     label,
-    labelType = "left",
+    labelType = InputLabel.LEFT,
     labelWidth = 30,
     floatingInputWidth = 100,
-    size = "medium",
+    size = InputSize.MEDIUM,
     name = undefined,
     hideValuePreview = false,
     valuePreviewType = "bottom-dynamic",
@@ -96,7 +97,7 @@ const Slider = ({
                     labelType={labelType}
                     className="slider"
                     labelWidth={labelWidth}
-                    forceFloating={labelType === "floating"}
+                    forceFloating={labelType === InputLabel.FLOATING}
                 />
             )}
             {!hideValuePreview && (

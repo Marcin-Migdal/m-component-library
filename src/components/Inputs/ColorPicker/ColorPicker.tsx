@@ -2,11 +2,13 @@ import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { OpenStatus, useOpen } from "../../../hooks";
+import { InputLabel, InputSize } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
-import { getInputsErrorStyle, getInputStyle } from "../input-helpers";
-import { ColorPickerProps, defaultColorValue, ReturnedColorType, RgbValue } from "./ColorPicker-interfaces";
+import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
+import { getInputStyle } from "../helpers/getInputStyle";
 import { ColorPickerPopup } from "./ColorPickerPopup/ColorPickerPopup";
 import { rgbToHex, rgbToHsl, valueToRgb } from "./helpers";
+import { ColorPickerProps, defaultColorPickerValue, ReturnedColor, RgbValue } from "./types";
 
 import "./ColorPicker.css";
 
@@ -16,12 +18,12 @@ const ColorPicker = ({
     onChange,
     label = undefined,
     error = undefined,
-    labelType = "left",
+    labelType = InputLabel.LEFT,
     labelWidth = 30,
     floatingInputWidth = 100,
-    defaultInternalValue = defaultColorValue,
+    defaultInternalValue = defaultColorPickerValue,
     returnedColorType,
-    size = "medium",
+    size = InputSize.MEDIUM,
     onOpen,
     onClose,
 }: ColorPickerProps) => {
@@ -39,13 +41,13 @@ const ColorPicker = ({
     const handleClose = () => {
         if (onClose) {
             switch (returnedColorType) {
-                case ReturnedColorType.RGB:
+                case ReturnedColor.RGB:
                     onClose(value);
                     break;
-                case ReturnedColorType.HSL:
+                case ReturnedColor.HSL:
                     onClose(rgbToHsl(value.r, value.g, value.b));
                     break;
-                case ReturnedColorType.HEX:
+                case ReturnedColor.HEX:
                     onClose(rgbToHex(value.r, value.g, value.b));
                     break;
             }
@@ -62,11 +64,11 @@ const ColorPicker = ({
         }
 
         switch (returnedColorType) {
-            case ReturnedColorType.RGB:
+            case ReturnedColor.RGB:
                 return onChange({ target: { name: name || "color-picker", value: value } });
-            case ReturnedColorType.HSL:
+            case ReturnedColor.HSL:
                 return onChange({ target: { name: name || "color-picker", value: rgbToHsl(value.r, value.g, value.b) } });
-            case ReturnedColorType.HEX:
+            case ReturnedColor.HEX:
                 return onChange({ target: { name: name || "color-picker", value: rgbToHex(value.r, value.g, value.b) } });
         }
     };
@@ -89,7 +91,7 @@ const ColorPicker = ({
                         labelType={labelType}
                         className="color-picker"
                         labelWidth={labelWidth}
-                        forceFloating={labelType === "floating"}
+                        forceFloating={labelType === InputLabel.FLOATING}
                     />
                 )}
                 {error && (

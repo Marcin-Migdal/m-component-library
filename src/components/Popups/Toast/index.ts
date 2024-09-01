@@ -1,3 +1,5 @@
-export { default, type ToastHandler } from "./ToastsContainer";
-export type { ToastsPositionTypes, VariantTypes, ToastConfigType } from "./toasts-interfaces";
-export { defaultToastConfig } from "./utils";
+export * from "./components/icons";
+export { default as ToastsContainer } from "./ToastsContainer";
+
+export { AddToastPayload, CloseIconProps, ToastConfig, ToastHandler, ToastVariant, ToastsContainerProps, ToastsPosition } from "./types";
+export * from "./utils";

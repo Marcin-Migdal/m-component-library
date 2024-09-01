@@ -1,34 +1,10 @@
 import React from "react";
+
+import { ProgressSpinnerProps } from "./types";
+
 import "./styles.css";
 
-export interface IProgressSpinnerProps {
-    loading?: boolean;
-    strokeWidth?: StrokeWidthType;
-}
-
-type StrokeWidthType =
-    | "1"
-    | "2"
-    | "3"
-    | "4"
-    | "5"
-    | "6"
-    | "7"
-    | "8"
-    | "9"
-    | "10"
-    | "11"
-    | "12"
-    | "13"
-    | "14"
-    | "15"
-    | "16"
-    | "17"
-    | "18"
-    | "19"
-    | "20";
-
-const ProgressSpinner = ({ loading = true, strokeWidth = "4" }: IProgressSpinnerProps) => {
+const ProgressSpinner = ({ loading = true, strokeWidth = "4" }: ProgressSpinnerProps) => {
     if (!loading) return <></>;
 
     return (

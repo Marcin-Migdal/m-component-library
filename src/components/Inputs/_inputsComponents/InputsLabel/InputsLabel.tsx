@@ -1,12 +1,12 @@
 import React from "react";
 
-import { InputLabelType, LabelPercentageWidth } from "../../../global-interfaces";
+import { InputLabel, LabelPercentageWidth, SimpleInputLabel } from "../../../global-types";
 
 import "./InputsLabel.css";
 
-interface IInputsLabelProps {
+type InputsLabelProps = {
     label: string;
-    labelType: InputLabelType;
+    labelType: `${InputLabel}` | `${SimpleInputLabel}`;
     className: string;
     labelWidth: LabelPercentageWidth;
 
@@ -16,7 +16,7 @@ interface IInputsLabelProps {
 
     // Dropdown Props
     dataId?: string;
-}
+};
 
 export const InputsLabel = ({
     labelType,
@@ -27,23 +27,22 @@ export const InputsLabel = ({
     isFilled = false,
     forceFloating = false,
     dataId,
-}: IInputsLabelProps) => {
+}: InputsLabelProps) => {
     const labelClasses = `m-input-label ${className} ${labelType} ${
-        labelType == "floating" && isFocused ? "focused" : isFilled ? "filled" : forceFloating ? "forced-floating" : ""
+        labelType == InputLabel.FLOATING && isFocused ? "focused" : isFilled ? "filled" : forceFloating ? "forced-floating" : ""
     }`;
 
-    className === "slider" && console.log(labelClasses);
     return (
         <label
             data-id={dataId}
             style={
-                labelType == "floating"
+                labelType == InputLabel.FLOATING
                     ? { width: `fit-content`, left: "0" }
-                    : { width: `${labelWidth}%`, left: labelType == "right" ? `${`${100 - labelWidth}%`}` : "0" }
+                    : { width: `${labelWidth}%`, left: labelType == InputLabel.RIGHT ? `${`${100 - labelWidth}%`}` : "0" }
             }
             className={labelClasses}
         >
-            {labelType == "floating" ? (isFocused || isFilled || forceFloating ? label : `${label}...`) : label}
+            {labelType == InputLabel.FLOATING ? (isFocused || isFilled || forceFloating ? label : `${label}...`) : label}
         </label>
     );
 };

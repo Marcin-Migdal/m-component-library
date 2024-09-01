@@ -1,13 +1,13 @@
 import React, { CSSProperties, forwardRef, PropsWithChildren } from "react";
 
-import * as GlobalInterfaces from "../../../global-interfaces";
+import * as GlobalInterfaces from "../../../global-types";
 
 import "./InputContainer.css";
 
 type InputContainerProps = {
     disabled: boolean;
     className: string;
-    size: GlobalInterfaces.InputSizeType;
+    size: GlobalInterfaces.InputSize;
     error?: string;
     style?: CSSProperties;
 };
