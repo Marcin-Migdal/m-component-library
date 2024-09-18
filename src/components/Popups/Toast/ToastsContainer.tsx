@@ -7,7 +7,13 @@ import { defaultToastConfig, getDefaultToastType } from "./utils";
 import "./Toasts.css";
 
 function ToastsContainer<T extends string>(props: ToastsContainerProps<T>, ref: ForwardedRef<ToastHandler<T>>) {
-    const { autoClose = true, toastsPosition = "top-right", toastConfig = defaultToastConfig, transformContent } = props;
+    const {
+        autoClose = true,
+        toastsPosition = "top-right",
+        toastConfig = defaultToastConfig,
+        transformToastsContent,
+        toastsDuration = 2000,
+    } = props;
 
     const timeoutRefs = useRef<Record<number, NodeJS.Timeout>>({});
 
@@ -17,21 +23,20 @@ function ToastsContainer<T extends string>(props: ToastsContainerProps<T>, ref: 
         addToast: (payload) => {
             let toastType: string = payload.type ? payload.type : getDefaultToastType(toastConfig);
 
-            const { title: defaultTitle, variant, icon } = (toastConfig as ToastConfig<string>)[toastType];
-            const { toastDuration = 2000, transformContent: transformSingularContent } = payload;
+            const { title: defaultTitle, icon, variant } = (toastConfig as ToastConfig<string>)[toastType];
+            const { toastDuration = toastsDuration, transformToastContent } = payload;
 
-            let message = payload.message;
-            let title = payload.title || defaultTitle;
+            const transformContent = transformToastContent || transformToastsContent || ((content) => content);
 
-            if (transformSingularContent) {
-                message = transformSingularContent(message);
-                title = transformSingularContent(title);
-            } else if (transformContent) {
-                message = transformContent(message);
-                title = transformContent(title);
-            }
+            const newToast: ToastType = {
+                id: Date.now(),
+                message: transformContent(payload.message),
+                title: transformContent(payload.title || defaultTitle),
+                variant: variant,
+                icon,
+                toastDuration,
+            };
 
-            const newToast: ToastType = { message, variant, title, id: Date.now(), icon, toastDuration };
             setToasts((prevState) => [...prevState, newToast]);
 
             handleToastAutoClose(newToast);

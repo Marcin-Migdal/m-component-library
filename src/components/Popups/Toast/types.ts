@@ -19,13 +19,14 @@ export type AddToastPayload<T> = {
     type?: T;
     title?: string;
     toastDuration?: number;
-    transformContent?: (content: string) => string;
+    transformToastContent?: (content: string) => string;
 };
 
 export type ToastsContainerBaseProps = {
+    toastsDuration?: number;
     autoClose?: boolean;
     toastsPosition?: ToastsPosition;
-    transformContent?: (content: string) => string;
+    transformToastsContent?: (content: string) => string;
 };
 
 export type ToastConfig<T extends string> = Record<
@@ -48,7 +49,7 @@ export type ToastProps = {
 
 export type ToastType = {
     message: string;
-    variant: ToastVariant;
+    variant: string;
     title: string;
     id: number;
     toastDuration: number;
