@@ -88,7 +88,7 @@ const Slider = ({
                 step={step}
                 value={value}
                 onChange={handleChange}
-                style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
+                style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
                 className="m-input m-slider"
             />
             {label && (

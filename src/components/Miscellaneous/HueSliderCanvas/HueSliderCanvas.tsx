@@ -1,15 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import { useThrottling } from "../../../../hooks";
-import { calculateIndicatorPosition, fillSliderGradientBackground, hslToRgb, rgbToHsl } from "../helpers";
-import { CanvasCoordinates } from "../types";
+import { useThrottling } from "../../../hooks";
+import { calculateIndicatorPosition, fillSliderGradientBackground, hslToRgb, rgbToHsl } from "../../Inputs/ColorPicker/helpers";
+import { CanvasCoordinates } from "../../Inputs/ColorPicker/types";
+import { HueSliderCanvasProps } from "./types";
 
 import "./HueSliderCanvas.css";
-
-type HueSliderCanvasProps = {
-    hue: number;
-    onChange: (hue: number) => void;
-};
 
 export const HueSliderCanvas = ({ hue, onChange }: HueSliderCanvasProps) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);

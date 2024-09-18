@@ -3,6 +3,8 @@ import React, { CSSProperties, useRef } from "react";
 import { Placement } from "../../../../helpers/getPosition/getPosition-types";
 import { Tooltip } from "../../../Miscellaneous";
 
+import "./InputError.css";
+
 type InputErrorProps = {
     style: CSSProperties;
     className: string;

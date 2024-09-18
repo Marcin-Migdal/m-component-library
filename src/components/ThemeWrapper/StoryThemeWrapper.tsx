@@ -1,4 +1,4 @@
-import React, { CSSProperties, useRef } from "react";
+import React, { CSSProperties, useRef, useState } from "react";
 
 import { InputLabel, InputSize, LabelPercentageWidth, SimpleInputLabel } from "../global-types";
 
@@ -12,13 +12,14 @@ import {
     ColorPicker,
     Dropdown,
     FailureIcon,
+    HueSliderCanvas,
+    Icon,
     ProgressSpinner,
     ReturnedColor,
     Slider,
     SuccessIcon,
     Textarea,
     Textfield,
-    ThemeTypes,
     ToastConfig,
     ToastHandler,
     ToastsContainer,
@@ -27,7 +28,7 @@ import { Placement } from "../../helpers/getPosition/getPosition-types";
 import ThemeWrapper from "./ThemeWrapper";
 
 export type StoryThemeWrapperProps = {
-    theme: ThemeTypes;
+    darkMode: boolean;
     inputLabelType: `${InputLabel}`;
     inputSize: `${InputSize}`;
     error?: string;
@@ -44,7 +45,7 @@ export const toastConfig: ToastConfig<NewToastTypes> = {
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
 const StoryThemeWrapper = ({
-    theme,
+    darkMode,
     inputLabelType = InputLabel.FLOATING,
     inputSize = InputSize.MEDIUM,
     error = "",
@@ -54,12 +55,14 @@ const StoryThemeWrapper = ({
     const toastRef = useRef<ToastHandler<NewToastTypes>>(null);
     const alertRef = useRef<AlertHandler>(null);
 
+    const [hue, setHue] = useState<number | undefined>(undefined);
+
     const checkboxLabelType = (inputLabelType == InputLabel.FLOATING ? SimpleInputLabel.RIGHT : inputLabelType) as SimpleInputLabel;
     const inputLabelWidth: LabelPercentageWidth | undefined = inputLabelType == InputLabel.FLOATING ? 90 : 35;
     const floatingInputWidth = 60;
 
     return (
-        <ThemeWrapper theme={theme}>
+        <ThemeWrapper darkMode={darkMode} hue={hue}>
             <div style={{ padding: "1rem" }}>
                 <SectionHeader style={{ marginTop: "0px", borderTop: "none" }} headerStyle={{ marginTop: "unset" }} text="BUTTON SECTION" />
 
@@ -77,7 +80,6 @@ const StoryThemeWrapper = ({
                     labelWidth={inputLabelWidth}
                     floatingInputWidth={floatingInputWidth}
                     error={error}
-                    disabled={disabled}
                     size={inputSize}
                 />
                 <Textarea
@@ -130,13 +132,18 @@ const StoryThemeWrapper = ({
                     labelWidth={inputLabelWidth}
                     floatingInputWidth={floatingInputWidth}
                     label="test"
-                    returnedColorType={ReturnedColor.RGB}
-                    onChange={(color) => console.log(color)}
+                    returnedColorType={ReturnedColor.HSL}
+                    onChange={(color) => console.log(color.target.value)}
                     disabled={disabled}
                 />
 
-                <SectionHeader text="TOAST SECTION" />
+                <SectionHeader text="DYNAMIC THEME COLOR CONTROL" />
+                <div style={{ display: "flex", alignItems: "center" }}>
+                    <HueSliderCanvas hue={0} onChange={(hue) => setHue(hue)} />
+                    <Button icon={["fas", "refresh"]} style={{ marginLeft: "10px" }} text="Default" onClick={() => setHue(undefined)} />
+                </div>
 
+                <SectionHeader text="TOAST SECTION" />
                 <ToastsContainer ref={toastRef} toastConfig={toastConfig} />
                 <div>
                     <Button
@@ -184,13 +191,18 @@ const StoryThemeWrapper = ({
                         error={error}
                     />
 
-                    <span style={{ display: "inline-block", width: "100%", color: "var(--primary-text-color)" }}>
+                    <span style={{ display: "inline-block", width: "100%" }}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
                         aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
                     </span>
                 </Card>
                 <SectionHeader text="MISCELLANEOUS" />
-                <ProgressSpinner />
+
+                <div style={{ display: "flex", flexDirection: "column" }}>
+                    <ProgressSpinner />
+                    <Icon icon={["fab", "facebook"]} style={{ width: "fit-content" }} />
+                </div>
+
                 <SectionHeader text="ALERT" />
 
                 <Button text="Open alert" onClick={() => alertRef.current?.openAlert()} />

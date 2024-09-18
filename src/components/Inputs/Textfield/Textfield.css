@@ -1,13 +1,14 @@
 .m-textfield-container .m-textfield {
+    box-sizing: border-box;
+
+    height: var(--input-height);
+    padding-left: var(--input-padding-left);
+    border-radius: var(--border-radius);
     border: none;
     outline: none;
-    height: var(--input-height);
+
     font-size: var(--input-font-size);
-    padding-left: var(--input-padding-left);
-    box-sizing: border-box;
-    border-radius: var(--border-radius);
     transition: 0.2s ease-in-out;
-    color: inherit;
 }
 
 .m-textfield-container .m-textfield:hover {
@@ -15,18 +16,4 @@
 }
 .m-textfield-container .m-textfield:focus {
     transition: 0.1s;
-}
-
-/* error section */
-.m-textfield-container.error .m-textfield {
-    border: 1px solid var(--failure-color);
-    color: var(--failure-color) !important;
-}
-
-.m-textfield-container.error .m-textfield:focus {
-    box-shadow: var(--big-box-shadow) var(--failure-color);
-}
-
-.m-textfield-container.error .m-textfield:not(:disabled)::placeholder {
-    color: var(--failure-color) !important;
 }

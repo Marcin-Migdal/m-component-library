@@ -11,7 +11,7 @@ export default {
 } as ComponentMeta<typeof StoryTextfieldWrapper>;
 
 const Template: ComponentStory<typeof StoryTextfieldWrapper> = (args) => (
-    <ThemeWrapper theme="light-blue-theme-dark-mode">
+    <ThemeWrapper darkMode>
         <div style={{ padding: "1rem" }}>
             <StoryTextfieldWrapper {...args} />
         </div>

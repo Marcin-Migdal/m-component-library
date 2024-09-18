@@ -28,7 +28,15 @@ export type ToastsContainerBaseProps = {
     transformContent?: (content: string) => string;
 };
 
-export type ToastConfig<T extends string> = Record<T, { default: boolean; icon: ReactNode; variant: ToastVariant; title: string }>;
+export type ToastConfig<T extends string> = Record<
+    T,
+    {
+        default: boolean;
+        icon: ReactNode;
+        variant: ToastVariant;
+        title: string;
+    }
+>;
 
 //! TOASTS COMPONENTS
 export type ToastProps = {

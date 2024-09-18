@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof ColorPicker>;
 
 const Template: ComponentStory<typeof ColorPicker> = (args) => (
-    <ThemeWrapper theme="light-blue-theme-dark-mode">
+    <ThemeWrapper darkMode>
         <div style={{ padding: "1rem" }}>
             <ColorPicker {...args} />
         </div>

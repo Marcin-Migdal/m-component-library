@@ -4,8 +4,6 @@
     flex-direction: column;
 
     width: 300px;
-
-    background-color: var(--light-background-color);
     border-radius: var(--border-radius);
     transition: 0.1s;
 }
@@ -37,10 +35,7 @@
     width: 1rem;
     height: 1rem;
     border-radius: 50%;
-    border: 2px solid white;
-    box-shadow: 0 0 0 2px black;
-
-    background-color: transparent;
+    border: 2px solid;
 }
 
 .color-picker-popup .middle-section {

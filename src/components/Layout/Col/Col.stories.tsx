@@ -11,7 +11,7 @@ export default {
 } as ComponentMeta<typeof StoryColWrapper>;
 
 const Template: ComponentStory<typeof StoryColWrapper> = (args) => (
-    <ThemeWrapper theme="light-blue-theme-dark-mode">
+    <ThemeWrapper darkMode>
         <div style={{ padding: "1rem" }}>
             <Row>
                 <StoryColWrapper {...args} />

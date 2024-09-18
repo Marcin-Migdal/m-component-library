@@ -54,12 +54,6 @@
     --checkbox-input-size: calc(var(--input-height) - 10px);
 }
 
-/* Dropdown custom properties */
-.m-dropdown-container {
-    display: flex;
-    align-items: center;
-}
-
 /* Slider custom properties */
 .m-slider-container {
     display: flex;

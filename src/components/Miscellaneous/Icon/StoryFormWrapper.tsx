@@ -11,7 +11,7 @@ export type StoryIconWrapperProps = {
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
 const StoryIconWrapper = ({ iconPrefix, icon }: StoryIconWrapperProps) => {
-    return <Icon style={{ color: "var(--white)" }} icon={[iconPrefix, icon]} />;
+    return <Icon icon={[iconPrefix, icon]} />;
 };
 
 export default StoryIconWrapper;

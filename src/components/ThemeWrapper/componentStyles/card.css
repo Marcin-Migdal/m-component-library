@@ -1,10 +1,10 @@
 .common-wrapper-container .m-card {
-    background-color: var(--light-background-color);
-    color: var(--white);
+    background-color: var(--popups-background-color);
+    color: var(--primary-text-color) !important;
 }
 
 .common-wrapper-container .m-card.border {
-    border: var(--border) var(--border-color);
+    border: var(--border) var(--alert-border-color);
 }
 
 .common-wrapper-container .m-card.gradient-border-glow::after,
