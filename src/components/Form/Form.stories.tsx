@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof StoryFormWrapper>;
 
 const Template: ComponentStory<typeof StoryFormWrapper> = (args) => (
-    <ThemeWrapper theme="light-blue-theme-dark-mode">
+    <ThemeWrapper darkMode>
         <div style={{ padding: "1rem" }}>
             <StoryFormWrapper />
         </div>

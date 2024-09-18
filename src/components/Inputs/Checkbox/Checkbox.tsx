@@ -37,7 +37,7 @@ const Checkbox = ({
 
     return (
         <InputContainer disabled={disabled} ref={checkboxContainerRef} className="m-checkbox-container" size={size} error={error}>
-            <div style={getInputStyle(labelType, label, labelWidth, undefined)}>
+            <div style={getInputStyle(labelType as SimpleInputLabel, label, labelWidth, undefined)}>
                 <label className={`m-checkbox-input-wrapper ${isChecked ? "checked" : ""}`}>
                     <input
                         className="m-checkbox-input"
@@ -56,7 +56,7 @@ const Checkbox = ({
             {label && <InputsLabel label={label} labelType={labelType} className="m-input-label" labelWidth={labelWidth} />}
             {error && checkboxContainerRef.current && (
                 <InputError
-                    style={getCheckboxErrorStyle(checkboxContainerRef.current, labelType, labelWidth)}
+                    style={getCheckboxErrorStyle(checkboxContainerRef.current, labelType as SimpleInputLabel, labelWidth)}
                     className="checkbox"
                     error={error}
                 />

@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof Overlay>;
 
 const Template: ComponentStory<typeof Overlay> = (args) => (
-    <ThemeWrapper theme="light-blue-theme-dark-mode">
+    <ThemeWrapper darkMode>
         <Overlay>Overlay content</Overlay>
     </ThemeWrapper>
 );

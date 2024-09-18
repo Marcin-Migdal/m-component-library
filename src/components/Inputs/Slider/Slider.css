@@ -11,8 +11,6 @@
     border-radius: 4px;
     outline: none;
 
-    background: var(--white);
-
     opacity: 1;
 }
 
@@ -26,7 +24,6 @@
 
     width: 14px;
     height: 14px;
-    background: var(--primary-color_400);
     border-radius: 50%;
 }
 

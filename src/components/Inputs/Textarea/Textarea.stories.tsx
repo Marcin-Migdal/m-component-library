@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof Textarea>;
 
 const Template: ComponentStory<typeof Textarea> = (args) => (
-    <ThemeWrapper theme="light-blue-theme-dark-mode">
+    <ThemeWrapper darkMode>
         <div style={{ padding: "1rem" }}>
             <Textarea {...args} />
         </div>

@@ -1,5 +1,4 @@
 .m-input-label {
-    color: inherit;
     position: absolute;
     font-size: var(--input-font-size);
     pointer-events: none;

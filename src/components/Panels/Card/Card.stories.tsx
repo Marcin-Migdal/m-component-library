@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof Card>;
 
 const Template: ComponentStory<typeof Card> = (args) => (
-    <ThemeWrapper theme="light-blue-theme-dark-mode">
+    <ThemeWrapper darkMode>
         <div style={{ padding: "1rem" }}>
             <Card style={{ width: "300px" }} {...args}>
                 <h2 style={{ width: "100%", textAlign: "center", marginTop: "0px" }}>Card title</h2>

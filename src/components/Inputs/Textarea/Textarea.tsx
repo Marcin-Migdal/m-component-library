@@ -49,7 +49,7 @@ const Textarea = ({
             <textarea
                 name={name}
                 rows={row}
-                style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
+                style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
                 className={`m-input m-textarea ${labelType}`}
                 value={value}
                 onChange={handleChange}
@@ -71,7 +71,11 @@ const Textarea = ({
                 />
             )}
             {error && (
-                <InputError style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)} className="textarea" error={error} />
+                <InputError
+                    style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
+                    className="textarea"
+                    error={error}
+                />
             )}
         </InputContainer>
     );

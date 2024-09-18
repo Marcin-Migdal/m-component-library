@@ -11,7 +11,7 @@ export default {
 } as ComponentMeta<typeof StoryCheckboxWrapper>;
 
 const Template: ComponentStory<typeof StoryCheckboxWrapper> = (args) => (
-    <ThemeWrapper theme="light-blue-theme-dark-mode">
+    <ThemeWrapper darkMode>
         <div style={{ padding: "1rem" }}>
             <StoryCheckboxWrapper {...args} />
         </div>

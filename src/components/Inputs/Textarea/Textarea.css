@@ -1,15 +1,16 @@
 .m-textarea-container .m-textarea {
-    border: none;
-    outline: none;
+    box-sizing: border-box;
+
     height: var(--input-height);
-    font-size: var(--input-font-size);
     padding-top: 4px;
     padding-left: var(--input-padding-left);
-    box-sizing: border-box;
     border-radius: var(--border-radius);
+    border: none;
+    outline: none;
+
+    font-size: var(--input-font-size);
     transition: 0.2s ease-in-out;
     resize: vertical;
-    color: inherit;
 }
 
 .m-textarea-container .m-textarea:hover {
@@ -24,24 +25,6 @@
     width: 8px;
 }
 
-.m-textarea-container .m-textarea::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
 .m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
     border-radius: 30px;
-}
-
-/* error section */
-.m-textarea-container.error .m-textarea {
-    border: 1px solid var(--failure-color);
-    color: var(--failure-color) !important;
-}
-
-.m-textarea-container.error .m-textarea:focus {
-    box-shadow: var(--big-box-shadow) var(--failure-color);
-}
-
-.m-textarea-container.error .m-textarea:not(:disabled)::placeholder {
-    color: var(--failure-color) !important;
 }

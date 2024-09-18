@@ -1,15 +1,14 @@
 import { CSSProperties } from "react";
+import { FloatingInputWidth, InputLabel, LabelPercentageWidth, SimpleInputLabel } from "../../global-types";
 
-import * as GlobalInterfaces from "../../global-types";
-
-export function getInputStyle<T extends GlobalInterfaces.SimpleInputLabel | GlobalInterfaces.InputLabel>(
+export function getInputStyle<T extends SimpleInputLabel | InputLabel>(
     labelType: T,
     label: string | undefined,
-    labelWidth: GlobalInterfaces.LabelPercentageWidth,
-    floatingInputWidth: T extends GlobalInterfaces.SimpleInputLabel ? undefined : GlobalInterfaces.FloatingInputWidth
+    labelWidth: LabelPercentageWidth,
+    floatingInputWidth: T extends SimpleInputLabel ? undefined : FloatingInputWidth
 ): Pick<CSSProperties, "marginLeft" | "width"> {
     return {
-        marginLeft: labelType === GlobalInterfaces.InputLabel.LEFT && label ? `${labelWidth}%` : "unset",
-        width: labelType === GlobalInterfaces.InputLabel.FLOATING ? `${floatingInputWidth}%` : label ? `${100 - labelWidth}%` : "100%",
+        marginLeft: labelType === InputLabel.LEFT && label ? `${labelWidth}%` : "unset",
+        width: labelType === InputLabel.FLOATING ? `${floatingInputWidth}%` : label ? `${100 - labelWidth}%` : "100%",
     };
 }

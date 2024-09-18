@@ -7,7 +7,6 @@
 .spinner-path {
     stroke-dasharray: 100;
     stroke-dashoffset: 20;
-    stroke: var(--loader-color);
 }
 
 @keyframes spin {

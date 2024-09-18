@@ -17,7 +17,7 @@ const options = [
 ];
 
 const Template: ComponentStory<typeof Dropdown> = (args) => (
-    <ThemeWrapper theme="light-blue-theme-dark-mode">
+    <ThemeWrapper darkMode>
         <div style={{ padding: "1rem" }}>
             <Dropdown {...args} options={options} name="testDropdown" />
         </div>

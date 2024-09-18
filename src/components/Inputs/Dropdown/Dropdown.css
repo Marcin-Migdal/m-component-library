@@ -1,14 +1,15 @@
 .m-dropdown-container .m-dropdown {
-    position: unset;
-    border: none;
-    outline: none;
-    height: var(--input-height);
-    font-size: var(--input-font-size);
-    padding-left: var(--input-padding-left);
     box-sizing: border-box;
+    position: unset;
+
+    height: var(--input-height);
+    padding-left: var(--input-padding-left);
+    outline: none;
+    border: none;
     border-radius: var(--border-radius);
+
+    font-size: var(--input-font-size);
     transition: 0.2s ease-in-out;
-    color: inherit;
 }
 
 .m-dropdown-container .m-dropdown:hover {
@@ -19,10 +20,9 @@
 }
 
 .m-dropdown-container .m-dropdown-clear-icon {
-    padding: 3px 6px;
     border-radius: 100%;
-    margin-left: -40px;
-    z-index: 1 !important;
+    margin-left: -2.25rem;
+    z-index: 1;
 
     transition: 0.2s;
 
@@ -30,12 +30,12 @@
 }
 
 .m-dropdown-container.error .m-dropdown-clear-icon {
-    margin-left: -51px;
+    margin-left: -2.9rem;
 }
 
 .m-dropdown-container .m-dropdown-icon {
-    margin-left: -25px;
-    z-index: 1 !important;
+    margin-left: -1.5rem;
+    z-index: 1;
     transition: 0.2s;
     cursor: pointer;
 }
@@ -47,18 +47,4 @@
 .m-dropdown-container:has(.m-dropdown:disabled) .m-dropdown-clear-icon,
 .m-dropdown-container:has(.m-dropdown:disabled) .m-dropdown-icon {
     display: none;
-}
-
-/* error section */
-.m-dropdown-container.error .m-dropdown {
-    border: 1px solid var(--failure-color);
-    color: var(--failure-color) !important;
-}
-
-.m-dropdown-container.error .m-dropdown:focus {
-    box-shadow: var(--big-box-shadow) var(--failure-color);
-}
-
-.m-dropdown-container.error .m-dropdown:not(:disabled)::placeholder {
-    color: var(--failure-color) !important;
 }

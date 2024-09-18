@@ -1,6 +1,6 @@
 .common-wrapper-container .m-alert {
     background-color: var(--background-color);
-    border-top-color: var(--border-top-color);
+    border-top-color: var(--alert-border-color);
 
     .m-alert-header {
         display: flex;
@@ -21,20 +21,22 @@
     }
 
     .m-alert-footer {
-        background-color: var(--border-top-color);
+        background-color: var(--alert-border-color);
 
         button {
             background-color: var(--background-color);
-            border-top-color: var(--border-top-color);
+            border-top-color: var(--alert-border-color);
             color: var(--primary-text-color);
         }
 
         button:disabled {
-            background-color: var(--light-background-color);
+            background-color: var(--alert-disabled-button-background-color);
         }
+
         button:not(:disabled):hover {
             background-color: var(--background-hover-color);
         }
+
         button:not(:disabled):active {
             background-color: var(--background-active-color);
         }

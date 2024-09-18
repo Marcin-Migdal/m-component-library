@@ -81,7 +81,7 @@ const ColorPicker = ({
                     className={`m-input m-color-preview ${labelType}`}
                     onClick={() => !disabled && handleOpen()}
                     style={{
-                        ...getInputStyle(labelType, label, labelWidth, floatingInputWidth),
+                        ...getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth),
                         backgroundColor: `rgb(${value.r}, ${value.g}, ${value.b})`,
                     }}
                 />
@@ -95,7 +95,11 @@ const ColorPicker = ({
                     />
                 )}
                 {error && (
-                    <InputError style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)} className="input" error={error} />
+                    <InputError
+                        style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
+                        className="input"
+                        error={error}
+                    />
                 )}
             </InputContainer>
             {containerRef.current &&

@@ -145,7 +145,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
                 data-id={uniqueDropdownId}
                 className={`m-input m-dropdown ${labelType}`}
                 type="text"
-                style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
+                style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
                 readOnly={readOnly || !filter}
                 value={(isFocused ? filterValue : value?.[labelKey]) || ""}
                 onChange={handleFilterChange}
@@ -168,7 +168,11 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
 
             {/* input icons */}
             {error ? (
-                <InputError style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)} className="checkbox" error={error} />
+                <InputError
+                    style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
+                    className="checkbox"
+                    error={error}
+                />
             ) : (
                 <FontAwesomeIcon className="m-dropdown-icon" icon="angle-down" onClick={() => setIsFocused(!isFocused)} />
             )}

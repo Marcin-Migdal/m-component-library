@@ -8,14 +8,10 @@
 
     width: 0.75rem;
     height: 0.75rem;
-    border: 2px solid var(--white);
+    border: 2px solid;
 
     border-radius: 50%;
     pointer-events: none;
 
     transform: translate(-50%, -50%);
-}
-
-.color-picker-canvas-container .color-picker-pointer.dragging {
-    box-shadow: 0 0 0 2px var(--black);
 }

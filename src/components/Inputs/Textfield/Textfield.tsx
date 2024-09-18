@@ -24,7 +24,7 @@ const Textfield = (props: TextfieldProps) => {
         onBlur,
         label = undefined,
         error = undefined,
-        labelType = InputLabel.LEFT,
+        labelType = `${InputLabel.LEFT}`,
         placeholder = undefined,
         labelWidth = 30,
         floatingInputWidth = 100,
@@ -71,7 +71,7 @@ const Textfield = (props: TextfieldProps) => {
                 name={name}
                 className={`m-input m-textfield ${labelType}`}
                 type={type}
-                style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
+                style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
                 value={value}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -94,7 +94,13 @@ const Textfield = (props: TextfieldProps) => {
                     isFilled={!!value}
                 />
             )}
-            {error && <InputError style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)} className="input" error={error} />}
+            {error && (
+                <InputError
+                    style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
+                    className="input"
+                    error={error}
+                />
+            )}
         </InputContainer>
     );
 };

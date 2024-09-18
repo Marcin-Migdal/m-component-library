@@ -7,7 +7,7 @@ import "./InputContainer.css";
 type InputContainerProps = {
     disabled: boolean;
     className: string;
-    size: GlobalInterfaces.InputSize;
+    size: `${GlobalInterfaces.InputSize}`;
     error?: string;
     style?: CSSProperties;
 };

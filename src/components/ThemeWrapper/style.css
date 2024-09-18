@@ -34,36 +34,26 @@ body {
 
     --information-color-rgb: 105, 108, 255;
 
-    /* all colors of grey across  all themes */
-    --white: rgb(255, 255, 255);
-    --black: rgb(0, 0, 0);
-
-    --light-grey_100: rgb(240, 240, 240);
-    --light-grey_150: rgb(232, 232, 232);
-    --light-grey_200: rgb(225, 225, 225);
-    --light-grey_250: rgb(217, 217, 217);
-    --light-grey_300: rgb(210, 210, 210);
-    --light-grey_400: rgb(195, 195, 195);
-    --light-grey_500: rgb(180, 180, 180);
-    --light-grey_600: rgb(165, 165, 165);
-    --light-grey_700: rgb(150, 150, 150);
-    --light-grey_750: rgb(143, 143, 143);
-    --light-grey_800: rgb(135, 135, 135);
-
-    --dark-grey_100: rgb(120, 120, 120);
-    --dark-grey_150: rgb(113, 113, 113);
-    --dark-grey_200: rgb(105, 105, 105);
-    --dark-grey_250: rgb(98, 98, 98);
-    --dark-grey_300: rgb(90, 90, 90);
-    --dark-grey_325: rgb(87, 87, 87);
-    --dark-grey_350: rgb(83, 83, 83);
-    --dark-grey_400: rgb(75, 75, 75);
-    --dark-grey_425: rgb(71, 71, 71);
-    --dark-grey_450: rgb(68, 68, 68);
-    --dark-grey_500: rgb(60, 60, 60);
-    --dark-grey_600: rgb(45, 45, 45);
-    --dark-grey_700: rgb(30, 30, 30);
-    --dark-grey_800: rgb(15, 15, 15);
+    /* all colors of grey across all themes */
+    --grey-color-000: hsl(0, 0%, 100%);
+    --grey-color-050: hsl(0, 0%, 94%);
+    --grey-color-100: hsl(0, 0%, 88%);
+    --grey-color-125: hsl(0, 0%, 85%);
+    --grey-color-150: hsl(0, 0%, 82%);
+    --grey-color-175: hsl(0, 0%, 79%);
+    --grey-color-300: hsl(0, 0%, 65%);
+    --grey-color-325: hsl(0, 0%, 62%);
+    --grey-color-450: hsl(0, 0%, 47%);
+    --grey-color-475: hsl(0, 0%, 44%);
+    --grey-color-500: hsl(0, 0%, 41%);
+    --grey-color-525: hsl(0, 0%, 38%);
+    --grey-color-550: hsl(0, 0%, 35%);
+    --grey-color-575: hsl(0, 0%, 32%);
+    --grey-color-600: hsl(0, 0%, 29%);
+    --grey-color-625: hsl(0, 0%, 27%);
+    --grey-color-650: hsl(0, 0%, 24%);
+    --grey-color-800: hsl(0, 0%, 6%);
+    --grey-color-850: hsl(0, 0%, 0%);
 
     /* Common */
     --border-radius: 0.2em;
@@ -84,7 +74,7 @@ body {
     /*? Small */
     --small-input-height: 24px;
     --small-input-padding-left: 6px;
-    --small-input-font-size: 16px;
+    --small-input-font-size: 14px;
 
     /*? Medium */
     --medium-input-height: 30px;
@@ -111,393 +101,267 @@ body {
     overflow-x: hidden;
 }
 
-.default-theme-light-mode {
+.light-mode {
     /** Background color */
-    --background-color: var(--white);
-    --light-background-color: var(--light-grey_100);
-    --background-hover-color: var(--light-grey_200);
-    --background-active-color: var(--light-grey_250);
+    --background-color: var(--grey-color-000);
+    --popups-background-color: var(--grey-color-050);
+    --background-hover-color: var(--grey-color-100);
+    --background-active-color: var(--grey-color-125);
 
     /** Inputs colors */
-    --input-background-color: var(--background-hover-color);
-    --input-hover-background-color: var(--background-active-color);
-    --input-disabled-background-color: var(--light-grey_100);
+    --input-background-color: var(--grey-color-125);
+    --input-hover-background-color: var(--grey-color-175);
+    --input-disabled-background-color: var(--grey-color-050);
 
-    --input-text-color: var(--dark-grey_400);
-    --input-disabled-text-color: var(--light-grey_700);
+    --input-text-color: var(--grey-color-650);
+    --input-disabled-text-color: var(--grey-color-325);
 
-    --input-placeholder-color: var(--dark-grey_100);
-    --input-hover-placeholder-color: var(--dark-grey_200);
+    --input-placeholder-color: var(--grey-color-475);
+    --input-hover-placeholder-color: var(--grey-color-525);
 
-    --input-label-color: var(--dark-grey_400);
+    --color-picker-pointer: var(--grey-color-000);
+    --color-picker-dragged-pointer: var(--grey-color-850);
 
     /** Buttons */
-    --btn-full-color: var(--white);
-    --btn-full-background-color: var(--dark-grey_300);
-    --btn-full-hover-background-color: var(--light-grey_800);
+    --btn-outlined-background-color: var(--background-color);
 
-    --btn-text-color: var(--dark-grey_600);
-    --btn-text-hover-color: var(--dark-grey_500);
-    --btn-text-hover-background-color: var(--background-hover-color);
-    --btn-text-active-background-color: var(--background-active-color);
+    --btn-full-color: var(--background-color);
 
-    --btn-neon-color: var(--dark-grey_100);
-    --btn-neon-hover-background-color: var(--dark-grey_200);
+    --btn-text-background-color: var(--background-color);
 
-    /* Loader */
-    --loader-color: var(--dark-grey_100);
-
-    /* Card */
-    --card-gradient-colors: var(--dark-grey_100), var(--light-grey_500), var(--light-grey_300), var(--light-grey_150), var(--light-grey_300),
-        var(--light-grey_500), var(--dark-grey_100);
+    --btn-neon-hover-color: var(--background-color);
+    --btn-neon-background-color: var(--background-color);
 
     /* Overlay */
     --overlay-background-color: rgba(145, 145, 145, 0.267);
 
+    /* Tooltip */
+    --tooltip-color: var(--grey-color-000);
+    --tooltip-background-color: var(--grey-color-800);
+
     /* Alert */
-    --border-top-color: var(--light-grey_800);
+    --alert-disabled-button-background-color: var(--grey-color-050);
 
     /*? Common */
-    --box-shadow-color: var(--dark-grey_100);
-    --border-color: var(--dark-grey_200);
-
-    --primary-text-color: var(--dark-grey_500);
-    --secondary-text-color: var(--dark-grey_300);
+    --primary-text-color: var(--grey-color-550);
 }
 
-.default-theme-dark-mode {
+.dark-mode {
     /** Background color */
-    --background-color: var(--dark-grey_500);
-    --light-background-color: var(--dark-grey_400);
-    --background-hover-color: var(--dark-grey_325);
-    --background-active-color: var(--dark-grey_250);
+    --background-color: var(--grey-color-650);
+    --popups-background-color: var(--grey-color-600);
+    --background-hover-color: var(--grey-color-550);
+    --background-active-color: var(--grey-color-525);
 
     /** Inputs colors */
-    --input-background-color: var(--background-hover-color);
-    --input-hover-background-color: var(--background-active-color);
-    --input-disabled-background-color: var(--dark-grey_425);
+    --input-background-color: var(--grey-color-550);
+    --input-hover-background-color: var(--grey-color-500);
+    --input-disabled-background-color: var(--grey-color-625);
 
-    --input-text-color: var(--light-grey_200);
-    --input-disabled-text-color: var(--light-grey_800);
+    --input-text-color: var(--grey-color-100);
+    --input-disabled-text-color: var(--grey-color-450);
 
-    --input-placeholder-color: var(--light-grey_600);
-    --input-hover-placeholder-color: var(--light-grey_300);
+    --input-placeholder-color: var(--grey-color-300);
+    --input-hover-placeholder-color: var(--grey-color-150);
 
-    --input-label-color: var(--light-grey_200);
+    --color-picker-pointer: var(--grey-color-000);
+    --color-picker-dragged-pointer: var(--grey-color-850);
 
     /** Buttons */
+    --btn-outlined-background-color: var(--background-color);
+
     --btn-full-color: var(--background-color);
-    --btn-full-background-color: var(--light-grey_200);
-    --btn-full-hover-background-color: var(--light-grey_500);
 
-    --btn-text-color: var(--light-grey_200);
-    --btn-text-hover-color: var(--light-grey_200);
-    --btn-text-hover-background-color: var(--background-hover-color);
-    --btn-text-active-background-color: var(--background-active-color);
+    --btn-text-background-color: var(--background-color);
 
-    --btn-neon-color: var(--light-grey_200);
-    --btn-neon-hover-background-color: var(--light-grey_200);
+    --btn-neon-hover-color: var(--background-color);
+    --btn-neon-background-color: var(--background-color);
 
-    /* Loader */
-    --loader-color: var(--light-grey_800);
-
-    /* Card */
-    --card-gradient-colors: var(--dark-grey_300), var(--dark-grey_100), var(--light-grey_600), var(--light-grey_300), var(--light-grey_600),
-        var(--dark-grey_100), var(--dark-grey_300);
-
-    /* Alert */
     /* Overlay */
-    --overlay-background-color: rgba(146, 146, 146, 0.3);
+    --overlay-background-color: rgba(146, 146, 146, 0.275);
+
+    /* Tooltip */
+    --tooltip-color: var(--grey-color-800);
+    --tooltip-background-color: var(--grey-color-000);
 
     /* Alert */
-    --border-top-color: var(--light-grey_600);
+    --alert-disabled-button-background-color: var(--grey-color-575);
 
     /*? Common */
-    --box-shadow-color: var(--light-grey_200);
-    --border-color: var(--light-grey_200);
-
-    --primary-text-color: var(--white);
-    --secondary-text-color: var(--light-grey_200);
+    --primary-text-color: var(--grey-color-050);
 }
 
-.light-blue-theme-light-mode {
-    /*! Theme primary color palete */
-    --primary-color_25: rgb(211, 243, 253);
-    --primary-color_50: rgb(191, 236, 250);
-    --primary-color_100: rgb(164, 231, 252);
-    --primary-color_150: rgb(148, 225, 248);
-    --primary-color_200: rgb(134, 223, 250);
-    --primary-color_250: rgb(120, 223, 255);
-    --primary-color_300: rgb(115, 216, 247);
-    --primary-color_400: rgb(86, 209, 247);
-    --primary-color_500: rgb(69, 206, 248);
-
-    /** Background color */
-    --background-color: var(--white);
-    --light-background-color: var(--light-grey_100);
-    --background-hover-color: var(--light-grey_200);
-    --background-active-color: var(--light-grey_250);
+.light-grey-theme {
+    --primary-color_220: hsl(0, 0%, 26%);
+    --primary-color_260: hsl(0, 0%, 30%);
+    --primary-color_280: hsl(0, 0%, 32%);
+    --primary-color_300: hsl(0, 0%, 34%);
+    --primary-color_320: hsl(0, 0%, 36%);
+    --primary-color_380: hsl(0, 0%, 42%);
+    --primary-color_420: hsl(0, 0%, 46%);
+    --primary-color_440: hsl(0, 0%, 48%);
+    --primary-color_460: hsl(0, 0%, 50%);
+    --primary-color_620: hsl(0, 0%, 66%);
+    --primary-color_720: hsl(0, 0%, 76%);
+    --primary-color_820: hsl(0, 0%, 86%);
 
     /** Inputs colors */
-    --input-background-color: var(--background-hover-color);
-    --input-hover-background-color: var(--background-active-color);
-    --input-disabled-background-color: var(--light-grey_100);
-
-    --input-text-color: var(--dark-grey_400);
-    --input-disabled-text-color: var(--light-grey_700);
-
-    --input-placeholder-color: var(--dark-grey_100);
-    --input-hover-placeholder-color: var(--dark-grey_200);
-
-    --input-label-color: var(--primary-color_400);
+    --input-label-color: var(--primary-color_320);
+    --checkbox-color: var(--primary-color_300);
 
     /** Buttons */
-    --btn-full-color: var(--white);
+    --btn-outlined-color: var(--primary-color_300);
     --btn-full-background-color: var(--primary-color_300);
-    --btn-full-hover-background-color: var(--primary-color_100);
-
-    --btn-text-color: var(--primary-color_300);
-    --btn-text-hover-color: var(--primary-color_500);
-    --btn-text-hover-background-color: var(--primary-color_25);
-    --btn-text-active-background-color: var(--primary-color_25);
-
-    --btn-neon-color: var(--primary-color_300);
+    --btn-full-hover-background-color: var(--primary-color_460);
+    --btn-text-color: var(--primary-color_280);
+    --btn-text-hover-color: var(--primary-color_260);
+    --btn-text-hover-background-color: var(--primary-color_820);
+    --btn-neon-color: var(--primary-color_420);
     --btn-neon-hover-background-color: var(--primary-color_300);
 
     /* Loader */
-    --loader-color: var(--primary-color_300);
+    --loader-color: var(--primary-color_280);
 
     /* Card */
-    --card-gradient-colors: var(--primary-color_25), var(--primary-color_100), var(--primary-color_150), var(--primary-color_200),
-        var(--primary-color_400), var(--primary-color_400), var(--primary-color_200), var(--primary-color_150), var(--primary-color_100),
-        var(--primary-color_25);
-
-    /* Overlay */
-    --overlay-background-color: rgba(145, 145, 145, 0.267);
+    --card-gradient-colors: var(--primary-color_020), var(--primary-color_820), var(--primary-color_720), var(--primary-color_400),
+        var(--primary-color_380), var(--primary-color_220), var(--primary-color_380), var(--primary-color_400), var(--primary-color_720),
+        var(--primary-color_820), var(--primary-color_020);
 
     /* Alert */
-    --border-top-color: var(--primary-color_300);
+    --alert-border-color: var(--primary-color_300);
 
     /*? Common */
-    --box-shadow-color: var(--primary-color_200);
-    --border-color: var(--primary-color_300);
+    --box-shadow-color: var(--primary-color_440);
 
-    --primary-text-color: var(--primary-color_400);
-    --secondary-text-color: var(--dark-grey_500);
+    --icon-color: var(--primary-color_300);
+    --scroll-track-background-color: var(--primary-color_620);
 }
 
-.light-blue-theme-dark-mode {
-    /*! Theme primary color palete */
-    --primary-color_50: rgb(181, 235, 252);
-    --primary-color_100: rgb(164, 231, 252);
-    --primary-color_150: rgb(148, 225, 248);
-    --primary-color_200: rgb(134, 223, 250);
-    --primary-color_250: rgb(122, 219, 248);
-    --primary-color_300: rgb(102, 217, 252);
-    --primary-color_400: rgb(85, 213, 252);
-    --primary-color_500: rgb(71, 207, 248);
-    --primary-color_600: rgb(54, 203, 248);
-    --primary-color_700: rgb(33, 199, 250);
-    --primary-color_800: rgb(12, 183, 235);
-
-    /** Background color */
-    --background-color: var(--dark-grey_500);
-    --light-background-color: var(--dark-grey_400);
-    --background-hover-color: var(--dark-grey_325);
-    --background-active-color: var(--dark-grey_250);
+.dark-grey-theme {
+    --primary-color_240: hsl(0, 0%, 34%);
+    --primary-color_560: hsl(0, 0%, 66%);
+    --primary-color_620: hsl(0, 0%, 72%);
+    --primary-color_700: hsl(0, 0%, 80%);
+    --primary-color_740: hsl(0, 0%, 84%);
+    --primary-color_780: hsl(0, 0%, 88%);
+    --primary-color_840: hsl(0, 0%, 94%);
 
     /** Inputs colors */
-    --input-background-color: var(--background-hover-color);
-    --input-hover-background-color: var(--background-active-color);
-    --input-disabled-background-color: var(--input-background-color);
-    --input-disabled-background-color: var(--dark-grey_425);
-
-    --input-text-color: var(--light-grey_200);
-    --input-disabled-text-color: var(--light-grey_800);
-
-    --input-placeholder-color: var(--light-grey_600);
-    --input-hover-placeholder-color: var(--light-grey_300);
-
-    --input-label-color: var(--primary-color_300);
+    --input-label-color: var(--primary-color_780);
+    --checkbox-color: var(--primary-color_620);
 
     /** Buttons */
-    --btn-full-color: var(--background-color);
-    --btn-full-background-color: var(--primary-color_300);
-    --btn-full-hover-background-color: var(--primary-color_100);
-
-    --btn-text-color: var(--primary-color_300);
-    --btn-text-hover-color: var(--primary-color_300);
-    --btn-text-hover-background-color: var(--background-hover-color);
-    --btn-text-active-background-color: var(--background-active-color);
-
-    --btn-neon-color: var(--primary-color_300);
-    --btn-neon-hover-background-color: var(--primary-color_300);
+    --btn-outlined-color: var(--primary-color_780);
+    --btn-full-background-color: var(--primary-color_780);
+    --btn-full-hover-background-color: var(--primary-color_560);
+    --btn-text-color: var(--primary-color_780);
+    --btn-text-hover-color: var(--primary-color_840);
+    --btn-text-hover-background-color: var(--primary-color_240);
+    --btn-neon-color: var(--primary-color_740);
+    --btn-neon-hover-background-color: var(--primary-color_780);
 
     /* Loader */
-    --loader-color: var(--primary-color_300);
+    --loader-color: var(--primary-color_780);
 
     /* Card */
-    --card-gradient-colors: var(--primary-color_50), var(--primary-color_250), var(--primary-color_800), var(--primary-color_800),
-        var(--primary-color_250), var(--primary-color_50);
-
-    /* Overlay */
-    --overlay-background-color: rgba(133, 133, 133, 0.3);
+    --card-gradient-colors: var(--primary-color_020), var(--primary-color_100), var(--primary-color_200), var(--primary-color_400),
+        var(--primary-color_540), var(--primary-color_700), var(--primary-color_540), var(--primary-color_400), var(--primary-color_200),
+        var(--primary-color_100), var(--primary-color_020);
 
     /* Alert */
-    --border-top-color: var(--primary-color_500);
+    --alert-border-color: var(--primary-color_700);
 
     /*? Common */
-    --box-shadow-color: var(--primary-color_200);
-    --border-color: var(--primary-color_300);
+    --box-shadow-color: var(--primary-color_700);
 
-    --primary-text-color: var(--white);
-    --secondary-text-color: var(--primary-color_300);
+    --icon-color: var(--primary-color_780);
+    --scroll-track-background-color: var(--primary-color_600);
 }
 
-.light-purple-theme-light-mode {
-    /*! Theme primary color palete */
+.light-custom-theme {
+    --hue: 194;
+    --saturation: 100%;
 
-    --primary-color_25: rgb(254, 200, 252);
-    --primary-color_50: rgb(252, 181, 252);
-    --primary-color_100: rgb(248, 164, 252);
-    --primary-color_150: rgb(244, 148, 248);
-    --primary-color_200: rgb(241, 134, 250);
-    --primary-color_250: rgb(237, 122, 248);
-    --primary-color_300: rgb(234, 102, 252);
-    --primary-color_400: rgb(227, 85, 252);
-    --primary-color_500: rgb(220, 71, 248);
-
-    /** Background color */
-    --background-color: var(--white);
-    --light-background-color: var(--light-grey_100);
-    --background-hover-color: var(--light-grey_200);
-    --background-active-color: var(--light-grey_250);
+    --primary-color_220: hsl(var(--hue), var(--saturation), 23%);
+    --primary-color_380: hsl(var(--hue), var(--saturation), 39%);
+    --primary-color_400: hsl(var(--hue), var(--saturation), 41%);
+    --primary-color_500: hsl(var(--hue), var(--saturation), 51%);
+    --primary-color_540: hsl(var(--hue), var(--saturation), 55%);
+    --primary-color_580: hsl(var(--hue), var(--saturation), 59%);
+    --primary-color_680: hsl(var(--hue), var(--saturation), 69%);
+    --primary-color_780: hsl(var(--hue), var(--saturation), 79%);
+    --primary-color_920: hsl(var(--hue), var(--saturation), 93%);
 
     /** Inputs colors */
-    --input-background-color: var(--background-hover-color);
-    --input-hover-background-color: var(--background-active-color);
-    --input-disabled-background-color: var(--light-grey_100);
-
-    --input-text-color: var(--dark-grey_400);
-    --input-disabled-text-color: var(--light-grey_700);
-
-    --input-placeholder-color: var(--dark-grey_100);
-    --input-hover-placeholder-color: var(--dark-grey_200);
-
-    --input-label-color: var(--primary-color_400);
+    --input-label-color: var(--primary-color_580);
+    --checkbox-color: var(--primary-color_580);
 
     /** Buttons */
-    --btn-full-color: var(--white);
-    --btn-full-background-color: var(--primary-color_300);
-    --btn-full-hover-background-color: var(--primary-color_100);
-
-    --btn-text-color: var(--primary-color_300);
-    --btn-text-hover-color: var(--primary-color_500);
-    --btn-text-hover-background-color: var(--primary-color_25);
-    --btn-text-active-background-color: var(--primary-color_25);
-
-    --btn-neon-color: var(--primary-color_300);
-    --btn-neon-hover-background-color: var(--primary-color_300);
+    --btn-outlined-color: var(--primary-color_580);
+    --btn-full-background-color: var(--primary-color_580);
+    --btn-full-hover-background-color: var(--primary-color_680);
+    --btn-text-color: var(--primary-color_580);
+    --btn-text-hover-color: var(--background-color);
+    --btn-text-hover-background-color: var(--primary-color_580);
+    --btn-neon-color: var(--primary-color_540);
+    --btn-neon-hover-background-color: var(--primary-color_580);
 
     /* Loader */
-    --loader-color: var(--primary-color_300);
+    --loader-color: var(--primary-color_580);
 
     /* Card */
-    --card-gradient-colors: var(--primary-color_25), var(--primary-color_100), var(--primary-color_150), var(--primary-color_200),
-        var(--primary-color_400), var(--primary-color_400), var(--primary-color_200), var(--primary-color_150), var(--primary-color_100),
-        var(--primary-color_25);
-
-    /* Overlay */
-    --overlay-background-color: rgba(145, 145, 145, 0.267);
+    --card-gradient-colors: var(--primary-color_220), var(--primary-color_380), var(--primary-color_580), var(--primary-color_780),
+        var(--primary-color_920), var(--primary-color_780), var(--primary-color_580), var(--primary-color_380), var(--primary-color_220);
 
     /* Alert */
-    --border-top-color: var(--primary-color_300);
+    --alert-border-color: var(--primary-color_500);
 
-    /*? Common */
-    --box-shadow-color: var(--primary-color_200);
-    --border-color: var(--primary-color_300);
-
-    --primary-text-color: var(--primary-color_400);
-    --secondary-text-color: var(--dark-grey_500);
+    /* Common */
+    --box-shadow-color: var(--primary-color_580);
+    --icon-color: var(--primary-color_580);
+    --scroll-track-background-color: var(--primary-color_400);
 }
 
-.light-purple-theme-dark-mode {
-    /*! Theme primary color palete */
-    --primary-color_50: rgb(252, 181, 252);
-    --primary-color_100: rgb(248, 164, 252);
-    --primary-color_150: rgb(244, 148, 248);
-    --primary-color_200: rgb(241, 134, 250);
-    --primary-color_250: rgb(237, 122, 248);
-    --primary-color_300: rgb(234, 102, 252);
-    --primary-color_400: rgb(227, 85, 252);
-    --primary-color_500: rgb(220, 71, 248);
-    --primary-color_600: rgb(213, 54, 248);
-    --primary-color_700: rgb(206, 33, 250);
-    --primary-color_800: rgb(199, 12, 235);
+.dark-custom-theme {
+    --hue: 194;
+    --saturation: 100%;
 
-    /** Background color */
-    --background-color: var(--dark-grey_500);
-    --light-background-color: var(--dark-grey_400);
-    --background-hover-color: var(--dark-grey_325);
-    --background-active-color: var(--dark-grey_250);
+    --primary-color_100: hsl(var(--hue), var(--saturation), 11%);
+    --primary-color_280: hsl(var(--hue), var(--saturation), 29%);
+    --primary-color_480: hsl(var(--hue), var(--saturation), 49%);
+    --primary-color_600: hsl(var(--hue), var(--saturation), 61%);
+    --primary-color_620: hsl(var(--hue), var(--saturation), 63%);
+    --primary-color_640: hsl(var(--hue), var(--saturation), 65%);
+    --primary-color_680: hsl(var(--hue), var(--saturation), 69%);
+    --primary-color_780: hsl(var(--hue), var(--saturation), 81%);
+    --primary-color_900: hsl(var(--hue), var(--saturation), 93%);
 
     /** Inputs colors */
-    --input-background-color: var(--background-hover-color);
-    --input-hover-background-color: var(--background-active-color);
-    --input-disabled-background-color: var(--dark-grey_425);
-
-    --input-text-color: var(--light-grey_200);
-    --input-disabled-text-color: var(--light-grey_800);
-
-    --input-placeholder-color: var(--light-grey_600);
-    --input-hover-placeholder-color: var(--light-grey_300);
-
-    --input-label-color: var(--primary-color_300);
+    --input-label-color: var(--primary-color_680);
+    --checkbox-color: var(--primary-color_680);
 
     /** Buttons */
-    --btn-full-color: var(--background-color);
-    --btn-full-background-color: var(--primary-color_300);
-    --btn-full-hover-background-color: var(--primary-color_100);
-
-    --btn-text-color: var(--primary-color_300);
-    --btn-text-hover-color: var(--primary-color_300);
-    --btn-text-hover-background-color: var(--background-hover-color);
-    --btn-text-active-background-color: var(--background-active-color);
-
-    --btn-neon-color: var(--primary-color_300);
-    --btn-neon-hover-background-color: var(--primary-color_300);
+    --btn-outlined-color: var(--primary-color_680);
+    --btn-full-background-color: var(--primary-color_680);
+    --btn-full-hover-background-color: var(--primary-color_780);
+    --btn-text-color: var(--primary-color_680);
+    --btn-text-hover-color: var(--background-color);
+    --btn-text-hover-background-color: var(--primary-color_680);
+    --btn-neon-color: var(--primary-color_640);
+    --btn-neon-hover-background-color: var(--primary-color_680);
 
     /* Loader */
-    --loader-color: var(--primary-color_300);
+    --loader-color: var(--primary-color_680);
 
     /* Card */
-    --card-gradient-colors: var(--primary-color_50), var(--primary-color_250), var(--primary-color_800), var(--primary-color_800),
-        var(--primary-color_250), var(--primary-color_50);
-
-    /* Overlay */
-    --overlay-background-color: rgba(133, 133, 133, 0.3);
+    --card-gradient-colors: var(--primary-color_100), var(--primary-color_280), var(--primary-color_480), var(--primary-color_680),
+        var(--primary-color_900), var(--primary-color_680), var(--primary-color_480), var(--primary-color_280), var(--primary-color_100);
 
     /* Alert */
-    --border-top-color: var(--primary-color_500);
+    --alert-border-color: var(--primary-color_620);
 
-    /*? Common */
-    --box-shadow-color: var(--primary-color_200);
-    --border-color: var(--primary-color_300);
-
-    --primary-text-color: var(--white);
-    --secondary-text-color: var(--primary-color_300);
-}
-
-/* input error tooltip  */
-.error-icon {
-    position: absolute;
-    top: 50%;
-
-    width: var(--error-icon-size);
-    height: var(--error-icon-size);
-
-    color: var(--failure-color);
-
-    transform: translateY(-50%);
-    transition: 0.2s;
+    /* Common */
+    --box-shadow-color: var(--primary-color_680);
+    --icon-color: var(--primary-color_680);
+    --scroll-track-background-color: var(--primary-color_600);
 }
