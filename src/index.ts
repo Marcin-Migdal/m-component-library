@@ -17,8 +17,13 @@ export * from "./hooks";
 //? es lint (new branch)
 //*     implement es lint
 //*     fix all errors
+//*     git hub repo should not allow merge if there are lint errors
 
 //! VERSION 1.0.0 END
+
+// TODO Repo cleaning
+//*     make sure that flaner is working correctly
+//*     delete old branches
 
 //! VERSION 2.0.0 START
 
@@ -45,5 +50,7 @@ export * from "./hooks";
 //*     TREE
 
 //? Unit testing of all(if possible) components
+//*     implement tests
+//*     try to start a pipeline in repo to run tests before merge
 
 //! VERSION 2.0.0 END
