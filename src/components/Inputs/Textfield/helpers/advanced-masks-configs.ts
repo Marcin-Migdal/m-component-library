@@ -10,28 +10,37 @@ export type AdvancedMasksConfig = {
 
 //! TIME mask handler
 const handleTimeBeforeChange = (newState: InputState, oldState: InputState, userInput: string, formatChars: FormatChars): InputState => {
-    let { value: newValue, selection: newSelection } = newState;
+    const { value: newValue, selection: newSelection } = newState;
 
     // Conditional mask for the 2nd digit base on the first digit
-    if (newValue.startsWith("2")) formatChars["2"] = "[0-3]";
-    // To block 24, 25, etc.
-    else formatChars["2"] = "[0-9]"; // To allow 05, 17, etc.
+    if (newValue.startsWith("2")) {
+        formatChars["2"] = "[0-3]";
+    } else {
+        formatChars["2"] = "[0-9]";
+    }
+
     return { value: newValue, selection: newSelection };
 };
 
 //! DATE mask handler
 const handleDateBeforeChange = (newState: InputState, oldState: InputState, userInput: string, formatChars: FormatChars): InputState => {
-    let { value: newValue, selection: newSelection } = newState;
+    const { value: newValue, selection: newSelection } = newState;
     const valueLength: number = newValue.replace(/[_-]/g, "").length;
 
     if (valueLength == 1) {
-        if (newValue.startsWith("3")) formatChars["2"] = "[0-1]";
-        else formatChars["2"] = "[0-9]";
+        if (newValue.startsWith("3")) {
+            formatChars["2"] = "[0-1]";
+        } else {
+            formatChars["2"] = "[0-9]";
+        }
     }
 
     if (valueLength == 3) {
-        if (newValue[3] == "1") formatChars["4"] = "[0-2]";
-        else formatChars["4"] = "[0-9]";
+        if (newValue[3] == "1") {
+            formatChars["4"] = "[0-2]";
+        } else {
+            formatChars["4"] = "[0-9]";
+        }
     }
 
     return { value: newValue, selection: newSelection };

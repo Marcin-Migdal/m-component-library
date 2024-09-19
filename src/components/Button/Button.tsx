@@ -29,7 +29,9 @@ const Button = (props: ButtonProps) => {
 
     const ref = useRef<HTMLButtonElement>(null);
 
-    if (!display) return <></>;
+    if (!display) {
+        return null;
+    }
 
     const tooltipContent = disabled ? disabledTooltip : tooltip;
 

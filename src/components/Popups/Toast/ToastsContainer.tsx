@@ -21,7 +21,7 @@ function ToastsContainer<T extends string>(props: ToastsContainerProps<T>, ref: 
 
     useImperativeHandle(ref, () => ({
         addToast: (payload) => {
-            let toastType: string = payload.type ? payload.type : getDefaultToastType(toastConfig);
+            const toastType: string = payload.type ? payload.type : getDefaultToastType(toastConfig);
 
             const { title: defaultTitle, icon, variant } = (toastConfig as ToastConfig<string>)[toastType];
             const { toastDuration = toastsDuration, transformToastContent } = payload;

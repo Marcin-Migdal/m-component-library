@@ -35,14 +35,19 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
         const handleClickOutside = (event: MouseEvent) => {
             const target: HTMLElement = event.target as HTMLElement;
 
-            if (!popupRef.current || !parentElement) return;
+            if (!popupRef.current || !parentElement) {
+                return;
+            }
+
             if (!popupRef.current.contains(target) && !parentElement.contains(target)) {
                 handleClose();
             }
         };
 
         const handleKeyPress = (event: KeyboardEvent) => {
-            if (event.code == "Escape") handleClose();
+            if (event.code == "Escape") {
+                handleClose();
+            }
         };
 
         const resizeObserver = new ResizeObserver(calculatePopupPosition);

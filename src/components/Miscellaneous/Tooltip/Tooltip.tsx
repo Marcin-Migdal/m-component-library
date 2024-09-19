@@ -27,7 +27,9 @@ const TooltipWrapper = ({
         const tooltipElement: HTMLDivElement | null = tooltipRef.current;
         let timeoutId: NodeJS.Timeout | undefined = undefined;
 
-        if (!targetElement) return;
+        if (!targetElement) {
+            return;
+        }
 
         const handleMouseEnter = () => {
             timeoutId = setTimeout(() => {
@@ -36,8 +38,9 @@ const TooltipWrapper = ({
         };
 
         const handleMouseLeave = () => {
-            if (timeoutId) clearTimeout(timeoutId);
-            else if (isVisible) {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            } else if (isVisible) {
                 setIsVisible(false);
                 setTooltipStyle(undefined);
             }

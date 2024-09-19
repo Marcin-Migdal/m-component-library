@@ -9,7 +9,9 @@ const Overlay = ({ children, onClick }: PropsWithChildren<OverlayProps>) => {
     const overlayRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (overlayRef.current) overlayRef.current.focus();
+        if (overlayRef.current) {
+            overlayRef.current.focus();
+        }
 
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.code === "Tab" || event.code === "Enter" || event.code === "Space") {

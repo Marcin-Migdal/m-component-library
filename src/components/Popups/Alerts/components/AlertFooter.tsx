@@ -11,7 +11,9 @@ export const AlertFooter = <T,>({
     onDeclineBtnClick,
     data,
 }: AlertFooterProps<T>) => {
-    if (!onConfirmBtnClick && !onDeclineBtnClick) return null;
+    if (!onConfirmBtnClick && !onDeclineBtnClick) {
+        return null;
+    }
 
     return (
         <div className="m-alert-footer">

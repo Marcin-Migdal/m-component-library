@@ -6,7 +6,9 @@ export function filteredErrors<T>(errors: FormikErrors<T>, touched: FormikTouche
     Object.keys(errors).forEach((key) => {
         const errorKey = key as keyof T;
 
-        if (touched[errorKey]) filteredErrors[errorKey] = errors[errorKey];
+        if (touched[errorKey]) {
+            filteredErrors[errorKey] = errors[errorKey];
+        }
     });
 
     return filteredErrors;

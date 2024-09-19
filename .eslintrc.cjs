@@ -1,22 +1,21 @@
 module.exports = {
     root: true,
     env: { browser: true, es2020: true },
-    extends: [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:react-hooks/recommended",
-        "airbnb",
-        "airbnb-typescript",
-    ],
+    extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:react-hooks/recommended"],
     ignorePatterns: ["dist", ".eslintrc.cjs"],
     parser: "@typescript-eslint/parser",
-    parserOptions: {
-        project: "./tsconfig.json", // Ensure this path is correct
-        sourceType: "module",
-    },
-    plugins: ["react-refresh"],
+    plugins: ["react"],
     rules: {
-        "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
         curly: "error",
+        "@typescript-eslint/no-use-before-define": "error",
+        "@typescript-eslint/no-shadow": "error",
+        "react/require-default-props": "error",
+        "no-console": "warn",
+        "react/jsx-no-useless-fragment": "warn",
+        eqeqeq: "error",
+        "@typescript-eslint/no-explicit-any": "warn",
+        "react/button-has-type": "error",
+        "react/no-children-prop": "error",
+        "no-nested-ternary": "error",
     },
 };

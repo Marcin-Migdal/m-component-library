@@ -55,18 +55,22 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
 
     useEffect(() => {
         const filterOptions = () => {
-            if (!options || options.length == 0) return;
+            if (!options || options.length == 0) {
+                return;
+            }
 
             let dropdownOptions: T[] = [];
 
-            if (filterValue)
+            if (filterValue) {
                 dropdownOptions = options.filter((option) => {
                     let label = option[labelKey] as number | string;
                     label = typeof label === "string" ? label : label.toString();
 
                     return label.includes(filterValue);
                 });
-            else dropdownOptions = options;
+            } else {
+                dropdownOptions = options;
+            }
 
             setDropdownOptions(dropdownOptions);
         };
@@ -78,11 +82,13 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
         const handleClickOutside = (event: MouseEvent) => {
             const target: HTMLElement = event.target as HTMLElement;
 
-            if (!filterRef.current) return;
+            if (!filterRef.current) {
+                return;
+            }
 
             if (
                 (!filterRef.current.contains(target) ||
-                    (typeof target?.className == "string" && target?.className.includes("m-dropdown-container"))) &&
+                    (typeof target?.className === "string" && target?.className.includes("m-dropdown-container"))) &&
                 (!target.getAttribute("data-id") || target.getAttribute("data-id") != uniqueDropdownId)
             ) {
                 setIsFocused(false);
@@ -90,7 +96,9 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
         };
 
         const handleKeyPress = (event: KeyboardEvent) => {
-            if (event.code == "Escape") setIsFocused(false);
+            if (event.code == "Escape") {
+                setIsFocused(false);
+            }
         };
 
         document.addEventListener("click", handleClickOutside);
@@ -112,7 +120,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
         setIsFocused(false);
 
         if (onChange) {
-            let _e: DropdownChangeEvent<T> = { ...e, target: { ...e.target, value: selectedOption, name: name, type: "dropdown" } };
+            const _e: DropdownChangeEvent<T> = { ...e, target: { ...e.target, value: selectedOption, name: name, type: "dropdown" } };
 
             onChange(_e, selectedOption as T);
         }
@@ -124,7 +132,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
         setIsFocused(false);
 
         if (onClear) {
-            let _e: DropdownClearEvent<T> = { ...e, target: { ...e.target, value: undefined, name: name, type: "dropdown" } };
+            const _e: DropdownClearEvent<T> = { ...e, target: { ...e.target, value: undefined, name: name, type: "dropdown" } };
 
             onClear(_e, undefined);
         }

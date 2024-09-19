@@ -25,7 +25,9 @@ function Form<T extends FormikValues = any>({
         if (handleValuesChange) {
             const values = handleValuesChange(e, formik);
             formik.setValues(values, true);
-        } else formik.handleChange(e);
+        } else {
+            formik.handleChange(e);
+        }
 
         if (formik.touched[name]) {
             const _touched = { ...formik.touched };

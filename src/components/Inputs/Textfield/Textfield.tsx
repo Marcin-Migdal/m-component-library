@@ -58,7 +58,9 @@ const Textfield = (props: TextfieldProps) => {
     const handleBeforeMaskedValueChange =
         (advancedMask: AdvancedMaskType) =>
         (newState: InputState, oldState: InputState, userInput: string): InputState => {
-            if (!advancedMask.beforeChange) return newState;
+            if (!advancedMask.beforeChange) {
+                return newState;
+            }
 
             return advancedMask.beforeChange(newState, oldState, userInput, advancedMask.formatChars);
         };

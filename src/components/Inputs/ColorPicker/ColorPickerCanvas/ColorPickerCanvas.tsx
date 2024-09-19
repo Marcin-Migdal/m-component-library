@@ -65,11 +65,15 @@ export const ColorPickerCanvas = ({ value, hue, onChange }: ColorPickerCanvasPro
     function changeColor(e: MouseEvent | React.MouseEvent<HTMLCanvasElement, MouseEvent>) {
         const canvas = canvasRef.current;
 
-        if (!canvas) return;
+        if (!canvas) {
+            return;
+        }
 
         const ctx = canvas.getContext("2d");
 
-        if (!ctx) return;
+        if (!ctx) {
+            return;
+        }
 
         const { left, top } = canvas.getBoundingClientRect();
 

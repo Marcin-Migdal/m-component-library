@@ -42,11 +42,9 @@ export const DropdownOptions = <T,>({
                     );
                 })
             ) : (
-                <>
-                    <li data-id={uniqueDropdownId} className="m-dropdown-list-item empty-message">
-                        No options
-                    </li>
-                </>
+                <li data-id={uniqueDropdownId} className="m-dropdown-list-item empty-message">
+                    No options
+                </li>
             )}
         </ul>
     );
