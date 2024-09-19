@@ -12,8 +12,6 @@ export * from "./hooks";
 
 //! VERSION 1.0.0 START
 
-//? simplify toasts, this whole config stuff is overenginered (new branch)
-
 //? es lint (new branch)
 //*     implement es lint
 //*     fix all errors

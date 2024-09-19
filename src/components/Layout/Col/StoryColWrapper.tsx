@@ -7,7 +7,7 @@ export type StoryColWrapperProps = {
 } & ComponentProps<typeof Col>;
 
 // This component is created only for storybook display purpose, I wanted to add some of the props.
-const StoryColWrapper = ({ amountOfColumns = 1, ...other }: StoryColWrapperProps) => {
+const StoryColWrapper = ({ amountOfColumns = 1 }: StoryColWrapperProps) => {
     return (
         <>
             {new Array(amountOfColumns).fill("").map((_item, index) => (

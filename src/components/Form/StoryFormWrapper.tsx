@@ -3,10 +3,8 @@ import * as Yup from "yup";
 
 import { Button, Form, Textfield } from "../..";
 
-export type StoryFormWrapperProps = {};
-
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
-const StoryFormWrapper = (props: StoryFormWrapperProps) => {
+const StoryFormWrapper = () => {
     const handleSubmit = (values: SignUpState) => {
         console.log(values);
     };
