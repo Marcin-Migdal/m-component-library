@@ -56,7 +56,7 @@ type SectionHeaderProps = {
     headerStyle?: CSSProperties;
 };
 
-const SectionHeader = ({ text, style = {}, headerStyle = {} }: SectionHeaderProps) => {
+const SectionHeader = ({ text, style = {}, headerStyle = {} }: any) => {
     return (
         <div
             style={{
