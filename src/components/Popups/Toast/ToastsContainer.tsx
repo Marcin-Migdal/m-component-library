@@ -19,6 +19,18 @@ function ToastsContainer<T extends string>(props: ToastsContainerProps<T>, ref: 
 
     const [toasts, setToasts] = useState<ToastType[]>([]);
 
+    const handleCloseToast = (toastId: number) => {
+        setToasts((prevState) => prevState.filter((toast) => toast.id !== toastId));
+    };
+
+    const handleToastAutoClose = (toast: ToastType) => {
+        if (autoClose) {
+            timeoutRefs.current[toast.id] = setTimeout(() => {
+                handleCloseToast(toast.id);
+            }, toast.toastDuration);
+        }
+    };
+
     useImperativeHandle(ref, () => ({
         addToast: (payload) => {
             const toastType: string = payload.type ? payload.type : getDefaultToastType(toastConfig);
@@ -48,17 +60,7 @@ function ToastsContainer<T extends string>(props: ToastsContainerProps<T>, ref: 
         },
     }));
 
-    const handleCloseToast = (toastId: number) => setToasts((prevState) => prevState.filter((toast) => toast.id != toastId));
-
     const handleMouseHover = (toastId: number) => clearTimeout(timeoutRefs.current[toastId]);
-
-    const handleToastAutoClose = (toast: ToastType) => {
-        if (autoClose) {
-            timeoutRefs.current[toast.id] = setTimeout(() => {
-                handleCloseToast(toast.id);
-            }, toast.toastDuration);
-        }
-    };
 
     return (
         <div className={`toasts-list ${toastsPosition}`}>

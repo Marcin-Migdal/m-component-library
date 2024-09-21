@@ -25,7 +25,7 @@ const Checkbox = ({
     const [isChecked, setIsChecked] = useState<boolean>(checked);
 
     useEffect(() => {
-        isChecked != checked && setIsChecked(checked);
+        isChecked !== checked && setIsChecked(checked);
     }, [checked]);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {

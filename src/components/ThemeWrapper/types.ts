@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import { ReactElement } from "react";
 
 export type ThemeWrapperProps = {
-    children: ReactNode;
+    children: ReactElement;
     darkMode?: boolean;
     hue?: number;
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import { InputLabel, LabelPercentageWidth, SimpleInputLabel } from "../../../global-types";
 
@@ -28,21 +28,51 @@ export const InputsLabel = ({
     forceFloating = false,
     dataId,
 }: InputsLabelProps) => {
-    const labelClasses = `m-input-label ${className} ${labelType} ${
-        labelType == InputLabel.FLOATING && isFocused ? "focused" : isFilled ? "filled" : forceFloating ? "forced-floating" : ""
-    }`;
+    const labelClasses = useMemo(() => {
+        let classNames = `m-input-label ${labelType}`;
+
+        if (className) {
+            classNames = classNames.concat(className);
+        }
+
+        if (labelType === InputLabel.FLOATING && isFocused) {
+            classNames = classNames.concat("focused");
+        }
+
+        if (isFilled) {
+            classNames = classNames.concat("filled");
+        }
+
+        if (forceFloating) {
+            classNames = classNames.concat("forced-floating");
+        }
+
+        return classNames;
+    }, [className, labelType, isFocused, isFilled, forceFloating]);
+
+    const inputLabelStyle = useMemo(() => {
+        if (labelType === InputLabel.FLOATING) {
+            return { width: `fit-content`, left: "0" };
+        }
+
+        return { width: `${labelWidth}%`, left: labelType === InputLabel.RIGHT ? `${`${100 - labelWidth}%`}` : "0" };
+    }, [labelType, labelWidth]);
+
+    const inputLabel = useMemo(() => {
+        if (labelType === InputLabel.FLOATING) {
+            if (isFocused || isFilled || forceFloating) {
+                return label;
+            }
+
+            return `${label}...`;
+        }
+
+        return label;
+    }, [labelType, isFocused, isFilled, forceFloating, label]);
 
     return (
-        <label
-            data-id={dataId}
-            style={
-                labelType == InputLabel.FLOATING
-                    ? { width: `fit-content`, left: "0" }
-                    : { width: `${labelWidth}%`, left: labelType == InputLabel.RIGHT ? `${`${100 - labelWidth}%`}` : "0" }
-            }
-            className={labelClasses}
-        >
-            {labelType == InputLabel.FLOATING ? (isFocused || isFilled || forceFloating ? label : `${label}...`) : label}
+        <label data-id={dataId} style={inputLabelStyle} className={labelClasses}>
+            {inputLabel}
         </label>
     );
 };

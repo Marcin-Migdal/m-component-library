@@ -9,7 +9,7 @@ export type TooltipProps = {
     openDelay?: number;
 };
 
-export type TargetElementType = any | HTMLElement | SVGSVGElement;
+export type TargetElementType = HTMLElement | SVGSVGElement;
 
 export type TooltipContentProps = {
     style: React.CSSProperties | undefined;

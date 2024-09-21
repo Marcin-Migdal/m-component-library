@@ -1,4 +1,5 @@
 import React from "react";
+
 import { CloseIconProps } from "../types";
 
 export const SuccessIcon = () => (

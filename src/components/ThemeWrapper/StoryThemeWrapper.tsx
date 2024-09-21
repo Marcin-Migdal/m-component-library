@@ -43,6 +43,44 @@ export const toastConfig: ToastConfig<NewToastTypes> = {
     not_ok: { icon: <FailureIcon />, default: false, variant: "failure", title: "not_ok" },
 };
 
+const options = [
+    { label: "test 1", value: 1 },
+    { label: "test 2", value: 2 },
+    { label: "test 3", value: 3 },
+    { label: "test 4", value: 4 },
+];
+
+type SectionHeaderProps = {
+    text: string;
+    style?: CSSProperties;
+    headerStyle?: CSSProperties;
+};
+
+const SectionHeader = ({ text, style = {}, headerStyle = {} }: SectionHeaderProps) => {
+    return (
+        <div
+            style={{
+                width: "calc(100% + 16px)",
+                borderTop: "1px solid var(--primary-text-color)",
+                marginLeft: "-16px",
+                marginTop: "20px",
+                ...style,
+            }}
+        >
+            <h3
+                style={{
+                    ...headerStyle,
+                    width: "100%",
+                    color: "var(--primary-text-color)",
+                    marginLeft: "16px",
+                }}
+            >
+                {text}
+            </h3>
+        </div>
+    );
+};
+
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
 const StoryThemeWrapper = ({
     darkMode,
@@ -50,15 +88,15 @@ const StoryThemeWrapper = ({
     inputSize = InputSize.MEDIUM,
     error = "",
     panelVariant = "default",
-    disabled,
+    disabled = false,
 }: StoryThemeWrapperProps) => {
     const toastRef = useRef<ToastHandler<NewToastTypes>>(null);
     const alertRef = useRef<AlertHandler>(null);
 
     const [hue, setHue] = useState<number | undefined>(undefined);
 
-    const checkboxLabelType = (inputLabelType == InputLabel.FLOATING ? SimpleInputLabel.RIGHT : inputLabelType) as SimpleInputLabel;
-    const inputLabelWidth: LabelPercentageWidth | undefined = inputLabelType == InputLabel.FLOATING ? 90 : 35;
+    const checkboxLabelType = (inputLabelType === InputLabel.FLOATING ? SimpleInputLabel.RIGHT : inputLabelType) as SimpleInputLabel;
+    const inputLabelWidth: LabelPercentageWidth | undefined = inputLabelType === InputLabel.FLOATING ? 90 : 35;
     const floatingInputWidth = 60;
 
     return (
@@ -133,13 +171,16 @@ const StoryThemeWrapper = ({
                     floatingInputWidth={floatingInputWidth}
                     label="test"
                     returnedColorType={ReturnedColor.HSL}
-                    onChange={(color) => console.log(color.target.value)}
+                    onChange={(color) => {
+                        // eslint-disable-next-line no-console
+                        console.log(color.target.value); // console log used for documentation;
+                    }}
                     disabled={disabled}
                 />
 
                 <SectionHeader text="DYNAMIC THEME COLOR CONTROL" />
                 <div style={{ display: "flex", alignItems: "center" }}>
-                    <HueSliderCanvas hue={0} onChange={(hue) => setHue(hue)} />
+                    <HueSliderCanvas hue={0} onChange={(newHue) => setHue(newHue)} />
                     <Button icon={["fas", "refresh"]} style={{ marginLeft: "10px" }} text="Default" onClick={() => setHue(undefined)} />
                 </div>
 
@@ -212,11 +253,15 @@ const StoryThemeWrapper = ({
                     footer={{
                         onConfirmBtnClick: () => {
                             alertRef.current?.closeAlert();
-                            console.log("Confirm Button Click");
+
+                            // eslint-disable-next-line no-console
+                            console.log("Confirm Button Click"); // console log used for documentation
                         },
                         onDeclineBtnClick: () => {
                             alertRef.current?.closeAlert();
-                            console.log("Decline Button Click");
+
+                            // eslint-disable-next-line no-console
+                            console.log("Decline Button Click"); // console log used for documentation
                         },
                     }}
                 >
@@ -228,40 +273,3 @@ const StoryThemeWrapper = ({
 };
 
 export default StoryThemeWrapper;
-
-const options = [
-    { label: "test 1", value: 1 },
-    { label: "test 2", value: 2 },
-    { label: "test 3", value: 3 },
-    { label: "test 4", value: 4 },
-];
-type SectionHeaderProps = {
-    text: string;
-    style?: CSSProperties;
-    headerStyle?: CSSProperties;
-};
-
-const SectionHeader = ({ text, style, headerStyle }: SectionHeaderProps) => {
-    return (
-        <div
-            style={{
-                width: "calc(100% + 16px)",
-                borderTop: "1px solid var(--primary-text-color)",
-                marginLeft: "-16px",
-                marginTop: "20px",
-                ...style,
-            }}
-        >
-            <h3
-                style={{
-                    ...headerStyle,
-                    width: "100%",
-                    color: "var(--primary-text-color)",
-                    marginLeft: "16px",
-                }}
-            >
-                {text}
-            </h3>
-        </div>
-    );
-};

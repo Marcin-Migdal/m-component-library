@@ -56,8 +56,8 @@ const ColorPicker = ({
         handlePopupClose();
     };
 
-    const handleChange = (value: RgbValue): void => {
-        setValue(value);
+    const handleChange = (newValue: RgbValue): void => {
+        setValue(newValue);
 
         if (!onChange) {
             return;
@@ -65,11 +65,11 @@ const ColorPicker = ({
 
         switch (returnedColorType) {
             case ReturnedColor.RGB:
-                return onChange({ target: { name: name || "color-picker", value: value } });
+                return onChange({ target: { name: name || "color-picker", value: newValue } });
             case ReturnedColor.HSL:
-                return onChange({ target: { name: name || "color-picker", value: rgbToHsl(value.r, value.g, value.b) } });
+                return onChange({ target: { name: name || "color-picker", value: rgbToHsl(newValue.r, newValue.g, newValue.b) } });
             case ReturnedColor.HEX:
-                return onChange({ target: { name: name || "color-picker", value: rgbToHex(value.r, value.g, value.b) } });
+                return onChange({ target: { name: name || "color-picker", value: rgbToHex(newValue.r, newValue.g, newValue.b) } });
         }
     };
 

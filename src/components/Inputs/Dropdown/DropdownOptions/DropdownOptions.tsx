@@ -35,7 +35,7 @@ export const DropdownOptions = <T,>({
                             key={option[valueKey] as string}
                             data-id={uniqueDropdownId}
                             onClick={(e) => handleDropdownChange(e, option)}
-                            className={`m-dropdown-list-item ${option[valueKey] == value?.[valueKey] ? "selected" : ""}`}
+                            className={`m-dropdown-list-item ${option[valueKey] === value?.[valueKey] ? "selected" : ""}`}
                         >
                             {option[labelKey] as ReactElement}
                         </li>

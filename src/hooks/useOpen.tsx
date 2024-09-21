@@ -15,15 +15,6 @@ type UseOpenProps = {
 export const useOpen = ({ defaultOpenStatus = OpenStatus.CLOSED, delay = 150 }: UseOpenProps) => {
     const [openStatus, setOpenStatus] = useState<OpenStatus>(defaultOpenStatus);
 
-    const toggleOpenStatus = () => {
-        if ([OpenStatus.MOUNTED, OpenStatus.OPENED].includes(openStatus)) {
-            handleClose();
-            return;
-        }
-
-        handleOpen();
-    };
-
     const handleClose = () => {
         setOpenStatus(OpenStatus.CLOSING);
 
@@ -40,8 +31,17 @@ export const useOpen = ({ defaultOpenStatus = OpenStatus.CLOSED, delay = 150 }: 
         }, delay);
     };
 
-    const handleSetOpenStatus = (openStatus: OpenStatus) => {
-        setOpenStatus(openStatus);
+    const toggleOpenStatus = () => {
+        if ([OpenStatus.MOUNTED, OpenStatus.OPENED].includes(openStatus)) {
+            handleClose();
+            return;
+        }
+
+        handleOpen();
+    };
+
+    const handleSetOpenStatus = (newOpenStatus: OpenStatus) => {
+        setOpenStatus(newOpenStatus);
     };
 
     return { openStatus, toggleOpenStatus, handleClose, handleOpen, handleSetOpenStatus };

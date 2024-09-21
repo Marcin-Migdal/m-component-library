@@ -9,13 +9,13 @@ module.exports = {
         curly: "error",
         "@typescript-eslint/no-use-before-define": "error",
         "@typescript-eslint/no-shadow": "error",
-        "react/require-default-props": "error",
         "no-console": "warn",
-        "react/jsx-no-useless-fragment": "warn",
+        "react/jsx-no-useless-fragment": "error",
         eqeqeq: "error",
-        "@typescript-eslint/no-explicit-any": "warn",
-        "react/button-has-type": "error",
+        "@typescript-eslint/no-explicit-any": "error",
         "react/no-children-prop": "error",
         "no-nested-ternary": "error",
+
+        "react-hooks/exhaustive-deps": "off",
     },
 };

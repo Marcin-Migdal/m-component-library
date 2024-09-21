@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
@@ -41,7 +41,7 @@ const ThemeWrapper = ({ children, darkMode = false, hue = undefined }: ThemeWrap
         setThemeWrapperHslProperties();
     }, [darkMode, hue]);
 
-    return <>{children}</>;
+    return children;
 };
 
 export default ThemeWrapper;

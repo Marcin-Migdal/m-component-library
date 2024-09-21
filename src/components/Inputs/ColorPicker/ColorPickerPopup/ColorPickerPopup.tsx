@@ -45,7 +45,7 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
         };
 
         const handleKeyPress = (event: KeyboardEvent) => {
-            if (event.code == "Escape") {
+            if (event.code === "Escape") {
                 handleClose();
             }
         };
@@ -80,8 +80,7 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
     };
 
     const handleRgbTextfieldChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        const newRgbValue: RgbValue = { ...rgbValue, [name as keyof RgbValue]: parseInt(value) };
+        const newRgbValue: RgbValue = { ...rgbValue, [event.target.name as keyof RgbValue]: parseInt(event.target.value) };
 
         setRgbValue(newRgbValue);
         setHueSliderValue(rgbToHsl(newRgbValue.r, newRgbValue.g, newRgbValue.b).h);

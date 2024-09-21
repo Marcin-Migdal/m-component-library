@@ -55,24 +55,24 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
 
     useEffect(() => {
         const filterOptions = () => {
-            if (!options || options.length == 0) {
+            if (!options || options.length === 0) {
                 return;
             }
 
-            let dropdownOptions: T[] = [];
+            let filteredDropdownOptions: T[] = [];
 
             if (filterValue) {
-                dropdownOptions = options.filter((option) => {
-                    let label = option[labelKey] as number | string;
-                    label = typeof label === "string" ? label : label.toString();
+                filteredDropdownOptions = options.filter((option) => {
+                    let optionLabel = option[labelKey] as number | string;
+                    optionLabel = typeof optionLabel === "string" ? optionLabel : optionLabel.toString();
 
-                    return label.includes(filterValue);
+                    return optionLabel.includes(filterValue);
                 });
             } else {
-                dropdownOptions = options;
+                filteredDropdownOptions = options;
             }
 
-            setDropdownOptions(dropdownOptions);
+            setDropdownOptions(filteredDropdownOptions);
         };
 
         filterOptions();
@@ -89,14 +89,14 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
             if (
                 (!filterRef.current.contains(target) ||
                     (typeof target?.className === "string" && target?.className.includes("m-dropdown-container"))) &&
-                (!target.getAttribute("data-id") || target.getAttribute("data-id") != uniqueDropdownId)
+                (!target.getAttribute("data-id") || target.getAttribute("data-id") !== uniqueDropdownId)
             ) {
                 setIsFocused(false);
             }
         };
 
         const handleKeyPress = (event: KeyboardEvent) => {
-            if (event.code == "Escape") {
+            if (event.code === "Escape") {
                 setIsFocused(false);
             }
         };
@@ -158,7 +158,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
                 value={(isFocused ? filterValue : value?.[labelKey]) || ""}
                 onChange={handleFilterChange}
                 onFocus={handleFocus}
-                placeholder={labelType == InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
+                placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
             />
 
             {/* input label */}

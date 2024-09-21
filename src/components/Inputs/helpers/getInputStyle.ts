@@ -7,8 +7,26 @@ export function getInputStyle<T extends SimpleInputLabel | InputLabel>(
     labelWidth: LabelPercentageWidth,
     floatingInputWidth: T extends SimpleInputLabel ? undefined : FloatingInputWidth
 ): Pick<CSSProperties, "marginLeft" | "width"> {
+    const getMarginLeft = () => {
+        if (labelType === InputLabel.LEFT && label) {
+            return `${labelWidth}%`;
+        }
+
+        return "unset";
+    };
+
+    const getWidth = (): CSSProperties["width"] => {
+        if (labelType === InputLabel.FLOATING) {
+            return `${floatingInputWidth}%`;
+        } else if (label) {
+            return `${100 - labelWidth}%`;
+        }
+
+        return "100%";
+    };
+
     return {
-        marginLeft: labelType === InputLabel.LEFT && label ? `${labelWidth}%` : "unset",
-        width: labelType === InputLabel.FLOATING ? `${floatingInputWidth}%` : label ? `${100 - labelWidth}%` : "100%",
+        marginLeft: getMarginLeft(),
+        width: getWidth(),
     };
 }

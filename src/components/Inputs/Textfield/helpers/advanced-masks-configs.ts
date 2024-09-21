@@ -27,7 +27,7 @@ const handleDateBeforeChange = (newState: InputState, oldState: InputState, user
     const { value: newValue, selection: newSelection } = newState;
     const valueLength: number = newValue.replace(/[_-]/g, "").length;
 
-    if (valueLength == 1) {
+    if (valueLength === 1) {
         if (newValue.startsWith("3")) {
             formatChars["2"] = "[0-1]";
         } else {
@@ -35,8 +35,8 @@ const handleDateBeforeChange = (newState: InputState, oldState: InputState, user
         }
     }
 
-    if (valueLength == 3) {
-        if (newValue[3] == "1") {
+    if (valueLength === 3) {
+        if (newValue[3] === "1") {
             formatChars["4"] = "[0-2]";
         } else {
             formatChars["4"] = "[0-9]";

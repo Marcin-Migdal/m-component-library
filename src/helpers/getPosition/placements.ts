@@ -1,5 +1,19 @@
 import { CalculatedPosition, Position } from "./getPosition-types";
 
+//! Function that return left position for getTopPlacement, getBottomPlacement
+const getVerticalLeftPosition = (targetRect: DOMRect, consumerRect: DOMRect, centerConsumer: boolean): number => {
+    return centerConsumer
+        ? targetRect.left + window.scrollX + targetRect.width / 2 - consumerRect.width / 2
+        : targetRect.left + window.scrollX;
+};
+
+//! Function that return top position for getRightPlacement, getLeftPlacement
+const getHorizontalTopPosition = (targetRect: DOMRect, consumerRect: DOMRect, centerConsumer: boolean): number => {
+    return centerConsumer
+        ? targetRect.top + window.scrollY + targetRect.height / 2 - consumerRect.height / 2
+        : targetRect.top + window.scrollY;
+};
+
 export const getTopPlacement = (
     targetRect: DOMRect,
     consumerRect: DOMRect,
@@ -54,18 +68,4 @@ export const getLeftPlacement = (
         left: targetRect.left - consumerRect.width - margin + window.scrollX,
         calculatedPosition: auto ? CalculatedPosition.AUTO_LEFT : CalculatedPosition.LEFT,
     };
-};
-
-//! Function that return left position for getTopPlacement, getBottomPlacement
-const getVerticalLeftPosition = (targetRect: DOMRect, consumerRect: DOMRect, centerConsumer: boolean): number => {
-    return centerConsumer
-        ? targetRect.left + window.scrollX + targetRect.width / 2 - consumerRect.width / 2
-        : targetRect.left + window.scrollX;
-};
-
-//! Function that return top position for getRightPlacement, getLeftPlacement
-const getHorizontalTopPosition = (targetRect: DOMRect, consumerRect: DOMRect, centerConsumer: boolean): number => {
-    return centerConsumer
-        ? targetRect.top + window.scrollY + targetRect.height / 2 - consumerRect.height / 2
-        : targetRect.top + window.scrollY;
 };

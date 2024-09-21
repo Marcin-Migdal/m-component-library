@@ -1,9 +1,9 @@
-import { CSSProperties } from "react";
+import { CSSProperties, ReactNode } from "react";
 
 export type RowProps = {
     className?: string;
     style?: Omit<CSSProperties, "gap">;
-    children?: any;
+    children?: ReactNode;
     gap?: {
         breakpoint: "sm" | "md" | "lg" | "xl";
         gapSize?: string | number;
