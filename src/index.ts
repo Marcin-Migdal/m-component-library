@@ -11,12 +11,7 @@ export * from "./helpers";
 export * from "./hooks";
 
 //! VERSION 1.0.0 START
-
-//? es lint (new branch)
-//*     input placeholder changes color on hover to grey when input has error, placeholder should be red\
-//*     git hub repo should not allow merge if there are lint errors
-
-//? Add classNames dependency and clean up classes
+//? Add classNames dependency and clean up classes (new branch)
 
 //! VERSION 1.0.0 END
 

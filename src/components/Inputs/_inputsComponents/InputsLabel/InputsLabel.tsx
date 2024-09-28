@@ -32,19 +32,19 @@ export const InputsLabel = ({
         let classNames = `m-input-label ${labelType}`;
 
         if (className) {
-            classNames = classNames.concat(className);
+            classNames = classNames.concat(` ${className}`);
         }
 
         if (labelType === InputLabel.FLOATING && isFocused) {
-            classNames = classNames.concat("focused");
+            classNames = classNames.concat(" focused");
         }
 
         if (isFilled) {
-            classNames = classNames.concat("filled");
+            classNames = classNames.concat(" filled");
         }
 
         if (forceFloating) {
-            classNames = classNames.concat("forced-floating");
+            classNames = classNames.concat(" forced-floating");
         }
 
         return classNames;
