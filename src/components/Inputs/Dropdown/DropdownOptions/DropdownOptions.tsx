@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 
 import { getPosition } from "../../../../helpers";
@@ -35,7 +36,9 @@ export const DropdownOptions = <T,>({
                             key={option[valueKey] as string}
                             data-id={uniqueDropdownId}
                             onClick={(e) => handleDropdownChange(e, option)}
-                            className={`m-dropdown-list-item ${option[valueKey] === value?.[valueKey] ? "selected" : ""}`}
+                            className={classNames("m-dropdown-list-item", {
+                                selected: option[valueKey] === value?.[valueKey],
+                            })}
                         >
                             {option[labelKey] as ReactElement}
                         </li>

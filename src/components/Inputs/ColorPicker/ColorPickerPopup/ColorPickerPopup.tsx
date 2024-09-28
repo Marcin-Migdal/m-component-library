@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { ChangeEvent, useLayoutEffect, useRef, useState } from "react";
 
 import { getPosition } from "../../../../helpers/getPosition";
@@ -89,7 +90,7 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
     };
 
     return (
-        <div ref={popupRef} className={`color-picker-popup ${className}`} style={{ ...position }}>
+        <div ref={popupRef} className={classNames("color-picker-popup", className)} style={{ ...position }}>
             <ColorPickerCanvas value={rgbValue} hue={hueSliderValue} onChange={handleColorPick} />
             <div className="middle-section">
                 <div className="color-preview" style={{ backgroundColor: `rgb(${rgbValue.r},${rgbValue.g},${rgbValue.b})` }} />

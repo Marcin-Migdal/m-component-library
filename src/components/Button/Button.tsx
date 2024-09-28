@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classNames from "classnames";
 import React, { useRef } from "react";
 
 import { Tooltip } from "../Miscellaneous";
@@ -50,7 +51,7 @@ const Button = (props: ButtonProps) => {
             <button
                 ref={ref}
                 style={style}
-                className={`m-button ${variant} ${className}`}
+                className={classNames("m-button", variant, className)}
                 onClick={(e) => onClick && onClick(e)}
                 disabled={disabled || busy}
                 type={type}

@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { PropsWithChildren } from "react";
 
 import { getColClasses } from "./helpers/getColClasses";
@@ -30,7 +31,7 @@ const Col = ({
     const colFlexClasses = getFlexColClasses(flexSizes);
 
     return (
-        <div style={style} className={`m-grid-col ${colClasses} ${colFlexClasses} ${className}`}>
+        <div style={style} className={classNames("m-grid-col", colClasses, colFlexClasses, className)}>
             {children}
         </div>
     );

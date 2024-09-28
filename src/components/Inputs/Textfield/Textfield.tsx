@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { ChangeEvent, FocusEvent, useState } from "react";
 import InputMask, { InputState } from "react-input-mask";
 
@@ -73,7 +74,7 @@ const Textfield = (props: TextfieldProps) => {
                 maskChar={null}
                 disabled={disabled}
                 name={name}
-                className={`m-input m-textfield ${labelType}`}
+                className={classNames("m-input", "m-textfield", labelType)}
                 type={type}
                 style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
                 value={value}

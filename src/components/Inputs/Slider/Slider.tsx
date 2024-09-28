@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { ChangeEvent, CSSProperties, useLayoutEffect, useRef, useState } from "react";
 
 import { InputLabel, InputSize } from "../../global-types";
@@ -102,7 +103,7 @@ const Slider = ({
             )}
             {!hideValuePreview && (
                 <div className="m-relative-value-container">
-                    <span className={`m-slider-value-preview ${valuePreviewType}`} style={sliderValueDynamicStyle}>
+                    <span className={classNames("m-slider-value-preview", valuePreviewType)} style={sliderValueDynamicStyle}>
                         {value}
                     </span>
                 </div>

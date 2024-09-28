@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { useEffect, useRef, useState } from "react";
 
 import { useThrottling } from "../../../hooks";
@@ -89,7 +90,7 @@ export const HueSliderCanvas = ({ hue, onChange }: HueSliderCanvasProps) => {
             <canvas ref={canvasRef} height={16} width={212} onMouseDown={handleMouseDown} />
             {indicatorPosition && (
                 <div
-                    className={`hue-picker-pointer ${isDragging ? "dragging" : ""}`}
+                    className={classNames("hue-picker-pointer", { dragging: isDragging })}
                     style={{ backgroundColor: `hsl(${hue}, 100%, 50%)`, left: `${indicatorPosition.x}px` }}
                 />
             )}

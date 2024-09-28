@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { useMemo } from "react";
 
 import { InputLabel, LabelPercentageWidth, SimpleInputLabel } from "../../../global-types";
@@ -28,28 +29,6 @@ export const InputsLabel = ({
     forceFloating = false,
     dataId,
 }: InputsLabelProps) => {
-    const labelClasses = useMemo(() => {
-        let classNames = `m-input-label ${labelType}`;
-
-        if (className) {
-            classNames = classNames.concat(` ${className}`);
-        }
-
-        if (labelType === InputLabel.FLOATING && isFocused) {
-            classNames = classNames.concat(" focused");
-        }
-
-        if (isFilled) {
-            classNames = classNames.concat(" filled");
-        }
-
-        if (forceFloating) {
-            classNames = classNames.concat(" forced-floating");
-        }
-
-        return classNames;
-    }, [className, labelType, isFocused, isFilled, forceFloating]);
-
     const inputLabelStyle = useMemo(() => {
         if (labelType === InputLabel.FLOATING) {
             return { width: `fit-content`, left: "0" };
@@ -71,7 +50,15 @@ export const InputsLabel = ({
     }, [labelType, isFocused, isFilled, forceFloating, label]);
 
     return (
-        <label data-id={dataId} style={inputLabelStyle} className={labelClasses}>
+        <label
+            data-id={dataId}
+            style={inputLabelStyle}
+            className={classNames("m-input-label", labelType, className, {
+                focused: labelType === InputLabel.FLOATING && isFocused,
+                filled: isFilled,
+                "forced-floating": forceFloating,
+            })}
+        >
             {inputLabel}
         </label>
     );

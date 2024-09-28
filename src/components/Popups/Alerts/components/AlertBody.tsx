@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { PropsWithChildren } from "react";
 
 import { Overlay } from "../../../Miscellaneous/Overlay";
@@ -12,7 +13,7 @@ export const AlertBody = ({ children, className = "", alertOpen, onClose }: Prop
 
     return (
         <Overlay onClick={onClose}>
-            <div className={`m-alert ${alertOpen} ${className}`} onClick={(e) => e.stopPropagation()}>
+            <div className={classNames("m-alert", alertOpen, className)} onClick={(e) => e.stopPropagation()}>
                 {children}
             </div>
         </Overlay>

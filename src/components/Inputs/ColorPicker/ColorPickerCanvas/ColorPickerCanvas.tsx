@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { useEffect, useRef, useState } from "react";
 
 import { useThrottling } from "../../../../hooks";
@@ -102,7 +103,7 @@ export const ColorPickerCanvas = ({ value, hue, onChange }: ColorPickerCanvasPro
             <canvas ref={canvasRef} width={300} height={200} onMouseDown={handleMouseDown} />
             {indicatorPosition && (
                 <div
-                    className={`color-picker-pointer ${isDragging ? "dragging" : ""}`}
+                    className={classNames("color-picker-pointer", { dragging: isDragging })}
                     style={{ top: `${indicatorPosition.y}px`, left: `${indicatorPosition.x}px` }}
                 />
             )}

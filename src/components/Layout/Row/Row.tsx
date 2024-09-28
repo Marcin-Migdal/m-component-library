@@ -1,7 +1,9 @@
+import classNames from "classnames";
 import React from "react";
 
-import "./Row.css";
 import { RowProps } from "./types";
+
+import "./Row.css";
 
 const Row = ({ className = "", style = {}, children, gap }: RowProps) => {
     return (
@@ -11,7 +13,10 @@ const Row = ({ className = "", style = {}, children, gap }: RowProps) => {
                 //@ts-expect-error ts(2353) styles attribute does not expect css variable
                 "--col-gap": gap?.gapSize ? gap.gapSize : "unset",
             }}
-            className={`m-grid-row ${gap ? `col-${gap.breakpoint}-gap` : ""} ${className}`}
+            className={classNames("m-grid-row", {
+                [`col-${gap?.breakpoint}-gap`]: gap,
+                className,
+            })}
         >
             {children}
         </div>
