@@ -18,7 +18,37 @@ export const ColorPickerCanvas = ({ value, hue, onChange }: ColorPickerCanvasPro
     const [isDragging, setIsDragging] = useState(false);
     const [indicatorPosition, setIndicatorPosition] = useState<CanvasCoordinates | undefined>(undefined);
 
-    const [throttledChangeColor] = useThrottling(changeColor);
+    const [throttledChangeColor] = useThrottling((e: MouseEvent | React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
+        const canvas = canvasRef.current;
+
+        if (!canvas) {
+            return;
+        }
+
+        const ctx = canvas.getContext("2d");
+
+        if (!ctx) {
+            return;
+        }
+
+        const { left, top } = canvas.getBoundingClientRect();
+
+        const x = e.clientX - left;
+        const y = e.clientY - top;
+
+        const clampedX = Math.max(1, Math.min(x, canvas.width - 1));
+        const clampedY = Math.max(1, Math.min(y, canvas.height));
+
+        const imageData = ctx.getImageData(clampedX, clampedY, 1, 1).data;
+
+        setIndicatorPosition({ x: clampedX, y: clampedY });
+
+        onChange({
+            r: imageData[0],
+            g: imageData[1],
+            b: imageData[2],
+        });
+    });
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -61,34 +91,6 @@ export const ColorPickerCanvas = ({ value, hue, onChange }: ColorPickerCanvasPro
             document.removeEventListener("mouseup", handleMouseUp);
         };
     }, [isDragging, hue, value.r, value.g, value.b]);
-
-    function changeColor(e: MouseEvent | React.MouseEvent<HTMLCanvasElement, MouseEvent>) {
-        const canvas = canvasRef.current;
-
-        if (!canvas) return;
-
-        const ctx = canvas.getContext("2d");
-
-        if (!ctx) return;
-
-        const { left, top } = canvas.getBoundingClientRect();
-
-        const x = e.clientX - left;
-        const y = e.clientY - top;
-
-        const clampedX = Math.max(1, Math.min(x, canvas.width - 1));
-        const clampedY = Math.max(1, Math.min(y, canvas.height));
-
-        const imageData = ctx.getImageData(clampedX, clampedY, 1, 1).data;
-
-        setIndicatorPosition({ x: clampedX, y: clampedY });
-
-        onChange({
-            r: imageData[0],
-            g: imageData[1],
-            b: imageData[2],
-        });
-    }
 
     const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
         setIsDragging(true);

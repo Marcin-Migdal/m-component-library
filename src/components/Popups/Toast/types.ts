@@ -41,7 +41,7 @@ export type ToastConfig<T extends string> = Record<
 
 //! TOASTS COMPONENTS
 export type ToastProps = {
-    onClose: (e: any) => void;
+    onClose: (toastId: number) => void;
     onMouseEnter: (toastId: number) => void;
     onMouseLeave: (toast: ToastType) => void;
     toast: ToastType;
@@ -58,5 +58,5 @@ export type ToastType = {
 
 //! CLOSE ICON
 export type CloseIconProps = {
-    onClick: (e: any) => void;
+    onClick: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
 };

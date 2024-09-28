@@ -13,7 +13,29 @@ export const HueSliderCanvas = ({ hue, onChange }: HueSliderCanvasProps) => {
     const [isDragging, setIsDragging] = useState(false);
     const [indicatorPosition, setIndicatorPosition] = useState<CanvasCoordinates | undefined>(undefined);
 
-    const [throttledChangeColor] = useThrottling(changeColor);
+    const [throttledChangeColor] = useThrottling((e: MouseEvent | React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
+        const canvas = canvasRef.current;
+
+        if (!canvas) {
+            return;
+        }
+
+        const ctx = canvas.getContext("2d");
+
+        if (!ctx) {
+            return;
+        }
+
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const clampedX = Math.max(0, Math.min(x, canvas.width));
+
+        const imageData = ctx.getImageData(clampedX, canvas.height / 2, 1, 1).data;
+
+        setIndicatorPosition({ x: clampedX, y: 0 });
+
+        onChange(rgbToHsl(imageData[0], imageData[1], imageData[2]).h);
+    });
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -56,26 +78,6 @@ export const HueSliderCanvas = ({ hue, onChange }: HueSliderCanvasProps) => {
             document.removeEventListener("mouseup", handleMouseUp);
         };
     }, [isDragging, hue]);
-
-    function changeColor(e: MouseEvent | React.MouseEvent<HTMLCanvasElement, MouseEvent>) {
-        const canvas = canvasRef.current;
-
-        if (!canvas) return;
-
-        const ctx = canvas.getContext("2d");
-
-        if (!ctx) return;
-
-        const rect = canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const clampedX = Math.max(0, Math.min(x, canvas.width));
-
-        const imageData = ctx.getImageData(clampedX, canvas.height / 2, 1, 1).data;
-
-        setIndicatorPosition({ x: clampedX, y: 0 });
-
-        onChange(rgbToHsl(imageData[0], imageData[1], imageData[2]).h);
-    }
 
     const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
         setIsDragging(true);

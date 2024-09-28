@@ -27,8 +27,14 @@ const StoryAlertWrapper = ({
                 header={{ header }}
                 footer={{
                     ...otherProps,
-                    onConfirmBtnClick: (data) => console.log("Confirm Button Click: ", data),
-                    onDeclineBtnClick: () => console.log("Decline Button Click"),
+                    onConfirmBtnClick: (data) => {
+                        // eslint-disable-next-line no-console
+                        console.log("Confirm Button Click: ", data); // console log used for documentation
+                    },
+                    onDeclineBtnClick: () => {
+                        // eslint-disable-next-line no-console
+                        console.log("Decline Button Click"); // console log used for documentation
+                    },
                 }}
             >
                 test

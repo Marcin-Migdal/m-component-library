@@ -12,7 +12,7 @@ const defaultConfig: GetPositionConfig = {
 };
 
 export const getPosition = (
-    targetElement: HTMLElement | null | undefined,
+    targetElement: HTMLElement | SVGElement | null | undefined,
     consumerElement: HTMLElement | null | undefined,
     externalConfig?: Partial<GetPositionConfig>
 ): Position | undefined => {
@@ -107,5 +107,13 @@ export const getPosition = (
         }
     }
 
-    return !position ? undefined : !consumerHasParentWidth ? { ...position } : { ...position, width: targetRect.width };
+    if (!position) {
+        return undefined;
+    }
+
+    if (!consumerHasParentWidth) {
+        return { ...position };
+    }
+
+    return { ...position, width: targetRect.width };
 };

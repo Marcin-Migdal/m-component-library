@@ -11,9 +11,11 @@ export const getInputsErrorStyle = (
     const errorIconSize = parseInt(getCssProperty(document.body, "--error-icon-size", "16px"));
     const errorIconMargin = parseInt(getCssProperty(document.body, "--error-icon-margin", "8px"));
 
-    return labelType === InputLabel.LEFT
-        ? { right: `${errorIconMargin}px` }
-        : labelType === InputLabel.RIGHT
-        ? { right: `calc(${labelWidth}% + ${errorIconMargin}px)` }
-        : { left: `calc(${floatingInputWidth}% - ${errorIconSize}px - ${errorIconMargin}px)` };
+    if (labelType === InputLabel.LEFT) {
+        return { right: `${errorIconMargin}px` };
+    } else if (labelType === InputLabel.RIGHT) {
+        return { right: `calc(${labelWidth}% + ${errorIconMargin}px)` };
+    }
+
+    return { left: `calc(${floatingInputWidth}% - ${errorIconSize}px - ${errorIconMargin}px)` };
 };

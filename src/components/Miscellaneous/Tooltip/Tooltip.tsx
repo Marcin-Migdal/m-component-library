@@ -27,7 +27,9 @@ const TooltipWrapper = ({
         const tooltipElement: HTMLDivElement | null = tooltipRef.current;
         let timeoutId: NodeJS.Timeout | undefined = undefined;
 
-        if (!targetElement) return;
+        if (!targetElement) {
+            return;
+        }
 
         const handleMouseEnter = () => {
             timeoutId = setTimeout(() => {
@@ -36,8 +38,9 @@ const TooltipWrapper = ({
         };
 
         const handleMouseLeave = () => {
-            if (timeoutId) clearTimeout(timeoutId);
-            else if (isVisible) {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            } else if (isVisible) {
                 setIsVisible(false);
                 setTooltipStyle(undefined);
             }
@@ -53,7 +56,7 @@ const TooltipWrapper = ({
 
         //! TOOLTIP POSITION SECTION
         // changes tooltip style
-        const changeTooltipStyle = (targetElement: TargetElementType, tooltipElement: HTMLDivElement | null) => {
+        const changeTooltipStyle = () => {
             // only when tooltip is visible and its ref is not undefined
 
             if (tooltipElement) {
@@ -68,7 +71,7 @@ const TooltipWrapper = ({
             }
         };
 
-        changeTooltipStyle(targetElement, tooltipElement);
+        changeTooltipStyle();
 
         return () => {
             targetElement.removeEventListener("pointerover", handleMouseEnter);
@@ -76,14 +79,15 @@ const TooltipWrapper = ({
         };
     }, [isVisible]);
 
-    return (
-        <>
-            {isVisible &&
-                createPortal(
-                    <TooltipContent tooltipRef={tooltipRef} style={tooltipStyle} className={className} children={children} />,
-                    document.body
-                )}
-        </>
+    if (!isVisible) {
+        return null;
+    }
+
+    return createPortal(
+        <TooltipContent tooltipRef={tooltipRef} style={tooltipStyle} className={className}>
+            {children}
+        </TooltipContent>,
+        document.body
     );
 };
 

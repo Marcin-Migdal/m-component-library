@@ -7,11 +7,6 @@ export const useAlertOpen = <T = undefined>({ ref }: UseAlertOpenArgs<T>): useAl
         data: undefined,
     });
 
-    useImperativeHandle(ref, () => ({
-        openAlert: (data) => setAlertState({ openState: AlertOpenState.OPENED, data: data }),
-        closeAlert: handleClose,
-    }));
-
     const handleClose = () => {
         setAlertState({ openState: AlertOpenState.CLOSING, data: undefined });
 
@@ -19,6 +14,11 @@ export const useAlertOpen = <T = undefined>({ ref }: UseAlertOpenArgs<T>): useAl
             setAlertState({ openState: AlertOpenState.CLOSED, data: undefined });
         }, 200);
     };
+
+    useImperativeHandle(ref, () => ({
+        openAlert: (data) => setAlertState({ openState: AlertOpenState.OPENED, data: data }),
+        closeAlert: handleClose,
+    }));
 
     return { alertOpen: alertState.openState, data: alertState.data, handleClose };
 };

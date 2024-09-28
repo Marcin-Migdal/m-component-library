@@ -29,7 +29,19 @@ const Button = (props: ButtonProps) => {
 
     const ref = useRef<HTMLButtonElement>(null);
 
-    if (!display) return <></>;
+    if (!display) {
+        return null;
+    }
+
+    const getRightButtonIcon = () => {
+        if (busy) {
+            return <FontAwesomeIcon className="right-svg" icon="circle-notch" spin />;
+        } else if (icon && iconPosition === ButtonIconPosition.RIGHT) {
+            <FontAwesomeIcon className="right-svg" icon={icon} />;
+        } else {
+            return null;
+        }
+    };
 
     const tooltipContent = disabled ? disabledTooltip : tooltip;
 
@@ -47,16 +59,14 @@ const Button = (props: ButtonProps) => {
                 {children}
                 {icon && iconPosition === ButtonIconPosition.LEFT && <FontAwesomeIcon className="left-svg" icon={icon} />}
                 {text}
-                {busy ? (
-                    <FontAwesomeIcon className="right-svg" icon="circle-notch" spin />
-                ) : icon && iconPosition === ButtonIconPosition.RIGHT ? (
-                    <FontAwesomeIcon className="right-svg" icon={icon} />
-                ) : (
-                    <></>
-                )}
+                {getRightButtonIcon()}
             </button>
 
-            {tooltipContent && <Tooltip targetRef={ref} children={tooltipContent} {...getTooltipPropsConfig(tooltipConfig)} />}
+            {tooltipContent && (
+                <Tooltip targetRef={ref} {...getTooltipPropsConfig(tooltipConfig)}>
+                    {tooltipContent}
+                </Tooltip>
+            )}
         </>
     );
 };

@@ -5,7 +5,7 @@ import { InputLabel, InputSize } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
 import { getInputStyle } from "../helpers/getInputStyle";
-import { AdvancedMaskType, TextfieldProps } from "./types";
+import { TextfieldProps } from "./types";
 
 import "./Textfield.css";
 
@@ -40,7 +40,7 @@ const Textfield = (props: TextfieldProps) => {
     const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
-    const value: string = externalValue != undefined ? externalValue : internalValue;
+    const value: string = externalValue !== undefined ? externalValue : internalValue;
 
     const handleFocus = () => setIsFocused(true);
 
@@ -55,13 +55,17 @@ const Textfield = (props: TextfieldProps) => {
         setInternalValue(e.target.value);
     };
 
-    const handleBeforeMaskedValueChange =
-        (advancedMask: AdvancedMaskType) =>
-        (newState: InputState, oldState: InputState, userInput: string): InputState => {
-            if (!advancedMask.beforeChange) return newState;
+    const handleBeforeMaskedValueChange = (newState: InputState, oldState: InputState, userInput: string): InputState => {
+        if (!advancedMask) {
+            return newState;
+        }
 
-            return advancedMask.beforeChange(newState, oldState, userInput, advancedMask.formatChars);
-        };
+        if (!advancedMask.beforeChange) {
+            return newState;
+        }
+
+        return advancedMask.beforeChange(newState, oldState, userInput, advancedMask.formatChars);
+    };
 
     return (
         <InputContainer disabled={disabled} className="m-textfield-container" size={size} error={error}>
@@ -77,10 +81,10 @@ const Textfield = (props: TextfieldProps) => {
                 onBlur={handleBlur}
                 onFocus={handleFocus}
                 autoFocus={autoFocus}
-                placeholder={labelType == InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
+                placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
                 //! Mask Props
                 {...(advancedMask
-                    ? { ...advancedMask, beforeMaskedValueChange: handleBeforeMaskedValueChange(advancedMask) }
+                    ? { ...advancedMask, beforeMaskedValueChange: handleBeforeMaskedValueChange }
                     : { mask: mask, formatChars: defaultFormatChars })}
                 {...otherProps}
             />

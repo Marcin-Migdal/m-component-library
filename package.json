@@ -5,7 +5,9 @@
     "scripts": {
         "rollup": "rollup -c",
         "build-storybook": "build-storybook",
-        "storybook": "start-storybook -p 6006"
+        "storybook": "start-storybook -p 6006",
+        "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
+        "lint-fix": "npm run lint -- --fix"
     },
     "author": "Marcin-Migdal",
     "license": "ISC",
@@ -25,7 +27,12 @@
         "@types/react": "^18.0.18",
         "@types/react-dom": "^18.2.4",
         "@types/react-input-mask": "^3.0.5",
+        "@typescript-eslint/eslint-plugin": "^7.0.2",
+        "@typescript-eslint/parser": "^7.0.2",
         "babel-loader": "^8.2.5",
+        "eslint": "^8.56.0",
+        "eslint-plugin-react": "^7.36.1",
+        "eslint-plugin-react-hooks": "^4.6.2",
         "postcss": "^8.4.16",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

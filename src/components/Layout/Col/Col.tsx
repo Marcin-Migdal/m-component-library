@@ -1,5 +1,7 @@
 import React, { PropsWithChildren } from "react";
 
+import { getColClasses } from "./helpers/getColClasses";
+import { getFlexColClasses } from "./helpers/getFlexColClasses";
 import { ColProps } from "./types";
 
 import "./Col.css";
@@ -35,25 +37,3 @@ const Col = ({
 };
 
 export default Col;
-
-const getColClasses = (sizes: { sm?: number; md?: number; lg?: number; xl?: number }): string => {
-    let colClasses: string = "";
-
-    for (const size in sizes) {
-        const value = (sizes as any)[size];
-        if (value) colClasses = colClasses.concat(`col-${size}-${value} `);
-    }
-
-    return colClasses.slice(0, colClasses.length - 1);
-};
-
-const getFlexColClasses = (flexSizes: { smFlex?: number; mdFlex?: number; lgFlex?: number; xlFlex?: number }): string => {
-    let colFlexClasses: string = "";
-
-    for (const size in flexSizes) {
-        const value = (flexSizes as any)[size];
-        if (value) colFlexClasses = colFlexClasses.concat(`col-flex-${size.slice(0, 2)}-${value} `);
-    }
-
-    return colFlexClasses.slice(0, colFlexClasses.length - 1);
-};

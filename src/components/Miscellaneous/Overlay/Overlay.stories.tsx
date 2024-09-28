@@ -9,7 +9,7 @@ export default {
     component: Overlay,
 } as ComponentMeta<typeof Overlay>;
 
-const Template: ComponentStory<typeof Overlay> = (args) => (
+const Template: ComponentStory<typeof Overlay> = () => (
     <ThemeWrapper darkMode>
         <Overlay>Overlay content</Overlay>
     </ThemeWrapper>

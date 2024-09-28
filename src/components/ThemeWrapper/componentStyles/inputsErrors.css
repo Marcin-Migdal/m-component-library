@@ -8,6 +8,7 @@
     box-shadow: var(--big-box-shadow) var(--failure-color);
 }
 
+.common-wrapper-container .m-input-container.error .m-input:hover:not(:disabled)::placeholder,
 .common-wrapper-container .m-input-container.error .m-input:not(:disabled)::placeholder {
     color: var(--failure-color);
 }

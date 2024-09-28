@@ -35,14 +35,19 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
         const handleClickOutside = (event: MouseEvent) => {
             const target: HTMLElement = event.target as HTMLElement;
 
-            if (!popupRef.current || !parentElement) return;
+            if (!popupRef.current || !parentElement) {
+                return;
+            }
+
             if (!popupRef.current.contains(target) && !parentElement.contains(target)) {
                 handleClose();
             }
         };
 
         const handleKeyPress = (event: KeyboardEvent) => {
-            if (event.code == "Escape") handleClose();
+            if (event.code === "Escape") {
+                handleClose();
+            }
         };
 
         const resizeObserver = new ResizeObserver(calculatePopupPosition);
@@ -75,8 +80,7 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
     };
 
     const handleRgbTextfieldChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target;
-        const newRgbValue: RgbValue = { ...rgbValue, [name as keyof RgbValue]: parseInt(value) };
+        const newRgbValue: RgbValue = { ...rgbValue, [event.target.name as keyof RgbValue]: parseInt(event.target.value) };
 
         setRgbValue(newRgbValue);
         setHueSliderValue(rgbToHsl(newRgbValue.r, newRgbValue.g, newRgbValue.b).h);

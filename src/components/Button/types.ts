@@ -9,7 +9,7 @@ export enum ButtonIconPosition {
 export type VariantType = "outlined" | "full" | "text" | "neon";
 
 type ButtonBaseProps = {
-    children?: any;
+    children?: ReactNode;
     text: string;
     disabled?: boolean;
     busy?: boolean;

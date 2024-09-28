@@ -11,13 +11,7 @@ export * from "./helpers";
 export * from "./hooks";
 
 //! VERSION 1.0.0 START
-
-//? simplify toasts, this whole config stuff is overenginered (new branch)
-
-//? es lint (new branch)
-//*     implement es lint
-//*     fix all errors
-//*     git hub repo should not allow merge if there are lint errors
+//? Add classNames dependency and clean up classes (new branch)
 
 //! VERSION 1.0.0 END
 

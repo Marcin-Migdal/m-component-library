@@ -55,20 +55,24 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
 
     useEffect(() => {
         const filterOptions = () => {
-            if (!options || options.length == 0) return;
+            if (!options || options.length === 0) {
+                return;
+            }
 
-            let dropdownOptions: T[] = [];
+            let filteredDropdownOptions: T[] = [];
 
-            if (filterValue)
-                dropdownOptions = options.filter((option) => {
-                    let label = option[labelKey] as number | string;
-                    label = typeof label === "string" ? label : label.toString();
+            if (filterValue) {
+                filteredDropdownOptions = options.filter((option) => {
+                    let optionLabel = option[labelKey] as number | string;
+                    optionLabel = typeof optionLabel === "string" ? optionLabel : optionLabel.toString();
 
-                    return label.includes(filterValue);
+                    return optionLabel.includes(filterValue);
                 });
-            else dropdownOptions = options;
+            } else {
+                filteredDropdownOptions = options;
+            }
 
-            setDropdownOptions(dropdownOptions);
+            setDropdownOptions(filteredDropdownOptions);
         };
 
         filterOptions();
@@ -78,19 +82,23 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
         const handleClickOutside = (event: MouseEvent) => {
             const target: HTMLElement = event.target as HTMLElement;
 
-            if (!filterRef.current) return;
+            if (!filterRef.current) {
+                return;
+            }
 
             if (
                 (!filterRef.current.contains(target) ||
-                    (typeof target?.className == "string" && target?.className.includes("m-dropdown-container"))) &&
-                (!target.getAttribute("data-id") || target.getAttribute("data-id") != uniqueDropdownId)
+                    (typeof target?.className === "string" && target?.className.includes("m-dropdown-container"))) &&
+                (!target.getAttribute("data-id") || target.getAttribute("data-id") !== uniqueDropdownId)
             ) {
                 setIsFocused(false);
             }
         };
 
         const handleKeyPress = (event: KeyboardEvent) => {
-            if (event.code == "Escape") setIsFocused(false);
+            if (event.code === "Escape") {
+                setIsFocused(false);
+            }
         };
 
         document.addEventListener("click", handleClickOutside);
@@ -112,7 +120,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
         setIsFocused(false);
 
         if (onChange) {
-            let _e: DropdownChangeEvent<T> = { ...e, target: { ...e.target, value: selectedOption, name: name, type: "dropdown" } };
+            const _e: DropdownChangeEvent<T> = { ...e, target: { ...e.target, value: selectedOption, name: name, type: "dropdown" } };
 
             onChange(_e, selectedOption as T);
         }
@@ -124,7 +132,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
         setIsFocused(false);
 
         if (onClear) {
-            let _e: DropdownClearEvent<T> = { ...e, target: { ...e.target, value: undefined, name: name, type: "dropdown" } };
+            const _e: DropdownClearEvent<T> = { ...e, target: { ...e.target, value: undefined, name: name, type: "dropdown" } };
 
             onClear(_e, undefined);
         }
@@ -150,7 +158,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
                 value={(isFocused ? filterValue : value?.[labelKey]) || ""}
                 onChange={handleFilterChange}
                 onFocus={handleFocus}
-                placeholder={labelType == InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
+                placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
             />
 
             {/* input label */}

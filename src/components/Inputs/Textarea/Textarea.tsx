@@ -29,7 +29,7 @@ const Textarea = ({
     const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
     const [isFocused, setIsFocused] = useState<boolean>(false);
 
-    const value: string = externalValue != undefined ? externalValue : internalValue;
+    const value: string = externalValue !== undefined ? externalValue : internalValue;
 
     const handleFocus = () => setIsFocused(true);
 
@@ -55,7 +55,7 @@ const Textarea = ({
                 onChange={handleChange}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
-                placeholder={labelType == InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
+                placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
                 autoFocus={autoFocus}
                 disabled={disabled}
                 {...otherProps}

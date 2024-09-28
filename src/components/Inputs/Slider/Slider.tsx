@@ -1,4 +1,4 @@
-import React, { CSSProperties, useLayoutEffect, useRef, useState } from "react";
+import React, { ChangeEvent, CSSProperties, useLayoutEffect, useRef, useState } from "react";
 
 import { InputLabel, InputSize } from "../../global-types";
 import { InputContainer, InputsLabel } from "../_inputsComponents";
@@ -56,7 +56,7 @@ const Slider = ({
         };
     }, [value, valuePreviewType]);
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const newValue = parseFloat(event.target.value);
 
         if (onChange) {

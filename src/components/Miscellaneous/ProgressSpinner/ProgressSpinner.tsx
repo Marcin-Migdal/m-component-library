@@ -5,7 +5,9 @@ import { ProgressSpinnerProps } from "./types";
 import "./styles.css";
 
 const ProgressSpinner = ({ loading = true, strokeWidth = "4" }: ProgressSpinnerProps) => {
-    if (!loading) return <></>;
+    if (!loading) {
+        return null;
+    }
 
     return (
         <svg className="spinner" viewBox="0 0 50 50">
