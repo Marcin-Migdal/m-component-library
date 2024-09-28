@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import { FormikValues, useFormik } from "formik";
 import React, { useMemo } from "react";
 
@@ -45,7 +46,7 @@ function Form<T extends FormikValues>({
     };
 
     return (
-        <form onSubmit={formik.handleSubmit} className={`m-form ${className}`} {...otherProps}>
+        <form onSubmit={formik.handleSubmit} className={classNames("m-form", className)} {...otherProps}>
             {children({
                 ...formik,
                 handleChange: _handleChange,

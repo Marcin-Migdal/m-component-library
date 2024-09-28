@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { ChangeEvent, FocusEvent, useState } from "react";
 
 import { InputLabel, InputSize } from "../../global-types";
@@ -50,7 +51,7 @@ const Textarea = ({
                 name={name}
                 rows={row}
                 style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
-                className={`m-input m-textarea ${labelType}`}
+                className={classNames("m-input", "m-textarea", labelType)}
                 value={value}
                 onChange={handleChange}
                 onFocus={handleFocus}

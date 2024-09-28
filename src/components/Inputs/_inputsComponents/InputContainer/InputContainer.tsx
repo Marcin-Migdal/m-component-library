@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { CSSProperties, forwardRef, PropsWithChildren } from "react";
 
 import * as GlobalInterfaces from "../../../global-types";
@@ -20,7 +21,10 @@ function InputContainer(
         <div
             ref={ref}
             style={style}
-            className={`m-input-container ${className} ${size} ${error ? "error" : ""} ${disabled ? "disabled" : ""}`}
+            className={classNames("m-input-container", className, size, {
+                error,
+                disabled,
+            })}
         >
             {children}
         </div>

@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classNames from "classnames";
 import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 
 import { InputSize, SimpleInputLabel } from "../../global-types";
@@ -38,7 +39,7 @@ const Checkbox = ({
     return (
         <InputContainer disabled={disabled} ref={checkboxContainerRef} className="m-checkbox-container" size={size} error={error}>
             <div style={getInputStyle(labelType as SimpleInputLabel, label, labelWidth, undefined)}>
-                <label className={`m-checkbox-input-wrapper ${isChecked ? "checked" : ""}`}>
+                <label className={classNames("m-checkbox-input-wrapper", { checked: isChecked })}>
                     <input
                         className="m-checkbox-input"
                         type="checkbox"
@@ -48,7 +49,7 @@ const Checkbox = ({
                         disabled={disabled}
                         {...otherProps}
                     />
-                    <span className={`m-input m-checkbox ${labelType}`}>
+                    <span className={classNames("m-input", "m-checkbox", labelType)}>
                         <FontAwesomeIcon className="m-checkbox-check-icon" icon="check" />
                     </span>
                 </label>

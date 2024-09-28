@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React from "react";
 
 import { ToastProps } from "../types";
@@ -7,7 +8,7 @@ export const Toast = ({ toast, onClose, onMouseEnter, onMouseLeave }: ToastProps
     const { variant, title, message, id, icon } = toast;
 
     return (
-        <div className={`toast ${variant}`} onMouseEnter={() => onMouseEnter(toast.id)} onMouseLeave={() => onMouseLeave(toast)}>
+        <div className={classNames("toast", variant)} onMouseEnter={() => onMouseEnter(toast.id)} onMouseLeave={() => onMouseLeave(toast)}>
             {icon}
             <div className="text-content">
                 <p>{title}</p>

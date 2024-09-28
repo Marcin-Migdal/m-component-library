@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -78,7 +79,7 @@ const ColorPicker = ({
             <InputContainer disabled={disabled} className="m-color-picker-container" size={size} error={error}>
                 <div
                     ref={containerRef}
-                    className={`m-input m-color-preview ${labelType}`}
+                    className={classNames("m-input", "m-color-preview", labelType)}
                     onClick={() => !disabled && handleOpen()}
                     style={{
                         ...getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth),

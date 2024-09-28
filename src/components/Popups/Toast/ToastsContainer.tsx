@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { ForwardedRef, forwardRef, useImperativeHandle, useRef, useState } from "react";
 
 import { Toast } from "./components/Toast";
@@ -63,7 +64,7 @@ function ToastsContainer<T extends string>(props: ToastsContainerProps<T>, ref: 
     const handleMouseHover = (toastId: number) => clearTimeout(timeoutRefs.current[toastId]);
 
     return (
-        <div className={`toasts-list ${toastsPosition}`}>
+        <div className={classNames("toasts-list", toastsPosition)}>
             {toasts.map((toast) => (
                 <Toast
                     key={toast.id}

@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classNames from "classnames";
 import React, { ChangeEvent, FocusEvent, MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
@@ -151,7 +152,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
                 ref={filterRef}
                 disabled={disabled}
                 data-id={uniqueDropdownId}
-                className={`m-input m-dropdown ${labelType}`}
+                className={classNames("m-input", "m-dropdown", labelType)}
                 type="text"
                 style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
                 readOnly={readOnly || !filter}

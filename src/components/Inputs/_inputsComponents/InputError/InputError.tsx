@@ -1,5 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classNames from "classnames";
 import React, { CSSProperties, useRef } from "react";
+
 import { Placement } from "../../../../helpers/getPosition/getPosition-types";
 import { Tooltip } from "../../../Miscellaneous";
 
@@ -16,7 +18,7 @@ export const InputError = ({ style, className, error }: InputErrorProps) => {
 
     return (
         <>
-            <FontAwesomeIcon ref={tooltipRef} icon="exclamation-circle" className={`error-icon ${className}`} style={style} />
+            <FontAwesomeIcon ref={tooltipRef} icon="exclamation-circle" className={classNames("error-icon", className)} style={style} />
             <Tooltip targetRef={tooltipRef} placement={Placement.RIGHT}>
                 {error}
             </Tooltip>
