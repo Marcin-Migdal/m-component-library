@@ -524,7 +524,7 @@ body {
     --primary-color_720: hsl(var(--hue), var(--saturation), 73%);
     --primary-color_740: hsl(var(--hue), var(--saturation), 75%);
     --primary-color_760: hsl(var(--hue), var(--saturation), 77%);
-    --primary-color_780: hsl(var(--hue), var(--saturation), 89%);
+    --primary-color_780: hsl(var(--hue), var(--saturation), 79%);
 
     --primary-color_800: hsl(var(--hue), var(--saturation), 81%);
     --primary-color_820: hsl(var(--hue), var(--saturation), 83%);
