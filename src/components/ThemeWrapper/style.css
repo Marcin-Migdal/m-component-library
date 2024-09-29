@@ -423,10 +423,27 @@ body {
     --primary-color_560: hsl(var(--hue), var(--saturation), 57%);
     --primary-color_580: hsl(var(--hue), var(--saturation), 59%);
 
+    --primary-color_600: hsl(var(--hue), var(--saturation), 61%);
+    --primary-color_620: hsl(var(--hue), var(--saturation), 63%);
+    --primary-color_640: hsl(var(--hue), var(--saturation), 65%);
+    --primary-color_660: hsl(var(--hue), var(--saturation), 67%);
     --primary-color_680: hsl(var(--hue), var(--saturation), 69%);
+
+    --primary-color_700: hsl(var(--hue), var(--saturation), 71%);
+    --primary-color_720: hsl(var(--hue), var(--saturation), 73%);
+    --primary-color_740: hsl(var(--hue), var(--saturation), 75%);
+    --primary-color_760: hsl(var(--hue), var(--saturation), 77%);
     --primary-color_780: hsl(var(--hue), var(--saturation), 79%);
+
+    --primary-color_800: hsl(var(--hue), var(--saturation), 81%);
+    --primary-color_820: hsl(var(--hue), var(--saturation), 83%);
+    --primary-color_840: hsl(var(--hue), var(--saturation), 85%);
+    --primary-color_860: hsl(var(--hue), var(--saturation), 87%);
     --primary-color_880: hsl(var(--hue), var(--saturation), 89%);
+
+    --primary-color_900: hsl(var(--hue), var(--saturation), 91%);
     --primary-color_920: hsl(var(--hue), var(--saturation), 93%);
+    --primary-color_940: hsl(var(--hue), var(--saturation), 95%);
 
     /** Inputs colors */
     --input-label-color: var(--primary-color_580);
@@ -462,51 +479,62 @@ body {
     --saturation: 100%;
 
     --primary-color_000: hsl(var(--hue), var(--saturation), 1%);
-
     --primary-color_020: hsl(var(--hue), var(--saturation), 3%);
     --primary-color_040: hsl(var(--hue), var(--saturation), 5%);
     --primary-color_060: hsl(var(--hue), var(--saturation), 7%);
     --primary-color_080: hsl(var(--hue), var(--saturation), 9%);
-    --primary-color_100: hsl(var(--hue), var(--saturation), 11%);
 
+    --primary-color_100: hsl(var(--hue), var(--saturation), 11%);
     --primary-color_120: hsl(var(--hue), var(--saturation), 13%);
     --primary-color_140: hsl(var(--hue), var(--saturation), 15%);
     --primary-color_160: hsl(var(--hue), var(--saturation), 17%);
     --primary-color_180: hsl(var(--hue), var(--saturation), 19%);
-    --primary-color_200: hsl(var(--hue), var(--saturation), 21%);
 
+    --primary-color_200: hsl(var(--hue), var(--saturation), 21%);
     --primary-color_220: hsl(var(--hue), var(--saturation), 23%);
     --primary-color_240: hsl(var(--hue), var(--saturation), 25%);
     --primary-color_260: hsl(var(--hue), var(--saturation), 27%);
     --primary-color_280: hsl(var(--hue), var(--saturation), 29%);
-    --primary-color_300: hsl(var(--hue), var(--saturation), 31%);
 
+    --primary-color_300: hsl(var(--hue), var(--saturation), 31%);
     --primary-color_320: hsl(var(--hue), var(--saturation), 33%);
     --primary-color_340: hsl(var(--hue), var(--saturation), 35%);
     --primary-color_360: hsl(var(--hue), var(--saturation), 37%);
     --primary-color_380: hsl(var(--hue), var(--saturation), 39%);
-    --primary-color_400: hsl(var(--hue), var(--saturation), 41%);
 
+    --primary-color_400: hsl(var(--hue), var(--saturation), 41%);
     --primary-color_420: hsl(var(--hue), var(--saturation), 43%);
     --primary-color_440: hsl(var(--hue), var(--saturation), 45%);
     --primary-color_460: hsl(var(--hue), var(--saturation), 47%);
     --primary-color_480: hsl(var(--hue), var(--saturation), 49%);
-    --primary-color_500: hsl(var(--hue), var(--saturation), 51%);
 
+    --primary-color_500: hsl(var(--hue), var(--saturation), 51%);
     --primary-color_520: hsl(var(--hue), var(--saturation), 53%);
     --primary-color_540: hsl(var(--hue), var(--saturation), 55%);
     --primary-color_560: hsl(var(--hue), var(--saturation), 57%);
     --primary-color_580: hsl(var(--hue), var(--saturation), 59%);
-    --primary-color_600: hsl(var(--hue), var(--saturation), 61%);
 
+    --primary-color_600: hsl(var(--hue), var(--saturation), 61%);
     --primary-color_620: hsl(var(--hue), var(--saturation), 63%);
     --primary-color_640: hsl(var(--hue), var(--saturation), 65%);
     --primary-color_660: hsl(var(--hue), var(--saturation), 67%);
     --primary-color_680: hsl(var(--hue), var(--saturation), 69%);
-    --primary-color_700: hsl(var(--hue), var(--saturation), 71%);
 
-    --primary-color_780: hsl(var(--hue), var(--saturation), 81%);
-    --primary-color_900: hsl(var(--hue), var(--saturation), 93%);
+    --primary-color_700: hsl(var(--hue), var(--saturation), 71%);
+    --primary-color_720: hsl(var(--hue), var(--saturation), 73%);
+    --primary-color_740: hsl(var(--hue), var(--saturation), 75%);
+    --primary-color_760: hsl(var(--hue), var(--saturation), 77%);
+    --primary-color_780: hsl(var(--hue), var(--saturation), 89%);
+
+    --primary-color_800: hsl(var(--hue), var(--saturation), 81%);
+    --primary-color_820: hsl(var(--hue), var(--saturation), 83%);
+    --primary-color_840: hsl(var(--hue), var(--saturation), 85%);
+    --primary-color_860: hsl(var(--hue), var(--saturation), 87%);
+    --primary-color_880: hsl(var(--hue), var(--saturation), 89%);
+
+    --primary-color_900: hsl(var(--hue), var(--saturation), 91%);
+    --primary-color_920: hsl(var(--hue), var(--saturation), 93%);
+    --primary-color_940: hsl(var(--hue), var(--saturation), 95%);
 
     /** Inputs colors */
     --input-label-color: var(--primary-color_680);
