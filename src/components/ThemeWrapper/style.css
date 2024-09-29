@@ -36,23 +36,47 @@ body {
 
     /* all colors of grey across all themes */
     --grey-color-000: hsl(0, 0%, 100%);
+    --grey-color-025: hsl(0, 0%, 97%);
     --grey-color-050: hsl(0, 0%, 94%);
+    --grey-color-075: hsl(0, 0%, 91%);
+
     --grey-color-100: hsl(0, 0%, 88%);
     --grey-color-125: hsl(0, 0%, 85%);
     --grey-color-150: hsl(0, 0%, 82%);
     --grey-color-175: hsl(0, 0%, 79%);
+
+    --grey-color-200: hsl(0, 0%, 76%);
+    --grey-color-225: hsl(0, 0%, 74%);
+    --grey-color-250: hsl(0, 0%, 71%);
+    --grey-color-275: hsl(0, 0%, 68%);
+
     --grey-color-300: hsl(0, 0%, 65%);
     --grey-color-325: hsl(0, 0%, 62%);
+    --grey-color-350: hsl(0, 0%, 59%);
+    --grey-color-375: hsl(0, 0%, 56%);
+
+    --grey-color-400: hsl(0, 0%, 53%);
+    --grey-color-425: hsl(0, 0%, 50%);
     --grey-color-450: hsl(0, 0%, 47%);
     --grey-color-475: hsl(0, 0%, 44%);
+
     --grey-color-500: hsl(0, 0%, 41%);
     --grey-color-525: hsl(0, 0%, 38%);
     --grey-color-550: hsl(0, 0%, 35%);
     --grey-color-575: hsl(0, 0%, 32%);
+
     --grey-color-600: hsl(0, 0%, 29%);
     --grey-color-625: hsl(0, 0%, 27%);
     --grey-color-650: hsl(0, 0%, 24%);
+    --grey-color-675: hsl(0, 0%, 21%);
+
+    --grey-color-700: hsl(0, 0%, 18%);
+    --grey-color-725: hsl(0, 0%, 15%);
+    --grey-color-750: hsl(0, 0%, 12%);
+    --grey-color-775: hsl(0, 0%, 9%);
+
     --grey-color-800: hsl(0, 0%, 6%);
+    --grey-color-825: hsl(0, 0%, 3%);
     --grey-color-850: hsl(0, 0%, 0%);
 
     /* Common */
@@ -143,6 +167,7 @@ body {
     --alert-disabled-button-background-color: var(--grey-color-050);
 
     /*? Common */
+    --icon-color: var(--grey-color-550);
     --primary-text-color: var(--grey-color-550);
 }
 
@@ -188,21 +213,58 @@ body {
     --alert-disabled-button-background-color: var(--grey-color-575);
 
     /*? Common */
+    --icon-color: var(--grey-color-050);
     --primary-text-color: var(--grey-color-050);
 }
 
 .light-grey-theme {
+    --primary-color_040: hsl(0, 0%, 8%);
+    --primary-color_060: hsl(0, 0%, 10%);
+    --primary-color_080: hsl(0, 0%, 12%);
+
+    --primary-color_100: hsl(0, 0%, 14%);
+    --primary-color_120: hsl(0, 0%, 16%);
+    --primary-color_140: hsl(0, 0%, 18%);
+    --primary-color_160: hsl(0, 0%, 20%);
+    --primary-color_180: hsl(0, 0%, 22%);
+
+    --primary-color_200: hsl(0, 0%, 24%);
     --primary-color_220: hsl(0, 0%, 26%);
+    --primary-color_240: hsl(0, 0%, 28%);
     --primary-color_260: hsl(0, 0%, 30%);
     --primary-color_280: hsl(0, 0%, 32%);
+
     --primary-color_300: hsl(0, 0%, 34%);
     --primary-color_320: hsl(0, 0%, 36%);
+    --primary-color_340: hsl(0, 0%, 38%);
+    --primary-color_360: hsl(0, 0%, 40%);
     --primary-color_380: hsl(0, 0%, 42%);
+
+    --primary-color_400: hsl(0, 0%, 44%);
     --primary-color_420: hsl(0, 0%, 46%);
     --primary-color_440: hsl(0, 0%, 48%);
     --primary-color_460: hsl(0, 0%, 50%);
+    --primary-color_480: hsl(0, 0%, 52%);
+
+    --primary-color_500: hsl(0, 0%, 54%);
+    --primary-color_520: hsl(0, 0%, 56%);
+    --primary-color_540: hsl(0, 0%, 58%);
+    --primary-color_560: hsl(0, 0%, 60%);
+    --primary-color_580: hsl(0, 0%, 62%);
+
+    --primary-color_600: hsl(0, 0%, 64%);
     --primary-color_620: hsl(0, 0%, 66%);
+    --primary-color_640: hsl(0, 0%, 68%);
+    --primary-color_660: hsl(0, 0%, 70%);
+    --primary-color_680: hsl(0, 0%, 72%);
+
+    --primary-color_700: hsl(0, 0%, 74%);
     --primary-color_720: hsl(0, 0%, 76%);
+    --primary-color_740: hsl(0, 0%, 78%);
+    --primary-color_760: hsl(0, 0%, 80%);
+    --primary-color_780: hsl(0, 0%, 82%);
+
+    --primary-color_800: hsl(0, 0%, 84%);
     --primary-color_820: hsl(0, 0%, 86%);
 
     /** Inputs colors */
@@ -233,18 +295,63 @@ body {
     /*? Common */
     --box-shadow-color: var(--primary-color_440);
 
-    --icon-color: var(--primary-color_300);
     --scroll-track-background-color: var(--primary-color_620);
 }
 
 .dark-grey-theme {
+    --primary-color_000: hsl(0, 0%, 10%);
+    --primary-color_020: hsl(0, 0%, 12%);
+    --primary-color_040: hsl(0, 0%, 14%);
+    --primary-color_060: hsl(0, 0%, 16%);
+    --primary-color_080: hsl(0, 0%, 18%);
+
+    --primary-color_100: hsl(0, 0%, 20%);
+    --primary-color_120: hsl(0, 0%, 22%);
+    --primary-color_140: hsl(0, 0%, 24%);
+    --primary-color_160: hsl(0, 0%, 26%);
+    --primary-color_180: hsl(0, 0%, 28%);
+
+    --primary-color_200: hsl(0, 0%, 30%);
+    --primary-color_220: hsl(0, 0%, 32%);
     --primary-color_240: hsl(0, 0%, 34%);
+    --primary-color_260: hsl(0, 0%, 36%);
+    --primary-color_280: hsl(0, 0%, 38%);
+
+    --primary-color_300: hsl(0, 0%, 40%);
+    --primary-color_320: hsl(0, 0%, 42%);
+    --primary-color_340: hsl(0, 0%, 44%);
+    --primary-color_360: hsl(0, 0%, 46%);
+    --primary-color_380: hsl(0, 0%, 48%);
+
+    --primary-color_400: hsl(0, 0%, 50%);
+    --primary-color_420: hsl(0, 0%, 52%);
+    --primary-color_440: hsl(0, 0%, 54%);
+    --primary-color_460: hsl(0, 0%, 56%);
+    --primary-color_480: hsl(0, 0%, 58%);
+
+    --primary-color_500: hsl(0, 0%, 60%);
+    --primary-color_520: hsl(0, 0%, 62%);
+    --primary-color_540: hsl(0, 0%, 64%);
     --primary-color_560: hsl(0, 0%, 66%);
+    --primary-color_580: hsl(0, 0%, 68%);
+
+    --primary-color_600: hsl(0, 0%, 70%);
     --primary-color_620: hsl(0, 0%, 72%);
+    --primary-color_640: hsl(0, 0%, 74%);
+    --primary-color_660: hsl(0, 0%, 76%);
+    --primary-color_680: hsl(0, 0%, 78%);
+
     --primary-color_700: hsl(0, 0%, 80%);
+    --primary-color_720: hsl(0, 0%, 82%);
     --primary-color_740: hsl(0, 0%, 84%);
+    --primary-color_760: hsl(0, 0%, 86%);
     --primary-color_780: hsl(0, 0%, 88%);
+
+    --primary-color_800: hsl(0, 0%, 90%);
+    --primary-color_820: hsl(0, 0%, 92%);
     --primary-color_840: hsl(0, 0%, 94%);
+    --primary-color_860: hsl(0, 0%, 96%);
+    --primary-color_880: hsl(0, 0%, 98%);
 
     /** Inputs colors */
     --input-label-color: var(--primary-color_780);
@@ -273,8 +380,6 @@ body {
 
     /*? Common */
     --box-shadow-color: var(--primary-color_700);
-
-    --icon-color: var(--primary-color_780);
     --scroll-track-background-color: var(--primary-color_600);
 }
 
@@ -282,14 +387,45 @@ body {
     --hue: 194;
     --saturation: 100%;
 
+    --primary-color_000: hsl(var(--hue), var(--saturation), 1%);
+    --primary-color_020: hsl(var(--hue), var(--saturation), 3%);
+    --primary-color_040: hsl(var(--hue), var(--saturation), 5%);
+    --primary-color_060: hsl(var(--hue), var(--saturation), 7%);
+    --primary-color_080: hsl(var(--hue), var(--saturation), 9%);
+
+    --primary-color_100: hsl(var(--hue), var(--saturation), 11%);
+    --primary-color_120: hsl(var(--hue), var(--saturation), 13%);
+    --primary-color_140: hsl(var(--hue), var(--saturation), 15%);
+    --primary-color_160: hsl(var(--hue), var(--saturation), 17%);
+    --primary-color_180: hsl(var(--hue), var(--saturation), 19%);
+
+    --primary-color_200: hsl(var(--hue), var(--saturation), 21%);
     --primary-color_220: hsl(var(--hue), var(--saturation), 23%);
+    --primary-color_240: hsl(var(--hue), var(--saturation), 25%);
+    --primary-color_260: hsl(var(--hue), var(--saturation), 27%);
+    --primary-color_280: hsl(var(--hue), var(--saturation), 29%);
+
+    --primary-color_300: hsl(var(--hue), var(--saturation), 31%);
+    --primary-color_320: hsl(var(--hue), var(--saturation), 33%);
+    --primary-color_340: hsl(var(--hue), var(--saturation), 35%);
+    --primary-color_360: hsl(var(--hue), var(--saturation), 37%);
     --primary-color_380: hsl(var(--hue), var(--saturation), 39%);
+
     --primary-color_400: hsl(var(--hue), var(--saturation), 41%);
+    --primary-color_420: hsl(var(--hue), var(--saturation), 43%);
+    --primary-color_440: hsl(var(--hue), var(--saturation), 45%);
+    --primary-color_460: hsl(var(--hue), var(--saturation), 47%);
+    --primary-color_480: hsl(var(--hue), var(--saturation), 49%);
+
     --primary-color_500: hsl(var(--hue), var(--saturation), 51%);
+    --primary-color_520: hsl(var(--hue), var(--saturation), 53%);
     --primary-color_540: hsl(var(--hue), var(--saturation), 55%);
+    --primary-color_560: hsl(var(--hue), var(--saturation), 57%);
     --primary-color_580: hsl(var(--hue), var(--saturation), 59%);
+
     --primary-color_680: hsl(var(--hue), var(--saturation), 69%);
     --primary-color_780: hsl(var(--hue), var(--saturation), 79%);
+    --primary-color_880: hsl(var(--hue), var(--saturation), 89%);
     --primary-color_920: hsl(var(--hue), var(--saturation), 93%);
 
     /** Inputs colors */
@@ -318,7 +454,6 @@ body {
 
     /* Common */
     --box-shadow-color: var(--primary-color_580);
-    --icon-color: var(--primary-color_580);
     --scroll-track-background-color: var(--primary-color_400);
 }
 
@@ -326,13 +461,50 @@ body {
     --hue: 194;
     --saturation: 100%;
 
+    --primary-color_000: hsl(var(--hue), var(--saturation), 1%);
+
+    --primary-color_020: hsl(var(--hue), var(--saturation), 3%);
+    --primary-color_040: hsl(var(--hue), var(--saturation), 5%);
+    --primary-color_060: hsl(var(--hue), var(--saturation), 7%);
+    --primary-color_080: hsl(var(--hue), var(--saturation), 9%);
     --primary-color_100: hsl(var(--hue), var(--saturation), 11%);
+
+    --primary-color_120: hsl(var(--hue), var(--saturation), 13%);
+    --primary-color_140: hsl(var(--hue), var(--saturation), 15%);
+    --primary-color_160: hsl(var(--hue), var(--saturation), 17%);
+    --primary-color_180: hsl(var(--hue), var(--saturation), 19%);
+    --primary-color_200: hsl(var(--hue), var(--saturation), 21%);
+
+    --primary-color_220: hsl(var(--hue), var(--saturation), 23%);
+    --primary-color_240: hsl(var(--hue), var(--saturation), 25%);
+    --primary-color_260: hsl(var(--hue), var(--saturation), 27%);
     --primary-color_280: hsl(var(--hue), var(--saturation), 29%);
+    --primary-color_300: hsl(var(--hue), var(--saturation), 31%);
+
+    --primary-color_320: hsl(var(--hue), var(--saturation), 33%);
+    --primary-color_340: hsl(var(--hue), var(--saturation), 35%);
+    --primary-color_360: hsl(var(--hue), var(--saturation), 37%);
+    --primary-color_380: hsl(var(--hue), var(--saturation), 39%);
+    --primary-color_400: hsl(var(--hue), var(--saturation), 41%);
+
+    --primary-color_420: hsl(var(--hue), var(--saturation), 43%);
+    --primary-color_440: hsl(var(--hue), var(--saturation), 45%);
+    --primary-color_460: hsl(var(--hue), var(--saturation), 47%);
     --primary-color_480: hsl(var(--hue), var(--saturation), 49%);
+    --primary-color_500: hsl(var(--hue), var(--saturation), 51%);
+
+    --primary-color_520: hsl(var(--hue), var(--saturation), 53%);
+    --primary-color_540: hsl(var(--hue), var(--saturation), 55%);
+    --primary-color_560: hsl(var(--hue), var(--saturation), 57%);
+    --primary-color_580: hsl(var(--hue), var(--saturation), 59%);
     --primary-color_600: hsl(var(--hue), var(--saturation), 61%);
+
     --primary-color_620: hsl(var(--hue), var(--saturation), 63%);
     --primary-color_640: hsl(var(--hue), var(--saturation), 65%);
+    --primary-color_660: hsl(var(--hue), var(--saturation), 67%);
     --primary-color_680: hsl(var(--hue), var(--saturation), 69%);
+    --primary-color_700: hsl(var(--hue), var(--saturation), 71%);
+
     --primary-color_780: hsl(var(--hue), var(--saturation), 81%);
     --primary-color_900: hsl(var(--hue), var(--saturation), 93%);
 
@@ -362,6 +534,5 @@ body {
 
     /* Common */
     --box-shadow-color: var(--primary-color_680);
-    --icon-color: var(--primary-color_680);
     --scroll-track-background-color: var(--primary-color_600);
 }
