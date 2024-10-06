@@ -44,7 +44,9 @@
     transform: rotateX(180deg);
 }
 
+.m-dropdown-container:has(.m-dropdown:read-only) .m-dropdown-clear-icon,
 .m-dropdown-container:has(.m-dropdown:disabled) .m-dropdown-clear-icon,
+.m-dropdown-container:has(.m-dropdown:read-only) .m-dropdown-icon,
 .m-dropdown-container:has(.m-dropdown:disabled) .m-dropdown-icon {
     display: none;
 }

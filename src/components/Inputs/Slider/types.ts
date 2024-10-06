@@ -17,6 +17,7 @@ export type SliderProps = {
     labelType?: `${GlobalInterfaces.InputLabel}`;
     hideValuePreview?: boolean;
     disabled?: boolean;
+    readOnly?: boolean;
     valuePreviewType?: ValuePreviewType;
     noBottomMargin?: boolean;
 };

@@ -34,6 +34,7 @@ export type StoryThemeWrapperProps = {
     error?: string;
     panelVariant?: CardVariantTypes;
     disabled?: boolean;
+    readOnly?: boolean;
 };
 
 type NewToastTypes = "ok" | "not_ok";
@@ -89,6 +90,7 @@ const StoryThemeWrapper = ({
     error = "",
     panelVariant = "default",
     disabled = false,
+    readOnly = false,
 }: StoryThemeWrapperProps) => {
     const toastRef = useRef<ToastHandler<NewToastTypes>>(null);
     const alertRef = useRef<AlertHandler>(null);
@@ -119,6 +121,8 @@ const StoryThemeWrapper = ({
                     floatingInputWidth={floatingInputWidth}
                     error={error}
                     size={inputSize}
+                    disabled={disabled}
+                    readOnly={readOnly}
                 />
                 <Textarea
                     label="label"
@@ -128,6 +132,7 @@ const StoryThemeWrapper = ({
                     floatingInputWidth={floatingInputWidth}
                     error={error}
                     disabled={disabled}
+                    readOnly={readOnly}
                     size={inputSize}
                 />
                 <Dropdown
@@ -139,6 +144,7 @@ const StoryThemeWrapper = ({
                     error={error}
                     name="1"
                     disabled={disabled}
+                    readOnly={readOnly}
                     size={inputSize}
                 />
                 <Dropdown
@@ -151,6 +157,7 @@ const StoryThemeWrapper = ({
                     error={error}
                     name="2"
                     disabled={disabled}
+                    readOnly={readOnly}
                     size={inputSize}
                 />
                 <Slider
@@ -161,9 +168,17 @@ const StoryThemeWrapper = ({
                     labelWidth={inputLabelWidth}
                     floatingInputWidth={floatingInputWidth}
                     disabled={disabled}
+                    readOnly={readOnly}
                     size={inputSize}
                 />
-                <Checkbox label="label" labelType={checkboxLabelType} labelWidth={inputLabelWidth} error={error} disabled={disabled} />
+                <Checkbox
+                    label="label"
+                    labelType={checkboxLabelType}
+                    labelWidth={inputLabelWidth}
+                    error={error}
+                    disabled={disabled}
+                    readOnly={readOnly}
+                />
 
                 <ColorPicker
                     labelType={inputLabelType}
@@ -176,11 +191,12 @@ const StoryThemeWrapper = ({
                         console.log(color.target.value); // console log used for documentation;
                     }}
                     disabled={disabled}
+                    readOnly={readOnly}
                 />
 
                 <SectionHeader text="DYNAMIC THEME COLOR CONTROL" />
                 <div style={{ display: "flex", alignItems: "center" }}>
-                    <HueSliderCanvas hue={0} onChange={(newHue) => setHue(newHue)} />
+                    <HueSliderCanvas hue={0} onChange={(newHue) => setHue(newHue)} readOnly={readOnly} />
                     <Button icon={["fas", "refresh"]} style={{ marginLeft: "10px" }} text="Default" onClick={() => setHue(undefined)} />
                 </div>
 

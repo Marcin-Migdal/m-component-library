@@ -7,6 +7,7 @@ type BaseTextfieldProps = {
     value?: string;
     name?: string;
     disabled?: boolean;
+    readOnly?: boolean;
     onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
     onBlur?: (event: FocusEvent<HTMLInputElement>, value: string) => void;
     error?: string;

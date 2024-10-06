@@ -21,6 +21,7 @@ const Textfield = (props: TextfieldProps) => {
         value: externalValue = undefined,
         name = undefined,
         disabled = false,
+        readOnly = false,
         onChange,
         onBlur,
         label = undefined,
@@ -72,6 +73,7 @@ const Textfield = (props: TextfieldProps) => {
     return (
         <InputContainer disabled={disabled} className="m-textfield-container" size={size} error={error} noBottomMargin={noBottomMargin}>
             <InputMask
+                readOnly={readOnly}
                 maskChar={null}
                 disabled={disabled}
                 name={name}

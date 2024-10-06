@@ -141,6 +141,10 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
     };
 
     const handleFocus = (e: FocusEvent<HTMLInputElement>) => {
+        if (readOnly) {
+            return;
+        }
+
         onFocus && onFocus(e);
 
         setIsFocused(true);
