@@ -1,8 +1,11 @@
 .m-input-container {
     position: relative;
-    margin-bottom: var(--input-margin-bottom);
     height: var(--input-height);
     width: 100%;
+}
+
+.m-input-container.bottom-margin {
+    margin-bottom: var(--input-margin-bottom);
 }
 
 .m-input-container.small {

@@ -12,4 +12,5 @@ export type CheckboxProps = {
     size?: `${GlobalInterfaces.InputSize}`;
     label?: string;
     labelType?: `${GlobalInterfaces.SimpleInputLabel}`;
+    noBottomMargin?: boolean;
 };

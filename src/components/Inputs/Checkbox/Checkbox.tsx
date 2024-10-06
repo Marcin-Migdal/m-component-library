@@ -20,6 +20,7 @@ const Checkbox = ({
     labelWidth = 30,
     size = InputSize.MEDIUM,
     disabled = false,
+    noBottomMargin = false,
     ...otherProps
 }: CheckboxProps) => {
     const checkboxContainerRef = useRef<HTMLDivElement>(null);
@@ -37,7 +38,14 @@ const Checkbox = ({
     };
 
     return (
-        <InputContainer disabled={disabled} ref={checkboxContainerRef} className="m-checkbox-container" size={size} error={error}>
+        <InputContainer
+            disabled={disabled}
+            ref={checkboxContainerRef}
+            className="m-checkbox-container"
+            size={size}
+            error={error}
+            noBottomMargin={noBottomMargin}
+        >
             <div style={getInputStyle(labelType as SimpleInputLabel, label, labelWidth, undefined)}>
                 <label className={classNames("m-checkbox-input-wrapper", { checked: isChecked })}>
                     <input

@@ -18,4 +18,5 @@ export type SliderProps = {
     hideValuePreview?: boolean;
     disabled?: boolean;
     valuePreviewType?: ValuePreviewType;
+    noBottomMargin?: boolean;
 };

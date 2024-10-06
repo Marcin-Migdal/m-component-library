@@ -18,4 +18,5 @@ export type TextareaProps = {
     size?: `${GlobalInterfaces.InputSize}`;
     label?: string;
     labelType?: `${GlobalInterfaces.InputLabel}`;
+    noBottomMargin?: boolean;
 };

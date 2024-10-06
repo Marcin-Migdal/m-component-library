@@ -35,6 +35,7 @@ const Textfield = (props: TextfieldProps) => {
         mask = "",
         advancedMask = undefined,
         size = InputSize.MEDIUM,
+        noBottomMargin = false,
         ...otherProps
     } = props;
 
@@ -69,7 +70,7 @@ const Textfield = (props: TextfieldProps) => {
     };
 
     return (
-        <InputContainer disabled={disabled} className="m-textfield-container" size={size} error={error}>
+        <InputContainer disabled={disabled} className="m-textfield-container" size={size} error={error} noBottomMargin={noBottomMargin}>
             <InputMask
                 maskChar={null}
                 disabled={disabled}

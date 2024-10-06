@@ -19,6 +19,7 @@ type DropdownBaseProps<T> = {
     size?: `${GlobalInterfaces.InputSize}`;
     label?: string;
     labelType?: `${GlobalInterfaces.InputLabel}`;
+    noBottomMargin?: boolean;
 
     options?: T[];
 };
