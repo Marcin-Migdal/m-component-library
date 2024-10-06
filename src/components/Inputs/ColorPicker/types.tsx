@@ -14,6 +14,7 @@ export type ColorPickerProps = {
     error?: string;
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
     floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
+    noBottomMargin?: boolean;
     onOpen?: () => void;
 } & (
     | {

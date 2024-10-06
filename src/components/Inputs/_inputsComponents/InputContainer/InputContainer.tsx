@@ -6,6 +6,7 @@ import * as GlobalInterfaces from "../../../global-types";
 import "./InputContainer.css";
 
 type InputContainerProps = {
+    noBottomMargin: boolean;
     disabled: boolean;
     className: string;
     size: `${GlobalInterfaces.InputSize}`;
@@ -14,7 +15,7 @@ type InputContainerProps = {
 };
 
 function InputContainer(
-    { children, className, size, error, style = {}, disabled }: PropsWithChildren<InputContainerProps>,
+    { children, className, size, error, style = {}, disabled, noBottomMargin }: PropsWithChildren<InputContainerProps>,
     ref?: React.ForwardedRef<HTMLDivElement>
 ) {
     return (
@@ -24,6 +25,7 @@ function InputContainer(
             className={classNames("m-input-container", className, size, {
                 error,
                 disabled,
+                "bottom-margin": !noBottomMargin,
             })}
         >
             {children}

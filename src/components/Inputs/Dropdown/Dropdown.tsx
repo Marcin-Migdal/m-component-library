@@ -36,6 +36,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
         labelKey = "label",
         valueKey = "value",
         size = InputSize.MEDIUM,
+        noBottomMargin = false,
 
         clearable = true,
         readOnly = false,
@@ -146,7 +147,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
     };
 
     return (
-        <InputContainer disabled={disabled} className="m-dropdown-container" size={size} error={error}>
+        <InputContainer disabled={disabled} className="m-dropdown-container" size={size} error={error} noBottomMargin={noBottomMargin}>
             {/* input placeholder, displays selected value, also work as a filter input */}
             <input
                 ref={filterRef}

@@ -25,6 +25,7 @@ const ColorPicker = ({
     defaultInternalValue = defaultColorPickerValue,
     returnedColorType,
     size = InputSize.MEDIUM,
+    noBottomMargin = false,
     onOpen,
     onClose,
 }: ColorPickerProps) => {
@@ -76,7 +77,13 @@ const ColorPicker = ({
 
     return (
         <>
-            <InputContainer disabled={disabled} className="m-color-picker-container" size={size} error={error}>
+            <InputContainer
+                disabled={disabled}
+                className="m-color-picker-container"
+                size={size}
+                error={error}
+                noBottomMargin={noBottomMargin}
+            >
                 <div
                     ref={containerRef}
                     className={classNames("m-input", "m-color-preview", labelType)}

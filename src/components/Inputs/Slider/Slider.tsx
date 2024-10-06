@@ -25,6 +25,7 @@ const Slider = ({
     hideValuePreview = false,
     valuePreviewType = "bottom-dynamic",
     disabled = false,
+    noBottomMargin = false,
 }: SliderProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -78,6 +79,7 @@ const Slider = ({
                 // @ts-expect-error ts(2353) typescript do not recognize css variables
                 "--slider-value": value,
             }}
+            noBottomMargin={noBottomMargin}
         >
             <input
                 disabled={disabled}

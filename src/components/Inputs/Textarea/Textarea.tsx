@@ -25,6 +25,7 @@ const Textarea = ({
     row = 4,
     size = InputSize.MEDIUM,
     disabled = false,
+    noBottomMargin = false,
     ...otherProps
 }: TextareaProps) => {
     const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
@@ -46,7 +47,7 @@ const Textarea = ({
     };
 
     return (
-        <InputContainer disabled={disabled} className="m-textarea-container" size={size} error={error}>
+        <InputContainer disabled={disabled} className="m-textarea-container" size={size} error={error} noBottomMargin={noBottomMargin}>
             <textarea
                 name={name}
                 rows={row}

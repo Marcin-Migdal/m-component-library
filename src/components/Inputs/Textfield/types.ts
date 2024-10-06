@@ -19,6 +19,7 @@ type BaseTextfieldProps = {
     size?: `${GlobalInterfaces.InputSize}`;
     label?: string;
     labelType?: `${GlobalInterfaces.InputLabel}`;
+    noBottomMargin?: boolean;
 };
 
 export type TextfieldProps = BaseTextfieldProps & (BaseMaskTextfieldType | AdvancedMaskTextfieldType | NoMaskTextfieldType);
