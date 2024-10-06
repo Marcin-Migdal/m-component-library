@@ -16,6 +16,7 @@ import "./ColorPicker.css";
 const ColorPicker = ({
     name = undefined,
     disabled = false,
+    readOnly = false,
     onChange,
     label = undefined,
     error = undefined,
@@ -36,6 +37,10 @@ const ColorPicker = ({
     const [value, setValue] = useState<RgbValue>(valueToRgb(defaultInternalValue));
 
     const handleOpen = () => {
+        if (readOnly) {
+            return;
+        }
+
         onOpen && onOpen();
         toggleOpenStatus();
     };

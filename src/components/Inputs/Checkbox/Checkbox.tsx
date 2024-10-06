@@ -20,6 +20,7 @@ const Checkbox = ({
     labelWidth = 30,
     size = InputSize.MEDIUM,
     disabled = false,
+    readOnly = false,
     noBottomMargin = false,
     ...otherProps
 }: CheckboxProps) => {
@@ -31,6 +32,11 @@ const Checkbox = ({
     }, [checked]);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+        if (readOnly) {
+            e.preventDefault();
+            return;
+        }
+
         const _checked = e.target.checked;
 
         onChange && onChange(e, _checked);
@@ -49,6 +55,7 @@ const Checkbox = ({
             <div style={getInputStyle(labelType as SimpleInputLabel, label, labelWidth, undefined)}>
                 <label className={classNames("m-checkbox-input-wrapper", { checked: isChecked })}>
                     <input
+                        readOnly
                         className="m-checkbox-input"
                         type="checkbox"
                         checked={isChecked}

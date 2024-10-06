@@ -25,6 +25,7 @@ const Textarea = ({
     row = 4,
     size = InputSize.MEDIUM,
     disabled = false,
+    readOnly = false,
     noBottomMargin = false,
     ...otherProps
 }: TextareaProps) => {
@@ -49,6 +50,7 @@ const Textarea = ({
     return (
         <InputContainer disabled={disabled} className="m-textarea-container" size={size} error={error} noBottomMargin={noBottomMargin}>
             <textarea
+                readOnly={readOnly}
                 name={name}
                 rows={row}
                 style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}

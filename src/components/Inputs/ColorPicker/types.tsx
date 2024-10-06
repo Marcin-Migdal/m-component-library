@@ -11,6 +11,7 @@ export type ColorPickerProps = {
     size?: `${GlobalInterfaces.InputSize}`;
     name?: string;
     disabled?: boolean;
+    readOnly?: boolean;
     error?: string;
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
     floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;

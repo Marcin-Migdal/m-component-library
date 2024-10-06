@@ -25,6 +25,7 @@ const Slider = ({
     hideValuePreview = false,
     valuePreviewType = "bottom-dynamic",
     disabled = false,
+    readOnly = false,
     noBottomMargin = false,
 }: SliderProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -59,6 +60,11 @@ const Slider = ({
     }, [value, valuePreviewType]);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        if (readOnly) {
+            event.preventDefault();
+            return;
+        }
+
         const newValue = parseFloat(event.target.value);
 
         if (onChange) {
@@ -82,6 +88,7 @@ const Slider = ({
             noBottomMargin={noBottomMargin}
         >
             <input
+                readOnly={readOnly}
                 disabled={disabled}
                 ref={inputRef}
                 type="range"
