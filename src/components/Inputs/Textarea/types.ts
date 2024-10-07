@@ -2,6 +2,13 @@ import { ChangeEvent, FocusEvent } from "react";
 
 import * as GlobalInterfaces from "../../global-types";
 
+type TextAreaClassNames = {
+    container?: string;
+    input?: string;
+    label?: string;
+    error?: string;
+};
+
 export type TextareaProps = {
     value?: string;
     name?: string;
@@ -20,4 +27,5 @@ export type TextareaProps = {
     label?: string;
     labelType?: `${GlobalInterfaces.InputLabel}`;
     noBottomMargin?: boolean;
+    classNamesObj?: TextAreaClassNames;
 };

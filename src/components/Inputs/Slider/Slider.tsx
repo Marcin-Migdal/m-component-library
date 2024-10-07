@@ -27,6 +27,7 @@ const Slider = ({
     disabled = false,
     readOnly = false,
     noBottomMargin = false,
+    classNamesObj,
 }: SliderProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -79,7 +80,7 @@ const Slider = ({
     return (
         <InputContainer
             disabled={disabled}
-            className="m-slider-container"
+            className={classNames("m-slider-container", classNamesObj?.container)}
             size={size}
             style={{
                 // @ts-expect-error ts(2353) typescript do not recognize css variables
@@ -99,20 +100,23 @@ const Slider = ({
                 value={value}
                 onChange={handleChange}
                 style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
-                className="m-input m-slider"
+                className={classNames("m-input m-slider", classNamesObj?.input)}
             />
             {label && (
                 <InputsLabel
                     label={label}
                     labelType={labelType}
-                    className="slider"
+                    className={classNames("slider", classNamesObj?.label)}
                     labelWidth={labelWidth}
                     forceFloating={labelType === InputLabel.FLOATING}
                 />
             )}
             {!hideValuePreview && (
                 <div className="m-relative-value-container">
-                    <span className={classNames("m-slider-value-preview", valuePreviewType)} style={sliderValueDynamicStyle}>
+                    <span
+                        className={classNames("m-slider-value-preview", classNamesObj?.valuePreview, valuePreviewType)}
+                        style={sliderValueDynamicStyle}
+                    >
                         {value}
                     </span>
                 </div>

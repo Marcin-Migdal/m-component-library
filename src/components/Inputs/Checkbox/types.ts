@@ -2,6 +2,15 @@ import { ChangeEvent } from "react";
 
 import * as GlobalInterfaces from "../../global-types";
 
+type CheckboxClassNames = {
+    container?: string;
+    inputWrapper?: string;
+    input?: string;
+    label?: string;
+    error?: string;
+    valuePreview?: string;
+};
+
 export type CheckboxProps = {
     checked?: boolean;
     disabled?: boolean;
@@ -14,4 +23,5 @@ export type CheckboxProps = {
     label?: string;
     labelType?: `${GlobalInterfaces.SimpleInputLabel}`;
     noBottomMargin?: boolean;
+    classNamesObj?: CheckboxClassNames;
 };

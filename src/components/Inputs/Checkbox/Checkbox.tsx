@@ -22,6 +22,7 @@ const Checkbox = ({
     disabled = false,
     readOnly = false,
     noBottomMargin = false,
+    classNamesObj,
     ...otherProps
 }: CheckboxProps) => {
     const checkboxContainerRef = useRef<HTMLDivElement>(null);
@@ -47,13 +48,13 @@ const Checkbox = ({
         <InputContainer
             disabled={disabled}
             ref={checkboxContainerRef}
-            className="m-checkbox-container"
+            className={classNames("m-checkbox-container", classNamesObj?.container)}
             size={size}
             error={error}
             noBottomMargin={noBottomMargin}
         >
             <div style={getInputStyle(labelType as SimpleInputLabel, label, labelWidth, undefined)}>
-                <label className={classNames("m-checkbox-input-wrapper", { checked: isChecked })}>
+                <label className={classNames("m-checkbox-input-wrapper", classNamesObj?.inputWrapper, { checked: isChecked })}>
                     <input
                         readOnly
                         className="m-checkbox-input"
@@ -64,16 +65,23 @@ const Checkbox = ({
                         disabled={disabled}
                         {...otherProps}
                     />
-                    <span className={classNames("m-input", "m-checkbox", labelType)}>
+                    <span className={classNames("m-input", "m-checkbox", classNamesObj?.input, labelType)}>
                         <FontAwesomeIcon className="m-checkbox-check-icon" icon="check" />
                     </span>
                 </label>
             </div>
-            {label && <InputsLabel label={label} labelType={labelType} className="m-input-label" labelWidth={labelWidth} />}
+            {label && (
+                <InputsLabel
+                    label={label}
+                    labelType={labelType}
+                    className={classNames("m-input-label", classNamesObj?.label)}
+                    labelWidth={labelWidth}
+                />
+            )}
             {error && checkboxContainerRef.current && (
                 <InputError
                     style={getCheckboxErrorStyle(checkboxContainerRef.current, labelType as SimpleInputLabel, labelWidth)}
-                    className="checkbox"
+                    className={classNames("checkbox", classNamesObj?.error)}
                     error={error}
                 />
             )}

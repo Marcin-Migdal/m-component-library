@@ -2,6 +2,15 @@ import { FocusEvent } from "react";
 
 import * as GlobalInterfaces from "../../global-types";
 
+type DropdownClassNames = {
+    container?: string;
+    control?: string;
+    label?: string;
+    error?: string;
+    dropdownIndicatorIcon?: string;
+    clearIcon?: string;
+} & DropdownOptionsClassnames;
+
 type DropdownBaseProps<T> = {
     value?: DropdownValue<T>;
     name?: string;
@@ -20,6 +29,7 @@ type DropdownBaseProps<T> = {
     label?: string;
     labelType?: `${GlobalInterfaces.InputLabel}`;
     noBottomMargin?: boolean;
+    classNamesObj?: DropdownClassNames;
 
     options?: T[];
 };
@@ -52,6 +62,12 @@ type DropdownChangeEventTarget<T> = EventTarget & {
     type: "dropdown";
 };
 
+type DropdownOptionsClassnames = {
+    dropdownOptions?: string;
+    dropdownOption?: string;
+    emptyDropdownOption?: string;
+};
+
 export type DropdownOptionsProps<T> = {
     filterElement: HTMLInputElement;
     uniqueDropdownId: string;
@@ -60,4 +76,5 @@ export type DropdownOptionsProps<T> = {
     value: T | undefined;
     valueKey: keyof T;
     labelKey: keyof T;
+    classNamesObj?: DropdownOptionsClassnames;
 };
