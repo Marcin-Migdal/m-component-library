@@ -3,7 +3,6 @@ import React, { ChangeEvent, useLayoutEffect, useRef, useState } from "react";
 
 import { getPosition } from "../../../../helpers/getPosition";
 import { Position } from "../../../../helpers/getPosition/getPosition-types";
-import { OpenStatus } from "../../../../hooks";
 import { HueSliderCanvas } from "../../../Miscellaneous/HueSliderCanvas/HueSliderCanvas";
 import { Textfield } from "../../Textfield";
 import { ADVANCED_MASKS_CONFIGS } from "../../Textfield/helpers/advanced-masks-configs";
@@ -17,7 +16,7 @@ type ColorPickerPopupProps = {
     value: RgbValue;
     onChange: (value: RgbValue) => void;
     parentElement: HTMLDivElement | null;
-    className: OpenStatus;
+    className: string;
     handleClose: () => void;
 };
 

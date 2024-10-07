@@ -2,6 +2,14 @@ import * as GlobalInterfaces from "../../global-types";
 
 export type ValuePreviewType = "top-dynamic" | "bottom-dynamic" | "top-static" | "bottom-static";
 
+type SliderClassNames = {
+    container?: string;
+    input?: string;
+    label?: string;
+    error?: string;
+    valuePreview?: string;
+};
+
 export type SliderProps = {
     value?: number;
     min: number;
@@ -20,4 +28,5 @@ export type SliderProps = {
     readOnly?: boolean;
     valuePreviewType?: ValuePreviewType;
     noBottomMargin?: boolean;
+    classNamesObj?: SliderClassNames;
 };

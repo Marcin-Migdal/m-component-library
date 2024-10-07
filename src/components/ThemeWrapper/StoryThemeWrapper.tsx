@@ -1,6 +1,8 @@
 import React, { CSSProperties, useRef, useState } from "react";
 
+import { Placement } from "../../helpers/getPosition/getPosition-types";
 import { InputLabel, InputSize, LabelPercentageWidth, SimpleInputLabel } from "../global-types";
+import ThemeWrapper from "./ThemeWrapper";
 
 import {
     Alert,
@@ -24,8 +26,6 @@ import {
     ToastHandler,
     ToastsContainer,
 } from "../..";
-import { Placement } from "../../helpers/getPosition/getPosition-types";
-import ThemeWrapper from "./ThemeWrapper";
 
 export type StoryThemeWrapperProps = {
     darkMode: boolean;

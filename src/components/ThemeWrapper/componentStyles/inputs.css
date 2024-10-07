@@ -60,17 +60,17 @@
     color: var(--input-text-color);
 }
 
-.common-wrapper-container .m-dropdown-list {
+.common-wrapper-container .m-dropdown-options {
     background-color: var(--input-background-color);
     color: var(--input-text-color);
 }
 
-.common-wrapper-container .m-dropdown-list .m-dropdown-list-item:not(.empty-message):hover,
-.common-wrapper-container .m-dropdown-list .m-dropdown-list-item:not(.empty-message):active {
+.common-wrapper-container .m-dropdown-options .m-dropdown-option:not(.empty-message):hover,
+.common-wrapper-container .m-dropdown-options .m-dropdown-option:not(.empty-message):active {
     background-color: var(--input-hover-background-color);
 }
 
-.common-wrapper-container .m-dropdown-list .m-dropdown-list-item:not(.empty-message).selected {
+.common-wrapper-container .m-dropdown-options .m-dropdown-option:not(.empty-message).selected {
     background-color: var(--input-hover-background-color);
 }
 
