@@ -15,6 +15,7 @@ export const DropdownOptions = <T,>({
     value,
     valueKey,
     labelKey,
+    classNamesObj,
 }: DropdownOptionsProps<T>) => {
     const ref = useRef<HTMLUListElement>(null);
     const [position, setPosition] = useState<Position | { opacity: number } | undefined>({ opacity: 0 });
@@ -28,7 +29,12 @@ export const DropdownOptions = <T,>({
     }, []);
 
     return (
-        <ul ref={ref} className="m-dropdown-list" style={position} data-id={uniqueDropdownId}>
+        <ul
+            ref={ref}
+            className={classNames("m-dropdown-options", classNamesObj?.dropdownOptions)}
+            style={position}
+            data-id={uniqueDropdownId}
+        >
             {dropdownOptions && dropdownOptions.length > 0 ? (
                 dropdownOptions.map((option) => {
                     return (
@@ -36,7 +42,7 @@ export const DropdownOptions = <T,>({
                             key={option[valueKey] as string}
                             data-id={uniqueDropdownId}
                             onClick={(e) => handleDropdownChange(e, option)}
-                            className={classNames("m-dropdown-list-item", {
+                            className={classNames("m-dropdown-option", classNamesObj?.dropdownOption, {
                                 selected: option[valueKey] === value?.[valueKey],
                             })}
                         >
@@ -45,7 +51,10 @@ export const DropdownOptions = <T,>({
                     );
                 })
             ) : (
-                <li data-id={uniqueDropdownId} className="m-dropdown-list-item empty-message">
+                <li
+                    data-id={uniqueDropdownId}
+                    className={classNames("m-dropdown-option empty-message", classNamesObj?.emptyDropdownOption)}
+                >
                     No options
                 </li>
             )}

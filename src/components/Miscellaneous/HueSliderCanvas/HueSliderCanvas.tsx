@@ -8,7 +8,7 @@ import { HueSliderCanvasProps } from "./types";
 
 import "./HueSliderCanvas.css";
 
-export const HueSliderCanvas = ({ hue, onChange }: HueSliderCanvasProps) => {
+export const HueSliderCanvas = ({ hue, onChange, readOnly }: HueSliderCanvasProps) => {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
     const [isDragging, setIsDragging] = useState(false);
@@ -81,6 +81,10 @@ export const HueSliderCanvas = ({ hue, onChange }: HueSliderCanvasProps) => {
     }, [isDragging, hue]);
 
     const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
+        if (readOnly) {
+            e.preventDefault();
+            return;
+        }
         setIsDragging(true);
         throttledChangeColor(e);
     };

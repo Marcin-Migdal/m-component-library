@@ -16,6 +16,7 @@ import "./ColorPicker.css";
 const ColorPicker = ({
     name = undefined,
     disabled = false,
+    readOnly = false,
     onChange,
     label = undefined,
     error = undefined,
@@ -25,6 +26,8 @@ const ColorPicker = ({
     defaultInternalValue = defaultColorPickerValue,
     returnedColorType,
     size = InputSize.MEDIUM,
+    noBottomMargin = false,
+    classNamesObj,
     onOpen,
     onClose,
 }: ColorPickerProps) => {
@@ -35,6 +38,10 @@ const ColorPicker = ({
     const [value, setValue] = useState<RgbValue>(valueToRgb(defaultInternalValue));
 
     const handleOpen = () => {
+        if (readOnly) {
+            return;
+        }
+
         onOpen && onOpen();
         toggleOpenStatus();
     };
@@ -76,10 +83,16 @@ const ColorPicker = ({
 
     return (
         <>
-            <InputContainer disabled={disabled} className="m-color-picker-container" size={size} error={error}>
+            <InputContainer
+                disabled={disabled}
+                className={classNames("m-color-picker-container", classNamesObj?.container)}
+                size={size}
+                error={error}
+                noBottomMargin={noBottomMargin}
+            >
                 <div
                     ref={containerRef}
-                    className={classNames("m-input", "m-color-preview", labelType)}
+                    className={classNames("m-input", "m-color-preview", classNamesObj?.input, labelType)}
                     onClick={() => !disabled && handleOpen()}
                     style={{
                         ...getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth),
@@ -90,7 +103,7 @@ const ColorPicker = ({
                     <InputsLabel
                         label={label}
                         labelType={labelType}
-                        className="color-picker"
+                        className={classNames("color-picker", classNamesObj?.label)}
                         labelWidth={labelWidth}
                         forceFloating={labelType === InputLabel.FLOATING}
                     />
@@ -98,7 +111,7 @@ const ColorPicker = ({
                 {error && (
                     <InputError
                         style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
-                        className="input"
+                        className={classNames("input", classNamesObj?.error)}
                         error={error}
                     />
                 )}
@@ -109,7 +122,7 @@ const ColorPicker = ({
                     <ColorPickerPopup
                         value={value}
                         onChange={handleChange}
-                        className={openStatus}
+                        className={classNames(openStatus, classNamesObj?.popup)}
                         parentElement={containerRef.current}
                         handleClose={handleClose}
                     />,

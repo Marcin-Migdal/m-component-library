@@ -25,6 +25,9 @@ const Slider = ({
     hideValuePreview = false,
     valuePreviewType = "bottom-dynamic",
     disabled = false,
+    readOnly = false,
+    noBottomMargin = false,
+    classNamesObj,
 }: SliderProps) => {
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -58,6 +61,11 @@ const Slider = ({
     }, [value, valuePreviewType]);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+        if (readOnly) {
+            event.preventDefault();
+            return;
+        }
+
         const newValue = parseFloat(event.target.value);
 
         if (onChange) {
@@ -72,14 +80,16 @@ const Slider = ({
     return (
         <InputContainer
             disabled={disabled}
-            className="m-slider-container"
+            className={classNames("m-slider-container", classNamesObj?.container)}
             size={size}
             style={{
                 // @ts-expect-error ts(2353) typescript do not recognize css variables
                 "--slider-value": value,
             }}
+            noBottomMargin={noBottomMargin}
         >
             <input
+                readOnly={readOnly}
                 disabled={disabled}
                 ref={inputRef}
                 type="range"
@@ -90,20 +100,23 @@ const Slider = ({
                 value={value}
                 onChange={handleChange}
                 style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
-                className="m-input m-slider"
+                className={classNames("m-input m-slider", classNamesObj?.input)}
             />
             {label && (
                 <InputsLabel
                     label={label}
                     labelType={labelType}
-                    className="slider"
+                    className={classNames("slider", classNamesObj?.label)}
                     labelWidth={labelWidth}
                     forceFloating={labelType === InputLabel.FLOATING}
                 />
             )}
             {!hideValuePreview && (
                 <div className="m-relative-value-container">
-                    <span className={classNames("m-slider-value-preview", valuePreviewType)} style={sliderValueDynamicStyle}>
+                    <span
+                        className={classNames("m-slider-value-preview", classNamesObj?.valuePreview, valuePreviewType)}
+                        style={sliderValueDynamicStyle}
+                    >
                         {value}
                     </span>
                 </div>

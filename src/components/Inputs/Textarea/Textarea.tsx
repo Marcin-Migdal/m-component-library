@@ -25,6 +25,9 @@ const Textarea = ({
     row = 4,
     size = InputSize.MEDIUM,
     disabled = false,
+    readOnly = false,
+    noBottomMargin = false,
+    classNamesObj,
     ...otherProps
 }: TextareaProps) => {
     const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
@@ -46,12 +49,19 @@ const Textarea = ({
     };
 
     return (
-        <InputContainer disabled={disabled} className="m-textarea-container" size={size} error={error}>
+        <InputContainer
+            disabled={disabled}
+            className={classNames("m-textarea-container", classNamesObj?.container)}
+            size={size}
+            error={error}
+            noBottomMargin={noBottomMargin}
+        >
             <textarea
+                readOnly={readOnly}
                 name={name}
                 rows={row}
                 style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
-                className={classNames("m-input", "m-textarea", labelType)}
+                className={classNames("m-input", "m-textarea", classNamesObj?.input, labelType)}
                 value={value}
                 onChange={handleChange}
                 onFocus={handleFocus}
@@ -65,7 +75,7 @@ const Textarea = ({
                 <InputsLabel
                     label={label}
                     labelType={labelType}
-                    className="textarea"
+                    className={classNames("textarea", classNamesObj?.label)}
                     labelWidth={labelWidth}
                     isFocused={isFocused}
                     isFilled={!!value}
@@ -74,7 +84,7 @@ const Textarea = ({
             {error && (
                 <InputError
                     style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
-                    className="textarea"
+                    className={classNames("textarea", classNamesObj?.error)}
                     error={error}
                 />
             )}

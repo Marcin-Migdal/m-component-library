@@ -3,10 +3,18 @@ import { InputState } from "react-input-mask";
 
 import * as GlobalInterfaces from "../../global-types";
 
+type TextFieldClassNames = {
+    container?: string;
+    input?: string;
+    label?: string;
+    error?: string;
+};
+
 type BaseTextfieldProps = {
     value?: string;
     name?: string;
     disabled?: boolean;
+    readOnly?: boolean;
     onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
     onBlur?: (event: FocusEvent<HTMLInputElement>, value: string) => void;
     error?: string;
@@ -19,6 +27,8 @@ type BaseTextfieldProps = {
     size?: `${GlobalInterfaces.InputSize}`;
     label?: string;
     labelType?: `${GlobalInterfaces.InputLabel}`;
+    noBottomMargin?: boolean;
+    classNamesObj?: TextFieldClassNames;
 };
 
 export type TextfieldProps = BaseTextfieldProps & (BaseMaskTextfieldType | AdvancedMaskTextfieldType | NoMaskTextfieldType);

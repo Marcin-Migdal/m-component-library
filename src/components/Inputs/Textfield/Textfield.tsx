@@ -21,6 +21,7 @@ const Textfield = (props: TextfieldProps) => {
         value: externalValue = undefined,
         name = undefined,
         disabled = false,
+        readOnly = false,
         onChange,
         onBlur,
         label = undefined,
@@ -35,6 +36,8 @@ const Textfield = (props: TextfieldProps) => {
         mask = "",
         advancedMask = undefined,
         size = InputSize.MEDIUM,
+        noBottomMargin = false,
+        classNamesObj,
         ...otherProps
     } = props;
 
@@ -69,12 +72,19 @@ const Textfield = (props: TextfieldProps) => {
     };
 
     return (
-        <InputContainer disabled={disabled} className="m-textfield-container" size={size} error={error}>
+        <InputContainer
+            disabled={disabled}
+            className={classNames("m-textfield-container", classNamesObj?.container)}
+            size={size}
+            error={error}
+            noBottomMargin={noBottomMargin}
+        >
             <InputMask
+                readOnly={readOnly}
                 maskChar={null}
                 disabled={disabled}
                 name={name}
-                className={classNames("m-input", "m-textfield", labelType)}
+                className={classNames("m-input", "m-textfield", classNamesObj?.input, labelType)}
                 type={type}
                 style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
                 value={value}
@@ -93,7 +103,7 @@ const Textfield = (props: TextfieldProps) => {
                 <InputsLabel
                     label={label}
                     labelType={labelType}
-                    className="textfield"
+                    className={classNames("textfield", classNamesObj?.label)}
                     labelWidth={labelWidth}
                     isFocused={isFocused}
                     isFilled={!!value}
@@ -102,7 +112,7 @@ const Textfield = (props: TextfieldProps) => {
             {error && (
                 <InputError
                     style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
-                    className="input"
+                    className={classNames("input", classNamesObj?.error)}
                     error={error}
                 />
             )}

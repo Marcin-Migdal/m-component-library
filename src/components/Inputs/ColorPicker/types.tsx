@@ -4,6 +4,14 @@ export type ColorValue = HslValue | RgbValue | string;
 
 export type ColorPickerOnChange<TValue> = (event: { target: { name: string; value: TValue } }) => void;
 
+type ColorPickerClassNames = {
+    container?: string;
+    input?: string;
+    label?: string;
+    error?: string;
+    popup?: string;
+};
+
 export type ColorPickerProps = {
     defaultInternalValue?: ColorValue;
     label?: string;
@@ -11,9 +19,13 @@ export type ColorPickerProps = {
     size?: `${GlobalInterfaces.InputSize}`;
     name?: string;
     disabled?: boolean;
+    readOnly?: boolean;
     error?: string;
     labelWidth?: GlobalInterfaces.LabelPercentageWidth;
     floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
+    noBottomMargin?: boolean;
+    classNamesObj?: ColorPickerClassNames;
+
     onOpen?: () => void;
 } & (
     | {

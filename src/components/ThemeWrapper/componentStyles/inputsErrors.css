@@ -23,10 +23,10 @@
 }
 
 /* Dropdown */
-.common-wrapper-container .m-dropdown-container .m-dropdown-clear-icon {
+.common-wrapper-container .m-dropdown-container.error .m-dropdown-clear-icon {
     color: var(--failure-color);
 }
 
-.common-wrapper-container .m-dropdown-container .m-dropdown-clear-icon:hover {
+.common-wrapper-container .m-dropdown-container.error .m-dropdown-clear-icon:hover {
     color: var(--failure-light-color);
 }

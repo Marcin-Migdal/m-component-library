@@ -5,7 +5,7 @@ import { OverlayProps } from "./types";
 
 import "./Overlay.css";
 
-const Overlay = ({ children, onClick }: PropsWithChildren<OverlayProps>) => {
+const Overlay = ({ children, onClick, enableKeysDown }: PropsWithChildren<OverlayProps>) => {
     const overlayRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -14,7 +14,11 @@ const Overlay = ({ children, onClick }: PropsWithChildren<OverlayProps>) => {
         }
 
         const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.code === "Tab" || event.code === "Enter" || event.code === "Space") {
+            if (
+                (!enableKeysDown?.tab && event.code === "Tab") ||
+                (!enableKeysDown?.enter && event.code === "Enter") ||
+                (!enableKeysDown?.space && event.code === "Space")
+            ) {
                 event.preventDefault();
             }
         };
@@ -27,13 +31,16 @@ const Overlay = ({ children, onClick }: PropsWithChildren<OverlayProps>) => {
     }, []);
 
     const handleClick = (event: React.MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => {
-        event.stopPropagation();
+        if (event.target !== overlayRef.current) {
+            return;
+        }
 
+        event.stopPropagation();
         onClick && onClick(event);
     };
 
     return createPortal(
-        <div tabIndex={0} ref={overlayRef} onClick={handleClick} className="m-overlay">
+        <div tabIndex={0} ref={overlayRef} onMouseDown={handleClick} className="m-overlay">
             {children}
         </div>,
         document.body
