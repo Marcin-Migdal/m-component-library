@@ -1,5 +1,7 @@
 ### Release date ??? - Release ?.?.?
 
+-   [[#70]](https://github.com/Marcin-Migdal/m-component-library/issues/70) **[PATCH]** Export hslToHex helper
+
 ### 18.10.2024 - Release 1.0.4
 
 -   [[#37]](https://github.com/Marcin-Migdal/m-component-library/issues/37) **[PATCH]** Alert close only when overlay click started on overlay
