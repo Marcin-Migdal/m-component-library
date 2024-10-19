@@ -1,6 +1,7 @@
 ### Release date ??? - Release ?.?.?
 
 -   [[#70]](https://github.com/Marcin-Migdal/m-component-library/issues/70) **[PATCH]** Export hslToHex helper
+-   [[#72]](https://github.com/Marcin-Migdal/m-component-library/issues/72) **[PATCH]** Dropdown improvements
 
 ### 18.10.2024 - Release 1.0.4
 

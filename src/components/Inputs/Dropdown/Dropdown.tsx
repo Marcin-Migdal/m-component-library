@@ -39,9 +39,9 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
         noBottomMargin = false,
         classNamesObj,
 
-        clearable = true,
+        clearable = false,
         readOnly = false,
-        filter = true,
+        filter = false,
     } = props;
 
     const filterRef = useRef<HTMLInputElement>(null);
@@ -164,11 +164,14 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
                 ref={filterRef}
                 disabled={disabled}
                 data-id={uniqueDropdownId}
-                className={classNames("m-input", "m-dropdown", classNamesObj?.control, labelType)}
+                className={classNames("m-input", "m-dropdown", classNamesObj?.control, labelType, {
+                    "read-only": readOnly,
+                    filtrable: filter,
+                })}
                 type="text"
                 style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
                 readOnly={readOnly || !filter}
-                value={(isFocused ? filterValue : value?.[labelKey]) || ""}
+                value={filter && isFocused ? filterValue : value?.[labelKey] || ""}
                 onChange={handleFilterChange}
                 onFocus={handleFocus}
                 placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
