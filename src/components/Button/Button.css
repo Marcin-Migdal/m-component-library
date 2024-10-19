@@ -15,14 +15,21 @@
     cursor: pointer;
 }
 
+.m-button p {
+    margin: unset;
+    display: inline-block;
+    width: fit-content;
+}
 .m-button .left-svg {
     margin-right: 0.5em;
     background-color: inherit;
 }
 
 .m-button .right-svg {
-    margin-left: 0.5em;
     background-color: inherit;
+}
+.m-button .right-svg:not(:first-child) {
+    margin-left: 0.5em;
 }
 
 .m-button:active:enabled {

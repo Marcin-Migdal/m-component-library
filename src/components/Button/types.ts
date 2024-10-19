@@ -10,7 +10,7 @@ export type VariantType = "outlined" | "full" | "text" | "neon";
 
 type ButtonBaseProps = {
     children?: ReactNode;
-    text: string;
+    text?: string;
     disabled?: boolean;
     busy?: boolean;
     display?: boolean;

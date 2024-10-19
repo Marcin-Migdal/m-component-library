@@ -38,7 +38,7 @@ const Button = (props: ButtonProps) => {
         if (busy) {
             return <FontAwesomeIcon className="right-svg" icon="circle-notch" spin />;
         } else if (icon && iconPosition === ButtonIconPosition.RIGHT) {
-            <FontAwesomeIcon className="right-svg" icon={icon} />;
+            return <FontAwesomeIcon className="right-svg" icon={icon} />;
         } else {
             return null;
         }
@@ -59,7 +59,7 @@ const Button = (props: ButtonProps) => {
             >
                 {children}
                 {icon && iconPosition === ButtonIconPosition.LEFT && <FontAwesomeIcon className="left-svg" icon={icon} />}
-                {text}
+                {text && text.trim() && <p>{text}</p>}
                 {getRightButtonIcon()}
             </button>
 
