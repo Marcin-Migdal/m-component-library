@@ -3,6 +3,7 @@
     width: fit-content;
     max-height: 100vh;
     overflow: hidden auto;
+    z-index: 1000;
 }
 
 .toasts-list.top-right {
@@ -116,8 +117,8 @@
     top: 8px;
     right: 8px;
 
-    height: 16px;
-    width: 16px;
+    height: 24px;
+    width: 24px;
     transition: 0.25s;
 
     padding: 4px;
