@@ -1,5 +1,19 @@
+.m-button.small {
+    --button-size: var(--small-button-size);
+}
+
+.m-button.medium {
+    --button-size: var(--medium-button-size);
+}
+
+.m-button.large {
+    --button-size: var(--large-button-size);
+}
+
 .m-button {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    gap: var(--button-gap);
 
     border: var(--border);
     border-radius: var(--border-radius);
@@ -7,10 +21,11 @@
     padding: var(--button-padding);
 
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: var(--button-size);
 
     transition: 150ms linear;
 }
+
 .m-button:not(:disabled) {
     cursor: pointer;
 }
@@ -19,17 +34,16 @@
     margin: unset;
     display: inline-block;
     width: fit-content;
+
+    white-space: nowrap;
 }
+
 .m-button .left-svg {
-    margin-right: 0.5em;
     background-color: inherit;
 }
 
 .m-button .right-svg {
     background-color: inherit;
-}
-.m-button .right-svg:not(:first-child) {
-    margin-left: 0.5em;
 }
 
 .m-button:active:enabled {

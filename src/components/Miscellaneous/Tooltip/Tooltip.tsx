@@ -17,6 +17,7 @@ const TooltipWrapper = ({
     openDelay = 0,
 }: PropsWithChildren<TooltipProps>) => {
     const tooltipRef = useRef<HTMLDivElement>(null);
+    const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
     const [isVisible, setIsVisible] = useState<boolean>(false);
     const [tooltipStyle, setTooltipStyle] = useState<CSSProperties | undefined>(undefined);
@@ -25,22 +26,28 @@ const TooltipWrapper = ({
         //! EVENT LISTENER SECTION
         const targetElement: TargetElementType | null = targetRef.current;
         const tooltipElement: HTMLDivElement | null = tooltipRef.current;
-        let timeoutId: NodeJS.Timeout | undefined = undefined;
 
         if (!targetElement) {
             return;
         }
 
-        const handleMouseEnter = () => {
-            timeoutId = setTimeout(() => {
-                setIsVisible(true);
-            }, openDelay);
+        const handleMouseEnter = (event: Event) => {
+            if (isVisible) {
+                return;
+            }
+
+            if (targetElement === event.target || targetElement.contains(event.target as Node)) {
+                timeoutRef.current = setTimeout(() => {
+                    setIsVisible(true);
+                    timeoutRef.current = undefined;
+                }, openDelay);
+            }
         };
 
-        const handleMouseLeave = () => {
-            if (timeoutId) {
-                clearTimeout(timeoutId);
-            } else if (isVisible) {
+        const handleMouseLeave = (event: PointerEvent) => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            } else if (isVisible && !targetElement.contains(event.relatedTarget as Node)) {
                 setIsVisible(false);
                 setTooltipStyle(undefined);
             }
@@ -49,7 +56,7 @@ const TooltipWrapper = ({
         // adds event listener on init and refreshes them when isVisible changes
         const onInit = () => {
             targetElement.addEventListener("pointerover", handleMouseEnter);
-            targetElement.addEventListener("pointerout", handleMouseLeave);
+            targetElement.addEventListener("pointerout", (event) => handleMouseLeave(event as PointerEvent));
         };
 
         onInit();
@@ -75,7 +82,7 @@ const TooltipWrapper = ({
 
         return () => {
             targetElement.removeEventListener("pointerover", handleMouseEnter);
-            targetElement.removeEventListener("pointerout", handleMouseLeave);
+            targetElement.removeEventListener("pointerout", (event) => handleMouseLeave(event as PointerEvent));
         };
     }, [isVisible]);
 

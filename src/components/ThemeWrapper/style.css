@@ -81,32 +81,45 @@ body {
 
     /* Common */
     --border-radius: 0.2em;
-    --border-width: 0.125em;
+    --border-width: max(2px, 0.125em);
 
     --border: var(--border-width) solid;
 
     --small-box-shadow: 0px 0px 3px 1px;
     --big-box-shadow: 0px 0px 3px 2px;
 
-    /* Button */
-    --button-padding: 0.245em 0.65em;
+    /*! Button */
+    --button-padding: 0.25em 0.65em;
+    --button-gap: 0.55em;
     --button-right-margin: 10px;
+
+    /*? Very Small Button*/
+    --very-small-button-size: 0.67rem;
+
+    /*? Small Button*/
+    --small-button-size: 0.8rem;
+
+    /*? Medium Button*/
+    --medium-button-size: 1rem;
+
+    /*? Large Button*/
+    --large-button-size: 1.2rem;
 
     /*! Inputs */
     --input-margin-bottom: 18px;
 
-    /*? Small */
-    --small-input-height: 24px;
+    /*? Small Input*/
+    --small-input-height: 28px;
     --small-input-padding-left: 6px;
     --small-input-font-size: 14px;
 
-    /*? Medium */
-    --medium-input-height: 30px;
+    /*? Medium Input*/
+    --medium-input-height: 34px;
     --medium-input-padding-left: 8px;
     --medium-input-font-size: 16px;
 
-    /*? Large */
-    --large-input-height: 36px;
+    /*? Large Input*/
+    --large-input-height: 40px;
     --large-input-padding-left: 9px;
     --large-input-font-size: 18px;
 
