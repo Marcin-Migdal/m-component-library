@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
+import { ButtonSize } from "../global-types";
 import ThemeWrapper from "../ThemeWrapper/ThemeWrapper";
 import StoryButtonWrapper from "./StoryButtonWrapper";
 
@@ -22,5 +23,6 @@ export const button = Template.bind({});
 button.args = {
     text: "Button one",
     icon: undefined,
-    variant: "text",
+    variant: "outlined",
+    size: ButtonSize.MEDIUM,
 };

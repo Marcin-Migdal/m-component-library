@@ -3,6 +3,7 @@
 -   [[#70]](https://github.com/Marcin-Migdal/m-component-library/issues/70) **[PATCH]** Export hslToHex helper
 -   [[#72]](https://github.com/Marcin-Migdal/m-component-library/issues/72) **[PATCH]** Dropdown improvements
 -   [[#67]](https://github.com/Marcin-Migdal/m-component-library/issues/67) **[PATCH]** Change button for it to handle displaying icon as the only content
+-   [[#73]](https://github.com/Marcin-Migdal/m-component-library/issues/73) **[PATCH]** Add size prop to the button, change input sizes to have the same height as button, fix not closing tooltip
 
 ### 18.10.2024 - Release 1.0.4
 
