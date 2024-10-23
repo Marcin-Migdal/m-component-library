@@ -178,8 +178,8 @@ const StoryThemeWrapper = ({
                     error={error}
                     disabled={disabled}
                     readOnly={readOnly}
+                    size={inputSize}
                 />
-
                 <ColorPicker
                     labelType={inputLabelType}
                     labelWidth={inputLabelWidth}
@@ -192,8 +192,8 @@ const StoryThemeWrapper = ({
                     }}
                     disabled={disabled}
                     readOnly={readOnly}
+                    size={inputSize}
                 />
-
                 <SectionHeader text="DYNAMIC THEME COLOR CONTROL" />
                 <div style={{ display: "flex", alignItems: "center" }}>
                     <HueSliderCanvas hue={0} onChange={(newHue) => setHue(newHue)} readOnly={readOnly} />

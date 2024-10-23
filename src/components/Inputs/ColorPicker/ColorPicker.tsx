@@ -7,6 +7,7 @@ import { InputLabel, InputSize } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
 import { getInputStyle } from "../helpers/getInputStyle";
+import { Textfield } from "../Textfield";
 import { ColorPickerPopup } from "./ColorPickerPopup/ColorPickerPopup";
 import { rgbToHex, rgbToHsl, valueToRgb } from "./helpers";
 import { ColorPickerProps, defaultColorPickerValue, ReturnedColor, RgbValue } from "./types";
@@ -31,11 +32,14 @@ const ColorPicker = ({
     onOpen,
     onClose,
 }: ColorPickerProps) => {
-    const containerRef = useRef<HTMLDivElement>(null);
+    const inputContainerRef = useRef<HTMLDivElement>(null);
 
     const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
 
     const [value, setValue] = useState<RgbValue>(valueToRgb(defaultInternalValue));
+
+    const hexValue = rgbToHex(value.r, value.g, value.b);
+    const colorPreviewElement = inputContainerRef.current?.querySelector(".m-color-preview") as HTMLInputElement | null | undefined;
 
     const handleOpen = () => {
         if (readOnly) {
@@ -90,15 +94,38 @@ const ColorPicker = ({
                 error={error}
                 noBottomMargin={noBottomMargin}
             >
-                <div
-                    ref={containerRef}
-                    className={classNames("m-input", "m-color-preview", classNamesObj?.input, labelType)}
-                    onClick={() => !disabled && handleOpen()}
-                    style={{
-                        ...getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth),
-                        backgroundColor: `rgb(${value.r}, ${value.g}, ${value.b})`,
-                    }}
-                />
+                <div ref={inputContainerRef} style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}>
+                    {labelType === InputLabel.RIGHT && (
+                        <div
+                            className="m-color-preview-square"
+                            style={{ backgroundColor: hexValue }}
+                            onClick={() => !disabled && handleOpen()}
+                        />
+                    )}
+
+                    <Textfield
+                        classNamesObj={{
+                            input: classNames("m-color-preview", classNamesObj?.input, { "popup-open": openStatus !== OpenStatus.CLOSED }),
+                        }}
+                        readOnly
+                        onClick={() => !disabled && handleOpen()}
+                        value={hexValue}
+                        standAloneConfig={{
+                            style: {
+                                //@ts-expect-error ts(2353) styles attribute does not expect css variable
+                                "--box-shadow-color": hexValue,
+                                width: "100%",
+                            },
+                        }}
+                    />
+                    {labelType !== InputLabel.RIGHT && (
+                        <div
+                            className="m-color-preview-square"
+                            style={{ backgroundColor: hexValue }}
+                            onClick={() => !disabled && handleOpen()}
+                        />
+                    )}
+                </div>
                 {label && (
                     <InputsLabel
                         label={label}
@@ -111,19 +138,19 @@ const ColorPicker = ({
                 {error && (
                     <InputError
                         style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
-                        className={classNames("input", classNamesObj?.error)}
+                        className={classNames("color-picker-error", classNamesObj?.error)}
                         error={error}
                     />
                 )}
             </InputContainer>
-            {containerRef.current &&
+            {colorPreviewElement &&
                 openStatus !== OpenStatus.CLOSED &&
                 createPortal(
                     <ColorPickerPopup
                         value={value}
                         onChange={handleChange}
                         className={classNames(openStatus, classNamesObj?.popup)}
-                        parentElement={containerRef.current}
+                        parentElement={colorPreviewElement}
                         handleClose={handleClose}
                     />,
                     document.body

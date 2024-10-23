@@ -11,7 +11,7 @@
 }
 
 .m-button {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: var(--button-gap);
 

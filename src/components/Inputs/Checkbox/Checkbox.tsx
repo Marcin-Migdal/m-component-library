@@ -81,7 +81,7 @@ const Checkbox = ({
             {error && checkboxContainerRef.current && (
                 <InputError
                     style={getCheckboxErrorStyle(checkboxContainerRef.current, labelType as SimpleInputLabel, labelWidth)}
-                    className={classNames("checkbox", classNamesObj?.error)}
+                    className={classNames("checkbox-error", classNamesObj?.error)}
                     error={error}
                 />
             )}
