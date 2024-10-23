@@ -1,5 +1,18 @@
 import { CssVariableNameType } from "./getCssProperty";
 
+const parseCssValue = (element: HTMLElement, value: string, fallbackValue?: number): number | undefined => {
+    if (value.endsWith("px")) {
+        return parseFloat(value);
+    } else if (value.endsWith("em")) {
+        const fontSize = parseFloat(window.getComputedStyle(element).fontSize);
+        return parseFloat(value) * fontSize;
+    } else if (value.endsWith("rem")) {
+        return parseFloat(value) * 16;
+    }
+
+    return fallbackValue;
+};
+
 export function getCssPropertyAsNumber(element: HTMLElement, cssProperty: CssVariableNameType): number | undefined;
 export function getCssPropertyAsNumber(element: HTMLElement, cssProperty: CssVariableNameType, fallbackValue: number): number;
 
@@ -27,16 +40,3 @@ export function getCssPropertyAsNumber(element: HTMLElement, cssProperty: CssVar
 
     return parseCssValue(element, cssValue, fallbackValue);
 }
-
-const parseCssValue = (element: HTMLElement, value: string, fallbackValue?: number): number | undefined => {
-    if (value.endsWith("px")) {
-        return parseFloat(value);
-    } else if (value.endsWith("em")) {
-        const fontSize = parseFloat(window.getComputedStyle(element).fontSize);
-        return parseFloat(value) * fontSize;
-    } else if (value.endsWith("rem")) {
-        return parseFloat(value) * 16;
-    }
-
-    return fallbackValue;
-};
