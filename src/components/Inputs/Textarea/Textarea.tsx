@@ -84,7 +84,7 @@ const Textarea = ({
             {error && (
                 <InputError
                     style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
-                    className={classNames("textarea", classNamesObj?.error)}
+                    className={classNames("textarea-error", classNamesObj?.error)}
                     error={error}
                 />
             )}

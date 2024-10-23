@@ -15,7 +15,7 @@ import "./ColorPickerPopup.css";
 type ColorPickerPopupProps = {
     value: RgbValue;
     onChange: (value: RgbValue) => void;
-    parentElement: HTMLDivElement | null;
+    parentElement: HTMLInputElement;
     className: string;
     handleClose: () => void;
 };
@@ -35,7 +35,7 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
         const handleClickOutside = (event: MouseEvent) => {
             const target: HTMLElement = event.target as HTMLElement;
 
-            if (!popupRef.current || !parentElement) {
+            if (!popupRef.current) {
                 return;
             }
 
@@ -67,7 +67,7 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
     const handleColorPick = (rgb: RgbValue) => {
         setRgbValue(rgb);
 
-        onChange(rgbValue);
+        onChange(rgb);
     };
 
     const handleHueSliderChange = (hue: number) => {
@@ -76,7 +76,7 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
         setHueSliderValue(hue);
         setRgbValue(hslToRgb(hue, s, l));
 
-        onChange(rgbValue);
+        onChange(hslToRgb(hue, s, l));
     };
 
     const handleRgbTextfieldChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -85,7 +85,7 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
         setRgbValue(newRgbValue);
         setHueSliderValue(rgbToHsl(newRgbValue.r, newRgbValue.g, newRgbValue.b).h);
 
-        onChange(rgbValue);
+        onChange(newRgbValue);
     };
 
     return (

@@ -1,4 +1,4 @@
-.m-textfield-container .m-textfield {
+.m-textfield {
     box-sizing: border-box;
 
     height: var(--input-height);
@@ -11,9 +11,10 @@
     transition: 0.2s ease-in-out;
 }
 
-.m-textfield-container .m-textfield:hover {
+.m-textfield:hover {
     transition: 0.2s;
 }
-.m-textfield-container .m-textfield:focus {
+
+.m-textfield:focus {
     transition: 0.1s;
 }
