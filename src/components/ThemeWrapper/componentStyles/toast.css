@@ -1,26 +1,44 @@
+.common-wrapper-container.light-mode .toasts-list .toast {
+    --toast-background-color-saturation: 50%;
+    --toast-background-color-lighting: 90%;
+    --toast-background-color-opacity: 0.7;
+}
+
+.common-wrapper-container.dark-mode .toasts-list .toast {
+    --toast-background-color-saturation: 15%;
+    --toast-background-color-lighting: 20%;
+    --toast-background-color-opacity: 0.9;
+}
+
 .common-wrapper-container .toasts-list .toast.success {
+    --toast-color-hue: var(--success-color-hue);
     --toast-color: var(--success-color);
-    --toast-background-color: var(--success-color-rgb);
 }
 
 .common-wrapper-container .toasts-list .toast.failure {
+    --toast-color-hue: var(--failure-color-hue);
     --toast-color: var(--failure-color);
-    --toast-background-color: var(--failure-color-rgb);
 }
 
 .common-wrapper-container .toasts-list .toast.warning {
+    --toast-color-hue: var(--warning-color-hue);
     --toast-color: var(--warning-color);
-    --toast-background-color: var(--warning-color-rgb);
 }
 
 .common-wrapper-container .toasts-list .toast.information {
+    --toast-color-hue: var(--information-color-hue);
     --toast-color: var(--information-color);
-    --toast-background-color: var(--information-color-rgb);
 }
 
 .common-wrapper-container .toasts-list .toast {
     color: var(--toast-color);
-    background-color: rgba(var(--toast-background-color), 0.15);
+    background-color: hsl(
+        var(--toast-color-hue),
+        var(--toast-background-color-saturation),
+        var(--toast-background-color-lighting),
+        var(--toast-background-color-opacity)
+    );
+
     border-left: 6px solid var(--toast-color);
 }
 
@@ -30,5 +48,5 @@
 }
 
 .common-wrapper-container .toasts-list .toast svg.close-icon:hover {
-    background-color: rgba(var(--toast-background-color), 0.225);
+    fill: hsl(var(--toast-color-hue), 75%, 75%);
 }

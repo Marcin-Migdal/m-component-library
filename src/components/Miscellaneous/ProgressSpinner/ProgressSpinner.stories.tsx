@@ -5,7 +5,7 @@ import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import ProgressSpinner from "./ProgressSpinner";
 
 export default {
-    title: "Morti-component-library/Miscellaneous",
+    title: "M-component-library/Miscellaneous",
     component: ProgressSpinner,
 } as ComponentMeta<typeof ProgressSpinner>;
 

@@ -10,29 +10,30 @@ body {
     margin: unset;
 
     /* Common color variables across all themes */
-    --success-light-color: rgb(78, 201, 139);
-    --success-color: rgb(30, 169, 100);
-    --success-dark-color: rgb(2, 114, 58);
 
-    --success-color-rgb: 30, 169, 100;
+    --success-color-hue: 150;
 
-    --failure-light-color: rgb(252, 98, 98);
-    --failure-color: rgb(245, 58, 58);
-    --failure-dark-color: rgb(189, 7, 7);
+    --success-light-color: hsl(var(--success-color-hue), 53%, 55%);
+    --success-color: hsl(var(--success-color-hue), 70%, 39%);
+    --success-dark-color: hsl(var(--success-color-hue), 97%, 23%);
 
-    --failure-color-rgb: 245, 63, 63;
+    --failure-color-hue: 0;
 
-    --warning-light-color: rgb(245, 215, 116);
-    --warning-color: rgb(233, 195, 72);
-    --warning-dark-color: rgb(212, 170, 31);
+    --failure-light-color: hsl(var(--failure-color-hue), 96%, 69%);
+    --failure-color: hsl(var(--failure-color-hue), 90%, 59%);
+    --failure-dark-color: hsl(var(--failure-color-hue), 93%, 38%);
 
-    --warning-color-rgb: 235, 198, 77;
+    --warning-color-hue: 46;
 
-    --information-light-color: rgb(135, 137, 255);
-    --information-color: rgb(96, 98, 247);
-    --information-dark-color: rgb(63, 66, 221);
+    --warning-light-color: hsl(var(--warning-color-hue), 87%, 71%);
+    --warning-color: hsl(var(--warning-color-hue), 79%, 60%);
+    --warning-dark-color: hsl(var(--warning-color-hue), 74%, 48%);
 
-    --information-color-rgb: 105, 108, 255;
+    --information-color-hue: 239;
+
+    --information-light-color: hsl(var(--information-color-hue), 100%, 76%);
+    --information-color: hsl(var(--information-color-hue), 90%, 67%);
+    --information-dark-color: hsl(var(--information-color-hue), 70%, 56%);
 
     /* all colors of grey across all themes */
     --grey-color-000: hsl(0, 0%, 100%);
@@ -81,32 +82,45 @@ body {
 
     /* Common */
     --border-radius: 0.2em;
-    --border-width: 0.125em;
+    --border-width: max(2px, 0.125em);
 
     --border: var(--border-width) solid;
 
     --small-box-shadow: 0px 0px 3px 1px;
     --big-box-shadow: 0px 0px 3px 2px;
 
-    /* Button */
-    --button-padding: 0.245em 0.65em;
+    /*! Button */
+    --button-padding: 0.25em 0.65em;
+    --button-gap: 0.55em;
     --button-right-margin: 10px;
+
+    /*? Very Small Button*/
+    --very-small-button-size: 0.67rem;
+
+    /*? Small Button*/
+    --small-button-size: 0.8rem;
+
+    /*? Medium Button*/
+    --medium-button-size: 1rem;
+
+    /*? Large Button*/
+    --large-button-size: 1.2rem;
 
     /*! Inputs */
     --input-margin-bottom: 18px;
 
-    /*? Small */
-    --small-input-height: 24px;
+    /*? Small Input*/
+    --small-input-height: 28px;
     --small-input-padding-left: 6px;
     --small-input-font-size: 14px;
 
-    /*? Medium */
-    --medium-input-height: 30px;
+    /*? Medium Input*/
+    --medium-input-height: 34px;
     --medium-input-padding-left: 8px;
     --medium-input-font-size: 16px;
 
-    /*? Large */
-    --large-input-height: 36px;
+    /*? Large Input*/
+    --large-input-height: 40px;
     --large-input-padding-left: 9px;
     --large-input-font-size: 18px;
 

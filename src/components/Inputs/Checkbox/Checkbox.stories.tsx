@@ -6,7 +6,7 @@ import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import StoryCheckboxWrapper from "./StoryCheckboxWrapper";
 
 export default {
-    title: "Morti-component-library/Inputs",
+    title: "M-component-library/Inputs",
     component: StoryCheckboxWrapper,
 } as ComponentMeta<typeof StoryCheckboxWrapper>;
 

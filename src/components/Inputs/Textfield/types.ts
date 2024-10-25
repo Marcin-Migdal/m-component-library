@@ -1,4 +1,4 @@
-import { ChangeEvent, FocusEvent } from "react";
+import { ChangeEvent, CSSProperties, FocusEvent } from "react";
 import { InputState } from "react-input-mask";
 
 import * as GlobalInterfaces from "../../global-types";
@@ -17,6 +17,8 @@ type BaseTextfieldProps = {
     readOnly?: boolean;
     onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
     onBlur?: (event: FocusEvent<HTMLInputElement>, value: string) => void;
+    onFocus?: (event: FocusEvent<HTMLInputElement, Element>) => void;
+    onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
     error?: string;
     placeholder?: string;
     defaultInternalValue?: string;
@@ -29,6 +31,10 @@ type BaseTextfieldProps = {
     labelType?: `${GlobalInterfaces.InputLabel}`;
     noBottomMargin?: boolean;
     classNamesObj?: TextFieldClassNames;
+
+    standAloneConfig?: {
+        style?: CSSProperties;
+    };
 };
 
 export type TextfieldProps = BaseTextfieldProps & (BaseMaskTextfieldType | AdvancedMaskTextfieldType | NoMaskTextfieldType);

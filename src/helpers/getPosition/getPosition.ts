@@ -12,8 +12,8 @@ const defaultConfig: GetPositionConfig = {
 };
 
 export const getPosition = (
-    targetElement: HTMLElement | SVGElement | null | undefined,
-    consumerElement: HTMLElement | null | undefined,
+    targetElement: Element | SVGElement | null | undefined,
+    consumerElement: Element | null | undefined,
     externalConfig?: Partial<GetPositionConfig>
 ): Position | undefined => {
     let position: Position | undefined = undefined;

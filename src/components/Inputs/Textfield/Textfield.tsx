@@ -24,6 +24,8 @@ const Textfield = (props: TextfieldProps) => {
         readOnly = false,
         onChange,
         onBlur,
+        onFocus,
+        onClick,
         label = undefined,
         error = undefined,
         labelType = `${InputLabel.LEFT}`,
@@ -38,7 +40,7 @@ const Textfield = (props: TextfieldProps) => {
         size = InputSize.MEDIUM,
         noBottomMargin = false,
         classNamesObj,
-        ...otherProps
+        standAloneConfig,
     } = props;
 
     const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
@@ -46,7 +48,14 @@ const Textfield = (props: TextfieldProps) => {
 
     const value: string = externalValue !== undefined ? externalValue : internalValue;
 
-    const handleFocus = () => setIsFocused(true);
+    const handleFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
+        onFocus && onFocus(e);
+        setIsFocused(true);
+    };
+
+    const handleClick = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+        onClick && onClick(event);
+    };
 
     const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
         setIsFocused(false);
@@ -71,6 +80,31 @@ const Textfield = (props: TextfieldProps) => {
         return advancedMask.beforeChange(newState, oldState, userInput, advancedMask.formatChars);
     };
 
+    if (standAloneConfig) {
+        return (
+            <InputMask
+                readOnly={readOnly}
+                maskChar={null}
+                disabled={disabled}
+                name={name}
+                className={classNames("m-input", "m-textfield", classNamesObj?.input, labelType)}
+                type={type}
+                style={standAloneConfig.style}
+                value={value}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                onFocus={handleFocus}
+                onClick={handleClick}
+                autoFocus={autoFocus}
+                placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
+                //! Mask Props
+                {...(advancedMask
+                    ? { ...advancedMask, beforeMaskedValueChange: handleBeforeMaskedValueChange }
+                    : { mask: mask, formatChars: defaultFormatChars })}
+            />
+        );
+    }
+
     return (
         <InputContainer
             disabled={disabled}
@@ -91,13 +125,13 @@ const Textfield = (props: TextfieldProps) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 onFocus={handleFocus}
+                onClick={handleClick}
                 autoFocus={autoFocus}
                 placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
                 //! Mask Props
                 {...(advancedMask
                     ? { ...advancedMask, beforeMaskedValueChange: handleBeforeMaskedValueChange }
                     : { mask: mask, formatChars: defaultFormatChars })}
-                {...otherProps}
             />
             {label && (
                 <InputsLabel
@@ -112,7 +146,7 @@ const Textfield = (props: TextfieldProps) => {
             {error && (
                 <InputError
                     style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
-                    className={classNames("input", classNamesObj?.error)}
+                    className={classNames("textfield-error", classNamesObj?.error)}
                     error={error}
                 />
             )}

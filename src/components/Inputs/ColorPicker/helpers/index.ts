@@ -2,6 +2,7 @@ export * from "./calculateIndicatorPosition";
 export * from "./fillPickerGradientBackground";
 export * from "./fillSliderGradientBackground";
 export * from "./hexToRgb";
+export * from "./hslToHex";
 export * from "./hslToRgb";
 export * from "./rgbToHex";
 export * from "./rgbToHsl";

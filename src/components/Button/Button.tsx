@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import React, { useRef } from "react";
 
+import { ButtonSize } from "../global-types";
 import { Tooltip } from "../Miscellaneous";
 import { defaultTooltipConfig, getTooltipPropsConfig } from "../Miscellaneous/Tooltip/helpers/getTooltipPropsConfig";
 import { ButtonIconPosition, ButtonProps } from "./types";
@@ -25,10 +26,11 @@ const Button = (props: ButtonProps) => {
         tooltip = "",
         disabledTooltip = "",
         tooltipConfig = defaultTooltipConfig,
+        size = ButtonSize.MEDIUM,
         ...otherProps
     } = props;
 
-    const ref = useRef<HTMLButtonElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
 
     if (!display) {
         return null;
@@ -38,7 +40,7 @@ const Button = (props: ButtonProps) => {
         if (busy) {
             return <FontAwesomeIcon className="right-svg" icon="circle-notch" spin />;
         } else if (icon && iconPosition === ButtonIconPosition.RIGHT) {
-            <FontAwesomeIcon className="right-svg" icon={icon} />;
+            return <FontAwesomeIcon className="right-svg" icon={icon} />;
         } else {
             return null;
         }
@@ -49,9 +51,9 @@ const Button = (props: ButtonProps) => {
     return (
         <>
             <button
-                ref={ref}
+                ref={buttonRef}
                 style={style}
-                className={classNames("m-button", variant, className)}
+                className={classNames("m-button", variant, size, className)}
                 onClick={(e) => onClick && onClick(e)}
                 disabled={disabled || busy}
                 type={type}
@@ -59,12 +61,12 @@ const Button = (props: ButtonProps) => {
             >
                 {children}
                 {icon && iconPosition === ButtonIconPosition.LEFT && <FontAwesomeIcon className="left-svg" icon={icon} />}
-                {text}
+                {text && text.trim() && <p>{text}</p>}
                 {getRightButtonIcon()}
             </button>
 
             {tooltipContent && (
-                <Tooltip targetRef={ref} {...getTooltipPropsConfig(tooltipConfig)}>
+                <Tooltip targetRef={buttonRef} {...getTooltipPropsConfig(tooltipConfig)}>
                     {tooltipContent}
                 </Tooltip>
             )}

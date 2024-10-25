@@ -5,7 +5,7 @@ import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import StoryAlertWrapper from "./StoryAlertWrapper";
 
 export default {
-    title: "Morti-component-library/Popups",
+    title: "M-component-library/Popups",
     component: StoryAlertWrapper,
 } as ComponentMeta<typeof StoryAlertWrapper>;
 

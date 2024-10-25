@@ -1,6 +1,7 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { CSSProperties, MouseEvent, ReactNode } from "react";
 import { TooltipProps } from "../Miscellaneous";
+import { ButtonSize } from "../global-types";
 
 export enum ButtonIconPosition {
     LEFT = "left",
@@ -10,7 +11,7 @@ export type VariantType = "outlined" | "full" | "text" | "neon";
 
 type ButtonBaseProps = {
     children?: ReactNode;
-    text: string;
+    text?: string;
     disabled?: boolean;
     busy?: boolean;
     display?: boolean;
@@ -22,6 +23,7 @@ type ButtonBaseProps = {
     tooltip?: ReactNode;
     disabledTooltip?: ReactNode;
     tooltipConfig?: Partial<Omit<TooltipProps, "targetRef">>;
+    size?: `${ButtonSize}`;
 };
 
 type SubmitBtnProps = {

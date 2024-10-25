@@ -5,7 +5,7 @@ import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import Card from "./Card";
 
 export default {
-    title: "Morti-component-library/Panels",
+    title: "M-component-library/Panels",
     component: Card,
 } as ComponentMeta<typeof Card>;
 

@@ -1,11 +1,12 @@
 import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
+import { ButtonSize } from "../global-types";
 import ThemeWrapper from "../ThemeWrapper/ThemeWrapper";
 import StoryButtonWrapper from "./StoryButtonWrapper";
 
 export default {
-    title: "Morti-component-library/Button",
+    title: "M-component-library/Button",
     component: StoryButtonWrapper,
 } as ComponentMeta<typeof StoryButtonWrapper>;
 
@@ -22,5 +23,6 @@ export const button = Template.bind({});
 button.args = {
     text: "Button one",
     icon: undefined,
-    variant: "text",
+    variant: "outlined",
+    size: ButtonSize.MEDIUM,
 };

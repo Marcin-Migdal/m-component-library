@@ -8,6 +8,7 @@ import { InputLabel, InputSize } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
 import { getInputStyle } from "../helpers/getInputStyle";
+import { Textfield } from "../Textfield";
 import { DropdownOptions } from "./DropdownOptions/DropdownOptions";
 import { DropdownChangeEvent, DropdownClearEvent, DropdownProps, DropdownValue } from "./types";
 
@@ -39,12 +40,12 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
         noBottomMargin = false,
         classNamesObj,
 
-        clearable = true,
+        clearable = false,
         readOnly = false,
-        filter = true,
+        filter = false,
     } = props;
 
-    const filterRef = useRef<HTMLInputElement>(null);
+    const controlContainerRef = useRef<HTMLInputElement>(null);
 
     const [internalValue, setInternalValue] = useState<DropdownValue<T>>(undefined);
     const [filterValue, setFilterValue] = useState<string>("");
@@ -85,12 +86,12 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
         const handleClickOutside = (event: MouseEvent) => {
             const target: HTMLElement = event.target as HTMLElement;
 
-            if (!filterRef.current) {
+            if (!controlContainerRef.current) {
                 return;
             }
 
             if (
-                (!filterRef.current.contains(target) ||
+                (!controlContainerRef.current.contains(target) ||
                     (typeof target?.className === "string" && target?.className.includes("m-dropdown-container"))) &&
                 (!target.getAttribute("data-id") || target.getAttribute("data-id") !== uniqueDropdownId)
             ) {
@@ -151,6 +152,8 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
         setIsFocused(true);
     };
 
+    const controlElement = controlContainerRef.current?.querySelector(".m-dropdown-control") as HTMLInputElement | null | undefined;
+
     return (
         <InputContainer
             disabled={disabled}
@@ -158,22 +161,31 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
             size={size}
             error={error}
             noBottomMargin={noBottomMargin}
+            ref={controlContainerRef}
         >
             {/* input placeholder, displays selected value, also work as a filter input */}
-            <input
-                ref={filterRef}
+
+            <Textfield
                 disabled={disabled}
                 data-id={uniqueDropdownId}
-                className={classNames("m-input", "m-dropdown", classNamesObj?.control, labelType)}
-                type="text"
-                style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
                 readOnly={readOnly || !filter}
-                value={(isFocused ? filterValue : value?.[labelKey]) || ""}
+                value={filter && isFocused ? filterValue : value?.[labelKey].toString() || ""}
                 onChange={handleFilterChange}
                 onFocus={handleFocus}
                 placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
+                classNamesObj={{
+                    input: classNames("m-dropdown-control", classNamesObj?.control, labelType, {
+                        "read-only": readOnly,
+                        filtrable: filter,
+                    }),
+                }}
+                standAloneConfig={{
+                    style: {
+                        width: "100%",
+                        ...getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth),
+                    },
+                }}
             />
-
             {/* input label */}
             {label && (
                 <InputsLabel
@@ -191,7 +203,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
             {error ? (
                 <InputError
                     style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
-                    className={classNames("checkbox", classNamesObj?.error)}
+                    className={classNames("dropdown-error", classNamesObj?.error)}
                     error={error}
                 />
             ) : (
@@ -211,10 +223,10 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
 
             {/* dropdown items */}
             {isFocused &&
-                filterRef.current &&
+                controlElement &&
                 createPortal(
                     <DropdownOptions<T>
-                        filterElement={filterRef.current}
+                        filterElement={controlElement}
                         uniqueDropdownId={uniqueDropdownId}
                         handleDropdownChange={handleDropdownChange}
                         dropdownOptions={dropdownOptions}
