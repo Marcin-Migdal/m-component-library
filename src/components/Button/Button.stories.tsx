@@ -6,7 +6,7 @@ import ThemeWrapper from "../ThemeWrapper/ThemeWrapper";
 import StoryButtonWrapper from "./StoryButtonWrapper";
 
 export default {
-    title: "Morti-component-library/Button",
+    title: "M-component-library/Button",
     component: StoryButtonWrapper,
 } as ComponentMeta<typeof StoryButtonWrapper>;
 

@@ -4,7 +4,7 @@ import React from "react";
 import StoryThemeWrapper from "./StoryThemeWrapper";
 
 export default {
-    title: "Morti-component-library/Theme",
+    title: "M-component-library/Theme",
     component: StoryThemeWrapper,
 } as ComponentMeta<typeof StoryThemeWrapper>;
 
