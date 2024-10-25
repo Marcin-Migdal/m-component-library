@@ -5,7 +5,7 @@ import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import { HueSliderCanvas } from "./HueSliderCanvas";
 
 export default {
-    title: "Morti-component-library/Miscellaneous",
+    title: "M-component-library/Miscellaneous",
     component: HueSliderCanvas,
 } as ComponentMeta<typeof HueSliderCanvas>;
 

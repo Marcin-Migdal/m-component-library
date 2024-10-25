@@ -5,7 +5,7 @@ import ThemeWrapper from "../ThemeWrapper/ThemeWrapper";
 import StoryFormWrapper from "./StoryFormWrapper";
 
 export default {
-    title: "Morti-component-library",
+    title: "M-component-library",
     component: StoryFormWrapper,
 } as ComponentMeta<typeof StoryFormWrapper>;
 

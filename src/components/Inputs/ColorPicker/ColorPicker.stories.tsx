@@ -5,7 +5,7 @@ import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import ColorPicker from "./ColorPicker";
 
 export default {
-    title: "Morti-component-library/Inputs",
+    title: "M-component-library/Inputs",
     component: ColorPicker,
 } as ComponentMeta<typeof ColorPicker>;
 

@@ -6,7 +6,7 @@ import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import Dropdown from "./Dropdown";
 
 export default {
-    title: "Morti-component-library/Inputs",
+    title: "M-component-library/Inputs",
     component: Dropdown,
 } as ComponentMeta<typeof Dropdown>;
 
