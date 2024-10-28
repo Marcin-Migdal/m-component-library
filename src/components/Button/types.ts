@@ -1,44 +1,46 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { CSSProperties, MouseEvent, ReactNode } from "react";
 import { TooltipProps } from "../Miscellaneous";
-import { ButtonSize } from "../global-types";
+import { ComponentSize } from "../global-types";
 
 export enum ButtonIconPosition {
-    LEFT = "left",
-    RIGHT = "right",
+  LEFT = "left",
+  RIGHT = "right",
 }
 export type VariantType = "outlined" | "full" | "text" | "neon";
 
 type ButtonBaseProps = {
-    children?: ReactNode;
-    text?: string;
-    disabled?: boolean;
-    busy?: boolean;
-    display?: boolean;
-    icon?: IconProp;
-    iconPosition?: `${ButtonIconPosition}`;
-    className?: string;
-    style?: CSSProperties;
-    variant?: VariantType;
-    tooltip?: ReactNode;
-    disabledTooltip?: ReactNode;
-    tooltipConfig?: Partial<Omit<TooltipProps, "targetRef">>;
-    size?: `${ButtonSize}`;
+  children?: ReactNode;
+  text?: string;
+  disabled?: boolean;
+  busy?: boolean;
+  display?: boolean;
+  disableDefaultMargin?: boolean;
+  icon?: IconProp;
+  iconPosition?: `${ButtonIconPosition}`;
+  className?: string;
+  style?: CSSProperties;
+  variant?: VariantType;
+  tooltip?: ReactNode;
+  disabledTooltip?: ReactNode;
+  tooltipConfig?: Partial<Omit<TooltipProps, "targetRef">>;
+  size?: `${ComponentSize}`;
 };
 
 type SubmitBtnProps = {
-    onClick?: undefined;
-    type: "submit";
+  onClick?: undefined;
+  type: "submit";
 };
 
 type ResetBtnProps = {
-    onClick?: undefined;
-    type: "reset";
+  onClick?: undefined;
+  type: "reset";
 };
 
 type BtnProps = {
-    onClick: (e: MouseEvent<HTMLButtonElement>) => void;
-    type?: "button";
+  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
+  type?: "button";
 };
 
-export type ButtonProps = ButtonBaseProps & (BtnProps | SubmitBtnProps | ResetBtnProps);
+export type ButtonProps = ButtonBaseProps &
+  (BtnProps | SubmitBtnProps | ResetBtnProps);
