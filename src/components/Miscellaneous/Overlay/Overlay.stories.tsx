@@ -5,7 +5,7 @@ import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import Overlay from "./Overlay";
 
 export default {
-    title: "Morti-component-library/Miscellaneous",
+    title: "M-component-library/Miscellaneous",
     component: Overlay,
 } as ComponentMeta<typeof Overlay>;
 

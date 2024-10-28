@@ -5,7 +5,7 @@ import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import StoryIconWrapper from "./StoryFormWrapper";
 
 export default {
-    title: "Morti-component-library/Miscellaneous",
+    title: "M-component-library/Miscellaneous",
     component: StoryIconWrapper,
 } as ComponentMeta<typeof StoryIconWrapper>;
 

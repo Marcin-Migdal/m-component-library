@@ -6,7 +6,7 @@ import Row from "../Row/Row";
 import StoryColWrapper from "./StoryColWrapper";
 
 export default {
-    title: "Morti-component-library/Layout",
+    title: "M-component-library/Layout",
     component: StoryColWrapper,
 } as ComponentMeta<typeof StoryColWrapper>;
 

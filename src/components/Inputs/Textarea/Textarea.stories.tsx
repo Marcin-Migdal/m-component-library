@@ -5,7 +5,7 @@ import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import Textarea from "./Textarea";
 
 export default {
-    title: "Morti-component-library/Inputs",
+    title: "M-component-library/Inputs",
     component: Textarea,
 } as ComponentMeta<typeof Textarea>;
 

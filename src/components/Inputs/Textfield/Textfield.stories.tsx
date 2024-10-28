@@ -6,7 +6,7 @@ import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import StoryTextfieldWrapper from "./StoryTextfieldWrapper";
 
 export default {
-    title: "Morti-component-library/Inputs",
+    title: "M-component-library/Inputs",
     component: StoryTextfieldWrapper,
 } as ComponentMeta<typeof StoryTextfieldWrapper>;
 
