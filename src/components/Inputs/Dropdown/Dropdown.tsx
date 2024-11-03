@@ -1,28 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
-import React, {
-  ChangeEvent,
-  FocusEvent,
-  MouseEvent as ReactMouseEvent,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ChangeEvent, FocusEvent, MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
 
-import { InputLabel, ComponentSize } from "../../global-types";
+import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
+import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
 import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
 import { getInputStyle } from "../helpers/getInputStyle";
-import { Textfield } from "../Textfield";
 import { DropdownOptions } from "./DropdownOptions/DropdownOptions";
-import {
-  DropdownChangeEvent,
-  DropdownClearEvent,
-  DropdownProps,
-  DropdownValue,
-} from "./types";
+import { DropdownChangeEvent, DropdownClearEvent, DropdownProps, DropdownValue } from "./types";
 
 import "./Dropdown.css";
 
@@ -31,9 +19,7 @@ type LabelValue = {
   label: string;
 };
 
-function Dropdown<T extends { [key: string]: string | number } = LabelValue>(
-  props: DropdownProps<T>
-) {
+function Dropdown<T extends { [key: string]: string | number } = LabelValue>(props: DropdownProps<T>) {
   const {
     value: externalValue = undefined,
     name = undefined,
@@ -53,6 +39,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(
     size = ComponentSize.MEDIUM,
     noBottomMargin = false,
     classNamesObj,
+    prefix,
 
     clearable = false,
     readOnly = false,
@@ -61,8 +48,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(
 
   const controlContainerRef = useRef<HTMLInputElement>(null);
 
-  const [internalValue, setInternalValue] =
-    useState<DropdownValue<T>>(undefined);
+  const [internalValue, setInternalValue] = useState<DropdownValue<T>>(undefined);
   const [filterValue, setFilterValue] = useState<string>("");
   const [dropdownOptions, setDropdownOptions] = useState<T[]>([]);
 
@@ -83,10 +69,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(
       if (filterValue) {
         filteredDropdownOptions = options.filter((option) => {
           let optionLabel = option[labelKey] as number | string;
-          optionLabel =
-            typeof optionLabel === "string"
-              ? optionLabel
-              : optionLabel.toString();
+          optionLabel = typeof optionLabel === "string" ? optionLabel : optionLabel.toString();
 
           return optionLabel.includes(filterValue);
         });
@@ -110,10 +93,8 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(
 
       if (
         (!controlContainerRef.current.contains(target) ||
-          (typeof target?.className === "string" &&
-            target?.className.includes("m-dropdown-container"))) &&
-        (!target.getAttribute("data-id") ||
-          target.getAttribute("data-id") !== uniqueDropdownId)
+          (typeof target?.className === "string" && target?.className.includes("m-dropdown-container"))) &&
+        (!target.getAttribute("data-id") || target.getAttribute("data-id") !== uniqueDropdownId)
       ) {
         setIsFocused(false);
       }
@@ -125,11 +106,11 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(
       }
     };
 
-    document.addEventListener("click", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("keydown", handleKeyPress);
 
     return () => {
-      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleKeyPress);
     };
   }, []);
@@ -138,10 +119,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(
     setFilterValue(e.target.value);
   };
 
-  const handleDropdownChange = (
-    e: ReactMouseEvent<HTMLLIElement, MouseEvent>,
-    selectedOption: T
-  ): void => {
+  const handleDropdownChange = (e: ReactMouseEvent<HTMLLIElement, MouseEvent>, selectedOption: T): void => {
     setFilterValue("");
     setInternalValue(selectedOption);
     setIsFocused(false);
@@ -186,9 +164,10 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(
     setIsFocused(true);
   };
 
-  const controlElement = controlContainerRef.current?.querySelector(
-    ".m-dropdown-control"
-  ) as HTMLInputElement | null | undefined;
+  const controlElement = controlContainerRef.current?.querySelector(".m-dropdown-control") as
+    | HTMLInputElement
+    | null
+    | undefined;
 
   return (
     <InputContainer
@@ -200,42 +179,21 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(
       ref={controlContainerRef}
     >
       {/* input placeholder, displays selected value, also work as a filter input */}
-
-      <Textfield
+      <StandAloneTextfield
         disabled={disabled}
         data-id={uniqueDropdownId}
         readOnly={readOnly || !filter}
-        value={
-          filter && isFocused ? filterValue : value?.[labelKey].toString() || ""
-        }
+        value={filter && isFocused ? filterValue : value?.[labelKey].toString() || ""}
         onChange={handleFilterChange}
         onFocus={handleFocus}
-        placeholder={
-          labelType === InputLabel.FLOATING
-            ? undefined
-            : placeholder || (label ? `${label}...` : "")
-        }
-        classNamesObj={{
-          input: classNames(
-            "m-dropdown-control",
-            classNamesObj?.control,
-            labelType,
-            {
-              "read-only": readOnly,
-              filtrable: filter,
-            }
-          ),
-        }}
-        standAloneConfig={{
-          style: {
-            width: "100%",
-            ...getInputStyle(
-              labelType as InputLabel,
-              label,
-              labelWidth,
-              floatingInputWidth
-            ),
-          },
+        placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
+        prefix={prefix}
+        className={classNames("m-dropdown-control", classNamesObj?.control, labelType, {
+          "read-only": readOnly,
+          filtrable: filter,
+        })}
+        style={{
+          ...getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth),
         }}
       />
       {/* input label */}
@@ -248,36 +206,27 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(
           isFocused={isFocused}
           isFilled={!!value}
           dataId={uniqueDropdownId}
+          prefix={prefix}
         />
       )}
 
       {/* input icons */}
       {error ? (
         <InputError
-          style={getInputsErrorStyle(
-            labelType as InputLabel,
-            labelWidth,
-            floatingInputWidth
-          )}
+          style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
           className={classNames("dropdown-error", classNamesObj?.error)}
           error={error}
         />
       ) : (
         <FontAwesomeIcon
-          className={classNames(
-            "m-dropdown-icon",
-            classNamesObj?.dropdownIndicatorIcon
-          )}
+          className={classNames("m-dropdown-icon", "m-dropdown-indicator-icon", classNamesObj?.dropdownIndicatorIcon)}
           icon="angle-down"
           onClick={() => setIsFocused(!isFocused)}
         />
       )}
       {clearable && value && (
         <FontAwesomeIcon
-          className={classNames(
-            "m-dropdown-clear-icon",
-            classNamesObj?.clearIcon
-          )}
+          className={classNames("m-dropdown-icon", "m-dropdown-clear-icon", classNamesObj?.clearIcon)}
           icon="close"
           onClick={handleClear}
         />

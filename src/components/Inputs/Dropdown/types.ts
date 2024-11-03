@@ -1,6 +1,7 @@
-import { FocusEvent } from "react";
+import { ComponentProps, FocusEvent } from "react";
 
 import * as GlobalInterfaces from "../../global-types";
+import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
 
 type DropdownClassNames = {
   container?: string;
@@ -30,6 +31,7 @@ type DropdownBaseProps<T> = {
   labelType?: `${GlobalInterfaces.InputLabel}`;
   noBottomMargin?: boolean;
   classNamesObj?: DropdownClassNames;
+  prefix?: ComponentProps<typeof StandAloneTextfield>["prefix"];
 
   options?: T[];
 };
@@ -40,23 +42,15 @@ export type DropdownCustomProps<T> = {
 };
 
 export type DropdownProps<T> = DropdownBaseProps<T> &
-  (T extends LabelValue
-    ? Partial<DropdownCustomProps<T>>
-    : DropdownCustomProps<T>);
+  (T extends LabelValue ? Partial<DropdownCustomProps<T>> : DropdownCustomProps<T>);
 
 export type DropdownValue<T> = T | undefined;
 
-export type DropdownChangeEvent<T> = React.MouseEvent<
-  HTMLLIElement,
-  MouseEvent
-> & {
+export type DropdownChangeEvent<T> = React.MouseEvent<HTMLLIElement, MouseEvent> & {
   target: DropdownChangeEventTarget<T>;
 };
 
-export type DropdownClearEvent<T> = React.MouseEvent<
-  SVGSVGElement,
-  MouseEvent
-> & {
+export type DropdownClearEvent<T> = React.MouseEvent<SVGSVGElement, MouseEvent> & {
   target: DropdownChangeEventTarget<T>;
 };
 
@@ -80,10 +74,7 @@ type DropdownOptionsClassnames = {
 export type DropdownOptionsProps<T> = {
   filterElement: HTMLInputElement;
   uniqueDropdownId: string;
-  handleDropdownChange: (
-    e: React.MouseEvent<HTMLLIElement, MouseEvent>,
-    selectedOption: T
-  ) => void;
+  handleDropdownChange: (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: T) => void;
   dropdownOptions: T[];
   value: T | undefined;
   valueKey: keyof T;
