@@ -3,20 +3,15 @@ import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { OpenStatus, useOpen } from "../../../hooks";
-import { InputLabel, ComponentSize } from "../../global-types";
+import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
 import { getInputStyle } from "../helpers/getInputStyle";
-import { Textfield } from "../Textfield";
 import { ColorPickerPopup } from "./ColorPickerPopup/ColorPickerPopup";
 import { rgbToHex, rgbToHsl, valueToRgb } from "./helpers";
-import {
-  ColorPickerProps,
-  defaultColorPickerValue,
-  ReturnedColor,
-  RgbValue,
-} from "./types";
+import { ColorPickerProps, defaultColorPickerValue, ReturnedColor, RgbValue } from "./types";
 
+import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
 import "./ColorPicker.css";
 
 const ColorPicker = ({
@@ -39,20 +34,15 @@ const ColorPicker = ({
 }: ColorPickerProps) => {
   const inputContainerRef = useRef<HTMLDivElement>(null);
 
-  const {
-    openStatus,
-    toggleOpenStatus,
-    handleClose: handlePopupClose,
-  } = useOpen({ delay: 100 });
+  const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
 
-  const [value, setValue] = useState<RgbValue>(
-    valueToRgb(defaultInternalValue)
-  );
+  const [value, setValue] = useState<RgbValue>(valueToRgb(defaultInternalValue));
 
   const hexValue = rgbToHex(value.r, value.g, value.b);
-  const colorPreviewElement = inputContainerRef.current?.querySelector(
-    ".m-color-preview"
-  ) as HTMLInputElement | null | undefined;
+  const colorPreviewElement = inputContainerRef.current?.querySelector(".m-color-preview") as
+    | HTMLInputElement
+    | null
+    | undefined;
 
   const handleOpen = () => {
     if (readOnly) {
@@ -114,22 +104,14 @@ const ColorPicker = ({
     <>
       <InputContainer
         disabled={disabled}
-        className={classNames(
-          "m-color-picker-container",
-          classNamesObj?.container
-        )}
+        className={classNames("m-color-picker-container", classNamesObj?.container)}
         size={size}
         error={error}
         noBottomMargin={noBottomMargin}
       >
         <div
           ref={inputContainerRef}
-          style={getInputStyle(
-            labelType as InputLabel,
-            label,
-            labelWidth,
-            floatingInputWidth
-          )}
+          style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
         >
           {labelType === InputLabel.RIGHT && (
             <div
@@ -139,21 +121,17 @@ const ColorPicker = ({
             />
           )}
 
-          <Textfield
-            classNamesObj={{
-              input: classNames("m-color-preview", classNamesObj?.input, {
-                "popup-open": openStatus !== OpenStatus.CLOSED,
-              }),
-            }}
+          <StandAloneTextfield
+            className={classNames("m-color-preview", classNamesObj?.input, {
+              "popup-open": openStatus !== OpenStatus.CLOSED,
+            })}
             readOnly
             onClick={() => !disabled && handleOpen()}
             value={hexValue}
-            standAloneConfig={{
-              style: {
-                //@ts-expect-error ts(2353) styles attribute does not expect css variable
-                "--box-shadow-color": hexValue,
-                width: "100%",
-              },
+            style={{
+              //@ts-expect-error ts(2353) styles attribute does not expect css variable
+              "--box-shadow-color": hexValue,
+              width: "100%",
             }}
           />
           {labelType !== InputLabel.RIGHT && (
@@ -175,11 +153,7 @@ const ColorPicker = ({
         )}
         {error && (
           <InputError
-            style={getInputsErrorStyle(
-              labelType as InputLabel,
-              labelWidth,
-              floatingInputWidth
-            )}
+            style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
             className={classNames("color-picker-error", classNamesObj?.error)}
             error={error}
           />

@@ -1,12 +1,14 @@
 .tooltip {
-    position: absolute;
-    width: fit-content;
+  position: absolute;
+  width: fit-content;
 
-    padding: 5px 10px;
-    border-radius: var(--border-radius);
+  padding: 5px 10px;
+  border-radius: var(--border-radius);
 
-    font-size: 13px;
-    overflow-wrap: break-word !important;
+  font-size: 13px;
+  overflow-wrap: break-word !important;
 
-    opacity: 0.85;
+  opacity: 0.85;
+
+  z-index: 10;
 }

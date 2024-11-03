@@ -1,118 +1,124 @@
 /** Common properties */
 .common-wrapper-container .m-input-container {
-    color: var(--input-text-color);
+  color: var(--input-text-color);
+}
+
+.common-wrapper-container .m-input-container .m-textfield-prefix {
+  color: var(--input-placeholder-color);
 }
 
 .common-wrapper-container .m-input-container .m-input {
-    color: inherit;
-    background: var(--input-background-color);
+  color: inherit;
+  background: var(--input-background-color);
+
+  border: 1px solid transparent;
 }
 
 .common-wrapper-container .m-input-container .m-input:not(.m-slider):focus {
-    box-shadow: var(--big-box-shadow) var(--box-shadow-color);
+  box-shadow: var(--big-box-shadow) var(--box-shadow-color);
 }
 
 .common-wrapper-container .m-input-container.disabled .m-input {
-    background-color: var(--input-disabled-background-color);
-    color: var(--input-disabled-text-color);
+  background-color: var(--input-disabled-background-color);
+  color: var(--input-disabled-text-color);
 }
 
 .common-wrapper-container .m-input-container.disabled .m-input::placeholder {
-    color: var(--input-disabled-text-color);
+  color: var(--input-disabled-text-color);
 }
 
 .common-wrapper-container .m-input-container:not(.disabled) .m-input:not(:disabled):focus,
 .common-wrapper-container .m-input-container:not(.disabled) .m-input:not(:disabled):hover {
-    background-color: var(--input-hover-background-color);
+  background-color: var(--input-hover-background-color);
 }
 
 .common-wrapper-container .m-input-container:not(.disabled) .m-input:not(:disabled)::placeholder {
-    color: var(--input-placeholder-color);
+  color: var(--input-placeholder-color);
 }
 
 .common-wrapper-container .m-input-container:not(.disabled) .m-input:not(:disabled):focus::placeholder,
 .common-wrapper-container .m-input-container:not(.disabled) .m-input:not(:disabled):hover::placeholder {
-    color: var(--input-hover-placeholder-color);
+  color: var(--input-hover-placeholder-color);
 }
 
 /** Textarea properties */
 .common-wrapper-container .m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
-    background-color: var(--scroll-track-background-color);
+  background-color: var(--scroll-track-background-color);
 }
 
 /** Checkbox properties */
 .common-wrapper-container .m-checkbox-container .m-checkbox {
-    color: var(--checkbox-color);
-    border-color: var(--checkbox-color);
+  color: var(--checkbox-color);
+  border-color: var(--checkbox-color);
 }
 
 .common-wrapper-container .m-checkbox-container.disabled .m-checkbox {
-    color: var(--input-disabled-text-color);
-    border-color: var(--input-disabled-text-color);
+  color: var(--input-disabled-text-color);
+  border-color: var(--input-disabled-text-color);
 }
 
 /** Dropdown properties */
 .common-wrapper-container .m-dropdown-container svg {
-    color: var(--input-placeholder-color);
+  color: var(--input-placeholder-color);
 }
 
 .common-wrapper-container .m-dropdown-container .m-dropdown-clear-icon:hover {
-    color: var(--input-text-color);
+  color: var(--input-text-color);
 }
 
 .common-wrapper-container .m-dropdown-options {
-    background-color: var(--input-background-color);
-    color: var(--input-text-color);
+  background-color: var(--input-background-color);
+  color: var(--input-text-color);
 }
 
 .common-wrapper-container .m-dropdown-options .m-dropdown-option:not(.empty-message):hover,
 .common-wrapper-container .m-dropdown-options .m-dropdown-option:not(.empty-message):active {
-    background-color: var(--input-hover-background-color);
+  background-color: var(--input-hover-background-color);
 }
 
 .common-wrapper-container .m-dropdown-options .m-dropdown-option:not(.empty-message).selected {
-    background-color: var(--input-hover-background-color);
+  background-color: var(--input-hover-background-color);
 }
 
 /**Slider properties */
 .common-wrapper-container .m-slider-container .m-slider::-webkit-slider-thumb {
-    background: var(--input-label-color);
+  background: var(--input-label-color);
 }
 
 .common-wrapper-container .m-slider-container.disabled .m-slider::-webkit-slider-thumb {
-    background: var(--input-disabled-text-color);
+  background: var(--input-disabled-text-color);
 }
 
 /**Color picker properties */
 .common-wrapper-container .m-color-picker-container .m-color-preview {
-    &.popup-open {
-        box-shadow: var(--big-box-shadow) var(--box-shadow-color);
-    }
+  &.popup-open {
+    box-shadow: var(--big-box-shadow) var(--box-shadow-color);
+  }
 }
 
 .common-wrapper-container .color-picker-popup {
-    background-color: var(--popups-background-color);
+  background-color: var(--popups-background-color);
 }
 
 .common-wrapper-container .color-picker-popup .color-picker-canvas .color-picker {
-    border-color: var(--color-picker-pointer);
-    box-shadow: 0 0 0 2px var(--color-picker-dragged-pointer);
+  border-color: var(--color-picker-pointer);
+  box-shadow: 0 0 0 2px var(--color-picker-dragged-pointer);
 
-    background-color: transparent;
+  background-color: transparent;
 }
 
 .common-wrapper-container .color-picker-canvas-container .color-picker-pointer {
-    border-color: var(--color-picker-pointer);
+  border-color: var(--color-picker-pointer);
 }
 
 .common-wrapper-container .color-picker-canvas-container .color-picker-pointer.dragging {
-    box-shadow: 0 0 0 2px var(--color-picker-dragged-pointer);
+  box-shadow: 0 0 0 2px var(--color-picker-dragged-pointer);
 }
 
 .common-wrapper-container .hue-slider-canvas-container .hue-picker-pointer {
-    border-color: var(--color-picker-pointer);
+  border-color: var(--color-picker-pointer);
 }
 
 .common-wrapper-container .hue-slider-canvas-container .hue-picker-pointer.dragging {
-    box-shadow: 0 0 0 2px var(--color-picker-dragged-pointer);
+  box-shadow: 0 0 0 2px var(--color-picker-dragged-pointer);
 }
