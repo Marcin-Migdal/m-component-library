@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react";
 
-import * as GlobalInterfaces from "../../global-types";
+import { SimpleInputLabel } from "../../global-types";
+import { InputProps } from "../_inputsComponents/input-types";
 
 type CheckboxClassNames = {
   container?: string;
@@ -11,17 +12,8 @@ type CheckboxClassNames = {
   valuePreview?: string;
 };
 
-export type CheckboxProps = {
+export type CheckboxProps = Omit<InputProps<SimpleInputLabel>, "floatingInputWidth"> & {
   checked?: boolean;
-  disabled?: boolean;
-  readOnly?: boolean;
-  name?: string;
   onChange?: (event: ChangeEvent<HTMLInputElement>, value: boolean) => void;
-  error?: string;
-  labelWidth?: GlobalInterfaces.LabelPercentageWidth;
-  size?: `${GlobalInterfaces.ComponentSize}`;
-  label?: string;
-  labelType?: `${GlobalInterfaces.SimpleInputLabel}`;
-  noBottomMargin?: boolean;
   classNamesObj?: CheckboxClassNames;
 };

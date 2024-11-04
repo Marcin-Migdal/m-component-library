@@ -1,10 +1,8 @@
-import * as GlobalInterfaces from "../../global-types";
+import { InputProps } from "../_inputsComponents/input-types";
 
 export type ColorValue = HslValue | RgbValue | string;
 
-export type ColorPickerOnChange<TValue> = (event: {
-  target: { name: string; value: TValue };
-}) => void;
+export type ColorPickerOnChange<TValue> = (event: { target: { name: string; value: TValue } }) => void;
 
 type ColorPickerClassNames = {
   container?: string;
@@ -14,38 +12,29 @@ type ColorPickerClassNames = {
   popup?: string;
 };
 
-export type ColorPickerProps = {
+export type ColorPickerProps = InputProps & {
   defaultInternalValue?: ColorValue;
-  label?: string;
-  labelType?: `${GlobalInterfaces.InputLabel}`;
-  size?: `${GlobalInterfaces.ComponentSize}`;
-  name?: string;
-  disabled?: boolean;
-  readOnly?: boolean;
-  error?: string;
-  labelWidth?: GlobalInterfaces.LabelPercentageWidth;
-  floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
-  noBottomMargin?: boolean;
   classNamesObj?: ColorPickerClassNames;
+  placeholder?: string;
 
   onOpen?: () => void;
 } & (
-  | {
-      returnedColorType: ReturnedColor.RGB;
-      onChange: ColorPickerOnChange<RgbValue>;
-      onClose?: (value: RgbValue) => void;
-    }
-  | {
-      returnedColorType: ReturnedColor.HSL;
-      onChange: ColorPickerOnChange<HslValue>;
-      onClose?: (value: HslValue) => void;
-    }
-  | {
-      returnedColorType: ReturnedColor.HEX;
-      onChange: ColorPickerOnChange<string>;
-      onClose?: (value: string) => void;
-    }
-);
+    | {
+        returnedColorType: ReturnedColor.RGB;
+        onChange: ColorPickerOnChange<RgbValue>;
+        onClose?: (value: RgbValue) => void;
+      }
+    | {
+        returnedColorType: ReturnedColor.HSL;
+        onChange: ColorPickerOnChange<HslValue>;
+        onClose?: (value: HslValue) => void;
+      }
+    | {
+        returnedColorType: ReturnedColor.HEX;
+        onChange: ColorPickerOnChange<string>;
+        onClose?: (value: string) => void;
+      }
+  );
 
 export type HslValue = {
   h: number;

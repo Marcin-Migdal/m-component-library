@@ -21,7 +21,7 @@ const Checkbox = ({
   size = ComponentSize.MEDIUM,
   disabled = false,
   readOnly = false,
-  noBottomMargin = false,
+  disableDefaultMargin: disableDefaultMargin = false,
   classNamesObj,
   ...otherProps
 }: CheckboxProps) => {
@@ -51,23 +51,10 @@ const Checkbox = ({
       className={classNames("m-checkbox-container", classNamesObj?.container)}
       size={size}
       error={error}
-      noBottomMargin={noBottomMargin}
+      disableDefaultMargin={disableDefaultMargin}
     >
-      <div
-        style={getInputStyle(
-          labelType as SimpleInputLabel,
-          label,
-          labelWidth,
-          undefined
-        )}
-      >
-        <label
-          className={classNames(
-            "m-checkbox-input-wrapper",
-            classNamesObj?.inputWrapper,
-            { checked: isChecked }
-          )}
-        >
+      <div style={getInputStyle(labelType as SimpleInputLabel, label, labelWidth, undefined)}>
+        <label className={classNames("m-checkbox-input-wrapper", classNamesObj?.inputWrapper, { checked: isChecked })}>
           <input
             readOnly
             className="m-checkbox-input"
@@ -78,14 +65,7 @@ const Checkbox = ({
             disabled={disabled}
             {...otherProps}
           />
-          <span
-            className={classNames(
-              "m-input",
-              "m-checkbox",
-              classNamesObj?.input,
-              labelType
-            )}
-          >
+          <span className={classNames("m-input", "m-checkbox", classNamesObj?.input, labelType)}>
             <FontAwesomeIcon className="m-checkbox-check-icon" icon="check" />
           </span>
         </label>
@@ -100,11 +80,7 @@ const Checkbox = ({
       )}
       {error && checkboxContainerRef.current && (
         <InputError
-          style={getCheckboxErrorStyle(
-            checkboxContainerRef.current,
-            labelType as SimpleInputLabel,
-            labelWidth
-          )}
+          style={getCheckboxErrorStyle(checkboxContainerRef.current, labelType as SimpleInputLabel, labelWidth)}
           className={classNames("checkbox-error", classNamesObj?.error)}
           error={error}
         />

@@ -13,8 +13,6 @@ const defaultFormatChars = {
   "*": "[A-Za-z0-9]",
 };
 
-// TODO! fix icons in dropdown, it was something with position: "relative" | "absolute" in dropdown icon, also z-index broke after changing position in icons
-
 type PrefixStyleProperties = {
   inputPaddingLeft: CSSProperties["paddingLeft"];
   prefixLeftPosition?: string;
