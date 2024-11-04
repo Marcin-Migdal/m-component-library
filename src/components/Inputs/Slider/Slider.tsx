@@ -1,14 +1,9 @@
 import classNames from "classnames";
-import React, {
-  ChangeEvent,
-  CSSProperties,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { ChangeEvent, CSSProperties, useLayoutEffect, useRef, useState } from "react";
 
-import { InputLabel, ComponentSize } from "../../global-types";
-import { InputContainer, InputsLabel } from "../_inputsComponents";
+import { ComponentSize, InputLabel } from "../../global-types";
+import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
+import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
 import { getInputStyle } from "../helpers/getInputStyle";
 import { getSliderValueDynamicStyle } from "./getSliderValueDynamicStyle";
 import { SliderProps } from "./types";
@@ -32,18 +27,24 @@ const Slider = ({
   valuePreviewType = "bottom-dynamic",
   disabled = false,
   readOnly = false,
-  noBottomMargin = false,
+  disableDefaultMargin: disableDefaultMargin = false,
+  error,
   classNamesObj,
 }: SliderProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [internalValue, setValue] = useState<number>(initialValue || min);
 
-  const [sliderValueDynamicStyle, setSliderValueDynamicStyle] =
-    useState<CSSProperties>({});
+  const [sliderValueDynamicStyle, setSliderValueDynamicStyle] = useState<CSSProperties>({});
 
   const controlled = externalValue !== undefined;
   const value = controlled ? externalValue : internalValue;
+
+  let inputStyle = getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth);
+
+  if (error) {
+    inputStyle = { ...inputStyle, width: `calc(${inputStyle.width} - 2rem)` };
+  }
 
   useLayoutEffect(() => {
     if (!inputRef.current) {
@@ -56,10 +57,7 @@ const Slider = ({
     }
 
     const observer = new ResizeObserver(() => {
-      inputRef.current &&
-        setSliderValueDynamicStyle(
-          getSliderValueDynamicStyle(inputRef.current, max, value)
-        );
+      inputRef.current && setSliderValueDynamicStyle(getSliderValueDynamicStyle(inputRef.current, max, value));
     });
 
     observer.observe(document.body);
@@ -92,11 +90,12 @@ const Slider = ({
       disabled={disabled}
       className={classNames("m-slider-container", classNamesObj?.container)}
       size={size}
+      error={error}
       style={{
         // @ts-expect-error ts(2353) typescript do not recognize css variables
         "--slider-value": value,
       }}
-      noBottomMargin={noBottomMargin}
+      disableDefaultMargin={disableDefaultMargin}
     >
       <input
         readOnly={readOnly}
@@ -109,12 +108,7 @@ const Slider = ({
         step={step}
         value={value}
         onChange={handleChange}
-        style={getInputStyle(
-          labelType as InputLabel,
-          label,
-          labelWidth,
-          floatingInputWidth
-        )}
+        style={inputStyle}
         className={classNames("m-input m-slider", classNamesObj?.input)}
       />
       {label && (
@@ -129,16 +123,19 @@ const Slider = ({
       {!hideValuePreview && (
         <div className="m-relative-value-container">
           <span
-            className={classNames(
-              "m-slider-value-preview",
-              classNamesObj?.valuePreview,
-              valuePreviewType
-            )}
+            className={classNames("m-slider-value-preview", classNamesObj?.valuePreview, valuePreviewType)}
             style={sliderValueDynamicStyle}
           >
             {value}
           </span>
         </div>
+      )}
+      {error && (
+        <InputError
+          style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
+          className={classNames("textfield-error", classNamesObj?.error)}
+          error={error}
+        />
       )}
     </InputContainer>
   );

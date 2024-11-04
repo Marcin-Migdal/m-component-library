@@ -24,7 +24,7 @@ const Textfield = (props: TextfieldProps) => {
     floatingInputWidth = 100,
     defaultInternalValue,
     size = ComponentSize.MEDIUM,
-    noBottomMargin = false,
+    disableDefaultMargin: disableDefaultMargin = false,
     classNamesObj,
     advancedMask = undefined,
     mask = "",
@@ -62,7 +62,7 @@ const Textfield = (props: TextfieldProps) => {
       className={classNames("m-textfield-container", classNamesObj?.container)}
       size={size}
       error={error}
-      noBottomMargin={noBottomMargin}
+      disableDefaultMargin={disableDefaultMargin}
     >
       <StandAloneTextfield
         onChange={handleChange}

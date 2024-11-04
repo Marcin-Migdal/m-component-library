@@ -2,6 +2,7 @@
 
 - [[#80]](https://github.com/Marcin-Migdal/m-component-library/issues/80) **[PATCH]** Fix button css style with displaying icon as only content, add disableDefaultMargin props to button
 - [[#64]](https://github.com/Marcin-Migdal/m-component-library/issues/64) **[PATCH]** Add prefix props to textfield and dropdown components
+- [[#84]](https://github.com/Marcin-Migdal/m-component-library/issues/84) **[PATCH]** Add common input type and replace noBottomMargin props to disableDefaultMargin
 
 ### Release date 25.10.2024 - Release 1.0.6
 

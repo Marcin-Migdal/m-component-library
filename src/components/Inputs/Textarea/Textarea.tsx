@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React, { ChangeEvent, FocusEvent, useState } from "react";
 
-import { InputLabel, ComponentSize } from "../../global-types";
+import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
 import { getInputStyle } from "../helpers/getInputStyle";
@@ -26,17 +26,14 @@ const Textarea = ({
   size = ComponentSize.MEDIUM,
   disabled = false,
   readOnly = false,
-  noBottomMargin = false,
+  disableDefaultMargin: disableDefaultMargin = false,
   classNamesObj,
   ...otherProps
 }: TextareaProps) => {
-  const [internalValue, setInternalValue] = useState<string>(
-    defaultInternalValue || ""
-  );
+  const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
-  const value: string =
-    externalValue !== undefined ? externalValue : internalValue;
+  const value: string = externalValue !== undefined ? externalValue : internalValue;
 
   const handleFocus = () => setIsFocused(true);
 
@@ -57,33 +54,19 @@ const Textarea = ({
       className={classNames("m-textarea-container", classNamesObj?.container)}
       size={size}
       error={error}
-      noBottomMargin={noBottomMargin}
+      disableDefaultMargin={disableDefaultMargin}
     >
       <textarea
         readOnly={readOnly}
         name={name}
         rows={row}
-        style={getInputStyle(
-          labelType as InputLabel,
-          label,
-          labelWidth,
-          floatingInputWidth
-        )}
-        className={classNames(
-          "m-input",
-          "m-textarea",
-          classNamesObj?.input,
-          labelType
-        )}
+        style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
+        className={classNames("m-input", "m-textarea", classNamesObj?.input, labelType)}
         value={value}
         onChange={handleChange}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        placeholder={
-          labelType === InputLabel.FLOATING
-            ? undefined
-            : placeholder || (label ? `${label}...` : "")
-        }
+        placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
         autoFocus={autoFocus}
         disabled={disabled}
         {...otherProps}
@@ -100,11 +83,7 @@ const Textarea = ({
       )}
       {error && (
         <InputError
-          style={getInputsErrorStyle(
-            labelType as InputLabel,
-            labelWidth,
-            floatingInputWidth
-          )}
+          style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
           className={classNames("textarea-error", classNamesObj?.error)}
           error={error}
         />

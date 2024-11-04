@@ -1,21 +1,19 @@
 import React, { ChangeEvent, CSSProperties, FocusEvent } from "react";
 import { InputState } from "react-input-mask";
-import { ComponentSize } from "../../../global-types";
+import { InputProps } from "../input-types";
 
 export type TextfieldTypes = "text" | "number" | "password";
 
-export type StandAloneTextfieldProps = {
+export type StandAloneTextfieldProps = Omit<
+  InputProps,
+  "labelWidth" | "label" | "disableDefaultMargin" | "error" | "labelType" | "floatingInputWidth"
+> & {
   value?: string;
-  name?: string;
-  disabled?: boolean;
-  readOnly?: boolean;
-
   placeholder?: string;
   type?: TextfieldTypes;
   autoFocus?: boolean;
   className?: string;
   prefix?: string;
-  size?: `${ComponentSize}`;
 
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;

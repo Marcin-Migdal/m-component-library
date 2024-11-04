@@ -1,6 +1,6 @@
 import { ChangeEvent, FocusEvent } from "react";
 
-import * as GlobalInterfaces from "../../global-types";
+import { InputProps } from "../_inputsComponents/input-types";
 
 type TextAreaClassNames = {
   container?: string;
@@ -9,23 +9,13 @@ type TextAreaClassNames = {
   error?: string;
 };
 
-export type TextareaProps = {
+export type TextareaProps = InputProps & {
   value?: string;
-  name?: string;
   onChange?: (event: ChangeEvent<HTMLTextAreaElement>, value: string) => void;
   onBlur?: (event: FocusEvent<HTMLTextAreaElement>, value: string) => void;
-  error?: string;
   placeholder?: string;
   defaultInternalValue?: string;
   autoFocus?: boolean;
-  disabled?: boolean;
-  readOnly?: boolean;
-  labelWidth?: GlobalInterfaces.LabelPercentageWidth;
-  floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
   row?: number;
-  size?: `${GlobalInterfaces.ComponentSize}`;
-  label?: string;
-  labelType?: `${GlobalInterfaces.InputLabel}`;
-  noBottomMargin?: boolean;
   classNamesObj?: TextAreaClassNames;
 };

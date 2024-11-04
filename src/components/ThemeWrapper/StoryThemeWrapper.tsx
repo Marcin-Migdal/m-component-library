@@ -1,12 +1,7 @@
 import React, { CSSProperties, useRef, useState } from "react";
 
 import { Placement } from "../../helpers/getPosition/getPosition-types";
-import {
-  InputLabel,
-  ComponentSize,
-  LabelPercentageWidth,
-  SimpleInputLabel,
-} from "../global-types";
+import { ComponentSize, InputLabel, LabelPercentageWidth, SimpleInputLabel } from "../global-types";
 import ThemeWrapper from "./ThemeWrapper";
 
 import {
@@ -67,11 +62,7 @@ type SectionHeaderProps = {
   headerStyle?: CSSProperties;
 };
 
-const SectionHeader = ({
-  text,
-  style = {},
-  headerStyle = {},
-}: SectionHeaderProps) => {
+const SectionHeader = ({ text, style = {}, headerStyle = {} }: SectionHeaderProps) => {
   return (
     <div
       style={{
@@ -112,12 +103,9 @@ const StoryThemeWrapper = ({
   const [hue, setHue] = useState<number | undefined>(undefined);
 
   const checkboxLabelType = (
-    inputLabelType === InputLabel.FLOATING
-      ? SimpleInputLabel.RIGHT
-      : inputLabelType
+    inputLabelType === InputLabel.FLOATING ? SimpleInputLabel.RIGHT : inputLabelType
   ) as SimpleInputLabel;
-  const inputLabelWidth: LabelPercentageWidth | undefined =
-    inputLabelType === InputLabel.FLOATING ? 90 : 35;
+  const inputLabelWidth: LabelPercentageWidth | undefined = inputLabelType === InputLabel.FLOATING ? 90 : 35;
   const floatingInputWidth = 60;
 
   return (
@@ -129,30 +117,10 @@ const StoryThemeWrapper = ({
           text="BUTTON SECTION"
         />
 
-        <Button
-          disabled={disabled}
-          variant="outlined"
-          text="btn outlined"
-          onClick={() => {}}
-        />
-        <Button
-          disabled={disabled}
-          variant="full"
-          text="btn full"
-          onClick={() => {}}
-        />
-        <Button
-          disabled={disabled}
-          variant="text"
-          text="btn text"
-          onClick={() => {}}
-        />
-        <Button
-          disabled={disabled}
-          variant="neon"
-          text="btn neon"
-          onClick={() => {}}
-        />
+        <Button disabled={disabled} variant="outlined" text="btn outlined" onClick={() => {}} />
+        <Button disabled={disabled} variant="full" text="btn full" onClick={() => {}} />
+        <Button disabled={disabled} variant="text" text="btn text" onClick={() => {}} />
+        <Button disabled={disabled} variant="neon" text="btn neon" onClick={() => {}} />
 
         <SectionHeader text="INPUT SECTION" />
 
@@ -213,6 +181,7 @@ const StoryThemeWrapper = ({
           disabled={disabled}
           readOnly={readOnly}
           size={inputSize}
+          error={error}
         />
         <Checkbox
           label="label"
@@ -239,11 +208,7 @@ const StoryThemeWrapper = ({
         />
         <SectionHeader text="DYNAMIC THEME COLOR CONTROL" />
         <div style={{ display: "flex", alignItems: "center" }}>
-          <HueSliderCanvas
-            hue={0}
-            onChange={(newHue) => setHue(newHue)}
-            readOnly={readOnly}
-          />
+          <HueSliderCanvas hue={0} onChange={(newHue) => setHue(newHue)} readOnly={readOnly} />
           <Button
             icon={["fas", "refresh"]}
             style={{ marginLeft: "10px" }}
@@ -258,9 +223,7 @@ const StoryThemeWrapper = ({
           <Button
             style={{ marginTop: "10px" }}
             text="Success toast"
-            onClick={() =>
-              toastRef.current?.addToast({ message: "Sign in was successful" })
-            }
+            onClick={() => toastRef.current?.addToast({ message: "Sign in was successful" })}
           />
           <Button
             style={{ marginTop: "10px" }}
@@ -273,11 +236,7 @@ const StoryThemeWrapper = ({
               })
             }
           />
-          <Button
-            style={{ marginTop: "10px" }}
-            text="Clear toasts"
-            onClick={() => toastRef.current?.clear()}
-          />
+          <Button style={{ marginTop: "10px" }} text="Clear toasts" onClick={() => toastRef.current?.clear()} />
         </div>
 
         <SectionHeader text="TOOLTIP SECTION" />
@@ -313,10 +272,7 @@ const StoryThemeWrapper = ({
 
         <SectionHeader text="PANEL SECTION" />
 
-        <Card
-          variant={panelVariant}
-          style={{ width: "300px", padding: "1rem" }}
-        >
+        <Card variant={panelVariant} style={{ width: "300px", padding: "1rem" }}>
           <h2
             style={{
               width: "100%",
@@ -338,10 +294,9 @@ const StoryThemeWrapper = ({
           />
 
           <span style={{ display: "inline-block", width: "100%" }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat
           </span>
         </Card>
         <SectionHeader text="MISCELLANEOUS" />
@@ -353,10 +308,7 @@ const StoryThemeWrapper = ({
 
         <SectionHeader text="ALERT" />
 
-        <Button
-          text="Open alert"
-          onClick={() => alertRef.current?.openAlert()}
-        />
+        <Button text="Open alert" onClick={() => alertRef.current?.openAlert()} />
         <Alert
           ref={alertRef}
           header={{ header: "Test header" }}

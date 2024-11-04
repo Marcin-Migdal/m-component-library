@@ -5,13 +5,13 @@ import { createPortal } from "react-dom";
 import { OpenStatus, useOpen } from "../../../hooks";
 import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
+import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
 import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
 import { getInputStyle } from "../helpers/getInputStyle";
 import { ColorPickerPopup } from "./ColorPickerPopup/ColorPickerPopup";
 import { rgbToHex, rgbToHsl, valueToRgb } from "./helpers";
 import { ColorPickerProps, defaultColorPickerValue, ReturnedColor, RgbValue } from "./types";
 
-import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
 import "./ColorPicker.css";
 
 const ColorPicker = ({
@@ -27,8 +27,9 @@ const ColorPicker = ({
   defaultInternalValue = defaultColorPickerValue,
   returnedColorType,
   size = ComponentSize.MEDIUM,
-  noBottomMargin = false,
+  disableDefaultMargin: disableDefaultMargin = false,
   classNamesObj,
+  placeholder = undefined,
   onOpen,
   onClose,
 }: ColorPickerProps) => {
@@ -107,7 +108,7 @@ const ColorPicker = ({
         className={classNames("m-color-picker-container", classNamesObj?.container)}
         size={size}
         error={error}
-        noBottomMargin={noBottomMargin}
+        disableDefaultMargin={disableDefaultMargin}
       >
         <div
           ref={inputContainerRef}
@@ -128,6 +129,7 @@ const ColorPicker = ({
             readOnly
             onClick={() => !disabled && handleOpen()}
             value={hexValue}
+            placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
             style={{
               //@ts-expect-error ts(2353) styles attribute does not expect css variable
               "--box-shadow-color": hexValue,

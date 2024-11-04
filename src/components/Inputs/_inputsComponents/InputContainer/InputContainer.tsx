@@ -1,15 +1,14 @@
 import classNames from "classnames";
 import React, { CSSProperties, forwardRef, PropsWithChildren } from "react";
 
-import * as GlobalInterfaces from "../../../global-types";
-
+import { ComponentSize } from "../../../global-types";
 import "./InputContainer.css";
 
 type InputContainerProps = {
-  noBottomMargin: boolean;
+  disableDefaultMargin: boolean;
   disabled: boolean;
   className: string;
-  size: `${GlobalInterfaces.ComponentSize}`;
+  size: `${ComponentSize}`;
   error?: string;
   style?: CSSProperties;
 };
@@ -22,7 +21,7 @@ function InputContainer(
     error,
     style = {},
     disabled,
-    noBottomMargin,
+    disableDefaultMargin,
   }: PropsWithChildren<InputContainerProps>,
   ref?: React.ForwardedRef<HTMLDivElement>
 ) {
@@ -33,7 +32,7 @@ function InputContainer(
       className={classNames("m-input-container", className, size, {
         error,
         disabled,
-        "bottom-margin": !noBottomMargin,
+        "bottom-margin": !disableDefaultMargin,
       })}
     >
       {children}

@@ -1,7 +1,7 @@
 import { ComponentProps, FocusEvent } from "react";
 
-import * as GlobalInterfaces from "../../global-types";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
+import { InputProps } from "../_inputsComponents/input-types";
 
 type DropdownClassNames = {
   container?: string;
@@ -12,24 +12,14 @@ type DropdownClassNames = {
   clearIcon?: string;
 } & DropdownOptionsClassnames;
 
-type DropdownBaseProps<T> = {
+type DropdownBaseProps<T> = InputProps & {
   value?: DropdownValue<T>;
-  name?: string;
-  disabled?: boolean;
   onChange?: (event: DropdownChangeEvent<T>, value: DropdownValue<T>) => void;
   onClear?: (event: DropdownClearEvent<T>, value: DropdownValue<T>) => void;
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
-  error?: string;
   placeholder?: string;
-  labelWidth?: GlobalInterfaces.LabelPercentageWidth;
-  floatingInputWidth?: GlobalInterfaces.FloatingInputWidth;
   clearable?: boolean;
-  readOnly?: boolean;
   filter?: boolean;
-  size?: `${GlobalInterfaces.ComponentSize}`;
-  label?: string;
-  labelType?: `${GlobalInterfaces.InputLabel}`;
-  noBottomMargin?: boolean;
   classNamesObj?: DropdownClassNames;
   prefix?: ComponentProps<typeof StandAloneTextfield>["prefix"];
 
