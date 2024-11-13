@@ -284,6 +284,7 @@ body {
   /** Inputs colors */
   --input-label-color: var(--primary-color_320);
   --checkbox-color: var(--primary-color_300);
+  --toggle-switch-color: var(--checkbox-color);
 
   /** Buttons */
   --btn-outlined-color: var(--primary-color_300);
@@ -299,10 +300,9 @@ body {
   --loader-color: var(--primary-color_280);
 
   /* Card */
-  --card-gradient-colors: var(--primary-color_020), var(--primary-color_820),
-    var(--primary-color_720), var(--primary-color_400), var(--primary-color_380),
-    var(--primary-color_220), var(--primary-color_380), var(--primary-color_400),
-    var(--primary-color_720), var(--primary-color_820), var(--primary-color_020);
+  --card-gradient-colors: var(--primary-color_020), var(--primary-color_820), var(--primary-color_720),
+    var(--primary-color_400), var(--primary-color_380), var(--primary-color_220), var(--primary-color_380),
+    var(--primary-color_400), var(--primary-color_720), var(--primary-color_820), var(--primary-color_020);
 
   /* Alert */
   --alert-border-color: var(--primary-color_300);
@@ -371,6 +371,7 @@ body {
   /** Inputs colors */
   --input-label-color: var(--primary-color_780);
   --checkbox-color: var(--primary-color_620);
+  --toggle-switch-color: var(--checkbox-color);
 
   /** Buttons */
   --btn-outlined-color: var(--primary-color_780);
@@ -386,10 +387,9 @@ body {
   --loader-color: var(--primary-color_780);
 
   /* Card */
-  --card-gradient-colors: var(--primary-color_020), var(--primary-color_100),
-    var(--primary-color_200), var(--primary-color_400), var(--primary-color_540),
-    var(--primary-color_700), var(--primary-color_540), var(--primary-color_400),
-    var(--primary-color_200), var(--primary-color_100), var(--primary-color_020);
+  --card-gradient-colors: var(--primary-color_020), var(--primary-color_100), var(--primary-color_200),
+    var(--primary-color_400), var(--primary-color_540), var(--primary-color_700), var(--primary-color_540),
+    var(--primary-color_400), var(--primary-color_200), var(--primary-color_100), var(--primary-color_020);
 
   /* Alert */
   --alert-border-color: var(--primary-color_700);
@@ -464,6 +464,7 @@ body {
   /** Inputs colors */
   --input-label-color: var(--primary-color_580);
   --checkbox-color: var(--primary-color_580);
+  --toggle-switch-color: var(--checkbox-color);
 
   /** Buttons */
   --btn-outlined-color: var(--primary-color_580);
@@ -479,10 +480,9 @@ body {
   --loader-color: var(--primary-color_580);
 
   /* Card */
-  --card-gradient-colors: var(--primary-color_220), var(--primary-color_380),
-    var(--primary-color_580), var(--primary-color_780), var(--primary-color_920),
-    var(--primary-color_780), var(--primary-color_580), var(--primary-color_380),
-    var(--primary-color_220);
+  --card-gradient-colors: var(--primary-color_220), var(--primary-color_380), var(--primary-color_580),
+    var(--primary-color_780), var(--primary-color_920), var(--primary-color_780), var(--primary-color_580),
+    var(--primary-color_380), var(--primary-color_220);
 
   /* Alert */
   --alert-border-color: var(--primary-color_500);
@@ -557,6 +557,7 @@ body {
   /** Inputs colors */
   --input-label-color: var(--primary-color_680);
   --checkbox-color: var(--primary-color_680);
+  --toggle-switch-color: var(--checkbox-color);
 
   /** Buttons */
   --btn-outlined-color: var(--primary-color_680);
@@ -572,10 +573,9 @@ body {
   --loader-color: var(--primary-color_680);
 
   /* Card */
-  --card-gradient-colors: var(--primary-color_100), var(--primary-color_280),
-    var(--primary-color_480), var(--primary-color_680), var(--primary-color_900),
-    var(--primary-color_680), var(--primary-color_480), var(--primary-color_280),
-    var(--primary-color_100);
+  --card-gradient-colors: var(--primary-color_100), var(--primary-color_280), var(--primary-color_480),
+    var(--primary-color_680), var(--primary-color_900), var(--primary-color_680), var(--primary-color_480),
+    var(--primary-color_280), var(--primary-color_100);
 
   /* Alert */
   --alert-border-color: var(--primary-color_620);

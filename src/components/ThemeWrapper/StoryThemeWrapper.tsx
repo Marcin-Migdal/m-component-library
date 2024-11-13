@@ -25,6 +25,7 @@ import {
   ToastConfig,
   ToastHandler,
   ToastsContainer,
+  ToggleSwitch,
 } from "../..";
 
 export type StoryThemeWrapperProps = {
@@ -184,6 +185,15 @@ const StoryThemeWrapper = ({
           error={error}
         />
         <Checkbox
+          label="label"
+          labelType={checkboxLabelType}
+          labelWidth={inputLabelWidth}
+          error={error}
+          disabled={disabled}
+          readOnly={readOnly}
+          size={inputSize}
+        />
+        <ToggleSwitch
           label="label"
           labelType={checkboxLabelType}
           labelWidth={inputLabelWidth}

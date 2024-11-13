@@ -2,6 +2,7 @@ import { CSSProperties } from "react";
 
 export type CssVariableNameType =
   | "--checkbox-input-size"
+  | "--toggle-switch-input-size"
   | "--border-width"
   | "--error-icon-size"
   | "--error-icon-margin"

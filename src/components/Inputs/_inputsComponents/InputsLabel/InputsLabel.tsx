@@ -11,6 +11,7 @@ type InputsLabelProps = {
   className: string;
   labelWidth: LabelPercentageWidth;
   prefix?: string;
+  htmlFor?: string;
 
   isFocused?: boolean;
   isFilled?: boolean;
@@ -37,6 +38,7 @@ export const InputsLabel = ({
   forceFloating = false,
   dataId,
   prefix,
+  htmlFor,
 }: InputsLabelProps) => {
   const labelRef = useRef<HTMLLabelElement>(null);
 
@@ -85,6 +87,7 @@ export const InputsLabel = ({
 
   return (
     <label
+      htmlFor={htmlFor}
       ref={labelRef}
       data-id={dataId}
       style={inputLabelConfig.style}
@@ -92,6 +95,7 @@ export const InputsLabel = ({
         focused: labelType === InputLabel.FLOATING && isFocused,
         filled: isFilled,
         "forced-floating": forceFloating,
+        "pointer-event": !htmlFor,
       })}
     >
       {inputLabelConfig.label}

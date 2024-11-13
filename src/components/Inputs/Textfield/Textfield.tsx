@@ -3,8 +3,8 @@ import React, { ChangeEvent, FocusEvent, useState } from "react";
 
 import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
+import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
-import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
 import { getInputStyle } from "../helpers/getInputStyle";
 import { TextfieldProps } from "./types";
 
@@ -24,7 +24,7 @@ const Textfield = (props: TextfieldProps) => {
     floatingInputWidth = 100,
     defaultInternalValue,
     size = ComponentSize.MEDIUM,
-    disableDefaultMargin: disableDefaultMargin = false,
+    disableDefaultMargin = false,
     classNamesObj,
     advancedMask = undefined,
     mask = "",
@@ -83,7 +83,7 @@ const Textfield = (props: TextfieldProps) => {
         <InputsLabel
           label={label}
           labelType={labelType}
-          className={classNames("textfield", classNamesObj?.label)}
+          className={classNames("m-textfield-label", classNamesObj?.label)}
           labelWidth={labelWidth}
           isFocused={isFocused}
           isFilled={!!value}

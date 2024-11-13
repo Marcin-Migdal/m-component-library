@@ -5,8 +5,8 @@ import { createPortal } from "react-dom";
 import { OpenStatus, useOpen } from "../../../hooks";
 import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
+import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
-import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
 import { getInputStyle } from "../helpers/getInputStyle";
 import { ColorPickerPopup } from "./ColorPickerPopup/ColorPickerPopup";
 import { rgbToHex, rgbToHsl, valueToRgb } from "./helpers";
@@ -27,7 +27,7 @@ const ColorPicker = ({
   defaultInternalValue = defaultColorPickerValue,
   returnedColorType,
   size = ComponentSize.MEDIUM,
-  disableDefaultMargin: disableDefaultMargin = false,
+  disableDefaultMargin = false,
   classNamesObj,
   placeholder = undefined,
   onOpen,
@@ -148,7 +148,7 @@ const ColorPicker = ({
           <InputsLabel
             label={label}
             labelType={labelType}
-            className={classNames("color-picker", classNamesObj?.label)}
+            className={classNames("m-color-picker-labeel", classNamesObj?.label)}
             labelWidth={labelWidth}
             forceFloating={labelType === InputLabel.FLOATING}
           />

@@ -1,17 +1,16 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import React, { ChangeEvent, useRef, useState } from "react";
 import { v4 as uuId } from "uuid";
 
 import { ComponentSize, SimpleInputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
-import { getCheckboxErrorStyle } from "../_inputsComponents/InputError/helpers/getCheckboxErrorStyle";
+import { getToggleSwitchErrorStyle } from "../_inputsComponents/InputError/helpers/getToggleSwitchErrorStyle";
 import { getInputStyle } from "../helpers/getInputStyle";
-import { CheckboxProps } from "./types";
+import { ToggleSwitchProps } from "./types";
 
-import "./Checkbox.css";
+import "./ToggleSwitch.css";
 
-const Checkbox = ({
+const ToggleSwitch = ({
   checked: externalChecked = undefined,
   name,
   onChange,
@@ -25,11 +24,11 @@ const Checkbox = ({
   disableDefaultMargin = false,
   classNamesObj,
   ...otherProps
-}: CheckboxProps) => {
-  const checkboxContainerRef = useRef<HTMLDivElement>(null);
+}: ToggleSwitchProps) => {
+  const toggleSwitchContainerRef = useRef<HTMLDivElement>(null);
 
   const [internalChecked, setInternalChecked] = useState<boolean>(false);
-  const [checkboxId] = useState(uuId());
+  const [toggleSwitchId] = useState(uuId());
 
   const controlled = externalChecked !== undefined;
   const checked = controlled ? externalChecked : internalChecked;
@@ -49,18 +48,21 @@ const Checkbox = ({
   return (
     <InputContainer
       disabled={disabled}
-      ref={checkboxContainerRef}
-      className={classNames("m-checkbox-container", classNamesObj?.container)}
+      ref={toggleSwitchContainerRef}
+      className={classNames("m-toggle-switch-container", classNamesObj?.container)}
       size={size}
       error={error}
       disableDefaultMargin={disableDefaultMargin}
     >
-      <div style={getInputStyle(labelType as SimpleInputLabel, label, labelWidth, undefined)}>
-        <label className={classNames("m-checkbox-input-wrapper", classNamesObj?.inputWrapper, { checked: checked })}>
+      <div
+        style={getInputStyle(labelType as SimpleInputLabel, label, labelWidth, undefined)}
+        className={classNames("m-toggle-switch-input-wrapper", classNamesObj?.inputWrapper)}
+      >
+        <label>
           <input
-            id={checkboxId}
+            id={toggleSwitchId}
             readOnly
-            className="m-checkbox-input"
+            className="m-toggle-switch-input"
             type="checkbox"
             checked={checked}
             onChange={handleChange}
@@ -68,23 +70,21 @@ const Checkbox = ({
             disabled={disabled}
             {...otherProps}
           />
-          <span className={classNames("m-input", "m-checkbox", classNamesObj?.input, labelType)}>
-            <FontAwesomeIcon className="m-checkbox-check-icon" icon="check" />
-          </span>
+          <span className={classNames("m-input", "m-toggle-switch-slider", classNamesObj?.input, labelType)} />
         </label>
       </div>
       {label && (
         <InputsLabel
-          htmlFor={checkboxId}
+          htmlFor={toggleSwitchId}
           label={label}
           labelType={labelType}
-          className={classNames("m-checkbox-label", classNamesObj?.label)}
+          className={classNames("m-toggle-switch-label", classNamesObj?.label)}
           labelWidth={labelWidth}
         />
       )}
-      {error && checkboxContainerRef.current && (
+      {error && toggleSwitchContainerRef.current && (
         <InputError
-          style={getCheckboxErrorStyle(checkboxContainerRef.current, labelType as SimpleInputLabel, labelWidth)}
+          style={getToggleSwitchErrorStyle(toggleSwitchContainerRef.current, labelType as SimpleInputLabel, labelWidth)}
           className={classNames("checkbox-error", classNamesObj?.error)}
           error={error}
         />
@@ -93,4 +93,4 @@ const Checkbox = ({
   );
 };
 
-export default Checkbox;
+export default ToggleSwitch;

@@ -1,0 +1,49 @@
+.m-toggle-switch-container .m-toggle-switch-input-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: fit-content;
+  height: 100%;
+}
+
+.m-toggle-switch-container .m-toggle-switch-input-wrapper .m-toggle-switch-input {
+  display: none;
+}
+
+.m-toggle-switch-container .m-toggle-switch-input-wrapper .m-toggle-switch-slider {
+  position: relative;
+  display: block;
+
+  width: calc(var(--toggle-switch-input-size) * 2);
+  height: var(--toggle-switch-input-size);
+  border-radius: calc(var(--toggle-switch-input-size) / 2);
+  border: unset;
+
+  transition: 0.2s ease-in-out;
+}
+
+.m-toggle-switch-container .m-toggle-switch-input-wrapper .m-toggle-switch-slider::before {
+  content: "";
+
+  position: absolute;
+  top: var(--border-width);
+  left: var(--border-width);
+
+  height: calc(var(--toggle-switch-input-size) - (var(--border-width) * 2));
+  width: calc(var(--toggle-switch-input-size) - (var(--border-width) * 2));
+  border-radius: 50%;
+
+  transition: 0.2s ease-in-out;
+}
+
+.m-toggle-switch-container.error .m-toggle-switch-input-wrapper .m-toggle-switch-slider::before {
+  top: calc(var(--border-width) - 1px);
+  left: calc(var(--border-width) - 1px);
+}
+
+.m-toggle-switch-container
+  .m-toggle-switch-input-wrapper
+  .m-toggle-switch-input:checked
+  ~ .m-toggle-switch-slider::before {
+  transform: translateX(var(--toggle-switch-input-size));
+}

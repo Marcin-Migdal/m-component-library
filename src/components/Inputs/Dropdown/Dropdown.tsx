@@ -6,8 +6,8 @@ import { v4 as uuId } from "uuid";
 
 import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
+import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
-import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
 import { getInputStyle } from "../helpers/getInputStyle";
 import { DropdownOptions } from "./DropdownOptions/DropdownOptions";
 import { DropdownChangeEvent, DropdownClearEvent, DropdownProps, DropdownValue } from "./types";
@@ -37,7 +37,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
     labelKey = "label",
     valueKey = "value",
     size = ComponentSize.MEDIUM,
-    disableDefaultMargin: disableDefaultMargin = false,
+    disableDefaultMargin = false,
     classNamesObj,
     prefix,
 
@@ -201,7 +201,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
         <InputsLabel
           label={label}
           labelType={labelType}
-          className={classNames("dropdown", classNamesObj?.label)}
+          className={classNames("m-dropdown-label", classNamesObj?.label)}
           labelWidth={labelWidth}
           isFocused={isFocused}
           isFilled={!!value}
