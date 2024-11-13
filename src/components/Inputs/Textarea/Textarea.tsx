@@ -3,7 +3,7 @@ import React, { ChangeEvent, FocusEvent, useState } from "react";
 
 import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
-import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
+import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { getInputStyle } from "../helpers/getInputStyle";
 import { TextareaProps } from "./types";
 
@@ -26,7 +26,7 @@ const Textarea = ({
   size = ComponentSize.MEDIUM,
   disabled = false,
   readOnly = false,
-  disableDefaultMargin: disableDefaultMargin = false,
+  disableDefaultMargin = false,
   classNamesObj,
   ...otherProps
 }: TextareaProps) => {
@@ -75,7 +75,7 @@ const Textarea = ({
         <InputsLabel
           label={label}
           labelType={labelType}
-          className={classNames("textarea", classNamesObj?.label)}
+          className={classNames("m-textarea-label", classNamesObj?.label)}
           labelWidth={labelWidth}
           isFocused={isFocused}
           isFilled={!!value}

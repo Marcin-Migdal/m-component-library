@@ -1,7 +1,7 @@
 import { CSSProperties } from "react";
 
-import { getCssProperty, getCssPropertyAsNumber } from "../../../helpers";
-import { LabelPercentageWidth, SimpleInputLabel } from "../../global-types";
+import { getCssProperty, getCssPropertyAsNumber } from "../../../../../helpers";
+import { LabelPercentageWidth, SimpleInputLabel } from "../../../../global-types";
 
 export const getCheckboxErrorStyle = (
   checkboxContainerElement: HTMLDivElement,

@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React, { CSSProperties, forwardRef, PropsWithChildren } from "react";
 
 import { ComponentSize } from "../../../global-types";
+
 import "./InputContainer.css";
 
 type InputContainerProps = {

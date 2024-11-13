@@ -1,5 +1,9 @@
 .m-input-container {
   position: relative;
+
+  display: flex;
+  align-items: center;
+
   height: var(--input-height);
   width: 100%;
 }
@@ -40,11 +44,6 @@
 }
 
 /* Checkbox custom properties */
-.m-checkbox-container {
-  display: flex;
-  align-items: center;
-}
-
 .m-checkbox-container.small {
   --checkbox-input-size: calc(var(--input-height) - 6px);
 }
@@ -57,14 +56,15 @@
   --checkbox-input-size: calc(var(--input-height) - 10px);
 }
 
-/* Slider custom properties */
-.m-slider-container {
-  display: flex;
-  align-items: center;
+/* ToggleSwitch custom properties */
+.m-toggle-switch-container.small {
+  --toggle-switch-input-size: calc(var(--input-height) - 8px);
 }
 
-/* Slider custom properties */
-.m-dropdown-container {
-  display: flex;
-  align-items: center;
+.m-toggle-switch-container.medium {
+  --toggle-switch-input-size: calc(var(--input-height) - 12px);
+}
+
+.m-toggle-switch-container.large {
+  --toggle-switch-input-size: calc(var(--input-height) - 14px);
 }

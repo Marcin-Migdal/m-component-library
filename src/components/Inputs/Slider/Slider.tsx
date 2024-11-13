@@ -3,7 +3,7 @@ import React, { ChangeEvent, CSSProperties, useLayoutEffect, useRef, useState } 
 
 import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
-import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
+import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { getInputStyle } from "../helpers/getInputStyle";
 import { getSliderValueDynamicStyle } from "./getSliderValueDynamicStyle";
 import { SliderProps } from "./types";
@@ -27,7 +27,7 @@ const Slider = ({
   valuePreviewType = "bottom-dynamic",
   disabled = false,
   readOnly = false,
-  disableDefaultMargin: disableDefaultMargin = false,
+  disableDefaultMargin = false,
   error,
   classNamesObj,
 }: SliderProps) => {
@@ -115,7 +115,7 @@ const Slider = ({
         <InputsLabel
           label={label}
           labelType={labelType}
-          className={classNames("slider", classNamesObj?.label)}
+          className={classNames("m-slider-label", classNamesObj?.label)}
           labelWidth={labelWidth}
           forceFloating={labelType === InputLabel.FLOATING}
         />
