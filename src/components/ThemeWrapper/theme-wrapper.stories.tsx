@@ -4,8 +4,8 @@ import React from "react";
 import StoryThemeWrapper from "./StoryThemeWrapper";
 
 export default {
-    title: "M-component-library/Theme",
-    component: StoryThemeWrapper,
+  title: "M-component-library/Theme",
+  component: StoryThemeWrapper,
 } as ComponentMeta<typeof StoryThemeWrapper>;
 
 const Template: ComponentStory<typeof StoryThemeWrapper> = (args) => <StoryThemeWrapper {...args} />;
@@ -13,5 +13,5 @@ const Template: ComponentStory<typeof StoryThemeWrapper> = (args) => <StoryTheme
 export const theme = Template.bind({});
 
 theme.args = {
-    darkMode: true,
+  darkMode: true,
 };

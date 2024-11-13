@@ -1,15 +1,15 @@
 .common-wrapper-container .m-card {
-    background-color: var(--popups-background-color);
-    color: var(--primary-text-color) !important;
+  background-color: var(--popups-background-color);
+  color: var(--primary-text-color) !important;
 }
 
 .common-wrapper-container .m-card.border {
-    border: var(--border) var(--alert-border-color);
+  border: var(--border) var(--alert-border-color);
 }
 
 .common-wrapper-container .m-card.gradient-border-glow::after,
 .common-wrapper-container .m-card.gradient-border-glow::before,
 .common-wrapper-container .m-card.gradient-border::after,
 .common-wrapper-container .m-card.gradient-border::before {
-    background: conic-gradient(from var(--gradient-angle), var(--card-gradient-colors));
+  background: conic-gradient(from var(--gradient-angle), var(--card-gradient-colors));
 }

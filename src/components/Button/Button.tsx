@@ -6,10 +6,7 @@ import { ComponentSize } from "../global-types";
 import { Tooltip } from "../Miscellaneous";
 import { ButtonIconPosition, ButtonProps } from "./types";
 
-import {
-  defaultTooltipConfig,
-  getTooltipPropsConfig,
-} from "../Miscellaneous/Tooltip/helpers/getTooltipPropsConfig";
+import { defaultTooltipConfig, getTooltipPropsConfig } from "../Miscellaneous/Tooltip/helpers/getTooltipPropsConfig";
 
 import "./Button.css";
 
@@ -43,13 +40,7 @@ const Button = (props: ButtonProps) => {
 
   const getRightButtonIcon = () => {
     if (busy) {
-      return (
-        <FontAwesomeIcon
-          className="right-svg is-busy-icon"
-          icon="circle-notch"
-          spin
-        />
-      );
+      return <FontAwesomeIcon className="right-svg is-busy-icon" icon="circle-notch" spin />;
     } else if (icon && iconPosition === ButtonIconPosition.RIGHT) {
       return <FontAwesomeIcon className="right-svg" icon={icon} />;
     } else {
@@ -73,18 +64,13 @@ const Button = (props: ButtonProps) => {
         {...otherProps}
       >
         {children}
-        {icon && iconPosition === ButtonIconPosition.LEFT && (
-          <FontAwesomeIcon className="left-svg" icon={icon} />
-        )}
+        {icon && iconPosition === ButtonIconPosition.LEFT && <FontAwesomeIcon className="left-svg" icon={icon} />}
         {text && text.trim() && <p>{text}</p>}
         {getRightButtonIcon()}
       </button>
 
       {tooltipContent && (
-        <Tooltip
-          targetRef={buttonRef}
-          {...getTooltipPropsConfig(tooltipConfig)}
-        >
+        <Tooltip targetRef={buttonRef} {...getTooltipPropsConfig(tooltipConfig)}>
           {tooltipContent}
         </Tooltip>
       )}

@@ -84,7 +84,12 @@ export const StandAloneTextfield = ({
       return newState;
     }
 
-    return advancedMask.beforeChange(newState, oldState, userInput, advancedMask.formatChars);
+    return advancedMask.beforeChange({
+      newState,
+      oldState,
+      userInput,
+      formatChars: advancedMask.formatChars,
+    });
   };
 
   return (

@@ -1,14 +1,14 @@
 .spinner-path {
-    stroke-dasharray: 100;
-    stroke-dashoffset: 20;
-    stroke: var(--loader-color);
+  stroke-dasharray: 100;
+  stroke-dashoffset: 20;
+  stroke: var(--loader-color);
 }
 
 .tooltip {
-    color: var(--tooltip-color);
-    background-color: var(--tooltip-background-color);
+  color: var(--tooltip-color);
+  background-color: var(--tooltip-background-color);
 }
 
 .m-icon {
-    color: var(--icon-color);
+  color: var(--icon-color);
 }

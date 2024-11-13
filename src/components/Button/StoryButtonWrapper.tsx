@@ -8,16 +8,7 @@ export type StoryButtonWrapperProps = {
   disabled?: boolean;
   busy?: boolean;
   display?: boolean;
-  icon?:
-    | "none"
-    | "trash"
-    | "question"
-    | "check"
-    | "pen"
-    | "car"
-    | "car-side"
-    | "cart-shopping"
-    | "cart-plus";
+  icon?: "none" | "trash" | "question" | "check" | "pen" | "car" | "car-side" | "cart-shopping" | "cart-plus";
   iconPosition?: `${ButtonIconPosition}`;
   variant?: VariantType;
   tooltip?: string;
@@ -27,11 +18,7 @@ export type StoryButtonWrapperProps = {
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
 const StoryButtonWrapper = ({ icon, ...other }: StoryButtonWrapperProps) => (
-  <Button
-    {...other}
-    icon={icon === "none" ? undefined : icon}
-    onClick={() => {}}
-  />
+  <Button {...other} icon={icon === "none" ? undefined : icon} onClick={() => {}} />
 );
 
 export default StoryButtonWrapper;

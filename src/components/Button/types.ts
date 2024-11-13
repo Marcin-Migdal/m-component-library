@@ -42,5 +42,4 @@ type BtnProps = {
   type?: "button";
 };
 
-export type ButtonProps = ButtonBaseProps &
-  (BtnProps | SubmitBtnProps | ResetBtnProps);
+export type ButtonProps = ButtonBaseProps & (BtnProps | SubmitBtnProps | ResetBtnProps);

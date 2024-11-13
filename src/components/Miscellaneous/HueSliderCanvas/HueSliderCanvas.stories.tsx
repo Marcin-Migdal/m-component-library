@@ -5,16 +5,16 @@ import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import { HueSliderCanvas } from "./HueSliderCanvas";
 
 export default {
-    title: "M-component-library/Miscellaneous",
-    component: HueSliderCanvas,
+  title: "M-component-library/Miscellaneous",
+  component: HueSliderCanvas,
 } as ComponentMeta<typeof HueSliderCanvas>;
 
 const Template: ComponentStory<typeof HueSliderCanvas> = (args) => (
-    <ThemeWrapper darkMode>
-        <div style={{ padding: "1rem" }}>
-            <HueSliderCanvas {...args} />
-        </div>
-    </ThemeWrapper>
+  <ThemeWrapper darkMode>
+    <div style={{ padding: "1rem" }}>
+      <HueSliderCanvas {...args} />
+    </div>
+  </ThemeWrapper>
 );
 
 export const hueSlider = Template.bind({});

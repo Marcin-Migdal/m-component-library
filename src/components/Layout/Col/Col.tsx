@@ -8,33 +8,33 @@ import { ColProps } from "./types";
 import "./Col.css";
 
 const Col = ({
-    className = "",
-    style = {},
-    children,
+  className = "",
+  style = {},
+  children,
 
-    //! Sizes
-    sm,
-    md,
-    lg,
-    xl,
+  //! Sizes
+  sm,
+  md,
+  lg,
+  xl,
 
-    //! Flex Sizes
-    smFlex,
-    mdFlex,
-    lgFlex,
-    xlFlex,
+  //! Flex Sizes
+  smFlex,
+  mdFlex,
+  lgFlex,
+  xlFlex,
 }: PropsWithChildren<ColProps>) => {
-    const sizes = { sm, md, lg, xl };
-    const flexSizes = { smFlex, mdFlex, lgFlex, xlFlex };
+  const sizes = { sm, md, lg, xl };
+  const flexSizes = { smFlex, mdFlex, lgFlex, xlFlex };
 
-    const colClasses = getColClasses(sizes);
-    const colFlexClasses = getFlexColClasses(flexSizes);
+  const colClasses = getColClasses(sizes);
+  const colFlexClasses = getFlexColClasses(flexSizes);
 
-    return (
-        <div style={style} className={classNames("m-grid-col", colClasses, colFlexClasses, className)}>
-            {children}
-        </div>
-    );
+  return (
+    <div style={style} className={classNames("m-grid-col", colClasses, colFlexClasses, className)}>
+      {children}
+    </div>
+  );
 };
 
 export default Col;

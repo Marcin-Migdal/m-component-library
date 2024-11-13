@@ -23,25 +23,25 @@ import "./style.css";
 library.add(fas, fab);
 
 const ThemeWrapper = ({ children, darkMode = false, hue = undefined }: ThemeWrapperProps) => {
-    useEffect(() => {
-        const setThemeWrapperClassName = () => {
-            const modeType = darkMode ? "dark" : "light";
-            const themeType = hue !== undefined ? "custom" : "grey";
+  useEffect(() => {
+    const setThemeWrapperClassName = () => {
+      const modeType = darkMode ? "dark" : "light";
+      const themeType = hue !== undefined ? "custom" : "grey";
 
-            document.body.className = `common-wrapper-container ${modeType}-mode ${`${modeType}-${themeType}-theme`}`;
-        };
+      document.body.className = `common-wrapper-container ${modeType}-mode ${`${modeType}-${themeType}-theme`}`;
+    };
 
-        const setThemeWrapperHslProperties = () => {
-            if (hue) {
-                document.body.style.setProperty("--hue", `${hue}`);
-            }
-        };
+    const setThemeWrapperHslProperties = () => {
+      if (hue) {
+        document.body.style.setProperty("--hue", `${hue}`);
+      }
+    };
 
-        setThemeWrapperClassName();
-        setThemeWrapperHslProperties();
-    }, [darkMode, hue]);
+    setThemeWrapperClassName();
+    setThemeWrapperHslProperties();
+  }, [darkMode, hue]);
 
-    return children;
+  return children;
 };
 
 export default ThemeWrapper;
