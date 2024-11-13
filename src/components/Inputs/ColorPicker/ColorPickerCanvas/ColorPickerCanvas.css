@@ -1,17 +1,17 @@
 .color-picker-canvas-container {
-    position: relative;
-    height: 200px;
+  position: relative;
+  height: 200px;
 }
 
 .color-picker-canvas-container .color-picker-pointer {
-    position: absolute;
+  position: absolute;
 
-    width: 0.75rem;
-    height: 0.75rem;
-    border: 2px solid;
+  width: 0.75rem;
+  height: 0.75rem;
+  border: 2px solid;
 
-    border-radius: 50%;
-    pointer-events: none;
+  border-radius: 50%;
+  pointer-events: none;
 
-    transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }

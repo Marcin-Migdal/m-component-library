@@ -5,14 +5,14 @@ import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import Overlay from "./Overlay";
 
 export default {
-    title: "M-component-library/Miscellaneous",
-    component: Overlay,
+  title: "M-component-library/Miscellaneous",
+  component: Overlay,
 } as ComponentMeta<typeof Overlay>;
 
 const Template: ComponentStory<typeof Overlay> = () => (
-    <ThemeWrapper darkMode>
-        <Overlay>Overlay content</Overlay>
-    </ThemeWrapper>
+  <ThemeWrapper darkMode>
+    <Overlay>Overlay content</Overlay>
+  </ThemeWrapper>
 );
 
 export const overlay = Template.bind({});

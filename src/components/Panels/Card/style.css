@@ -1,42 +1,42 @@
 .m-card {
-    position: relative;
+  position: relative;
 
-    padding: var(--input-padding-left);
-    border-radius: var(--border-radius);
+  padding: var(--input-padding-left);
+  border-radius: var(--border-radius);
 }
 
 @property --gradient-angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 
 .m-card.gradient-border-glow::after,
 .m-card.gradient-border-glow::before,
 .m-card.gradient-border::after,
 .m-card.gradient-border::before {
-    content: "";
+  content: "";
 
-    position: absolute;
-    inset: -0.2em;
+  position: absolute;
+  inset: -0.2em;
 
-    border-radius: inherit;
+  border-radius: inherit;
 
-    animation: rotation 10s linear infinite reverse;
+  animation: rotation 10s linear infinite reverse;
 
-    z-index: -1;
+  z-index: -1;
 }
 
 .m-card.gradient-border-glow::after {
-    filter: blur(2rem);
+  filter: blur(2rem);
 }
 
 @keyframes rotation {
-    0% {
-        --gradient-angle: 0deg;
-    }
+  0% {
+    --gradient-angle: 0deg;
+  }
 
-    0% {
-        --gradient-angle: 360deg;
-    }
+  0% {
+    --gradient-angle: 360deg;
+  }
 }

@@ -8,20 +8,25 @@ import { Tooltip } from "../../../Miscellaneous";
 import "./InputError.css";
 
 type InputErrorProps = {
-    style: CSSProperties;
-    className: string;
-    error: string;
+  style: CSSProperties;
+  className: string;
+  error: string;
 };
 
 export const InputError = ({ style, className, error }: InputErrorProps) => {
-    const tooltipRef = useRef<SVGSVGElement>(null);
+  const tooltipRef = useRef<SVGSVGElement>(null);
 
-    return (
-        <>
-            <FontAwesomeIcon ref={tooltipRef} icon="exclamation-circle" className={classNames("error-icon", className)} style={style} />
-            <Tooltip targetRef={tooltipRef} placement={Placement.RIGHT}>
-                {error}
-            </Tooltip>
-        </>
-    );
+  return (
+    <>
+      <FontAwesomeIcon
+        ref={tooltipRef}
+        icon="exclamation-circle"
+        className={classNames("error-icon", className)}
+        style={style}
+      />
+      <Tooltip targetRef={tooltipRef} placement={Placement.RIGHT}>
+        {error}
+      </Tooltip>
+    </>
+  );
 };

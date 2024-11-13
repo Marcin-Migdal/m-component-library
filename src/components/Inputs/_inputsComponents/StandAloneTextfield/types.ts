@@ -57,9 +57,11 @@ export type FormatChars = {
   [key: string]: string;
 };
 
-type BeforeMaskedValueChangeType = (
-  newState: InputState,
-  oldState: InputState,
-  userInput: string,
-  formatChars: FormatChars
-) => InputState;
+export type BeforeMaskedValueChangeTypeArgs = {
+  newState: InputState;
+  oldState: InputState;
+  userInput: string;
+  formatChars: FormatChars;
+};
+
+type BeforeMaskedValueChangeType = (args: BeforeMaskedValueChangeTypeArgs) => InputState;

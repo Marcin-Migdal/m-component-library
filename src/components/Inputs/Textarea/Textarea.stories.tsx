@@ -5,21 +5,21 @@ import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import Textarea from "./Textarea";
 
 export default {
-    title: "M-component-library/Inputs",
-    component: Textarea,
+  title: "M-component-library/Inputs",
+  component: Textarea,
 } as ComponentMeta<typeof Textarea>;
 
 const Template: ComponentStory<typeof Textarea> = (args) => (
-    <ThemeWrapper darkMode>
-        <div style={{ padding: "1rem" }}>
-            <Textarea {...args} />
-        </div>
-    </ThemeWrapper>
+  <ThemeWrapper darkMode>
+    <div style={{ padding: "1rem" }}>
+      <Textarea {...args} />
+    </div>
+  </ThemeWrapper>
 );
 
 export const textarea = Template.bind({});
 
 textarea.args = {
-    label: "Name",
-    labelWidth: 20,
+  label: "Name",
+  labelWidth: 20,
 };
