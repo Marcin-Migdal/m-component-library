@@ -150,3 +150,30 @@
   ~ .m-toggle-switch-slider:hover::before {
   background-color: var(--input-hover-background-color);
 }
+
+/**Image field properties */
+.common-wrapper-container .m-image-icon {
+  color: var(--input-image-icon-color);
+  background-color: rgba(140, 140, 140, 0.35);
+}
+
+.common-wrapper-container .m-image-icon:hover {
+  background-color: rgba(140, 140, 140, 0.8);
+}
+
+.common-wrapper-container
+  .m-image-container
+  .m-image-input-wrapper
+  .m-image-placeholder-container
+  .m-image-placeholder {
+  color: var(--icon-color);
+}
+
+.common-wrapper-container
+  .m-image-container
+  .m-image-input-wrapper
+  .m-image-placeholder-container
+  .m-image-placeholder-border {
+  background-color: transparent;
+  border-color: var(--icon-color);
+}

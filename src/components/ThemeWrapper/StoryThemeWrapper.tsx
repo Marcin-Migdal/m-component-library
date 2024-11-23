@@ -16,6 +16,7 @@ import {
   FailureIcon,
   HueSliderCanvas,
   Icon,
+  ImageField,
   ProgressSpinner,
   ReturnedColor,
   Slider,
@@ -33,6 +34,7 @@ export type StoryThemeWrapperProps = {
   inputLabelType: `${InputLabel}`;
   inputSize: `${ComponentSize}`;
   error?: string;
+  label?: string;
   panelVariant?: CardVariantTypes;
   disabled?: boolean;
   readOnly?: boolean;
@@ -94,6 +96,7 @@ const StoryThemeWrapper = ({
   inputLabelType = InputLabel.FLOATING,
   inputSize = ComponentSize.MEDIUM,
   error = "",
+  label = "Label",
   panelVariant = "default",
   disabled = false,
   readOnly = false,
@@ -106,6 +109,7 @@ const StoryThemeWrapper = ({
   const checkboxLabelType = (
     inputLabelType === InputLabel.FLOATING ? SimpleInputLabel.RIGHT : inputLabelType
   ) as SimpleInputLabel;
+
   const inputLabelWidth: LabelPercentageWidth | undefined = inputLabelType === InputLabel.FLOATING ? 90 : 35;
   const floatingInputWidth = 60;
 
@@ -126,7 +130,7 @@ const StoryThemeWrapper = ({
         <SectionHeader text="INPUT SECTION" />
 
         <Textfield
-          label="label"
+          label={label}
           placeholder="placeholder"
           labelType={inputLabelType}
           labelWidth={inputLabelWidth}
@@ -137,7 +141,7 @@ const StoryThemeWrapper = ({
           readOnly={readOnly}
         />
         <Textarea
-          label="label"
+          label={label}
           placeholder="placeholder"
           labelType={inputLabelType}
           labelWidth={inputLabelWidth}
@@ -147,8 +151,18 @@ const StoryThemeWrapper = ({
           readOnly={readOnly}
           size={inputSize}
         />
+        <ImageField
+          label={label}
+          labelType={checkboxLabelType}
+          labelWidth={inputLabelWidth}
+          floatingInputWidth={floatingInputWidth}
+          error={error}
+          disabled={disabled}
+          readOnly={readOnly}
+          size={inputSize}
+        />
         <Dropdown
-          label="label"
+          label={label}
           placeholder="placeholder"
           labelType={inputLabelType}
           labelWidth={inputLabelWidth}
@@ -160,7 +174,7 @@ const StoryThemeWrapper = ({
           size={inputSize}
         />
         <Dropdown
-          label="label"
+          label={label}
           placeholder="placeholder"
           labelType={inputLabelType}
           labelWidth={inputLabelWidth}
@@ -175,7 +189,7 @@ const StoryThemeWrapper = ({
         <Slider
           min={0}
           max={100}
-          label="label"
+          label={label}
           labelType={inputLabelType}
           labelWidth={inputLabelWidth}
           floatingInputWidth={floatingInputWidth}
@@ -185,7 +199,7 @@ const StoryThemeWrapper = ({
           error={error}
         />
         <Checkbox
-          label="label"
+          label={label}
           labelType={checkboxLabelType}
           labelWidth={inputLabelWidth}
           error={error}
@@ -194,7 +208,7 @@ const StoryThemeWrapper = ({
           size={inputSize}
         />
         <ToggleSwitch
-          label="label"
+          label={label}
           labelType={checkboxLabelType}
           labelWidth={inputLabelWidth}
           error={error}
@@ -206,7 +220,7 @@ const StoryThemeWrapper = ({
           labelType={inputLabelType}
           labelWidth={inputLabelWidth}
           floatingInputWidth={floatingInputWidth}
-          label="test"
+          label={label}
           returnedColorType={ReturnedColor.HSL}
           onChange={(color) => {
             // eslint-disable-next-line no-console
@@ -295,7 +309,7 @@ const StoryThemeWrapper = ({
           </h2>
 
           <Textfield
-            label="label"
+            label={label}
             placeholder="placeholder"
             labelType={inputLabelType}
             labelWidth={inputLabelWidth}

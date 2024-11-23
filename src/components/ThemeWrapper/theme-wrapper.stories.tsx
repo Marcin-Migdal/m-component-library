@@ -13,5 +13,6 @@ const Template: ComponentStory<typeof StoryThemeWrapper> = (args) => <StoryTheme
 export const theme = Template.bind({});
 
 theme.args = {
+  label: "Label",
   darkMode: true,
 };

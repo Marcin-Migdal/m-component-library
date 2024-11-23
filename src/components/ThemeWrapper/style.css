@@ -160,6 +160,8 @@ body {
   --color-picker-pointer: var(--grey-color-000);
   --color-picker-dragged-pointer: var(--grey-color-850);
 
+  --input-image-icon-color: var(--grey-color-100);
+
   /** Buttons */
   --btn-outlined-background-color: var(--background-color);
 
@@ -205,6 +207,8 @@ body {
 
   --color-picker-pointer: var(--grey-color-000);
   --color-picker-dragged-pointer: var(--grey-color-850);
+
+  --input-image-icon-color: var(--grey-color-100);
 
   /** Buttons */
   --btn-outlined-background-color: var(--background-color);
