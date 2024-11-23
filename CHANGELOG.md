@@ -4,6 +4,7 @@
 - [[#64]](https://github.com/Marcin-Migdal/m-component-library/issues/64) **[PATCH]** Add prefix props to textfield and dropdown components
 - [[#84]](https://github.com/Marcin-Migdal/m-component-library/issues/84) **[PATCH]** Add common input type and replace noBottomMargin props to disableDefaultMargin
 - [[#71]](https://github.com/Marcin-Migdal/m-component-library/issues/71) **[PATCH]** Add ToggleSwitch input
+- [[#42]](https://github.com/Marcin-Migdal/m-component-library/issues/42) **[PATCH]** Add ImageField input
 
 ### Release date 25.10.2024 - Release 1.0.6
 
