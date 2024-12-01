@@ -1,0 +1,14 @@
+.m-accordion.default .m-accordion-item {
+  display: flex;
+  align-items: center;
+
+  height: 2rem;
+  padding: 0.25rem;
+  border-radius: var(--border-radius);
+
+  background-color: var(--grey-color-575);
+}
+
+.m-accordion.default .m-accordion-item:not(:last-child) {
+  margin-bottom: 0.5rem;
+}

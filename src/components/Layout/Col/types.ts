@@ -1,10 +1,10 @@
 import { CSSProperties } from "react";
-import { Optionalize } from "../../global-types";
+import { MutuallyExclusivePartial } from "../../../types/MutuallyExclusivePartial";
 
 export type ColProps = {
   className?: string;
   style?: CSSProperties;
-} & Optionalize<{ sm: number }, { smFlex: number }> &
-  Optionalize<{ md: number }, { mdFlex: number }> &
-  Optionalize<{ lg: number }, { lgFlex: number }> &
-  Optionalize<{ xl: number }, { xlFlex: number }>;
+} & MutuallyExclusivePartial<{ sm: number }, { smFlex: number }> &
+  MutuallyExclusivePartial<{ md: number }, { mdFlex: number }> &
+  MutuallyExclusivePartial<{ lg: number }, { lgFlex: number }> &
+  MutuallyExclusivePartial<{ xl: number }, { xlFlex: number }>;

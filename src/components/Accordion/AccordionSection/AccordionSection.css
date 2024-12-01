@@ -1,0 +1,13 @@
+.m-accordion .m-accordion-section {
+  width: 100%;
+}
+
+.m-accordion.default .m-accordion-section {
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  transition: 0.2s ease;
+}
+
+.m-accordion.default .m-accordion-section:not(:last-child) {
+  margin-bottom: 0.5rem;
+}

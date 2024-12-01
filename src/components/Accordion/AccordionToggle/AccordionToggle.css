@@ -1,0 +1,44 @@
+.m-accordion .m-accordion-toggle {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.m-accordion .m-accordion-toggle .m-accordion-toggle-indicator {
+  transition: 0.2s;
+}
+
+.m-accordion .m-accordion-toggle .m-accordion-toggle-indicator.left {
+  margin: 0 0.5rem;
+}
+
+.m-accordion .m-accordion-toggle .m-accordion-toggle-indicator.right {
+  margin: 0 0.5rem 0 auto;
+}
+
+.m-accordion .m-accordion-toggle.expanded .m-accordion-toggle-indicator {
+  transform: rotate(90deg);
+}
+
+.m-accordion.default .m-accordion-toggle {
+  height: 38px;
+  padding: 0.25rem;
+
+  background-color: var(--accordion-background);
+  border-radius: var(--border-radius);
+  transition: background-color 0.2s ease;
+  overflow: hidden;
+}
+
+.m-accordion.default .m-accordion-toggle:not(.expanded):not(.selected):hover {
+  background-color: var(--accordion-hover-background);
+}
+
+.m-accordion.default .m-accordion-toggle.selected,
+.m-accordion.default .m-accordion-toggle.expanded {
+  background-color: var(--highlighted-accordion-background);
+}
+
+.m-accordion.default .m-accordion-toggle.expanded {
+  border-radius: 0;
+}
