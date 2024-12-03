@@ -1,4 +1,4 @@
-import { UndefinedOptional } from "./UndefinedOptional";
+import { UndefinedOptional } from "./UndOptional";
 
 /**
  *  The `Optionalize<T>` type combines an input type `T` with its optional counterpart (`UndefinedOptional<T>`).
