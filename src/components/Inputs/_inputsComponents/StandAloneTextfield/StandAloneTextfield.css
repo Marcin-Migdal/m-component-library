@@ -22,13 +22,13 @@
   outline: none;
 
   font-size: var(--input-font-size);
-  transition: 0.2s ease-in-out;
+  transition: var(--transition);
 }
 
 .m-textfield:hover {
-  transition: 0.2s;
+  transition: var(--transition);
 }
 
 .m-textfield:focus {
-  transition: 0.1s;
+  transition: var(--fast-transition);
 }
