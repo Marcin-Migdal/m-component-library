@@ -1,7 +1,7 @@
 .m-input-label {
   position: absolute;
   font-size: var(--input-font-size);
-  transition: 0.2s;
+  transition: var(--transition);
 }
 
 .m-input-label.pointer-event {

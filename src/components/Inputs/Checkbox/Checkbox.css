@@ -13,7 +13,7 @@
   width: calc(var(--checkbox-input-size) - 6px);
   height: calc(var(--checkbox-input-size) - 6px);
   opacity: 0;
-  transition: 0.15s;
+  transition: var(--transition);
 }
 
 .m-checkbox-container .m-checkbox-input-wrapper.checked .m-checkbox-check-icon {
@@ -33,7 +33,7 @@
   border-radius: var(--border-radius);
   border: var(--border);
 
-  transition: 0.15s;
+  transition: var(--transition);
 }
 
 .m-checkbox-container:not(.disabled) .m-checkbox-input-wrapper .m-checkbox {

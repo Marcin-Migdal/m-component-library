@@ -83,6 +83,8 @@ body {
   /* Common */
   --border-radius: 6px;
   --border-width: max(2px, 0.125em);
+  --transition: 0.2s;
+  --fast-transition: 0.1s;
 
   --border: var(--border-width) solid;
 
@@ -127,6 +129,10 @@ body {
   /*? Input errors */
   --error-icon-size: 16px;
   --error-icon-margin: 8px;
+
+  /*! Popup */
+  --popup-transition: 0.3s;
+  --popup-fast-transition: 0.15s;
 }
 
 .common-wrapper-container {

@@ -9,16 +9,16 @@
   outline: none;
 
   font-size: var(--input-font-size);
-  transition: 0.2s ease-in-out;
+  transition: var(--transition);
   resize: vertical;
 }
 
 .m-textarea-container .m-textarea:hover {
-  transition: 0.2s;
+  transition: var(--transition);
 }
 
 .m-textarea-container .m-textarea:active {
-  transition: 0s !important;
+  transition: var(--fast-transition);
 }
 
 .m-textarea-container .m-textarea::-webkit-scrollbar {

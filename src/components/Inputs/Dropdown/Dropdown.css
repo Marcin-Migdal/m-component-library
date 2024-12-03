@@ -1,6 +1,6 @@
 .m-dropdown-container .m-dropdown-icon {
   z-index: 1;
-  transition: 0.2s;
+  transition: var(--transition);
   cursor: pointer;
 }
 

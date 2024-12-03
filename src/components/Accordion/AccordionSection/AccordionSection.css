@@ -1,7 +1,7 @@
 .m-accordion .m-accordion-section {
   width: 100%;
   overflow: hidden;
-  transition: 0.2s ease;
+  transition: var(--transition);
 }
 
 /* default variant */

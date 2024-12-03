@@ -9,11 +9,11 @@
 }
 
 .m-alert.opened {
-  animation: open-alert 0.3s;
+  animation: open-alert var(--popup-transition);
 }
 
 .m-alert.closing {
-  animation: close-alert 0.15s forwards;
+  animation: close-alert var(--popup-fast-transition) forwards;
 }
 
 .m-alert .m-alert-header {
@@ -38,12 +38,12 @@
     padding: 3px;
 
     border-radius: 50px;
-    transition: 0.2s;
+    transition: var(--transition);
   }
 
   svg:active {
     transform: scale(0.9);
-    transition: 0.1s;
+    transition: var(--fast-transition);
   }
 }
 
@@ -68,7 +68,7 @@
   }
 
   button:not(:disabled):active {
-    transition: 0.1s;
+    transition: var(--fast-transition);
   }
 
   .m-alert-confirm-button {

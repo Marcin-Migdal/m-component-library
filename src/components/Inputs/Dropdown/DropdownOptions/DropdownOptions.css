@@ -13,7 +13,7 @@
 .m-dropdown-options .m-dropdown-option {
   padding: 7px 10px;
 
-  transition: 0.15s;
+  transition: var(--fast-transition);
 }
 
 .m-dropdown-options .m-dropdown-option.empty-message {

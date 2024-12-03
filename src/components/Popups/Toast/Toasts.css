@@ -42,21 +42,21 @@
   font-size: 0.9rem;
 
   transition:
-    transform var(250ms),
-    opacity var(250ms),
-    box-shadow var(250ms) ease-in-out;
+    transform var(--popup-transition),
+    opacity var(--popup-transition),
+    box-shadow var(--popup-transition) ease-in-out;
 }
 
 .toasts-list.top-right .toast,
 .toasts-list.bottom-right .toast {
   animation-name: toast-in-right;
-  animation-duration: 250ms;
+  animation-duration: var(--popup-transition);
 }
 
 .toasts-list.top-left .toast,
 .toasts-list.bottom-left .toast {
   animation-name: toast-in-left;
-  animation-duration: 250ms;
+  animation-duration: var(--popup-transition);
 }
 
 @keyframes toast-in-right {
@@ -122,7 +122,7 @@
 
   height: 24px;
   width: 24px;
-  transition: 0.25s;
+  transition: var(--transition);
 
   padding: 4px;
 

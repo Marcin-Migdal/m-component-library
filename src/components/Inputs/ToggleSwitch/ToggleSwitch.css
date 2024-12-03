@@ -19,7 +19,7 @@
   border-radius: calc(var(--toggle-switch-input-size) / 2);
   border: unset;
 
-  transition: 0.2s ease-in-out;
+  transition: var(--transition);
 }
 
 .m-toggle-switch-container .m-toggle-switch-input-wrapper .m-toggle-switch-slider::before {
@@ -33,7 +33,7 @@
   width: calc(var(--toggle-switch-input-size) - (var(--border-width) * 2));
   border-radius: 50%;
 
-  transition: 0.2s ease-in-out;
+  transition: var(--transition);
 }
 
 .m-toggle-switch-container.error .m-toggle-switch-input-wrapper .m-toggle-switch-slider::before {
