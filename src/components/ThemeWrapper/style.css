@@ -81,7 +81,7 @@ body {
   --grey-color-850: hsl(0, 0%, 0%);
 
   /* Common */
-  --border-radius: 0.2em;
+  --border-radius: 6px;
   --border-width: max(2px, 0.125em);
 
   --border: var(--border-width) solid;
@@ -397,6 +397,11 @@ body {
 
   /* Alert */
   --alert-border-color: var(--primary-color_700);
+
+  /* Accordion */
+  --accordion-background: var(--grey-color-475);
+  --accordion-hover-background: var(--grey-color-425);
+  --highlighted-accordion-background: var(--grey-color-375);
 
   /*? Common */
   --box-shadow-color: var(--primary-color_700);

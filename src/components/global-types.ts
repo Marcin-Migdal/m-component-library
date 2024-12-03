@@ -93,9 +93,3 @@ export type LabelPercentageWidth =
   | 88
   | 89
   | 90;
-
-//! In GENERIC types you can pass objects with only one property, Optionalize will generate a conditional type
-//! This type will create a logic, which allows to pass one of the Generic properties and the other one has to be undefined
-export type Optionalize<S, FS> =
-  | Partial<Record<keyof S, S[keyof S]> & Record<keyof FS, undefined>>
-  | Partial<Record<keyof S, undefined> & Record<keyof FS, FS[keyof FS]>>;

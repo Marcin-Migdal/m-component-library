@@ -1,0 +1,30 @@
+.m-accordion .m-accordion-content-wrapper.collapsed {
+  max-height: 0px;
+  overflow: hidden;
+}
+
+.m-accordion .m-accordion-content-wrapper.expanded {
+  max-height: var(--content-height);
+}
+
+.m-accordion.smooth-expand-animation .m-accordion-content-wrapper {
+  transition: max-height 0.25s;
+}
+
+.m-accordion.instant-expand-animation .m-accordion-content-wrapper {
+  transition: max-height 0s;
+}
+
+.m-accordion .m-accordion-content-wrapper .m-accordion-content {
+  background-color: var(--accordion-background);
+}
+
+/* default variant */
+.m-accordion.default .m-accordion-content-wrapper .m-accordion-content {
+  padding: 0.5rem;
+}
+
+/* compact variant */
+.m-accordion.compact .m-accordion-content-wrapper .m-accordion-content {
+  padding: 0.25rem;
+}

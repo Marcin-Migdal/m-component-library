@@ -9,3 +9,4 @@ export * from "./components/ThemeWrapper";
 
 export * from "./helpers";
 export * from "./hooks";
+export * from "./types";
