@@ -8,6 +8,7 @@ export type AccordionContextProviderProps = {
   expansionMode: Mode | undefined;
   expanded: SectionState | undefined;
   onExpand: SectionStateChangeHandler | undefined;
+  expandAnimation: "smooth" | "instant";
 
   instanceClassName: string | undefined;
   icon: "none" | "left" | "right" | undefined;
@@ -22,6 +23,7 @@ export type AccordionContextType = {
   expansionMode: Mode | undefined;
   expanded: SectionState;
   handleExpand: (sectionId: SectionId) => void;
+  expandAnimation: "smooth" | "instant";
 
   instanceClassName: string | undefined;
   globalIcon: "none" | "left" | "right" | undefined;

@@ -9,7 +9,7 @@ import "./AccordionContent.css";
 export const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>> = ({ children, className }) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const { instanceClassName } = useAccordion();
+  const { instanceClassName, expandAnimation } = useAccordion();
   const { isExpanded } = useAccordionSection();
 
   const [contentHeight, setContentHeight] = useState<number | undefined>(undefined);
@@ -17,9 +17,11 @@ export const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>
   useLayoutEffect(() => {
     const element = ref.current;
 
-    if (!element) return;
+    if (!element) {
+      return;
+    }
 
-    const resizeObserver = new ResizeObserver((entries) => {
+    const resizeObserver = new ResizeObserver(() => {
       const height = element.getBoundingClientRect().height;
 
       contentHeight !== height && setContentHeight(height);
@@ -31,6 +33,10 @@ export const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>
       resizeObserver.disconnect();
     };
   }, []);
+
+  if (expandAnimation === "instant" && !isExpanded) {
+    return null;
+  }
 
   return (
     <div

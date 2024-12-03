@@ -10,7 +10,7 @@ export default {
   component: Accordion,
 } as ComponentMeta<typeof Accordion>;
 
-const Template: ComponentStory<typeof Accordion> = (args) => (
+const Template: ComponentStory<typeof Accordion> = () => (
   <ThemeWrapper darkMode>
     <div style={{ padding: "1rem" }}>
       <StoryAccordionWrapper />

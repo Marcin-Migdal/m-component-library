@@ -2,6 +2,10 @@
   display: flex;
   align-items: center;
   width: 100%;
+
+  background-color: var(--accordion-background);
+  transition: background-color 0.2s ease;
+  overflow: hidden;
 }
 
 .m-accordion .m-accordion-toggle .m-accordion-toggle-indicator {
@@ -20,25 +24,37 @@
   transform: rotate(90deg);
 }
 
-.m-accordion.default .m-accordion-toggle {
-  height: 38px;
-  padding: 0.25rem;
-
-  background-color: var(--accordion-background);
-  border-radius: var(--border-radius);
-  transition: background-color 0.2s ease;
-  overflow: hidden;
+.m-accordion .m-accordion-toggle.expanded {
+  border-radius: 0;
 }
 
-.m-accordion.default .m-accordion-toggle:not(.expanded):not(.selected):hover {
+.m-accordion .m-accordion-toggle:not(.expanded):not(.selected):hover {
   background-color: var(--accordion-hover-background);
 }
 
-.m-accordion.default .m-accordion-toggle.selected,
-.m-accordion.default .m-accordion-toggle.expanded {
+.m-accordion .m-accordion-toggle.selected,
+.m-accordion .m-accordion-toggle.expanded {
   background-color: var(--highlighted-accordion-background);
 }
 
-.m-accordion.default .m-accordion-toggle.expanded {
-  border-radius: 0;
+/* default variant */
+.m-accordion.default .m-accordion-toggle {
+  height: 2.5rem;
+  padding: 0.25rem;
+
+  border-radius: var(--border-radius);
+}
+
+/* compact variant */
+.m-accordion.compact .m-accordion-toggle {
+  height: 1.5rem;
+  padding: 0.2rem;
+
+  border-radius: calc(var(--border-radius) / 2);
+  font-size: 0.9rem;
+  line-height: 24px;
+}
+
+.m-accordion.compact .m-accordion-toggle .m-accordion-toggle-indicator {
+  font-size: 0.75rem;
 }

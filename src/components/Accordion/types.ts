@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 import { Optionalize } from "../../types";
 
 export type SectionId = string | number;
@@ -26,8 +27,9 @@ export type AccordionProps = {
   selectionMode?: `${Mode}`;
   expansionMode?: `${Mode}`;
   className?: string;
-  variant?: "default" | "tree";
+  variant?: "default" | "compact";
   expandAnimation?: "smooth" | "instant";
+  style?: CSSProperties;
 
   // global toggle props
   instanceClassName?: string;

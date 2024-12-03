@@ -49,6 +49,7 @@ export const useSectionState = (
 
       case Mode.SINGLE: {
         if (sectionState !== null && typeof sectionState === "object") {
+          // eslint-disable-next-line no-console
           console.warn(
             "Wrong controlled value, passed value is an object, you are trying to change object mode SINGLE, pass string | number | null as a value"
           );
@@ -61,6 +62,7 @@ export const useSectionState = (
 
       case Mode.MULTIPLE: {
         if (!sectionState || typeof sectionState !== "object") {
+          // eslint-disable-next-line no-console
           console.warn(
             `Wrong controlled value, passed value is an ${sectionState === null ? "null" : typeof sectionState}, you are trying to change it in mode MULTIPLE, pass object as a value`
           );

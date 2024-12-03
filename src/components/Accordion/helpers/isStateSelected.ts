@@ -1,5 +1,8 @@
 import { SectionId, SectionState } from "../types";
 
 export const isStateSelected = (state: SectionState, sectionId: SectionId): boolean => {
-  return !state ? false : typeof state === "object" ? !!state[sectionId] : state === sectionId;
+  if (!state) {
+    return false;
+  }
+  return typeof state === "object" ? !!state[sectionId] : state === sectionId;
 };

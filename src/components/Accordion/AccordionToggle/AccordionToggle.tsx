@@ -1,11 +1,10 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import React, { PropsWithChildren } from "react";
 
 import { useAccordion, useAccordionSection } from "../hooks";
-import { ToggleIconPosition } from "../types";
 import { AccordionToggleProps } from "./types";
 
+import { AccordionIndicatorIcon } from "./AccordionIndicatorIcon";
 import "./AccordionToggle.css";
 
 export const AccordionToggle: React.FC<PropsWithChildren<AccordionToggleProps>> = ({
@@ -53,30 +52,12 @@ export const AccordionToggle: React.FC<PropsWithChildren<AccordionToggleProps>> 
       onClick={handleToggleClick}
     >
       {icon === "left" && (
-        <IndicatorIcon onClick={handleToggleIconClick} type={icon} instanceClassName={instanceClassName} />
+        <AccordionIndicatorIcon onClick={handleToggleIconClick} type={icon} instanceClassName={instanceClassName} />
       )}
       {children}
       {icon === "right" && (
-        <IndicatorIcon onClick={handleToggleIconClick} type={icon} instanceClassName={instanceClassName} />
+        <AccordionIndicatorIcon onClick={handleToggleIconClick} type={icon} instanceClassName={instanceClassName} />
       )}
     </div>
-  );
-};
-
-type IndicatorIconProps = {
-  onClick: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
-  type: ToggleIconPosition;
-  instanceClassName: string | undefined;
-};
-
-const IndicatorIcon = ({ onClick, type, instanceClassName }: IndicatorIconProps) => {
-  return (
-    <FontAwesomeIcon
-      onClick={onClick}
-      icon="chevron-right"
-      className={classNames("m-accordion-toggle-indicator", type, {
-        [`${instanceClassName}-indicator`]: !!instanceClassName,
-      })}
-    />
   );
 };

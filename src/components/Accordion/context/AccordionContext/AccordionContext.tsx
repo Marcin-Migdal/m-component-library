@@ -13,6 +13,7 @@ export const AccordionContext = createContext<AccordionContextType>({
   expanded: null,
   handleExpand: () => {},
 
+  expandAnimation: "smooth",
   instanceClassName: undefined,
   globalIcon: undefined,
   globalExpandOnIconClick: undefined,
@@ -29,6 +30,7 @@ export const AccordionContextProvider = ({
   expanded: externalExpanded,
   onExpand,
 
+  expandAnimation,
   instanceClassName,
   icon,
   expandOnIconClick,
@@ -47,6 +49,7 @@ export const AccordionContextProvider = ({
         expanded,
         handleExpand,
 
+        expandAnimation,
         instanceClassName,
         globalIcon: icon,
         globalExpandOnIconClick: expandOnIconClick,

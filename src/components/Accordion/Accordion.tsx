@@ -10,9 +10,6 @@ import { AccordionProps, Mode } from "./types";
 
 import "./Accordion.css";
 
-// TODO! nesting
-// TODO! tree theme
-
 const Accordion: React.FC<PropsWithChildren<AccordionProps>> & {
   Section: React.FC<PropsWithChildren<AccordionSectionProps>>;
   Toggle: React.FC<PropsWithChildren<AccordionToggleProps>>;
@@ -32,6 +29,7 @@ const Accordion: React.FC<PropsWithChildren<AccordionProps>> & {
   variant = "default",
   expandAnimation = "smooth",
   className,
+  style,
 
   instanceClassName,
   icon,
@@ -46,6 +44,7 @@ const Accordion: React.FC<PropsWithChildren<AccordionProps>> & {
         instanceClassName,
         variant
       )}
+      style={style}
     >
       <AccordionContextProvider
         selectionMode={selectionMode as Mode | undefined}
@@ -57,6 +56,7 @@ const Accordion: React.FC<PropsWithChildren<AccordionProps>> & {
         instanceClassName={instanceClassName}
         icon={icon}
         expandOnIconClick={expandOnIconClick}
+        expandAnimation={expandAnimation}
       >
         {children}
       </AccordionContextProvider>
