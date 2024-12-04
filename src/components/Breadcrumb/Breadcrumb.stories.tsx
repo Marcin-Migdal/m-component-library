@@ -2,21 +2,24 @@ import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React from "react";
 
 import ThemeWrapper from "../ThemeWrapper/ThemeWrapper";
-import { Breadcrumb } from "./Breadcrumb";
+import StoryBreadcrumbWrapper from "./StoryButtonWrapper";
 
 export default {
   title: "M-component-library",
-  component: Breadcrumb,
-} as ComponentMeta<typeof Breadcrumb>;
+  component: StoryBreadcrumbWrapper,
+} as ComponentMeta<typeof StoryBreadcrumbWrapper>;
 
-const Template: ComponentStory<typeof Breadcrumb> = () => (
+const Template: ComponentStory<typeof StoryBreadcrumbWrapper> = (args) => (
   <ThemeWrapper darkMode>
     <div style={{ padding: "1rem" }}>
-      <Breadcrumb />
+      <StoryBreadcrumbWrapper {...args} />
     </div>
   </ThemeWrapper>
 );
 
 export const breadcrumb = Template.bind({});
 
-breadcrumb.args = {};
+breadcrumb.args = {
+  disableLastCrumb: false,
+  variant: "default",
+};

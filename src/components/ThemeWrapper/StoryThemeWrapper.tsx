@@ -28,6 +28,7 @@ import {
   ToastsContainer,
   ToggleSwitch,
 } from "../..";
+import StoryBreadcrumbWrapper from "../Breadcrumb/StoryButtonWrapper";
 
 export type StoryThemeWrapperProps = {
   darkMode: boolean;
@@ -121,14 +122,11 @@ const StoryThemeWrapper = ({
           headerStyle={{ marginTop: "unset" }}
           text="BUTTON SECTION"
         />
-
         <Button disabled={disabled} variant="outlined" text="btn outlined" onClick={() => {}} />
         <Button disabled={disabled} variant="full" text="btn full" onClick={() => {}} />
         <Button disabled={disabled} variant="text" text="btn text" onClick={() => {}} />
         <Button disabled={disabled} variant="neon" text="btn neon" onClick={() => {}} />
-
         <SectionHeader text="INPUT SECTION" />
-
         <Textfield
           label={label}
           placeholder="placeholder"
@@ -240,7 +238,6 @@ const StoryThemeWrapper = ({
             onClick={() => setHue(undefined)}
           />
         </div>
-
         <SectionHeader text="TOAST SECTION" />
         <ToastsContainer ref={toastRef} toastConfig={toastConfig} />
         <div>
@@ -262,9 +259,7 @@ const StoryThemeWrapper = ({
           />
           <Button style={{ marginTop: "10px" }} text="Clear toasts" onClick={() => toastRef.current?.clear()} />
         </div>
-
         <SectionHeader text="TOOLTIP SECTION" />
-
         <Button
           tooltip="test"
           tooltipConfig={{ placement: Placement.TOP }}
@@ -293,9 +288,7 @@ const StoryThemeWrapper = ({
           text="Left"
           onClick={() => {}}
         />
-
         <SectionHeader text="PANEL SECTION" />
-
         <Card variant={panelVariant} style={{ width: "300px", padding: "1rem" }}>
           <h2
             style={{
@@ -324,14 +317,11 @@ const StoryThemeWrapper = ({
           </span>
         </Card>
         <SectionHeader text="MISCELLANEOUS" />
-
         <div style={{ display: "flex", flexDirection: "column" }}>
           <ProgressSpinner />
           <Icon icon={["fab", "facebook"]} style={{ width: "fit-content" }} />
         </div>
-
         <SectionHeader text="ALERT" />
-
         <Button text="Open alert" onClick={() => alertRef.current?.openAlert()} />
         <Alert
           ref={alertRef}
@@ -353,6 +343,8 @@ const StoryThemeWrapper = ({
         >
           test
         </Alert>
+        <SectionHeader text="BREADCRUMB" />
+        <StoryBreadcrumbWrapper disableLastCrumb={false} variant={"default"} />
       </div>
     </ThemeWrapper>
   );
