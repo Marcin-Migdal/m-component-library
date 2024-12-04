@@ -12,6 +12,7 @@ import "./componentStyles/alert.css";
 import "./componentStyles/card.css";
 import "./componentStyles/toast.css";
 
+import "./componentStyles/breadcrumb.css";
 import "./componentStyles/button.css";
 import "./componentStyles/inputLabel.css";
 import "./componentStyles/overlay.css";

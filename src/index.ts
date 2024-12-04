@@ -1,3 +1,5 @@
+export * from "./components/Accordion";
+export * from "./components/Breadcrumb";
 export * from "./components/Button";
 export * from "./components/Form";
 export * from "./components/Inputs";

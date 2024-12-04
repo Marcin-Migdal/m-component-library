@@ -188,9 +188,13 @@ body {
   /* Alert */
   --alert-disabled-button-background-color: var(--grey-color-050);
 
+  /* Breadcrumb */
+  --crumb-background-color: var(--grey-color-075);
+  --crumb-hover-background-color: var(--grey-color-125);
+
   /*? Common */
   --icon-color: var(--grey-color-550);
-  --primary-text-color: var(--grey-color-550);
+  --primary-text-color: var(--grey-color-525);
 }
 
 .dark-mode {
@@ -236,9 +240,13 @@ body {
   /* Alert */
   --alert-disabled-button-background-color: var(--grey-color-575);
 
+  /* Breadcrumb */
+  --crumb-background-color: var(--grey-color-575);
+  --crumb-hover-background-color: var(--grey-color-525);
+
   /*? Common */
   --icon-color: var(--grey-color-050);
-  --primary-text-color: var(--grey-color-050);
+  --primary-text-color: var(--grey-color-100);
 }
 
 .light-grey-theme {
@@ -317,7 +325,12 @@ body {
   /* Alert */
   --alert-border-color: var(--primary-color_300);
 
+  /* Breadcrumb */
+  --crumb-active-background-color: var(--grey-color-275);
+  --crumb-hover-active-background-color: var(--grey-color-400);
+
   /*? Common */
+  --primary-highlighted-text-color: var(--grey-color-625);
   --box-shadow-color: var(--primary-color_440);
 
   --scroll-track-background-color: var(--primary-color_620);
@@ -409,8 +422,14 @@ body {
   --accordion-hover-background: var(--grey-color-425);
   --highlighted-accordion-background: var(--grey-color-375);
 
+  /* Breadcrumb */
+  --crumb-active-background-color: var(--grey-color-375);
+  --crumb-hover-active-background-color: var(--grey-color-250);
+
   /*? Common */
+  --primary-highlighted-text-color: var(--grey-color-000);
   --box-shadow-color: var(--primary-color_700);
+
   --scroll-track-background-color: var(--primary-color_600);
 }
 
@@ -502,7 +521,12 @@ body {
   /* Alert */
   --alert-border-color: var(--primary-color_500);
 
+  /* Breadcrumb */
+  --crumb-active-background-color: var(--primary-color_580);
+  --crumb-hover-active-background-color: var(--primary-color_720);
+
   /* Common */
+  --primary-highlighted-text-color: var(--primary-color_580);
   --box-shadow-color: var(--primary-color_580);
   --scroll-track-background-color: var(--primary-color_400);
 }
@@ -595,7 +619,12 @@ body {
   /* Alert */
   --alert-border-color: var(--primary-color_620);
 
+  /* Breadcrumb */
+  --crumb-active-background-color: var(--primary-color_680);
+  --crumb-hover-active-background-color: var(--primary-color_540);
+
   /* Common */
+  --primary-highlighted-text-color: var(--primary-color_680);
   --box-shadow-color: var(--primary-color_680);
   --scroll-track-background-color: var(--primary-color_600);
 }
