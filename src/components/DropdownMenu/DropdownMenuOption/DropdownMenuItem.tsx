@@ -21,6 +21,8 @@ export const DropdownMenuItem = ({ option, hideDisabled, useIconPlaceholder, clo
 
   const indicatorPresent = !!options && options.length > 0;
 
+  const toggleSubMenu = () => setIsSubMenuOpen((prevState) => !prevState);
+
   const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     event.stopPropagation();
 
@@ -37,8 +39,6 @@ export const DropdownMenuItem = ({ option, hideDisabled, useIconPlaceholder, clo
     closeMenu();
     onClick && onClick(event, option);
   };
-
-  const toggleSubMenu = () => setIsSubMenuOpen((prevState) => !prevState);
 
   if (disabled && hideDisabled) {
     return null;

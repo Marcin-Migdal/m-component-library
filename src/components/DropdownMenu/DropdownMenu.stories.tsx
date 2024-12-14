@@ -11,8 +11,10 @@ export default {
   component: DropdownMenu,
 } as ComponentMeta<typeof DropdownMenu>;
 
-const handleClick = (event: any, option: DropdownMenuOption) => {
+const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>, option: DropdownMenuOption) => {
+  // eslint-disable-next-line no-console
   console.log(event);
+  // eslint-disable-next-line no-console
   console.log(option);
 };
 
@@ -86,7 +88,7 @@ export const dropdownMenuOptions: DropdownMenuOption[] = [
   },
 ];
 
-const Template: ComponentStory<typeof DropdownMenu> = (args) => (
+const Template: ComponentStory<typeof DropdownMenu> = () => (
   <ThemeWrapper darkMode>
     <div
       style={{
