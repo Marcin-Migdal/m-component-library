@@ -29,8 +29,7 @@ import {
   ToastsContainer,
   ToggleSwitch,
 } from "../..";
-import { DropdownMenu } from "../DropdownMenu";
-import { dropdownMenuOptions } from "../DropdownMenu/DropdownMenu.stories";
+import { DropdownMenu, DropdownMenuOption } from "../DropdownMenu";
 
 export type StoryThemeWrapperProps = {
   darkMode: boolean;
@@ -60,6 +59,83 @@ const options = [
   { label: "test 2", value: 2 },
   { label: "test 3", value: 3 },
   { label: "test 4", value: 4 },
+];
+
+const handleDropdownMenuClick = (event: React.MouseEvent<HTMLElement, MouseEvent>, option: DropdownMenuOption) => {
+  // eslint-disable-next-line no-console
+  console.log(event);
+  // eslint-disable-next-line no-console
+  console.log(option);
+};
+
+const dropdownMenuOptions: DropdownMenuOption[] = [
+  {
+    label: "Add currency",
+    onClick: handleDropdownMenuClick,
+    icon: "plus",
+    options: [
+      {
+        label: "yen",
+        onClick: handleDropdownMenuClick,
+        icon: "yen",
+      },
+      {
+        label: "dollar",
+        onClick: handleDropdownMenuClick,
+        icon: "dollar",
+        options: [
+          {
+            label: "American dollar",
+            onClick: handleDropdownMenuClick,
+            icon: "dollar",
+            options: [
+              {
+                label: "Full dollar",
+                onClick: handleDropdownMenuClick,
+                icon: "dollar",
+              },
+              {
+                label: "Cent",
+                onClick: handleDropdownMenuClick,
+                icon: "dollar",
+              },
+            ],
+          },
+          {
+            label: "Canadian dollar",
+            onClick: handleDropdownMenuClick,
+            icon: "dollar",
+          },
+        ],
+      },
+      {
+        label: "euro",
+        onClick: handleDropdownMenuClick,
+        icon: "euro",
+      },
+      {
+        label: "euro",
+        onClick: handleDropdownMenuClick,
+        icon: "euro",
+      },
+      {
+        label: "euro",
+        onClick: handleDropdownMenuClick,
+        icon: "euro",
+      },
+      {
+        label: "euro",
+        onClick: handleDropdownMenuClick,
+        icon: "euro",
+      },
+    ],
+  },
+  {
+    label: "Delete currency",
+    onClick: handleDropdownMenuClick,
+    icon: "trash",
+    disabled: true,
+  },
 ];
 
 type SectionHeaderProps = {

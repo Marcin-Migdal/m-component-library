@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 
 import { DropdownMenuItem } from "../DropdownMenuOption/DropdownMenuItem";
-import { DropdownMenuConfig, DropdownMenuOption, DropdownMenuPosition, OpenDirectionType } from "../types";
+import { DropdownMenuConfig, DropdownMenuOption, DropdownMenuPosition, HorizontalOpenDirection } from "../types";
 
 import "./DropdownSubMenu.css";
 
@@ -22,39 +22,57 @@ export const DropdownSubMenu = ({ options, closeMenu, hideDisabled }: DropdownSu
     const calculateDropdownMenuPosition = (parentElement: HTMLElement, dropdownSubMenuElement: HTMLUListElement) => {
       const margin = 4;
 
-      const { right, left } = parentElement.getBoundingClientRect();
-      const { width: subMenuWidth } = dropdownSubMenuElement.getBoundingClientRect();
+      const {
+        top: parentTop,
+        right: parentRight,
+        bottom: parentBottom,
+        left: parentLeft,
+        height: parentHeight,
+      } = parentElement.getBoundingClientRect();
+      const { width: subMenuWidth, height: subMenuHeight } = dropdownSubMenuElement.getBoundingClientRect();
 
-      const previousOpenDirection =
-        (parentElement.parentElement?.getAttribute("data-menu-direction") as OpenDirectionType) || null;
+      const previousHorizontalOpenDirection =
+        (parentElement.parentElement?.getAttribute("data-x-open-direction") as HorizontalOpenDirection) || null;
 
-      const position: DropdownMenuPosition = { top: "-1px", right: "unset", left: "unset" };
+      const position: DropdownMenuPosition = {
+        top: "unset",
+        right: "unset",
+        left: "unset",
+      };
 
-      const fitOnRightSide = (): boolean => right + subMenuWidth + margin < window.innerWidth - margin;
-      const fitOnLeftSide = (): boolean => left - (subMenuWidth + margin) > 0;
+      const fitOnRightSide = (): boolean => parentRight + subMenuWidth + margin < window.innerWidth - margin;
+      const fitOnLeftSide = (): boolean => parentLeft - (subMenuWidth + margin) > 0;
 
-      if (previousOpenDirection === "left" || previousOpenDirection === "right-fit") {
+      if (previousHorizontalOpenDirection === "left" || previousHorizontalOpenDirection === "right-fit") {
         if (fitOnLeftSide()) {
           position.right = `calc(100% + ${margin}px)`;
-          position.openDirection = "left";
+          position.horizontalOpenDirection = "left";
         } else if (fitOnRightSide()) {
           position.left = `calc(100% + ${margin}px)`;
-          position.openDirection = "right";
+          position.horizontalOpenDirection = "right";
         } else {
-          position.right = `calc(100% + ${left - subMenuWidth - margin}px)`;
-          position.openDirection = "left-fit";
+          position.right = `calc(100% + ${parentLeft - subMenuWidth - margin}px)`;
+          position.horizontalOpenDirection = "left-fit";
         }
       } else {
         if (fitOnRightSide()) {
           position.left = `calc(100% + ${margin}px)`;
-          position.openDirection = "right";
+          position.horizontalOpenDirection = "right";
         } else if (fitOnLeftSide()) {
           position.right = `calc(100% + ${margin}px)`;
-          position.openDirection = "left";
+          position.horizontalOpenDirection = "left";
         } else {
-          position.left = `calc(100% + ${window.innerWidth - margin - (subMenuWidth + right)}px)`;
-          position.openDirection = "right-fit";
+          position.left = `calc(100% + ${window.innerWidth - margin - (subMenuWidth + parentRight)}px)`;
+          position.horizontalOpenDirection = "right-fit";
         }
+      }
+
+      if (parentBottom - subMenuHeight - margin > 0) {
+        position.top = "-1px";
+      } else if (parentTop + subMenuHeight + margin < window.innerHeight) {
+        position.top = `calc(-${subMenuHeight}px + ${parentHeight}px)`;
+      } else {
+        position.top = `${margin - parentTop}px`;
       }
 
       setSubMenuConfig({
@@ -73,7 +91,7 @@ export const DropdownSubMenu = ({ options, closeMenu, hideDisabled }: DropdownSu
     <ul
       className="m-dropdown-submenu"
       data-z-index={subMenuConfig.zIndex}
-      data-menu-direction={subMenuConfig.openDirection}
+      data-x-open-direction={subMenuConfig.horizontalOpenDirection}
       ref={dropdownSubMenuRef}
       style={subMenuConfig}
     >

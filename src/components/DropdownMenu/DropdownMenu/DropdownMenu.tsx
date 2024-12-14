@@ -75,7 +75,7 @@ export const DropdownMenu = ({
         }
       }
 
-      setDropdownMenuConfig({ zIndex: 1, opacity: 1, openDirection: "right", ...dropdownPosition });
+      setDropdownMenuConfig({ zIndex: 1, opacity: 1, horizontalOpenDirection: "right", ...dropdownPosition });
     };
 
     dropdownMenuContainerRef.current && calculateDropdownMenuPosition(dropdownMenuContainerRef.current);

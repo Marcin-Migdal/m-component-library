@@ -3,11 +3,12 @@ import React from "react";
 
 import { Button } from "../Button";
 import ThemeWrapper from "../ThemeWrapper/ThemeWrapper";
-import DropdownMenu from "./DropdownMenu";
+
+import { DropdownMenu } from ".";
 import { DropdownMenuOption } from "./types";
 
 export default {
-  title: "M-component-library/ContextMenu",
+  title: "M-component-library/DropdownMenu",
   component: DropdownMenu,
 } as ComponentMeta<typeof DropdownMenu>;
 
@@ -18,7 +19,7 @@ const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>, option: D
   console.log(option);
 };
 
-export const dropdownMenuOptions: DropdownMenuOption[] = [
+const dropdownMenuOptions: DropdownMenuOption[] = [
   {
     label: "Add currency",
     onClick: handleClick,
@@ -100,12 +101,20 @@ const Template: ComponentStory<typeof DropdownMenu> = () => (
       }}
     >
       <DropdownMenu options={dropdownMenuOptions}>
-        <Button style={{ width: "fit-content" }} text="Currency" icon="money-bill-wave" onClick={() => {}} />
+        <Button
+          style={{
+            width: "fit-content",
+            // marginTop: "10rem",
+          }}
+          text="Currency"
+          icon="money-bill-wave"
+          onClick={() => {}}
+        />
       </DropdownMenu>
     </div>
   </ThemeWrapper>
 );
 
-export const contextMenu = Template.bind({});
+export const dropdownMenu = Template.bind({});
 
-contextMenu.args = {};
+dropdownMenu.args = {};

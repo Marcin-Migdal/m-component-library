@@ -41,13 +41,13 @@ export type DropdownMenuProps = {
   onClose?: () => void;
 };
 
-export type OpenDirectionType = "left" | "right" | "left-fit" | "right-fit";
+export type HorizontalOpenDirection = "left" | "right" | "left-fit" | "right-fit";
 
 export type DropdownMenuPosition = {
   top: CSSProperties["top"];
   left: CSSProperties["left"];
   right?: CSSProperties["left"];
-  openDirection?: OpenDirectionType;
+  horizontalOpenDirection?: HorizontalOpenDirection;
 };
 
 export type DropdownMenuConfig = {
