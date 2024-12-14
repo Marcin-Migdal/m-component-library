@@ -1,6 +1,7 @@
 import React, { CSSProperties, useRef, useState } from "react";
 
 import { Placement } from "../../helpers/getPosition/getPosition-types";
+import StoryBreadcrumbWrapper from "../Breadcrumb/StoryButtonWrapper";
 import { ComponentSize, InputLabel, LabelPercentageWidth, SimpleInputLabel } from "../global-types";
 import ThemeWrapper from "./ThemeWrapper";
 
@@ -28,7 +29,8 @@ import {
   ToastsContainer,
   ToggleSwitch,
 } from "../..";
-import StoryBreadcrumbWrapper from "../Breadcrumb/StoryButtonWrapper";
+import { DropdownMenu } from "../DropdownMenu";
+import { dropdownMenuOptions } from "../DropdownMenu/DropdownMenu.stories";
 
 export type StoryThemeWrapperProps = {
   darkMode: boolean;
@@ -345,6 +347,10 @@ const StoryThemeWrapper = ({
         </Alert>
         <SectionHeader text="BREADCRUMB" />
         <StoryBreadcrumbWrapper disableLastCrumb={false} variant={"default"} />
+        <SectionHeader text="DROPDOWN MENU" />
+        <DropdownMenu options={dropdownMenuOptions} openPosition="auto-bottom">
+          <Button style={{ width: "fit-content" }} text="Currency" icon="money-bill-wave" onClick={() => {}} />
+        </DropdownMenu>
       </div>
     </ThemeWrapper>
   );

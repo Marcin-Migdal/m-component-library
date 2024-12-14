@@ -16,11 +16,23 @@ const defaultConfig: GetPositionConfig = {
   browserDeadZone: 8,
 };
 
-export const getPosition = (
+export function getPosition(
+  targetElement: Element | SVGElement,
+  consumerElement: Element,
+  externalConfig?: Partial<GetPositionConfig>
+): Position;
+
+export function getPosition(
   targetElement: Element | SVGElement | null | undefined,
   consumerElement: Element | null | undefined,
   externalConfig?: Partial<GetPositionConfig>
-): Position | undefined => {
+): Position | undefined;
+
+export function getPosition(
+  targetElement: Element | SVGElement | null | undefined,
+  consumerElement: Element | null | undefined,
+  externalConfig?: Partial<GetPositionConfig>
+): Position | undefined {
   let position: Position | undefined = undefined;
 
   if (!targetElement || !consumerElement) {
@@ -128,4 +140,4 @@ export const getPosition = (
   }
 
   return { ...position, width: targetRect.width };
-};
+}

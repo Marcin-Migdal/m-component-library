@@ -6,11 +6,12 @@ import { AccordionItemProps } from "./types";
 
 import "./AccordionItem.css";
 
-export const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({ children, className }) => {
+export const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({ children, className, style }) => {
   const { instanceClassName } = useAccordion();
 
   return (
     <div
+      style={style}
       className={classNames("m-accordion-item", className, {
         [`${instanceClassName}-item`]: !!instanceClassName,
       })}

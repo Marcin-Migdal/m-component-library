@@ -6,7 +6,11 @@ import { AccordionContentProps } from "./types";
 
 import "./AccordionContent.css";
 
-export const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>> = ({ children, className }) => {
+export const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>> = ({
+  children,
+  className,
+  style,
+}) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const { instanceClassName, expandAnimation } = useAccordion();
@@ -49,6 +53,7 @@ export const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>
       }}
     >
       <div
+        style={style}
         ref={ref}
         className={classNames("m-accordion-content", className, {
           [`${instanceClassName}-content`]: !!instanceClassName,

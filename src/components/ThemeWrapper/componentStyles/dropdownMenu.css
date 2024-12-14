@@ -1,0 +1,28 @@
+.m-dropdown-menu,
+.m-dropdown-menu .m-dropdown-menu-item .m-dropdown-submenu {
+  border-color: var(--dropdown-menu-border-color) !important;
+  color: var(--primary-text-color);
+}
+
+.m-dropdown-menu .m-dropdown-menu-item {
+  background-color: var(--dropdown-menu-background-color);
+}
+
+.m-dropdown-menu .m-dropdown-menu-item.disabled {
+  background-color: var(--dropdown-menu-disabled-background-color);
+}
+
+.m-dropdown-menu .m-dropdown-menu-item:not(.disabled):hover {
+  background-color: var(--dropdown-menu-hover-background-color);
+}
+
+.m-dropdown-menu .m-dropdown-menu-item:not(.disabled).item-active,
+.m-dropdown-menu .m-dropdown-menu-item:not(.disabled):active {
+  background-color: var(--dropdown-menu-active-background-color);
+}
+
+.m-dropdown-menu .m-dropdown-menu-item:not(.disabled):hover,
+.m-dropdown-menu .m-dropdown-menu-item:not(.disabled).item-active,
+.m-dropdown-menu .m-dropdown-menu-item:not(.disabled):active {
+  color: var(--dropdown-menu-highlighted-color);
+}
