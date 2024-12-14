@@ -23,8 +23,8 @@ export type AccordionContextType = {
   expansionMode: Mode | undefined;
   expanded: SectionState;
   handleExpand: (sectionId: SectionId) => void;
-  expandAnimation: "smooth" | "instant";
 
+  expandAnimation: "smooth" | "instant";
   instanceClassName: string | undefined;
   globalIcon: "none" | "left" | "right" | undefined;
   globalExpandOnIconClick: boolean | undefined;

@@ -12,6 +12,7 @@ export const AccordionToggle: React.FC<PropsWithChildren<AccordionToggleProps>> 
   icon: localIcon,
   expandOnIconClick: localExpandOnIconClick,
   className,
+  style,
 }) => {
   const {
     selectionMode,
@@ -44,6 +45,7 @@ export const AccordionToggle: React.FC<PropsWithChildren<AccordionToggleProps>> 
 
   return (
     <div
+      style={style}
       className={classNames("m-accordion-toggle", className, isExpanded ? "expanded" : "collapsed", {
         [`${instanceClassName}-toggle`]: !!instanceClassName,
         selected: isSelected,

@@ -10,6 +10,7 @@ import "./componentStyles/inputsErrors.css";
 
 import "./componentStyles/alert.css";
 import "./componentStyles/card.css";
+import "./componentStyles/dropdownMenu.css";
 import "./componentStyles/toast.css";
 
 import "./componentStyles/breadcrumb.css";

@@ -192,6 +192,14 @@ body {
   --crumb-background-color: var(--grey-color-075);
   --crumb-hover-background-color: var(--grey-color-125);
 
+  /* Dropdown menu */
+  --dropdown-menu-border-color: var(--grey-color-300);
+  --dropdown-menu-background-color: var(--grey-color-050);
+  --dropdown-menu-disabled-background-color: var(--grey-color-225);
+  --dropdown-menu-hover-background-color: var(--grey-color-100);
+  --dropdown-menu-active-background-color: var(--grey-color-150);
+  --dropdown-menu-highlighted-color: var(--grey-color-600);
+
   /*? Common */
   --icon-color: var(--grey-color-550);
   --primary-text-color: var(--grey-color-525);
@@ -243,6 +251,14 @@ body {
   /* Breadcrumb */
   --crumb-background-color: var(--grey-color-575);
   --crumb-hover-background-color: var(--grey-color-525);
+
+  /* Dropdown menu */
+  --dropdown-menu-border-color: var(--grey-color-375);
+  --dropdown-menu-background-color: var(--grey-color-550);
+  --dropdown-menu-disabled-background-color: var(--grey-color-600);
+  --dropdown-menu-hover-background-color: var(--grey-color-500);
+  --dropdown-menu-active-background-color: var(--grey-color-450);
+  --dropdown-menu-highlighted-color: var(--grey-color-000);
 
   /*? Common */
   --icon-color: var(--grey-color-050);
@@ -622,6 +638,10 @@ body {
   /* Breadcrumb */
   --crumb-active-background-color: var(--primary-color_680);
   --crumb-hover-active-background-color: var(--primary-color_540);
+
+  /* Dropdown menu */
+  --dropdown-menu-hover-background-color: var(--primary-color_740);
+  --dropdown-menu-active-background-color: var(--primary-color_660);
 
   /* Common */
   --primary-highlighted-text-color: var(--primary-color_680);
