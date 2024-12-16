@@ -25,6 +25,7 @@
 .m-input-label.floating.filled,
 .m-input-label.floating.focused {
   top: 0;
+
   transform: translateY(calc(-100% - 1px));
   font-size: 0.75rem;
 }
@@ -48,4 +49,24 @@
 
 .m-input-container.error .m-input-label {
   color: var(--failure-color) !important;
+}
+
+/* Color picker label */
+.m-color-picker-label.floating {
+  padding-left: calc(var(--input-height) + 0.5rem + var(--input-padding-left));
+}
+
+.m-color-picker-label.floating:not(.m-textarea-label) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.m-color-picker-label.floating.forced-floating,
+.m-color-picker-label.floating.filled,
+.m-color-picker-label.floating.focused {
+  top: 0;
+  padding-left: var(--input-padding-left);
+
+  transform: translateY(calc(-100% - 1px));
+  font-size: 0.75rem;
 }

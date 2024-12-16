@@ -13,7 +13,7 @@ import { RgbValue } from "../types";
 import "./ColorPickerPopup.css";
 
 type ColorPickerPopupProps = {
-  value: RgbValue;
+  value: RgbValue | undefined;
   onChange: (value: RgbValue) => void;
   parentElement: HTMLInputElement;
   className: string;
@@ -24,8 +24,8 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
   const popupRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState<Position | undefined>(undefined);
 
-  const [hueSliderValue, setHueSliderValue] = useState<number>(rgbToHsl(value.r, value.g, value.b).h);
-  const [rgbValue, setRgbValue] = useState<RgbValue>({ ...value });
+  const [hueSliderValue, setHueSliderValue] = useState<number>(value ? rgbToHsl(value.r, value.g, value.b).h : 0);
+  const [rgbValue, setRgbValue] = useState<RgbValue>(value ? { ...value } : { r: 255, g: 255, b: 255 });
 
   useLayoutEffect(() => {
     const calculatePopupPosition = () => {
