@@ -17,9 +17,6 @@ import { IconFieldProps } from "./types";
 
 import "./IconField.css";
 
-// TODO! implement all theme related styles
-//* CLEANING
-
 const IconField = ({
   value: externalValue = undefined,
   name = undefined,
