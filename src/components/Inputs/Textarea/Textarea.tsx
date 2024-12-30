@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React, { ChangeEvent, FocusEvent, useState } from "react";
 
+import { useDebounceFunction } from "../../../hooks";
 import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
@@ -14,6 +15,8 @@ const Textarea = ({
   name = undefined,
   onChange,
   onBlur,
+  onDebounce,
+  debounceDelay = 300,
   label,
   error,
   labelType = InputLabel.LEFT,
@@ -35,6 +38,8 @@ const Textarea = ({
 
   const value: string = externalValue !== undefined ? externalValue : internalValue;
 
+  const [handleDebounce] = useDebounceFunction(onDebounce, debounceDelay);
+
   const handleFocus = () => setIsFocused(true);
 
   const handleBlur = (e: FocusEvent<HTMLTextAreaElement>) => {
@@ -44,6 +49,7 @@ const Textarea = ({
   };
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
+    handleDebounce(e, e.target.value);
     onChange && onChange(e, e.target.value);
     setInternalValue(e.target.value);
   };
@@ -61,7 +67,7 @@ const Textarea = ({
         name={name}
         rows={row}
         style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
-        className={classNames("m-input", "m-textarea", classNamesObj?.input, labelType)}
+        className={classNames("m-input", "m-textarea", "m-scroll", classNamesObj?.input, labelType)}
         value={value}
         onChange={handleChange}
         onFocus={handleFocus}

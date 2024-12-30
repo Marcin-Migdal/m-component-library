@@ -132,13 +132,11 @@ const ColorPicker = ({
           ref={inputContainerRef}
           style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
         >
-          {labelType !== InputLabel.LEFT && (
-            <div
-              className="m-color-preview-square"
-              style={{ backgroundColor: hexValue }}
-              onClick={() => !disabled && handleOpen()}
-            />
-          )}
+          <div
+            className="m-color-preview-square"
+            style={{ backgroundColor: hexValue }}
+            onClick={() => !disabled && handleOpen()}
+          />
 
           <StandAloneTextfield
             className={classNames("m-color-preview", classNamesObj?.input, {
@@ -156,13 +154,6 @@ const ColorPicker = ({
               width: "100%",
             }}
           />
-          {labelType === InputLabel.LEFT && (
-            <div
-              className="m-color-preview-square"
-              style={{ backgroundColor: hexValue }}
-              onClick={() => !disabled && handleOpen()}
-            />
-          )}
         </div>
         {label && (
           <InputsLabel

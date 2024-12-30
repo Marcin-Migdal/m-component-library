@@ -1,11 +1,15 @@
 .m-alert {
+  --alert-border-radius: 8px;
+  --alert-padding: 1.5rem;
+
   display: flex;
   flex-direction: column;
 
   width: 400px;
 
-  border-top: 8px solid;
-  border-radius: 8px;
+  border-top: var(--alert-border-radius) solid;
+  border-radius: var(--alert-border-radius);
+  gap: 1rem;
 }
 
 .m-alert.opened {
@@ -18,65 +22,76 @@
 
 .m-alert .m-alert-header {
   display: flex;
-  padding: 1.5rem 2rem 0 2rem;
   width: 100%;
 
-  h4 {
-    margin: unset;
-  }
+  padding: var(--alert-padding);
+  padding-bottom: unset;
+}
 
-  svg {
-    margin-left: auto;
+.m-alert .m-alert-header h4 {
+  margin: unset;
+}
 
-    height: 18px;
-    width: 18px;
+.m-alert .m-alert-header svg {
+  --icon-padding: 3px;
 
-    font-weight: bold;
+  margin-left: auto;
 
-    margin-right: -3px;
-    margin-top: -3px;
-    padding: 3px;
+  height: 18px;
+  width: 18px;
 
-    border-radius: 50px;
-    transition: var(--transition);
-  }
+  font-weight: bold;
 
-  svg:active {
-    transform: scale(0.9);
-    transition: var(--fast-transition);
-  }
+  margin-right: calc(-1 * var(--icon-padding));
+  margin-top: calc(-1 * var(--icon-padding));
+  padding: var(--icon-padding);
+
+  border-radius: 50px;
+  transition: var(--transition);
+}
+
+.m-alert .m-alert-header svg:active {
+  transform: scale(0.9);
+  transition: var(--fast-transition);
 }
 
 .m-alert .m-alert-content {
   height: 100%;
+  padding: 0 var(--alert-padding);
 
-  padding: 2rem;
+  overflow: auto;
+}
+
+.m-alert .m-alert-content:last-child {
+  padding-bottom: var(--alert-padding);
 }
 
 .m-alert .m-alert-footer {
   display: flex;
   gap: 1px;
+
   border-bottom-right-radius: 12px;
   border-bottom-left-radius: 12px;
+}
 
-  button {
-    flex: 1;
-    border: unset;
-    border-top: 1px solid;
-    padding: 12px 0;
-    font-weight: bold;
-  }
+.m-alert .m-alert-footer button {
+  flex: 1;
+  border: unset;
+  border-top: 1px solid;
+  padding: 12px 0;
+  font-weight: bold;
+}
 
-  button:not(:disabled):active {
-    transition: var(--fast-transition);
-  }
+.m-alert .m-alert-footer button:not(:disabled):active {
+  transition: var(--fast-transition);
+}
 
-  .m-alert-confirm-button {
-    border-bottom-left-radius: 8px;
-  }
-  .m-alert-decline-button {
-    border-bottom-right-radius: 8px;
-  }
+.m-alert .m-alert-footer .m-alert-confirm-button {
+  border-bottom-left-radius: 8px;
+}
+
+.m-alert .m-alert-footer .m-alert-decline-button {
+  border-bottom-right-radius: 8px;
 }
 
 @keyframes open-alert {

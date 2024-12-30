@@ -15,6 +15,9 @@ export type TextfieldProps = InputProps & {
   onBlur?: (event: FocusEvent<HTMLInputElement>, value: string) => void;
   onFocus?: (event: FocusEvent<HTMLInputElement, Element>) => void;
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
+  onDebounce?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+
+  debounceDelay?: number;
 
   defaultInternalValue?: string;
   classNamesObj?: TextFieldClassNames;

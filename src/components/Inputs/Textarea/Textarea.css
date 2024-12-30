@@ -20,11 +20,3 @@
 .m-textarea-container .m-textarea:active {
   transition: var(--fast-transition);
 }
-
-.m-textarea-container .m-textarea::-webkit-scrollbar {
-  width: 8px;
-}
-
-.m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
-  border-radius: 30px;
-}

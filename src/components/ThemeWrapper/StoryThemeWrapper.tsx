@@ -17,6 +17,7 @@ import {
   FailureIcon,
   HueSliderCanvas,
   Icon,
+  IconField,
   ImageField,
   ProgressSpinner,
   ReturnedColor,
@@ -29,6 +30,7 @@ import {
   ToastsContainer,
   ToggleSwitch,
 } from "../..";
+
 import { DropdownMenu, DropdownMenuOption } from "../DropdownMenu";
 
 export type StoryThemeWrapperProps = {
@@ -59,6 +61,11 @@ const options = [
   { label: "test 2", value: 2 },
   { label: "test 3", value: 3 },
   { label: "test 4", value: 4 },
+  { label: "test 5", value: 5 },
+  { label: "test 6", value: 6 },
+  { label: "test 7", value: 7 },
+  { label: "test 8", value: 8 },
+  { label: "test 9", value: 9 },
 ];
 
 const handleDropdownMenuClick = (event: React.MouseEvent<HTMLElement, MouseEvent>, option: DropdownMenuOption) => {
@@ -184,6 +191,7 @@ const StoryThemeWrapper = ({
   const alertRef = useRef<AlertHandler>(null);
 
   const [hue, setHue] = useState<number | undefined>(undefined);
+  const [pickedColor, setPickedColor] = useState<string | undefined>(undefined);
 
   const checkboxLabelType = (
     inputLabelType === InputLabel.FLOATING ? SimpleInputLabel.RIGHT : inputLabelType
@@ -297,15 +305,29 @@ const StoryThemeWrapper = ({
           labelWidth={inputLabelWidth}
           floatingInputWidth={floatingInputWidth}
           label={label}
-          returnedColorType={ReturnedColor.HSL}
-          onChange={(color) => {
+          returnedColorType={ReturnedColor.HEX}
+          onChange={(color) => setPickedColor(color.target.value)}
+          disabled={disabled}
+          readOnly={readOnly}
+          size={inputSize}
+          error={error}
+        />
+        <IconField
+          iconColor={pickedColor}
+          labelType={inputLabelType}
+          labelWidth={inputLabelWidth}
+          floatingInputWidth={floatingInputWidth}
+          label={label}
+          onChange={(event) => {
             // eslint-disable-next-line no-console
-            console.log(color.target.value); // console log used for documentation;
+            console.log(event.target.value); // console log used for documentation;
           }}
           disabled={disabled}
           readOnly={readOnly}
           size={inputSize}
+          error={error}
         />
+
         <SectionHeader text="DYNAMIC THEME COLOR CONTROL" />
         <div style={{ display: "flex", alignItems: "center" }}>
           <HueSliderCanvas hue={0} onChange={(newHue) => setHue(newHue)} readOnly={readOnly} />

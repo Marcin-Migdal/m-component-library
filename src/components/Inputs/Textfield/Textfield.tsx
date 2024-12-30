@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React, { ChangeEvent, FocusEvent, useState } from "react";
 
+import { useDebounceFunction } from "../../../hooks";
 import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
@@ -16,6 +17,8 @@ const Textfield = (props: TextfieldProps) => {
     onBlur,
     onFocus,
     onClick,
+    onDebounce,
+    debounceDelay = 300,
     label = undefined,
     error = undefined,
     labelType = `${InputLabel.LEFT}`,
@@ -36,6 +39,15 @@ const Textfield = (props: TextfieldProps) => {
 
   const value: string = externalValue !== undefined ? externalValue : internalValue;
 
+  const [handleDebounce] = useDebounceFunction(onDebounce, debounceDelay);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    handleDebounce(e, e.target.value);
+
+    onChange && onChange(e, e.target.value);
+    setInternalValue(e.target.value);
+  };
+
   const handleFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
     onFocus && onFocus(e);
     setIsFocused(true);
@@ -49,11 +61,6 @@ const Textfield = (props: TextfieldProps) => {
     setIsFocused(false);
 
     onBlur && onBlur(e, e.target.value);
-  };
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    onChange && onChange(e, e.target.value);
-    setInternalValue(e.target.value);
   };
 
   return (
