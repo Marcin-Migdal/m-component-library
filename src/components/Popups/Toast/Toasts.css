@@ -132,12 +132,3 @@
 .toasts-list .toast svg.close-icon:active {
   transform: scale(0.8);
 }
-
-.toasts-list::-webkit-scrollbar {
-  width: 6px;
-}
-
-.toasts-list::-webkit-scrollbar-thumb {
-  border-radius: 6px;
-  background-color: var(--scroll-track-background-color);
-}

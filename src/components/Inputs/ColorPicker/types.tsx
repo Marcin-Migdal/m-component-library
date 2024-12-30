@@ -22,17 +22,17 @@ export type ColorPickerProps = InputProps & {
     | {
         returnedColorType: ReturnedColor.RGB;
         onChange: ColorPickerOnChange<RgbValue>;
-        onClose?: (value: RgbValue) => void;
+        onClose?: (value: RgbValue | undefined) => void;
       }
     | {
         returnedColorType: ReturnedColor.HSL;
         onChange: ColorPickerOnChange<HslValue>;
-        onClose?: (value: HslValue) => void;
+        onClose?: (value: HslValue | undefined) => void;
       }
     | {
         returnedColorType: ReturnedColor.HEX;
         onChange: ColorPickerOnChange<string>;
-        onClose?: (value: string) => void;
+        onClose?: (value: string | undefined) => void;
       }
   );
 

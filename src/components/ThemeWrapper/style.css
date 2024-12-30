@@ -145,6 +145,30 @@ body {
   overflow-x: hidden;
 }
 
+.m-scroll {
+  --scroll-width: 8px;
+}
+
+.m-scroll.slim-scroll {
+  --scroll-width: 6px;
+}
+
+.m-scroll::-webkit-scrollbar {
+  width: var(--scroll-width);
+  height: var(--scroll-width);
+}
+
+.m-scroll::-webkit-scrollbar-track {
+  background-color: transparent;
+  width: var(--scroll-width);
+}
+
+.m-scroll::-webkit-scrollbar-thumb {
+  border-radius: calc(var(--scroll-width) / 2);
+  width: var(--scroll-width);
+  background-color: var(--scroll-track-background-color);
+}
+
 .light-mode {
   /** Background color */
   --background-color: var(--grey-color-000);
@@ -158,6 +182,7 @@ body {
   --input-disabled-background-color: var(--grey-color-050);
 
   --input-text-color: var(--grey-color-650);
+  --input-hover-color: var(--grey-color-700);
   --input-disabled-text-color: var(--grey-color-325);
 
   --input-placeholder-color: var(--grey-color-475);
@@ -167,6 +192,10 @@ body {
   --color-picker-dragged-pointer: var(--grey-color-850);
 
   --input-image-icon-color: var(--grey-color-100);
+
+  --icon-tile-background-color: var(--grey-color-100);
+  --icon-tile-hover-background-color: var(--grey-color-125);
+  --icon-tile-active-background-color: var(--grey-color-150);
 
   /** Buttons */
   --btn-outlined-background-color: var(--background-color);
@@ -218,6 +247,7 @@ body {
   --input-disabled-background-color: var(--grey-color-625);
 
   --input-text-color: var(--grey-color-100);
+  --input-hover-color: var(--grey-color-025);
   --input-disabled-text-color: var(--grey-color-450);
 
   --input-placeholder-color: var(--grey-color-300);
@@ -227,6 +257,10 @@ body {
   --color-picker-dragged-pointer: var(--grey-color-850);
 
   --input-image-icon-color: var(--grey-color-100);
+
+  --icon-tile-background-color: var(--grey-color-550);
+  --icon-tile-hover-background-color: var(--grey-color-525);
+  --icon-tile-active-background-color: var(--grey-color-500);
 
   /** Buttons */
   --btn-outlined-background-color: var(--background-color);

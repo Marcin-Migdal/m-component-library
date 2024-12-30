@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React, { ChangeEvent, CSSProperties, useLayoutEffect, useRef, useState } from "react";
 
+import { useDebounceFunction } from "../../../hooks";
 import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
@@ -17,6 +18,8 @@ const Slider = ({
   step = 1,
   initialValue,
   onChange,
+  onDebounce,
+  debounceDelay = 300,
   label,
   labelType = InputLabel.LEFT,
   labelWidth = 30,
@@ -41,6 +44,8 @@ const Slider = ({
   const value = controlled ? externalValue : internalValue;
 
   let inputStyle = getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth);
+
+  const [handleDebounce] = useDebounceFunction(onDebounce, debounceDelay);
 
   if (error) {
     inputStyle = { ...inputStyle, width: `calc(${inputStyle.width} - 2rem)` };
@@ -76,8 +81,10 @@ const Slider = ({
 
     const newValue = parseFloat(event.target.value);
 
+    handleDebounce(event, newValue);
+
     if (onChange) {
-      onChange(event);
+      onChange(event, newValue);
     }
 
     if (!controlled) {

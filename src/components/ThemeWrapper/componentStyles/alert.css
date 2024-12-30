@@ -1,44 +1,34 @@
 .common-wrapper-container .m-alert {
   background-color: var(--background-color);
   border-top-color: var(--alert-border-color);
+}
 
-  .m-alert-header {
-    display: flex;
-    padding: 1.5rem 2rem 0 2rem;
-    width: 100%;
+.common-wrapper-container .m-alert .m-alert-header svg:hover {
+  background-color: var(--background-hover-color);
+}
 
-    h4 {
-      margin: unset;
-    }
+.common-wrapper-container .m-alert .m-alert-header svg:active {
+  background-color: var(--background-active-color);
+}
 
-    svg:hover {
-      background-color: var(--background-hover-color);
-    }
+.common-wrapper-container .m-alert .m-alert-footer {
+  background-color: var(--alert-border-color);
+}
 
-    svg:active {
-      background-color: var(--background-active-color);
-    }
-  }
+.common-wrapper-container .m-alert .m-alert-footer button {
+  background-color: var(--background-color);
+  border-top-color: var(--alert-border-color);
+  color: var(--primary-text-color);
+}
 
-  .m-alert-footer {
-    background-color: var(--alert-border-color);
+.common-wrapper-container .m-alert .m-alert-footer button:disabled {
+  background-color: var(--alert-disabled-button-background-color);
+}
 
-    button {
-      background-color: var(--background-color);
-      border-top-color: var(--alert-border-color);
-      color: var(--primary-text-color);
-    }
+.common-wrapper-container .m-alert .m-alert-footer button:not(:disabled):hover {
+  background-color: var(--background-hover-color);
+}
 
-    button:disabled {
-      background-color: var(--alert-disabled-button-background-color);
-    }
-
-    button:not(:disabled):hover {
-      background-color: var(--background-hover-color);
-    }
-
-    button:not(:disabled):active {
-      background-color: var(--background-active-color);
-    }
-  }
+.common-wrapper-container .m-alert .m-alert-footer button:not(:disabled):active {
+  background-color: var(--background-active-color);
 }

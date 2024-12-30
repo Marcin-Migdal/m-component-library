@@ -30,6 +30,7 @@
 .common-wrapper-container .m-input-container:not(.disabled) .m-input:not(:disabled):focus,
 .common-wrapper-container .m-input-container:not(.disabled) .m-input:not(:disabled):hover {
   background-color: var(--input-hover-background-color);
+  color: var(--input-hover-color);
 }
 
 .common-wrapper-container .m-input-container:not(.disabled) .m-input:not(:disabled)::placeholder {
@@ -39,11 +40,6 @@
 .common-wrapper-container .m-input-container:not(.disabled) .m-input:not(:disabled):focus::placeholder,
 .common-wrapper-container .m-input-container:not(.disabled) .m-input:not(:disabled):hover::placeholder {
   color: var(--input-hover-placeholder-color);
-}
-
-/** Textarea properties */
-.common-wrapper-container .m-textarea-container .m-textarea::-webkit-scrollbar-thumb {
-  background-color: var(--scroll-track-background-color);
 }
 
 /** Checkbox properties */
@@ -176,4 +172,17 @@
   .m-image-placeholder-border {
   background-color: transparent;
   border-color: var(--icon-color);
+}
+
+/**Icon field properties */
+.m-icon-grid-container .m-icon-tile {
+  background-color: var(--icon-tile-background-color);
+}
+
+.m-icon-grid-container .m-icon-tile:hover {
+  background-color: var(--icon-tile-hover-background-color);
+}
+
+.m-icon-grid-container .m-icon-tile:active {
+  background-color: var(--icon-tile-active-background-color);
 }

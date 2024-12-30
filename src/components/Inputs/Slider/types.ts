@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import { InputProps } from "../_inputsComponents/input-types";
 
 export type ValuePreviewType = "top-dynamic" | "bottom-dynamic" | "top-static" | "bottom-static";
@@ -16,7 +17,11 @@ export type SliderProps = InputProps & {
   max: number;
   step?: number;
   initialValue?: number;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, value: number) => void;
+  onDebounce?: (event: ChangeEvent<HTMLInputElement>, value: number) => void;
+
+  debounceDelay?: number;
+
   hideValuePreview?: boolean;
   valuePreviewType?: ValuePreviewType;
   classNamesObj?: SliderClassNames;

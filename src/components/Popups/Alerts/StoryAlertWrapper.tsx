@@ -14,7 +14,7 @@ const alertData: AlertDataTest = {
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
 const StoryAlertWrapper = ({
-  header,
+  header = "Alert header",
   ...otherProps
 }: Omit<AlertHeaderProps, "onClose"> &
   Omit<AlertFooterProps<AlertDataTest>, "onConfirmBtnClick" | "onDeclineBtnClick">) => {

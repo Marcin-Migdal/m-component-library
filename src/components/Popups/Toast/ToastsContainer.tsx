@@ -64,7 +64,7 @@ function ToastsContainer<T extends string>(props: ToastsContainerProps<T>, ref: 
   const handleMouseHover = (toastId: number) => clearTimeout(timeoutRefs.current[toastId]);
 
   return (
-    <div className={classNames("toasts-list", toastsPosition)}>
+    <div className={classNames("toasts-list", "m-scroll", "slim-scroll", toastsPosition)}>
       {toasts.map((toast) => (
         <Toast
           key={toast.id}

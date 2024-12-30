@@ -7,6 +7,7 @@
 - [[#42]](https://github.com/Marcin-Migdal/m-component-library/issues/42) **[PATCH]** Add ImageField input
 - [[#39]](https://github.com/Marcin-Migdal/m-component-library/issues/39) **[PATCH]** Add Accordion component
 - [[#45]](https://github.com/Marcin-Migdal/m-component-library/issues/45) **[PATCH]** Add Breadcrumb component
+- [[#65]](https://github.com/Marcin-Migdal/m-component-library/issues/65) **[PATCH]** Add IconField component
 
 ### Release date 25.10.2024 - Release 1.0.6
 

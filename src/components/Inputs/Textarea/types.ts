@@ -13,6 +13,10 @@ export type TextareaProps = InputProps & {
   value?: string;
   onChange?: (event: ChangeEvent<HTMLTextAreaElement>, value: string) => void;
   onBlur?: (event: FocusEvent<HTMLTextAreaElement>, value: string) => void;
+  onDebounce?: (event: ChangeEvent<HTMLTextAreaElement>, value: string) => void;
+
+  debounceDelay?: number;
+
   placeholder?: string;
   defaultInternalValue?: string;
   autoFocus?: boolean;

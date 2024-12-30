@@ -1,6 +1,7 @@
 export * from "./Checkbox";
 export * from "./ColorPicker";
 export * from "./Dropdown";
+export * from "./IconField";
 export * from "./ImageField";
 export * from "./Slider";
 export * from "./Textarea";

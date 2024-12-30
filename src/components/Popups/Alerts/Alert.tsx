@@ -7,15 +7,15 @@ import { useAlertOpen } from "./hooks/useAlertOpen";
 import { AlertHandler, AlertProps } from "./types";
 
 const Alert = <T,>(
-  { children, className, header: headerProps, footer: footerProps }: PropsWithChildren<AlertProps<T>>,
+  { children, className, onOpen, onClose, header: headerProps, footer: footerProps }: PropsWithChildren<AlertProps<T>>,
   ref: ForwardedRef<AlertHandler<T>>
 ) => {
-  const { alertOpen, data, handleClose } = useAlertOpen({ ref });
+  const { alertOpen, data, handleClose } = useAlertOpen({ ref, onOpen, onClose });
 
   return (
     <AlertBody className={className} alertOpen={alertOpen} onClose={handleClose}>
       <AlertHeader onClose={handleClose} {...headerProps} />
-      <div className="m-alert-content">{children}</div>
+      <div className="m-alert-content m-scroll slim-scroll">{children}</div>
       <AlertFooter {...footerProps} data={data as T} />
     </AlertBody>
   );

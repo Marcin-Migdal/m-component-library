@@ -2,6 +2,8 @@ import { ForwardedRef } from "react";
 
 export type AlertProps<T> = {
   className?: string;
+  onOpen?: (data?: T) => void;
+  onClose?: (data?: T) => void;
   header?: Omit<AlertHeaderProps, "onClose">;
   footer?: Omit<AlertFooterProps<T>, "data">;
 };
@@ -28,12 +30,15 @@ export type AlertFooterProps<T> = {
 };
 
 export type AlertHandler<T = unknown> = {
+  isOpen: boolean;
   openAlert: (data?: T) => void;
   closeAlert: () => void;
 };
 
 export type UseAlertOpenArgs<T> = {
   ref: ForwardedRef<AlertHandler<T>>;
+  onOpen?: (data?: T) => void;
+  onClose?: (data?: T) => void;
 };
 
 export type AlertState<T> = { openState: AlertOpenState; data: T | undefined };
