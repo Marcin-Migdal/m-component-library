@@ -3,15 +3,17 @@
 
   padding-left: 0px;
   border-radius: var(--border-radius) !important;
+  margin: unset;
 
   list-style: none;
   z-index: 5;
 
-  margin: unset;
+  overflow: auto;
 }
 
 .m-dropdown-options .m-dropdown-option {
   padding: 7px 10px;
+  height: 32px;
 
   transition: var(--fast-transition);
 }

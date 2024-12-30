@@ -57,10 +57,13 @@ export const toastConfig: ToastConfig<NewToastTypes> = {
 };
 
 const options = [
-  { label: "test 1", value: 1 },
-  { label: "test 2", value: 2 },
-  { label: "test 3", value: 3 },
-  { label: "test 4", value: 4 },
+  { label: "test 1 test 1 test 1 test 1 test 1 test 1 test 1 ", value: 1 },
+  { label: "testtesttesttesttesttesttesttesttesttesttesttesttest", value: 2 },
+  { label: "testtesttesttesttes testtesttesttesttes testtesttesttesttes", value: 3 },
+  {
+    label: "testtesttesttesttes testtesttesttesttestesttesttesttesttestesttesttesttesttes testtesttesttesttes",
+    value: 4,
+  },
   { label: "test 5", value: 5 },
   { label: "test 6", value: 6 },
   { label: "test 7", value: 7 },
@@ -269,6 +272,7 @@ const StoryThemeWrapper = ({
           disabled={disabled}
           readOnly={readOnly}
           size={inputSize}
+          filter
         />
         <Slider
           min={0}
