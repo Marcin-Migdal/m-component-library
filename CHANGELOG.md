@@ -8,6 +8,7 @@
 - [[#39]](https://github.com/Marcin-Migdal/m-component-library/issues/39) **[PATCH]** Add Accordion component
 - [[#45]](https://github.com/Marcin-Migdal/m-component-library/issues/45) **[PATCH]** Add Breadcrumb component
 - [[#65]](https://github.com/Marcin-Migdal/m-component-library/issues/65) **[PATCH]** Add IconField component
+- [[#99]](https://github.com/Marcin-Migdal/m-component-library/issues/99) **[PATCH]** Block scrolling when overlay is visible
 
 ### Release date 25.10.2024 - Release 1.0.6
 

@@ -9,6 +9,13 @@ const Overlay = ({ children, onClick, enableKeysDown }: PropsWithChildren<Overla
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    document.body.classList.add("body-no-scroll");
+    return () => {
+      document.body.classList.remove("body-no-scroll");
+    };
+  }, []);
+
+  useEffect(() => {
     if (overlayRef.current) {
       overlayRef.current.focus();
     }
