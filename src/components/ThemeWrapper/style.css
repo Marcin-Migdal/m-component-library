@@ -145,6 +145,12 @@ body {
   overflow-x: hidden;
 }
 
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .m-scroll {
   --scroll-width: 8px;
 }
