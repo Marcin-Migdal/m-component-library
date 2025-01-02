@@ -7,7 +7,6 @@ import ThemeWrapper from "./ThemeWrapper";
 
 import {
   Alert,
-  AlertHandler,
   Button,
   Card,
   CardVariantTypes,
@@ -32,6 +31,7 @@ import {
 } from "../..";
 
 import { DropdownMenu, DropdownMenuOption } from "../DropdownMenu";
+import { useAlert } from "../Popups/Alerts/hooks/useAlertOpen";
 
 export type StoryThemeWrapperProps = {
   darkMode: boolean;
@@ -191,7 +191,7 @@ const StoryThemeWrapper = ({
   readOnly = false,
 }: StoryThemeWrapperProps) => {
   const toastRef = useRef<ToastHandler<NewToastTypes>>(null);
-  const alertRef = useRef<AlertHandler>(null);
+  const [handleOpen, alertProps] = useAlert();
 
   const [hue, setHue] = useState<number | undefined>(undefined);
   const [pickedColor, setPickedColor] = useState<string | undefined>(undefined);
@@ -426,23 +426,21 @@ const StoryThemeWrapper = ({
           <Icon icon={["fab", "facebook"]} style={{ width: "fit-content" }} />
         </div>
         <SectionHeader text="ALERT" />
-        <Button text="Open alert" onClick={() => alertRef.current?.openAlert()} />
+        <Button text="Open alert" onClick={handleOpen} />
         <Alert
-          ref={alertRef}
-          header={{ header: "Test header" }}
-          footer={{
-            onConfirmBtnClick: () => {
-              alertRef.current?.closeAlert();
+          {...alertProps}
+          header="Test header"
+          onConfirmBtnClick={() => {
+            alertProps.handleClose();
 
-              // eslint-disable-next-line no-console
-              console.log("Confirm Button Click"); // console log used for documentation
-            },
-            onDeclineBtnClick: () => {
-              alertRef.current?.closeAlert();
+            // eslint-disable-next-line no-console
+            console.log("Confirm Button Click"); // console log used for documentation
+          }}
+          onDeclineBtnClick={() => {
+            alertProps.handleClose();
 
-              // eslint-disable-next-line no-console
-              console.log("Decline Button Click"); // console log used for documentation
-            },
+            // eslint-disable-next-line no-console
+            console.log("Decline Button Click"); // console log used for documentation
           }}
         >
           test

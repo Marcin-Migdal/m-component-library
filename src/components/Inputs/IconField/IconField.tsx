@@ -1,10 +1,11 @@
 import { IconName } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 import { ComponentSize, InputLabel } from "../../global-types";
-import { Alert, AlertHandler } from "../../Popups";
+import { Alert, AlertOpenState } from "../../Popups";
+import { useAlert } from "../../Popups/Alerts/hooks/useAlertOpen";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
@@ -36,13 +37,21 @@ const IconField = ({
   onOpen,
   onClose,
 }: IconFieldProps) => {
-  const iconPopupRef = useRef<AlertHandler>(null);
-
-  const [isFocused, setIsFocused] = useState<boolean>(false);
   const [internalValue, setInternalValue] = useState<string>("");
+  const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const controlled = externalValue !== undefined;
   const value = controlled ? externalValue : internalValue;
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+
+  const [handlePopupOpen, alertProps] = useAlert({ onOpen: handleFocus, onClose: handleBlur });
 
   const handleOpen = () => {
     if (readOnly) {
@@ -51,11 +60,11 @@ const IconField = ({
 
     onOpen && onOpen();
 
-    iconPopupRef.current?.openAlert();
+    handlePopupOpen();
   };
 
   const handleClose = () => {
-    if (!iconPopupRef.current?.isOpen) {
+    if (alertProps.alertOpen !== AlertOpenState.OPENED) {
       return;
     }
 
@@ -63,7 +72,7 @@ const IconField = ({
       onClose(value);
     }
 
-    iconPopupRef.current?.closeAlert();
+    alertProps.handleClose();
   };
 
   const handleChange = (selectedIcon: string): void => {
@@ -78,14 +87,6 @@ const IconField = ({
       });
 
     handleClose();
-  };
-
-  const handleFocus = () => {
-    setIsFocused(true);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
   };
 
   const clearValue = () => {
@@ -145,7 +146,7 @@ const IconField = ({
             labelType={labelType}
             className={classNames("m-icon-field-label", classNamesObj?.label)}
             labelWidth={labelWidth}
-            isFocused={isFocused || iconPopupRef.current?.isOpen}
+            isFocused={isFocused || alertProps.alertOpen === AlertOpenState.OPENED}
             isFilled={!!value}
           />
         )}
@@ -157,13 +158,7 @@ const IconField = ({
           />
         )}
       </InputContainer>
-      <Alert
-        ref={iconPopupRef}
-        className="m-icon-field-popup"
-        header={{ header: "Icon selector popup" }}
-        onOpen={handleFocus}
-        onClose={handleBlur}
-      >
+      <Alert {...alertProps} className="m-icon-field-popup" header="Icon selector popup">
         <IconFieldPopupContent onChange={handleChange} value={value as IconName} />
       </Alert>
     </>

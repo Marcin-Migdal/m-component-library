@@ -1,33 +1,26 @@
-import { useImperativeHandle, useState } from "react";
-import { AlertOpenState, AlertState, UseAlertOpenArgs, useAlertOpenResult } from "../types";
+import { useState } from "react";
+import { AlertOpenState, UseAlertOpenArgs, UseAlertOpenResult } from "../types";
 
-export const useAlertOpen = <T = undefined>({ ref, onOpen, onClose }: UseAlertOpenArgs<T>): useAlertOpenResult<T> => {
-  const [alertState, setAlertState] = useState<AlertState<T>>({
-    openState: AlertOpenState.CLOSED,
-    data: undefined,
-  });
+export const useAlert = (props: UseAlertOpenArgs = {}): UseAlertOpenResult => {
+  const { onOpen, onClose } = props;
 
-  const handleOpen = (data?: T) => {
-    onOpen && onOpen(data);
+  const [alertOpen, setAlertOpen] = useState<AlertOpenState>(AlertOpenState.CLOSED);
 
-    setAlertState({ openState: AlertOpenState.OPENED, data: data });
+  const handleOpen = () => {
+    onOpen && onOpen();
+
+    setAlertOpen(AlertOpenState.OPENED);
   };
 
   const handleClose = () => {
-    setAlertState({ openState: AlertOpenState.CLOSING, data: undefined });
+    setAlertOpen(AlertOpenState.CLOSING);
 
     setTimeout(() => {
-      onClose && onClose(alertState.data);
+      onClose && onClose();
 
-      setAlertState({ openState: AlertOpenState.CLOSED, data: undefined });
+      setAlertOpen(AlertOpenState.CLOSED);
     }, 200);
   };
 
-  useImperativeHandle(ref, () => ({
-    isOpen: alertState.openState === AlertOpenState.OPENED,
-    openAlert: handleOpen,
-    closeAlert: handleClose,
-  }));
-
-  return { alertOpen: alertState.openState, data: alertState.data, handleClose };
+  return [handleOpen, { alertOpen, handleClose }];
 };
