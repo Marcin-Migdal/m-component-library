@@ -4,6 +4,6 @@ export { AlertBody } from "./components/AlertBody";
 export { AlertFooter } from "./components/AlertFooter";
 export { AlertHeader } from "./components/AlertHeader";
 
-export { useAlertOpen } from "./hooks/useAlertOpen";
+export { useAlert } from "./hooks/useAlert";
 
 export * from "./types";
