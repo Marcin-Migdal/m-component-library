@@ -31,7 +31,7 @@ import {
 } from "../..";
 
 import { DropdownMenu, DropdownMenuOption } from "../DropdownMenu";
-import { useAlert } from "../Popups/Alerts/hooks/useAlertOpen";
+import { useAlert } from "../Popups/Alerts/hooks/useAlert";
 
 export type StoryThemeWrapperProps = {
   darkMode: boolean;

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 
 import { ComponentSize, InputLabel } from "../../global-types";
 import { Alert, AlertOpenState } from "../../Popups";
-import { useAlert } from "../../Popups/Alerts/hooks/useAlertOpen";
+import { useAlert } from "../../Popups/Alerts/hooks/useAlert";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";

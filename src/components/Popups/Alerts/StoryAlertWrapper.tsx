@@ -2,7 +2,7 @@ import React from "react";
 
 import { Button } from "../../Button";
 import Alert from "./Alert";
-import { useAlert } from "./hooks/useAlertOpen";
+import { useAlert } from "./hooks/useAlert";
 import { AlertFooterProps, AlertHeaderProps } from "./types";
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
