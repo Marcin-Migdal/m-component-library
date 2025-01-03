@@ -23,6 +23,7 @@ export const StandAloneTextfield = ({
   name = undefined,
   disabled = false,
   readOnly = false,
+  id = undefined,
 
   className,
   placeholder = undefined,
@@ -93,13 +94,19 @@ export const StandAloneTextfield = ({
   };
 
   return (
-    <div style={style} ref={textfieldWrapperRef} className="standalone-textfield-wrapper">
+    <div
+      id={`textfield-wrapper-${id}`}
+      style={style}
+      ref={textfieldWrapperRef}
+      className="standalone-textfield-wrapper"
+    >
       {prefix && (
         <span className="m-textfield-prefix" style={{ left: prefixStyleProperties.prefixLeftPosition }}>
           {prefix}
         </span>
       )}
       <InputMask
+        id={`textfield-${id}`}
         readOnly={readOnly}
         maskChar={null}
         disabled={disabled}

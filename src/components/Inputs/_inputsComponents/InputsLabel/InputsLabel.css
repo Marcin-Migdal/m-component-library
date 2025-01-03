@@ -10,6 +10,8 @@
 
 .m-input-label.floating {
   padding-left: var(--input-padding-left);
+
+  z-index: 2;
 }
 
 .m-input-label.floating:not(.m-textarea-label) {

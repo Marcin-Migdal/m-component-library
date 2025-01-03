@@ -21,6 +21,8 @@ export type StandAloneTextfieldProps = Omit<
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 
   style?: CSSProperties;
+
+  id?: string;
 } & (BaseMaskTextfieldType | AdvancedMaskTextfieldType | NoMaskTextfieldType);
 
 //* No mask type
