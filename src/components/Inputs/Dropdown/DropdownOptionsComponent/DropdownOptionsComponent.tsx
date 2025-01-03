@@ -1,26 +1,29 @@
 import classNames from "classnames";
-import React, { ReactElement, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { getPosition } from "../../../../helpers";
 import { CalculatedPosition, Position } from "../../../../helpers/getPosition/getPosition-types";
-import { DropdownOptionsProps } from "../types";
+import { DropdownOptionComponentProps, DropdownOptionsProps, EmptyMessageComponentProps } from "../types";
 
-import "./DropdownOptions.css";
+import "./DropdownOptionsComponent.css";
 
 type DropdownOptionsStyles = {
   opacity: number;
   maxHeight: number;
 } & Position;
 
-export const DropdownOptions = <T,>({
+export const DropdownOptionsComponent = <T,>({
+  id,
   filterElement,
-  uniqueDropdownId,
-  handleDropdownChange,
-  dropdownOptions,
-  value,
+  noOptionsMessage,
+  classNamesObj,
+  options,
   valueKey,
   labelKey,
-  classNamesObj,
+  value,
+  Option: optionComponent,
+  EmptyMessage: emptyMessageComponent,
+  handleDropdownChange,
 }: DropdownOptionsProps<T>) => {
   const ref = useRef<HTMLUListElement>(null);
   const [dropdownOptionsStyles, setDropdownOptionsStyles] = useState<DropdownOptionsStyles | undefined>({
@@ -36,7 +39,7 @@ export const DropdownOptions = <T,>({
     const element = ref.current;
 
     const resizeObserver = new ResizeObserver(() => {
-      if (!element) {
+      if (!element || !filterElement) {
         return;
       }
 
@@ -58,36 +61,35 @@ export const DropdownOptions = <T,>({
     };
   }, []);
 
+  const emptyMessageProps: EmptyMessageComponentProps = {
+    id,
+    className: classNames("m-dropdown-option empty-message", classNamesObj?.emptyDropdownOption),
+    noOptionsMessage,
+  };
+
   return (
     <ul
+      id={id}
       ref={ref}
       className={classNames("m-dropdown-options", "m-scroll slim-scroll", classNamesObj?.dropdownOptions)}
       style={dropdownOptionsStyles}
-      data-id={uniqueDropdownId}
     >
-      {dropdownOptions && dropdownOptions.length > 0 ? (
-        dropdownOptions.map((option) => {
-          return (
-            <li
-              key={option[valueKey] as string}
-              data-id={uniqueDropdownId}
-              onClick={(e) => handleDropdownChange(e, option)}
-              className={classNames("m-dropdown-option", "truncate-text", classNamesObj?.dropdownOption, {
+      {options && options.length > 0
+        ? options.map((option) => {
+            const optionProps: DropdownOptionComponentProps<T> = {
+              className: classNames("m-dropdown-option", "truncate-text", classNamesObj?.dropdownOption, {
                 selected: option[valueKey] === value?.[valueKey],
-              })}
-            >
-              {option[labelKey] as ReactElement}
-            </li>
-          );
-        })
-      ) : (
-        <li
-          data-id={uniqueDropdownId}
-          className={classNames("m-dropdown-option empty-message", classNamesObj?.emptyDropdownOption)}
-        >
-          No options
-        </li>
-      )}
+              }),
+              option,
+              valueKey,
+              labelKey,
+              id,
+              handleDropdownChange,
+            };
+
+            return optionComponent(optionProps);
+          })
+        : emptyMessageComponent(emptyMessageProps)}
     </ul>
   );
 };

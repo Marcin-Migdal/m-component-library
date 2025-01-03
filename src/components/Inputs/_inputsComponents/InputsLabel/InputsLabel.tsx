@@ -87,6 +87,7 @@ export const InputsLabel = ({
 
   return (
     <label
+      id={`input-label-${dataId}`}
       htmlFor={htmlFor}
       ref={labelRef}
       data-id={dataId}
