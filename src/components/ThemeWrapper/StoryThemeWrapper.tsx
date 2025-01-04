@@ -20,6 +20,7 @@ import {
   ImageField,
   ProgressSpinner,
   ReturnedColor,
+  SidePanel,
   Slider,
   SuccessIcon,
   Textarea,
@@ -31,6 +32,7 @@ import {
 } from "../..";
 
 import { DropdownMenu, DropdownMenuOption } from "../DropdownMenu";
+import { useSidePanel } from "../Layout/SidePanel/hooks/useSidePanel";
 import { useAlert } from "../Popups/Alerts/hooks/useAlert";
 
 export type StoryThemeWrapperProps = {
@@ -191,7 +193,8 @@ const StoryThemeWrapper = ({
   readOnly = false,
 }: StoryThemeWrapperProps) => {
   const toastRef = useRef<ToastHandler<NewToastTypes>>(null);
-  const [handleOpen, alertProps] = useAlert();
+  const [handleOpenAlert, alertProps] = useAlert();
+  const [handleOpenSidePanel, sidePanelProps] = useSidePanel();
 
   const [hue, setHue] = useState<number | undefined>(undefined);
   const [pickedColor, setPickedColor] = useState<string | undefined>(undefined);
@@ -426,7 +429,7 @@ const StoryThemeWrapper = ({
           <Icon icon={["fab", "facebook"]} style={{ width: "fit-content" }} />
         </div>
         <SectionHeader text="ALERT" />
-        <Button text="Open alert" onClick={handleOpen} />
+        <Button text="Open alert" onClick={handleOpenAlert} />
         <Alert
           {...alertProps}
           header="Test header"
@@ -445,12 +448,28 @@ const StoryThemeWrapper = ({
         >
           test
         </Alert>
+
         <SectionHeader text="BREADCRUMB" />
         <StoryBreadcrumbWrapper disableLastCrumb={false} variant={"default"} />
+
         <SectionHeader text="DROPDOWN MENU" />
         <DropdownMenu options={dropdownMenuOptions} openPosition="auto-bottom">
           <Button style={{ width: "fit-content" }} text="Currency" icon="money-bill-wave" onClick={() => {}} />
         </DropdownMenu>
+
+        <SectionHeader text="SIDE PANEL" />
+        <Button text="Open side panel" onClick={handleOpenSidePanel} />
+        <SidePanel {...sidePanelProps}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <h2 style={{ margin: "unset", marginBottom: "1rem" }}>Title</h2>
+            <Button text="Close" onClick={sidePanelProps.handleClose} variant="full" disableDefaultMargin />
+          </div>
+        </SidePanel>
       </div>
     </ThemeWrapper>
   );
