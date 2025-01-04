@@ -12,6 +12,7 @@
 - [[#100]](https://github.com/Marcin-Migdal/m-component-library/issues/100) **[PATCH]** Limit dropdown menu max height
 - [[#98]](https://github.com/Marcin-Migdal/m-component-library/issues/98) **[PATCH]** Replaced alert control logic that uses ref with custom hook based on state
 - [[#47]](https://github.com/Marcin-Migdal/m-component-library/issues/47) **[PATCH]** Add components props to Dropdown which enables passing components that replace parts of the dropdown for more flexibility
+- [[#48]](https://github.com/Marcin-Migdal/m-component-library/issues/48) **[PATCH]** Add SidePanel component
 
 ### Release date 25.10.2024 - Release 1.0.6
 
