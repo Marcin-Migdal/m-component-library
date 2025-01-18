@@ -5,12 +5,16 @@
   padding: unset;
   margin: unset;
   border: 1px solid;
-  border-radius: var(--border-radius);
+  border-radius: var(--dropdown-menu-border-radius);
 
   font-size: 0.95rem;
   list-style: none;
 
   transition: opacity var(--fast-transition);
+
+  z-index: 5;
+
+  overflow: auto;
 }
 
 .m-dropdown-menu .m-dropdown-menu-empty-message {

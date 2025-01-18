@@ -13,7 +13,7 @@ type ColorPickerClassNames = {
 };
 
 export type ColorPickerProps = InputProps & {
-  defaultInternalValue?: ColorValue;
+  defaultValue?: ColorValue;
   classNamesObj?: ColorPickerClassNames;
   placeholder?: string;
 

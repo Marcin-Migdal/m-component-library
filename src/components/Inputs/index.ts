@@ -1,5 +1,6 @@
 export * from "./Checkbox";
 export * from "./ColorPicker";
+export * from "./DateField";
 export * from "./Dropdown";
 export * from "./IconField";
 export * from "./ImageField";

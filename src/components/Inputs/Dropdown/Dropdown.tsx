@@ -64,6 +64,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
     prefix,
     components,
     noOptionsMessage = "No options",
+    optionHeightFit = 6,
 
     clearable = false,
     readOnly = false,
@@ -232,6 +233,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>(pro
     valueKey,
     labelKey,
     noOptionsMessage,
+    optionHeightFit,
 
     handleDropdownChange,
     Option: currentComponents.Option,

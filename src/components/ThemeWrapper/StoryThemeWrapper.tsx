@@ -12,6 +12,7 @@ import {
   CardVariantTypes,
   Checkbox,
   ColorPicker,
+  DateField,
   Dropdown,
   FailureIcon,
   HueSliderCanvas,
@@ -241,16 +242,6 @@ const StoryThemeWrapper = ({
           readOnly={readOnly}
           size={inputSize}
         />
-        <ImageField
-          label={label}
-          labelType={checkboxLabelType}
-          labelWidth={inputLabelWidth}
-          floatingInputWidth={floatingInputWidth}
-          error={error}
-          disabled={disabled}
-          readOnly={readOnly}
-          size={inputSize}
-        />
         <Dropdown
           label={label}
           placeholder="placeholder"
@@ -277,32 +268,14 @@ const StoryThemeWrapper = ({
           size={inputSize}
           filter
         />
-        <Slider
-          min={0}
-          max={100}
+        <DateField
           label={label}
+          placeholder="placeholder"
           labelType={inputLabelType}
           labelWidth={inputLabelWidth}
           floatingInputWidth={floatingInputWidth}
-          disabled={disabled}
-          readOnly={readOnly}
-          size={inputSize}
           error={error}
-        />
-        <Checkbox
-          label={label}
-          labelType={checkboxLabelType}
-          labelWidth={inputLabelWidth}
-          error={error}
-          disabled={disabled}
-          readOnly={readOnly}
-          size={inputSize}
-        />
-        <ToggleSwitch
-          label={label}
-          labelType={checkboxLabelType}
-          labelWidth={inputLabelWidth}
-          error={error}
+          name="1"
           disabled={disabled}
           readOnly={readOnly}
           size={inputSize}
@@ -333,6 +306,46 @@ const StoryThemeWrapper = ({
           readOnly={readOnly}
           size={inputSize}
           error={error}
+        />
+        <Slider
+          min={0}
+          max={100}
+          label={label}
+          labelType={inputLabelType}
+          labelWidth={inputLabelWidth}
+          floatingInputWidth={floatingInputWidth}
+          disabled={disabled}
+          readOnly={readOnly}
+          size={inputSize}
+          error={error}
+        />
+        <ImageField
+          label={label}
+          labelType={checkboxLabelType}
+          labelWidth={inputLabelWidth}
+          floatingInputWidth={floatingInputWidth}
+          error={error}
+          disabled={disabled}
+          readOnly={readOnly}
+          size={inputSize}
+        />
+        <Checkbox
+          label={label}
+          labelType={checkboxLabelType}
+          labelWidth={inputLabelWidth}
+          error={error}
+          disabled={disabled}
+          readOnly={readOnly}
+          size={inputSize}
+        />
+        <ToggleSwitch
+          label={label}
+          labelType={checkboxLabelType}
+          labelWidth={inputLabelWidth}
+          error={error}
+          disabled={disabled}
+          readOnly={readOnly}
+          size={inputSize}
         />
 
         <SectionHeader text="DYNAMIC THEME COLOR CONTROL" />

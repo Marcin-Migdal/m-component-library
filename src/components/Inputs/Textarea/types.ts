@@ -18,7 +18,7 @@ export type TextareaProps = InputProps & {
   debounceDelay?: number;
 
   placeholder?: string;
-  defaultInternalValue?: string;
+  defaultValue?: string;
   autoFocus?: boolean;
   row?: number;
   classNamesObj?: TextAreaClassNames;

@@ -5,12 +5,10 @@ export const getDropdownPosition = (
   parentElement: HTMLDivElement,
   dropdownMenuElement: HTMLUListElement,
   placement: "top" | "bottom",
-  autoPosition: boolean
+  autoPosition: boolean,
+  centerConsumer: boolean
 ): DropdownMenuPosition => {
-  const positionResponse = getPosition(parentElement, dropdownMenuElement, {
-    placement: placement,
-    autoPosition: autoPosition,
-  });
+  const positionResponse = getPosition(parentElement, dropdownMenuElement, { placement, autoPosition, centerConsumer });
 
   return {
     top: positionResponse.top,

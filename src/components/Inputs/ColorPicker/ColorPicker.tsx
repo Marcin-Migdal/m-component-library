@@ -24,7 +24,7 @@ const ColorPicker = ({
   labelType = InputLabel.LEFT,
   labelWidth = 30,
   floatingInputWidth = 100,
-  defaultInternalValue,
+  defaultValue,
   returnedColorType,
   size = ComponentSize.MEDIUM,
   disableDefaultMargin = false,
@@ -37,9 +37,7 @@ const ColorPicker = ({
 
   const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
 
-  const [value, setValue] = useState<RgbValue | undefined>(
-    defaultInternalValue ? valueToRgb(defaultInternalValue) : undefined
-  );
+  const [value, setValue] = useState<RgbValue | undefined>(defaultValue ? valueToRgb(defaultValue) : undefined);
 
   const [isFocused, setIsFocused] = useState<boolean>(false);
 

@@ -78,7 +78,7 @@
 
 /**Slider properties */
 .common-wrapper-container .m-slider-container .m-slider::-webkit-slider-thumb {
-  background: var(--input-label-color);
+  background: var(--slider-thumb-color);
 }
 
 .common-wrapper-container .m-slider-container.disabled .m-slider::-webkit-slider-thumb {
@@ -175,14 +175,74 @@
 }
 
 /**Icon field properties */
-.m-icon-grid-container .m-icon-tile {
+.common-wrapper-container .m-icon-grid-container .m-icon-tile {
   background-color: var(--icon-tile-background-color);
 }
 
-.m-icon-grid-container .m-icon-tile:hover {
+.common-wrapper-container .m-icon-grid-container .m-icon-tile:hover {
   background-color: var(--icon-tile-hover-background-color);
 }
 
-.m-icon-grid-container .m-icon-tile:active {
+.common-wrapper-container .m-icon-grid-container .m-icon-tile:active {
   background-color: var(--icon-tile-active-background-color);
+}
+
+/**Date field properties */
+.common-wrapper-container .date-picker-popup {
+  background-color: var(--popups-background-color);
+}
+
+.common-wrapper-container .date-picker-popup .date-picker-popup-month-selector .date-picker-popup-month-text div:hover {
+  background-color: var(--popups-hover-background-color);
+}
+
+.common-wrapper-container
+  .date-picker-popup
+  .date-picker-popup-month-selector
+  .date-picker-popup-month-text
+  div:active {
+  background-color: var(--popups-active-background-color);
+}
+.common-wrapper-container .date-picker-popup .date-picker-popup-month-selector .date-picker-popup-month-icon:hover {
+  background-color: var(--popups-hover-background-color);
+}
+
+.common-wrapper-container .date-picker-popup .date-picker-popup-month-selector .date-picker-popup-month-icon:active {
+  background-color: var(--popups-active-background-color);
+}
+
+.common-wrapper-container .date-picker-popup .date-picker-popup-dates-container .date-picker-popup-date-button {
+  background-color: transparent;
+  color: var(--text-color);
+}
+
+.common-wrapper-container .date-picker-popup .date-picker-popup-dates-container .date-picker-popup-date-button.dimmed {
+  color: var(--popup-date-button-dimmed-text-color);
+}
+
+.common-wrapper-container .date-picker-popup .date-picker-popup-dates-container .date-picker-popup-date-button.current {
+  background-color: var(--popup-date-button-highlighted-color);
+  color: var(--popup-date-button-alt-highlighted-color);
+}
+
+.common-wrapper-container
+  .date-picker-popup
+  .date-picker-popup-dates-container
+  .date-picker-popup-date-button.selected {
+  border: 2px solid var(--popup-date-button-highlighted-color);
+}
+
+.common-wrapper-container
+  .date-picker-popup
+  .date-picker-popup-dates-container
+  .date-picker-popup-date-button.current.selected {
+  box-shadow: 0 0 1px 1px var(--popup-date-button-highlighted-color);
+  border: 1px solid var(--popup-date-button-alt-highlighted-color);
+}
+
+.common-wrapper-container
+  .date-picker-popup
+  .date-picker-popup-dates-container
+  .date-picker-popup-date-button:not(.selected):not(.current):hover {
+  background-color: var(--popups-hover-background-color);
 }

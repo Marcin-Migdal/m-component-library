@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { PropsWithChildren, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -5,12 +6,17 @@ import { DropdownMenu } from "./DropdownMenu/DropdownMenu";
 import { DropdownMenuProps, OpenConfig, OpenEvent, OpenPosition } from "./types";
 
 const DropdownMenuContainer = ({
+  triggerContainerClassName,
+  popupClassName,
   children,
   options,
   hideDisabled = false,
   emptyOptionsMessage,
   openEvent = OpenEvent.CONTEXT_CLICK,
   openPosition = OpenPosition.BOTTOM,
+  zIndex = 1,
+  centerConsumer = false,
+  optionHeightFit = 6,
   onOpen,
   onClose,
 }: PropsWithChildren<DropdownMenuProps>) => {
@@ -47,7 +53,7 @@ const DropdownMenuContainer = ({
         onClick={(event) => openMenu(event, OpenEvent.CLICK)}
         onContextMenu={(event) => openMenu(event, OpenEvent.CONTEXT_CLICK)}
         onMouseEnter={(event) => openMenu(event, OpenEvent.HOVER)}
-        className="m-dropdown-menu-trigger-container"
+        className={classNames("m-dropdown-menu-trigger-container", triggerContainerClassName)}
       >
         {children}
       </div>
@@ -55,6 +61,7 @@ const DropdownMenuContainer = ({
         dropdownTriggerContainerRef.current &&
         createPortal(
           <DropdownMenu
+            className={popupClassName}
             parentElement={dropdownTriggerContainerRef.current}
             emptyOptionsMessage={emptyOptionsMessage || "No options"}
             options={options}
@@ -63,6 +70,9 @@ const DropdownMenuContainer = ({
             openEvent={openEvent}
             openPosition={openPosition}
             openConfig={openConfig}
+            zIndex={zIndex}
+            centerConsumer={centerConsumer}
+            optionHeightFit={optionHeightFit}
           />,
           document.body
         )}

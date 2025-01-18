@@ -23,6 +23,7 @@ export const DropdownOptionsComponent = <T,>({
   value,
   Option: optionComponent,
   EmptyMessage: emptyMessageComponent,
+  optionHeightFit,
   handleDropdownChange,
 }: DropdownOptionsProps<T>) => {
   const ref = useRef<HTMLUListElement>(null);
@@ -47,7 +48,7 @@ export const DropdownOptionsComponent = <T,>({
 
       const children = Array.from(element.children) as HTMLLIElement[];
 
-      const totalHeight = children.slice(0, 6).reduce((sum, child) => sum + child.offsetHeight, 0);
+      const totalHeight = children.slice(0, optionHeightFit).reduce((sum, child) => sum + child.offsetHeight, 0);
 
       const maxHeight = totalHeight;
 
