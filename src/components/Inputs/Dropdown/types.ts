@@ -25,6 +25,7 @@ type DropdownBaseProps<T> = InputProps & {
   prefix?: ComponentProps<typeof StandAloneTextfield>["prefix"];
   components?: Partial<DropdownComponents<T>>;
   noOptionsMessage?: string;
+  optionHeightFit?: number;
 
   options?: T[];
 };
@@ -93,6 +94,7 @@ export type DropdownOptionsProps<T> = {
   labelKey: keyof T;
   classNamesObj?: DropdownOptionsClassnames;
   noOptionsMessage: string;
+  optionHeightFit: number;
 } & DropdownOptionsComponents<T>;
 
 export type DropdownOptionsComponents<T> = {

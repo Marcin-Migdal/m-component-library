@@ -133,6 +133,9 @@ body {
   /*! Popup */
   --popup-transition: 0.3s;
   --popup-fast-transition: 0.15s;
+
+  /*! Dropdown Menu */
+  --dropdown-menu-border-radius: 3px;
 }
 
 .common-wrapper-container {
@@ -191,6 +194,7 @@ body {
   --input-hover-color: var(--grey-color-700);
   --input-disabled-text-color: var(--grey-color-325);
 
+  --input-label-color: var(--grey-color-525);
   --input-placeholder-color: var(--grey-color-475);
   --input-hover-placeholder-color: var(--grey-color-525);
 
@@ -202,6 +206,11 @@ body {
   --icon-tile-background-color: var(--grey-color-100);
   --icon-tile-hover-background-color: var(--grey-color-125);
   --icon-tile-active-background-color: var(--grey-color-150);
+
+  --popups-hover-background-color: var(--grey-color-125);
+  --popups-active-background-color: var(--grey-color-150);
+  --popup-date-button-dimmed-text-color: var(--grey-color-350);
+  --popup-date-button-alt-highlighted-color: var(--grey-color-700);
 
   /** Buttons */
   --btn-outlined-background-color: var(--background-color);
@@ -257,6 +266,7 @@ body {
   --input-hover-color: var(--grey-color-025);
   --input-disabled-text-color: var(--grey-color-450);
 
+  --input-label-color: var(--grey-color-100);
   --input-placeholder-color: var(--grey-color-300);
   --input-hover-placeholder-color: var(--grey-color-150);
 
@@ -265,6 +275,12 @@ body {
 
   --input-image-icon-color: var(--grey-color-100);
 
+  --popups-hover-background-color: var(--grey-color-525);
+  --popups-active-background-color: var(--grey-color-500);
+  --popup-date-button-dimmed-text-color: var(--grey-color-400);
+  --popup-date-button-alt-highlighted-color: var(--grey-color-700);
+
+  --popup-date-button-highlighted-color: var(--primary-color_680);
   --icon-tile-background-color: var(--grey-color-550);
   --icon-tile-hover-background-color: var(--grey-color-525);
   --icon-tile-active-background-color: var(--grey-color-500);
@@ -294,7 +310,7 @@ body {
   --crumb-hover-background-color: var(--grey-color-525);
 
   /* Dropdown menu */
-  --dropdown-menu-border-color: var(--grey-color-375);
+  --dropdown-menu-border-color: var(--grey-color-425);
   --dropdown-menu-background-color: var(--grey-color-550);
   --dropdown-menu-disabled-background-color: var(--grey-color-600);
   --dropdown-menu-hover-background-color: var(--grey-color-500);
@@ -358,9 +374,11 @@ body {
   --primary-color_820: hsl(0, 0%, 86%);
 
   /** Inputs colors */
-  --input-label-color: var(--primary-color_320);
+  --slider-thumb-color: var(--primary-color_320);
   --checkbox-color: var(--primary-color_300);
   --toggle-switch-color: var(--checkbox-color);
+
+  --popup-date-button-highlighted-color: var(--primary-color_660);
 
   /** Buttons */
   --btn-outlined-color: var(--primary-color_300);
@@ -450,9 +468,11 @@ body {
   --primary-color_880: hsl(0, 0%, 98%);
 
   /** Inputs colors */
-  --input-label-color: var(--primary-color_780);
+  --slider-thumb-color: var(--primary-color_780);
   --checkbox-color: var(--primary-color_620);
   --toggle-switch-color: var(--checkbox-color);
+
+  --popup-date-button-highlighted-color: var(--primary-color_660);
 
   /** Buttons */
   --btn-outlined-color: var(--primary-color_780);
@@ -554,9 +574,11 @@ body {
   --primary-color_940: hsl(var(--hue), var(--saturation), 95%);
 
   /** Inputs colors */
-  --input-label-color: var(--primary-color_580);
+  --slider-thumb-color: var(--primary-color_580);
   --checkbox-color: var(--primary-color_580);
   --toggle-switch-color: var(--checkbox-color);
+
+  --popup-date-button-highlighted-color: var(--primary-color_660);
 
   /** Buttons */
   --btn-outlined-color: var(--primary-color_580);
@@ -652,9 +674,11 @@ body {
   --primary-color_940: hsl(var(--hue), var(--saturation), 95%);
 
   /** Inputs colors */
-  --input-label-color: var(--primary-color_680);
+  --slider-thumb-color: var(--primary-color_680);
   --checkbox-color: var(--primary-color_680);
   --toggle-switch-color: var(--checkbox-color);
+
+  --popup-date-button-highlighted-color: var(--primary-color_680);
 
   /** Buttons */
   --btn-outlined-color: var(--primary-color_680);

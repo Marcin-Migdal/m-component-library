@@ -32,11 +32,16 @@ export enum OpenPosition {
 }
 
 export type DropdownMenuProps = {
+  triggerContainerClassName?: string;
+  popupClassName?: string;
   options: DropdownMenuOption[];
   hideDisabled?: boolean;
   emptyOptionsMessage?: string;
   openEvent?: `${OpenEvent}`;
   openPosition?: `${OpenPosition}`;
+  zIndex?: number;
+  centerConsumer?: boolean;
+  optionHeightFit?: number;
   onOpen?: () => void;
   onClose?: () => void;
 };
@@ -53,6 +58,7 @@ export type DropdownMenuPosition = {
 export type DropdownMenuConfig = {
   zIndex: CSSProperties["zIndex"];
   opacity: CSSProperties["opacity"];
+  maxHeight: CSSProperties["maxHeight"];
 } & DropdownMenuPosition;
 
 export type OpenConfig = {

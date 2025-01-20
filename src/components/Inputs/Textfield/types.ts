@@ -19,6 +19,6 @@ export type TextfieldProps = InputProps & {
 
   debounceDelay?: number;
 
-  defaultInternalValue?: string;
+  defaultValue?: string;
   classNamesObj?: TextFieldClassNames;
 } & Omit<StandAloneTextfieldProps, "onChange" | "onBlur" | "onFocus" | "onClick" | "className">;

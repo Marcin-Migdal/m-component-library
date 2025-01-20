@@ -10,25 +10,32 @@ export enum OpenStatus {
 type UseOpenProps = {
   defaultOpenStatus?: OpenStatus;
   delay?: number;
+  openDelay?: number;
+  closeDelay?: number;
 };
 
-export const useOpen = ({ defaultOpenStatus = OpenStatus.CLOSED, delay = 150 }: UseOpenProps) => {
+export const useOpen = ({
+  defaultOpenStatus = OpenStatus.CLOSED,
+  delay = 150,
+  openDelay,
+  closeDelay,
+}: UseOpenProps) => {
   const [openStatus, setOpenStatus] = useState<OpenStatus>(defaultOpenStatus);
-
-  const handleClose = () => {
-    setOpenStatus(OpenStatus.CLOSING);
-
-    setTimeout(() => {
-      setOpenStatus(OpenStatus.CLOSED);
-    }, delay);
-  };
 
   const handleOpen = () => {
     setOpenStatus(OpenStatus.MOUNTED);
 
     setTimeout(() => {
       setOpenStatus(OpenStatus.OPENED);
-    }, delay);
+    }, openDelay || delay);
+  };
+
+  const handleClose = () => {
+    setOpenStatus(OpenStatus.CLOSING);
+
+    setTimeout(() => {
+      setOpenStatus(OpenStatus.CLOSED);
+    }, closeDelay || delay);
   };
 
   const toggleOpenStatus = () => {
@@ -44,5 +51,5 @@ export const useOpen = ({ defaultOpenStatus = OpenStatus.CLOSED, delay = 150 }: 
     setOpenStatus(newOpenStatus);
   };
 
-  return { openStatus, toggleOpenStatus, handleClose, handleOpen, handleSetOpenStatus };
+  return { openStatus, toggleOpenStatus, handleOpen, handleClose, handleSetOpenStatus };
 };

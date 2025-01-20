@@ -25,7 +25,7 @@ const Textfield = (props: TextfieldProps) => {
     placeholder = undefined,
     labelWidth = 30,
     floatingInputWidth = 100,
-    defaultInternalValue,
+    defaultValue,
     size = ComponentSize.MEDIUM,
     disableDefaultMargin = false,
     classNamesObj,
@@ -34,7 +34,7 @@ const Textfield = (props: TextfieldProps) => {
     ...otherProps
   } = props;
 
-  const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
+  const [internalValue, setInternalValue] = useState<string>(defaultValue || "");
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const value: string = externalValue !== undefined ? externalValue : internalValue;

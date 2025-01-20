@@ -3,7 +3,7 @@ import React from "react";
 import Textfield from "./Textfield";
 import { TextfieldProps } from "./types";
 
-export type StoryTextfieldWrapperProps = Omit<TextfieldProps, "onChange" | "onBlur" | "defaultInternalValue">;
+export type StoryTextfieldWrapperProps = Omit<TextfieldProps, "onChange" | "onBlur" | "defaultValue">;
 
 // This component is created only for storybook display purpose, i wanted to hide some of the props.
 const StoryTextfieldWrapper = (props: StoryTextfieldWrapperProps) => {

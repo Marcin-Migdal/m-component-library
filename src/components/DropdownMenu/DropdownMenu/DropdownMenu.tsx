@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import classNames from "classnames";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { DropdownMenuItem } from "../DropdownMenuOption/DropdownMenuItem";
 import { getDropdownPosition } from "../helpers/getDropdownPosition";
@@ -15,6 +16,7 @@ import {
 import "./DropdownMenu.css";
 
 type DropdownMenuProps = {
+  className?: string;
   parentElement: HTMLDivElement;
   options: DropdownMenuOption[];
   closeMenu: () => void;
@@ -23,11 +25,15 @@ type DropdownMenuProps = {
   openPosition: `${OpenPosition}`;
   hideDisabled: boolean;
   openConfig: OpenConfig;
+  zIndex: number;
+  centerConsumer: boolean;
+  optionHeightFit: number;
 };
 
 const initDropdownMenuConfig: Partial<DropdownMenuConfig> = { opacity: 0 };
 
 export const DropdownMenu = ({
+  className,
   parentElement,
   options,
   closeMenu,
@@ -36,13 +42,16 @@ export const DropdownMenu = ({
   openPosition,
   hideDisabled,
   openConfig,
+  zIndex,
+  centerConsumer,
+  optionHeightFit = 6,
 }: DropdownMenuProps) => {
   const [dropdownMenuConfig, setDropdownMenuConfig] = useState<Partial<DropdownMenuConfig>>(initDropdownMenuConfig);
 
   const dropdownMenuContainerRef = useRef<HTMLUListElement>(null);
   const optionsHaveIcon = options.some((option) => !!option.icon);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const calculateDropdownMenuPosition = (dropdownMenuElement: HTMLUListElement) => {
       if (openEvent === OpenEvent.HOVER && dropdownMenuConfig.opacity === 1) {
         return;
@@ -68,14 +77,31 @@ export const DropdownMenu = ({
             parentElement,
             dropdownMenuElement,
             openPosition.includes("top") ? "top" : "bottom",
-            openPosition.includes("auto")
+            openPosition.includes("auto"),
+            centerConsumer
           );
 
           break;
         }
       }
 
-      setDropdownMenuConfig({ zIndex: 1, opacity: 1, horizontalOpenDirection: "right", ...dropdownPosition });
+      const element = dropdownMenuContainerRef.current;
+
+      if (!element) {
+        return;
+      }
+
+      const children = Array.from(element.children) as HTMLLIElement[];
+
+      const totalHeight = children.slice(0, optionHeightFit).reduce((sum, child) => sum + child.offsetHeight, 0);
+
+      setDropdownMenuConfig({
+        zIndex: zIndex,
+        opacity: 1,
+        horizontalOpenDirection: "right",
+        maxHeight: totalHeight,
+        ...dropdownPosition,
+      });
     };
 
     dropdownMenuContainerRef.current && calculateDropdownMenuPosition(dropdownMenuContainerRef.current);
@@ -114,7 +140,12 @@ export const DropdownMenu = ({
   }, [dropdownMenuConfig]);
 
   return (
-    <ul className="m-dropdown-menu" data-z-index={1} ref={dropdownMenuContainerRef} style={dropdownMenuConfig}>
+    <ul
+      className={classNames("m-dropdown-menu", "m-scroll slim-scroll", className)}
+      data-z-index={1}
+      ref={dropdownMenuContainerRef}
+      style={dropdownMenuConfig}
+    >
       {options.length > 0 ? (
         options.map((option, index) => (
           <DropdownMenuItem

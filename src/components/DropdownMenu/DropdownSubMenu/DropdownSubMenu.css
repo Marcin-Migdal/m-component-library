@@ -3,7 +3,7 @@
 
   padding: unset;
 
-  border-radius: var(--border-radius);
+  border-radius: var(--dropdown-menu-border-radius);
   border: 1px solid;
 
   transition: opacity var(--fast-transition);

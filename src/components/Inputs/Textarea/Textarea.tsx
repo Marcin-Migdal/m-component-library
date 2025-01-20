@@ -21,7 +21,7 @@ const Textarea = ({
   error,
   labelType = InputLabel.LEFT,
   placeholder,
-  defaultInternalValue,
+  defaultValue,
   autoFocus = false,
   labelWidth = 30,
   floatingInputWidth = 100,
@@ -33,7 +33,7 @@ const Textarea = ({
   classNamesObj,
   ...otherProps
 }: TextareaProps) => {
-  const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
+  const [internalValue, setInternalValue] = useState<string>(defaultValue || "");
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const value: string = externalValue !== undefined ? externalValue : internalValue;
