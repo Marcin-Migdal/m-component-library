@@ -269,8 +269,21 @@ const StoryThemeWrapper = ({
           filter
         />
         <DateField
-          label={label}
-          placeholder="placeholder"
+          label="Date range"
+          placeholder="Date range"
+          labelType={inputLabelType}
+          labelWidth={inputLabelWidth}
+          floatingInputWidth={floatingInputWidth}
+          error={error}
+          name="1"
+          disabled={disabled}
+          readOnly={readOnly}
+          size={inputSize}
+          range
+        />
+        <DateField
+          label="Date"
+          placeholder="Date"
           labelType={inputLabelType}
           labelWidth={inputLabelWidth}
           floatingInputWidth={floatingInputWidth}

@@ -5,38 +5,51 @@ import React, { useCallback, useLayoutEffect, useMemo, useRef, useState } from "
 import { getPosition } from "../../../../helpers";
 import { Position } from "../../../../helpers/getPosition/getPosition-types";
 import { DropdownMenu, DropdownMenuOption } from "../../../DropdownMenu";
-import { getDayName, getDaysInMonth, getMonthName, getMonths, getWeekDays, getYears, isSameDay } from "../helpers";
+import { getDayName, getDaysInMonth, getMonthName, getMonths, getWeekDays, getYears } from "../helpers";
+import { normalizeDate } from "../helpers/normalizeDate";
+import { InternalDateValue, InternalRangeDate } from "../types";
 import { DayButton } from "./DayButton/DayButton";
 
 import "./DatePickerPopup.css";
 
-type DatePickerPopupProps = {
-  value: Date | undefined;
-  onChange: (value: Date) => void;
+type DatePickerPopupProps<TRange extends boolean> = {
+  value: InternalDateValue<TRange> | undefined;
+  onChange: (value: InternalDateValue<TRange>) => void;
   parentElement: HTMLInputElement;
   className: string;
   handleClose: () => void;
   locale: string;
+  range: TRange;
 };
 
-// TODO!
-//!     css colors cleanup
-//!     selecting date range
+const getStartDate = <TRange extends boolean>(range: TRange, value: InternalDateValue<TRange> | undefined): Date => {
+  if (!value) {
+    return new Date();
+  }
 
-export const DatePickerPopup = ({
+  if (range && Array.isArray(value)) {
+    return value[0] || new Date();
+  }
+
+  return value as Date;
+};
+
+export const DatePickerPopup = <TRange extends boolean>({
   value,
   onChange,
   parentElement,
   className,
   handleClose,
   locale,
-}: DatePickerPopupProps) => {
+  range,
+}: DatePickerPopupProps<TRange>) => {
   const popupRef = useRef<HTMLDivElement>(null);
 
   const [position, setPosition] = useState<Position | undefined>(undefined);
+  const [currentYear, setCurrentYear] = useState(getStartDate(range, value).getFullYear());
+  const [currentMonth, setCurrentMonth] = useState(getStartDate(range, value).getMonth());
 
-  const [currentYear, setCurrentYear] = useState(value ? value.getFullYear() : new Date().getFullYear());
-  const [currentMonth, setCurrentMonth] = useState(value ? value.getMonth() : new Date().getMonth());
+  const [internalRangeHoverDate, setInternalRangeHoverDate] = useState<Date | undefined>(undefined);
 
   const { weekDays, monthsOptions } = useMemo(() => {
     const months = getMonths(locale);
@@ -104,6 +117,35 @@ export const DatePickerPopup = ({
     };
   }, []);
 
+  const handleChange = (date: Date) => {
+    if (range) {
+      const [dateRangeStart, dateRangeEnd] = (value as InternalRangeDate | undefined) || [];
+
+      if (Array.isArray(value) && dateRangeEnd === undefined && normalizeDate(dateRangeStart!) <= normalizeDate(date)) {
+        onChange([dateRangeStart, date] as InternalDateValue<TRange>);
+      } else {
+        onChange([date, undefined] as InternalDateValue<TRange>);
+      }
+    } else {
+      onChange(date as InternalDateValue<TRange>);
+    }
+  };
+
+  const handleHoverDaySet = useCallback(
+    (date: Date | undefined) => {
+      if (!Array.isArray(value) || value[0] === undefined || value[1] !== undefined || (date && date <= value[0]!)) {
+        if (internalRangeHoverDate !== undefined) {
+          setInternalRangeHoverDate(undefined);
+        }
+
+        return;
+      }
+
+      setInternalRangeHoverDate(date);
+    },
+    [range, value]
+  );
+
   const renderDates = useCallback(() => {
     const startOfMonth = new Date(currentYear, currentMonth, 1);
     const endOfMonth = new Date(currentYear, currentMonth + 1, 0);
@@ -122,7 +164,18 @@ export const DatePickerPopup = ({
       for (let d = preFillStartDay; d <= preFillEndDay; d.setDate(d.getDate() + 1)) {
         const buttonDate = new Date(d);
 
-        dates.push(<DayButton dimmed onChange={onChange} key={buttonDate.toISOString()} date={buttonDate} />);
+        dates.push(
+          <DayButton
+            range={range}
+            value={value}
+            internalRangeHoverDate={internalRangeHoverDate}
+            dimmed
+            onChange={handleChange}
+            onHoverDaySet={handleHoverDaySet}
+            key={buttonDate.toISOString()}
+            date={buttonDate}
+          />
+        );
       }
     }
 
@@ -131,8 +184,11 @@ export const DatePickerPopup = ({
 
       dates.push(
         <DayButton
-          selected={isSameDay(value, buttonDate)}
-          onChange={onChange}
+          range={range}
+          value={value}
+          internalRangeHoverDate={internalRangeHoverDate}
+          onChange={handleChange}
+          onHoverDaySet={handleHoverDaySet}
           key={buttonDate.toISOString()}
           date={buttonDate}
         />
@@ -140,7 +196,7 @@ export const DatePickerPopup = ({
     }
 
     if (dates.length % 7 !== 0) {
-      const nextMonthIndex = 12;
+      const nextMonthIndex = currentMonth + 1;
 
       const postFillStartDay = new Date(currentYear, nextMonthIndex, 1);
       const postFillEndDay = new Date(currentYear, nextMonthIndex, 7 - (dates.length % 7));
@@ -148,12 +204,23 @@ export const DatePickerPopup = ({
       for (let d = postFillStartDay; d <= postFillEndDay; d.setDate(d.getDate() + 1)) {
         const buttonDate = new Date(d);
 
-        dates.push(<DayButton dimmed onChange={onChange} key={buttonDate.toISOString()} date={buttonDate} />);
+        dates.push(
+          <DayButton
+            value={value}
+            range={range}
+            internalRangeHoverDate={internalRangeHoverDate}
+            dimmed
+            onChange={handleChange}
+            onHoverDaySet={handleHoverDaySet}
+            key={buttonDate.toISOString()}
+            date={buttonDate}
+          />
+        );
       }
     }
 
     return dates;
-  }, [currentMonth, currentYear, value, locale]);
+  }, [currentMonth, currentYear, value, locale, internalRangeHoverDate, handleHoverDaySet]);
 
   const goToPrevMonth = () => {
     if (currentMonth === 0) {

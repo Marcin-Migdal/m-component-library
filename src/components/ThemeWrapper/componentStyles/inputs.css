@@ -211,38 +211,46 @@
   background-color: var(--popups-active-background-color);
 }
 
-.common-wrapper-container .date-picker-popup .date-picker-popup-dates-container .date-picker-popup-date-button {
+.common-wrapper-container .date-picker-popup .date-picker-popup-date-button {
   background-color: transparent;
   color: var(--text-color);
 }
 
-.common-wrapper-container .date-picker-popup .date-picker-popup-dates-container .date-picker-popup-date-button.dimmed {
+.common-wrapper-container
+  .date-picker-popup
+  .date-picker-popup-date-button.dimmed:not(.selected):not(.current):not(.start-date):not(.end-date):not(.in-range) {
   color: var(--popup-date-button-dimmed-text-color);
 }
 
-.common-wrapper-container .date-picker-popup .date-picker-popup-dates-container .date-picker-popup-date-button.current {
-  background-color: var(--popup-date-button-highlighted-color);
-  color: var(--popup-date-button-alt-highlighted-color);
-}
-
-.common-wrapper-container
-  .date-picker-popup
-  .date-picker-popup-dates-container
-  .date-picker-popup-date-button.selected {
+.common-wrapper-container .date-picker-popup .date-picker-popup-date-button.current {
   border: 2px solid var(--popup-date-button-highlighted-color);
 }
 
-.common-wrapper-container
-  .date-picker-popup
-  .date-picker-popup-dates-container
-  .date-picker-popup-date-button.current.selected {
+.common-wrapper-container .date-picker-popup .date-picker-popup-date-button.in-range {
+  background-color: var(--popups-hover-background-color);
+  border: 2px solid var(--popups-hover-background-color);
+}
+
+.common-wrapper-container .date-picker-popup .date-picker-popup-date-button.current.selected,
+.common-wrapper-container .date-picker-popup .date-picker-popup-date-button.range.current.start-date,
+.common-wrapper-container .date-picker-popup .date-picker-popup-date-button.range.current.end-date {
   box-shadow: 0 0 1px 1px var(--popup-date-button-highlighted-color);
   border: 1px solid var(--popup-date-button-alt-highlighted-color);
 }
 
 .common-wrapper-container
   .date-picker-popup
-  .date-picker-popup-dates-container
-  .date-picker-popup-date-button:not(.selected):not(.current):hover {
+  .date-picker-popup-date-button:not(.selected):not(.current):not(.start-date):not(.end-date).in-hover-range,
+.common-wrapper-container
+  .date-picker-popup
+  .date-picker-popup-date-button:not(.selected):not(.current):not(.start-date):not(.end-date):hover {
   background-color: var(--popups-hover-background-color);
+}
+
+.common-wrapper-container .date-picker-popup .date-picker-popup-date-button.selected,
+.common-wrapper-container .date-picker-popup .date-picker-popup-date-button.range.start-date,
+.common-wrapper-container .date-picker-popup .date-picker-popup-date-button.range.end-date {
+  background-color: var(--popup-date-button-highlighted-color);
+  color: var(--popup-date-button-alt-highlighted-color);
+  border: 2px solid var(--popup-date-button-highlighted-color);
 }

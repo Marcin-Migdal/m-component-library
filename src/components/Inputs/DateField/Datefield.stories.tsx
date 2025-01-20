@@ -25,4 +25,5 @@ dateField.args = {
   labelType: InputLabel.FLOATING,
   placeholder: "Name...",
   labelWidth: 20,
+  range: true,
 };

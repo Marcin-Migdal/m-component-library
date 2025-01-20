@@ -10,9 +10,35 @@ import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/get
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
 import { getInputStyle } from "../helpers/getInputStyle";
 import { DatePickerPopup } from "./DatePickerPopup/DatePickerPopup";
-import { DateFieldProps } from "./types";
+import { DateFieldProps, DateValue, InternalDateValue, SingleDate } from "./types";
 
-export const DateField = (props: DateFieldProps) => {
+const getDateFieldValue = <TRange extends boolean>(
+  range: TRange,
+  value: DateValue<TRange> | undefined
+): InternalDateValue<TRange> | undefined => {
+  if (!value) {
+    return undefined;
+  }
+
+  const convertToDateType = (externalDate: SingleDate | undefined): Date | undefined => {
+    if (!externalDate) {
+      return undefined;
+    }
+
+    const date = new Date(externalDate);
+    return !isNaN(date.getTime()) ? date : undefined;
+  };
+
+  if (range === true && Array.isArray(value)) {
+    const [startDate, endDate] = value;
+
+    return [convertToDateType(startDate), convertToDateType(endDate)] as InternalDateValue<TRange>;
+  }
+
+  return convertToDateType(value as SingleDate) as InternalDateValue<TRange>;
+};
+
+export const DateField = <TRange extends boolean>(props: DateFieldProps<TRange>) => {
   const {
     value: externalValue = undefined,
     defaultValue,
@@ -31,6 +57,7 @@ export const DateField = (props: DateFieldProps) => {
     disableDefaultMargin = false,
     classNamesObj,
     locale = "en-US",
+    range = false as TRange,
     ...otherProps
   } = props;
 
@@ -38,24 +65,33 @@ export const DateField = (props: DateFieldProps) => {
 
   const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
 
-  const [internalValue, setInternalValue] = useState<Date | undefined>(
-    defaultValue ? new Date(defaultValue) : undefined
+  const [internalValue, setInternalValue] = useState<InternalDateValue<TRange> | undefined>(
+    getDateFieldValue(range, defaultValue)
   );
 
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const [uniqueDatefieldId] = useState<string>(uuId());
 
-  const value: Date | undefined =
-    typeof externalValue === "string"
-      ? new Date(externalValue)
-      : typeof externalValue === "object"
-        ? (externalValue as Date)
-        : internalValue;
+  const value = getDateFieldValue(range, externalValue !== undefined ? externalValue : internalValue);
 
-  const handleChange = (selectedDate: Date): void => {
+  const handleClose = () => {
+    onClose && onClose(value);
+
+    handlePopupClose();
+  };
+
+  const handleChange = (selectedDate: InternalDateValue<TRange>): void => {
     onChange && onChange(selectedDate);
     setInternalValue(selectedDate);
+
+    if (range && Array.isArray(selectedDate)) {
+      if (selectedDate[1]) {
+        handleClose();
+      }
+
+      return;
+    }
 
     handleClose();
   };
@@ -70,14 +106,8 @@ export const DateField = (props: DateFieldProps) => {
     onClick && onClick(event);
   };
 
-  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+  const handleBlur = () => {
     setIsFocused(false);
-  };
-
-  const handleClose = () => {
-    onClose && onClose(value);
-
-    handlePopupClose();
   };
 
   const datefieldElement = document.getElementById(`textfield-${uniqueDatefieldId}`) as HTMLInputElement | null;
@@ -100,7 +130,11 @@ export const DateField = (props: DateFieldProps) => {
         style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
         disabled={disabled}
         className={classNamesObj?.input}
-        value={value?.toDateString() || ""}
+        value={
+          Array.isArray(value)
+            ? `${value[0]?.toDateString()} - ${value[1]?.toDateString()}`
+            : value?.toDateString() || ""
+        }
         size={size}
         {...otherProps}
         readOnly
@@ -127,6 +161,7 @@ export const DateField = (props: DateFieldProps) => {
         openStatus !== OpenStatus.CLOSED &&
         createPortal(
           <DatePickerPopup
+            range={range}
             locale={locale}
             value={value}
             onChange={handleChange}
