@@ -1,4 +1,4 @@
-storybook-static
+storybook-static/
 node_modules
 build 
 coverage
