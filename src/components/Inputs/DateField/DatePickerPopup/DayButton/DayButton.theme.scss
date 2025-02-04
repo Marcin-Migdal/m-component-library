@@ -1,0 +1,48 @@
+.common-wrapper-container {
+  .date-picker-popup {
+    .date-picker-popup-date-button {
+      background-color: transparent;
+      color: var(--text-color);
+
+      &:not(.selected):not(.current):not(.start-date):not(.end-date) {
+        &.in-hover-range,
+        &:hover {
+          background-color: var(--popups-hover-background-color);
+        }
+
+        &.dimmed {
+          &:not(.in-range) {
+            color: var(--popup-date-button-dimmed-text-color);
+          }
+        }
+      }
+
+      &.current {
+        border: 2px solid var(--popup-date-button-highlighted-color);
+      }
+
+      &.in-range {
+        background-color: var(--popups-hover-background-color);
+        border: 2px solid var(--popups-hover-background-color);
+      }
+
+      &.current {
+        &.selected,
+        &.start-date,
+        &.in-range,
+        &.end-date {
+          box-shadow: 0 0 1px 1px var(--popup-date-button-highlighted-color);
+          border: 1px solid var(--popup-date-button-alt-highlighted-color);
+        }
+      }
+
+      &.selected,
+      &.start-date,
+      &.end-date {
+        background-color: var(--popup-date-button-highlighted-color);
+        color: var(--popup-date-button-alt-highlighted-color);
+        border: 2px solid var(--popup-date-button-highlighted-color);
+      }
+    }
+  }
+}

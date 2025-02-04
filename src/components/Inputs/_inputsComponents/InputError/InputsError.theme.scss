@@ -1,0 +1,45 @@
+.common-wrapper-container {
+  .m-input-container {
+    &.error {
+      .m-input {
+        border: 1px solid var(--failure-color);
+        color: var(--failure-color);
+
+        &:focus {
+          box-shadow: var(--big-box-shadow) var(--failure-color);
+        }
+
+        &:hover:not(:disabled),
+        &:not(:disabled) {
+          &::placeholder {
+            color: var(--failure-color);
+          }
+        }
+      }
+
+      .error-icon {
+        color: var(--failure-color);
+      }
+    }
+  }
+
+  .m-checkbox-container {
+    &.error {
+      .m-checkbox {
+        border-width: 2px;
+      }
+    }
+  }
+
+  .m-dropdown-container {
+    &.error {
+      .m-dropdown-clear-icon {
+        color: var(--failure-color);
+
+        &:hover {
+          color: var(--failure-light-color);
+        }
+      }
+    }
+  }
+}

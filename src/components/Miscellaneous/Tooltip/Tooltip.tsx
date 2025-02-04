@@ -1,12 +1,12 @@
 import React, { CSSProperties, PropsWithChildren, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
-import { getPosition } from "../../../helpers";
-import { Placement } from "../../../helpers/getPosition/getPosition-types";
+import { getPosition } from "../../../utils";
+import { Placement } from "../../../utils/getPosition/getPosition-types";
 import { TooltipContent } from "./TooltipContent/TooltipContent";
 import { TargetElementType, TooltipProps } from "./types";
 
-import "./Tooltip.css";
+import "./Tooltip.scss";
 
 const TooltipWrapper = ({
   targetRef,

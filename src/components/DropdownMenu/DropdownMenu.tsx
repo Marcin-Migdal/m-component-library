@@ -5,6 +5,8 @@ import { createPortal } from "react-dom";
 import { DropdownMenu } from "./DropdownMenu/DropdownMenu";
 import { DropdownMenuProps, OpenConfig, OpenEvent, OpenPosition } from "./types";
 
+import "./DropdownMenu.theme.scss";
+
 const DropdownMenuContainer = ({
   triggerContainerClassName,
   popupClassName,

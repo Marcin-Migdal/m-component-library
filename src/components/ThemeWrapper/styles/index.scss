@@ -1,0 +1,165 @@
+@use "./utils/simple-helpers.scss";
+@use "./utils/margin.scss";
+@use "./utils/padding.scss";
+@use "./utils/size.scss";
+@use "./utils/flex.scss";
+@use "./utils/border-radius.scss";
+
+@use "./mode/dark-mode.scss";
+@use "./mode/light-mode.scss";
+
+@use "./themes//light-custom-theme.scss";
+@use "./themes//dark-custom-theme.scss";
+
+@use "./themes//light-default-theme.scss";
+@use "./themes//dark-default-theme.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
+
+* {
+  font-family: "Open Sans", sans-serif;
+  box-sizing: border-box;
+}
+
+/* APP CSS VARIABLES  */
+body {
+  margin: unset;
+
+  /* Common color variables across all themes */
+
+  --success-color-hue: 150;
+
+  --success-light-color: hsl(var(--success-color-hue), 53%, 55%);
+  --success-color: hsl(var(--success-color-hue), 70%, 39%);
+  --success-dark-color: hsl(var(--success-color-hue), 97%, 23%);
+
+  --failure-color-hue: 0;
+
+  --failure-light-color: hsl(var(--failure-color-hue), 96%, 69%);
+  --failure-color: hsl(var(--failure-color-hue), 90%, 59%);
+  --failure-dark-color: hsl(var(--failure-color-hue), 93%, 38%);
+
+  --warning-color-hue: 46;
+
+  --warning-light-color: hsl(var(--warning-color-hue), 87%, 71%);
+  --warning-color: hsl(var(--warning-color-hue), 79%, 60%);
+  --warning-dark-color: hsl(var(--warning-color-hue), 74%, 48%);
+
+  --information-color-hue: 239;
+
+  --information-light-color: hsl(var(--information-color-hue), 100%, 76%);
+  --information-color: hsl(var(--information-color-hue), 90%, 67%);
+  --information-dark-color: hsl(var(--information-color-hue), 70%, 56%);
+
+  /* all colors of grey across all themes */
+  --grey-color-000: hsl(0, 0%, 100%);
+  --grey-color-025: hsl(0, 0%, 97%);
+  --grey-color-050: hsl(0, 0%, 94%);
+  --grey-color-075: hsl(0, 0%, 91%);
+
+  --grey-color-100: hsl(0, 0%, 88%);
+  --grey-color-125: hsl(0, 0%, 85%);
+  --grey-color-150: hsl(0, 0%, 82%);
+  --grey-color-175: hsl(0, 0%, 79%);
+
+  --grey-color-200: hsl(0, 0%, 76%);
+  --grey-color-225: hsl(0, 0%, 74%);
+  --grey-color-250: hsl(0, 0%, 71%);
+  --grey-color-275: hsl(0, 0%, 68%);
+
+  --grey-color-300: hsl(0, 0%, 65%);
+  --grey-color-325: hsl(0, 0%, 62%);
+  --grey-color-350: hsl(0, 0%, 59%);
+  --grey-color-375: hsl(0, 0%, 56%);
+
+  --grey-color-400: hsl(0, 0%, 53%);
+  --grey-color-425: hsl(0, 0%, 50%);
+  --grey-color-450: hsl(0, 0%, 47%);
+  --grey-color-475: hsl(0, 0%, 44%);
+
+  --grey-color-500: hsl(0, 0%, 41%);
+  --grey-color-525: hsl(0, 0%, 38%);
+  --grey-color-550: hsl(0, 0%, 35%);
+  --grey-color-575: hsl(0, 0%, 32%);
+
+  --grey-color-600: hsl(0, 0%, 29%);
+  --grey-color-625: hsl(0, 0%, 27%);
+  --grey-color-650: hsl(0, 0%, 24%);
+  --grey-color-675: hsl(0, 0%, 21%);
+
+  --grey-color-700: hsl(0, 0%, 18%);
+  --grey-color-725: hsl(0, 0%, 15%);
+  --grey-color-750: hsl(0, 0%, 12%);
+  --grey-color-775: hsl(0, 0%, 9%);
+
+  --grey-color-800: hsl(0, 0%, 6%);
+  --grey-color-825: hsl(0, 0%, 3%);
+  --grey-color-850: hsl(0, 0%, 0%);
+
+  /* Common */
+  --border-radius: 6px;
+  --border-width: max(2px, 0.125em);
+  --transition: 0.2s;
+  --fast-transition: 0.1s;
+
+  --border: var(--border-width) solid;
+
+  --small-box-shadow: 0px 0px 3px 1px;
+  --big-box-shadow: 0px 0px 3px 2px;
+
+  /*! Button */
+  --button-padding: 0.25em 0.65em;
+  --button-gap: 0.55em;
+  --button-right-margin: 10px;
+
+  /*? Very Small Button*/
+  --very-small-button-size: 0.67rem;
+
+  /*? Small Button*/
+  --small-button-size: 0.8rem;
+
+  /*? Medium Button*/
+  --medium-button-size: 1rem;
+
+  /*? Large Button*/
+  --large-button-size: 1.2rem;
+
+  /*! Inputs */
+  --input-margin-bottom: 18px;
+
+  /*? Small Input*/
+  --small-input-height: 28px;
+  --small-input-padding-left: 6px;
+  --small-input-font-size: 14px;
+
+  /*? Medium Input*/
+  --medium-input-height: 34px;
+  --medium-input-padding-left: 8px;
+  --medium-input-font-size: 16px;
+
+  /*? Large Input*/
+  --large-input-height: 40px;
+  --large-input-padding-left: 9px;
+  --large-input-font-size: 18px;
+
+  /*? Input errors */
+  --error-icon-size: 16px;
+  --error-icon-margin: 8px;
+
+  /*! Popup */
+  --popup-transition: 0.3s;
+  --popup-fast-transition: 0.15s;
+
+  /*! Dropdown Menu */
+  --dropdown-menu-border-radius: 3px;
+}
+
+.common-wrapper-container {
+  width: 100vw;
+  height: 100vh;
+
+  background: var(--background-color);
+  color: var(--primary-text-color);
+
+  overflow-x: hidden;
+}

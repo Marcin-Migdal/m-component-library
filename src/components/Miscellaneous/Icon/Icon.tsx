@@ -4,6 +4,8 @@ import React from "react";
 
 import { IconProps } from "./types";
 
+import "./Icon.theme.scss";
+
 const Icon = ({ icon, onClick, className = "", style = {} }: IconProps) => {
   if (!icon) {
     return null;

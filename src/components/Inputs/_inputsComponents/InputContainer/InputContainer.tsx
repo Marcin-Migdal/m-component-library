@@ -3,7 +3,7 @@ import React, { CSSProperties, forwardRef, PropsWithChildren } from "react";
 
 import { ComponentSize } from "../../../global-types";
 
-import "./InputContainer.css";
+import "./InputContainer.scss";
 
 type InputContainerProps = {
   disableDefaultMargin: boolean;

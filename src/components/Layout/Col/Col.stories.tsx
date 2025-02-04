@@ -1,31 +1,38 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react/*";
 import React from "react";
 
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
-import Row from "../Row/Row";
-import StoryColWrapper from "./StoryColWrapper";
+import Col from "./Col";
 
-export default {
-  title: "M-component-library/Layout",
-  component: StoryColWrapper,
-} as ComponentMeta<typeof StoryColWrapper>;
+const meta: Meta<typeof Col> = {
+  title: "Components/Layout/Col",
+  component: Col,
+};
 
-const Template: ComponentStory<typeof StoryColWrapper> = (args) => (
-  <ThemeWrapper darkMode>
-    <div style={{ padding: "1rem" }}>
-      <Row>
-        <StoryColWrapper {...args} />
-      </Row>
-    </div>
-  </ThemeWrapper>
-);
+export default meta;
 
-export const col = Template.bind({});
+export const DefaultCol: StoryObj<typeof Col> = {
+  render: () => {
+    return (
+      <>
+        {new Array(4).fill("").map((_item, index) => (
+          <Col xl={3} lg={4} md={6} sm={12}>
+            Columns {index + 1}
+          </Col>
+        ))}
+      </>
+    );
+  },
+};
 
-col.args = {
-  sm: 12,
-  md: 6,
-  lg: 4,
-  xl: 2,
-  amountOfColumns: 6,
+export const FlexCol: StoryObj<typeof Col> = {
+  render: () => {
+    return (
+      <>
+        <Col smFlex={4}>Columns 4</Col>
+        <Col smFlex={3}>Columns 3</Col>
+        <Col smFlex={2}>Columns 2</Col>
+        <Col smFlex={1}>Columns 1</Col>
+      </>
+    );
+  },
 };

@@ -1,24 +1,15 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import ColorPicker from "./ColorPicker";
 
-export default {
-  title: "M-component-library/Inputs",
+const meta: Meta<typeof ColorPicker> = {
+  title: "Components/Inputs/ColorPicker",
   component: ColorPicker,
-} as ComponentMeta<typeof ColorPicker>;
-
-const Template: ComponentStory<typeof ColorPicker> = (args) => (
-  <ThemeWrapper darkMode>
-    <div style={{ padding: "1rem" }}>
-      <ColorPicker {...args} />
-    </div>
-  </ThemeWrapper>
-);
-
-export const colorPicker = Template.bind({});
-
-colorPicker.args = {
-  label: "Color",
+  args: { label: "Color picker" },
 };
+
+export default meta;
+
+type Story = StoryObj<typeof ColorPicker>;
+
+export const colorPicker: Story = {};

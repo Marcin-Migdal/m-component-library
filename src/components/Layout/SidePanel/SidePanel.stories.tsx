@@ -1,22 +1,36 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react/*";
 import React from "react";
 
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
-import StorySidePanelWrapper from "./StorySidePanelWrapper";
+import { Button } from "../../Button";
+import { SidePanel } from "./SidePanel";
+import { useSidePanel } from "./hooks/useSidePanel";
 
-export default {
-  title: "M-component-library/Layout",
-  component: StorySidePanelWrapper,
-} as ComponentMeta<typeof StorySidePanelWrapper>;
+const meta: Meta<typeof SidePanel> = {
+  title: "Components/Layout/SidePanel",
+  component: SidePanel,
+};
 
-const Template: ComponentStory<typeof StorySidePanelWrapper> = () => (
-  <ThemeWrapper darkMode>
-    <div style={{ padding: "1rem" }}>
-      <StorySidePanelWrapper />
-    </div>
-  </ThemeWrapper>
-);
+export default meta;
 
-export const sidePanel = Template.bind({});
+export const SimpleSidePanel: StoryObj<typeof SidePanel> = {
+  render: () => {
+    const [handleOpen, sidePanelProps] = useSidePanel();
 
-sidePanel.args = {};
+    return (
+      <div>
+        <Button text="Open alert" onClick={handleOpen} />
+        <SidePanel {...sidePanelProps}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <h2 style={{ margin: "unset", marginBottom: "1rem" }}>Title</h2>
+            <Button text="Close" onClick={sidePanelProps.handleClose} variant="full" disableDefaultMargin />
+          </div>
+        </SidePanel>
+      </div>
+    );
+  },
+};

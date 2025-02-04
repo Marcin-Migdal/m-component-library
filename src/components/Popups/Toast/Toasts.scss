@@ -1,0 +1,135 @@
+@use "./Toasts.theme.scss";
+
+.toasts-list {
+  position: fixed;
+  width: fit-content;
+  max-height: 100vh;
+  overflow: hidden auto;
+  z-index: 1000;
+
+  &.top-left,
+  &.top-right {
+    top: 1rem;
+  }
+
+  &.bottom-left,
+  &.bottom-right {
+    bottom: 1rem;
+  }
+
+  &.top-left,
+  &.bottom-left {
+    left: 1rem;
+
+    .toast {
+      animation-name: toast-in-left;
+      animation-duration: var(--popup-transition);
+    }
+  }
+
+  &.top-right,
+  &.bottom-right {
+    right: 1rem;
+
+    .toast {
+      animation-name: toast-in-right;
+      animation-duration: var(--popup-transition);
+    }
+  }
+
+  .toast {
+    position: relative;
+
+    display: flex;
+
+    min-width: 344px;
+    max-width: 344px;
+
+    min-height: 70px;
+    border-radius: var(--border-radius);
+
+    margin-bottom: 5px;
+
+    font-size: 0.9rem;
+
+    transition: transform var(--popup-transition), opacity var(--popup-transition),
+      box-shadow var(--popup-transition) ease-in-out;
+
+    &.success {
+      svg:not(.close-icon) {
+        width: 27px;
+        height: 27px;
+      }
+    }
+
+    // toast variant icon
+    svg:not(.close-icon) {
+      min-width: 30px;
+      min-height: 30px;
+      margin: auto;
+      margin-left: 15px;
+      margin-right: unset;
+    }
+
+    .text-content {
+      display: flex;
+      flex-direction: column;
+      padding: 11px 15px 15px 0;
+      margin-left: 15px;
+
+      .toast-title {
+        width: fit-content;
+        padding: 0;
+        margin: 0px;
+
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-transform: capitalize;
+      }
+
+      .toast-message {
+        display: inline-block;
+
+        width: fit-content;
+        margin-top: 3px;
+      }
+    }
+
+    svg.close-icon {
+      position: absolute;
+
+      top: 8px;
+      right: 8px;
+
+      height: 24px;
+      width: 24px;
+      transition: var(--transition);
+
+      padding: 4px;
+
+      border-radius: 100%;
+
+      &:active {
+        transform: scale(0.8);
+      }
+    }
+  }
+}
+
+@keyframes toast-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes toast-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}

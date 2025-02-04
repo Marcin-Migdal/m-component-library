@@ -3,7 +3,7 @@ import React from "react";
 
 import { RowProps } from "./types";
 
-import "./Row.css";
+import "./Row.scss";
 
 const Row = ({ className = "", style = {}, children, gap }: RowProps) => {
   return (

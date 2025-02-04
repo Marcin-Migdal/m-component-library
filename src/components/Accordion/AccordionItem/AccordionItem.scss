@@ -1,0 +1,35 @@
+.m-accordion {
+  &.default {
+    .m-accordion-item {
+      height: 2rem;
+      padding: 0.25rem;
+      border-radius: var(--border-radius);
+
+      &:not(:last-child) {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  &.compact {
+    .m-accordion-item {
+      height: 1.25rem;
+      padding: 0.25rem;
+      border-radius: calc(var(--border-radius) / 2);
+
+      font-size: 0.9rem;
+      line-height: 20px;
+
+      &:not(:last-child) {
+        margin-bottom: 0.25rem;
+      }
+    }
+  }
+
+  .m-accordion-item {
+    display: flex;
+    align-items: center;
+
+    background-color: var(--grey-color-575);
+  }
+}

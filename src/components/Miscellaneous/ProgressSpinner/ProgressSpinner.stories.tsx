@@ -1,22 +1,14 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import ProgressSpinner from "./ProgressSpinner";
 
-export default {
-  title: "M-component-library/Miscellaneous",
+const meta: Meta<typeof ProgressSpinner> = {
+  title: "Components/Miscellaneous",
   component: ProgressSpinner,
-} as ComponentMeta<typeof ProgressSpinner>;
+};
 
-const Template: ComponentStory<typeof ProgressSpinner> = (args) => (
-  <ThemeWrapper darkMode>
-    <div style={{ padding: "1rem" }}>
-      <ProgressSpinner {...args} />
-    </div>
-  </ThemeWrapper>
-);
+export default meta;
 
-export const progressSpinner = Template.bind({});
+type Story = StoryObj<typeof ProgressSpinner>;
 
-progressSpinner.args = {};
+export const progressSpinner: Story = {};

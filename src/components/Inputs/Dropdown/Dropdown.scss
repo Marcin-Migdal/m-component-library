@@ -1,0 +1,40 @@
+@use "./Dropdown.theme.scss";
+
+.m-dropdown-container {
+  &.error {
+    .m-dropdown-clear-icon {
+      margin-left: -2.9rem;
+    }
+  }
+
+  &:focus-within {
+    .m-dropdown-indicator-icon {
+      transform: rotateX(180deg);
+    }
+  }
+
+  &:has(.m-dropdown-control.read-only),
+  &:has(.m-dropdown-control:disabled) {
+    &:not(.dropdown-error) {
+      .m-dropdown-icon {
+        display: none;
+      }
+    }
+  }
+
+  .m-dropdown-icon {
+    z-index: 1;
+    transition: var(--transition);
+    cursor: pointer;
+
+    &.m-dropdown-clear-icon {
+      border-radius: 100%;
+      margin-left: -2.25rem;
+      transition: 0s !important;
+    }
+
+    &.m-dropdown-indicator-icon {
+      margin-left: -1.5rem;
+    }
+  }
+}

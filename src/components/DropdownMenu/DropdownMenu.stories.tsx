@@ -1,21 +1,12 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
 import { Button } from "../Button";
-import ThemeWrapper from "../ThemeWrapper/ThemeWrapper";
-
-import { DropdownMenu } from ".";
+import DropdownMenu from "./DropdownMenu";
 import { DropdownMenuOption } from "./types";
 
-export default {
-  title: "M-component-library/DropdownMenu",
-  component: DropdownMenu,
-} as ComponentMeta<typeof DropdownMenu>;
-
 const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>, option: DropdownMenuOption) => {
-  // eslint-disable-next-line no-console
   console.log(event);
-  // eslint-disable-next-line no-console
   console.log(option);
 };
 
@@ -64,21 +55,6 @@ const dropdownMenuOptions: DropdownMenuOption[] = [
         onClick: handleClick,
         icon: "euro",
       },
-      {
-        label: "euro",
-        onClick: handleClick,
-        icon: "euro",
-      },
-      {
-        label: "euro",
-        onClick: handleClick,
-        icon: "euro",
-      },
-      {
-        label: "euro",
-        onClick: handleClick,
-        icon: "euro",
-      },
     ],
   },
   {
@@ -89,32 +65,57 @@ const dropdownMenuOptions: DropdownMenuOption[] = [
   },
 ];
 
-const Template: ComponentStory<typeof DropdownMenu> = () => (
-  <ThemeWrapper darkMode>
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "start",
-        padding: "1rem",
-        gap: "1rem",
-      }}
-    >
-      <DropdownMenu options={dropdownMenuOptions}>
-        <Button
-          style={{
-            width: "fit-content",
-            // marginTop: "10rem",
-          }}
-          text="Currency"
-          icon="money-bill-wave"
-          onClick={() => {}}
-        />
-      </DropdownMenu>
-    </div>
-  </ThemeWrapper>
-);
+export default {
+  title: "Components/Dropdown Menu",
+  component: DropdownMenu,
+  decorators: [
+    (Story) => (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "start",
+          gap: "1rem",
+        }}
+      >
+        <Story />
+      </div>
+    ),
+  ],
+} as Meta<typeof DropdownMenu>;
 
-export const dropdownMenu = Template.bind({});
+export const OpenEventOnClick: StoryObj<typeof DropdownMenu> = {
+  render: () => (
+    <DropdownMenu options={dropdownMenuOptions} openEvent="click">
+      <DropdownMenuTriggerButton />
+    </DropdownMenu>
+  ),
+};
 
-dropdownMenu.args = {};
+export const OpenEventOnHover: StoryObj<typeof DropdownMenu> = {
+  render: () => (
+    <DropdownMenu options={dropdownMenuOptions} openEvent="hover">
+      <DropdownMenuTriggerButton />
+    </DropdownMenu>
+  ),
+};
+
+export const OpenPositionOnClick: StoryObj<typeof DropdownMenu> = {
+  render: () => (
+    <DropdownMenu options={dropdownMenuOptions} openPosition="occurred-event">
+      <DropdownMenuTriggerButton />
+    </DropdownMenu>
+  ),
+};
+
+export const CenterDropdownPosition: StoryObj<typeof DropdownMenu> = {
+  render: () => (
+    <DropdownMenu options={dropdownMenuOptions} centerConsumer openEvent="click">
+      <DropdownMenuTriggerButton />
+    </DropdownMenu>
+  ),
+};
+
+const DropdownMenuTriggerButton = ({ text = "Currency" }: { text?: string }) => {
+  return <Button style={{ width: "fit-content" }} text={text} icon="money-bill-wave" onClick={() => {}} />;
+};

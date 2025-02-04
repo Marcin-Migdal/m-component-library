@@ -1,0 +1,64 @@
+.m-icon-field-popup-content {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+
+  .m-textfield-container {
+    margin-top: 0.25rem;
+    padding-right: 1.35rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .m-icon-grid-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    max-height: 100%;
+    gap: 0.5rem;
+    padding-right: 1rem;
+
+    overflow-y: auto;
+
+    .m-icon-tile {
+      flex-grow: 1;
+      flex-basis: 200;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      width: 8rem;
+      height: 10rem;
+      border-radius: var(--border-radius);
+      padding: 0.5rem;
+
+      transition: var(--transition);
+
+      .m-icon-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        height: 5.5rem;
+        width: 100%;
+
+        .m-icon {
+          height: 4rem;
+        }
+      }
+
+      .m-icon-name {
+        display: flex;
+        align-items: center;
+
+        height: 3.5rem;
+
+        font-size: 0.85rem;
+
+        text-align: center;
+      }
+    }
+  }
+}

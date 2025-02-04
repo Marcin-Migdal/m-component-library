@@ -5,7 +5,7 @@ import { Toast } from "./components/Toast";
 import { ToastConfig, ToastHandler, ToastsContainerProps, ToastType } from "./types";
 import { defaultToastConfig, getDefaultToastType } from "./utils";
 
-import "./Toasts.css";
+import "./Toasts.scss";
 
 function ToastsContainer<T extends string>(props: ToastsContainerProps<T>, ref: ForwardedRef<ToastHandler<T>>) {
   const {

@@ -1,16 +1,15 @@
 import classNames from "classnames";
 import React, { ChangeEvent, useLayoutEffect, useRef, useState } from "react";
 
-import { getPosition } from "../../../../helpers/getPosition";
-import { Position } from "../../../../helpers/getPosition/getPosition-types";
+import { getPosition } from "../../../../utils/getPosition";
+import { Position } from "../../../../utils/getPosition/getPosition-types";
 import { HueSliderCanvas } from "../../../Miscellaneous/HueSliderCanvas/HueSliderCanvas";
 import { Textfield } from "../../Textfield";
-import { ADVANCED_MASKS_CONFIGS } from "../../Textfield/helpers/advanced-masks-configs";
-import { ColorPickerCanvas } from "../ColorPickerCanvas/ColorPickerCanvas";
 import { hslToRgb, rgbToHsl } from "../helpers";
 import { RgbValue } from "../types";
+import { ColorPickerCanvas } from "./ColorPickerCanvas/ColorPickerCanvas";
 
-import "./ColorPickerPopup.css";
+import "./ColorPickerPopup.scss";
 
 type ColorPickerPopupProps = {
   value: RgbValue | undefined;
@@ -98,7 +97,6 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
       <div className="bottom-section">
         <Textfield
           value={rgbValue.r.toString()}
-          advancedMask={ADVANCED_MASKS_CONFIGS.RGB}
           name="r"
           label="R"
           placeholder=" "
@@ -107,7 +105,6 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
         />
         <Textfield
           value={rgbValue.g.toString()}
-          advancedMask={ADVANCED_MASKS_CONFIGS.RGB}
           name="g"
           label="G"
           placeholder=" "
@@ -116,7 +113,6 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
         />
         <Textfield
           value={rgbValue.b.toString()}
-          advancedMask={ADVANCED_MASKS_CONFIGS.RGB}
           name="b"
           label="B"
           placeholder=" "

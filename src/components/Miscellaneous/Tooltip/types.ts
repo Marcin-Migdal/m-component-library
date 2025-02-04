@@ -1,5 +1,5 @@
 import { CSSProperties, RefObject } from "react";
-import { Placement } from "../../../helpers/getPosition/getPosition-types";
+import { Placement } from "../../../utils/getPosition/getPosition-types";
 
 export type TooltipProps = {
   targetRef: RefObject<TargetElementType>;

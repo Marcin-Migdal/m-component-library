@@ -8,7 +8,7 @@ import { AccordionToggle, AccordionToggleProps } from "./AccordionToggle";
 import { AccordionContextProvider } from "./context";
 import { AccordionProps, Mode } from "./types";
 
-import "./Accordion.css";
+import "./Accordion.scss";
 
 const Accordion: React.FC<PropsWithChildren<AccordionProps>> & {
   Section: React.FC<PropsWithChildren<AccordionSectionProps>>;

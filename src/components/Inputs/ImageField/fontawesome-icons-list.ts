@@ -5,7 +5,7 @@ export type Icon = {
   value: IconName;
 };
 
-export const fontAwesomeIconsList: Icon[] = [
+export const fontAwesomeIconsList = [
   {
     label: "0",
     value: "0",
@@ -7846,4 +7846,4 @@ export const fontAwesomeIconsList: Icon[] = [
     label: "S",
     value: "s",
   },
-];
+] as unknown as Icon[];

@@ -3,7 +3,7 @@ import React, { CSSProperties, useLayoutEffect, useMemo, useRef, useState } from
 
 import { InputLabel, LabelPercentageWidth, SimpleInputLabel } from "../../../global-types";
 
-import "./InputsLabel.css";
+import "./InputsLabel.scss";
 
 type InputsLabelProps = {
   label: string;

@@ -1,29 +1,62 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import { StoryObj } from "@storybook/react";
 
-import { InputLabel } from "../../global-types";
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
-import StoryTextfieldWrapper from "./StoryTextfieldWrapper";
+import Textfield from "./Textfield";
 
 export default {
-  title: "M-component-library/Inputs",
-  component: StoryTextfieldWrapper,
-} as ComponentMeta<typeof StoryTextfieldWrapper>;
+  title: "Components/Inputs/Textfield",
+  component: Textfield,
+};
 
-const Template: ComponentStory<typeof StoryTextfieldWrapper> = (args) => (
-  <ThemeWrapper darkMode>
-    <div style={{ padding: "1rem" }}>
-      <StoryTextfieldWrapper {...args} />
-    </div>
-  </ThemeWrapper>
-);
+type Story = StoryObj<typeof Textfield>;
 
-export const textfield = Template.bind({});
+export const TextfieldSmall: Story = {
+  args: {
+    label: "Label",
+    labelType: "floating",
+    size: "small",
+  },
+};
 
-textfield.args = {
-  label: "Name",
-  labelType: InputLabel.FLOATING,
-  placeholder: "Name...",
-  labelWidth: 20,
-  type: "text",
+export const TextfieldMedium: Story = {
+  args: {
+    label: "Label",
+    labelType: "floating",
+    size: "medium",
+  },
+};
+
+export const TextfieldLarge: Story = {
+  args: {
+    label: "Label",
+    labelType: "floating",
+    size: "large",
+  },
+};
+
+export const LabelLeft: Story = {
+  args: {
+    label: "Label",
+    placeholder: "Placeholder",
+    labelType: "left",
+    size: "medium",
+  },
+};
+
+export const LabelRight: Story = {
+  args: {
+    label: "Label",
+    placeholder: "Placeholder",
+    labelType: "right",
+    size: "medium",
+  },
+};
+
+export const TextfieldWithPrefix: Story = {
+  args: {
+    label: "Label",
+    placeholder: "Placeholder",
+    prefix: "Prefix",
+    labelType: "right",
+    size: "medium",
+  },
 };

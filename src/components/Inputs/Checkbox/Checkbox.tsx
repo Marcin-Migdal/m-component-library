@@ -6,10 +6,10 @@ import { v4 as uuId } from "uuid";
 import { ComponentSize, SimpleInputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getCheckboxErrorStyle } from "../_inputsComponents/InputError/helpers/getCheckboxErrorStyle";
-import { getInputStyle } from "../helpers/getInputStyle";
+import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { CheckboxProps } from "./types";
 
-import "./Checkbox.css";
+import "./Checkbox.scss";
 
 const Checkbox = ({
   checked: externalChecked = undefined,

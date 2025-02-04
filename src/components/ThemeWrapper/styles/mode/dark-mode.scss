@@ -1,0 +1,72 @@
+.dark-mode {
+  /** Background color */
+  --background-color: var(--grey-color-650);
+  --popups-background-color: var(--grey-color-600);
+  --background-hover-color: var(--grey-color-550);
+  --background-active-color: var(--grey-color-525);
+
+  /** Inputs colors */
+  --input-background-color: var(--grey-color-550);
+  --input-hover-background-color: var(--grey-color-500);
+  --input-disabled-background-color: var(--grey-color-625);
+
+  --input-text-color: var(--grey-color-100);
+  --input-hover-color: var(--grey-color-025);
+  --input-disabled-text-color: var(--grey-color-450);
+
+  --input-label-color: var(--grey-color-100);
+  --input-placeholder-color: var(--grey-color-300);
+  --input-hover-placeholder-color: var(--grey-color-150);
+
+  --color-picker-pointer: var(--grey-color-000);
+  --color-picker-dragged-pointer: var(--grey-color-850);
+
+  --input-image-icon-color: var(--grey-color-100);
+
+  --popups-hover-background-color: var(--grey-color-525);
+  --popups-active-background-color: var(--grey-color-500);
+  --popup-date-button-dimmed-text-color: var(--grey-color-400);
+  --popup-date-button-alt-highlighted-color: var(--grey-color-700);
+
+  --popup-date-button-highlighted-color: var(--primary-color_680);
+  --icon-tile-background-color: var(--grey-color-550);
+  --icon-tile-hover-background-color: var(--grey-color-525);
+  --icon-tile-active-background-color: var(--grey-color-500);
+
+  /** Buttons */
+  --btn-outlined-background-color: var(--background-color);
+
+  --btn-full-color: var(--background-color);
+
+  --btn-text-background-color: var(--background-color);
+
+  --btn-neon-hover-color: var(--background-color);
+  --btn-neon-background-color: var(--background-color);
+
+  /* Overlay */
+  --overlay-background-color: rgba(146, 146, 146, 0.275);
+
+  /* Tooltip */
+  --tooltip-color: var(--grey-color-800);
+  --tooltip-background-color: var(--grey-color-000);
+
+  /* Alert */
+  --alert-disabled-button-background-color: var(--grey-color-575);
+
+  /* Breadcrumb */
+  --crumb-background-color: var(--grey-color-575);
+  --crumb-hover-background-color: var(--grey-color-525);
+
+  /* Dropdown menu */
+  --dropdown-menu-border-color: var(--grey-color-425);
+  --dropdown-menu-background-color: var(--grey-color-550);
+  --dropdown-menu-disabled-background-color: var(--grey-color-600);
+  --dropdown-menu-hover-background-color: var(--grey-color-500);
+  --dropdown-menu-active-background-color: var(--grey-color-450);
+  --dropdown-menu-highlighted-color: var(--grey-color-000);
+
+  /*? Common */
+  --icon-color: var(--grey-color-100);
+  --icon-hover-color: var(--grey-color-000);
+  --primary-text-color: var(--grey-color-100);
+}

@@ -1,29 +1,15 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
-import StoryIconWrapper from "./StoryFormWrapper";
+import Icon from "./Icon";
 
-export default {
-  title: "M-component-library/Miscellaneous",
-  component: StoryIconWrapper,
-} as ComponentMeta<typeof StoryIconWrapper>;
-
-const Template: ComponentStory<typeof StoryIconWrapper> = (args) => (
-  <ThemeWrapper darkMode>
-    <div style={{ padding: "1rem" }}>
-      <StoryIconWrapper {...args} />
-    </div>
-  </ThemeWrapper>
-);
-
-export const icon = Template.bind({});
-
-icon.args = {
-  iconPrefix: "fab",
-  icon: "facebook",
+const meta: Meta<typeof Icon> = {
+  title: "Components/Miscellaneous",
+  component: Icon,
+  args: { icon: ["fab", "facebook"] },
 };
 
-icon.argTypes = {
-  iconPrefix: { options: ["fab", "fas"], control: { type: "select" }, defaultValue: "fab" },
-};
+export default meta;
+
+type Story = StoryObj<typeof Icon>;
+
+export const icon: Story = {};

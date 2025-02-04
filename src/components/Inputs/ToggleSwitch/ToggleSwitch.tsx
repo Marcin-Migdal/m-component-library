@@ -5,10 +5,10 @@ import { v4 as uuId } from "uuid";
 import { ComponentSize, SimpleInputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getToggleSwitchErrorStyle } from "../_inputsComponents/InputError/helpers/getToggleSwitchErrorStyle";
-import { getInputStyle } from "../helpers/getInputStyle";
+import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { ToggleSwitchProps } from "./types";
 
-import "./ToggleSwitch.css";
+import "./ToggleSwitch.scss";
 
 const ToggleSwitch = ({
   checked: externalChecked = undefined,

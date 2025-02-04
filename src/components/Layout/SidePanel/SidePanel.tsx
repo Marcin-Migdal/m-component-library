@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 
 import { SidePanelOpenState, SidePanelProps } from "./types";
 
-import "./SidePanel.css";
+import "./SidePanel.scss";
 
 export const SidePanel = ({
   children,

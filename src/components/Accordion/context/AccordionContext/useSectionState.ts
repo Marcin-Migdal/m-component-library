@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 
-import { deepCopy } from "../../../../helpers";
+import { deepCopy } from "../../../../utils";
 import { Mode, SectionId, SectionState, SectionStateChangeHandler } from "../../types";
 
 const getMode = (
@@ -64,7 +64,9 @@ export const useSectionState = (
         if (!sectionState || typeof sectionState !== "object") {
           // eslint-disable-next-line no-console
           console.warn(
-            `Wrong controlled value, passed value is an ${sectionState === null ? "null" : typeof sectionState}, you are trying to change it in mode MULTIPLE, pass object as a value`
+            `Wrong controlled value, passed value is an ${
+              sectionState === null ? "null" : typeof sectionState
+            }, you are trying to change it in mode MULTIPLE, pass object as a value`
           );
           return;
         }

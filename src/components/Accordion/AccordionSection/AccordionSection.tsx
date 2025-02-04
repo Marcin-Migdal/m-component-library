@@ -6,7 +6,7 @@ import { isStateSelected } from "../helpers";
 import { useAccordion } from "../hooks";
 import { AccordionSectionProps } from "./types";
 
-import "./AccordionSection.css";
+import "./AccordionSection.scss";
 
 export const AccordionSection: React.FC<PropsWithChildren<AccordionSectionProps>> = ({
   children,

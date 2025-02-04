@@ -1,0 +1,17 @@
+.common-wrapper-container {
+  .m-icon-grid-container {
+    .m-icon-tile {
+      background-color: var(--icon-tile-background-color);
+    }
+
+    .m-icon-tile {
+      &:hover {
+        background-color: var(--icon-tile-hover-background-color);
+      }
+
+      &:active {
+        background-color: var(--icon-tile-active-background-color);
+      }
+    }
+  }
+}

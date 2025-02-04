@@ -1,25 +1,18 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import Textarea from "./Textarea";
 
-export default {
-  title: "M-component-library/Inputs",
+const meta: Meta<typeof Textarea> = {
+  title: "Components/Inputs/Textarea",
   component: Textarea,
-} as ComponentMeta<typeof Textarea>;
-
-const Template: ComponentStory<typeof Textarea> = (args) => (
-  <ThemeWrapper darkMode>
-    <div style={{ padding: "1rem" }}>
-      <Textarea {...args} />
-    </div>
-  </ThemeWrapper>
-);
-
-export const textarea = Template.bind({});
-
-textarea.args = {
-  label: "Name",
-  labelWidth: 20,
+  args: {
+    label: "Textarea label",
+    placeholder: "Textarea placeholder",
+  },
 };
+
+export default meta;
+
+type Story = StoryObj<typeof Textarea>;
+
+export const Simple: Story = {};

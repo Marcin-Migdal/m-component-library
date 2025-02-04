@@ -1,0 +1,29 @@
+.m-image-container {
+  & > div {
+    .icons-container {
+      width: 0px;
+      position: relative;
+      z-index: 1;
+
+      .m-image-icon.m-image-zoom {
+        left: 3px;
+        top: 3px;
+      }
+
+      .m-image-icon.m-image-delete {
+        left: 3px;
+        top: 3px;
+        transform: translateY(calc(100% + 3px));
+      }
+
+      .m-image-icon {
+        position: absolute;
+
+        padding: 6px;
+        border-radius: 50%;
+
+        font-size: 0.7rem;
+      }
+    }
+  }
+}

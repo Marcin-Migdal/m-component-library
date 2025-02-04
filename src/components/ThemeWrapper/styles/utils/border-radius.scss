@@ -1,0 +1,25 @@
+@use "generate-spacing-classes" as *;
+
+$max-px: 64;
+$max-rem: 32;
+$max-percent: 100;
+
+@include generate-spacing-classes("br", "border-radius", $max-px, "px", 2px);
+@include generate-spacing-classes("br", "border-radius", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("br", "border-radius", $max-percent, "percent", 1%);
+
+@include generate-spacing-classes("br-tl", "border-top-left-radius", $max-px, "px", 2px);
+@include generate-spacing-classes("br-tl", "border-top-left-radius", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("br-tl", "border-top-left-radius", $max-percent, "percent", 1%);
+
+@include generate-spacing-classes("br-tr", "border-top-right-radius", $max-px, "px", 2px);
+@include generate-spacing-classes("br-tr", "border-top-right-radius", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("br-tr", "border-top-right-radius", $max-percent, "percent", 1%);
+
+@include generate-spacing-classes("br-br", "border-bottom-right-radius", $max-px, "px", 2px);
+@include generate-spacing-classes("br-br", "border-bottom-right-radius", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("br-br", "border-bottom-right-radius", $max-percent, "percent", 1%);
+
+@include generate-spacing-classes("br-bl", "border-bottom-left-radius", $max-px, "px", 2px);
+@include generate-spacing-classes("br-bl", "border-bottom-left-radius", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("br-bl", "border-bottom-left-radius", $max-percent, "percent", 1%);

@@ -1,0 +1,24 @@
+@use "generate-spacing-classes" as *;
+
+$max-px: 64;
+$max-rem: 32;
+
+@include generate-spacing-classes("m", "margin", $max-rem, "px", 1px);
+@include generate-spacing-classes("mt", "margin-top", $max-rem, "px", 1px);
+@include generate-spacing-classes("mb", "margin-bottom", $max-rem, "px", 1px);
+@include generate-spacing-classes("ml", "margin-left", $max-rem, "px", 1px);
+@include generate-spacing-classes("mr", "margin-right", $max-rem, "px", 1px);
+@include generate-spacing-classes("mh", "margin-left", $max-rem, "px", 1px);
+@include generate-spacing-classes("mh", "margin-right", $max-rem, "px", 1px);
+@include generate-spacing-classes("mv", "margin-top", $max-rem, "px", 1px);
+@include generate-spacing-classes("mv", "margin-bottom", $max-rem, "px", 1px);
+
+@include generate-spacing-classes("m", "margin", $max-px, "rem", 0.25rem);
+@include generate-spacing-classes("mt", "margin-top", $max-px, "rem", 0.25rem);
+@include generate-spacing-classes("mb", "margin-bottom", $max-px, "rem", 0.25rem);
+@include generate-spacing-classes("ml", "margin-left", $max-px, "rem", 0.25rem);
+@include generate-spacing-classes("mr", "margin-right", $max-px, "rem", 0.25rem);
+@include generate-spacing-classes("mh", "margin-left", $max-px, "rem", 0.25rem);
+@include generate-spacing-classes("mh", "margin-right", $max-px, "rem", 0.25rem);
+@include generate-spacing-classes("mv", "margin-top", $max-px, "rem", 0.25rem);
+@include generate-spacing-classes("mv", "margin-bottom", $max-px, "rem", 0.25rem);

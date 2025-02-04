@@ -1,0 +1,92 @@
+.date-picker-popup {
+  --day-button-width: 34px;
+  --date-picker-popup-padding: 0.5rem;
+  --day-button-gap: 0.5rem;
+
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+
+  width: calc((7 * var(--day-button-width)) + (var(--date-picker-popup-padding) * 2) + (6 * var(--day-button-gap)));
+  border-radius: var(--border-radius);
+  padding: var(--date-picker-popup-padding);
+
+  transition: var(--popup-transition);
+  z-index: 3;
+
+  &.mounted,
+  &.closing {
+    opacity: 0;
+  }
+
+  &.opened {
+    opacity: 1;
+  }
+
+  .date-picker-popup-month-selector {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 0.5rem;
+
+    .date-picker-popup-month-text {
+      width: calc(100% - 2rem);
+      text-align: center;
+
+      .m-dropdown-menu-trigger-container {
+        display: inline-block;
+
+        padding: 0.125rem 0.25rem;
+        border-radius: 3px;
+
+        transition: var(--fast-transition);
+
+        &:active {
+          font-size: 0.9rem;
+        }
+      }
+
+      .date-picker-dropdown-popup {
+        border: unset !important;
+      }
+    }
+
+    .date-picker-popup-month-icon {
+      width: 1rem;
+      height: 1rem;
+      padding: 0.25rem;
+      border-radius: 3px;
+
+      transition: var(--fast-transition);
+
+      &:active {
+        transform: scale(0.85);
+      }
+    }
+  }
+
+  .date-picker-popup-week-days-header {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 0.25rem;
+
+    .date-picker-popup-week-days-header-column {
+      flex: 1;
+
+      font-size: 0.8rem;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+
+  .date-picker-popup-dates-container {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: var(--day-button-gap);
+
+    width: 100%;
+  }
+}

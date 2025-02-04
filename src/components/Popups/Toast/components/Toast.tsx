@@ -15,8 +15,8 @@ export const Toast = ({ toast, onClose, onMouseEnter, onMouseLeave }: ToastProps
     >
       {icon}
       <div className="text-content">
-        <p>{title}</p>
-        {message && <span>{message}</span>}
+        <p className="toast-title">{title}</p>
+        {message && <span className="toast-message">{message}</span>}
       </div>
       <CloseIcon onClick={() => onClose(id)} />
     </div>

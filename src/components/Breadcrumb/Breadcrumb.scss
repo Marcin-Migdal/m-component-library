@@ -1,0 +1,92 @@
+@use "./Breadcrumb.theme.scss";
+
+.m-breadcrumb {
+  display: flex;
+  align-items: center;
+
+  .m-crumb {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &.disabled {
+      cursor: default;
+    }
+  }
+
+  &.default {
+    font-size: 1rem;
+    gap: 0.25em;
+
+    .m-crumb {
+      --crumb-vertical-padding: 0.5em;
+      --crumb-horizontal-padding: 1em;
+
+      --pseudo-element-size: calc(var(--crumb-vertical-padding) + 0.7em);
+
+      position: relative;
+
+      padding: var(--crumb-vertical-padding) var(--crumb-horizontal-padding);
+      border-right: none;
+
+      transition: background-color var(--transition);
+
+      &:not(:first-child)::before {
+        left: 0;
+        z-index: 1;
+        transition: border-color var(--transition);
+      }
+
+      &:not(:last-child)::after {
+        left: 100%;
+        z-index: 2;
+        transition: 0.2s;
+      }
+
+      &:not(:first-child)::before,
+      &:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        top: 0;
+
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: var(--pseudo-element-size) var(--pseudo-element-size) var(--pseudo-element-size) 0px;
+
+        transform: rotate(180deg);
+      }
+
+      &:first-child {
+        border-top-left-radius: 0.25em;
+        border-bottom-left-radius: 0.25em;
+      }
+
+      &:last-child {
+        border-top-right-radius: 0.25em;
+        border-bottom-right-radius: 0.25em;
+        font-weight: bold;
+      }
+
+      &:not(:first-child) {
+        padding-left: calc(var(--crumb-horizontal-padding) + 1.2em);
+      }
+
+      .m-crumb-icon {
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+  &.compact {
+    gap: 1em;
+
+    .m-crumb {
+      transition: var(--transition);
+
+      .m-crumb-icon {
+        margin-right: 0.5em;
+      }
+    }
+  }
+}

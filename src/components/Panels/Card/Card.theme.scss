@@ -1,0 +1,18 @@
+.common-wrapper-container {
+  .m-card {
+    background-color: var(--popups-background-color);
+    color: var(--primary-text-color) !important;
+
+    &.border {
+      border: var(--border) var(--alert-border-color);
+    }
+
+    &.gradient-border-glow,
+    &.gradient-border {
+      &::after,
+      &::before {
+        background: conic-gradient(from var(--gradient-angle), var(--card-gradient-colors));
+      }
+    }
+  }
+}

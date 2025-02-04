@@ -4,7 +4,7 @@ import React from "react";
 
 import { BreadcrumbProps } from "./types";
 
-import "./Breadcrumb.css";
+import "./Breadcrumb.scss";
 
 export const Breadcrumb = ({ crumbs, onClick, variant = "default", disableLastCrumb = false }: BreadcrumbProps) => {
   return (

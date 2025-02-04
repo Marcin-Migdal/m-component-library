@@ -1,0 +1,78 @@
+@use "./InputsLabel.theme.scss";
+
+.m-input-container {
+  &.error {
+    .m-input-label {
+      color: var(--failure-color) !important;
+    }
+  }
+}
+
+.m-input-label {
+  position: absolute;
+  font-size: var(--input-font-size);
+  transition: var(--transition);
+
+  &.pointer-event {
+    pointer-events: none;
+  }
+
+  &.floating {
+    padding-left: var(--input-padding-left);
+
+    z-index: 2;
+
+    &.forced-floating,
+    &.filled,
+    &.focused {
+      top: 0;
+
+      transform: translateY(calc(-100% - 1px));
+      font-size: 0.75rem;
+    }
+  }
+
+  &.left,
+  &.right {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  &.left {
+    left: 0;
+  }
+
+  &.right {
+    padding-left: var(--input-padding-left);
+  }
+}
+
+.m-textarea-label {
+  &.floating {
+    top: calc(var(--input-padding-left) - 4px);
+  }
+}
+
+/* Color picker and icon field label */
+.m-icon-field-label,
+.m-color-picker-label {
+  &.floating {
+    top: 50%;
+    padding-left: calc(var(--input-height) + 0.5rem + var(--input-padding-left));
+
+    transform: translateY(-50%);
+
+    &.forced-floating,
+    &.filled,
+    &.focused {
+      top: 0;
+      padding-left: var(--input-padding-left);
+
+      transform: translateY(calc(-100% - 1px));
+      font-size: 0.75rem;
+    }
+  }
+}

@@ -3,30 +3,31 @@ import classNames from "classnames";
 import React, { useRef } from "react";
 
 import { ComponentSize } from "../global-types";
-import { Tooltip } from "../Miscellaneous";
+import { defaultTooltipConfig, getTooltipPropsConfig, Tooltip } from "../Miscellaneous";
 import { ButtonIconPosition, ButtonProps } from "./types";
 
-import { defaultTooltipConfig, getTooltipPropsConfig } from "../Miscellaneous/Tooltip/helpers/getTooltipPropsConfig";
+import "./Button.scss";
 
-import "./Button.css";
-
+/**
+ * Reusable button component with various variants, sizes, icons placements, and tooltip.
+ */
 const Button = (props: ButtonProps) => {
   const {
-    children,
-    text,
-    onClick,
+    children = undefined,
+    text = undefined,
+    onClick = undefined,
     disabled = false,
     busy = false,
     display = true,
     disableDefaultMargin = false,
     icon = undefined,
     iconPosition = ButtonIconPosition.RIGHT,
-    className = "",
-    style = {},
+    className = undefined,
+    style = undefined,
     type = "button",
     variant = "outlined",
-    tooltip = "",
-    disabledTooltip = "",
+    tooltip = undefined,
+    disabledTooltip = undefined,
     tooltipConfig = defaultTooltipConfig,
     size = ComponentSize.MEDIUM,
     ...otherProps
@@ -34,15 +35,15 @@ const Button = (props: ButtonProps) => {
 
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  if (!display) {
+  if (display === false) {
     return null;
   }
 
   const getRightButtonIcon = () => {
     if (busy) {
-      return <FontAwesomeIcon className="right-svg is-busy-icon" icon="circle-notch" spin />;
+      return <FontAwesomeIcon className="m-button-svg right is-busy-icon" icon="circle-notch" spin />;
     } else if (icon && iconPosition === ButtonIconPosition.RIGHT) {
-      return <FontAwesomeIcon className="right-svg" icon={icon} />;
+      return <FontAwesomeIcon className="m-button-svg right" icon={icon} />;
     } else {
       return null;
     }
@@ -64,7 +65,9 @@ const Button = (props: ButtonProps) => {
         {...otherProps}
       >
         {children}
-        {icon && iconPosition === ButtonIconPosition.LEFT && <FontAwesomeIcon className="left-svg" icon={icon} />}
+        {icon && iconPosition === ButtonIconPosition.LEFT && (
+          <FontAwesomeIcon className="m-button-svg left" icon={icon} />
+        )}
         {text && text.trim() && <p>{text}</p>}
         {getRightButtonIcon()}
       </button>

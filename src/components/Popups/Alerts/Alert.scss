@@ -1,0 +1,128 @@
+@use "./Alert.theme.scss";
+
+.m-alert {
+  --alert-border-radius: 8px;
+  --alert-padding: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 400px;
+
+  border-top: var(--alert-border-radius) solid;
+  border-radius: var(--alert-border-radius);
+  gap: 1rem;
+
+  &.opened {
+    animation: open-alert var(--popup-transition);
+  }
+
+  &.closing {
+    animation: close-alert var(--popup-fast-transition) forwards;
+  }
+
+  .m-alert-header {
+    display: flex;
+    width: 100%;
+
+    padding: var(--alert-padding);
+    padding-bottom: unset;
+
+    h4 {
+      margin: unset;
+    }
+
+    svg {
+      --icon-padding: 3px;
+
+      margin-left: auto;
+
+      height: 18px;
+      width: 18px;
+
+      font-weight: bold;
+
+      margin-right: calc(-1 * var(--icon-padding));
+      margin-top: calc(-1 * var(--icon-padding));
+      padding: var(--icon-padding);
+
+      border-radius: 50px;
+      transition: var(--transition);
+      cursor: pointer;
+
+      &:active {
+        transform: scale(0.9);
+        transition: var(--fast-transition);
+      }
+    }
+  }
+
+  .m-alert-content {
+    height: 100%;
+    padding: 0 var(--alert-padding);
+
+    overflow: auto;
+
+    &:last-child {
+      padding-bottom: var(--alert-padding);
+    }
+  }
+
+  .m-alert-footer {
+    display: flex;
+    gap: 1px;
+
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+
+    button {
+      flex: 1;
+      border: unset;
+      border-top: 1px solid;
+      padding: 12px 0;
+      font-weight: bold;
+
+      &:not(:disabled) {
+        cursor: pointer;
+
+        &:active {
+          transition: var(--fast-transition);
+        }
+      }
+    }
+
+    .m-alert-confirm-button {
+      border-bottom-left-radius: 8px;
+    }
+
+    .m-alert-decline-button {
+      border-bottom-right-radius: 8px;
+    }
+  }
+}
+
+@keyframes open-alert {
+  0% {
+    transform: scale(0.7);
+  }
+  45% {
+    transform: scale(1.05);
+  }
+  80% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes close-alert {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}

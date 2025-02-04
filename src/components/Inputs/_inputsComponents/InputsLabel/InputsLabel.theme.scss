@@ -1,0 +1,28 @@
+.common-wrapper-container {
+  .m-input-label {
+    &.right,
+    &.left {
+      color: var(--input-label-color);
+    }
+
+    &.floating {
+      color: var(--input-placeholder-color);
+
+      &.filled,
+      &.focused,
+      &.forced-floating {
+        color: var(--input-label-color);
+      }
+    }
+  }
+
+  .m-input-container {
+    &.disabled .m-input-label.floating:not(.filled):not(.focused):not(.forced-floating) {
+      color: var(--input-disabled-text-color);
+    }
+
+    &:not(.disabled) .m-input:hover + .m-input-label.floating:not(.filled):not(.focused):not(.forced-floating) {
+      color: var(--input-hover-placeholder-color);
+    }
+  }
+}

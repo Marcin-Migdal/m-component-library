@@ -8,9 +8,11 @@ import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
-import { getInputStyle } from "../helpers/getInputStyle";
+import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { DatePickerPopup } from "./DatePickerPopup/DatePickerPopup";
 import { DateFieldProps, DateValue, InternalDateValue, SingleDate } from "./types";
+
+import "./Datefield.theme.scss";
 
 const getDateFieldValue = <TRange extends boolean>(
   range: TRange,
@@ -132,7 +134,7 @@ export const DateField = <TRange extends boolean>(props: DateFieldProps<TRange>)
         className={classNamesObj?.input}
         value={
           Array.isArray(value)
-            ? `${value[0]?.toDateString()} - ${value[1]?.toDateString()}`
+            ? `${value[0]?.toDateString() ?? ""} - ${value[1]?.toDateString() ?? ""}`
             : value?.toDateString() || ""
         }
         size={size}

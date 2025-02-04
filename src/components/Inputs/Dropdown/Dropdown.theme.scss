@@ -1,0 +1,31 @@
+.common-wrapper-container {
+  .m-dropdown-container {
+    .m-dropdown-icon {
+      color: var(--input-placeholder-color);
+
+      &.m-dropdown-clear-icon {
+        &:hover {
+          color: var(--input-text-color);
+        }
+      }
+    }
+  }
+
+  .m-dropdown-options {
+    background-color: var(--input-background-color);
+    color: var(--input-text-color);
+
+    .m-dropdown-option {
+      &:not(.empty-message) {
+        &:hover,
+        &:active {
+          background-color: var(--input-hover-background-color);
+        }
+
+        &.selected {
+          background-color: var(--input-hover-background-color);
+        }
+      }
+    }
+  }
+}

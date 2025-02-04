@@ -1,0 +1,20 @@
+@use "./ColorPicker.theme.scss";
+
+.m-color-picker-container {
+  .m-color-preview-container {
+    display: flex;
+    gap: 0.5rem;
+
+    .m-color-preview-square {
+      height: var(--input-height);
+      aspect-ratio: 1 / 1;
+      border-radius: var(--border-radius);
+    }
+
+    .m-color-preview {
+      height: var(--input-height);
+      box-sizing: border-box;
+      border-radius: var(--border-radius);
+    }
+  }
+}

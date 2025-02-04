@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 
-import { getCssProperty, getCssPropertyAsNumber } from "../../../../../helpers";
+import { getCssProperty, getCssPropertyAsNumber } from "../../../../../utils";
 import { LabelPercentageWidth, SimpleInputLabel } from "../../../../global-types";
 
 export const getToggleSwitchErrorStyle = (

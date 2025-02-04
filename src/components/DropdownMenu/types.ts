@@ -28,7 +28,7 @@ export enum OpenPosition {
   AUTO_BOTTOM = "auto-bottom",
   TOP = "top",
   AUTO_TOP = "auto-top",
-  OCCURRED_EVENT = "context-click",
+  OCCURRED_EVENT = "occurred-event",
 }
 
 export type DropdownMenuProps = {

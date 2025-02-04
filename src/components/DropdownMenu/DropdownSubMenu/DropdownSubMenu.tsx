@@ -3,9 +3,9 @@ import React, { useLayoutEffect, useRef, useState } from "react";
 import { DropdownMenuItem } from "../DropdownMenuOption/DropdownMenuItem";
 import { DropdownMenuConfig, DropdownMenuOption, DropdownMenuPosition, HorizontalOpenDirection } from "../types";
 
-import "./DropdownSubMenu.css";
+import "./DropdownSubMenu.scss";
 
-type DropdownSubMenuProps = {
+export type DropdownSubMenuProps = {
   options: DropdownMenuOption[];
   closeMenu: () => void;
   hideDisabled: boolean;
@@ -102,6 +102,7 @@ export const DropdownSubMenu = ({ options, closeMenu, hideDisabled }: DropdownSu
           key={option.id ?? index}
           option={option}
           closeMenu={closeMenu}
+          DropdownSubMenu={DropdownSubMenu}
         />
       ))}
     </ul>

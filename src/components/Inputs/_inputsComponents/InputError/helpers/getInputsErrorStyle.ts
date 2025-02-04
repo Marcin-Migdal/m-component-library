@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 
-import { getCssProperty } from "../../../../../helpers";
+import { getCssProperty } from "../../../../../utils";
 import { FloatingInputWidth, InputLabel, LabelPercentageWidth } from "../../../../global-types";
 
 export const getInputsErrorStyle = (

@@ -2,10 +2,10 @@ import classNames from "classnames";
 import React, { PropsWithChildren } from "react";
 
 import { useAccordion, useAccordionSection } from "../hooks";
+import { AccordionIndicatorIcon } from "./AccordionIndicatorIcon";
 import { AccordionToggleProps } from "./types";
 
-import { AccordionIndicatorIcon } from "./AccordionIndicatorIcon";
-import "./AccordionToggle.css";
+import "./AccordionToggle.scss";
 
 export const AccordionToggle: React.FC<PropsWithChildren<AccordionToggleProps>> = ({
   children,

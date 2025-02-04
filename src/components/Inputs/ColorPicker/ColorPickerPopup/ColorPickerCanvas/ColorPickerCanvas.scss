@@ -1,0 +1,19 @@
+@use "./ColorPickerCanvas.theme.scss";
+
+.color-picker-canvas-container {
+  position: relative;
+  height: 200px;
+
+  .color-picker-pointer {
+    position: absolute;
+
+    width: 0.75rem;
+    height: 0.75rem;
+    border: 2px solid;
+
+    border-radius: 50%;
+    pointer-events: none;
+
+    transform: translate(-50%, -50%);
+  }
+}

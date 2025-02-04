@@ -5,7 +5,7 @@ import { v4 as uuId } from "uuid";
 import { ComponentSize, InputLabel, SimpleInputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
-import { getInputStyle } from "../helpers/getInputStyle";
+import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { getAcceptanceDescription } from "./helpers/getAcceptanceDescription";
 import { getValidationDescription } from "./helpers/getValidationDescription";
 import { isImageValid } from "./helpers/isImageValid";
@@ -15,7 +15,7 @@ import { ImagePreview } from "./ImagePreview/ImagePreview";
 import { ImagePreviewZoom } from "./ImagePreviewZoom/ImagePreviewZoom";
 import { ImageFieldProps } from "./types";
 
-import "./ImageField.css";
+import "./ImageField.scss";
 
 export const ImageField = ({
   value: externalValue = undefined,

@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 
 import { OverlayProps } from "./types";
 
-import "./Overlay.css";
+import "./Overlay.scss";
 
 const Overlay = ({ children, onClick, enableKeysDown }: PropsWithChildren<OverlayProps>) => {
   const overlayRef = useRef<HTMLDivElement>(null);

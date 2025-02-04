@@ -1,0 +1,10 @@
+@use "generate-spacing-classes" as *;
+
+$max-px: 256;
+$max-rem: 128;
+
+@include generate-spacing-classes("w", "width", $max-px, "px", 1px);
+@include generate-spacing-classes("w", "width", $max-rem, "rem", 0.25rem);
+
+@include generate-spacing-classes("h", "height", $max-px, "px", 1px);
+@include generate-spacing-classes("h", "height", $max-rem, "rem", 0.25rem);

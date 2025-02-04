@@ -1,27 +1,21 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import { SimpleInputLabel } from "../../global-types";
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
-import StoryCheckboxWrapper from "./StoryCheckboxWrapper";
+import Checkbox from "./Checkbox";
 
-export default {
-  title: "M-component-library/Inputs",
-  component: StoryCheckboxWrapper,
-} as ComponentMeta<typeof StoryCheckboxWrapper>;
-
-const Template: ComponentStory<typeof StoryCheckboxWrapper> = (args) => (
-  <ThemeWrapper darkMode>
-    <div style={{ padding: "1rem" }}>
-      <StoryCheckboxWrapper {...args} />
-    </div>
-  </ThemeWrapper>
-);
-
-export const checkbox = Template.bind({});
-
-checkbox.args = {
-  label: "Checkbox",
-  labelType: SimpleInputLabel.LEFT,
-  labelWidth: 30,
+const meta: Meta<typeof Checkbox> = {
+  title: "Components/Inputs/Checkbox",
+  component: Checkbox,
+  args: {
+    label: "Checkbox",
+    onChange: (event) => {
+      // eslint-disable-next-line no-console
+      console.log(event); // console log used for documentation
+    },
+  },
 };
+
+export default meta;
+
+type Story = StoryObj<typeof Checkbox>;
+
+export const CheckboxStory: Story = {};

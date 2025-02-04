@@ -1,29 +1,52 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import { StoryObj } from "@storybook/react";
 
-import { InputLabel } from "../../global-types";
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
-import { DateField } from "./DateField";
+import { DateField } from "../DateField";
 
 export default {
-  title: "M-component-library/Inputs",
+  title: "Components/Inputs/DateField",
   component: DateField,
-} as ComponentMeta<typeof DateField>;
+};
 
-const Template: ComponentStory<typeof DateField> = (args) => (
-  <ThemeWrapper darkMode>
-    <div style={{ padding: "1rem" }}>
-      <DateField {...args} />
-    </div>
-  </ThemeWrapper>
-);
+type Story = StoryObj<typeof DateField>;
 
-export const dateField = Template.bind({});
+export const SingleDateField: Story = {
+  args: {
+    label: "Select a date",
+    labelType: "floating",
+  },
+};
 
-dateField.args = {
-  label: "Name",
-  labelType: InputLabel.FLOATING,
-  placeholder: "Name...",
-  labelWidth: 20,
-  range: true,
+export const RangeDateField: Story = {
+  args: {
+    label: "Select a date",
+    labelType: "floating",
+    range: true,
+  },
+};
+
+export const PolishLocaleDateField: Story = {
+  args: {
+    label: "Select a date",
+    labelType: "floating",
+    locale: "pl-PL",
+    range: true,
+  },
+};
+
+export const JapaneseDateField: Story = {
+  args: {
+    label: "Select a date",
+    labelType: "floating",
+    locale: "ja-JP",
+    range: true,
+  },
+};
+
+export const GermanDateField: Story = {
+  args: {
+    label: "Select a date",
+    labelType: "floating",
+    locale: "de-DE",
+    range: true,
+  },
 };

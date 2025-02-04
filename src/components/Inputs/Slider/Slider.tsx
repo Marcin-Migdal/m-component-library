@@ -5,11 +5,11 @@ import { useDebounceFunction } from "../../../hooks";
 import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
-import { getInputStyle } from "../helpers/getInputStyle";
+import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { getSliderValueDynamicStyle } from "./getSliderValueDynamicStyle";
 import { SliderProps } from "./types";
 
-import "./Slider.css";
+import "./Slider.scss";
 
 const Slider = ({
   value: externalValue,

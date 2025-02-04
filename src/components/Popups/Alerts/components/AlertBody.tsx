@@ -4,7 +4,7 @@ import React, { PropsWithChildren } from "react";
 import { Overlay } from "../../../Miscellaneous/Overlay";
 import { AlertBodyProps, AlertOpenState } from "../types";
 
-import "../Alert.css";
+import "../Alert.scss";
 
 export const AlertBody = ({ children, className = "", alertOpen, onClose }: PropsWithChildren<AlertBodyProps>) => {
   if (alertOpen === AlertOpenState.CLOSED) {

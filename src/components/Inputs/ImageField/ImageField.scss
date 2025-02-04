@@ -1,0 +1,40 @@
+@use "./ImageField.theme.scss";
+
+.m-image-container {
+  &.small {
+    --input-height: calc(var(--small-input-height) * 3);
+  }
+
+  &.medium {
+    --input-height: calc(var(--medium-input-height) * 3);
+  }
+
+  &.large {
+    --input-height: calc(var(--large-input-height) * 3);
+  }
+
+  & > div {
+    height: 100%;
+  }
+
+  .m-image-input-wrapper {
+    display: flex;
+    gap: 1rem;
+    height: 100%;
+
+    .m-image-input {
+      display: none;
+    }
+  }
+}
+
+.m-image-icon {
+  position: absolute;
+
+  padding: 4px;
+  border-radius: 50%;
+
+  aspect-ratio: 1 / 1;
+
+  font-size: 0.7rem;
+}

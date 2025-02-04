@@ -7,12 +7,12 @@ import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
-import { getInputStyle } from "../helpers/getInputStyle";
+import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { ColorPickerPopup } from "./ColorPickerPopup/ColorPickerPopup";
 import { rgbToHex, rgbToHsl, valueToRgb } from "./helpers";
 import { ColorPickerProps, ReturnedColor, RgbValue } from "./types";
 
-import "./ColorPicker.css";
+import "./ColorPicker.scss";
 
 const ColorPicker = ({
   name = undefined,
@@ -60,7 +60,7 @@ const ColorPicker = ({
   const handleClose = () => {
     if (onClose) {
       if (value === undefined) {
-        onClose(value);
+        onClose(undefined);
       } else {
         switch (returnedColorType) {
           case ReturnedColor.RGB:

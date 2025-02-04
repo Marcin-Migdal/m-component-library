@@ -5,10 +5,10 @@ import { useDebounceFunction } from "../../../hooks";
 import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
-import { getInputStyle } from "../helpers/getInputStyle";
+import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { TextareaProps } from "./types";
 
-import "./Textarea.css";
+import "./Textarea.scss";
 
 const Textarea = ({
   value: externalValue = undefined,
@@ -19,7 +19,7 @@ const Textarea = ({
   debounceDelay = 300,
   label,
   error,
-  labelType = InputLabel.LEFT,
+  labelType = InputLabel.FLOATING,
   placeholder,
   defaultValue,
   autoFocus = false,

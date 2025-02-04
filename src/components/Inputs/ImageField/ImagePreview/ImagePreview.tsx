@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-import "./ImagePreview.css";
+import "./ImagePreview.scss";
 
 type ImagePreviewProps = {
   value: File | undefined;

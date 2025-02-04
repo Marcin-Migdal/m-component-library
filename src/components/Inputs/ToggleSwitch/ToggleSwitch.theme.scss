@@ -1,0 +1,31 @@
+.common-wrapper-container {
+  .m-toggle-switch-container {
+    .m-toggle-switch-input {
+      &:checked {
+        & ~ .m-toggle-switch-slider {
+          background-color: var(--toggle-switch-color);
+
+          &:hover {
+            background-color: var(--toggle-switch-color);
+
+            &::before {
+              background-color: var(--input-hover-background-color);
+            }
+          }
+
+          &::before {
+            background-color: var(--input-background-color);
+          }
+        }
+      }
+    }
+
+    .m-toggle-switch-slider {
+      background-color: var(--input-background-color);
+
+      &::before {
+        background-color: var(--toggle-switch-color);
+      }
+    }
+  }
+}

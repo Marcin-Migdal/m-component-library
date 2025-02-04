@@ -3,7 +3,7 @@ import React from "react";
 
 import { CardProps } from "./types";
 
-import "./style.css";
+import "./Card.scss";
 
 const Card = ({ children, variant = "default", className = "", style = {} }: CardProps) => {
   return (

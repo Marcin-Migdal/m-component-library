@@ -1,32 +1,46 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import Card from "./Card";
 
-export default {
-  title: "M-component-library/Panels",
+const CardContent = () => {
+  return (
+    <>
+      <h2 style={{ width: "100%", textAlign: "center", marginTop: "0px" }}>Card title</h2>
+      <span style={{ display: "inline-block", width: "100%" }}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.
+      </span>
+    </>
+  );
+};
+
+const meta: Meta<typeof Card> = {
+  title: "Components/Panels/Card",
   component: Card,
-} as ComponentMeta<typeof Card>;
+  args: {
+    style: { width: "300px", padding: "1rem" },
+    children: <CardContent />,
+  },
+};
 
-const Template: ComponentStory<typeof Card> = (args) => (
-  <ThemeWrapper darkMode>
-    <div style={{ padding: "1rem" }}>
-      <Card style={{ width: "300px" }} {...args}>
-        <h2 style={{ width: "100%", textAlign: "center", marginTop: "0px" }}>Card title</h2>
+export default meta;
 
-        <span style={{ display: "inline-block", width: "100%" }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat
-        </span>
-      </Card>
-    </div>
-  </ThemeWrapper>
-);
+type Story = StoryObj<typeof Card>;
 
-export const card = Template.bind({});
+export const VariantDefault: Story = {
+  args: { variant: "default" },
+};
 
-card.args = {
-  variant: "default",
+export const VariantBorder: Story = {
+  args: { variant: "border" },
+};
+
+export const VariantGradientBorder: Story = {
+  args: { variant: "gradient-border" },
+};
+
+export const VariantGradientBorderGlow: Story = {
+  args: { variant: "gradient-border-glow" },
 };

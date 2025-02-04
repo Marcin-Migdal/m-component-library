@@ -1,0 +1,11 @@
+@mixin generate-spacing-classes($prefix, $property, $max, $unit, $step) {
+  .#{$prefix}-unset {
+    #{$property}: unset !important;
+  }
+
+  @for $i from 1 through $max {
+    .#{$prefix}-#{$i}-#{$unit} {
+      #{$property}: $i * $step !important;
+    }
+  }
+}

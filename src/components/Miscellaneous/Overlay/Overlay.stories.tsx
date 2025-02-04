@@ -1,18 +1,15 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import Overlay from "./Overlay";
 
-export default {
-  title: "M-component-library/Miscellaneous",
+const meta: Meta<typeof Overlay> = {
+  title: "Components/Miscellaneous",
   component: Overlay,
-} as ComponentMeta<typeof Overlay>;
+  args: { children: "Overlay content" },
+};
 
-const Template: ComponentStory<typeof Overlay> = () => (
-  <ThemeWrapper darkMode>
-    <Overlay>Overlay content</Overlay>
-  </ThemeWrapper>
-);
+export default meta;
 
-export const overlay = Template.bind({});
+type Story = StoryObj<typeof Overlay>;
+
+export const overlay: Story = {};

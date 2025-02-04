@@ -1,0 +1,50 @@
+@use "./IconField.theme.scss";
+
+.m-icon-field-popup {
+  width: min(1400px, max(75%, 600px));
+  height: max(75%, 400px);
+
+  .m-alert-content {
+    padding-right: calc(var(--alert-padding) - 1.25rem);
+  }
+}
+
+.m-icon-preview-container {
+  display: flex;
+
+  gap: 0.5rem;
+
+  .m-icon-preview-square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: var(--input-height);
+    aspect-ratio: 1 / 1;
+    border-radius: var(--border-radius);
+
+    &:hover {
+      .m-icon-preview {
+        display: none;
+      }
+
+      .m-clear-icon {
+        display: initial;
+      }
+    }
+
+    .m-clear-icon {
+      display: none;
+      transition: var(--transition);
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      &:active {
+        transform: scale(0.9);
+        transition: var(--fast-transition);
+      }
+    }
+  }
+}

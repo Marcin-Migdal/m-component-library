@@ -1,0 +1,47 @@
+.common-wrapper-container {
+  .m-input-container {
+    color: var(--input-text-color);
+
+    &.disabled {
+      .m-input {
+        background-color: var(--input-disabled-background-color);
+        color: var(--input-disabled-text-color);
+
+        &::placeholder {
+          color: var(--input-disabled-text-color);
+        }
+      }
+    }
+
+    &:not(.disabled) {
+      .m-input {
+        &:not(:disabled) {
+          &::placeholder {
+            color: var(--input-placeholder-color);
+          }
+
+          &:focus,
+          &:hover {
+            background-color: var(--input-hover-background-color);
+            color: var(--input-hover-color);
+
+            &::placeholder {
+              color: var(--input-hover-placeholder-color);
+            }
+          }
+        }
+      }
+    }
+
+    .m-input {
+      color: inherit;
+      background: var(--input-background-color);
+
+      border: 1px solid transparent;
+
+      &:not(.m-slider):focus {
+        box-shadow: var(--big-box-shadow) var(--box-shadow-color);
+      }
+    }
+  }
+}

@@ -5,7 +5,7 @@ import { getColClasses } from "./helpers/getColClasses";
 import { getFlexColClasses } from "./helpers/getFlexColClasses";
 import { ColProps } from "./types";
 
-import "./Col.css";
+import "./Col.scss";
 
 const Col = ({
   className = "",

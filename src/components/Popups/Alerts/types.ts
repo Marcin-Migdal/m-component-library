@@ -19,10 +19,10 @@ export type AlertHeaderProps = {
 export type AlertFooterProps = {
   confirmBtnText?: string;
   confirmBtnDisabled?: boolean;
-  onConfirmBtnClick?: () => void;
+  onConfirm?: () => void;
   declineBtnText?: string;
   declineBtnDisabled?: boolean;
-  onDeclineBtnClick?: () => void;
+  onDecline?: () => void;
 };
 
 export type UseAlertOpenArgs = {

@@ -1,0 +1,61 @@
+@use "./Checkbox.theme.scss";
+
+.m-checkbox-container {
+  &.small {
+    --checkbox-input-size: calc(var(--input-height) - 6px);
+  }
+
+  &.medium {
+    --checkbox-input-size: calc(var(--input-height) - 8px);
+  }
+
+  &.large {
+    --checkbox-input-size: calc(var(--input-height) - 10px);
+  }
+
+  &:not(.disabled) .m-checkbox-input-wrapper .m-checkbox {
+    cursor: pointer;
+  }
+
+  .m-checkbox-input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: fit-content;
+
+    &.checked {
+      .m-checkbox {
+        .m-checkbox-check-icon {
+          opacity: 1;
+        }
+      }
+    }
+
+    .m-checkbox-input {
+      display: none;
+    }
+
+    .m-checkbox {
+      position: relative;
+
+      width: var(--checkbox-input-size);
+      height: var(--checkbox-input-size);
+      margin: 0px;
+      border-radius: var(--border-radius);
+      border: var(--border);
+
+      transition: var(--transition);
+
+      .m-checkbox-check-icon {
+        position: absolute;
+        left: 1px;
+        top: 1px;
+
+        width: calc(var(--checkbox-input-size) - 6px);
+        height: calc(var(--checkbox-input-size) - 6px);
+        opacity: 0;
+        transition: var(--transition);
+      }
+    }
+  }
+}

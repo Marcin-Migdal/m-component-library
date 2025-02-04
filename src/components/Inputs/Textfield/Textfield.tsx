@@ -6,7 +6,7 @@ import { ComponentSize, InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
-import { getInputStyle } from "../helpers/getInputStyle";
+import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { TextfieldProps } from "./types";
 
 const Textfield = (props: TextfieldProps) => {
@@ -29,8 +29,6 @@ const Textfield = (props: TextfieldProps) => {
     size = ComponentSize.MEDIUM,
     disableDefaultMargin = false,
     classNamesObj,
-    advancedMask = undefined,
-    mask = "",
     ...otherProps
   } = props;
 
@@ -81,8 +79,6 @@ const Textfield = (props: TextfieldProps) => {
         disabled={disabled}
         className={classNamesObj?.input}
         value={value}
-        advancedMask={advancedMask as undefined} // Type error
-        mask={mask as string} // Type error
         size={size}
         {...otherProps}
       />
