@@ -2,7 +2,7 @@ import classNames from "classnames";
 import React, { useEffect, useRef, useState } from "react";
 
 import { useThrottling } from "../../../hooks";
-import { CanvasCoordinates } from "../../inputs/ColorPicker/types";
+import { CanvasCoordinates } from "../../Inputs/ColorPicker/types";
 import { HueSliderCanvasProps } from "./types";
 
 import {
@@ -10,7 +10,7 @@ import {
   fillSliderGradientBackground,
   hslToRgb,
   rgbToHsl,
-} from "../../inputs/ColorPicker/helpers";
+} from "../../Inputs/ColorPicker/helpers";
 
 import "./HueSliderCanvas.scss";
 

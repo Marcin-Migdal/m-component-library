@@ -3,7 +3,7 @@ import React from "react";
 import * as Yup from "yup";
 
 import { Button } from "../Button";
-import { Textfield } from "../inputs/Textfield";
+import { Textfield } from "../Inputs/Textfield";
 import Form from "./Form";
 
 const meta: Meta<typeof Form> = {

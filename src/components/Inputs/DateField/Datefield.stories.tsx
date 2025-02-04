@@ -1,6 +1,6 @@
 import { StoryObj } from "@storybook/react";
 
-import { DateField } from "../DateField";
+import { DateField } from ".";
 
 export default {
   title: "Components/Inputs/DateField",
