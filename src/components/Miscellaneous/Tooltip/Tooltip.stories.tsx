@@ -15,6 +15,7 @@ type Story = StoryObj<typeof Tooltip>;
 
 export const tooltip: Story = {
   render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const ref = useRef<SVGSVGElement>(null);
 
     return (

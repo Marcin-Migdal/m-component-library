@@ -20,6 +20,7 @@ type Story = StoryObj<typeof ToastsContainer>;
 
 export const ToastExample: Story = {
   render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const toastRef = useRef<ToastHandler>(null);
 
     return (

@@ -17,6 +17,7 @@ type Story = StoryObj<typeof Alert>;
 
 export const AlertExample: Story = {
   render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [handleOpen, alertProps] = useAlert();
 
     return (

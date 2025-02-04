@@ -14,6 +14,7 @@ export default meta;
 
 export const SimpleSidePanel: StoryObj<typeof SidePanel> = {
   render: () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [handleOpen, sidePanelProps] = useSidePanel();
 
     return (

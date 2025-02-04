@@ -6,8 +6,11 @@ import DropdownMenu from "./DropdownMenu";
 import { DropdownMenuOption } from "./types";
 
 const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>, option: DropdownMenuOption) => {
-  console.log(event);
-  console.log(option);
+  // eslint-disable-next-line no-console
+  console.log(event); // console log used for documentation
+
+  // eslint-disable-next-line no-console
+  console.log(option); // console log used for documentation
 };
 
 const dropdownMenuOptions: DropdownMenuOption[] = [
@@ -84,6 +87,10 @@ export default {
   ],
 } as Meta<typeof DropdownMenu>;
 
+const DropdownMenuTriggerButton = ({ text = "Currency" }: { text?: string }) => {
+  return <Button style={{ width: "fit-content" }} text={text} icon="money-bill-wave" onClick={() => {}} />;
+};
+
 export const OpenEventOnClick: StoryObj<typeof DropdownMenu> = {
   render: () => (
     <DropdownMenu options={dropdownMenuOptions} openEvent="click">
@@ -114,8 +121,4 @@ export const CenterDropdownPosition: StoryObj<typeof DropdownMenu> = {
       <DropdownMenuTriggerButton />
     </DropdownMenu>
   ),
-};
-
-const DropdownMenuTriggerButton = ({ text = "Currency" }: { text?: string }) => {
-  return <Button style={{ width: "fit-content" }} text={text} icon="money-bill-wave" onClick={() => {}} />;
 };
