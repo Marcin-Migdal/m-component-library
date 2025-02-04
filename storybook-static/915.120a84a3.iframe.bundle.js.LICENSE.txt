@@ -1,5 +1,0 @@
-//! EVENT LISTENER SECTION
-
-//! Function that return left position for getTopPlacement, getBottomPlacement
-
-//! Function that return top position for getRightPlacement, getLeftPlacement
