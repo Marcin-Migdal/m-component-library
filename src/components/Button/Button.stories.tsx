@@ -5,8 +5,6 @@ import { ComponentSize } from "../global-types";
 import Button from "./Button";
 import { ButtonIconPosition } from "./types";
 
-// TODO! deploy storybooka chromiatic
-
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,

@@ -5,6 +5,10 @@ import React, { useMemo } from "react";
 import { getFilteredErrors } from "./helpers/getFilteredErrors";
 import { FormProps, SimpleChangeEvent } from "./types";
 
+/**
+ * A flexible form component built with Formik for handling form state, validation, and submission.
+ * Supports custom value changes and external error handling.
+ */
 function Form<T extends FormikValues>({
   initialValues,
   onSubmit,

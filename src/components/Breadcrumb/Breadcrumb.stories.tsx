@@ -1,13 +1,14 @@
 import { faFileAlt, faFolder, faHome } from "@fortawesome/free-solid-svg-icons";
 import { Meta, StoryObj } from "@storybook/react";
+import { generateHiddenArgTypes } from "../../internalUtils/generateHiddenArgTypes";
 import { Breadcrumb } from "./Breadcrumb";
-import { BreadcrumbProps } from "./types";
+import { BreadcrumbProps, Crumb } from "./types";
 
 const meta: Meta<BreadcrumbProps> = {
   title: "Components/Breadcrumb",
   component: Breadcrumb,
   argTypes: {
-    onClick: { action: "clicked" },
+    ...generateHiddenArgTypes(["onClick"]),
     variant: {
       control: {
         type: "radio",
@@ -21,10 +22,10 @@ export default meta;
 
 type Story = StoryObj<BreadcrumbProps>;
 
-const crumbs = [
-  { id: 1, name: "Home", path: "/", icon: faHome },
-  { id: 2, name: "Folder", path: "/folder", icon: faFolder },
-  { id: 3, name: "File", path: "/folder/file", icon: faFileAlt },
+const crumbs: Crumb[] = [
+  { id: 1, label: "Home", path: "/", icon: faHome },
+  { id: 2, label: "Folder", path: "/folder", icon: faFolder },
+  { id: 3, label: "File", path: "/folder/file", icon: faFileAlt },
 ];
 
 export const Default: Story = {
@@ -54,9 +55,9 @@ export const DisabledLastCrumb: Story = {
 export const WithDisabledCrumbs: Story = {
   args: {
     crumbs: [
-      { id: 1, name: "Home", path: "/", icon: faHome },
-      { id: 2, name: "Folder", path: "/folder", icon: faFolder, disabled: true },
-      { id: 3, name: "File", path: "/folder/file", icon: faFileAlt },
+      { id: 1, label: "Home", path: "/", icon: faHome },
+      { id: 2, label: "Folder", path: "/folder", icon: faFolder, disabled: true },
+      { id: 3, label: "File", path: "/folder/file", icon: faFileAlt },
     ],
     variant: "default",
     disableLastCrumb: false,

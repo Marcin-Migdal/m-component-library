@@ -5,6 +5,7 @@ import { RowProps } from "./types";
 
 import "./Row.scss";
 
+/** Col component wrapper */
 const Row = ({ className = "", style = {}, children, gap }: RowProps) => {
   return (
     <div

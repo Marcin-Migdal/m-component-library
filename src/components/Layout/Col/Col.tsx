@@ -7,6 +7,11 @@ import { ColProps } from "./types";
 
 import "./Col.scss";
 
+/**
+ * A flexible column component for grid layouts.
+ * Supports responsive sizing and flex-based sizing for different breakpoints. <br/>
+ * <b>Need to be wrapped by `Row` component</b>
+ */
 const Col = ({
   className = "",
   style = {},

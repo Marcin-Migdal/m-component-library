@@ -9,6 +9,16 @@ import Form from "./Form";
 const meta: Meta<typeof Form> = {
   title: "Components/Form",
   component: Form,
+  argTypes: {
+    initialValues: { description: "Initial values for the form fields.", control: false },
+    onSubmit: { description: "Callback function triggered when the form is submitted.", control: false },
+    className: { description: "Additional CSS class for the form container.", control: "text" },
+    children: { description: "Render prop function to render the form fields.", control: false },
+    validationSchema: { description: "Yup validation schema for form validation.", control: false },
+    handleValuesChange: { description: "Callback function to handle custom value changes.", control: false },
+    externalErrors: { description: "External errors to display in the form (e.g., API errors).", control: false },
+    onExternalErrorChange: { description: "Callback function triggered when external errors change.", control: false },
+  },
 };
 
 export default meta;
