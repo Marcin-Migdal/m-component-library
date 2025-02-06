@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { HueSliderCanvas } from "./HueSliderCanvas";
 
 const meta: Meta<typeof HueSliderCanvas> = {
-  title: "Components/Miscellaneous",
+  title: "Components/Miscellaneous/HueSliderCanvas",
   component: HueSliderCanvas,
 };
 

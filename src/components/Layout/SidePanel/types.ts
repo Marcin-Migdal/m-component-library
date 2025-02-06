@@ -7,24 +7,30 @@ export type SidePanelProps = {
   /** Current state of the side panel (e.g., "mounted", "opened", "closing", "closed"). */
   sidePanelOpen: SidePanelOpenState;
 
-  /** Callback function to close the side panel. */
+  /** Callback function to close the side panel.
+   * @default undefined */
   handleClose: () => void;
 
-  /** Additional CSS class for the side panel. @default undefined */
+  /** Additional CSS class for the side panel.
+   * @default undefined */
   className?: string;
 
-  /** Position of the side panel (e.g., "left" or "right"). @default "left" */
+  /** Position of the side panel (e.g., "left" or "right").
+   * @default "left" */
   position?: "left" | "right";
 
-  /** Whether the side panel should always remain open. @default false */
+  /** Whether the side panel should always remain open.
+   * @default false */
   alwaysOpen?: boolean;
 };
 
 export type UseSidePanelArgs = {
-  /** Callback function triggered when the side panel opens. @default undefined */
+  /** Callback function triggered when the side panel opens.
+   * @default undefined */
   onOpen?: () => void;
 
-  /** Callback function triggered when the side panel closes. @default undefined */
+  /** Callback function triggered when the side panel closes.
+   * @default undefined */
   onClose?: () => void;
 };
 

@@ -6,7 +6,7 @@ import { AlertBodyProps, AlertOpenState } from "../types";
 
 import "../Alert.scss";
 
-export const AlertBody = ({ children, className = "", alertOpen, onClose }: PropsWithChildren<AlertBodyProps>) => {
+export const AlertBody = ({ children, className, alertOpen, onClose }: PropsWithChildren<AlertBodyProps>) => {
   if (alertOpen === AlertOpenState.CLOSED) {
     return null;
   }

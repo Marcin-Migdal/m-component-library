@@ -23,6 +23,12 @@ const meta: Meta<typeof Card> = {
     style: { width: "300px", padding: "1rem" },
     children: <CardContent />,
   },
+
+  argTypes: {
+    children: {
+      control: false,
+    },
+  },
 };
 
 export default meta;

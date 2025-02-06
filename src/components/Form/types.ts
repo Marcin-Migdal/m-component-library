@@ -11,36 +11,41 @@ export type SimpleChangeEvent = {
 };
 
 type BaseFormProps<T extends FormikValues> = {
-  /** Initial values for the form fields. @default {} */
+  /** Initial values for the form fields.
+   * @default {} */
   initialValues: T;
 
-  /** Callback function triggered when the form is submitted. @default undefined */
+  /** Callback function triggered when the form is submitted. */
   onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void;
 
-  /** Additional CSS class for the form container. @default undefined */
+  /** Additional CSS class for the form container.
+   * @default undefined */
   className?: string;
 
-  /** Render prop function to render the form fields. @default undefined */
+  /** Render prop function to render the form fields. */
   children: (e: ChildrenFormikDataType<T>) => ReactNode;
 
-  /** Yup validation schema for form validation. @default undefined */
+  /** Yup validation schema for form validation. */
   validationSchema: Yup.ObjectSchema<T>;
 
-  /** Callback function to handle custom value changes. @default undefined */
+  /** Callback function to handle custom value changes.
+   * @default undefined */
   handleValuesChange?: (event: SimpleChangeEvent, formik: UseFormikReturnType<T>) => T;
 
-  /** External errors to display in the form (e.g., API errors). @default undefined */
+  /** External errors to display in the form (e.g., API errors).
+   * @default {} */
   externalErrors?: undefined;
 
-  /** Callback function triggered when external errors change. @default undefined */
+  /** Callback function triggered when external errors change.
+   * @default undefined */
   onExternalErrorChange?: undefined;
 };
 
 type ErrorFormProps<T extends FormikValues> = Omit<BaseFormProps<T>, "externalErrors" | "onExternalErrorChange"> & {
-  /** External errors to display in the form (e.g., API errors). @default undefined */
+  /** External errors to display in the form (e.g., API errors). */
   externalErrors: FormErrorsType<T>;
 
-  /** Callback function triggered when external errors change. @default undefined */
+  /** Callback function triggered when external errors change. */
   onExternalErrorChange: (errors: FormErrorsType<T>) => void;
 };
 

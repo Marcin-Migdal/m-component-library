@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tooltip } from ".";
 
 const meta: Meta<typeof Tooltip> = {
-  title: "Components/Miscellaneous",
+  title: "Components/Miscellaneous/Tooltip",
   component: Tooltip,
 };
 

@@ -22,7 +22,7 @@ const SidePanel = ({
   if (!alwaysOpen && sidePanelOpen === SidePanelOpenState.CLOSED) {
     return null;
   }
-
+  className + "";
   return createPortal(
     <div
       className={classNames("m-side-panel", "m-scroll slim-scroll", sidePanelOpen, position, className, {

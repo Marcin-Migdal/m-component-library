@@ -8,10 +8,11 @@ import { TargetElementType, TooltipProps } from "./types";
 
 import "./Tooltip.scss";
 
+/** A component for displaying a tooltip when hovering over an element. */
 const TooltipWrapper = ({
   targetRef,
-  children,
-  className = "",
+  children = undefined,
+  className,
   style = {},
   placement = Placement.BOTTOM,
   openDelay = 0,

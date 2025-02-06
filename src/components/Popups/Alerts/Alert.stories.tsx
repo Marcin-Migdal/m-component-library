@@ -6,7 +6,7 @@ import Alert from "./Alert";
 import { useAlert } from "./hooks/useAlert";
 
 const meta: Meta<typeof Alert> = {
-  title: "Components/Popups",
+  title: "Components/Popups/Alert",
   component: Alert,
   args: { header: "Alert header" },
 };

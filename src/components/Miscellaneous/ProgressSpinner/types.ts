@@ -1,8 +1,14 @@
 export type ProgressSpinnerProps = {
+  /** Determines whether the spinner is in a loading state.
+   * @default true */
   loading?: boolean;
+
+  /** The thickness of the spinner's stroke. Acceptable values range from "1" to "20".
+   * @default "4" */
   strokeWidth?: StrokeWidthType;
 };
 
+/** Represents the possible stroke widths for the spinner. */
 export type StrokeWidthType =
   | "1"
   | "2"

@@ -6,7 +6,8 @@ import { IconProps } from "./types";
 
 import "./Icon.theme.scss";
 
-const Icon = ({ icon, onClick, className = "", style = {} }: IconProps) => {
+/** A reusable icon component for displaying SVG-based icons. */
+const Icon = ({ icon, onClick, className, style = {} }: IconProps) => {
   if (!icon) {
     return null;
   }

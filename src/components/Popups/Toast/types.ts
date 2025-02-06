@@ -23,14 +23,22 @@ export type AddToastPayload<T> = {
 };
 
 export type ToastsContainerBaseProps = {
+  /** The duration (in milliseconds) for which each toast will be displayed. @default 2000 */
   toastsDuration?: number;
+
+  /** Whether the toasts should automatically close after the specified duration. @default true */
   autoClose?: boolean;
+
+  /** The position where toasts will appear on the screen.
+   * @default "top-right" */
   toastsPosition?: ToastsPosition;
+
+  /** Function to transform the content of the toast before displaying it. @default undefined */
   transformToastsContent?: (content: string) => string;
 };
 
-export type ToastConfig<T extends string> = Record<
-  T,
+export type ToastConfig<TKey extends string> = Record<
+  TKey,
   {
     default: boolean;
     icon: ReactNode;

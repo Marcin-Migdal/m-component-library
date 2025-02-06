@@ -12,7 +12,7 @@ import { FormProps, SimpleChangeEvent } from "./types";
 function Form<T extends FormikValues>({
   initialValues,
   onSubmit,
-  className = "",
+  className,
   children,
   validationSchema,
   handleValuesChange,

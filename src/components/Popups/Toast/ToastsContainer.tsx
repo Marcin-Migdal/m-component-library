@@ -7,15 +7,16 @@ import { defaultToastConfig, getDefaultToastType } from "./utils";
 
 import "./Toasts.scss";
 
-function ToastsContainer<T extends string>(props: ToastsContainerProps<T>, ref: ForwardedRef<ToastHandler<T>>) {
-  const {
+function ToastsContainer<T extends string>(
+  {
     autoClose = true,
     toastsPosition = "top-right",
     toastConfig = defaultToastConfig,
     transformToastsContent,
     toastsDuration = 2000,
-  } = props;
-
+  }: ToastsContainerProps<T>,
+  ref: ForwardedRef<ToastHandler<T>>
+) {
   const timeoutRefs = useRef<Record<number, NodeJS.Timeout>>({});
 
   const [toasts, setToasts] = useState<ToastType[]>([]);

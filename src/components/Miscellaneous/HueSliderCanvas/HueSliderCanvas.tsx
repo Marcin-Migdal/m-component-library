@@ -14,6 +14,10 @@ import {
 
 import "./HueSliderCanvas.scss";
 
+/**
+ * A canvas-based hue slider component used for selecting a color hue.
+ * Renders a gradient representing the full hue spectrum and allows interactive selection of a hue value.
+ */
 export const HueSliderCanvas = ({ hue, onChange, readOnly }: HueSliderCanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 

@@ -13,7 +13,7 @@ import "./Col.scss";
  * <b>Need to be wrapped by `Row` component</b>
  */
 const Col = ({
-  className = "",
+  className,
   style = {},
   children,
 

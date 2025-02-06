@@ -5,6 +5,7 @@ import { AlertFooter } from "./components/AlertFooter";
 import { AlertHeader } from "./components/AlertHeader";
 import { AlertProps } from "./types";
 
+/** A component for displaying alert messages with customizable header, body, and footer actions. */
 const Alert = ({
   children,
   className,

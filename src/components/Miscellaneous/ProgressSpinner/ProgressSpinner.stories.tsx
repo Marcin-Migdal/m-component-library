@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import ProgressSpinner from "./ProgressSpinner";
 
 const meta: Meta<typeof ProgressSpinner> = {
-  title: "Components/Miscellaneous",
+  title: "Components/Miscellaneous/ProgressSpinner",
   component: ProgressSpinner,
 };
 

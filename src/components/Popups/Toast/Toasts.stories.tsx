@@ -6,11 +6,34 @@ import ToastsContainer from "./ToastsContainer";
 import { ToastHandler } from "./types";
 
 const meta: Meta<typeof ToastsContainer> = {
-  title: "Components/Popups",
+  title: "Components/Popups/Toast",
   component: ToastsContainer,
   args: {
     autoClose: true,
     toastsPosition: "top-right",
+    toastsDuration: 2000,
+  },
+  argTypes: {
+    toastsDuration: {
+      control: { type: "number" },
+      description: "The duration (in milliseconds) for which each toast will be displayed.",
+    },
+    autoClose: {
+      control: { type: "boolean" },
+      description: "Whether the toasts should automatically close after the specified duration.",
+    },
+    toastsPosition: {
+      control: { type: "select", options: ["top-left", "top-right", "bottom-left", "bottom-right"] },
+      description: "The position where toasts will appear on the screen.",
+    },
+    transformToastsContent: {
+      control: false,
+      description: "Function to transform the content of the toast before displaying it.",
+    },
+    toastConfig: {
+      control: false,
+      description: "With this props it is possible to pass custom toast config that differs from the default one",
+    },
   },
 };
 

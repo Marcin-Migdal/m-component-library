@@ -10,10 +10,10 @@ export type Crumb<TData = unknown> = {
 };
 
 export type BreadcrumbProps = {
-  /** List of breadcrumbs to display. @default [] */
+  /** List of breadcrumbs to display. */
   crumbs: Crumb[];
 
-  /** Callback function triggered when a crumb is clicked. @default undefined */
+  /** Callback function triggered when a crumb is clicked. */
   onClick: (crumb: Crumb) => void;
 
   /** Variant of the breadcrumb.
@@ -23,6 +23,7 @@ export type BreadcrumbProps = {
    */
   variant?: "default" | "compact";
 
-  /** Whether the last crumb should be non-clickable (disabled). @default false */
+  /** Whether the last crumb should be non-clickable (disabled).
+   * @default false */
   disableLastCrumb?: boolean;
 };

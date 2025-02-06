@@ -5,7 +5,8 @@ import { CardProps } from "./types";
 
 import "./Card.scss";
 
-const Card = ({ children, variant = "default", className = "", style = {} }: CardProps) => {
+/** Simple style card component with various variants, that displays `ReactNode` passed as children props   */
+const Card = ({ children, variant = "default", className, style = {} }: CardProps) => {
   return (
     <div style={style} className={classNames("m-card", variant, className)}>
       {children}
