@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
-import React, { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { ReactElement, useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import { getPosition } from "../../../../utils";
 import { Position } from "../../../../utils/getPosition/getPosition-types";
@@ -150,7 +150,7 @@ export const DatePickerPopup = <TRange extends boolean>({
     const startOfMonth = new Date(currentYear, currentMonth, 1);
     const endOfMonth = new Date(currentYear, currentMonth + 1, 0);
 
-    const dates = [];
+    const dates: ReactElement[] = [];
 
     const startOfMonthWeekDayIndex: number = weekDays.indexOf(getDayName(startOfMonth, locale));
 

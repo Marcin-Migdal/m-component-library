@@ -60,7 +60,7 @@ export const DefaultCol: StoryObj<typeof Col> = {
 };
 
 export const FlexCol: StoryObj<typeof Col> = {
-  render: (args) => {
+  render: () => {
     return (
       <>
         <Col smFlex={4}>Col 1 | Flex 4</Col>

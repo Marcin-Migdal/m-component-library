@@ -3,7 +3,7 @@ import { Placement } from "../../../utils/getPosition/getPosition-types";
 
 export type TooltipProps = {
   /** A reference to the target element the tooltip is associated with. */
-  targetRef: RefObject<TargetElementType>;
+  targetRef: RefObject<TargetElementType | null>;
 
   /** Additional CSS class for styling the tooltip.
    * @default undefined */
@@ -30,10 +30,11 @@ export type TooltipContentProps = {
   style: React.CSSProperties | undefined;
 
   /** A reference to the tooltip content element. */
-  tooltipRef: React.RefObject<HTMLDivElement>;
+  tooltipRef: React.RefObject<HTMLDivElement | null>;
 
-  /** Additional CSS class for styling the tooltip content. */
-  className: string;
+  /** Additional CSS class for styling the tooltip content.
+   * @default undefined */
+  className?: string;
 };
 
 /** Configuration object for the Tooltip component without the target reference. */

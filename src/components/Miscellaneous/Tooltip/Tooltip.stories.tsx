@@ -21,7 +21,7 @@ export const tooltip: Story = {
     return (
       <>
         <FontAwesomeIcon ref={ref} icon="search" />
-        <Tooltip placement="right" targetRef={ref} {...args}>
+        <Tooltip {...args} placement="right" targetRef={ref}>
           Tooltip content
         </Tooltip>
       </>

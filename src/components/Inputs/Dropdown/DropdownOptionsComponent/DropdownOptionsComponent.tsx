@@ -44,7 +44,7 @@ export const DropdownOptionsComponent = <T,>({
         return;
       }
 
-      const position: Position = getPosition(filterElement, ref.current, { consumerHasParentWidth: true });
+      const position: Position = getPosition(filterElement, element, { consumerHasParentWidth: true });
 
       const children = Array.from(element.children) as HTMLLIElement[];
 
