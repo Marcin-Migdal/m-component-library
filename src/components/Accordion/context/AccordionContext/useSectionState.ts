@@ -1,13 +1,13 @@
 import { useMemo, useState } from "react";
 
 import { deepCopy } from "../../../../utils";
-import { Mode, SectionId, SectionState, SectionStateChangeHandler } from "../../types";
+import { AccordionMode, SectionId, SectionState, SectionStateChangeHandler } from "../../types";
 
 const getMode = (
-  externalMode: Mode | undefined,
+  externalMode: AccordionMode | undefined,
   externalSectionState: SectionState | undefined,
   onSectionStateChange: SectionStateChangeHandler | undefined
-): Mode | undefined => {
+): AccordionMode | undefined => {
   if (externalMode) {
     return externalMode;
   }
@@ -17,19 +17,19 @@ const getMode = (
   }
 
   if (externalSectionState !== null && typeof externalSectionState === "object") {
-    return Mode.MULTIPLE;
+    return AccordionMode.MULTIPLE;
   }
 
-  return Mode.SINGLE;
+  return AccordionMode.SINGLE;
 };
 
 export const useSectionState = (
-  externalMode: Mode | undefined,
+  externalMode: AccordionMode | undefined,
   externalSectionState: SectionState | undefined,
   onSectionStateChange: SectionStateChangeHandler | undefined
-): [Mode | undefined, SectionState, (sectionId: SectionId) => void] => {
+): [AccordionMode | undefined, SectionState, (sectionId: SectionId) => void] => {
   const [internalSectionState, setInternalSectionState] = useState<SectionState>(
-    externalMode === Mode.MULTIPLE ? {} : null
+    externalMode === AccordionMode.MULTIPLE ? {} : null
   );
 
   const sectionStateControlled = externalSectionState !== undefined;
@@ -47,7 +47,7 @@ export const useSectionState = (
         return;
       }
 
-      case Mode.SINGLE: {
+      case AccordionMode.SINGLE: {
         if (sectionState !== null && typeof sectionState === "object") {
           // eslint-disable-next-line no-console
           console.warn(
@@ -60,7 +60,7 @@ export const useSectionState = (
         break;
       }
 
-      case Mode.MULTIPLE: {
+      case AccordionMode.MULTIPLE: {
         if (!sectionState || typeof sectionState !== "object") {
           // eslint-disable-next-line no-console
           console.warn(

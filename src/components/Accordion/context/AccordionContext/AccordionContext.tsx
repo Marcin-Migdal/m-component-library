@@ -1,6 +1,6 @@
 import React, { createContext, PropsWithChildren } from "react";
 
-import { Mode } from "../../types";
+import { AccordionMode } from "../../types";
 import { AccordionContextProviderProps, AccordionContextType } from "./types";
 import { useSectionState } from "./useSectionState";
 
@@ -9,13 +9,13 @@ export const AccordionContext = createContext<AccordionContextType>({
   selected: null,
   handleSelect: () => {},
 
-  expansionMode: Mode.SINGLE,
+  expansionMode: AccordionMode.SINGLE,
   expanded: null,
   handleExpand: () => {},
 
   expandAnimation: "smooth",
   instanceClassName: undefined,
-  globalIcon: undefined,
+  globalIcon: "right",
   globalExpandOnIconClick: undefined,
 });
 

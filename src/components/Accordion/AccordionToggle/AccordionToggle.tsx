@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React, { PropsWithChildren } from "react";
 
 import { useAccordion, useAccordionSection } from "../hooks";
+import { ToggleIconPosition } from "../types";
 import { AccordionIndicatorIcon } from "./AccordionIndicatorIcon";
 import { AccordionToggleProps } from "./types";
 
@@ -28,7 +29,7 @@ export const AccordionToggle: React.FC<PropsWithChildren<AccordionToggleProps>> 
 
   const { sectionId, isExpanded, isSelected } = useAccordionSection();
 
-  const icon = localIcon ?? globalIcon ?? "right";
+  const icon: ToggleIconPosition = expansionMode === undefined ? "none" : localIcon ?? globalIcon;
   const expandOnIconClick = localExpandOnIconClick ?? globalExpandOnIconClick ?? false;
 
   const handleToggleClick = () => {
