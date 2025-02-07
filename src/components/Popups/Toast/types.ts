@@ -33,7 +33,7 @@ export type ToastsContainerBaseProps = {
    * @default "top-right" */
   toastsPosition?: ToastsPosition;
 
-  /** Function to transform the content of the toast before displaying it. @default undefined */
+  /** Callback to transform the content of the toast before displaying it. @default undefined */
   transformToastsContent?: (content: string) => string;
 };
 

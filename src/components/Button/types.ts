@@ -38,7 +38,9 @@ type ButtonBaseProps = {
    * @default undefined */
   icon?: IconProp;
 
-  /** The position of the icon relative to the text (e.g., "left", "right").
+  /** The position of the icon relative to the text.
+   * - `right` default variant.
+   * - `left`
    * @default "right" */
   iconPosition?: `${ButtonIconPosition}`;
 
@@ -50,7 +52,11 @@ type ButtonBaseProps = {
    * @default {} */
   style?: CSSProperties;
 
-  /** The variant of the button (e.g., "primary", "secondary", "outlined").
+  /** The variant of the button
+   * - `outlined` default variant.
+   * - `full`
+   * - `text`
+   * - `neon`
    * @default "outlined" */
   variant?: VariantType;
 
@@ -66,7 +72,10 @@ type ButtonBaseProps = {
    * @default defaultTooltipConfig */
   tooltipConfig?: Partial<Omit<TooltipProps, "targetRef">>;
 
-  /** The size of the button (e.g., "small", "medium", "large").
+  /** The size of the button
+   * - `small` default variant.
+   * - `medium`
+   * - `large`
    * @default ComponentSize.MEDIUM */
   size?: `${ComponentSize}`;
 };

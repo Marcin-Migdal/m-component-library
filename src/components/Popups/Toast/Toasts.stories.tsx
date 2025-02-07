@@ -28,7 +28,7 @@ const meta: Meta<typeof ToastsContainer> = {
     },
     transformToastsContent: {
       control: false,
-      description: "Function to transform the content of the toast before displaying it.",
+      description: "Callback to transform the content of the toast before displaying it.",
     },
     toastConfig: {
       control: false,

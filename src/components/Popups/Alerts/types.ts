@@ -16,7 +16,10 @@ export type AlertBodyProps = {
    * @default undefined */
   className?: string;
 
-  /** The current open state of the alert. */
+  /** The current open state of the alert.
+   * - `closed`
+   * - `closing`
+   * - `opened`  */
   alertOpen: `${AlertOpenState}`;
 
   /** Function to close the alert when triggered. */

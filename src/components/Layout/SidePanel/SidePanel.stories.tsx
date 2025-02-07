@@ -23,7 +23,7 @@ const meta: Meta<typeof SidePanel> = {
       control: "text",
     },
     position: {
-      description: "Position of the side panel (e.g., 'left' or 'right').",
+      description: "Position of the side panel \n - `left` default position. \n - `right`",
       control: {
         type: "select",
         options: ["left", "right"],

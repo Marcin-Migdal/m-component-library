@@ -4,11 +4,17 @@ import React from "react";
 import { Button } from "../../Button";
 import Alert from "./Alert";
 import { useAlert } from "./hooks/useAlert";
+import { AlertOpenState } from "./types";
 
 const meta: Meta<typeof Alert> = {
   title: "Components/Popups/Alert",
   component: Alert,
   args: { header: "Alert header" },
+  argTypes: {
+    alertOpen: {
+      options: [AlertOpenState.OPENED, AlertOpenState.CLOSING, AlertOpenState.CLOSED],
+    },
+  },
 };
 
 export default meta;

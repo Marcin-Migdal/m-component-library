@@ -4,7 +4,11 @@ export type CardProps = {
   /** Child elements to be rendered inside the card. */
   children: ReactNode;
 
-  /** Variant of the card (e.g., "default", "border", "gradient-border", "gradient-border-glow").
+  /** Variant of the card
+   * - `default` default Variant
+   * - `border`
+   * - `gradient-border`
+   * - `gradient-border-glow`
    * @default "default" */
   variant?: CardVariantTypes;
 
