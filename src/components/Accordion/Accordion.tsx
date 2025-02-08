@@ -36,6 +36,7 @@ const Accordion: React.FC<PropsWithChildren<AccordionProps>> & {
   icon = "left",
   expandOnIconClick,
 }) => {
+  console.log(expansionMode);
   return (
     <div
       className={classNames(

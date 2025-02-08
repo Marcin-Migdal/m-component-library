@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import { deepCopy } from "../../../../utils";
 import { AccordionMode, SectionId, SectionState, SectionStateChangeHandler } from "../../types";
@@ -38,6 +38,14 @@ export const useSectionState = (
   const mode = useMemo(() => {
     return getMode(externalMode, externalSectionState, onSectionStateChange);
   }, [externalMode, externalSectionState, !onSectionStateChange]);
+
+  useEffect(() => {
+    if (!sectionStateControlled) {
+      const newInitValue = externalMode === AccordionMode.MULTIPLE ? {} : null;
+
+      newInitValue !== internalSectionState && setInternalSectionState(newInitValue);
+    }
+  }, [mode]);
 
   const handleSectionState = (sectionId: SectionId) => {
     let newSectionState: SectionState = null;
