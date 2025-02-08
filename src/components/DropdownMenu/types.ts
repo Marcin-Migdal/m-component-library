@@ -82,10 +82,18 @@ export type DropdownMenuProps = {
   emptyOptionsMessage?: string;
 
   /** Event type that triggers the dropdown menu to open.
+   * - `context-click` default openEvent.
+   * - `click`
+   * - `hover`
    * @default "context-click" */
   openEvent?: `${OpenEvent}`;
 
   /** Position where the `dropdown menu` should open relative to the `trigger`.
+   * - `bottom` default openPosition.
+   * - `auto-bottom`
+   * - `top`
+   * - `auto-top`
+   * - `occurred-event`
    * @default "bottom" */
   openPosition?: `${OpenPosition}`;
 

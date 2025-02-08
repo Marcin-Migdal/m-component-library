@@ -34,7 +34,7 @@ export type ToastsContainerBaseProps = {
   toastsPosition?: ToastsPosition;
 
   /** Callback to transform the content of the toast before displaying it. @default undefined */
-  transformToastsContent?: (content: string) => string;
+  transformToastsContent?: (content: string, type: "title" | "message") => string;
 };
 
 export type ToastConfig<TKey extends string> = Record<

@@ -14,6 +14,9 @@ const meta: Meta<BreadcrumbProps> = {
         type: "radio",
         options: ["default", "compact"],
       },
+      table: {
+        type: { summary: "default | compact" },
+      },
     },
   },
 };

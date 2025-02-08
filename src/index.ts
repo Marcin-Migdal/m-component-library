@@ -17,8 +17,8 @@ export * from "./utils";
 // TODO!
 
 //? 2
-//!     - documentation/description for each component
-//!     - hiding props in stories
+//!     - use enum as props, in stories it is possible to set default value in table {argTypes: { size: table: { defaultValue: { summary: "context-click" } }}}
+//!     - use enum as type in table tpe summary not " 1 | 2 | 3", and in description show all options from enums
 //!     - create stories for ThemeWrapper
 
 //? 3

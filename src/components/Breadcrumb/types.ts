@@ -18,7 +18,7 @@ export type BreadcrumbProps = {
 
   /** Variant of the breadcrumb.
    * - `default` default variant.
-   * - `compact`: smaller compact variant.
+   * - `compact` smaller compact variant.
    * @default "default"
    */
   variant?: "default" | "compact";

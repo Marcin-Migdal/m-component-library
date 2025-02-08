@@ -44,8 +44,8 @@ function ToastsContainer<T extends string>(
 
       const newToast: ToastType = {
         id: Date.now(),
-        message: transformContent(payload.message),
-        title: transformContent(payload.title || defaultTitle),
+        title: transformContent(payload.title || defaultTitle, "title"),
+        message: transformContent(payload.message, "message"),
         variant: variant,
         icon,
         toastDuration,

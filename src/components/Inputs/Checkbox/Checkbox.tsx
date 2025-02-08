@@ -3,9 +3,10 @@ import classNames from "classnames";
 import React, { ChangeEvent, useRef, useState } from "react";
 import { v4 as uuId } from "uuid";
 
-import { ComponentSize, SimpleInputLabel } from "../../global-types";
+import { SimpleInputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getCheckboxErrorStyle } from "../_inputsComponents/InputError/helpers/getCheckboxErrorStyle";
+import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { CheckboxProps } from "./types";
 
@@ -17,12 +18,14 @@ const Checkbox = ({
   onChange,
   label,
   error,
-  labelType = SimpleInputLabel.LEFT,
-  labelWidth = 30,
-  size = ComponentSize.MEDIUM,
-  disabled = false,
-  readOnly = false,
-  disableDefaultMargin = false,
+
+  labelType = defaultInputPropsValue.labelType as SimpleInputLabel,
+  labelWidth = defaultInputPropsValue.labelWidth,
+  size = defaultInputPropsValue.size,
+  disabled = defaultInputPropsValue.disabled,
+  readOnly = defaultInputPropsValue.readOnly,
+  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+
   classNamesObj,
   ...otherProps
 }: CheckboxProps) => {

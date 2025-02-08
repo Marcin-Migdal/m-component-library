@@ -4,15 +4,35 @@ import React from "react";
 import { Button } from "../../Button";
 import Alert from "./Alert";
 import { useAlert } from "./hooks/useAlert";
-import { AlertOpenState } from "./types";
 
 const meta: Meta<typeof Alert> = {
   title: "Components/Popups/Alert",
   component: Alert,
   args: { header: "Alert header" },
   argTypes: {
+    header: { description: "The header text for the alert." },
     alertOpen: {
-      options: [AlertOpenState.OPENED, AlertOpenState.CLOSING, AlertOpenState.CLOSED],
+      control: false,
+    },
+    confirmBtnText: {
+      table: {
+        defaultValue: { summary: "Confirm" },
+      },
+    },
+    confirmBtnDisabled: {
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
+    declineBtnText: {
+      table: {
+        defaultValue: { summary: "Close" },
+      },
+    },
+    declineBtnDisabled: {
+      table: {
+        defaultValue: { summary: "false" },
+      },
     },
   },
 };
@@ -21,7 +41,7 @@ export default meta;
 
 type Story = StoryObj<typeof Alert>;
 
-export const AlertExample: Story = {
+export const Default: Story = {
   render: (args) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const [handleOpen, alertProps] = useAlert();

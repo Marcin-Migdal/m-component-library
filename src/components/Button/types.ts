@@ -39,7 +39,7 @@ type ButtonBaseProps = {
   icon?: IconProp;
 
   /** The position of the icon relative to the text.
-   * - `right` default variant.
+   * - `right` default icon position.
    * - `left`
    * @default "right" */
   iconPosition?: `${ButtonIconPosition}`;
@@ -73,8 +73,8 @@ type ButtonBaseProps = {
   tooltipConfig?: Partial<Omit<TooltipProps, "targetRef">>;
 
   /** The size of the button
-   * - `small` default variant.
-   * - `medium`
+   * - `small`
+   * - `medium` default size
    * - `large`
    * @default ComponentSize.MEDIUM */
   size?: `${ComponentSize}`;

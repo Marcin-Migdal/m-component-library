@@ -8,105 +8,71 @@ import { ButtonIconPosition } from "./types";
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
   component: Button,
+  args: {
+    text: "Button Text",
+  },
   argTypes: {
     ...generateHiddenArgTypes(["onClick", "children", "tooltipConfig"]),
-
     icon: { type: "string", defaultValue: undefined },
-    text: { type: "string", defaultValue: "" },
-    tooltip: { type: "string" },
-    disabledTooltip: { type: "string" },
     iconPosition: {
+      control: "radio",
       options: [ButtonIconPosition.LEFT, ButtonIconPosition.RIGHT],
+      table: {
+        type: { summary: "right | left" },
+        defaultValue: { summary: "right" },
+      },
+    },
+    variant: {
+      table: { type: { summary: "outlined | full | text | neon" } },
+      options: ["outlined", "full", "text", "neon"],
     },
     size: {
+      control: "radio",
       options: [ComponentSize.SMALL, ComponentSize.MEDIUM, ComponentSize.LARGE],
+      table: {
+        type: { summary: "small | medium | large" },
+        defaultValue: { summary: "medium" },
+      },
+    },
+    type: {
+      control: "radio",
+      options: ["submit", "reset", "button"],
+      description: "The type of the button,",
+      table: { type: { summary: "submit | reset | button" } },
     },
   },
 };
 
 export default meta;
 
-const commonArgs: Partial<typeof Button> = {
-  icon: "",
-  text: "Button Text",
-};
+export const Default: StoryObj<typeof Button> = {};
 
-export const Outlined: StoryObj<typeof Button> = {
-  args: { ...commonArgs },
-};
-
-export const Full: StoryObj<typeof Button> = {
+export const Variant: StoryObj<typeof Button> = {
   args: {
-    ...commonArgs,
     variant: "full",
   },
 };
 
-export const Text: StoryObj<typeof Button> = {
+export const Size: StoryObj<typeof Button> = {
   args: {
-    ...commonArgs,
-    variant: "text",
+    size: "small",
   },
 };
 
-export const Neon: StoryObj<typeof Button> = {
+export const Busy: StoryObj<typeof Button> = {
   args: {
-    ...commonArgs,
-    variant: "neon",
+    busy: true,
   },
 };
 
-export const Small: StoryObj<typeof Button> = {
+export const Icon: StoryObj<typeof Button> = {
   args: {
-    ...commonArgs,
-    size: ComponentSize.SMALL,
-  },
-};
-
-export const Medium: StoryObj<typeof Button> = {
-  args: { ...commonArgs },
-};
-
-export const Large: StoryObj<typeof Button> = {
-  args: {
-    ...commonArgs,
-    size: ComponentSize.LARGE,
-  },
-};
-
-export const IconLeft: StoryObj<typeof Button> = {
-  args: {
-    ...commonArgs,
-    icon: "plus",
-    iconPosition: ButtonIconPosition.LEFT,
-  },
-};
-
-export const IconRight: StoryObj<typeof Button> = {
-  args: {
-    ...commonArgs,
     icon: "plus",
   },
 };
 
-export const Disabled: StoryObj<typeof Button> = {
+export const Tooltip: StoryObj<typeof Button> = {
   args: {
-    ...commonArgs,
-    disabled: true,
-  },
-};
-
-export const WithTooltip: StoryObj<typeof Button> = {
-  args: {
-    ...commonArgs,
-    tooltip: "This is a tooltip!",
-  },
-};
-
-export const DisabledWithTooltip: StoryObj<typeof Button> = {
-  args: {
-    ...commonArgs,
-    disabled: true,
-    disabledTooltip: "This button is disabled!",
+    tooltip: "Tooltip content",
   },
 };

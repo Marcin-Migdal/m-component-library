@@ -23,7 +23,6 @@ const meta: Meta<typeof Card> = {
     style: { width: "300px", padding: "1rem" },
     children: <CardContent />,
   },
-
   argTypes: {
     children: {
       control: false,
@@ -35,18 +34,8 @@ export default meta;
 
 type Story = StoryObj<typeof Card>;
 
-export const VariantDefault: Story = {
-  args: { variant: "default" },
-};
+export const Default: Story = {};
 
-export const VariantBorder: Story = {
-  args: { variant: "border" },
-};
-
-export const VariantGradientBorder: Story = {
+export const Variant: Story = {
   args: { variant: "gradient-border" },
-};
-
-export const VariantGradientBorderGlow: Story = {
-  args: { variant: "gradient-border-glow" },
 };

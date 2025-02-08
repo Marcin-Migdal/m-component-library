@@ -9,7 +9,7 @@ import { TargetElementType, TooltipProps } from "./types";
 import "./Tooltip.scss";
 
 /** A component for displaying a tooltip when hovering over an element. */
-const TooltipWrapper = ({
+const Tooltip = ({
   targetRef,
   children = undefined,
   className,
@@ -99,4 +99,4 @@ const TooltipWrapper = ({
   );
 };
 
-export default TooltipWrapper;
+export default Tooltip;

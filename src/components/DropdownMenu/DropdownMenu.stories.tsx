@@ -3,7 +3,7 @@ import React from "react";
 
 import { Button } from "../Button";
 import DropdownMenu from "./DropdownMenu";
-import { DropdownMenuOption, OpenEvent, OpenPosition } from "./types";
+import { DropdownMenuOption, OpenEvent as OpenEventEnum, OpenPosition as OpenPositionEnum } from "./types";
 
 const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>, option: DropdownMenuOption) => {
   // eslint-disable-next-line no-console
@@ -68,19 +68,16 @@ const dropdownMenuOptions: DropdownMenuOption[] = [
   },
 ];
 
+const DropdownMenuTriggerButton = ({ text = "Currency" }: { text?: string }) => {
+  return <Button style={{ width: "fit-content" }} text={text} icon="money-bill-wave" onClick={() => {}} />;
+};
+
 export default {
   title: "Components/Dropdown Menu",
   component: DropdownMenu,
-  decorators: [(Story) => <Story />],
   args: {
-    hideDisabled: false,
-    emptyOptionsMessage: "No options",
-    openEvent: OpenEvent.CONTEXT_CLICK,
-    openPosition: OpenPosition.BOTTOM,
-    zIndex: 1,
-    centerConsumer: false,
-    optionHeightFit: 6,
     options: dropdownMenuOptions,
+    children: <DropdownMenuTriggerButton />,
   },
   argTypes: {
     triggerContainerClassName: {
@@ -106,14 +103,20 @@ export default {
       control: "text",
     },
     openEvent: {
-      control: "select",
-      options: Object.values(OpenEvent),
-      table: { defaultValue: { summary: "context-click" } },
+      control: "radio",
+      options: Object.values(OpenEventEnum),
+      table: {
+        defaultValue: { summary: "context-click" },
+        type: { summary: "click | hover | context-click" },
+      },
     },
     openPosition: {
-      control: "select",
-      options: Object.values(OpenPosition),
-      table: { defaultValue: { summary: "bottom" } },
+      control: "radio",
+      options: Object.values(OpenPositionEnum),
+      table: {
+        defaultValue: { summary: "bottom" },
+        type: { summary: "bottom | auto-bottom | top | auto-top | occurred-event" },
+      },
     },
     zIndex: {
       control: "number",
@@ -132,44 +135,34 @@ export default {
       action: "onClose",
       table: { defaultValue: { summary: "undefined" } },
     },
+    children: {
+      table: { type: { summary: "ReactNode" } },
+    },
   },
 } as Meta<typeof DropdownMenu>;
 
-const DropdownMenuTriggerButton = ({ text = "Currency" }: { text?: string }) => {
-  return <Button style={{ width: "fit-content" }} text={text} icon="money-bill-wave" onClick={() => {}} />;
+export const Default: StoryObj<typeof DropdownMenu> = {};
+
+export const OpenEvent: StoryObj<typeof DropdownMenu> = {
+  args: {
+    openEvent: "hover",
+  },
 };
 
-export const Default: StoryObj<typeof DropdownMenu> = {
-  render: (args) => (
-    <DropdownMenu {...args}>
-      <DropdownMenuTriggerButton />
-    </DropdownMenu>
-  ),
+export const OpenPosition: StoryObj<typeof DropdownMenu> = {
+  args: {
+    openPosition: "occurred-event",
+  },
 };
 
 export const NoOptions: StoryObj<typeof DropdownMenu> = {
   args: { options: [] },
-  render: (args) => (
-    <DropdownMenu {...args}>
-      <DropdownMenuTriggerButton />
-    </DropdownMenu>
-  ),
 };
 
 export const HideDisabled: StoryObj<typeof DropdownMenu> = {
   args: { hideDisabled: true },
-  render: (args) => (
-    <DropdownMenu {...args}>
-      <DropdownMenuTriggerButton />
-    </DropdownMenu>
-  ),
 };
 
 export const CenterDropdownMenu: StoryObj<typeof DropdownMenu> = {
   args: { centerConsumer: true },
-  render: (args) => (
-    <DropdownMenu {...args}>
-      <DropdownMenuTriggerButton />
-    </DropdownMenu>
-  ),
 };

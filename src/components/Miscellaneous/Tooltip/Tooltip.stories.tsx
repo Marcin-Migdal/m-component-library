@@ -8,11 +8,7 @@ import { Placement } from "../../../utils";
 const meta: Meta<typeof Tooltip> = {
   title: "Components/Miscellaneous/Tooltip",
   component: Tooltip,
-  args: {
-    children: "Tooltip content",
-    openDelay: 0,
-    placement: Placement.BOTTOM,
-  },
+  args: { children: "Tooltip content" },
   argTypes: {
     className: {
       description: "Additional CSS class for the tooltip.",
@@ -21,14 +17,34 @@ const meta: Meta<typeof Tooltip> = {
     style: {
       description: "Inline styles for the tooltip.",
       control: "object",
+      table: {
+        type: { summary: "CSSProperties" },
+        defaultValue: { summary: "{}" },
+      },
     },
-    children: { type: "string" },
+    children: {
+      description: "Content of the tooltip passed as `ReactNode`",
+      table: {
+        type: { summary: "ReactNode" },
+      },
+    },
     placement: {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      type: "select" as any,
+      control: "radio",
       options: [Placement.BOTTOM, Placement.LEFT, Placement.RIGHT, Placement.TOP],
+      description: "The position of the tooltip relative to the target element.",
+      table: {
+        type: { summary: "top | bottom | right | left" },
+        defaultValue: { summary: "bottom" },
+      },
     },
-    openDelay: { type: "number" },
+    openDelay: {
+      type: "number",
+      description: "Delay (in milliseconds) before the tooltip opens.",
+      table: {
+        defaultValue: { summary: "0" },
+        type: { summary: "Number" },
+      },
+    },
   },
 };
 

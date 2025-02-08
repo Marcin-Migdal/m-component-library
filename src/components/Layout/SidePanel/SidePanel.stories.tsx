@@ -12,28 +12,38 @@ const meta: Meta<typeof SidePanel> = {
   argTypes: {
     ...generateHiddenArgTypes(["handleClose"]),
     sidePanelOpen: {
-      description: "Current state of the side panel (e.g., 'mounted', 'opened', 'closing', 'closed').",
-      control: {
-        type: "select",
-        options: ["mounted", "opened", "closing", "closed"],
+      description: "Current state of the side panel `mounted` `opened` `closing` `closed`",
+      control: false,
+      table: {
+        type: {
+          summary: "SidePanelOpenState",
+          detail:
+            "This props under normal circumstances should come from object `sidePanelProps`.\n`sidePanelProps` comes from special `useSidePanel` hook dedicated to `SidePanel` component. \n \neq.\nconst [handleOpen, sidePanelProps] = useSidePanel();",
+        },
       },
     },
     className: {
       description: "Additional CSS class for the side panel.",
       control: "text",
+      table: {
+        type: { summary: "string" },
+      },
     },
     position: {
       description: "Position of the side panel \n - `left` default position. \n - `right`",
-      control: {
-        type: "select",
-        options: ["left", "right"],
+      control: false,
+      table: {
+        type: { summary: "left | right" },
+        defaultValue: { summary: "left" },
       },
-      defaultValue: "left",
     },
     alwaysOpen: {
       description: "Whether the side panel should always remain open.",
       control: "boolean",
-      defaultValue: false,
+      table: {
+        type: { summary: "false" },
+        defaultValue: { summary: "false" },
+      },
     },
   },
 };
