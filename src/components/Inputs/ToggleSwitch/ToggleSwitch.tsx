@@ -2,27 +2,31 @@ import classNames from "classnames";
 import React, { ChangeEvent, useRef, useState } from "react";
 import { v4 as uuId } from "uuid";
 
-import { ComponentSize, SimpleInputLabel } from "../../global-types";
+import { SimpleInputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getToggleSwitchErrorStyle } from "../_inputsComponents/InputError/helpers/getToggleSwitchErrorStyle";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { ToggleSwitchProps } from "./types";
 
+import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import "./ToggleSwitch.scss";
 
+/** ToggleSwitch component for enabling or disabling */
 const ToggleSwitch = ({
   checked: externalChecked = undefined,
-  name,
   onChange,
+  name,
   label,
   error,
-  labelType = SimpleInputLabel.LEFT,
-  labelWidth = 30,
-  size = ComponentSize.MEDIUM,
-  disabled = false,
-  readOnly = false,
-  disableDefaultMargin = false,
   classNamesObj,
+
+  labelType = defaultInputPropsValue.labelType as SimpleInputLabel,
+  labelWidth = defaultInputPropsValue.labelWidth,
+  size = defaultInputPropsValue.size,
+  disabled = defaultInputPropsValue.disabled,
+  readOnly = defaultInputPropsValue.readOnly,
+  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+
   ...otherProps
 }: ToggleSwitchProps) => {
   const toggleSwitchContainerRef = useRef<HTMLDivElement>(null);

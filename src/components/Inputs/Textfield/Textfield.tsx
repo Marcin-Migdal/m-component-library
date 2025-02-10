@@ -2,33 +2,40 @@ import classNames from "classnames";
 import React, { ChangeEvent, FocusEvent, useState } from "react";
 
 import { useDebounceFunction } from "../../../hooks";
-import { ComponentSize, InputLabel } from "../../global-types";
+import { InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
+import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { TextfieldProps } from "./types";
 
+/**
+ * TextField component for user text input.
+ * Supports various sizes, states (disabled, read-only), labels, and error messages.
+ */
 const Textfield = (props: TextfieldProps) => {
   const {
+    defaultValue = undefined,
     value: externalValue = undefined,
-    disabled = false,
     onChange,
     onBlur,
     onFocus,
     onClick,
     onDebounce,
-    debounceDelay = 300,
+    placeholder = undefined,
     label = undefined,
     error = undefined,
-    labelType = `${InputLabel.LEFT}`,
-    placeholder = undefined,
-    labelWidth = 30,
-    floatingInputWidth = 100,
-    defaultValue,
-    size = ComponentSize.MEDIUM,
-    disableDefaultMargin = false,
     classNamesObj,
+    debounceDelay = 300,
+
+    labelType = defaultInputPropsValue.labelType,
+    labelWidth = defaultInputPropsValue.labelWidth,
+    size = defaultInputPropsValue.size,
+    disabled = defaultInputPropsValue.disabled,
+    disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+    floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
+
     ...otherProps
   } = props;
 

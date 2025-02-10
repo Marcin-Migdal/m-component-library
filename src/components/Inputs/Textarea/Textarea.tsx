@@ -2,35 +2,37 @@ import classNames from "classnames";
 import React, { ChangeEvent, FocusEvent, useState } from "react";
 
 import { useDebounceFunction } from "../../../hooks";
-import { ComponentSize, InputLabel } from "../../global-types";
+import { InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
+import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { TextareaProps } from "./types";
 
 import "./Textarea.scss";
 
 const Textarea = ({
+  defaultValue,
   value: externalValue = undefined,
-  name = undefined,
   onChange,
   onBlur,
   onDebounce,
-  debounceDelay = 300,
+  name = undefined,
+  placeholder,
   label,
   error,
-  labelType = InputLabel.FLOATING,
-  placeholder,
-  defaultValue,
-  autoFocus = false,
-  labelWidth = 30,
-  floatingInputWidth = 100,
-  row = 4,
-  size = ComponentSize.MEDIUM,
-  disabled = false,
-  readOnly = false,
-  disableDefaultMargin = false,
   classNamesObj,
+  debounceDelay = 300,
+  autoFocus = false,
+
+  labelType = defaultInputPropsValue.labelType,
+  labelWidth = defaultInputPropsValue.labelWidth,
+  size = defaultInputPropsValue.size,
+  disabled = defaultInputPropsValue.disabled,
+  readOnly = defaultInputPropsValue.readOnly,
+  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+  floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
+
   ...otherProps
 }: TextareaProps) => {
   const [internalValue, setInternalValue] = useState<string>(defaultValue || "");
@@ -65,7 +67,6 @@ const Textarea = ({
       <textarea
         readOnly={readOnly}
         name={name}
-        rows={row}
         style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
         className={classNames("m-input", "m-textarea", "m-scroll", classNamesObj?.input, labelType)}
         value={value}

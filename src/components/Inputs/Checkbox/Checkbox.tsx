@@ -12,12 +12,14 @@ import { CheckboxProps } from "./types";
 
 import "./Checkbox.scss";
 
+/** Checkbox component used for binary selection (checked/unchecked). */
 const Checkbox = ({
   checked: externalChecked = undefined,
-  name,
   onChange,
+  name,
   label,
   error,
+  classNamesObj,
 
   labelType = defaultInputPropsValue.labelType as SimpleInputLabel,
   labelWidth = defaultInputPropsValue.labelWidth,
@@ -26,7 +28,6 @@ const Checkbox = ({
   readOnly = defaultInputPropsValue.readOnly,
   disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
 
-  classNamesObj,
   ...otherProps
 }: CheckboxProps) => {
   const checkboxContainerRef = useRef<HTMLDivElement>(null);

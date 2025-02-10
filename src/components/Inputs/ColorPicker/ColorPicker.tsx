@@ -3,10 +3,11 @@ import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { OpenStatus, useOpen } from "../../../hooks";
-import { ComponentSize, InputLabel } from "../../global-types";
+import { InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
+import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { ColorPickerPopup } from "./ColorPickerPopup/ColorPickerPopup";
 import { rgbToHex, rgbToHsl, valueToRgb } from "./helpers";
@@ -14,22 +15,29 @@ import { ColorPickerProps, ReturnedColor, RgbValue } from "./types";
 
 import "./ColorPicker.scss";
 
+/**
+ * ColorPicker component allowing users to select and manipulate colors.
+ * Supports RGB, HSL, and HEX formats.
+ * Provides event handlers for opening, changing, and closing the color selection.
+ */
 const ColorPicker = ({
-  name = undefined,
-  disabled = false,
-  readOnly = false,
   onChange,
+  name = undefined,
   label = undefined,
-  error = undefined,
-  labelType = InputLabel.LEFT,
-  labelWidth = 30,
-  floatingInputWidth = 100,
-  defaultValue,
-  returnedColorType,
-  size = ComponentSize.MEDIUM,
-  disableDefaultMargin = false,
-  classNamesObj,
   placeholder = undefined,
+  error = undefined,
+  classNamesObj,
+
+  labelType = defaultInputPropsValue.labelType,
+  labelWidth = defaultInputPropsValue.labelWidth,
+  size = defaultInputPropsValue.size,
+  disabled = defaultInputPropsValue.disabled,
+  readOnly = defaultInputPropsValue.readOnly,
+  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+  floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
+
+  returnedColorType,
+  defaultValue,
   onOpen,
   onClose,
 }: ColorPickerProps) => {

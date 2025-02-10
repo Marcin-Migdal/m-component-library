@@ -7,9 +7,6 @@ import { AccordionMode } from "./types";
 const meta: Meta<typeof Accordion> = {
   title: "Components/Accordion",
   component: Accordion,
-  args: {
-    expansionMode: "multiple",
-  },
   argTypes: {
     variant: {
       control: "radio",
@@ -72,11 +69,6 @@ export default meta;
 
 export const Default: StoryObj<typeof Accordion> = {
   args: {
-    icon: "left",
-    variant: "default",
-    expandAnimation: "smooth",
-    selectionMode: undefined,
-    expansionMode: undefined,
     children: (
       <>
         <Accordion.Section sectionId="1">
@@ -111,7 +103,6 @@ export const Default: StoryObj<typeof Accordion> = {
 export const SingleSelection: StoryObj<typeof Accordion> = {
   args: {
     selectionMode: "single",
-    expansionMode: undefined,
     children: (
       <>
         <Accordion.Section sectionId="1">
@@ -146,7 +137,6 @@ export const SingleSelection: StoryObj<typeof Accordion> = {
 export const MultipleSelection: StoryObj<typeof Accordion> = {
   args: {
     selectionMode: "multiple",
-    expansionMode: undefined,
     children: (
       <>
         <Accordion.Section sectionId="1">
@@ -214,6 +204,7 @@ export const SingleExpand: StoryObj<typeof Accordion> = {
 
 export const MultipleExpansions: StoryObj<typeof Accordion> = {
   args: {
+    expansionMode: "multiple",
     children: (
       <>
         <Accordion.Section sectionId="1">
@@ -248,6 +239,7 @@ export const MultipleExpansions: StoryObj<typeof Accordion> = {
 export const CompactVariant: StoryObj<typeof Accordion> = {
   args: {
     variant: "compact",
+    expansionMode: "multiple",
     children: (
       <>
         <Accordion.Section sectionId="1">
@@ -272,6 +264,7 @@ export const CompactVariant: StoryObj<typeof Accordion> = {
 export const InstantAnimation: StoryObj<typeof Accordion> = {
   args: {
     expandAnimation: "instant",
+    expansionMode: "multiple",
     children: (
       <>
         <Accordion.Section sectionId="1">
@@ -295,6 +288,7 @@ export const InstantAnimation: StoryObj<typeof Accordion> = {
 
 export const RightIcon: StoryObj<typeof Accordion> = {
   args: {
+    expansionMode: "multiple",
     icon: "right",
     children: (
       <>
@@ -320,6 +314,7 @@ export const RightIcon: StoryObj<typeof Accordion> = {
 export const expandOnIconClick: StoryObj<typeof Accordion> = {
   args: {
     expandOnIconClick: true,
+    expansionMode: "multiple",
     children: (
       <>
         <Accordion.Section sectionId="1">

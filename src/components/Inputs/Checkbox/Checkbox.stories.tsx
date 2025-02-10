@@ -1,15 +1,14 @@
 import { Meta, StoryObj } from "@storybook/react";
 
 import { generateHiddenArgTypes } from "../../../internalUtils/generateHiddenArgTypes";
-import { simpleInputStoriesConfig } from "../../../internalUtils/inputArgTypes";
+import { simpleInputArgTypes } from "../../../internalUtils/inputArgTypes";
 import Checkbox from "./Checkbox";
 
 const meta: Meta<typeof Checkbox> = {
   title: "Components/Inputs/Checkbox",
   component: Checkbox,
-  args: simpleInputStoriesConfig.args,
   argTypes: {
-    ...simpleInputStoriesConfig.argTypes,
+    ...simpleInputArgTypes,
     ...generateHiddenArgTypes(["floatingInputWidth"]),
   },
 };

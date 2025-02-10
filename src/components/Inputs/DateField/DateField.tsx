@@ -4,10 +4,11 @@ import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
 
 import { OpenStatus, useOpen } from "../../../hooks";
-import { ComponentSize, InputLabel } from "../../global-types";
+import { InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
+import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { DatePickerPopup } from "./DatePickerPopup/DatePickerPopup";
 import { DateFieldProps, DateValue, InternalDateValue, SingleDate } from "./types";
@@ -40,26 +41,31 @@ const getDateFieldValue = <TRange extends boolean>(
   return convertToDateType(value as SingleDate) as InternalDateValue<TRange>;
 };
 
+/** DateField is an input component that allows users to select a single date or a date range.
+ * It supports localization, custom styling, and event handlers for managing user interactions. */
 export const DateField = <TRange extends boolean>(props: DateFieldProps<TRange>) => {
   const {
-    value: externalValue = undefined,
     defaultValue,
-    disabled = false,
+    value: externalValue = undefined,
     onChange,
     onFocus,
     onClick,
     onClose,
+    placeholder = undefined,
     label = undefined,
     error = undefined,
-    labelType = `${InputLabel.LEFT}`,
-    placeholder = undefined,
-    labelWidth = 30,
-    floatingInputWidth = 100,
-    size = ComponentSize.MEDIUM,
-    disableDefaultMargin = false,
     classNamesObj,
+
     locale = "en-US",
     range = false as TRange,
+
+    labelType = defaultInputPropsValue.labelType,
+    labelWidth = defaultInputPropsValue.labelWidth,
+    size = defaultInputPropsValue.size,
+    disabled = defaultInputPropsValue.disabled,
+    disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+    floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
+
     ...otherProps
   } = props;
 
@@ -134,8 +140,8 @@ export const DateField = <TRange extends boolean>(props: DateFieldProps<TRange>)
         className={classNamesObj?.input}
         value={
           Array.isArray(value)
-            ? `${value[0]?.toDateString() ?? ""} - ${value[1]?.toDateString() ?? ""}`
-            : value?.toDateString() || ""
+            ? `${value[0]?.toLocaleDateString(locale) ?? ""} - ${value[1]?.toLocaleDateString(locale) ?? ""}`
+            : value?.toLocaleDateString(locale) || ""
         }
         size={size}
         {...otherProps}

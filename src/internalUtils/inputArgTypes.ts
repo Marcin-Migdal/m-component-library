@@ -1,13 +1,16 @@
 import { ArgTypes } from "@storybook/react/*";
 import { ComponentSize, InputLabel, SimpleInputLabel } from "../components/global-types";
 import { InputProps } from "../components/Inputs/_inputsComponents/input-types";
-import { defaultInputPropsValue } from "../components/Inputs/_inputUtils/defaultInputPropsValue";
 
 const commonInputArgTypes: Partial<ArgTypes<Omit<InputProps, "floatingInputWidth">>> = {
   size: {
     control: "radio",
     options: Object.values(ComponentSize),
-    description: "Size of the input component.",
+    description: "Size of the input component. \n - `small` \n - `medium` default size. \n - `large`",
+    table: {
+      defaultValue: { summary: "medium" },
+      type: { summary: "small | medium | large" },
+    },
   },
   name: {
     control: "text",
@@ -23,8 +26,13 @@ const commonInputArgTypes: Partial<ArgTypes<Omit<InputProps, "floatingInputWidth
     description: "Whether the input is read-only.",
   },
   labelWidth: {
-    control: "number",
-    description: "Width of the label as a percentage.",
+    control: {
+      type: "number",
+      min: 15,
+      max: 90,
+    },
+    description: "Width of the label as a percentage. `15` - `90`",
+    table: { type: { summary: "number" } },
   },
   label: {
     control: "text",
@@ -48,22 +56,12 @@ export const simpleInputArgTypes: Partial<ArgTypes<InputProps<SimpleInputLabel>>
   labelType: {
     control: "radio",
     options: Object.values(SimpleInputLabel),
-    description: "Type of label positioning.",
+    description: "Type of label positioning. \n - `left` default label type. \n - `right`",
+    table: {
+      defaultValue: { summary: "left" },
+      type: { summary: "left | right" },
+    },
   },
-};
-
-export const simpleInputArgs: Partial<InputProps<SimpleInputLabel>> = {
-  ...defaultInputPropsValue,
-  floatingInputWidth: undefined,
-  labelType: SimpleInputLabel.LEFT,
-};
-
-export const simpleInputStoriesConfig: {
-  args: Partial<InputProps<SimpleInputLabel>>;
-  argTypes: Partial<ArgTypes<InputProps<SimpleInputLabel>>>;
-} = {
-  args: simpleInputArgs,
-  argTypes: simpleInputArgTypes,
 };
 
 //! Input
@@ -72,23 +70,19 @@ export const inputArgTypes: Partial<ArgTypes<InputProps>> = {
   labelType: {
     control: "radio",
     options: Object.values(InputLabel),
-    description: "Type of label positioning.",
+    description: "Type of label positioning. \n - `left` default label type. \n - `right` \n - `floating`",
+    table: {
+      defaultValue: { summary: "left" },
+      type: { summary: "left | right | floating" },
+    },
   },
   floatingInputWidth: {
-    control: "number",
-    description: "Width of the floating input field.",
+    control: {
+      type: "number",
+      min: 15,
+      max: 100,
+    },
+    description: "Width of the label as a percentage. `15` - `100`",
+    table: { type: { summary: "number" } },
   },
-};
-
-export const inputArgs: Partial<InputProps> = {
-  ...defaultInputPropsValue,
-  labelType: SimpleInputLabel.LEFT,
-};
-
-export const inputStoriesConfig: {
-  args: Partial<InputProps>;
-  argTypes: Partial<ArgTypes<InputProps>>;
-} = {
-  args: inputArgs,
-  argTypes: inputArgTypes,
 };

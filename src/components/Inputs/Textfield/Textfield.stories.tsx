@@ -1,62 +1,35 @@
-import { StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
+import { inputArgTypes } from "../../../internalUtils/inputArgTypes";
 import Textfield from "./Textfield";
 
-export default {
+const meta: Meta<typeof Textfield> = {
   title: "Components/Inputs/Textfield",
   component: Textfield,
+  argTypes: {
+    ...inputArgTypes,
+    type: {
+      control: "radio",
+      description: "Defines the type of input field. \n - `text` default type. \n - `number` \n - `password`",
+      options: ["text", "number", "password"],
+      table: {
+        defaultValue: { summary: "text" },
+        type: { summary: "text | number | password" },
+      },
+    },
+    prefix: {
+      control: "text",
+      description: "Optional text displayed before value in `TextField`",
+      table: { type: { summary: "string" } },
+    },
+  },
 };
+
+export default meta;
 
 type Story = StoryObj<typeof Textfield>;
 
-export const TextfieldSmall: Story = {
-  args: {
-    label: "Label",
-    labelType: "floating",
-    size: "small",
-  },
-};
-
-export const TextfieldMedium: Story = {
-  args: {
-    label: "Label",
-    labelType: "floating",
-    size: "medium",
-  },
-};
-
-export const TextfieldLarge: Story = {
-  args: {
-    label: "Label",
-    labelType: "floating",
-    size: "large",
-  },
-};
-
-export const LabelLeft: Story = {
-  args: {
-    label: "Label",
-    placeholder: "Placeholder",
-    labelType: "left",
-    size: "medium",
-  },
-};
-
-export const LabelRight: Story = {
-  args: {
-    label: "Label",
-    placeholder: "Placeholder",
-    labelType: "right",
-    size: "medium",
-  },
-};
-
-export const TextfieldWithPrefix: Story = {
-  args: {
-    label: "Label",
-    placeholder: "Placeholder",
-    prefix: "Prefix",
-    labelType: "right",
-    size: "medium",
-  },
-};
+export const Default: Story = {};
+export const Label: Story = { args: { label: "Input label", labelType: "left" } };
+export const Size: Story = { args: { size: "small" } };
+export const Error: Story = { args: { error: "Input error" } };

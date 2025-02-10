@@ -2,9 +2,10 @@ import classNames from "classnames";
 import React, { ChangeEvent, CSSProperties, useLayoutEffect, useRef, useState } from "react";
 
 import { useDebounceFunction } from "../../../hooks";
-import { ComponentSize, InputLabel } from "../../global-types";
+import { InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
+import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { getSliderValueDynamicStyle } from "./getSliderValueDynamicStyle";
 import { SliderProps } from "./types";
@@ -12,31 +13,32 @@ import { SliderProps } from "./types";
 import "./Slider.scss";
 
 const Slider = ({
+  defaultValue,
   value: externalValue,
+  onChange,
+  onDebounce,
+  name = undefined,
+  label,
+  error,
+  classNamesObj,
+
   min,
   max,
   step = 1,
-  initialValue,
-  onChange,
-  onDebounce,
   debounceDelay = 300,
-  label,
-  labelType = InputLabel.LEFT,
-  labelWidth = 30,
-  floatingInputWidth = 100,
-  size = ComponentSize.MEDIUM,
-  name = undefined,
-  hideValuePreview = false,
   valuePreviewType = "bottom-dynamic",
-  disabled = false,
-  readOnly = false,
-  disableDefaultMargin = false,
-  error,
-  classNamesObj,
+
+  labelType = defaultInputPropsValue.labelType,
+  labelWidth = defaultInputPropsValue.labelWidth,
+  size = defaultInputPropsValue.size,
+  disabled = defaultInputPropsValue.disabled,
+  readOnly = defaultInputPropsValue.readOnly,
+  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+  floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 }: SliderProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const [internalValue, setValue] = useState<number>(initialValue || min);
+  const [internalValue, setValue] = useState<number>(defaultValue || min);
 
   const [sliderValueDynamicStyle, setSliderValueDynamicStyle] = useState<CSSProperties>({});
 
@@ -127,7 +129,7 @@ const Slider = ({
           forceFloating={labelType === InputLabel.FLOATING}
         />
       )}
-      {!hideValuePreview && (
+      {valuePreviewType !== "none" && (
         <div className="m-relative-value-container">
           <span
             className={classNames("m-slider-value-preview", classNamesObj?.valuePreview, valuePreviewType)}

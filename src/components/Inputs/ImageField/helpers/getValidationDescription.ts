@@ -10,19 +10,19 @@ export const getValidationDescription = (
   const validationDescription: string[] = [];
 
   if (maxSize) {
-    validationDescription.push(`max. ${bytesToMegaBytesString(maxSize)}`);
+    validationDescription.push(`Max. ${bytesToMegaBytesString(maxSize)}`);
   }
 
   if (minSize) {
-    validationDescription.push(`min. ${bytesToMegaBytesString(minSize)}`);
+    validationDescription.push(`Min. ${bytesToMegaBytesString(minSize)}`);
   }
 
   if (maxResolution) {
-    validationDescription.push(`max res. ${maxResolution.width}x${maxResolution.height}`);
+    validationDescription.push(`Max res. ${maxResolution.width}x${maxResolution.height}`);
   }
 
   if (minResolution) {
-    validationDescription.push(`min min. ${minResolution.width}x${minResolution.height}`);
+    validationDescription.push(`Min res. ${minResolution.width}x${minResolution.height}`);
   }
 
   return validationDescription;

@@ -3,12 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import React, { useState } from "react";
 
-import { ComponentSize, InputLabel } from "../../global-types";
+import { InputLabel } from "../../global-types";
 import { Alert, AlertOpenState } from "../../Popups";
 import { useAlert } from "../../Popups/Alerts/hooks/useAlert";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
+import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { RgbValue, valueToRgb } from "../ColorPicker";
 import { getIconColor } from "./helpers/getIconColor";
@@ -20,20 +21,23 @@ import "./IconField.scss";
 
 const IconField = ({
   value: externalValue = undefined,
-  name = undefined,
-  disabled = false,
-  readOnly = false,
   onChange,
+  name = undefined,
   label = undefined,
-  error = undefined,
-  labelType = InputLabel.FLOATING,
-  labelWidth = 30,
-  floatingInputWidth = 100,
-  size = ComponentSize.MEDIUM,
-  disableDefaultMargin = false,
-  classNamesObj,
   placeholder = undefined,
+  error = undefined,
+  classNamesObj,
+
   iconColor,
+
+  labelType = defaultInputPropsValue.labelType,
+  labelWidth = defaultInputPropsValue.labelWidth,
+  size = defaultInputPropsValue.size,
+  disabled = defaultInputPropsValue.disabled,
+  readOnly = defaultInputPropsValue.readOnly,
+  floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
+  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+
   onOpen,
   onClose,
 }: IconFieldProps) => {
