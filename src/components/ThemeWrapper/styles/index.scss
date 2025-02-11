@@ -8,11 +8,11 @@
 @use "./mode/dark-mode.scss";
 @use "./mode/light-mode.scss";
 
-@use "./themes//light-custom-theme.scss";
-@use "./themes//dark-custom-theme.scss";
+@use "./themes/light-custom-theme.scss";
+@use "./themes/dark-custom-theme.scss";
 
-@use "./themes//light-default-theme.scss";
-@use "./themes//dark-default-theme.scss";
+@use "./themes/light-default-theme.scss";
+@use "./themes/dark-default-theme.scss";
 
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
 
@@ -112,37 +112,37 @@ body {
   --button-gap: 0.55em;
   --button-right-margin: 10px;
 
-  /*? Very Small Button*/
+  /* Very Small Button*/
   --very-small-button-size: 0.67rem;
 
-  /*? Small Button*/
+  /* Small Button*/
   --small-button-size: 0.8rem;
 
-  /*? Medium Button*/
+  /* Medium Button*/
   --medium-button-size: 1rem;
 
-  /*? Large Button*/
+  /* Large Button*/
   --large-button-size: 1.2rem;
 
   /*! Inputs */
   --input-margin-bottom: 18px;
 
-  /*? Small Input*/
+  /* Small Input*/
   --small-input-height: 28px;
   --small-input-padding-left: 6px;
   --small-input-font-size: 14px;
 
-  /*? Medium Input*/
+  /* Medium Input*/
   --medium-input-height: 34px;
   --medium-input-padding-left: 8px;
   --medium-input-font-size: 16px;
 
-  /*? Large Input*/
+  /* Large Input*/
   --large-input-height: 40px;
   --large-input-padding-left: 9px;
   --large-input-font-size: 18px;
 
-  /*? Input errors */
+  /* Input errors */
   --error-icon-size: 16px;
   --error-icon-margin: 8px;
 

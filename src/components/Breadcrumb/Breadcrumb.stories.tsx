@@ -4,9 +4,16 @@ import { generateHiddenArgTypes } from "../../internalUtils/generateHiddenArgTyp
 import { Breadcrumb } from "./Breadcrumb";
 import { BreadcrumbProps, Crumb } from "./types";
 
+export const crumbs: Crumb[] = [
+  { id: 1, label: "Home", path: "/", icon: faHome },
+  { id: 2, label: "Folder", path: "/folder", icon: faFolder },
+  { id: 3, label: "File", path: "/folder/file", icon: faFileAlt },
+];
+
 const meta: Meta<BreadcrumbProps> = {
   title: "Components/Breadcrumb",
   component: Breadcrumb,
+  args: { crumbs },
   argTypes: {
     ...generateHiddenArgTypes(["onClick"]),
     variant: {
@@ -25,35 +32,9 @@ export default meta;
 
 type Story = StoryObj<BreadcrumbProps>;
 
-const crumbs: Crumb[] = [
-  { id: 1, label: "Home", path: "/", icon: faHome },
-  { id: 2, label: "Folder", path: "/folder", icon: faFolder },
-  { id: 3, label: "File", path: "/folder/file", icon: faFileAlt },
-];
-
-export const Default: Story = {
-  args: {
-    crumbs,
-    variant: "default",
-    disableLastCrumb: false,
-  },
-};
-
-export const Compact: Story = {
-  args: {
-    crumbs,
-    variant: "compact",
-    disableLastCrumb: false,
-  },
-};
-
-export const DisabledLastCrumb: Story = {
-  args: {
-    crumbs,
-    variant: "default",
-    disableLastCrumb: true,
-  },
-};
+export const Default: Story = {};
+export const Compact: Story = { args: { variant: "compact" } };
+export const DisabledLastCrumb: Story = { args: { disableLastCrumb: true } };
 
 export const WithDisabledCrumbs: Story = {
   args: {
@@ -62,7 +43,5 @@ export const WithDisabledCrumbs: Story = {
       { id: 2, label: "Folder", path: "/folder", icon: faFolder, disabled: true },
       { id: 3, label: "File", path: "/folder/file", icon: faFileAlt },
     ],
-    variant: "default",
-    disableLastCrumb: false,
   },
 };

@@ -12,11 +12,19 @@ export type CardProps = {
    * @default "default" */
   variant?: CardVariantTypes;
 
-  /** Additional CSS class for the card.
+  /** Additional CSS class for the card wrapper.
+   * @default undefined */
+  wrapperClassName?: string;
+
+  /** Additional CSS class for the card content.
    * @default undefined */
   className?: string;
 
-  /** Inline styles for the card.
+  /** Inline styles for the card wrapper.
+   * @default undefined */
+  wrapperStyle?: CSSProperties;
+
+  /** Inline styles for the card content.
    * @default undefined */
   style?: CSSProperties;
 };

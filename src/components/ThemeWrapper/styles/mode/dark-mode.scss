@@ -53,6 +53,11 @@
   /* Alert */
   --alert-disabled-button-background-color: var(--grey-color-575);
 
+  /* Accordion */
+  --accordion-background: var(--grey-color-475);
+  --accordion-hover-background: var(--grey-color-425);
+  --highlighted-accordion-background: var(--grey-color-375);
+
   /* Breadcrumb */
   --crumb-background-color: var(--grey-color-575);
   --crumb-hover-background-color: var(--grey-color-525);
@@ -65,7 +70,7 @@
   --dropdown-menu-active-background-color: var(--grey-color-450);
   --dropdown-menu-highlighted-color: var(--grey-color-000);
 
-  /*? Common */
+  /* Common */
   --icon-color: var(--grey-color-100);
   --icon-hover-color: var(--grey-color-000);
   --primary-text-color: var(--grey-color-100);

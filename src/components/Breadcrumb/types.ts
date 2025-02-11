@@ -14,7 +14,7 @@ export type BreadcrumbProps = {
   crumbs: Crumb[];
 
   /** Callback function triggered when a crumb is clicked. */
-  onClick: (crumb: Crumb) => void;
+  onClick?: (crumb: Crumb) => void;
 
   /** Variant of the breadcrumb.
    * - `default` default variant.

@@ -9,6 +9,7 @@ import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
 import { StandAloneTextfieldProps } from "../_inputsComponents/StandAloneTextfield/types";
+import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { DropdownOptionComponent } from "./DropdownOptionComponent/DropdownOptionComponent";
 import { DropdownOptionsComponent } from "./DropdownOptionsComponent/DropdownOptionsComponent";
@@ -24,7 +25,6 @@ import {
   IndicatorIconProps,
 } from "./types";
 
-import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import "./Dropdown.scss";
 
 type LabelValue = {

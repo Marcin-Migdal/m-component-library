@@ -6,6 +6,13 @@ $max-rem: 32;
 @include generate-spacing-classes("g", "gap", $max-px, "px", 1px);
 @include generate-spacing-classes("g", "gap", $max-rem, "rem", 0.25rem);
 
+$max-flex: 12;
+@for $i from 1 through $max-flex {
+  .flex-#{$i} {
+    flex: $i;
+  }
+}
+
 .flex {
   display: flex;
 }

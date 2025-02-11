@@ -9,17 +9,31 @@
 .m-card {
   position: relative;
 
-  padding: var(--input-padding-left);
+  height: fit-content;
+  width: fit-content;
   border-radius: var(--border-radius);
+  z-index: 0;
+
+  .m-card-content {
+    padding: var(--input-padding-left);
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    background-color: inherit;
+    border-radius: inherit;
+  }
 
   &.gradient-border,
   &.gradient-border-glow {
+    margin-top: var(--border-width);
+    margin-left: var(--border-width);
+
     &::after,
     &::before {
       content: "";
 
       position: absolute;
-      inset: -0.2em;
+      inset: -2px;
 
       border-radius: inherit;
 

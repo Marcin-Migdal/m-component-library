@@ -20,8 +20,8 @@ export const Breadcrumb = ({ crumbs, onClick, variant = "default", disableLastCr
         const isDisabled = disabled || (isLast && disableLastCrumb);
 
         return (
-          <>
-            <div key={id} className={classNames("m-crumb", { disabled: isDisabled })}>
+          <React.Fragment key={id}>
+            <div className={classNames("m-crumb", { disabled: isDisabled })}>
               {icon && <FontAwesomeIcon className="m-crumb-icon" icon={icon} />}
               <a className="m-crumb-label" onClick={() => onClick && !isDisabled && onClick(crumb)}>
                 {label}
@@ -30,7 +30,7 @@ export const Breadcrumb = ({ crumbs, onClick, variant = "default", disableLastCr
             {variant === "compact" && index < crumbs.length - 1 && (
               <FontAwesomeIcon className="m-crumb-indicator-icon" icon="chevron-right" />
             )}
-          </>
+          </React.Fragment>
         );
       })}
     </div>

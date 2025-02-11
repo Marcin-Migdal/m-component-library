@@ -47,7 +47,7 @@ export type ColorPickerProps = InputProps & {
       }
     | {
         /** Format of the returned color: HEX. */
-        returnedColorType: ReturnedColor.HEX;
+        returnedColorType: `${ReturnedColor.HEX}`;
 
         /** Callback triggered when color changes. */
         onChange: ColorPickerOnChange<string>;

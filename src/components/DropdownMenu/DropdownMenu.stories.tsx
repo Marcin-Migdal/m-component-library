@@ -13,7 +13,7 @@ const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>, option: D
   console.log(option); // console log used for documentation
 };
 
-const dropdownMenuOptions: DropdownMenuOption[] = [
+export const dropdownMenuOptions: DropdownMenuOption[] = [
   {
     label: "Add currency",
     onClick: handleClick,
@@ -68,8 +68,8 @@ const dropdownMenuOptions: DropdownMenuOption[] = [
   },
 ];
 
-const DropdownMenuTriggerButton = ({ text = "Currency" }: { text?: string }) => {
-  return <Button style={{ width: "fit-content" }} text={text} icon="money-bill-wave" onClick={() => {}} />;
+const DropdownMenuTriggerButton = () => {
+  return <Button style={{ width: "fit-content" }} text="Currency" icon="money-bill-wave" onClick={() => {}} />;
 };
 
 export default {
