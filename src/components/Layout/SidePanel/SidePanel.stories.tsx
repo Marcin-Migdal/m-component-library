@@ -45,55 +45,41 @@ const meta: Meta<typeof SidePanel> = {
         defaultValue: { summary: "false" },
       },
     },
+    closeOnOutsideClick: {
+      description: "Whether the side panel should close when user clicks outside the side panel.",
+      control: "boolean",
+      table: {
+        type: { summary: "false" },
+        defaultValue: { summary: "false" },
+      },
+    },
   },
+  decorators: [
+    (_Story, { args }) => {
+      const [handleOpen, sidePanelProps] = useSidePanel();
+
+      return (
+        <div>
+          <Button text="Open alert" onClick={handleOpen} />
+          <SidePanel {...args} {...sidePanelProps}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <h2 style={{ margin: "unset", marginBottom: "1rem" }}>Title</h2>
+              <Button text="Close" onClick={sidePanelProps.handleClose} variant="full" disableDefaultMargin />
+            </div>
+          </SidePanel>
+        </div>
+      );
+    },
+  ],
 };
 
 export default meta;
 
-export const LeftSidePanel: StoryObj<typeof SidePanel> = {
-  render: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [handleOpen, sidePanelProps] = useSidePanel();
-
-    return (
-      <div>
-        <Button text="Open alert" onClick={handleOpen} />
-        <SidePanel {...sidePanelProps}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <h2 style={{ margin: "unset", marginBottom: "1rem" }}>Title</h2>
-            <Button text="Close" onClick={sidePanelProps.handleClose} variant="full" disableDefaultMargin />
-          </div>
-        </SidePanel>
-      </div>
-    );
-  },
-};
-
-export const RightSidePanel: StoryObj<typeof SidePanel> = {
-  render: () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [handleOpen, sidePanelProps] = useSidePanel();
-
-    return (
-      <div>
-        <Button text="Open alert" onClick={handleOpen} />
-        <SidePanel position="right" {...sidePanelProps}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-            }}
-          >
-            <h2 style={{ margin: "unset", marginBottom: "1rem" }}>Title</h2>
-            <Button text="Close" onClick={sidePanelProps.handleClose} variant="full" disableDefaultMargin />
-          </div>
-        </SidePanel>
-      </div>
-    );
-  },
-};
+export const Default: StoryObj<typeof SidePanel> = {};
+export const Position: StoryObj<typeof SidePanel> = { args: { position: "right" } };
+export const CloseOnOutsideClick: StoryObj<typeof SidePanel> = { args: { closeOnOutsideClick: true } };

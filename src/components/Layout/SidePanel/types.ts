@@ -22,6 +22,10 @@ export type SidePanelProps = {
   /** Whether the side panel should always remain open.
    * @default false */
   alwaysOpen?: boolean;
+
+  /** Whether the side panel should close when user clicks outside the side panel.
+   * @default false */
+  closeOnOutsideClick?: boolean;
 };
 
 export type UseSidePanelArgs = {

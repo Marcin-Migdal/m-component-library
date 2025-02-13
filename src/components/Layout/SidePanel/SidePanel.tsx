@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 
 import { SidePanelOpenState, SidePanelProps } from "./types";
@@ -18,13 +18,41 @@ const SidePanel = ({
   className,
   position = "left",
   alwaysOpen = false,
+  closeOnOutsideClick = false,
 }: PropsWithChildren<SidePanelProps>) => {
+  const alertRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!closeOnOutsideClick) {
+      return;
+    }
+
+    const handleClickOutside = (event: MouseEvent) => {
+      const target: HTMLElement = event.target as HTMLElement;
+
+      if (!alertRef.current) {
+        return;
+      }
+
+      if (!alertRef.current.contains(target)) {
+        handleClose();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [closeOnOutsideClick]);
+
   if (!alwaysOpen && sidePanelOpen === SidePanelOpenState.CLOSED) {
     return null;
   }
-  className + "";
+
   return createPortal(
     <div
+      ref={alertRef}
       className={classNames("m-side-panel", "m-scroll slim-scroll", sidePanelOpen, position, className, {
         opened: alwaysOpen,
       })}
