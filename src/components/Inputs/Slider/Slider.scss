@@ -40,8 +40,8 @@
       position: absolute;
       font-size: var(--font-size-sm);
 
-      --slider-value-preview-y-offset: 8px;
-      --slider-value-preview-static-x-offset: 4px;
+      --slider-value-preview-y-offset: var(--spacing-2);
+      --slider-value-preview-static-x-offset: var(--spacing-2);
 
       &.top-static {
         bottom: var(--slider-value-preview-y-offset);

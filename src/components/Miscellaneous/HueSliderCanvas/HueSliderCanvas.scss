@@ -11,7 +11,7 @@
 
   .hue-picker-pointer {
     position: absolute;
-    top: 8px;
+    top: var(--spacing-2);
 
     width: 0.75rem;
     height: 0.75rem;

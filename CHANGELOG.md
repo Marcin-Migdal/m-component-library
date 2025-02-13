@@ -1,4 +1,6 @@
-### Release date ??.??.???? - Release ?.?.?
+### Release date ??.??.???? - Release 2.0.0
+
+- [[#59]](https://github.com/Marcin-Migdal/m-component-library/issues/59) **[MAJOR]** Migrating storybook from v6. to v8.5.1, refactor of all stories, add documentation of stories, styling changed from css to scss. Further refactor of scss files structure, and token design system.
 
 - [[#80]](https://github.com/Marcin-Migdal/m-component-library/issues/80) **[PATCH]** Fix button css style with displaying icon as only content, add disableDefaultMargin props to button
 - [[#64]](https://github.com/Marcin-Migdal/m-component-library/issues/64) **[PATCH]** Add prefix props to textfield and dropdown components

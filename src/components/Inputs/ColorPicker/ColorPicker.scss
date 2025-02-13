@@ -3,7 +3,7 @@
 .m-color-picker-container {
   .m-color-preview-container {
     display: flex;
-    gap: 0.5rem;
+    gap: var(--spacing-2);
 
     .m-color-preview-square {
       height: var(--input-height);

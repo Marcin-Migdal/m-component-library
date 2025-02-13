@@ -6,7 +6,7 @@
 
     min-width: fit-content;
     width: 100%;
-    gap: 0.5rem;
+    gap: var(--spacing-2);
     padding: var(--spacing-1) var(--spacing-2);
 
     white-space: nowrap;

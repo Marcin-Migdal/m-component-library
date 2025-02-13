@@ -8,7 +8,7 @@
 
   border-top: var(--alert-border-radius) solid;
   border-radius: var(--alert-border-radius);
-  gap: 1rem;
+  gap: var(--spacing-4);
 
   &.opened {
     animation: open-alert var(--transition-duration-slow);

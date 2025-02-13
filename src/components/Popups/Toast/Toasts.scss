@@ -9,17 +9,17 @@
 
   &.top-left,
   &.top-right {
-    top: 1rem;
+    top: var(--spacing-4);
   }
 
   &.bottom-left,
   &.bottom-right {
-    bottom: 1rem;
+    bottom: var(--spacing-4);
   }
 
   &.top-left,
   &.bottom-left {
-    left: 1rem;
+    left: var(--spacing-4);
 
     .toast {
       animation-name: toast-in-left;
@@ -29,7 +29,7 @@
 
   &.top-right,
   &.bottom-right {
-    right: 1rem;
+    right: var(--spacing-4);
 
     .toast {
       animation-name: toast-in-right;
@@ -98,8 +98,8 @@
     svg.close-icon {
       position: absolute;
 
-      top: 8px;
-      right: 8px;
+      top: var(--spacing-2);
+      right: var(--spacing-2);
 
       height: 24px;
       width: 24px;

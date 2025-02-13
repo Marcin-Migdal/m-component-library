@@ -1,6 +1,6 @@
 import { CssVariableNameType } from "./getCssProperty";
 
-const parseCssValue = (element: HTMLElement, value: string, fallbackValue?: number): number | undefined => {
+export const parseCssValue = (element: HTMLElement, value: string, fallbackValue?: number): number | undefined => {
   if (value.endsWith("px")) {
     return parseFloat(value);
   } else if (value.endsWith("em")) {

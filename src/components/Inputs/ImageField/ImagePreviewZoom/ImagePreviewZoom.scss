@@ -16,10 +16,10 @@
   }
 
   .m-image-close-zooms {
-    top: 0.5rem;
-    left: 0.5rem;
+    top: var(--spacing-2);
+    left: var(--spacing-2);
 
-    padding: var(--spacing-2);
+    padding: var(--spacing-1);
     font-size: var(--font-size-xs);
   }
 }

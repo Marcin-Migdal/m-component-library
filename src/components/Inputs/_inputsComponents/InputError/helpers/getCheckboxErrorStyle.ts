@@ -27,7 +27,7 @@ export const getCheckboxErrorStyle = (
     }
   }
 
-  const errorIconMargin = parseInt(getCssProperty(document.body, "--error-icon-margin") || "8px");
+  const errorIconMargin = getCssPropertyAsNumber(document.body, "--error-icon-margin", 8);
   const checkboxBorderLineWidth = getCssPropertyAsNumber(document.body, "--border-base", 2);
 
   const additionalDistance: string = `${checkboxWidth + errorIconMargin + 2 * checkboxBorderLineWidth}px`;

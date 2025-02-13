@@ -3,7 +3,9 @@
 .m-input-container {
   &.error {
     .m-input-label {
-      color: var(--failure-color) !important;
+      &.floating {
+        color: var(--failure-color) !important;
+      }
     }
   }
 }

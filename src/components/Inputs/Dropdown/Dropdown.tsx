@@ -38,7 +38,7 @@ const defaultComponents: DropdownComponents<any> = {
   ClearIcon: (props) => <FontAwesomeIcon {...props} icon="close" />,
   IndicatorIcon: (props) => <FontAwesomeIcon {...props} icon="angle-down" />,
   Options: (props) => <DropdownOptionsComponent {...props} />,
-  Option: (props) => <DropdownOptionComponent {...props} />,
+  Option: (props) => <DropdownOptionComponent key={props.option[props.valueKey]} {...props} />,
   EmptyMessage: (props) => <li {...props}>{props.noOptionsMessage}</li>,
 };
 
