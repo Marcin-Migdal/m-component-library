@@ -1,0 +1,29 @@
+.common-wrapper-container {
+  .date-picker-popup {
+    background-color: var(--popups-background-color);
+
+    .date-picker-popup-month-selector {
+      .date-picker-popup-month-text {
+        div {
+          &:hover {
+            background-color: var(--popups-hover-background-color);
+          }
+
+          &:active {
+            background-color: var(--popups-active-background-color);
+          }
+        }
+      }
+
+      .date-picker-popup-month-icon {
+        &:hover {
+          background-color: var(--popups-hover-background-color);
+        }
+
+        &:active {
+          background-color: var(--popups-active-background-color);
+        }
+      }
+    }
+  }
+}

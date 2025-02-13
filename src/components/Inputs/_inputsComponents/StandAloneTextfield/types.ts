@@ -1,5 +1,4 @@
 import React, { ChangeEvent, CSSProperties, FocusEvent } from "react";
-import { InputState } from "react-input-mask";
 import { InputProps } from "../input-types";
 
 export type TextfieldTypes = "text" | "number" | "password";
@@ -8,62 +7,44 @@ export type StandAloneTextfieldProps = Omit<
   InputProps,
   "labelWidth" | "label" | "disableDefaultMargin" | "error" | "labelType" | "floatingInputWidth"
 > & {
+  /** The current value of the `TextField`. Can be controlled externally. */
   value?: string;
+
+  /** Placeholder text displayed when the input is empty. */
   placeholder?: string;
+
+  /** Defines the type of `TextField`
+   * - `text` default type.
+   * - `number`
+   * - `password`
+   */
   type?: TextfieldTypes;
+
+  /** Automatically focuses the `TextField` when it mounts.
+   * @default false */
   autoFocus?: boolean;
+
+  /** Additional CSS class names for custom styling. */
   className?: string;
+
+  /** Optional text displayed before value in `TextField`. */
   prefix?: string;
 
+  /** Callback fired when the text value changes. */
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+
+  /** Callback fired when the `TextField` loses focus. */
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
+
+  /** Callback fired when the `TextField` gains focus. */
   onFocus?: (event: FocusEvent<HTMLInputElement, Element>) => void;
+
+  /** Callback fired when the `TextField` is clicked. */
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 
+  /** Inline styles for the `TextField`. */
   style?: CSSProperties;
 
+  /** Unique identifier for the `TextField`. */
   id?: string;
-} & (BaseMaskTextfieldType | AdvancedMaskTextfieldType | NoMaskTextfieldType);
-
-//* No mask type
-type NoMaskTextfieldType = {
-  advancedMask?: undefined;
-  mask?: undefined;
 };
-
-//* Base mask type
-export type BaseMaskTextfieldType = {
-  advancedMask?: undefined;
-  mask: `${TEXT_FIELD_MASKS}` | string;
-};
-
-export enum TEXT_FIELD_MASKS {
-  PHONE_NUMBER = "999-999-999",
-  CREDIT_CARD = "9999 9999 9999 9999",
-  ZIP_CODE = "99-999",
-}
-
-//* Advanced mask type
-export type AdvancedMaskTextfieldType = {
-  mask?: undefined;
-  advancedMask: AdvancedMaskType;
-};
-
-export type AdvancedMaskType = {
-  mask: string;
-  formatChars: FormatChars;
-  beforeChange?: BeforeMaskedValueChangeType;
-};
-
-export type FormatChars = {
-  [key: string]: string;
-};
-
-export type BeforeMaskedValueChangeTypeArgs = {
-  newState: InputState;
-  oldState: InputState;
-  userInput: string;
-  formatChars: FormatChars;
-};
-
-type BeforeMaskedValueChangeType = (args: BeforeMaskedValueChangeTypeArgs) => InputState;

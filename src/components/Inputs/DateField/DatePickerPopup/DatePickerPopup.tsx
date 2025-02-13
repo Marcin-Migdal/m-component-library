@@ -1,16 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
-import React, { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+import React, { ReactElement, useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 
-import { getPosition } from "../../../../helpers";
-import { Position } from "../../../../helpers/getPosition/getPosition-types";
+import { getPosition } from "../../../../utils";
+import { Position } from "../../../../utils/getPosition/getPosition-types";
 import { DropdownMenu, DropdownMenuOption } from "../../../DropdownMenu";
 import { getDayName, getDaysInMonth, getMonthName, getMonths, getWeekDays, getYears } from "../helpers";
 import { normalizeDate } from "../helpers/normalizeDate";
 import { InternalDateValue, InternalRangeDate } from "../types";
 import { DayButton } from "./DayButton/DayButton";
 
-import "./DatePickerPopup.css";
+import "./DatePickerPopup.scss";
 
 type DatePickerPopupProps<TRange extends boolean> = {
   value: InternalDateValue<TRange> | undefined;
@@ -150,7 +150,7 @@ export const DatePickerPopup = <TRange extends boolean>({
     const startOfMonth = new Date(currentYear, currentMonth, 1);
     const endOfMonth = new Date(currentYear, currentMonth + 1, 0);
 
-    const dates = [];
+    const dates: ReactElement[] = [];
 
     const startOfMonthWeekDayIndex: number = weekDays.indexOf(getDayName(startOfMonth, locale));
 

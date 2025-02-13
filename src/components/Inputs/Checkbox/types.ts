@@ -13,7 +13,12 @@ type CheckboxClassNames = {
 };
 
 export type CheckboxProps = Omit<InputProps<SimpleInputLabel>, "floatingInputWidth"> & {
+  /** Whether the checkbox is checked. */
   checked?: boolean;
+
+  /** Callback function triggered when the checkbox state changes. */
   onChange?: (event: ChangeEvent<HTMLInputElement>, value: boolean) => void;
+
+  /** Custom class names for styling the checkbox elements. */
   classNamesObj?: CheckboxClassNames;
 };

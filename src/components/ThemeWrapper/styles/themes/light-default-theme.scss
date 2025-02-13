@@ -1,0 +1,89 @@
+.light-default-theme {
+  --primary-color_020: hsl(0, 0%, 6%);
+  --primary-color_040: hsl(0, 0%, 8%);
+  --primary-color_060: hsl(0, 0%, 10%);
+  --primary-color_080: hsl(0, 0%, 12%);
+
+  --primary-color_100: hsl(0, 0%, 14%);
+  --primary-color_120: hsl(0, 0%, 16%);
+  --primary-color_140: hsl(0, 0%, 18%);
+  --primary-color_160: hsl(0, 0%, 20%);
+  --primary-color_180: hsl(0, 0%, 22%);
+
+  --primary-color_200: hsl(0, 0%, 24%);
+  --primary-color_220: hsl(0, 0%, 26%);
+  --primary-color_240: hsl(0, 0%, 28%);
+  --primary-color_260: hsl(0, 0%, 30%);
+  --primary-color_280: hsl(0, 0%, 32%);
+
+  --primary-color_300: hsl(0, 0%, 34%);
+  --primary-color_320: hsl(0, 0%, 36%);
+  --primary-color_340: hsl(0, 0%, 38%);
+  --primary-color_360: hsl(0, 0%, 40%);
+  --primary-color_380: hsl(0, 0%, 42%);
+
+  --primary-color_400: hsl(0, 0%, 44%);
+  --primary-color_420: hsl(0, 0%, 46%);
+  --primary-color_440: hsl(0, 0%, 48%);
+  --primary-color_460: hsl(0, 0%, 50%);
+  --primary-color_480: hsl(0, 0%, 52%);
+
+  --primary-color_500: hsl(0, 0%, 54%);
+  --primary-color_520: hsl(0, 0%, 56%);
+  --primary-color_540: hsl(0, 0%, 58%);
+  --primary-color_560: hsl(0, 0%, 60%);
+  --primary-color_580: hsl(0, 0%, 62%);
+
+  --primary-color_600: hsl(0, 0%, 64%);
+  --primary-color_620: hsl(0, 0%, 66%);
+  --primary-color_640: hsl(0, 0%, 68%);
+  --primary-color_660: hsl(0, 0%, 70%);
+  --primary-color_680: hsl(0, 0%, 72%);
+
+  --primary-color_700: hsl(0, 0%, 74%);
+  --primary-color_720: hsl(0, 0%, 76%);
+  --primary-color_740: hsl(0, 0%, 78%);
+  --primary-color_760: hsl(0, 0%, 80%);
+  --primary-color_780: hsl(0, 0%, 82%);
+
+  --primary-color_800: hsl(0, 0%, 84%);
+  --primary-color_820: hsl(0, 0%, 86%);
+
+  /** Inputs colors */
+  --slider-thumb-color: var(--primary-color_320);
+  --checkbox-color: var(--primary-color_300);
+  --toggle-switch-color: var(--checkbox-color);
+
+  --popup-date-button-highlighted-color: var(--primary-color_660);
+
+  /** Buttons */
+  --btn-outlined-color: var(--primary-color_300);
+  --btn-full-background-color: var(--primary-color_300);
+  --btn-full-hover-background-color: var(--primary-color_460);
+  --btn-text-color: var(--primary-color_280);
+  --btn-text-hover-color: var(--primary-color_260);
+  --btn-text-hover-background-color: var(--primary-color_820);
+  --btn-neon-color: var(--primary-color_420);
+  --btn-neon-hover-background-color: var(--primary-color_300);
+
+  /* Loader */
+  --loader-color: var(--primary-color_280);
+
+  /* Card */
+  --card-gradient-colors: var(--primary-color_020), var(--primary-color_820), var(--primary-color_720),
+    var(--primary-color_400), var(--primary-color_380), var(--primary-color_220), var(--primary-color_380),
+    var(--primary-color_400), var(--primary-color_720), var(--primary-color_820), var(--primary-color_020);
+
+  /* Alert */
+  --alert-border-color: var(--primary-color_300);
+
+  /* Breadcrumb */
+  --crumb-active-background-color: var(--grey-color-275);
+  --crumb-hover-active-background-color: var(--grey-color-400);
+
+  /* Common */
+  --primary-highlighted-text-color: var(--grey-color-625);
+  --box-shadow-color: var(--primary-color_440);
+
+  --scroll-track-background-color: var(--primary-color_620);
+}

@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 
-import { getCssProperty, getCssPropertyAsNumber } from "../../../../../helpers";
+import { getCssProperty, getCssPropertyAsNumber } from "../../../../../utils";
 import { LabelPercentageWidth, SimpleInputLabel } from "../../../../global-types";
 
 export const getToggleSwitchErrorStyle = (
@@ -29,8 +29,8 @@ export const getToggleSwitchErrorStyle = (
 
   toggleSwitchWidth = toggleSwitchWidth * 2;
 
-  const errorIconMargin = parseInt(getCssProperty(document.body, "--error-icon-margin") || "8px");
-  const checkboxBorderLineWidth = getCssPropertyAsNumber(document.body, "--border-width", 2);
+  const errorIconMargin = getCssPropertyAsNumber(document.body, "--error-icon-margin", 8);
+  const checkboxBorderLineWidth = getCssPropertyAsNumber(document.body, "--border-base", 2);
 
   const additionalDistance: string = `${toggleSwitchWidth + errorIconMargin + 2 * checkboxBorderLineWidth}px`;
 

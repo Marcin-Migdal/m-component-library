@@ -2,10 +2,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import React, { CSSProperties, useRef } from "react";
 
-import { Placement } from "../../../../helpers/getPosition/getPosition-types";
+import { Placement } from "../../../../utils/getPosition/getPosition-types";
 import { Tooltip } from "../../../Miscellaneous";
 
-import "./InputError.css";
+import "./InputError.scss";
 
 type InputErrorProps = {
   style: CSSProperties;

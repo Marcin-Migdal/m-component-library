@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 import { DropdownMenuItem } from "../DropdownMenuOption/DropdownMenuItem";
+import { DropdownSubMenu } from "../DropdownSubMenu/DropdownSubMenu";
 import { getDropdownPosition } from "../helpers/getDropdownPosition";
 
 import {
@@ -13,7 +14,7 @@ import {
   OpenPosition,
 } from "../types";
 
-import "./DropdownMenu.css";
+import "./DropdownMenu.scss";
 
 type DropdownMenuProps = {
   className?: string;
@@ -154,6 +155,7 @@ export const DropdownMenu = ({
             key={option.id ?? index}
             option={option}
             closeMenu={closeMenu}
+            DropdownSubMenu={DropdownSubMenu}
           />
         ))
       ) : (

@@ -1,28 +1,23 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import { SimpleInputLabel } from "../../global-types";
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
-import StoryToggleSwitchWrapper from "./StoryToggleSwitchWrapper";
+import { generateHiddenArgTypes } from "../../../internalUtils/generateHiddenArgTypes";
+import { simpleInputArgTypes } from "../../../internalUtils/inputArgTypes";
+import ToggleSwitch from "./ToggleSwitch";
 
-export default {
-  title: "M-component-library/Inputs",
-  component: StoryToggleSwitchWrapper,
-} as ComponentMeta<typeof StoryToggleSwitchWrapper>;
-
-const Template: ComponentStory<typeof StoryToggleSwitchWrapper> = (args) => (
-  <ThemeWrapper darkMode>
-    <div style={{ padding: "1rem" }}>
-      <StoryToggleSwitchWrapper {...args} />
-    </div>
-  </ThemeWrapper>
-);
-
-export const toggleSwitch = Template.bind({});
-
-toggleSwitch.args = {
-  label: "Toggle switch",
-  labelType: SimpleInputLabel.LEFT,
-  labelWidth: 30,
-  size: "large",
+const meta: Meta<typeof ToggleSwitch> = {
+  title: "Components/Inputs/ToggleSwitch",
+  component: ToggleSwitch,
+  argTypes: {
+    ...simpleInputArgTypes,
+    ...generateHiddenArgTypes(["floatingInputWidth"]),
+  },
 };
+
+export default meta;
+
+type Story = StoryObj<typeof ToggleSwitch>;
+
+export const Default: Story = {};
+export const Label: Story = { args: { label: "Input label", labelType: "left" } };
+export const Size: Story = { args: { size: "small" } };
+export const Error: Story = { args: { error: "Input error" } };

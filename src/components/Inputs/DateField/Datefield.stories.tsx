@@ -1,29 +1,40 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import { InputLabel } from "../../global-types";
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
-import { DateField } from "./DateField";
+import { DateField } from ".";
+import { inputArgTypes } from "../../../internalUtils/inputArgTypes";
 
-export default {
-  title: "M-component-library/Inputs",
+const meta: Meta<typeof DateField> = {
+  title: "Components/Inputs/DateField",
   component: DateField,
-} as ComponentMeta<typeof DateField>;
-
-const Template: ComponentStory<typeof DateField> = (args) => (
-  <ThemeWrapper darkMode>
-    <div style={{ padding: "1rem" }}>
-      <DateField {...args} />
-    </div>
-  </ThemeWrapper>
-);
-
-export const dateField = Template.bind({});
-
-dateField.args = {
-  label: "Name",
-  labelType: InputLabel.FLOATING,
-  placeholder: "Name...",
-  labelWidth: 20,
-  range: true,
+  argTypes: {
+    ...inputArgTypes,
+    range: {
+      control: "boolean",
+      table: {
+        defaultValue: { summary: "false" },
+        type: { summary: "boolean" },
+      },
+    },
+    value: {
+      control: false,
+      table: {
+        type: {
+          summary: "Date | [Date, Date]",
+          detail:
+            "Value type is dependant on the props `range` \n - `Date` when `range` === false (DEFAULT) \n - `[Date, Date]` when `range` === true",
+        },
+      },
+    },
+  },
 };
+
+export default meta;
+
+type Story = StoryObj<typeof DateField>;
+
+export const Default: Story = {};
+export const Range: Story = { args: { range: true } };
+export const Locale: Story = { args: { locale: "pl-PL" } };
+export const Label: Story = { args: { label: "Input label", labelType: "left" } };
+export const Size: Story = { args: { size: "small" } };
+export const Error: Story = { args: { error: "Input error" } };

@@ -4,12 +4,13 @@ import React, { ChangeEvent, FocusEvent, MouseEvent as ReactMouseEvent, useEffec
 import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
 
-import { ComponentSize, InputLabel } from "../../global-types";
+import { InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
 import { StandAloneTextfieldProps } from "../_inputsComponents/StandAloneTextfield/types";
-import { getInputStyle } from "../helpers/getInputStyle";
+import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
+import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { DropdownOptionComponent } from "./DropdownOptionComponent/DropdownOptionComponent";
 import { DropdownOptionsComponent } from "./DropdownOptionsComponent/DropdownOptionsComponent";
 
@@ -24,7 +25,7 @@ import {
   IndicatorIconProps,
 } from "./types";
 
-import "./Dropdown.css";
+import "./Dropdown.scss";
 
 type LabelValue = {
   value: string | number;
@@ -37,40 +38,42 @@ const defaultComponents: DropdownComponents<any> = {
   ClearIcon: (props) => <FontAwesomeIcon {...props} icon="close" />,
   IndicatorIcon: (props) => <FontAwesomeIcon {...props} icon="angle-down" />,
   Options: (props) => <DropdownOptionsComponent {...props} />,
-  Option: (props) => <DropdownOptionComponent {...props} />,
+  Option: (props) => <DropdownOptionComponent key={props.option[props.valueKey]} {...props} />,
   EmptyMessage: (props) => <li {...props}>{props.noOptionsMessage}</li>,
 };
 
-function Dropdown<T extends { [key: string]: string | number } = LabelValue>(props: DropdownProps<T>) {
-  const {
-    value: externalValue = undefined,
-    name = undefined,
-    disabled = false,
-    onChange,
-    onClear,
-    onFocus,
-    label,
-    error,
-    labelType = InputLabel.LEFT,
-    placeholder,
-    labelWidth = 30,
-    floatingInputWidth = 100,
-    options = [],
-    labelKey = "label",
-    valueKey = "value",
-    size = ComponentSize.MEDIUM,
-    disableDefaultMargin = false,
-    classNamesObj,
-    prefix,
-    components,
-    noOptionsMessage = "No options",
-    optionHeightFit = 6,
+/** Dropdown is a customizable select component that allows users to choose from a list of options.
+ * The component can display icons, nested options, and custom templates for option rendering.
+ * Additional features include positioning control, z-index management, and event handlers for open/close states. */
+function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
+  value: externalValue = undefined,
+  onChange,
+  onClear,
+  onFocus,
+  name = undefined,
+  placeholder,
+  label,
+  error,
+  classNamesObj,
 
-    clearable = false,
-    readOnly = false,
-    filter = false,
-  } = props;
+  prefix,
+  options = [],
+  labelKey = "label",
+  valueKey = "value",
+  noOptionsMessage = "No options",
+  optionHeightFit = 6,
+  clearable = false,
+  filter = false,
+  components,
 
+  labelType = defaultInputPropsValue.labelType,
+  labelWidth = defaultInputPropsValue.labelWidth,
+  size = defaultInputPropsValue.size,
+  disabled = defaultInputPropsValue.disabled,
+  readOnly = defaultInputPropsValue.readOnly,
+  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+  floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
+}: DropdownProps<T>) {
   const controlContainerRef = useRef<HTMLInputElement>(null);
 
   const [internalValue, setInternalValue] = useState<DropdownValue<T>>(undefined);

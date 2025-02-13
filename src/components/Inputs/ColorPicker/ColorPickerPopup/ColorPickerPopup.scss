@@ -1,0 +1,44 @@
+.color-picker-popup {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+
+  width: 300px;
+  border-radius: var(--radius-md);
+  transition: var(--transition-duration-slow);
+
+  z-index: 3;
+
+  &.mounted,
+  &.closing {
+    opacity: 0;
+  }
+
+  &.opened {
+    opacity: 1;
+  }
+
+  .middle-section {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: var(--spacing-4);
+    padding: var(--spacing-4);
+
+    .color-preview {
+      width: 50px;
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radius-full);
+    }
+  }
+
+  .bottom-section {
+    display: flex;
+    padding: var(--spacing-0) var(--spacing-2) var(--spacing-2) var(--spacing-2);
+    gap: var(--spacing-2);
+
+    .m-textfield-container {
+      margin-bottom: unset;
+    }
+  }
+}

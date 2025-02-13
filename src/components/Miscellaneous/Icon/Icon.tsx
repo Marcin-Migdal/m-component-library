@@ -4,7 +4,10 @@ import React from "react";
 
 import { IconProps } from "./types";
 
-const Icon = ({ icon, onClick, className = "", style = {} }: IconProps) => {
+import "./Icon.theme.scss";
+
+/** A reusable icon component for displaying SVG-based icons. */
+const Icon = ({ icon, onClick, className, style = {} }: IconProps) => {
   if (!icon) {
     return null;
   }

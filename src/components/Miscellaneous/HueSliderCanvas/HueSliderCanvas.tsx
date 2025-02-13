@@ -2,18 +2,23 @@ import classNames from "classnames";
 import React, { useEffect, useRef, useState } from "react";
 
 import { useThrottling } from "../../../hooks";
+import { CanvasCoordinates } from "../../Inputs/ColorPicker/types";
+import { HueSliderCanvasProps } from "./types";
+
 import {
   calculateIndicatorPosition,
   fillSliderGradientBackground,
   hslToRgb,
   rgbToHsl,
 } from "../../Inputs/ColorPicker/helpers";
-import { CanvasCoordinates } from "../../Inputs/ColorPicker/types";
-import { HueSliderCanvasProps } from "./types";
 
-import "./HueSliderCanvas.css";
+import "./HueSliderCanvas.scss";
 
-export const HueSliderCanvas = ({ hue, onChange, readOnly }: HueSliderCanvasProps) => {
+/**
+ * A canvas-based hue slider component used for selecting a color hue.
+ * Renders a gradient representing the full hue spectrum and allows interactive selection of a hue value.
+ */
+export const HueSliderCanvas = ({ hue, onChange, readOnly = false }: HueSliderCanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const [isDragging, setIsDragging] = useState(false);

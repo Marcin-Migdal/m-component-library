@@ -4,7 +4,7 @@ import React from "react";
 
 import { RequirementsDescription } from "./RequirementsDescription/RequirementsDescription";
 
-import "./imageDropzone.css";
+import "./imageDropzone.scss";
 
 type ImageDropzoneProps = {
   dropzoneMessage: [string, string];

@@ -1,11 +1,11 @@
 import classNames from "classnames";
 import React, { useEffect, useRef, useState } from "react";
 
-import { getPosition } from "../../../../helpers";
-import { CalculatedPosition, Position } from "../../../../helpers/getPosition/getPosition-types";
+import { getPosition } from "../../../../utils";
+import { CalculatedPosition, Position } from "../../../../utils/getPosition/getPosition-types";
 import { DropdownOptionComponentProps, DropdownOptionsProps, EmptyMessageComponentProps } from "../types";
 
-import "./DropdownOptionsComponent.css";
+import "./DropdownOptionsComponent.scss";
 
 type DropdownOptionsStyles = {
   opacity: number;
@@ -44,7 +44,7 @@ export const DropdownOptionsComponent = <T,>({
         return;
       }
 
-      const position: Position = getPosition(filterElement, ref.current, { consumerHasParentWidth: true });
+      const position: Position = getPosition(filterElement, element, { consumerHasParentWidth: true });
 
       const children = Array.from(element.children) as HTMLLIElement[];
 

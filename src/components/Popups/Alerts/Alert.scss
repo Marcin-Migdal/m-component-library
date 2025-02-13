@@ -1,0 +1,123 @@
+@use "./Alert.theme.scss";
+
+.m-alert {
+  display: flex;
+  flex-direction: column;
+
+  width: 400px;
+
+  border-top: var(--alert-border-radius) solid;
+  border-radius: var(--alert-border-radius);
+  gap: var(--spacing-4);
+
+  &.opened {
+    animation: open-alert var(--transition-duration-slow);
+  }
+
+  &.closing {
+    animation: close-alert var(--transition-duration-fast) forwards;
+  }
+
+  .m-alert-header {
+    display: flex;
+    width: 100%;
+
+    padding: var(--alert-padding);
+    padding-bottom: unset;
+
+    h4 {
+      margin: unset;
+    }
+
+    svg {
+      margin-left: auto;
+
+      height: 18px;
+      width: 18px;
+
+      font-weight: var(--font-weight-semibold);
+
+      margin-right: calc(-1 * var(--icon-padding));
+      margin-top: calc(-1 * var(--icon-padding));
+      padding: var(--icon-padding);
+
+      border-radius: var(--radius-full);
+      transition: var(--transition-duration-normal);
+      cursor: pointer;
+
+      &:active {
+        transform: scale(0.9);
+        transition: var(--transition-duration-fast);
+      }
+    }
+  }
+
+  .m-alert-content {
+    height: 100%;
+    padding: var(--spacing-0) var(--alert-padding);
+
+    overflow: auto;
+
+    &:last-child {
+      padding-bottom: var(--alert-padding);
+    }
+  }
+
+  .m-alert-footer {
+    display: flex;
+    gap: 1px;
+
+    border-bottom-right-radius: calc(var(--alert-border-radius) + 4px);
+    border-bottom-left-radius: calc(var(--alert-border-radius) + 4px);
+
+    button {
+      flex: 1;
+      border: unset;
+      border-top: 1px solid;
+      padding: var(--spacing-3) var(--spacing-0);
+      font-weight: var(--font-weight-semibold);
+
+      &:not(:disabled) {
+        cursor: pointer;
+
+        &:active {
+          transition: var(--transition-duration-fast);
+        }
+      }
+    }
+
+    .m-alert-confirm-button {
+      border-bottom-left-radius: var(--alert-border-radius);
+    }
+
+    .m-alert-decline-button {
+      border-bottom-right-radius: var(--alert-border-radius);
+    }
+  }
+}
+
+@keyframes open-alert {
+  0% {
+    transform: scale(0.7);
+  }
+  45% {
+    transform: scale(1.05);
+  }
+  80% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes close-alert {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+}

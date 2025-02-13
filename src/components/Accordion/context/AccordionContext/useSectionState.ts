@@ -1,13 +1,13 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
-import { deepCopy } from "../../../../helpers";
-import { Mode, SectionId, SectionState, SectionStateChangeHandler } from "../../types";
+import { deepCopy } from "../../../../utils";
+import { AccordionMode, SectionId, SectionState, SectionStateChangeHandler } from "../../types";
 
 const getMode = (
-  externalMode: Mode | undefined,
+  externalMode: AccordionMode | undefined,
   externalSectionState: SectionState | undefined,
   onSectionStateChange: SectionStateChangeHandler | undefined
-): Mode | undefined => {
+): AccordionMode | undefined => {
   if (externalMode) {
     return externalMode;
   }
@@ -17,19 +17,19 @@ const getMode = (
   }
 
   if (externalSectionState !== null && typeof externalSectionState === "object") {
-    return Mode.MULTIPLE;
+    return AccordionMode.MULTIPLE;
   }
 
-  return Mode.SINGLE;
+  return AccordionMode.SINGLE;
 };
 
 export const useSectionState = (
-  externalMode: Mode | undefined,
+  externalMode: AccordionMode | undefined,
   externalSectionState: SectionState | undefined,
   onSectionStateChange: SectionStateChangeHandler | undefined
-): [Mode | undefined, SectionState, (sectionId: SectionId) => void] => {
+): [AccordionMode | undefined, SectionState, (sectionId: SectionId) => void] => {
   const [internalSectionState, setInternalSectionState] = useState<SectionState>(
-    externalMode === Mode.MULTIPLE ? {} : null
+    externalMode === AccordionMode.MULTIPLE ? {} : null
   );
 
   const sectionStateControlled = externalSectionState !== undefined;
@@ -39,6 +39,14 @@ export const useSectionState = (
     return getMode(externalMode, externalSectionState, onSectionStateChange);
   }, [externalMode, externalSectionState, !onSectionStateChange]);
 
+  useEffect(() => {
+    if (!sectionStateControlled) {
+      const newInitValue = externalMode === AccordionMode.MULTIPLE ? {} : null;
+
+      newInitValue !== internalSectionState && setInternalSectionState(newInitValue);
+    }
+  }, [mode]);
+
   const handleSectionState = (sectionId: SectionId) => {
     let newSectionState: SectionState = null;
 
@@ -47,7 +55,7 @@ export const useSectionState = (
         return;
       }
 
-      case Mode.SINGLE: {
+      case AccordionMode.SINGLE: {
         if (sectionState !== null && typeof sectionState === "object") {
           // eslint-disable-next-line no-console
           console.warn(
@@ -60,11 +68,13 @@ export const useSectionState = (
         break;
       }
 
-      case Mode.MULTIPLE: {
+      case AccordionMode.MULTIPLE: {
         if (!sectionState || typeof sectionState !== "object") {
           // eslint-disable-next-line no-console
           console.warn(
-            `Wrong controlled value, passed value is an ${sectionState === null ? "null" : typeof sectionState}, you are trying to change it in mode MULTIPLE, pass object as a value`
+            `Wrong controlled value, passed value is an ${
+              sectionState === null ? "null" : typeof sectionState
+            }, you are trying to change it in mode MULTIPLE, pass object as a value`
           );
           return;
         }

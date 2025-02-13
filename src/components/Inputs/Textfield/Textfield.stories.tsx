@@ -1,29 +1,35 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import { InputLabel } from "../../global-types";
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
-import StoryTextfieldWrapper from "./StoryTextfieldWrapper";
+import { inputArgTypes } from "../../../internalUtils/inputArgTypes";
+import Textfield from "./Textfield";
 
-export default {
-  title: "M-component-library/Inputs",
-  component: StoryTextfieldWrapper,
-} as ComponentMeta<typeof StoryTextfieldWrapper>;
-
-const Template: ComponentStory<typeof StoryTextfieldWrapper> = (args) => (
-  <ThemeWrapper darkMode>
-    <div style={{ padding: "1rem" }}>
-      <StoryTextfieldWrapper {...args} />
-    </div>
-  </ThemeWrapper>
-);
-
-export const textfield = Template.bind({});
-
-textfield.args = {
-  label: "Name",
-  labelType: InputLabel.FLOATING,
-  placeholder: "Name...",
-  labelWidth: 20,
-  type: "text",
+const meta: Meta<typeof Textfield> = {
+  title: "Components/Inputs/Textfield",
+  component: Textfield,
+  argTypes: {
+    ...inputArgTypes,
+    type: {
+      control: "radio",
+      description: "Defines the type of input field. \n - `text` default type. \n - `number` \n - `password`",
+      options: ["text", "number", "password"],
+      table: {
+        defaultValue: { summary: "text" },
+        type: { summary: "text | number | password" },
+      },
+    },
+    prefix: {
+      control: "text",
+      description: "Optional text displayed before value in `TextField`",
+      table: { type: { summary: "string" } },
+    },
+  },
 };
+
+export default meta;
+
+type Story = StoryObj<typeof Textfield>;
+
+export const Default: Story = {};
+export const Label: Story = { args: { label: "Input label", labelType: "left" } };
+export const Size: Story = { args: { size: "small" } };
+export const Error: Story = { args: { error: "Input error" } };

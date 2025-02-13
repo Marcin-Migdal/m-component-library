@@ -1,0 +1,59 @@
+@use "./Card.theme.scss";
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.m-card {
+  position: relative;
+
+  height: fit-content;
+  width: fit-content;
+  border-radius: var(--radius-md);
+  z-index: 0;
+
+  .m-card-content {
+    padding: var(--input-padding-left);
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    background-color: inherit;
+    border-radius: inherit;
+  }
+
+  &.gradient-border,
+  &.gradient-border-glow {
+    margin-top: var(--border-base);
+    margin-left: var(--border-base);
+
+    &::after,
+    &::before {
+      content: "";
+
+      position: absolute;
+      inset: -2px;
+
+      border-radius: inherit;
+
+      animation: rotation 10s linear infinite reverse;
+
+      z-index: -1;
+    }
+  }
+
+  &.gradient-border-glow::after {
+    filter: blur(2rem);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    --gradient-angle: 0deg;
+  }
+
+  0% {
+    --gradient-angle: 360deg;
+  }
+}

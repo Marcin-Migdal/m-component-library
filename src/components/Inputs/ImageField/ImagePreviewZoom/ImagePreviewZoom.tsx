@@ -4,7 +4,7 @@ import React from "react";
 
 import { Overlay } from "../../../Miscellaneous";
 
-import "./ImagePreviewZoom.css";
+import "./ImagePreviewZoom.scss";
 
 type ImagePreviewZoomProps = {
   zoomVisible: boolean;

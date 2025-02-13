@@ -6,10 +6,11 @@ import { AccordionItem, AccordionItemProps } from "./AccordionItem";
 import { AccordionSection, AccordionSectionProps } from "./AccordionSection";
 import { AccordionToggle, AccordionToggleProps } from "./AccordionToggle";
 import { AccordionContextProvider } from "./context";
-import { AccordionProps, Mode } from "./types";
+import { AccordionMode, AccordionProps } from "./types";
 
-import "./Accordion.css";
+import "./Accordion.scss";
 
+/** A compound component for creating an interactive, expandable accordion structure. */
 const Accordion: React.FC<PropsWithChildren<AccordionProps>> & {
   Section: React.FC<PropsWithChildren<AccordionSectionProps>>;
   Toggle: React.FC<PropsWithChildren<AccordionToggleProps>>;
@@ -32,7 +33,7 @@ const Accordion: React.FC<PropsWithChildren<AccordionProps>> & {
   style,
 
   instanceClassName,
-  icon,
+  icon = "left",
   expandOnIconClick,
 }) => {
   return (
@@ -47,10 +48,10 @@ const Accordion: React.FC<PropsWithChildren<AccordionProps>> & {
       style={style}
     >
       <AccordionContextProvider
-        selectionMode={selectionMode as Mode | undefined}
+        selectionMode={selectionMode as AccordionMode | undefined}
         selected={selected}
         onSelect={onSelect}
-        expansionMode={expansionMode as Mode | undefined}
+        expansionMode={expansionMode as AccordionMode | undefined}
         expanded={expanded}
         onExpand={onExpand}
         instanceClassName={instanceClassName}

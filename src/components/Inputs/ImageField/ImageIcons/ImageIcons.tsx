@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import React from "react";
 
-import "./ImageIcons.css";
+import "./ImageIcons.scss";
 
 type ImageIconsProps = {
   openZoom: () => void;

@@ -1,0 +1,33 @@
+@use "./DayButton.theme.scss";
+
+.date-picker-popup {
+  .date-picker-popup-dates-container {
+    .date-picker-popup-date-button {
+      --day-button-height: calc(var(--day-button-width));
+
+      width: var(--day-button-width);
+      height: var(--day-button-height);
+
+      outline: none;
+      box-shadow: none;
+      border: var(--border-base) solid transparent;
+      border-radius: var(--radius-full);
+
+      transition: var(--transition-duration-fast);
+
+      &.start-date,
+      &.end-date,
+      &.selected {
+        font-weight: var(--font-weight-semibold);
+      }
+
+      &.current {
+        border: var(--border-base) solid;
+      }
+
+      &.selected {
+        pointer-events: none;
+      }
+    }
+  }
+}

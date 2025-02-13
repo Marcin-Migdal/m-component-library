@@ -14,19 +14,43 @@ type DropdownClassNames = {
 } & DropdownOptionsClassnames;
 
 type DropdownBaseProps<T> = InputProps & {
+  /** Currently selected value in the dropdown. */
   value?: DropdownValue<T>;
+
+  /** Callback triggered when an option is selected. */
   onChange?: (event: DropdownChangeEvent<T>, value: DropdownValue<T>) => void;
+
+  /** Callback triggered when the selection is cleared. */
   onClear?: (event: DropdownClearEvent<T>, value: DropdownValue<T>) => void;
+
+  /** Callback triggered when the dropdown receives focus. */
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
+
+  /** Placeholder text for the input field. */
   placeholder?: string;
+
+  /** Whether the dropdown has a clearable selection. */
   clearable?: boolean;
+
+  /** Whether options should be filtered based on input. */
   filter?: boolean;
+
+  /** Custom class names for styling different parts of the component. */
   classNamesObj?: DropdownClassNames;
+
+  /** Prefix text inside the dropdown input field. */
   prefix?: ComponentProps<typeof StandAloneTextfield>["prefix"];
+
+  /** Custom components that can be used to replace parts of the dropdown. */
   components?: Partial<DropdownComponents<T>>;
+
+  /** Message displayed when no options are available. */
   noOptionsMessage?: string;
+
+  /** Height adjustment for each option element. */
   optionHeightFit?: number;
 
+  /** List of options available in the dropdown. */
   options?: T[];
 };
 
@@ -41,16 +65,24 @@ export type IndicatorIconProps = {
 };
 
 export type DropdownComponents<T> = {
+  /** Custom control component (input field). */
   Control: (props: StandAloneTextfieldProps) => ReactElement;
 
+  /** Custom clear icon component. */
   ClearIcon: (props: ClearIconProps) => ReactElement;
+
+  /** Custom dropdown indicator icon component. */
   IndicatorIcon: (props: IndicatorIconProps) => ReactElement;
 
+  /** Custom options list component. */
   Options: (props: DropdownOptionsProps<T>) => ReactElement;
 } & DropdownOptionsComponents<T>;
 
 export type DropdownCustomProps<T> = {
+  /** The keyof options/value object that represents the label to be displayed. */
   labelKey: keyof T;
+
+  /** The keyof options/value object that represents the value associated with the option. */
   valueKey: keyof T;
 };
 
@@ -68,7 +100,10 @@ export type DropdownClearEvent<T> = React.MouseEvent<Element, MouseEvent> & {
 };
 
 type LabelValue = {
+  /** The actual value of the option. Typically a string or number. */
   value: string | number;
+
+  /** The human-readable label associated with the value. */
   label: string;
 };
 

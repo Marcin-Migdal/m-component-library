@@ -1,0 +1,35 @@
+.m-accordion {
+  &.default {
+    .m-accordion-item {
+      height: 2rem;
+      padding: var(--spacing-1);
+      border-radius: var(--radius-md);
+
+      &:not(:last-child) {
+        margin-bottom: var(--spacing-2);
+      }
+    }
+  }
+
+  &.compact {
+    .m-accordion-item {
+      height: 1.25rem;
+      padding: var(--spacing-1);
+      border-radius: var(--radius-sm);
+
+      font-size: var(--font-size-sm);
+      line-height: var(--line-height-tight);
+
+      &:not(:last-child) {
+        margin-bottom: var(--spacing-1);
+      }
+    }
+  }
+
+  .m-accordion-item {
+    display: flex;
+    align-items: center;
+
+    background-color: var(--grey-color-575);
+  }
+}

@@ -1,4 +1,4 @@
-import { getPosition } from "../../../helpers";
+import { getPosition } from "../../../utils";
 import { DropdownMenuPosition } from "../types";
 
 export const getDropdownPosition = (

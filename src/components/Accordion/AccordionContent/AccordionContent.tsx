@@ -4,7 +4,7 @@ import React, { PropsWithChildren, useLayoutEffect, useRef, useState } from "rea
 import { useAccordion, useAccordionSection } from "../hooks";
 import { AccordionContentProps } from "./types";
 
-import "./AccordionContent.css";
+import "./AccordionContent.scss";
 
 export const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>> = ({
   children,

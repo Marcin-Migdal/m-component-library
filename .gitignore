@@ -1,2 +1,7 @@
+storybook-static/
 node_modules
-dist
+build 
+coverage
+.vscode
+.npmrc
+build-storybook.log

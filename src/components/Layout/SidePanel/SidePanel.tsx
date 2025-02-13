@@ -5,9 +5,13 @@ import { createPortal } from "react-dom";
 
 import { SidePanelOpenState, SidePanelProps } from "./types";
 
-import "./SidePanel.css";
+import "./SidePanel.scss";
 
-export const SidePanel = ({
+/**
+ * A side panel component that can be positioned on the left or right side of the screen.
+ * Supports opening, closing, and always-open states.
+ */
+const SidePanel = ({
   children,
   handleClose,
   sidePanelOpen,
@@ -18,7 +22,7 @@ export const SidePanel = ({
   if (!alwaysOpen && sidePanelOpen === SidePanelOpenState.CLOSED) {
     return null;
   }
-
+  className + "";
   return createPortal(
     <div
       className={classNames("m-side-panel", "m-scroll slim-scroll", sidePanelOpen, position, className, {
@@ -33,3 +37,5 @@ export const SidePanel = ({
     document.body
   );
 };
+
+export default SidePanel;

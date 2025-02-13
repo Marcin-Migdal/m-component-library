@@ -1,0 +1,45 @@
+.block {
+  display: block;
+}
+
+.inline {
+  display: inline;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.m-scroll {
+  --scroll-width: 8px;
+
+  &::-webkit-scrollbar {
+    width: var(--scroll-width);
+    height: var(--scroll-width);
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    width: var(--scroll-width);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: calc(var(--scroll-width) / 2);
+    width: var(--scroll-width);
+    background-color: var(--scroll-track-background-color);
+  }
+
+  &.slim-scroll {
+    --scroll-width: 6px;
+  }
+}

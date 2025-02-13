@@ -1,0 +1,24 @@
+@use "generate-spacing-classes" as *;
+
+$max-px: 64;
+$max-rem: 32;
+
+@include generate-spacing-classes("p", "padding", $max-px, "px", 1px);
+@include generate-spacing-classes("pt", "padding-top", $max-px, "px", 1px);
+@include generate-spacing-classes("pb", "padding-bottom", $max-px, "px", 1px);
+@include generate-spacing-classes("pl", "padding-left", $max-px, "px", 1px);
+@include generate-spacing-classes("pr", "padding-right", $max-px, "px", 1px);
+@include generate-spacing-classes("ph", "padding-left", $max-px, "px", 1px);
+@include generate-spacing-classes("ph", "padding-right", $max-px, "px", 1px);
+@include generate-spacing-classes("pv", "padding-top", $max-px, "px", 1px);
+@include generate-spacing-classes("pv", "padding-bottom", $max-px, "px", 1px);
+
+@include generate-spacing-classes("p", "padding", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("pt", "padding-top", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("pb", "padding-bottom", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("pl", "padding-left", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("pr", "padding-right", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("ph", "padding-left", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("ph", "padding-right", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("pv", "padding-top", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("pv", "padding-bottom", $max-rem, "rem", 0.25rem);

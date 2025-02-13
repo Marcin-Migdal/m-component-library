@@ -1,32 +1,33 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import Card from "./Card";
 
-export default {
-  title: "M-component-library/Panels",
+const CardContent = () => {
+  return (
+    <>
+      <h2 className="w-100-percent text-center mt-unset">Card title</h2>
+      <span className="inline-block w-100-percent">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat.
+      </span>
+    </>
+  );
+};
+
+const meta: Meta<typeof Card> = {
+  title: "Components/Panels/Card",
   component: Card,
-} as ComponentMeta<typeof Card>;
+  args: { className: "w-300-px p-4-rem", children: <CardContent /> },
+  argTypes: { children: { control: false } },
+};
 
-const Template: ComponentStory<typeof Card> = (args) => (
-  <ThemeWrapper darkMode>
-    <div style={{ padding: "1rem" }}>
-      <Card style={{ width: "300px" }} {...args}>
-        <h2 style={{ width: "100%", textAlign: "center", marginTop: "0px" }}>Card title</h2>
+export default meta;
 
-        <span style={{ display: "inline-block", width: "100%" }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat
-        </span>
-      </Card>
-    </div>
-  </ThemeWrapper>
-);
+type Story = StoryObj<typeof Card>;
 
-export const card = Template.bind({});
-
-card.args = {
-  variant: "default",
+export const Default: Story = {};
+export const Variant: Story = {
+  args: { variant: "gradient-border" },
 };

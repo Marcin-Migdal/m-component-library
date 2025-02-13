@@ -5,7 +5,7 @@ import { isSameDay } from "../../helpers";
 import { dateContainsInRange } from "../../helpers/dateContainsInRange";
 import { InternalDateValue, InternalRangeDate } from "../../types";
 
-import "./DayButton.css";
+import "./DayButton.scss";
 
 type DayButtonProps<TRange extends boolean> = {
   date: Date;
@@ -58,7 +58,6 @@ export const DayButton = <TRange extends boolean>({
       onMouseLeave={() => onHoverDaySet(undefined)}
       className={classNames("date-picker-popup-date-button", className, {
         dimmed,
-        range,
         current: isSameDay(date, new Date()),
       })}
     >

@@ -1,0 +1,30 @@
+@use "./ProgressSpinner.theme.scss";
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  animation: spin 0.85s linear infinite;
+}
+
+.spinner-path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 20;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  0% {
+    transform: rotate(0deg);
+  }
+}

@@ -2,19 +2,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import React, { useState } from "react";
 
-import { DropdownSubMenu } from "../DropdownSubMenu/DropdownSubMenu";
+import { DropdownSubMenuProps } from "../DropdownSubMenu/DropdownSubMenu";
 import { DropdownMenuOption } from "../types";
 
-import "./DropdownMenuItem.css";
+import "./DropdownMenuItem.scss";
 
 type DropdownMenuItemProps = {
   option: DropdownMenuOption;
   hideDisabled: boolean;
   useIconPlaceholder: boolean;
   closeMenu: () => void;
+  DropdownSubMenu: (props: DropdownSubMenuProps) => React.JSX.Element;
 };
 
-export const DropdownMenuItem = ({ option, hideDisabled, useIconPlaceholder, closeMenu }: DropdownMenuItemProps) => {
+export const DropdownMenuItem = ({
+  option,
+  hideDisabled,
+  useIconPlaceholder,
+  closeMenu,
+  DropdownSubMenu,
+}: DropdownMenuItemProps) => {
   const { label, icon, onClick, disabled, options, template } = option;
 
   const [isSubMenuOpen, setIsSubMenuOpen] = useState<boolean>(false);

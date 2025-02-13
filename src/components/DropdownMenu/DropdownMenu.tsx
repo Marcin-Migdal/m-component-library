@@ -5,13 +5,15 @@ import { createPortal } from "react-dom";
 import { DropdownMenu } from "./DropdownMenu/DropdownMenu";
 import { DropdownMenuProps, OpenConfig, OpenEvent, OpenPosition } from "./types";
 
+import "./DropdownMenu.scss";
+
 const DropdownMenuContainer = ({
   triggerContainerClassName,
   popupClassName,
   children,
   options,
   hideDisabled = false,
-  emptyOptionsMessage,
+  emptyOptionsMessage = "No options",
   openEvent = OpenEvent.CONTEXT_CLICK,
   openPosition = OpenPosition.BOTTOM,
   zIndex = 1,
@@ -63,7 +65,7 @@ const DropdownMenuContainer = ({
           <DropdownMenu
             className={popupClassName}
             parentElement={dropdownTriggerContainerRef.current}
-            emptyOptionsMessage={emptyOptionsMessage || "No options"}
+            emptyOptionsMessage={emptyOptionsMessage}
             options={options}
             closeMenu={closeMenu}
             hideDisabled={hideDisabled}

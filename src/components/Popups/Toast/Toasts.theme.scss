@@ -1,0 +1,60 @@
+.common-wrapper-container {
+  &.light-mode {
+    .toasts-list .toast {
+      --toast-background-color-saturation: 50%;
+      --toast-background-color-lighting: 90%;
+      --toast-background-color-opacity: 0.7;
+    }
+  }
+
+  &.dark-mode {
+    .toasts-list .toast {
+      --toast-background-color-saturation: 15%;
+      --toast-background-color-lighting: 20%;
+      --toast-background-color-opacity: 0.9;
+    }
+  }
+
+  .toasts-list {
+    .toast {
+      color: var(--toast-color);
+      background-color: hsl(
+        var(--toast-color-hue),
+        var(--toast-background-color-saturation),
+        var(--toast-background-color-lighting),
+        var(--toast-background-color-opacity)
+      );
+
+      border-left: 6px solid var(--toast-color);
+
+      &.success {
+        --toast-color-hue: var(--success-color-hue);
+        --toast-color: var(--success-color);
+      }
+
+      &.failure {
+        --toast-color-hue: var(--failure-color-hue);
+        --toast-color: var(--failure-color);
+      }
+
+      &.warning {
+        --toast-color-hue: var(--warning-color-hue);
+        --toast-color: var(--warning-color);
+      }
+
+      &.information {
+        --toast-color-hue: var(--information-color-hue);
+        --toast-color: var(--information-color);
+      }
+
+      svg {
+        fill: var(--toast-color);
+        background-color: transparent;
+
+        &.close-icon:hover {
+          fill: hsl(var(--toast-color-hue), 75%, 75%);
+        }
+      }
+    }
+  }
+}

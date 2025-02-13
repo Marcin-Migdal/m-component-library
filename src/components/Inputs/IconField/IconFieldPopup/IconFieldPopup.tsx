@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { fontAwesomeIconsList, Icon } from "../../ImageField/fontawesome-icons-list";
 import { Textfield } from "../../Textfield";
 
-import "./IconFieldPopup.css";
+import "./IconFieldPopup.scss";
 
 type IconFieldPopupContentProps = {
   value?: IconName;

@@ -1,17 +1,10 @@
 import classNames from "classnames";
 import React, { CSSProperties, useLayoutEffect, useRef, useState } from "react";
-import InputMask, { InputState } from "react-input-mask";
 
 import { ComponentSize } from "../../../global-types";
 import { StandAloneTextfieldProps } from "./types";
 
-import "./StandAloneTextfield.css";
-
-const defaultFormatChars = {
-  "9": "[0-9]",
-  a: "[A-Za-z]",
-  "*": "[A-Za-z0-9]",
-};
+import "./StandAloneTextfield.scss";
 
 type PrefixStyleProperties = {
   inputPaddingLeft: CSSProperties["paddingLeft"];
@@ -35,8 +28,6 @@ export const StandAloneTextfield = ({
   style = {},
   type = "text",
   autoFocus = false,
-  mask = "",
-  advancedMask = undefined,
   prefix = "",
   size = ComponentSize.MEDIUM,
 }: StandAloneTextfieldProps) => {
@@ -76,26 +67,9 @@ export const StandAloneTextfield = ({
     prefix && calculateStyle();
   }, [prefix, size]);
 
-  const handleBeforeMaskedValueChange = (newState: InputState, oldState: InputState, userInput: string): InputState => {
-    if (!advancedMask) {
-      return newState;
-    }
-
-    if (!advancedMask.beforeChange) {
-      return newState;
-    }
-
-    return advancedMask.beforeChange({
-      newState,
-      oldState,
-      userInput,
-      formatChars: advancedMask.formatChars,
-    });
-  };
-
   return (
     <div
-      id={`textfield-wrapper-${id}`}
+      id={id ? `textfield-wrapper-${id}` : undefined}
       style={style}
       ref={textfieldWrapperRef}
       className="standalone-textfield-wrapper"
@@ -105,10 +79,9 @@ export const StandAloneTextfield = ({
           {prefix}
         </span>
       )}
-      <InputMask
-        id={`textfield-${id}`}
+      <input
+        id={id ? `textfield-${id}` : undefined}
         readOnly={readOnly}
-        maskChar={null}
         disabled={disabled}
         name={name}
         className={classNames("m-input", "m-textfield", className)}
@@ -121,13 +94,6 @@ export const StandAloneTextfield = ({
         onClick={onClick}
         autoFocus={autoFocus}
         placeholder={placeholder}
-        //! Mask Props
-        {...(advancedMask
-          ? {
-              ...advancedMask,
-              beforeMaskedValueChange: handleBeforeMaskedValueChange,
-            }
-          : { mask: mask, formatChars: defaultFormatChars })}
       />
     </div>
   );

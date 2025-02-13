@@ -5,24 +5,24 @@ import { AlertFooterProps } from "../types";
 export const AlertFooter = ({
   confirmBtnText = "Confirm",
   confirmBtnDisabled = false,
-  onConfirmBtnClick,
+  onConfirm,
   declineBtnText = "Close",
   declineBtnDisabled = false,
-  onDeclineBtnClick,
+  onDecline,
 }: AlertFooterProps) => {
-  if (!onConfirmBtnClick && !onDeclineBtnClick) {
+  if (!onConfirm && !onDecline) {
     return null;
   }
 
   return (
     <div className="m-alert-footer">
-      {onConfirmBtnClick && (
-        <button disabled={confirmBtnDisabled} onClick={onConfirmBtnClick} className="m-alert-confirm-button">
+      {onConfirm && (
+        <button disabled={confirmBtnDisabled} onClick={onConfirm} className="m-alert-confirm-button">
           {confirmBtnText}
         </button>
       )}
-      {onDeclineBtnClick && (
-        <button disabled={declineBtnDisabled} onClick={onDeclineBtnClick} className="m-alert-decline-button">
+      {onDecline && (
+        <button disabled={declineBtnDisabled} onClick={onDecline} className="m-alert-decline-button">
           {declineBtnText}
         </button>
       )}

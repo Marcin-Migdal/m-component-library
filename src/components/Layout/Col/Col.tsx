@@ -5,10 +5,15 @@ import { getColClasses } from "./helpers/getColClasses";
 import { getFlexColClasses } from "./helpers/getFlexColClasses";
 import { ColProps } from "./types";
 
-import "./Col.css";
+import "./Col.scss";
 
+/**
+ * A flexible column component for grid layouts.
+ * Supports responsive sizing and flex-based sizing for different breakpoints.
+ * Need to be wrapped by `Row` component
+ */
 const Col = ({
-  className = "",
+  className,
   style = {},
   children,
 

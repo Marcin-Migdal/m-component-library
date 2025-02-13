@@ -1,0 +1,11 @@
+.common-wrapper-container {
+  .hue-slider-canvas-container {
+    .hue-picker-pointer {
+      border-color: var(--color-picker-pointer);
+
+      &.dragging {
+        box-shadow: 0 0 0 2px var(--color-picker-dragged-pointer);
+      }
+    }
+  }
+}

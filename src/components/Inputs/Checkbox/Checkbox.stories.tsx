@@ -1,27 +1,23 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import { SimpleInputLabel } from "../../global-types";
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
-import StoryCheckboxWrapper from "./StoryCheckboxWrapper";
+import { generateHiddenArgTypes } from "../../../internalUtils/generateHiddenArgTypes";
+import { simpleInputArgTypes } from "../../../internalUtils/inputArgTypes";
+import Checkbox from "./Checkbox";
 
-export default {
-  title: "M-component-library/Inputs",
-  component: StoryCheckboxWrapper,
-} as ComponentMeta<typeof StoryCheckboxWrapper>;
-
-const Template: ComponentStory<typeof StoryCheckboxWrapper> = (args) => (
-  <ThemeWrapper darkMode>
-    <div style={{ padding: "1rem" }}>
-      <StoryCheckboxWrapper {...args} />
-    </div>
-  </ThemeWrapper>
-);
-
-export const checkbox = Template.bind({});
-
-checkbox.args = {
-  label: "Checkbox",
-  labelType: SimpleInputLabel.LEFT,
-  labelWidth: 30,
+const meta: Meta<typeof Checkbox> = {
+  title: "Components/Inputs/Checkbox",
+  component: Checkbox,
+  argTypes: {
+    ...simpleInputArgTypes,
+    ...generateHiddenArgTypes(["floatingInputWidth"]),
+  },
 };
+
+export default meta;
+
+type Story = StoryObj<typeof Checkbox>;
+
+export const Default: Story = {};
+export const Label: Story = { args: { label: "Input label", labelType: "left" } };
+export const Size: Story = { args: { size: "small" } };
+export const Error: Story = { args: { error: "Input error" } };

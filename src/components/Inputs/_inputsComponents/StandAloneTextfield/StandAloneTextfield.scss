@@ -1,0 +1,36 @@
+@use "./StandAloneTextfield.theme.scss";
+
+.standalone-textfield-wrapper {
+  position: relative;
+
+  .m-textfield-prefix {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    height: calc(var(--input-height) - 1px);
+    font-size: var(--input-font-size);
+    top: 0px;
+  }
+
+  .m-textfield {
+    box-sizing: border-box;
+
+    width: 100%;
+    height: var(--input-height);
+    padding-left: var(--input-padding-left);
+    border-radius: var(--radius-md);
+    border: none;
+    outline: none;
+
+    font-size: var(--input-font-size);
+    transition: var(--transition-duration-normal);
+
+    &:hover {
+      transition: var(--transition-duration-normal);
+    }
+
+    &:focus {
+      transition: var(--transition-duration-fast);
+    }
+  }
+}

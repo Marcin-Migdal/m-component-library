@@ -2,10 +2,11 @@ import classNames from "classnames";
 import React, { ChangeEvent, useRef, useState } from "react";
 import { v4 as uuId } from "uuid";
 
-import { ComponentSize, InputLabel, SimpleInputLabel } from "../../global-types";
+import { InputLabel, SimpleInputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
-import { getInputStyle } from "../helpers/getInputStyle";
+import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
+import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { getAcceptanceDescription } from "./helpers/getAcceptanceDescription";
 import { getValidationDescription } from "./helpers/getValidationDescription";
 import { isImageValid } from "./helpers/isImageValid";
@@ -15,30 +16,33 @@ import { ImagePreview } from "./ImagePreview/ImagePreview";
 import { ImagePreviewZoom } from "./ImagePreviewZoom/ImagePreviewZoom";
 import { ImageFieldProps } from "./types";
 
-import "./ImageField.css";
+import "./ImageField.scss";
 
 export const ImageField = ({
   value: externalValue = undefined,
-  name,
   onChange,
   onError,
   onClear,
+  name,
   label,
   error,
-  labelType = SimpleInputLabel.LEFT,
-  labelWidth = 30,
-  floatingInputWidth = 100,
-  size = ComponentSize.MEDIUM,
-  disabled = false,
-  readOnly = false,
-  disableDefaultMargin = false,
   classNamesObj,
+
   dropzoneMessage = ["Click to upload", " or drag and drop"],
   accept = [".jpg", ".svg", ".png"],
   maxSize,
   minSize,
   maxResolution,
   minResolution,
+
+  labelType = defaultInputPropsValue.labelType as SimpleInputLabel,
+  labelWidth = defaultInputPropsValue.labelWidth,
+  size = defaultInputPropsValue.size,
+  disabled = defaultInputPropsValue.disabled,
+  readOnly = defaultInputPropsValue.readOnly,
+  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+  floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
+
   ...otherProps
 }: ImageFieldProps) => {
   const inputRef = useRef<HTMLInputElement>(null);

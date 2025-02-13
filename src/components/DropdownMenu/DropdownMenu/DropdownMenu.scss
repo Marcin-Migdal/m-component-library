@@ -1,0 +1,24 @@
+.m-dropdown-menu {
+  position: absolute;
+
+  width: fit-content;
+  padding: unset;
+  margin: unset;
+  border: var(--border-sm) solid;
+  border-radius: var(--radius-md);
+
+  font-size: var(--font-size-base);
+  list-style: none;
+
+  transition: opacity var(--transition-duration-fast);
+
+  z-index: 5;
+
+  overflow: auto;
+
+  .m-dropdown-menu-empty-message {
+    width: 150px;
+    padding: var(--spacing-1) var(--spacing-0);
+    text-align: center;
+  }
+}

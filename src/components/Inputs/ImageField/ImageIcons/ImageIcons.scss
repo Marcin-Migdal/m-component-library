@@ -1,0 +1,28 @@
+.m-image-container {
+  & > div {
+    .icons-container {
+      width: 0px;
+      position: relative;
+      z-index: 1;
+
+      .m-image-icon.m-image-zoom {
+        left: var(--spacing-1);
+        top: var(--spacing-1);
+      }
+
+      .m-image-icon.m-image-delete {
+        left: var(--spacing-1);
+        top: var(--spacing-1);
+        transform: translateY(calc(100% + var(--spacing-1)));
+      }
+
+      .m-image-icon {
+        position: absolute;
+
+        border-radius: var(--radius-full);
+
+        font-size: var(--font-size-2xs);
+      }
+    }
+  }
+}

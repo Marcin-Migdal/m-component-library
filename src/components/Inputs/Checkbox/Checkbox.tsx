@@ -3,27 +3,31 @@ import classNames from "classnames";
 import React, { ChangeEvent, useRef, useState } from "react";
 import { v4 as uuId } from "uuid";
 
-import { ComponentSize, SimpleInputLabel } from "../../global-types";
+import { SimpleInputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getCheckboxErrorStyle } from "../_inputsComponents/InputError/helpers/getCheckboxErrorStyle";
-import { getInputStyle } from "../helpers/getInputStyle";
+import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
+import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { CheckboxProps } from "./types";
 
-import "./Checkbox.css";
+import "./Checkbox.scss";
 
+/** Checkbox component used for binary selection (checked/unchecked). */
 const Checkbox = ({
   checked: externalChecked = undefined,
-  name,
   onChange,
+  name,
   label,
   error,
-  labelType = SimpleInputLabel.LEFT,
-  labelWidth = 30,
-  size = ComponentSize.MEDIUM,
-  disabled = false,
-  readOnly = false,
-  disableDefaultMargin = false,
   classNamesObj,
+
+  labelType = defaultInputPropsValue.labelType as SimpleInputLabel,
+  labelWidth = defaultInputPropsValue.labelWidth,
+  size = defaultInputPropsValue.size,
+  disabled = defaultInputPropsValue.disabled,
+  readOnly = defaultInputPropsValue.readOnly,
+  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+
   ...otherProps
 }: CheckboxProps) => {
   const checkboxContainerRef = useRef<HTMLDivElement>(null);

@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 
-import { getCssProperty } from "../../../../../helpers";
+import { getCssPropertyAsNumber } from "../../../../../utils";
 import { FloatingInputWidth, InputLabel, LabelPercentageWidth } from "../../../../global-types";
 
 export const getInputsErrorStyle = (
@@ -8,8 +8,8 @@ export const getInputsErrorStyle = (
   labelWidth: LabelPercentageWidth,
   floatingInputWidth: FloatingInputWidth
 ): CSSProperties => {
-  const errorIconSize = parseInt(getCssProperty(document.body, "--error-icon-size", "16px"));
-  const errorIconMargin = parseInt(getCssProperty(document.body, "--error-icon-margin", "8px"));
+  const errorIconSize = getCssPropertyAsNumber(document.body, "--error-icon-size", 16);
+  const errorIconMargin = getCssPropertyAsNumber(document.body, "--error-icon-margin", 8);
 
   if (labelType === InputLabel.LEFT) {
     return { right: `${errorIconMargin}px` };

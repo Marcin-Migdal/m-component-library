@@ -2,8 +2,9 @@ import React from "react";
 
 import { ProgressSpinnerProps } from "./types";
 
-import "./styles.css";
+import "./ProgressSpinner.scss";
 
+/** A spinner component to indicate loading or progress state. */
 const ProgressSpinner = ({ loading = true, strokeWidth = "4" }: ProgressSpinnerProps) => {
   if (!loading) {
     return null;

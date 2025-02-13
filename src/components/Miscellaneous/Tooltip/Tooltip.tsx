@@ -1,17 +1,18 @@
 import React, { CSSProperties, PropsWithChildren, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
-import { getPosition } from "../../../helpers";
-import { Placement } from "../../../helpers/getPosition/getPosition-types";
+import { getPosition } from "../../../utils";
+import { Placement } from "../../../utils/getPosition/getPosition-types";
 import { TooltipContent } from "./TooltipContent/TooltipContent";
 import { TargetElementType, TooltipProps } from "./types";
 
-import "./Tooltip.css";
+import "./Tooltip.scss";
 
-const TooltipWrapper = ({
+/** A component for displaying a tooltip when hovering over an element. */
+const Tooltip = ({
   targetRef,
-  children,
-  className = "",
+  children = undefined,
+  className,
   style = {},
   placement = Placement.BOTTOM,
   openDelay = 0,
@@ -98,4 +99,4 @@ const TooltipWrapper = ({
   );
 };
 
-export default TooltipWrapper;
+export default Tooltip;

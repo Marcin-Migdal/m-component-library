@@ -1,4 +1,4 @@
-import { Placement } from "../../../../helpers/getPosition/getPosition-types";
+import { Placement } from "../../../../utils/getPosition/getPosition-types";
 import { TooltipConfig } from "../types";
 
 export const defaultTooltipConfig: TooltipConfig = {

@@ -1,7 +1,4 @@
-/**
- * MutuallyExclusivePartial type, in this GENERIC type you can pass two types.
- * MutuallyExclusivePartial will create a logic, which allows to pass only one of the types, and the other one has to be undefined
- */
+/** A utility type that ensures two types are mutually exclusive (only one can be defined at a time). */
 
 export type MutuallyExclusivePartial<S, FS> =
   | Partial<Record<keyof S, S[keyof S]> & Record<keyof FS, undefined>>

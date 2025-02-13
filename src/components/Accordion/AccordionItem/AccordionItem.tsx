@@ -4,7 +4,7 @@ import React, { PropsWithChildren } from "react";
 import { useAccordion } from "../hooks";
 import { AccordionItemProps } from "./types";
 
-import "./AccordionItem.css";
+import "./AccordionItem.scss";
 
 export const AccordionItem: React.FC<PropsWithChildren<AccordionItemProps>> = ({ children, className, style }) => {
   const { instanceClassName } = useAccordion();
