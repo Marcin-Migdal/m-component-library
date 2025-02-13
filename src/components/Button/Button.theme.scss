@@ -1,7 +1,7 @@
 .common-wrapper-container {
   .m-button {
     &:not(.text):focus {
-      box-shadow: var(--small-box-shadow) var(--box-shadow-color);
+      box-shadow: var(--shadow-sm) var(--box-shadow-color);
     }
 
     &.text {
@@ -35,7 +35,7 @@
         border-color: var(--btn-full-hover-background-color);
         background-color: var(--btn-full-hover-background-color);
 
-        box-shadow: var(--small-box-shadow) var(--btn-full-hover-background-color);
+        box-shadow: var(--shadow-sm) var(--btn-full-hover-background-color);
       }
 
       &:active:enabled {

@@ -18,12 +18,12 @@
       }
 
       &.current {
-        border: 2px solid var(--popup-date-button-highlighted-color);
+        border: var(--border-base) solid var(--popup-date-button-highlighted-color);
       }
 
       &.in-range {
         background-color: var(--popups-hover-background-color);
-        border: 2px solid var(--popups-hover-background-color);
+        border: var(--border-base) solid var(--popups-hover-background-color);
       }
 
       &.current {
@@ -32,7 +32,7 @@
         &.in-range,
         &.end-date {
           box-shadow: 0 0 1px 1px var(--popup-date-button-highlighted-color);
-          border: 1px solid var(--popup-date-button-alt-highlighted-color);
+          border: var(--border-sm) solid var(--popup-date-button-alt-highlighted-color);
         }
       }
 
@@ -41,7 +41,7 @@
       &.end-date {
         background-color: var(--popup-date-button-highlighted-color);
         color: var(--popup-date-button-alt-highlighted-color);
-        border: 2px solid var(--popup-date-button-highlighted-color);
+        border: var(--border-base) solid var(--popup-date-button-highlighted-color);
       }
     }
   }

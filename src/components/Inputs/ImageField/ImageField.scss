@@ -31,10 +31,10 @@
 .m-image-icon {
   position: absolute;
 
-  padding: 4px;
-  border-radius: 50%;
+  padding: var(--spacing-1);
+  border-radius: var(--radius-full);
 
   aspect-ratio: 1 / 1;
 
-  font-size: 0.7rem;
+  font-size: var(--font-size-2xs);
 }

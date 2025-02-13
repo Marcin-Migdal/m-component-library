@@ -4,11 +4,10 @@
       position: absolute;
 
       padding: unset;
+      border-radius: var(--radius-md);
+      border: var(--border-sm) solid;
 
-      border-radius: var(--dropdown-menu-border-radius);
-      border: 1px solid;
-
-      transition: opacity var(--fast-transition);
+      transition: opacity var(--transition-duration-fast);
     }
   }
 }

@@ -1,9 +1,6 @@
 @use "./Alert.theme.scss";
 
 .m-alert {
-  --alert-border-radius: 8px;
-  --alert-padding: 1.5rem;
-
   display: flex;
   flex-direction: column;
 
@@ -14,11 +11,11 @@
   gap: 1rem;
 
   &.opened {
-    animation: open-alert var(--popup-transition);
+    animation: open-alert var(--transition-duration-slow);
   }
 
   &.closing {
-    animation: close-alert var(--popup-fast-transition) forwards;
+    animation: close-alert var(--transition-duration-fast) forwards;
   }
 
   .m-alert-header {
@@ -33,33 +30,31 @@
     }
 
     svg {
-      --icon-padding: 3px;
-
       margin-left: auto;
 
       height: 18px;
       width: 18px;
 
-      font-weight: bold;
+      font-weight: var(--font-weight-semibold);
 
       margin-right: calc(-1 * var(--icon-padding));
       margin-top: calc(-1 * var(--icon-padding));
       padding: var(--icon-padding);
 
-      border-radius: 50px;
-      transition: var(--transition);
+      border-radius: var(--radius-full);
+      transition: var(--transition-duration-normal);
       cursor: pointer;
 
       &:active {
         transform: scale(0.9);
-        transition: var(--fast-transition);
+        transition: var(--transition-duration-fast);
       }
     }
   }
 
   .m-alert-content {
     height: 100%;
-    padding: 0 var(--alert-padding);
+    padding: var(--spacing-0) var(--alert-padding);
 
     overflow: auto;
 
@@ -72,31 +67,31 @@
     display: flex;
     gap: 1px;
 
-    border-bottom-right-radius: 12px;
-    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: calc(var(--alert-border-radius) + 4px);
+    border-bottom-left-radius: calc(var(--alert-border-radius) + 4px);
 
     button {
       flex: 1;
       border: unset;
       border-top: 1px solid;
-      padding: 12px 0;
-      font-weight: bold;
+      padding: var(--spacing-3) var(--spacing-0);
+      font-weight: var(--font-weight-semibold);
 
       &:not(:disabled) {
         cursor: pointer;
 
         &:active {
-          transition: var(--fast-transition);
+          transition: var(--transition-duration-fast);
         }
       }
     }
 
     .m-alert-confirm-button {
-      border-bottom-left-radius: 8px;
+      border-bottom-left-radius: var(--alert-border-radius);
     }
 
     .m-alert-decline-button {
-      border-bottom-right-radius: 8px;
+      border-bottom-right-radius: var(--alert-border-radius);
     }
   }
 }

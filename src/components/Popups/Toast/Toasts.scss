@@ -23,7 +23,7 @@
 
     .toast {
       animation-name: toast-in-left;
-      animation-duration: var(--popup-transition);
+      animation-duration: var(--transition-duration-slow);
     }
   }
 
@@ -33,7 +33,7 @@
 
     .toast {
       animation-name: toast-in-right;
-      animation-duration: var(--popup-transition);
+      animation-duration: var(--transition-duration-slow);
     }
   }
 
@@ -46,14 +46,14 @@
     max-width: 344px;
 
     min-height: 70px;
-    border-radius: var(--border-radius);
 
-    margin-bottom: 5px;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-1);
 
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
 
-    transition: transform var(--popup-transition), opacity var(--popup-transition),
-      box-shadow var(--popup-transition) ease-in-out;
+    transition: transform var(--transition-duration-slow), opacity var(--transition-duration-slow),
+      box-shadow var(--transition-duration-slow) ease-in-out;
 
     &.success {
       svg:not(.close-icon) {
@@ -67,23 +67,23 @@
       min-width: 30px;
       min-height: 30px;
       margin: auto;
-      margin-left: 15px;
+      margin-left: var(--spacing-4);
       margin-right: unset;
     }
 
     .text-content {
       display: flex;
       flex-direction: column;
-      padding: 11px 15px 15px 0;
-      margin-left: 15px;
+      padding: var(--spacing-3) var(--spacing-4) var(--spacing-4) var(--spacing-0);
+      margin-left: var(--spacing-4);
 
       .toast-title {
         width: fit-content;
-        padding: 0;
-        margin: 0px;
+        padding: unset;
+        margin: unset;
 
-        font-size: 0.95rem;
-        font-weight: 600;
+        font-size: var(--font-size-base);
+        font-weight: var(--font-weight-semibold);
         text-transform: capitalize;
       }
 
@@ -91,7 +91,7 @@
         display: inline-block;
 
         width: fit-content;
-        margin-top: 3px;
+        margin-top: var(--spacing-1);
       }
     }
 
@@ -103,11 +103,10 @@
 
       height: 24px;
       width: 24px;
-      transition: var(--transition);
+      padding: var(--spacing-1);
+      border-radius: var(--radius-full);
 
-      padding: 4px;
-
-      border-radius: 100%;
+      transition: var(--transition-duration-normal);
 
       &:active {
         transform: scale(0.8);

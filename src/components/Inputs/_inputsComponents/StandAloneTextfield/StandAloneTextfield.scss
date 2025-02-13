@@ -18,19 +18,19 @@
     width: 100%;
     height: var(--input-height);
     padding-left: var(--input-padding-left);
-    border-radius: var(--border-radius);
+    border-radius: var(--radius-md);
     border: none;
     outline: none;
 
     font-size: var(--input-font-size);
-    transition: var(--transition);
+    transition: var(--transition-duration-normal);
 
     &:hover {
-      transition: var(--transition);
+      transition: var(--transition-duration-normal);
     }
 
     &:focus {
-      transition: var(--fast-transition);
+      transition: var(--transition-duration-fast);
     }
   }
 }

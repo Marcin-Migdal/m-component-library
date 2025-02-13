@@ -4,7 +4,7 @@
     color: var(--primary-text-color) !important;
 
     &.border {
-      border: var(--border) var(--alert-border-color);
+      border: var(--border-base) solid var(--alert-border-color);
     }
 
     &.gradient-border-glow,

@@ -63,7 +63,6 @@ export const dropdownMenuOptions: DropdownMenuOption[] = [
   {
     label: "Delete currency",
     onClick: handleClick,
-    icon: "trash",
     disabled: true,
   },
 ];

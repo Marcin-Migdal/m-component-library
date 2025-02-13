@@ -14,44 +14,39 @@
 @use "./themes/light-default-theme.scss";
 @use "./themes/dark-default-theme.scss";
 
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 
 * {
   font-family: "Open Sans", sans-serif;
   box-sizing: border-box;
 }
 
-/* APP CSS VARIABLES  */
+// TODO!
+//?    - Spacing, " margin-", " left: ", " right: ", " top: ", " bottom: ", " gap: "
+
 body {
   margin: unset;
 
-  /* Common color variables across all themes */
-
   --success-color-hue: 150;
-
   --success-light-color: hsl(var(--success-color-hue), 53%, 55%);
   --success-color: hsl(var(--success-color-hue), 70%, 39%);
   --success-dark-color: hsl(var(--success-color-hue), 97%, 23%);
 
   --failure-color-hue: 0;
-
   --failure-light-color: hsl(var(--failure-color-hue), 96%, 69%);
   --failure-color: hsl(var(--failure-color-hue), 90%, 59%);
   --failure-dark-color: hsl(var(--failure-color-hue), 93%, 38%);
 
   --warning-color-hue: 46;
-
   --warning-light-color: hsl(var(--warning-color-hue), 87%, 71%);
   --warning-color: hsl(var(--warning-color-hue), 79%, 60%);
   --warning-dark-color: hsl(var(--warning-color-hue), 74%, 48%);
 
   --information-color-hue: 239;
-
   --information-light-color: hsl(var(--information-color-hue), 100%, 76%);
   --information-color: hsl(var(--information-color-hue), 90%, 67%);
   --information-dark-color: hsl(var(--information-color-hue), 70%, 56%);
 
-  /* all colors of grey across all themes */
   --grey-color-000: hsl(0, 0%, 100%);
   --grey-color-025: hsl(0, 0%, 97%);
   --grey-color-050: hsl(0, 0%, 94%);
@@ -96,62 +91,104 @@ body {
   --grey-color-825: hsl(0, 0%, 3%);
   --grey-color-850: hsl(0, 0%, 0%);
 
-  /* Common */
-  --border-radius: 6px;
-  --border-width: max(2px, 0.125em);
-  --transition: 0.2s;
-  --fast-transition: 0.1s;
+  /* Font sizes */
+  --font-size-2xs: 0.75rem; /* 12px */
+  --font-size-xs: 0.8rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
 
-  --border: var(--border-width) solid;
+  /* Font weights */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 
-  --small-box-shadow: 0px 0px 3px 1px;
-  --big-box-shadow: 0px 0px 3px 2px;
+  /* Line heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
 
-  /*! Button */
-  --button-padding: 0.25em 0.65em;
-  --button-gap: 0.55em;
-  --button-right-margin: 10px;
+  /* Spacing */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem; /* 4px */
+  --spacing-2: 0.5rem; /* 8px */
+  --spacing-3: 0.75rem; /* 12px */
+  --spacing-4: 1rem; /* 16px */
+  --spacing-5: 1.25rem; /* 20px */
+  --spacing-6: 1.5rem; /* 24px */
+  --spacing-7: 1.75rem; /* 28px */
+  --spacing-8: 2rem; /* 32px */
+  --spacing-9: 2.25rem; /* 36px */
+  --spacing-10: 2.5rem; /* 40px */
+  --spacing-11: 2.75rem; /* 44px */
+  --spacing-12: 3rem; /* 48px */
+  --spacing-16: 4rem; /* 64px */
 
-  /* Very Small Button*/
-  --very-small-button-size: 0.67rem;
+  /* Border */
+  --border-sm: max(1px, 0.0625em);
+  --border-base: max(2px, 0.125em);
+  --border-md: max(3px, 0.1875em);
 
-  /* Small Button*/
-  --small-button-size: 0.8rem;
+  /* Border radius */
+  --radius-none: 0;
+  --radius-sm: 0.125rem; /* 2px */
+  --radius-base: 0.25rem; /* 4px */
+  --radius-md: 0.375rem; /* 6px */
+  --radius-lg: 0.5rem; /* 8px */
+  --radius-xl: 0.75rem; /* 12px */
+  --radius-2xl: 1rem; /* 16px */
+  --radius-full: 9999px;
 
-  /* Medium Button*/
-  --medium-button-size: 1rem;
+  /* Shadows */
+  --shadow-sm: 0px 0px 3px 1px;
+  --shadow-base: 0px 0px 3px 2px;
+  --shadow-md: 0px 0px 3px 2px;
 
-  /* Large Button*/
-  --large-button-size: 1.2rem;
+  /* Transitions */
+  --transition-duration-fast: 150ms;
+  --transition-duration-normal: 250ms;
+  --transition-duration-slow: 350ms;
 
-  /*! Inputs */
+  //! Button
+  --btn-padding: 0.25em 0.65em;
+  --btn-gap: 0.55em;
+  --btn-right-margin: 10px;
+
+  --sm-btn-size: var(--font-size-2xs);
+  --md-btn-size: var(--font-size-base);
+  --lg-btn-size: var(--font-size-xl);
+
+  //! Inputs
   --input-margin-bottom: 18px;
 
-  /* Small Input*/
-  --small-input-height: 28px;
+  //* Small Input
+  --small-input-height: 24px;
   --small-input-padding-left: 6px;
-  --small-input-font-size: 14px;
 
-  /* Medium Input*/
+  ///*Medium Input
   --medium-input-height: 34px;
-  --medium-input-padding-left: 8px;
-  --medium-input-font-size: 16px;
+  --medium-input-padding-left: var(--spacing-2);
 
-  /* Large Input*/
+  ///*Large Input
   --large-input-height: 40px;
-  --large-input-padding-left: 9px;
-  --large-input-font-size: 18px;
+  --large-input-padding-left: 10px;
 
-  /* Input errors */
-  --error-icon-size: 16px;
-  --error-icon-margin: 8px;
+  ///*Input errors
+  --error-icon-size: var(--font-size-base);
+  --error-icon-margin: var(--spacing-2);
 
-  /*! Popup */
-  --popup-transition: 0.3s;
-  --popup-fast-transition: 0.15s;
+  //! Alert
+  --alert-border-radius: var(--radius-lg);
+  --alert-padding: var(--spacing-6);
 
-  /*! Dropdown Menu */
-  --dropdown-menu-border-radius: 3px;
+  //! Common
+  --icon-padding: 3px;
 }
 
 .common-wrapper-container {

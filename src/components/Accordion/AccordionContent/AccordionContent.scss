@@ -17,7 +17,7 @@
   &.default {
     .m-accordion-content-wrapper {
       .m-accordion-content {
-        padding: 0.5rem;
+        padding: var(--spacing-2);
       }
     }
   }
@@ -25,14 +25,14 @@
   &.compact {
     .m-accordion-content-wrapper {
       .m-accordion-content {
-        padding: 0.25rem;
+        padding: var(--spacing-1);
       }
     }
   }
 
   &.smooth-expand-animation {
     .m-accordion-content-wrapper {
-      transition: max-height var(--transition);
+      transition: max-height var(--transition-duration-normal);
     }
   }
 

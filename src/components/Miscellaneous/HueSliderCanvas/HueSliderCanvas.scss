@@ -6,7 +6,7 @@
   height: 16px;
 
   canvas {
-    border-radius: 3px;
+    border-radius: var(--radius-sm);
   }
 
   .hue-picker-pointer {
@@ -15,9 +15,9 @@
 
     width: 0.75rem;
     height: 0.75rem;
-    border: 2px solid;
+    border: var(--border-base) solid;
 
-    border-radius: 50%;
+    border-radius: var(--radius-full);
     pointer-events: none;
 
     transform: translate(-50%, -5px);

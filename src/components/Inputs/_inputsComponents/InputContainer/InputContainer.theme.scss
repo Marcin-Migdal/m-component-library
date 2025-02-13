@@ -37,10 +37,10 @@
       color: inherit;
       background: var(--input-background-color);
 
-      border: 1px solid transparent;
+      border: var(--border-sm) solid transparent;
 
       &:not(.m-slider):focus {
-        box-shadow: var(--big-box-shadow) var(--box-shadow-color);
+        box-shadow: var(--shadow-base) var(--box-shadow-color);
       }
     }
   }

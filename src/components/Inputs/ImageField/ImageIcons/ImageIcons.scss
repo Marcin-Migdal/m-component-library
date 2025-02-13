@@ -19,10 +19,9 @@
       .m-image-icon {
         position: absolute;
 
-        padding: 6px;
-        border-radius: 50%;
+        border-radius: var(--radius-full);
 
-        font-size: 0.7rem;
+        font-size: var(--font-size-2xs);
       }
     }
   }

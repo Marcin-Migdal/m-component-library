@@ -1,13 +1,15 @@
 .m-icon-field-popup-content {
+  --popup-padding-right: var(--spacing-4);
+
   display: flex;
   flex-direction: column;
 
   height: 100%;
 
   .m-textfield-container {
-    margin-top: 0.25rem;
-    padding-right: 1.35rem;
-    margin-bottom: 0.5rem;
+    margin-top: var(--spacing-1);
+    padding-right: calc(var(--popup-padding-right) + 0.35rem);
+    margin-bottom: var(--spacing-2);
   }
 
   .m-icon-grid-container {
@@ -16,7 +18,7 @@
 
     max-height: 100%;
     gap: 0.5rem;
-    padding-right: 1rem;
+    padding-right: var(--popup-padding-right);
 
     overflow-y: auto;
 
@@ -31,10 +33,10 @@
 
       width: 8rem;
       height: 10rem;
-      border-radius: var(--border-radius);
-      padding: 0.5rem;
+      border-radius: var(--radius-md);
+      padding: var(--spacing-2);
 
-      transition: var(--transition);
+      transition: var(--transition-duration-normal);
 
       .m-icon-container {
         display: flex;
@@ -55,7 +57,7 @@
 
         height: 3.5rem;
 
-        font-size: 0.85rem;
+        font-size: var(--font-size-sm);
 
         text-align: center;
       }

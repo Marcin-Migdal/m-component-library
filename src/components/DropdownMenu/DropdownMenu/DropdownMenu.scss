@@ -4,13 +4,13 @@
   width: fit-content;
   padding: unset;
   margin: unset;
-  border: 1px solid;
-  border-radius: var(--dropdown-menu-border-radius);
+  border: var(--border-sm) solid;
+  border-radius: var(--radius-md);
 
-  font-size: 0.95rem;
+  font-size: var(--font-size-base);
   list-style: none;
 
-  transition: opacity var(--fast-transition);
+  transition: opacity var(--transition-duration-fast);
 
   z-index: 5;
 
@@ -18,7 +18,7 @@
 
   .m-dropdown-menu-empty-message {
     width: 150px;
-    padding: 0.25rem 0;
+    padding: var(--spacing-1) var(--spacing-0);
     text-align: center;
   }
 }

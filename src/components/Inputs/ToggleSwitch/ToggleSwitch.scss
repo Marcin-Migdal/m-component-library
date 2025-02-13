@@ -17,8 +17,8 @@
     .m-toggle-switch-input-wrapper {
       .m-toggle-switch-slider {
         &::before {
-          top: calc(var(--border-width) - 1px);
-          left: calc(var(--border-width) - 1px);
+          top: calc(var(--border-base) - 1px);
+          left: calc(var(--border-base) - 1px);
         }
       }
     }
@@ -50,20 +50,20 @@
       border-radius: calc(var(--toggle-switch-input-size) / 2);
       border: unset;
 
-      transition: var(--transition);
+      transition: var(--transition-duration-normal);
 
       &::before {
         content: "";
 
         position: absolute;
-        top: var(--border-width);
-        left: var(--border-width);
+        top: var(--border-base);
+        left: var(--border-base);
 
-        height: calc(var(--toggle-switch-input-size) - (var(--border-width) * 2));
-        width: calc(var(--toggle-switch-input-size) - (var(--border-width) * 2));
-        border-radius: 50%;
+        height: calc(var(--toggle-switch-input-size) - (var(--border-base) * 2));
+        width: calc(var(--toggle-switch-input-size) - (var(--border-base) * 2));
+        border-radius: var(--radius-full);
 
-        transition: var(--transition);
+        transition: var(--transition-duration-normal);
       }
     }
   }

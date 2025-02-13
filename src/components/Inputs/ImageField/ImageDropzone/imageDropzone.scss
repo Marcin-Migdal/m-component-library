@@ -9,21 +9,21 @@
       height: 100%;
       width: 100%;
       min-width: 232px;
-      border-radius: var(--border-radius);
+      border-radius: var(--radius-md);
     }
   }
 
   .m-image-dropzone-icon {
-    font-size: 1.75rem;
-    margin-bottom: 0.5rem;
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-2);
   }
 
   .m-image-dropzone-message {
     margin: unset;
-    font-size: 0.8rem;
+    font-size: var(--font-size-xs);
 
     .m-bold-message-main {
-      font-weight: bold;
+      font-weight: var(--font-weight-semibold);
     }
 
     .m-underline-message-main {

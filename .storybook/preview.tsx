@@ -10,7 +10,7 @@ const withGlobalDecorator = (Story, context) => {
 
   return (
     <ThemeWrapper darkMode={context?.globals?.backgrounds?.value === "#333"}>
-      <div style={{ padding: "1rem" }}>
+      <div className="p-4-rem">
         <Story />
       </div>
     </ThemeWrapper>

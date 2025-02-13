@@ -2,23 +2,23 @@
   &.default {
     .m-accordion-toggle {
       height: 2.5rem;
-      padding: 0.25rem;
+      padding: var(--spacing-1);
 
-      border-radius: var(--border-radius);
+      border-radius: var(--radius-md);
     }
   }
 
   &.compact {
     .m-accordion-toggle {
       height: 1.5rem;
-      padding: 0.2rem;
+      padding: var(--spacing-1);
 
-      border-radius: calc(var(--border-radius) / 2);
-      font-size: 0.9rem;
-      line-height: 24px;
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-sm);
+      line-height: var(--line-height-normal);
 
       .m-accordion-toggle-indicator {
-        font-size: 0.75rem;
+        font-size: var(--font-size-2xs);
       }
     }
   }
@@ -29,7 +29,7 @@
     width: 100%;
 
     background-color: var(--accordion-background);
-    transition: background-color var(--transition);
+    transition: background-color var(--transition-duration-normal);
     overflow: hidden;
 
     &:not(.expanded):not(.selected):hover {
@@ -37,7 +37,7 @@
     }
 
     &.expanded {
-      border-radius: 0;
+      border-radius: var(--radius-none);
 
       .m-accordion-toggle-indicator {
         transform: rotate(90deg);
@@ -50,14 +50,14 @@
     }
 
     .m-accordion-toggle-indicator {
-      transition: var(--transition);
+      transition: var(--transition-duration-normal);
 
       &.left {
-        margin: 0 0.5rem;
+        margin: var(--spacing-0) var(--spacing-2);
       }
 
       &.right {
-        margin: 0 0.5rem 0 auto;
+        margin: var(--spacing-0) var(--spacing-2) var(--spacing-0) auto;
       }
     }
   }

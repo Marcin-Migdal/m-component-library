@@ -229,6 +229,7 @@ export const ThemeWrapperStoryExample = ({
           <Dropdown {...inputProps} />
           <Dropdown
             {...inputProps}
+            clearable
             options={[
               { label: "Option 1", value: "1" },
               { label: "Option 2", value: "2" },

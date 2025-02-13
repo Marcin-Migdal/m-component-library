@@ -2,11 +2,11 @@
   .m-input-container {
     &.error {
       .m-input {
-        border: 1px solid var(--failure-color);
+        border: var(--border-sm) solid var(--failure-color);
         color: var(--failure-color);
 
         &:focus {
-          box-shadow: var(--big-box-shadow) var(--failure-color);
+          box-shadow: var(--shadow-base) var(--failure-color);
         }
 
         &:hover:not(:disabled),

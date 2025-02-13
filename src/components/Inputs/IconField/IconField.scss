@@ -5,14 +5,14 @@
   height: max(75%, 400px);
 
   .m-alert-content {
-    padding-right: calc(var(--alert-padding) - 1.25rem);
+    padding-right: calc(var(--alert-padding) - var(--spacing-5));
   }
 }
 
 .m-icon-preview-container {
   display: flex;
 
-  gap: 0.5rem;
+  gap: var(--spacing-2);
 
   .m-icon-preview-square {
     display: flex;
@@ -21,7 +21,7 @@
 
     height: var(--input-height);
     aspect-ratio: 1 / 1;
-    border-radius: var(--border-radius);
+    border-radius: var(--radius-md);
 
     &:hover {
       .m-icon-preview {
@@ -35,7 +35,7 @@
 
     .m-clear-icon {
       display: none;
-      transition: var(--transition);
+      transition: var(--transition-duration-normal);
 
       &:hover {
         transform: scale(1.1);
@@ -43,7 +43,7 @@
 
       &:active {
         transform: scale(0.9);
-        transition: var(--fast-transition);
+        transition: var(--transition-duration-fast);
       }
     }
   }

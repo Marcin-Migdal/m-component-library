@@ -4,8 +4,8 @@
   flex-direction: column;
 
   width: 300px;
-  border-radius: var(--border-radius);
-  transition: var(--popup-transition);
+  border-radius: var(--radius-md);
+  transition: var(--transition-duration-slow);
 
   z-index: 3;
 
@@ -22,20 +22,20 @@
     display: flex;
     align-items: center;
     width: 100%;
-    gap: 1rem;
-    padding: 1rem;
+    gap: var(--spacing-4);
+    padding: var(--spacing-4);
 
     .color-preview {
       width: 50px;
       aspect-ratio: 1 / 1;
-      border-radius: 50%;
+      border-radius: var(--radius-full);
     }
   }
 
   .bottom-section {
     display: flex;
-    padding: 0 0.5rem 0.5rem 0.5rem;
-    gap: 0.5rem;
+    padding: var(--spacing-0) var(--spacing-2) var(--spacing-2) var(--spacing-2);
+    gap: var(--spacing-2);
 
     .m-textfield-container {
       margin-bottom: unset;

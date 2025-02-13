@@ -4,10 +4,10 @@
   position: absolute;
   width: fit-content;
 
-  padding: 5px 10px;
-  border-radius: var(--border-radius);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-base);
 
-  font-size: 13px;
+  font-size: var(--font-size-xs);
   overflow-wrap: break-word !important;
 
   opacity: 0.85;

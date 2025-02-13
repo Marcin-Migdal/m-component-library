@@ -15,22 +15,22 @@
     box-sizing: border-box;
 
     height: var(--input-height);
-    padding-top: 4px;
+    padding-top: var(--spacing-1);
     padding-left: var(--input-padding-left);
-    border-radius: var(--border-radius);
+    border-radius: var(--radius-md);
     border: none;
     outline: none;
 
     font-size: var(--input-font-size);
-    transition: var(--transition);
+    transition: var(--transition-duration-normal);
     resize: vertical;
 
     &:hover {
-      transition: var(--transition);
+      transition: var(--transition-duration-normal);
     }
 
     &:active {
-      transition: var(--fast-transition);
+      transition: var(--transition-duration-fast);
     }
   }
 }

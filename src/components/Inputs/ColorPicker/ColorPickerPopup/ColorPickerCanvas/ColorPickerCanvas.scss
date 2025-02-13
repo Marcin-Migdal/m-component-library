@@ -9,9 +9,10 @@
 
     width: 0.75rem;
     height: 0.75rem;
-    border: 2px solid;
 
-    border-radius: 50%;
+    border: var(--border-base) solid;
+
+    border-radius: var(--radius-full);
     pointer-events: none;
 
     transform: translate(-50%, -50%);

@@ -15,7 +15,6 @@
   }
 
   &.default {
-    font-size: 1rem;
     gap: 0.25em;
 
     .m-crumb {
@@ -29,18 +28,18 @@
       padding: var(--crumb-vertical-padding) var(--crumb-horizontal-padding);
       border-right: none;
 
-      transition: background-color var(--transition);
+      transition: background-color var(--transition-duration-normal);
 
       &:not(:first-child)::before {
         left: 0;
         z-index: 1;
-        transition: border-color var(--transition);
+        transition: border-color var(--transition-duration-normal);
       }
 
       &:not(:last-child)::after {
         left: 100%;
         z-index: 2;
-        transition: 0.2s;
+        transition: var(--transition-duration-normal);
       }
 
       &:not(:first-child)::before,
@@ -65,7 +64,7 @@
       &:last-child {
         border-top-right-radius: 0.25em;
         border-bottom-right-radius: 0.25em;
-        font-weight: bold;
+        font-weight: var(--font-weight-semibold);
       }
 
       &:not(:first-child) {
@@ -73,7 +72,7 @@
       }
 
       .m-crumb-icon {
-        margin-right: 0.5em;
+        margin-right: var(--spacing-2);
       }
     }
   }
@@ -82,10 +81,10 @@
     gap: 1em;
 
     .m-crumb {
-      transition: var(--transition);
+      transition: var(--transition-duration-normal);
 
       .m-crumb-icon {
-        margin-right: 0.5em;
+        margin-right: var(--spacing-2);
       }
     }
   }

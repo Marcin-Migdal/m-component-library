@@ -11,7 +11,7 @@
 .m-input-label {
   position: absolute;
   font-size: var(--input-font-size);
-  transition: var(--transition);
+  transition: var(--transition-duration-normal);
 
   &.pointer-event {
     pointer-events: none;
@@ -28,7 +28,7 @@
       top: 0;
 
       transform: translateY(calc(-100% - 1px));
-      font-size: 0.75rem;
+      font-size: var(--font-size-2xs);
     }
   }
 
@@ -52,7 +52,7 @@
 
 .m-textarea-label {
   &.floating {
-    top: calc(var(--input-padding-left) - 4px);
+    top: calc(var(--input-padding-left) - var(--spacing-1));
   }
 }
 
@@ -61,7 +61,7 @@
 .m-color-picker-label {
   &.floating {
     top: 50%;
-    padding-left: calc(var(--input-height) + 0.5rem + var(--input-padding-left));
+    padding-left: calc(var(--input-height) + var(--spacing-2) + var(--input-padding-left));
 
     transform: translateY(-50%);
 
@@ -72,7 +72,7 @@
       padding-left: var(--input-padding-left);
 
       transform: translateY(calc(-100% - 1px));
-      font-size: 0.75rem;
+      font-size: var(--font-size-2xs);
     }
   }
 }

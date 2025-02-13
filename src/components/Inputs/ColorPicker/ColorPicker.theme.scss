@@ -2,7 +2,7 @@
   .m-color-picker-container {
     .m-color-preview {
       &.popup-open {
-        box-shadow: var(--big-box-shadow) var(--box-shadow-color);
+        box-shadow: var(--shadow-base) var(--box-shadow-color);
       }
     }
   }
