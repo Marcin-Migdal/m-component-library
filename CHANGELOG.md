@@ -16,6 +16,7 @@
 - [[#47]](https://github.com/Marcin-Migdal/m-component-library/issues/47) **[PATCH]** Add components props to Dropdown which enables passing components that replace parts of the dropdown for more flexibility
 - [[#48]](https://github.com/Marcin-Migdal/m-component-library/issues/48) **[PATCH]** Add SidePanel component
 - [[#48]](https://github.com/Marcin-Migdal/m-component-library/issues/48) **[PATCH]** Add DateField component and implement height limit in dropdown menu
+- [[#113]](https://github.com/Marcin-Migdal/m-component-library/issues/113) **[PATCH]** Add close on click outside functionality to SidePanel component
 
 ### Release date 25.10.2024 - Release 1.0.6
 

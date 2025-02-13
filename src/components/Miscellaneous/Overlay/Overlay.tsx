@@ -10,6 +10,7 @@ const Overlay = ({ children, onClick, enableKeysDown }: PropsWithChildren<Overla
 
   useEffect(() => {
     document.body.classList.add("body-no-scroll");
+
     return () => {
       document.body.classList.remove("body-no-scroll");
     };
