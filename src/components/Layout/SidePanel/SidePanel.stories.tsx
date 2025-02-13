@@ -56,7 +56,6 @@ const meta: Meta<typeof SidePanel> = {
   },
   decorators: [
     (_Story, { args }) => {
-      // eslint-disable-next-line react-hooks/rules-of-hooks
       const [handleOpen, sidePanelProps] = useSidePanel();
 
       return (
