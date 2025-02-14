@@ -64,7 +64,7 @@ export const ThemeWrapperStoryExample = ({
   const [handleOpen, alertProps] = useAlert();
 
   const [themeHue, setThemeHue] = useState<number | undefined>(undefined);
-  const [expanded, setExpanded] = useState<SectionState>({ Inputs: true });
+  const [expanded, setExpanded] = useState<SectionState>({});
 
   const handleHueChange = (hue: number) => setThemeHue(hue);
 
