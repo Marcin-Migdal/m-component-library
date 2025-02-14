@@ -54,6 +54,8 @@
   --primary-color_880: hsl(0, 0%, 98%);
 
   /** Inputs colors */
+  --dropdown-option-selected-background-color: var(--primary-color_340);
+  --dropdown-option-selected-hover-background-color: var(--primary-color_380);
   --slider-thumb-color: var(--primary-color_780);
   --checkbox-color: var(--primary-color_620);
   --toggle-switch-color: var(--checkbox-color);
