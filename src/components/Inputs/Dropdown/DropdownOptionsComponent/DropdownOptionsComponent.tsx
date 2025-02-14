@@ -24,6 +24,7 @@ export const DropdownOptionsComponent = <T,>({
   Option: optionComponent,
   EmptyMessage: emptyMessageComponent,
   optionHeightFit,
+  menuPositionConfig,
   handleDropdownChange,
 }: DropdownOptionsProps<T>) => {
   const ref = useRef<HTMLUListElement>(null);
@@ -44,7 +45,10 @@ export const DropdownOptionsComponent = <T,>({
         return;
       }
 
-      const position: Position = getPosition(filterElement, element, { consumerHasParentWidth: true });
+      const position: Position = getPosition(filterElement, element, {
+        consumerHasParentWidth: true,
+        ...menuPositionConfig,
+      });
 
       const children = Array.from(element.children) as HTMLLIElement[];
 
@@ -62,6 +66,18 @@ export const DropdownOptionsComponent = <T,>({
     };
   }, []);
 
+  useEffect(() => {
+    const listContainer = ref.current;
+
+    if (listContainer) {
+      const selectedElement = listContainer.querySelector("li.selected") as HTMLLIElement | null;
+
+      if (selectedElement) {
+        listContainer.scrollTop = selectedElement.offsetTop;
+      }
+    }
+  }, []);
+
   const emptyMessageProps: EmptyMessageComponentProps = {
     id,
     className: classNames("m-dropdown-option empty-message", classNamesObj?.emptyDropdownOption),
@@ -70,7 +86,7 @@ export const DropdownOptionsComponent = <T,>({
 
   return (
     <ul
-      id={id}
+      id={`dropdown-option-${id}`}
       ref={ref}
       className={classNames("m-dropdown-options", "m-scroll slim-scroll", classNamesObj?.dropdownOptions)}
       style={dropdownOptionsStyles}

@@ -4,8 +4,9 @@ import React, { ReactElement, useCallback, useLayoutEffect, useMemo, useRef, use
 
 import { getPosition } from "../../../../utils";
 import { Position } from "../../../../utils/getPosition/getPosition-types";
-import { DropdownMenu, DropdownMenuOption } from "../../../DropdownMenu";
-import { getDayName, getDaysInMonth, getMonthName, getMonths, getWeekDays, getYears } from "../helpers";
+import { Dropdown } from "../../Dropdown";
+import { DropdownChangeEvent, DropdownComponents, DropdownNumberOption } from "../../Dropdown/types";
+import { getDayName, getDaysInMonth, getMonths, getWeekDays, getYears } from "../helpers";
 import { normalizeDate } from "../helpers/normalizeDate";
 import { InternalDateValue, InternalRangeDate } from "../types";
 import { DayButton } from "./DayButton/DayButton";
@@ -34,6 +35,16 @@ const getStartDate = <TRange extends boolean>(range: TRange, value: InternalDate
   return value as Date;
 };
 
+const dropdownComponents: Partial<DropdownComponents<DropdownNumberOption>> = {
+  IndicatorIcon: () => null,
+  Control: ({ onFocus, id, idPrefix, value }) => (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    <span id={`${idPrefix}-${id}`} onClick={() => onFocus && onFocus({} as any)}>
+      {value}
+    </span>
+  ),
+};
+
 export const DatePickerPopup = <TRange extends boolean>({
   value,
   onChange,
@@ -45,34 +56,34 @@ export const DatePickerPopup = <TRange extends boolean>({
 }: DatePickerPopupProps<TRange>) => {
   const popupRef = useRef<HTMLDivElement>(null);
 
-  const [position, setPosition] = useState<Position | undefined>(undefined);
-  const [currentYear, setCurrentYear] = useState(getStartDate(range, value).getFullYear());
-  const [currentMonth, setCurrentMonth] = useState(getStartDate(range, value).getMonth());
-
-  const [internalRangeHoverDate, setInternalRangeHoverDate] = useState<Date | undefined>(undefined);
-
   const { weekDays, monthsOptions } = useMemo(() => {
     const months = getMonths(locale);
 
     return {
       weekDays: getWeekDays(locale),
-      monthsOptions: months.map(
-        (month, index): DropdownMenuOption => ({
-          label: month,
-          onClick: () => setCurrentMonth(index),
-        })
-      ),
+      monthsOptions: months.map((month, index): DropdownNumberOption => ({ label: month, value: index })),
     };
   }, [locale]);
 
-  const yearsOptions: DropdownMenuOption[] = useMemo(() => {
-    return getYears(1900, 2099).map(
-      (year): DropdownMenuOption => ({
-        label: year,
-        onClick: () => setCurrentYear(parseInt(year)),
-      })
-    );
+  const yearsOptions = useMemo(() => {
+    return getYears(1900, 2099).map((year): DropdownNumberOption => ({ label: year, value: parseInt(year) }));
   }, []);
+
+  const [position, setPosition] = useState<Position | undefined>(undefined);
+
+  const [currentYearOption, setCurrentYearOption] = useState<DropdownNumberOption>(() => {
+    const year = getStartDate(range, value).getFullYear();
+    return { label: year.toString(), value: year };
+  });
+
+  const [currentMonthOption, setCurrentMonthOption] = useState<DropdownNumberOption>(
+    monthsOptions[getStartDate(range, value).getMonth()]
+  );
+
+  const [internalRangeHoverDate, setInternalRangeHoverDate] = useState<Date | undefined>(undefined);
+
+  const currentYear = currentYearOption.value;
+  const currentMonth = currentMonthOption.value;
 
   useLayoutEffect(() => {
     const calculatePopupPosition = () => {
@@ -86,12 +97,12 @@ export const DatePickerPopup = <TRange extends boolean>({
         return;
       }
 
-      const dropdownPopupElement = document.querySelector(".date-picker-dropdown-popup") as HTMLUListElement | null;
+      const dropdownMenuElement = document.querySelector(".m-dropdown-options") as HTMLUListElement | null;
 
       if (
         !popupRef.current.contains(target) &&
         !parentElement.contains(target) &&
-        !dropdownPopupElement?.contains(target)
+        !dropdownMenuElement?.contains(target)
       ) {
         handleClose();
       }
@@ -116,6 +127,26 @@ export const DatePickerPopup = <TRange extends boolean>({
       document.removeEventListener("keydown", handleKeyPress);
     };
   }, []);
+
+  const setMonthByIndex = (index: number) => {
+    setCurrentMonthOption(monthsOptions[index]);
+  };
+
+  const handleMonthChange = (event: DropdownChangeEvent<DropdownNumberOption>) => {
+    const { value: monthOptionValue } = event.target;
+
+    monthOptionValue?.value !== undefined && setMonthByIndex(monthOptionValue.value);
+  };
+
+  const setCurrentYear = (year: number) => {
+    setCurrentYearOption({ label: year.toString(), value: year });
+  };
+
+  const handleYearChange = (event: DropdownChangeEvent<DropdownNumberOption>) => {
+    const { value: yearOptionValue } = event.target;
+
+    yearOptionValue?.value !== undefined && setCurrentYear(yearOptionValue.value);
+  };
 
   const handleChange = (date: Date) => {
     if (range) {
@@ -224,24 +255,24 @@ export const DatePickerPopup = <TRange extends boolean>({
 
   const goToPrevMonth = () => {
     if (currentMonth === 0) {
-      setCurrentMonth(11);
+      setMonthByIndex(11);
       setCurrentYear(currentYear - 1);
 
       return;
     }
 
-    setCurrentMonth(currentMonth - 1);
+    setMonthByIndex(currentMonth - 1);
   };
 
   const goToNextMonth = () => {
     if (currentMonth === 11) {
-      setCurrentMonth(0);
+      setMonthByIndex(0);
       setCurrentYear(currentYear + 1);
 
       return;
     }
 
-    setCurrentMonth(currentMonth + 1);
+    setMonthByIndex(currentMonth + 1);
   };
 
   return (
@@ -249,26 +280,32 @@ export const DatePickerPopup = <TRange extends boolean>({
       <div className="date-picker-popup-month-selector">
         <FontAwesomeIcon className="date-picker-popup-month-icon" icon="chevron-left" onClick={goToPrevMonth} />
         <p className="date-picker-popup-month-text truncate-text">
-          <DropdownMenu
+          <Dropdown
+            value={currentMonthOption}
+            onChange={handleMonthChange}
             options={monthsOptions}
-            zIndex={5}
-            centerConsumer
-            openEvent="click"
-            popupClassName="date-picker-dropdown-popup"
+            classNamesObj={{
+              container: "date-picker-popup-dropdown-container",
+              dropdownOptions: "date-picker-popup-dropdown-options",
+            }}
             optionHeightFit={8}
-          >
-            <span>{getMonthName(currentMonth, locale)}</span>
-          </DropdownMenu>
-          <DropdownMenu
+            disableDefaultMargin
+            components={dropdownComponents}
+            menuPositionConfig={{ centerConsumer: true }}
+          />
+          <Dropdown
+            value={currentYearOption}
+            onChange={handleYearChange}
             options={yearsOptions}
-            zIndex={5}
-            centerConsumer
-            openEvent="click"
-            popupClassName="date-picker-dropdown-popup"
+            classNamesObj={{
+              container: "date-picker-popup-dropdown-container",
+              dropdownOptions: "date-picker-popup-dropdown-options",
+            }}
             optionHeightFit={8}
-          >
-            <span>{currentYear}</span>
-          </DropdownMenu>
+            disableDefaultMargin
+            components={dropdownComponents}
+            menuPositionConfig={{ centerConsumer: true }}
+          />
         </p>
         <FontAwesomeIcon className="date-picker-popup-month-icon" icon="chevron-right" onClick={goToNextMonth} />
       </div>

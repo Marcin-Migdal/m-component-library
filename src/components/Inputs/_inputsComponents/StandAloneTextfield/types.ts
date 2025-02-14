@@ -47,4 +47,8 @@ export type StandAloneTextfieldProps = Omit<
 
   /** Unique identifier for the `TextField`. */
   id?: string;
+
+  /** Prefix for the id attributes in `StandAloneTextfieldProps`.
+   * @default "textfield" */
+  idPrefix?: string;
 };

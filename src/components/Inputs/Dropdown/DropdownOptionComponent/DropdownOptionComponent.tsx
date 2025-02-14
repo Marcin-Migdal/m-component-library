@@ -11,7 +11,12 @@ export const DropdownOptionComponent = <T,>({
   handleDropdownChange,
 }: DropdownOptionComponentProps<T>) => {
   return (
-    <li id={id} key={option[valueKey] as string} onClick={(e) => handleDropdownChange(e, option)} className={className}>
+    <li
+      id={`dropdown-option-${id}`}
+      key={option[valueKey] as string}
+      onClick={(e) => handleDropdownChange(e, option)}
+      className={className}
+    >
       {option[labelKey] as ReactElement}
     </li>
   );
