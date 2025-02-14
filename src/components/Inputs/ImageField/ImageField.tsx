@@ -2,9 +2,8 @@ import classNames from "classnames";
 import React, { ChangeEvent, useRef, useState } from "react";
 import { v4 as uuId } from "uuid";
 
-import { InputLabel, SimpleInputLabel } from "../../global-types";
+import { SimpleInputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
-import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { getAcceptanceDescription } from "./helpers/getAcceptanceDescription";
@@ -16,6 +15,7 @@ import { ImagePreview } from "./ImagePreview/ImagePreview";
 import { ImagePreviewZoom } from "./ImagePreviewZoom/ImagePreviewZoom";
 import { ImageFieldProps } from "./types";
 
+import { getSimpleInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getSimpleInputsErrorStyle";
 import "./ImageField.scss";
 
 export const ImageField = ({
@@ -41,7 +41,6 @@ export const ImageField = ({
   disabled = defaultInputPropsValue.disabled,
   readOnly = defaultInputPropsValue.readOnly,
   disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
-  floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 
   ...otherProps
 }: ImageFieldProps) => {
@@ -201,7 +200,7 @@ export const ImageField = ({
         )}
         {error && (
           <InputError
-            style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
+            style={getSimpleInputsErrorStyle(labelType, labelWidth)}
             className={classNames("image-error", classNamesObj?.error)}
             error={error}
           />
