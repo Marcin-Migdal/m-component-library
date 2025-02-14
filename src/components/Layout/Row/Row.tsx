@@ -7,18 +7,17 @@ import "./Row.scss";
 
 /** Col component wrapper */
 const Row = ({ className, style = {}, children, gap }: RowProps) => {
+  const gapCssVariables = gap
+    ? Object.entries(gap).reduce((acc, [key, value]) => {
+        acc[`--${key}-gap`] = value;
+        return acc;
+      }, {})
+    : {};
+
+  const gapCssClassNames = Object.keys(gap || {}).map((key) => `${key}-gap`);
+
   return (
-    <div
-      style={{
-        ...style,
-        //@ts-expect-error ts(2353) styles attribute does not expect css variable
-        "--col-gap": gap?.gapSize ? gap.gapSize : "unset",
-      }}
-      className={classNames("m-grid-row", {
-        [`col-${gap?.breakpoint}-gap`]: gap,
-        className,
-      })}
-    >
+    <div style={{ ...style, ...gapCssVariables }} className={classNames("m-grid-row", className, gapCssClassNames)}>
       {children}
     </div>
   );

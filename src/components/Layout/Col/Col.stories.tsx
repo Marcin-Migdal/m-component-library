@@ -20,7 +20,14 @@ const meta: Meta<typeof Col> = {
   },
   decorators: [
     (Story) => (
-      <Row>
+      <Row
+        gap={{
+          sm: "1rem",
+          md: "2rem",
+          lg: "3rem",
+          xl: "6rem",
+        }}
+      >
         <Story />
       </Row>
     ),
@@ -52,7 +59,9 @@ export const DefaultCol: StoryObj<typeof Col> = {
     return (
       <>
         {new Array(4).fill("").map((_item, index) => (
-          <Col {...args}>Columns {index + 1}</Col>
+          <Col {...args} key={index}>
+            Columns {index + 1}
+          </Col>
         ))}
       </>
     );
