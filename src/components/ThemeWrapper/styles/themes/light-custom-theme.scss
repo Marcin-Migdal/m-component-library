@@ -1,6 +1,6 @@
 .light-custom-theme {
   --hue: 194;
-  --saturation: 100%;
+  --saturation: 80%;
 
   --primary-color_000: hsl(var(--hue), var(--saturation), 1%);
   --primary-color_020: hsl(var(--hue), var(--saturation), 3%);
@@ -61,6 +61,8 @@
   --primary-color_940: hsl(var(--hue), var(--saturation), 95%);
 
   /** Inputs colors */
+  --dropdown-option-selected-background-color: hsl(var(--hue), max(calc(var(--saturation) - 20%), 0%), 69%);
+  --dropdown-option-selected-hover-background-color: hsl(var(--hue), max(calc(var(--saturation) - 20%), 0%), 65%);
   --slider-thumb-color: var(--primary-color_580);
   --checkbox-color: var(--primary-color_580);
   --toggle-switch-color: var(--checkbox-color);

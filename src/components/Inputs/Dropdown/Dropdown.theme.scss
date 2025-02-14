@@ -23,7 +23,11 @@
         }
 
         &.selected {
-          background-color: var(--input-hover-background-color);
+          background-color: var(--dropdown-option-selected-background-color);
+
+          &:hover {
+            background-color: var(--dropdown-option-selected-hover-background-color);
+          }
         }
       }
     }

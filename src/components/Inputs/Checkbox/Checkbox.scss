@@ -44,7 +44,7 @@
       border-radius: var(--radius-md);
       border: var(--border-base) solid;
 
-      transition: var(--transition-duration-normal);
+      transition: var(--transition-duration-normal) !important;
 
       .m-checkbox-check-icon {
         position: absolute;
@@ -54,7 +54,7 @@
         width: calc(var(--checkbox-input-size) - 6px);
         height: calc(var(--checkbox-input-size) - 6px);
         opacity: 0;
-        transition: var(--transition-duration-normal);
+        transition: opacity var(--transition-duration-fast), color 0s;
       }
     }
   }
