@@ -17,6 +17,7 @@ export const StandAloneTextfield = ({
   disabled = false,
   readOnly = false,
   id = undefined,
+  idPrefix = "textfield",
 
   className,
   placeholder = undefined,
@@ -69,7 +70,7 @@ export const StandAloneTextfield = ({
 
   return (
     <div
-      id={id ? `textfield-wrapper-${id}` : undefined}
+      id={id ? `${idPrefix}-wrapper-${id}` : undefined}
       style={style}
       ref={textfieldWrapperRef}
       className="standalone-textfield-wrapper"
@@ -80,7 +81,7 @@ export const StandAloneTextfield = ({
         </span>
       )}
       <input
-        id={id ? `textfield-${id}` : undefined}
+        id={id ? `${idPrefix}-${id}` : undefined}
         readOnly={readOnly}
         disabled={disabled}
         name={name}

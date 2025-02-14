@@ -32,8 +32,21 @@
     margin-bottom: var(--spacing-2);
 
     .date-picker-popup-month-text {
+      display: flex;
+      justify-content: center;
       width: calc(100% - var(--spacing-2));
-      text-align: center;
+
+      .date-picker-popup-dropdown-container {
+        width: fit-content;
+        height: fit-content;
+        border-radius: var(--radius-base);
+
+        span {
+          display: inline-block;
+          padding: var(--spacing-1) var(--spacing-2);
+          border-radius: var(--radius-base);
+        }
+      }
 
       .m-dropdown-menu-trigger-container {
         display: inline-block;
@@ -47,10 +60,6 @@
         &:active {
           font-size: var(--font-size-sm);
         }
-      }
-
-      .date-picker-dropdown-popup {
-        border: unset !important;
       }
     }
 
@@ -88,6 +97,15 @@
 
     gap: var(--day-button-gap);
 
+    width: 100%;
+  }
+}
+
+.date-picker-popup-dropdown-options {
+  width: fit-content !important;
+
+  .m-dropdown-option {
+    min-width: fit-content;
     width: 100%;
   }
 }

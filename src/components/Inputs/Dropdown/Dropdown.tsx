@@ -65,6 +65,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
   clearable = false,
   filter = false,
   components,
+  menuPositionConfig,
 
   labelType = defaultInputPropsValue.labelType,
   labelWidth = defaultInputPropsValue.labelWidth,
@@ -197,7 +198,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
     setIsFocused(true);
   };
 
-  const controlElement = controlContainerRef.current?.querySelector(".m-dropdown-control") as
+  const controlElement = controlContainerRef.current?.querySelector(`#dropdown-controller-${uniqueDropdownId}`) as
     | HTMLInputElement
     | null
     | undefined;
@@ -205,6 +206,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
   const controlProps: StandAloneTextfieldProps = {
     disabled: disabled,
     id: uniqueDropdownId,
+    idPrefix: "dropdown-controller",
     readOnly: readOnly || !filter,
     value: filter && isFocused ? filterValue : value?.[labelKey].toString() || "",
     onChange: handleFilterChange,
@@ -237,6 +239,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
     labelKey,
     noOptionsMessage,
     optionHeightFit,
+    menuPositionConfig,
 
     handleDropdownChange,
     Option: currentComponents.Option,

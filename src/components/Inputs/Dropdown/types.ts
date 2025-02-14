@@ -1,5 +1,6 @@
 import React, { ComponentProps, FocusEvent, ReactElement, MouseEvent as ReactMouseEvent } from "react";
 
+import { GetPositionConfig } from "../../../utils";
 import { InputProps } from "../_inputsComponents/input-types";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
 import { StandAloneTextfieldProps } from "../_inputsComponents/StandAloneTextfield/types";
@@ -24,7 +25,7 @@ type DropdownBaseProps<T> = InputProps & {
   onClear?: (event: DropdownClearEvent<T>, value: DropdownValue<T>) => void;
 
   /** Callback triggered when the dropdown receives focus. */
-  onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
+  onFocus?: (event: FocusEvent<HTMLInputElement> | undefined) => void;
 
   /** Placeholder text for the input field. */
   placeholder?: string;
@@ -52,6 +53,9 @@ type DropdownBaseProps<T> = InputProps & {
 
   /** List of options available in the dropdown. */
   options?: T[];
+
+  /** Object that configures position of the dropdown menu. */
+  menuPositionConfig?: Partial<GetPositionConfig>;
 };
 
 export type ClearIconProps = {
@@ -69,10 +73,10 @@ export type DropdownComponents<T> = {
   Control: (props: StandAloneTextfieldProps) => ReactElement;
 
   /** Custom clear icon component. */
-  ClearIcon: (props: ClearIconProps) => ReactElement;
+  ClearIcon: (props: ClearIconProps) => ReactElement | null;
 
   /** Custom dropdown indicator icon component. */
-  IndicatorIcon: (props: IndicatorIconProps) => ReactElement;
+  IndicatorIcon: (props: IndicatorIconProps) => ReactElement | null;
 
   /** Custom options list component. */
   Options: (props: DropdownOptionsProps<T>) => ReactElement;
@@ -130,6 +134,7 @@ export type DropdownOptionsProps<T> = {
   classNamesObj?: DropdownOptionsClassnames;
   noOptionsMessage: string;
   optionHeightFit: number;
+  menuPositionConfig?: Partial<GetPositionConfig>;
 } & DropdownOptionsComponents<T>;
 
 export type DropdownOptionsComponents<T> = {
@@ -150,4 +155,20 @@ export type DropdownOptionComponentProps<T> = {
   id: string;
   className?: string;
   handleDropdownChange: (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: T) => void;
+};
+
+export type DropdownNumberOption = {
+  /** The actual value of the option. */
+  value: number;
+
+  /** The human-readable label associated with the value. */
+  label: string;
+};
+
+export type DropdownStringOption = {
+  /** The actual value of the option.*/
+  value: string;
+
+  /** The human-readable label associated with the value. */
+  label: string;
 };
