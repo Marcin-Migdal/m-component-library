@@ -94,7 +94,10 @@ export const DropdownMenu = ({
 
       const children = Array.from(element.children) as HTMLLIElement[];
 
-      const totalHeight = children.slice(0, optionHeightFit).reduce((sum, child) => sum + child.offsetHeight, 0);
+      const totalHeight =
+        children.length > optionHeightFit
+          ? children.slice(0, optionHeightFit).reduce((sum, child) => sum + child.offsetHeight, 0)
+          : "fit-content";
 
       setDropdownMenuConfig({
         zIndex: zIndex,
