@@ -61,7 +61,7 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, []);
+  }, [value]);
 
   const handleColorPick = (rgb: RgbValue) => {
     setRgbValue(rgb);

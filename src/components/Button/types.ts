@@ -80,6 +80,16 @@ type ButtonBaseProps = {
   size?: `${ComponentSize}`;
 };
 
+type UndefinedBtnProps = {
+  /** The click event handler for the button. Triggered on button click.
+   * @default undefined */
+  onClick?: undefined;
+
+  /** The type of the button. Set to "button" for a standard clickable button.
+   * @default undefined */
+  type?: undefined;
+};
+
 type SubmitBtnProps = {
   /** The click event handler for the button. Not used for submit buttons.
    * @default undefined */
@@ -110,4 +120,4 @@ type BtnProps = {
   type?: "button";
 };
 
-export type ButtonProps = ButtonBaseProps & (BtnProps | SubmitBtnProps | ResetBtnProps);
+export type ButtonProps = ButtonBaseProps & (BtnProps | SubmitBtnProps | ResetBtnProps | UndefinedBtnProps);

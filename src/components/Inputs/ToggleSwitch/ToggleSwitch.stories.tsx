@@ -1,16 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { generateHiddenArgTypes } from "../../../internalUtils/generateHiddenArgTypes";
 import { simpleInputArgTypes } from "../../../internalUtils/inputArgTypes";
 import ToggleSwitch from "./ToggleSwitch";
 
 const meta: Meta<typeof ToggleSwitch> = {
   title: "Components/Inputs/ToggleSwitch",
   component: ToggleSwitch,
-  argTypes: {
-    ...simpleInputArgTypes,
-    ...generateHiddenArgTypes(["floatingInputWidth"]),
-  },
+  argTypes: simpleInputArgTypes,
 };
 
 export default meta;

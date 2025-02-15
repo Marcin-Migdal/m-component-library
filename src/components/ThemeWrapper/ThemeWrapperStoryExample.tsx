@@ -12,6 +12,7 @@ import { DateField, Textfield } from "../Inputs";
 import { Checkbox } from "../Inputs/Checkbox";
 import { ColorPicker } from "../Inputs/ColorPicker";
 import { Dropdown } from "../Inputs/Dropdown";
+import { options } from "../Inputs/Dropdown/Dropdown.stories";
 import { IconField } from "../Inputs/IconField";
 import { ImageField } from "../Inputs/ImageField";
 import { Slider } from "../Inputs/Slider";
@@ -64,7 +65,7 @@ export const ThemeWrapperStoryExample = ({
   const [handleOpen, alertProps] = useAlert();
 
   const [themeHue, setThemeHue] = useState<number | undefined>(undefined);
-  const [expanded, setExpanded] = useState<SectionState>({});
+  const [expanded, setExpanded] = useState<SectionState>({ Inputs: true });
 
   const handleHueChange = (hue: number) => setThemeHue(hue);
 
@@ -73,7 +74,6 @@ export const ThemeWrapperStoryExample = ({
     label,
     labelType,
     labelWidth,
-    floatingInputWidth,
     disabled,
     placeholder,
     error,
@@ -224,20 +224,13 @@ export const ThemeWrapperStoryExample = ({
       toggleText: "Inputs",
       content: (
         <div>
-          <Textfield {...inputProps} />
-          <Textarea {...inputProps} />
-          <Dropdown {...inputProps} />
-          <Dropdown
-            {...inputProps}
-            clearable
-            options={[
-              { label: "Option 1", value: "1" },
-              { label: "Option 2", value: "2" },
-            ]}
-          />
-          <DateField {...inputProps} />
-          <IconField {...inputProps} />
-          <ColorPicker {...inputProps} returnedColorType="hex" onChange={() => {}} />
+          <Textfield {...inputProps} floatingInputWidth={floatingInputWidth} />
+          <Textarea {...inputProps} floatingInputWidth={floatingInputWidth} />
+          <Dropdown {...inputProps} floatingInputWidth={floatingInputWidth} />
+          <Dropdown {...inputProps} floatingInputWidth={floatingInputWidth} clearable options={options} />
+          <DateField {...inputProps} floatingInputWidth={floatingInputWidth} />
+          <IconField {...inputProps} floatingInputWidth={floatingInputWidth} />
+          <ColorPicker {...inputProps} floatingInputWidth={floatingInputWidth} />
           <ImageField {...inputProps} labelType={simpleInputLabel} />
           <Slider {...inputProps} min={0} max={100} />
           <Checkbox {...inputProps} labelType={simpleInputLabel} />

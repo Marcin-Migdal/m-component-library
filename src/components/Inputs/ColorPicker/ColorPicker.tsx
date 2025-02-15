@@ -20,7 +20,7 @@ import "./ColorPicker.scss";
  * Supports RGB, HSL, and HEX formats.
  * Provides event handlers for opening, changing, and closing the color selection.
  */
-const ColorPicker = ({
+const ColorPicker = <TReturnedColor extends ReturnedColor>({
   onChange,
   name = undefined,
   label = undefined,
@@ -36,11 +36,11 @@ const ColorPicker = ({
   disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
   floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 
-  returnedColorType,
+  returnedColorType = "rgb" as TReturnedColor,
   defaultValue,
   onOpen,
   onClose,
-}: ColorPickerProps) => {
+}: ColorPickerProps<TReturnedColor>) => {
   const inputContainerRef = useRef<HTMLDivElement>(null);
 
   const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
@@ -71,13 +71,13 @@ const ColorPicker = ({
         onClose(undefined);
       } else {
         switch (returnedColorType) {
-          case ReturnedColor.RGB:
+          case "rgb":
             onClose(value);
             break;
-          case ReturnedColor.HSL:
+          case "hsl":
             onClose(rgbToHsl(value.r, value.g, value.b));
             break;
-          case ReturnedColor.HEX:
+          case "hex":
             onClose(rgbToHex(value.r, value.g, value.b));
             break;
         }
@@ -95,18 +95,18 @@ const ColorPicker = ({
     }
 
     switch (returnedColorType) {
-      case ReturnedColor.RGB:
+      case "rgb":
         return onChange({
           target: { name: name || "color-picker", value: newValue },
         });
-      case ReturnedColor.HSL:
+      case "hsl":
         return onChange({
           target: {
             name: name || "color-picker",
             value: rgbToHsl(newValue.r, newValue.g, newValue.b),
           },
         });
-      case ReturnedColor.HEX:
+      case "hex":
         return onChange({
           target: {
             name: name || "color-picker",
@@ -152,7 +152,7 @@ const ColorPicker = ({
             onBlur={handleBlur}
             onFocus={handleFocus}
             onClick={() => !disabled && handleOpen()}
-            value={value ? hexValue : undefined}
+            value={hexValue}
             placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
             style={{
               //@ts-expect-error ts(2353) styles attribute does not expect css variable

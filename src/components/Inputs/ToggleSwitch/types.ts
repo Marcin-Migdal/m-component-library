@@ -1,7 +1,6 @@
 import { ChangeEvent } from "react";
 
-import { SimpleInputLabel } from "../../global-types";
-import { InputProps } from "../_inputsComponents/input-types";
+import { SimpleInputProps } from "../_inputsComponents/input-types";
 
 type ToggleSwitchClassNames = {
   container?: string;
@@ -11,7 +10,7 @@ type ToggleSwitchClassNames = {
   error?: string;
 };
 
-export type ToggleSwitchProps = Omit<InputProps<SimpleInputLabel>, "floatingInputWidth"> & {
+export type ToggleSwitchProps = SimpleInputProps & {
   /** Whether the toggle is checked. */
   checked?: boolean;
 

@@ -1,7 +1,6 @@
 import { CSSProperties } from "react";
 
-import { SimpleInputLabel } from "../../global-types";
-import { InputProps } from "../_inputsComponents/input-types";
+import { SimpleInputProps } from "../_inputsComponents/input-types";
 
 type ImageFieldClassNames = {
   container?: string;
@@ -34,7 +33,7 @@ export type ImageFieldOnChangeEvent = InputEventWithSource | DropEventWithSource
 
 export type ImageFieldOnChange = (event: ImageFieldOnChangeEvent, value: File | undefined) => void;
 
-export type ImageFieldProps = InputProps<SimpleInputLabel> & {
+export type ImageFieldProps = SimpleInputProps & {
   /** The currently selected image file. */
   value?: File | undefined;
 
