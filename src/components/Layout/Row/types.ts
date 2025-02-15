@@ -14,12 +14,7 @@ export type RowProps = {
   children?: ReactNode;
 
   /** Gap configuration for the `col` component, including breakpoint and gap size.
+   * For gap to work properly, the `flex` version of the props in the `Col` component must be used.
    * @default undefined */
-  gap?: {
-    /** Breakpoint for the gap (e.g., "sm", "md", "lg", "xl"). */
-    breakpoint: "sm" | "md" | "lg" | "xl";
-
-    /** Size of the gap (e.g., "16px" or 16). */
-    gapSize?: string | number;
-  };
+  gap?: Partial<Record<"sm" | "md" | "lg" | "xl", CSSProperties["gap"]>>;
 };
