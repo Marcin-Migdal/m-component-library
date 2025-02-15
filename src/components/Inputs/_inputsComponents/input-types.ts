@@ -1,7 +1,13 @@
-import { ComponentSize, InputLabel, LabelPercentageWidth } from "../../global-types";
+import {
+  ComponentSize,
+  FloatingInputWidth,
+  InputLabel,
+  LabelPercentageWidth,
+  SimpleInputLabel,
+} from "../../global-types";
 
 /**
- * Common props used across many `Input` component1.
+ * Common props used across many `Input` component.
  * @genericType TLabelType - Type of the label position (defaults to `InputLabel`).
  * - `InputLabel`
  * - `SimpleInputLabel`
@@ -39,4 +45,9 @@ export type InputProps<TLabelType extends string = InputLabel> = {
   /** Type of label positioning.
    * @default "left" */
   labelType?: `${TLabelType}`;
+
+  /** Width of the floating input field. */
+  floatingInputWidth?: FloatingInputWidth;
 };
+
+export type SimpleInputProps = Omit<InputProps<SimpleInputLabel>, "floatingInputWidth">;

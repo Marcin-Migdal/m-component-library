@@ -12,7 +12,7 @@ type ColorPickerClassNames = {
   popup?: string;
 };
 
-export type ColorPickerProps = InputProps & {
+export type ColorPickerProps<TReturnedColor extends ReturnedColor> = InputProps & {
   /** Default color value for the picker. */
   defaultValue?: ColorValue;
 
@@ -24,38 +24,16 @@ export type ColorPickerProps = InputProps & {
 
   /** Callback triggered when the color picker opens. */
   onOpen?: () => void;
-} & (
-    | {
-        /** Format of the returned color: RGB. */
-        returnedColorType: ReturnedColor.RGB;
 
-        /** Callback triggered when color changes. */
-        onChange: ColorPickerOnChange<RgbValue>;
+  /** Format of the returned color. */
+  returnedColorType?: TReturnedColor;
 
-        /** Callback triggered when the color picker closes. */
-        onClose?: (value: RgbValue | undefined) => void;
-      }
-    | {
-        /** Format of the returned color: HSL. */
-        returnedColorType: ReturnedColor.HSL;
+  /** Callback triggered when color changes. */
+  onChange?: ColorPickerOnChange<ColorValue>;
 
-        /** Callback triggered when color changes. */
-        onChange: ColorPickerOnChange<HslValue>;
-
-        /** Callback triggered when the color picker closes. */
-        onClose?: (value: HslValue | undefined) => void;
-      }
-    | {
-        /** Format of the returned color: HEX. */
-        returnedColorType: `${ReturnedColor.HEX}`;
-
-        /** Callback triggered when color changes. */
-        onChange: ColorPickerOnChange<string>;
-
-        /** Callback triggered when the color picker closes. */
-        onClose?: (value: string | undefined) => void;
-      }
-  );
+  /** Callback triggered when the color picker closes. */
+  onClose?: (value: ColorValue | undefined) => void;
+};
 
 export type HslValue = {
   h: number;
@@ -75,11 +53,7 @@ export const defaultColorPickerValue: RgbValue = {
   b: 0,
 };
 
-export enum ReturnedColor {
-  RGB = "rgb",
-  HSL = "hsl",
-  HEX = "hex",
-}
+export type ReturnedColor = "rgb" | "hsl" | "hex";
 
 export type CanvasCoordinates = {
   x: number;

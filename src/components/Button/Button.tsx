@@ -57,7 +57,7 @@ const Button = ({
         className={classNames("m-button", variant, size, className, {
           "disabled-default-margin": disableDefaultMargin,
         })}
-        onClick={(e) => onClick && onClick(e)}
+        onClick={onClick}
         disabled={disabled || busy}
         type={type}
         {...otherProps}

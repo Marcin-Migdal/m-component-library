@@ -1,8 +1,8 @@
 import { ArgTypes } from "@storybook/react/*";
 import { ComponentSize, InputLabel, SimpleInputLabel } from "../components/global-types";
-import { InputProps } from "../components/Inputs/_inputsComponents/input-types";
+import { InputProps, SimpleInputProps } from "../components/Inputs/_inputsComponents/input-types";
 
-const commonInputArgTypes: Partial<ArgTypes<Omit<InputProps, "floatingInputWidth">>> = {
+const commonInputArgTypes: Partial<ArgTypes<Omit<InputProps, "floatingInputWidth" | "labelType">>> = {
   size: {
     control: "radio",
     options: Object.values(ComponentSize),
@@ -51,7 +51,7 @@ const commonInputArgTypes: Partial<ArgTypes<Omit<InputProps, "floatingInputWidth
 };
 
 //! Simple input
-export const simpleInputArgTypes: Partial<ArgTypes<InputProps<SimpleInputLabel>>> = {
+export const simpleInputArgTypes: Partial<ArgTypes<SimpleInputProps>> = {
   ...commonInputArgTypes,
   labelType: {
     control: "radio",

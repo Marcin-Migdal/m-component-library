@@ -31,7 +31,7 @@ export const HueSliderCanvas = ({ hue, onChange, readOnly = false }: HueSliderCa
       return;
     }
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
 
     if (!ctx) {
       return;
@@ -55,7 +55,7 @@ export const HueSliderCanvas = ({ hue, onChange, readOnly = false }: HueSliderCa
       return;
     }
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
     const width = canvas.width;
     const height = canvas.height;
 

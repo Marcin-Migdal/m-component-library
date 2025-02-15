@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { inputArgTypes } from "../../../internalUtils/inputArgTypes";
 import Dropdown from "./Dropdown";
 
-const options = [
+export const options = [
   { label: "test 1", value: 1 },
   { label: "test 2", value: 2 },
   { label: "test 3", value: 3 },

@@ -21,6 +21,7 @@
 - [[#111]](https://github.com/Marcin-Migdal/m-component-library/issues/111) **[PATCH]** Implement Scroll in to view in dropdown selected option
 - [[#118]](https://github.com/Marcin-Migdal/m-component-library/issues/118) **[PATCH]** Delete floatingInputWidth props from ImageField input component
 - [[#117]](https://github.com/Marcin-Migdal/m-component-library/issues/117) **[PATCH]** Implement improved version of the gap prop in Row component, that enabled possibility of configuring gap css property for all breakpoints
+- [[#120]](https://github.com/Marcin-Migdal/m-component-library/issues/120) **[PATCH]** Fix button and colorPicker components types, created SimpleInputProps for inputs without floating label
 
 ### Release date 25.10.2024 - Release 1.0.6
 

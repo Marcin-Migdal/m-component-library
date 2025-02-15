@@ -5,10 +5,10 @@ import { v4 as uuId } from "uuid";
 import { SimpleInputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getToggleSwitchErrorStyle } from "../_inputsComponents/InputError/helpers/getToggleSwitchErrorStyle";
+import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { ToggleSwitchProps } from "./types";
 
-import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import "./ToggleSwitch.scss";
 
 /** ToggleSwitch component for enabling or disabling */

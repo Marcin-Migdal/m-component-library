@@ -1,7 +1,6 @@
 import { ChangeEvent } from "react";
 
-import { SimpleInputLabel } from "../../global-types";
-import { InputProps } from "../_inputsComponents/input-types";
+import { SimpleInputProps } from "../_inputsComponents/input-types";
 
 type CheckboxClassNames = {
   container?: string;
@@ -12,7 +11,7 @@ type CheckboxClassNames = {
   valuePreview?: string;
 };
 
-export type CheckboxProps = Omit<InputProps<SimpleInputLabel>, "floatingInputWidth"> & {
+export type CheckboxProps = SimpleInputProps & {
   /** Whether the checkbox is checked. */
   checked?: boolean;
 
