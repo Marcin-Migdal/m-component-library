@@ -17,7 +17,8 @@
         }
 
         &:not(:first-child)::before {
-          border-color: transparent var(--background-color) transparent transparent;
+          border-color: var(--current-crumb-background-color) transparent var(--current-crumb-background-color)
+            transparent;
         }
 
         &:not(:last-child) {
