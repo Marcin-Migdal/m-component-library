@@ -28,7 +28,7 @@ type DropdownMenuProps = {
   openConfig: OpenConfig;
   zIndex: number;
   centerConsumer: boolean;
-  optionHeightFit: number;
+  // optionHeightFit: number;
 };
 
 const initDropdownMenuConfig: Partial<DropdownMenuConfig> = { opacity: 0 };
@@ -45,8 +45,8 @@ export const DropdownMenu = ({
   openConfig,
   zIndex,
   centerConsumer,
-  optionHeightFit = 6,
-}: DropdownMenuProps) => {
+}: // optionHeightFit = 6,
+DropdownMenuProps) => {
   const [dropdownMenuConfig, setDropdownMenuConfig] = useState<Partial<DropdownMenuConfig>>(initDropdownMenuConfig);
 
   const dropdownMenuContainerRef = useRef<HTMLUListElement>(null);
@@ -94,10 +94,12 @@ export const DropdownMenu = ({
 
       const children = Array.from(element.children) as HTMLLIElement[];
 
-      const totalHeight =
-        children.length > optionHeightFit
-          ? children.slice(0, optionHeightFit).reduce((sum, child) => sum + child.offsetHeight, 0)
-          : "fit-content";
+      // const totalHeight =
+      //   children.length > optionHeightFit
+      //     ? children.slice(0, optionHeightFit).reduce((sum, child) => sum + child.offsetHeight, 0)
+      //     : "fit-content";
+
+      const totalHeight = "fit-content";
 
       setDropdownMenuConfig({
         zIndex: zIndex,

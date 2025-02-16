@@ -107,7 +107,7 @@ export type DropdownMenuProps = {
 
   /** Number of `options` to fit in `dropdown menu` when calculating height.
    * @default 6 */
-  optionHeightFit?: number;
+  // optionHeightFit?: number;
 
   /** Callback function triggered when the dropdown opens. */
   onOpen?: () => void;
