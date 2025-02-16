@@ -279,7 +279,7 @@ export const DatePickerPopup = <TRange extends boolean>({
     <div ref={popupRef} className={classNames("date-picker-popup", className)} style={{ ...position }}>
       <div className="date-picker-popup-month-selector">
         <FontAwesomeIcon className="date-picker-popup-month-icon" icon="chevron-left" onClick={goToPrevMonth} />
-        <p className="date-picker-popup-month-text truncate-text">
+        <div className="date-picker-popup-month-text truncate-text">
           <Dropdown
             value={currentMonthOption}
             onChange={handleMonthChange}
@@ -306,7 +306,7 @@ export const DatePickerPopup = <TRange extends boolean>({
             components={dropdownComponents}
             menuPositionConfig={{ centerConsumer: true }}
           />
-        </p>
+        </div>
         <FontAwesomeIcon className="date-picker-popup-month-icon" icon="chevron-right" onClick={goToNextMonth} />
       </div>
       <div className="date-picker-popup-week-days-header">

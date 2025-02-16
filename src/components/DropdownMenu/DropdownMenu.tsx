@@ -18,7 +18,7 @@ const DropdownMenuContainer = ({
   openPosition = OpenPosition.BOTTOM,
   zIndex = 1,
   centerConsumer = false,
-  optionHeightFit = 6,
+  // optionHeightFit = 6,
   onOpen,
   onClose,
 }: PropsWithChildren<DropdownMenuProps>) => {
@@ -74,7 +74,7 @@ const DropdownMenuContainer = ({
             openConfig={openConfig}
             zIndex={zIndex}
             centerConsumer={centerConsumer}
-            optionHeightFit={optionHeightFit}
+            // optionHeightFit={optionHeightFit}
           />,
           document.body
         )}
