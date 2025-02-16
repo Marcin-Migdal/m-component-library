@@ -92,7 +92,7 @@ DropdownMenuProps) => {
         return;
       }
 
-      const children = Array.from(element.children) as HTMLLIElement[];
+      // const children = Array.from(element.children) as HTMLLIElement[];
 
       // const totalHeight =
       //   children.length > optionHeightFit
