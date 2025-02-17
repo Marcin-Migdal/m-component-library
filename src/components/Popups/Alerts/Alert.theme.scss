@@ -1,0 +1,42 @@
+.common-wrapper-container {
+  .m-alert {
+    background-color: var(--background-color);
+    border-top-color: var(--alert-border-color);
+
+    .m-alert-header {
+      svg {
+        &:hover {
+          background-color: var(--background-hover-color);
+        }
+
+        &:active {
+          background-color: var(--background-active-color);
+        }
+      }
+    }
+
+    .m-alert-footer {
+      background-color: var(--alert-border-color);
+
+      button {
+        background-color: var(--background-color);
+        border-top-color: var(--alert-border-color);
+        color: var(--primary-text-color);
+
+        &:disabled {
+          background-color: var(--alert-disabled-button-background-color);
+        }
+
+        &:not(:disabled) {
+          &:hover {
+            background-color: var(--background-hover-color);
+          }
+
+          &:active {
+            background-color: var(--background-active-color);
+          }
+        }
+      }
+    }
+  }
+}

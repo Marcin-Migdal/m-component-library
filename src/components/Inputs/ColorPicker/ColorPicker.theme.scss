@@ -1,0 +1,13 @@
+.common-wrapper-container {
+  .m-color-picker-container {
+    .m-color-preview {
+      &.popup-open {
+        box-shadow: var(--shadow-base) var(--box-shadow-color);
+      }
+    }
+  }
+
+  .color-picker-popup {
+    background-color: var(--popups-background-color);
+  }
+}

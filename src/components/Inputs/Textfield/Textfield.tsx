@@ -1,157 +1,114 @@
 import classNames from "classnames";
 import React, { ChangeEvent, FocusEvent, useState } from "react";
-import InputMask, { InputState } from "react-input-mask";
 
-import { InputLabel, InputSize } from "../../global-types";
+import { useDebounceFunction } from "../../../hooks";
+import { InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
-import { getInputsErrorStyle } from "../helpers/getInputsErrorStyle";
-import { getInputStyle } from "../helpers/getInputStyle";
+import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
+import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
+import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
+import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { TextfieldProps } from "./types";
 
-import "./Textfield.css";
-
-const defaultFormatChars = {
-    "9": "[0-9]",
-    a: "[A-Za-z]",
-    "*": "[A-Za-z0-9]",
-};
-
+/**
+ * TextField component for user text input.
+ * Supports various sizes, states (disabled, read-only), labels, and error messages.
+ */
 const Textfield = (props: TextfieldProps) => {
-    const {
-        value: externalValue = undefined,
-        name = undefined,
-        disabled = false,
-        readOnly = false,
-        onChange,
-        onBlur,
-        onFocus,
-        onClick,
-        label = undefined,
-        error = undefined,
-        labelType = `${InputLabel.LEFT}`,
-        placeholder = undefined,
-        labelWidth = 30,
-        floatingInputWidth = 100,
-        defaultInternalValue,
-        type = "text",
-        autoFocus = false,
-        mask = "",
-        advancedMask = undefined,
-        size = InputSize.MEDIUM,
-        noBottomMargin = false,
-        classNamesObj,
-        standAloneConfig,
-    } = props;
+  const {
+    defaultValue = undefined,
+    value: externalValue = undefined,
+    onChange,
+    onBlur,
+    onFocus,
+    onClick,
+    onDebounce,
+    placeholder = undefined,
+    label = undefined,
+    error = undefined,
+    classNamesObj,
+    debounceDelay = 300,
 
-    const [internalValue, setInternalValue] = useState<string>(defaultInternalValue || "");
-    const [isFocused, setIsFocused] = useState<boolean>(false);
+    labelType = defaultInputPropsValue.labelType,
+    labelWidth = defaultInputPropsValue.labelWidth,
+    size = defaultInputPropsValue.size,
+    disabled = defaultInputPropsValue.disabled,
+    disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+    floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 
-    const value: string = externalValue !== undefined ? externalValue : internalValue;
+    ...otherProps
+  } = props;
 
-    const handleFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
-        onFocus && onFocus(e);
-        setIsFocused(true);
-    };
+  const [internalValue, setInternalValue] = useState<string>(defaultValue || "");
+  const [isFocused, setIsFocused] = useState<boolean>(false);
 
-    const handleClick = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-        onClick && onClick(event);
-    };
+  const value: string = externalValue !== undefined ? externalValue : internalValue;
 
-    const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
-        setIsFocused(false);
+  const [handleDebounce] = useDebounceFunction(onDebounce, debounceDelay);
 
-        onBlur && onBlur(e, e.target.value);
-    };
+  const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    handleDebounce(e, e.target.value);
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-        onChange && onChange(e, e.target.value);
-        setInternalValue(e.target.value);
-    };
+    onChange && onChange(e, e.target.value);
+    setInternalValue(e.target.value);
+  };
 
-    const handleBeforeMaskedValueChange = (newState: InputState, oldState: InputState, userInput: string): InputState => {
-        if (!advancedMask) {
-            return newState;
-        }
+  const handleFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
+    onFocus && onFocus(e);
+    setIsFocused(true);
+  };
 
-        if (!advancedMask.beforeChange) {
-            return newState;
-        }
+  const handleClick = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+    onClick && onClick(event);
+  };
 
-        return advancedMask.beforeChange(newState, oldState, userInput, advancedMask.formatChars);
-    };
+  const handleBlur = (e: FocusEvent<HTMLInputElement>) => {
+    setIsFocused(false);
 
-    if (standAloneConfig) {
-        return (
-            <InputMask
-                readOnly={readOnly}
-                maskChar={null}
-                disabled={disabled}
-                name={name}
-                className={classNames("m-input", "m-textfield", classNamesObj?.input, labelType)}
-                type={type}
-                style={standAloneConfig.style}
-                value={value}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                onFocus={handleFocus}
-                onClick={handleClick}
-                autoFocus={autoFocus}
-                placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
-                //! Mask Props
-                {...(advancedMask
-                    ? { ...advancedMask, beforeMaskedValueChange: handleBeforeMaskedValueChange }
-                    : { mask: mask, formatChars: defaultFormatChars })}
-            />
-        );
-    }
+    onBlur && onBlur(e, e.target.value);
+  };
 
-    return (
-        <InputContainer
-            disabled={disabled}
-            className={classNames("m-textfield-container", classNamesObj?.container)}
-            size={size}
-            error={error}
-            noBottomMargin={noBottomMargin}
-        >
-            <InputMask
-                readOnly={readOnly}
-                maskChar={null}
-                disabled={disabled}
-                name={name}
-                className={classNames("m-input", "m-textfield", classNamesObj?.input, labelType)}
-                type={type}
-                style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
-                value={value}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                onFocus={handleFocus}
-                onClick={handleClick}
-                autoFocus={autoFocus}
-                placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
-                //! Mask Props
-                {...(advancedMask
-                    ? { ...advancedMask, beforeMaskedValueChange: handleBeforeMaskedValueChange }
-                    : { mask: mask, formatChars: defaultFormatChars })}
-            />
-            {label && (
-                <InputsLabel
-                    label={label}
-                    labelType={labelType}
-                    className={classNames("textfield", classNamesObj?.label)}
-                    labelWidth={labelWidth}
-                    isFocused={isFocused}
-                    isFilled={!!value}
-                />
-            )}
-            {error && (
-                <InputError
-                    style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
-                    className={classNames("textfield-error", classNamesObj?.error)}
-                    error={error}
-                />
-            )}
-        </InputContainer>
-    );
+  return (
+    <InputContainer
+      disabled={disabled}
+      className={classNames("m-textfield-container", classNamesObj?.container)}
+      size={size}
+      error={error}
+      disableDefaultMargin={disableDefaultMargin}
+    >
+      <StandAloneTextfield
+        onChange={handleChange}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+        onClick={handleClick}
+        placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
+        style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
+        disabled={disabled}
+        className={classNamesObj?.input}
+        value={value}
+        size={size}
+        {...otherProps}
+      />
+      {label && (
+        <InputsLabel
+          label={label}
+          labelType={labelType}
+          className={classNames("m-textfield-label", classNamesObj?.label)}
+          labelWidth={labelWidth}
+          isFocused={isFocused}
+          isFilled={!!value}
+          prefix={otherProps.prefix}
+        />
+      )}
+      {error && (
+        <InputError
+          style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
+          className={classNames("textfield-error", classNamesObj?.error)}
+          error={error}
+        />
+      )}
+    </InputContainer>
+  );
 };
 
 export default Textfield;

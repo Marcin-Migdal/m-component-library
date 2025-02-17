@@ -1,0 +1,33 @@
+import { InputProps } from "../_inputsComponents/input-types";
+import { ColorValue } from "../ColorPicker";
+
+type IconFieldClassNames = {
+  container?: string;
+  input?: string;
+  label?: string;
+  error?: string;
+  popup?: string;
+};
+
+export type IconFieldProps = InputProps & {
+  /** The current selected icon. */
+  value?: string;
+
+  /** Custom class names for different parts of the component. */
+  classNamesObj?: IconFieldClassNames;
+
+  /** Placeholder text displayed when no icon is selected. */
+  placeholder?: string;
+
+  /** Color of the displayed icon. */
+  iconColor?: ColorValue;
+
+  /** Callback triggered when the icon selection popup opens. */
+  onOpen?: () => void;
+
+  /** Callback triggered when an icon is selected. */
+  onChange?: (event: { target: { name: string; value: string } }) => void;
+
+  /** Callback triggered when the icon selection popup closes. */
+  onClose?: (value: string) => void;
+};

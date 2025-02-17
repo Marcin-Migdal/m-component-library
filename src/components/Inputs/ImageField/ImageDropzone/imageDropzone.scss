@@ -1,0 +1,33 @@
+.m-image-container {
+  .m-image-input-wrapper {
+    .m-image-dropzone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      height: 100%;
+      width: 100%;
+      min-width: 232px;
+      border-radius: var(--radius-md);
+    }
+  }
+
+  .m-image-dropzone-icon {
+    font-size: var(--font-size-3xl);
+    margin-bottom: var(--spacing-2);
+  }
+
+  .m-image-dropzone-message {
+    margin: unset;
+    font-size: var(--font-size-xs);
+
+    .m-bold-message-main {
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .m-underline-message-main {
+      text-decoration: underline;
+    }
+  }
+}

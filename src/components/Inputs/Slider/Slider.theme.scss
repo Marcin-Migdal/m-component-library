@@ -1,0 +1,17 @@
+.common-wrapper-container {
+  .m-slider-container {
+    &.disabled {
+      .m-slider {
+        &::-webkit-slider-thumb {
+          background: var(--input-disabled-text-color) !important;
+        }
+      }
+    }
+
+    .m-slider {
+      &::-webkit-slider-thumb {
+        background: var(--slider-thumb-color) !important;
+      }
+    }
+  }
+}

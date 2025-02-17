@@ -1,0 +1,118 @@
+@use "./Button.theme.scss";
+
+.m-button {
+  border: var(--border-base) solid;
+  border-radius: var(--radius-md);
+  padding: var(--btn-padding);
+
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--button-size);
+  outline: none;
+
+  transition: var(--transition-duration-normal);
+
+  &:active {
+    &:enabled {
+      transition: var(--transition-duration-fast);
+      transform: scale(0.95);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.6;
+  }
+
+  &:not(.disabled-default-margin) {
+    margin-right: var(--btn-right-margin);
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &.small {
+    --button-size: var(--sm-btn-size);
+  }
+
+  &.medium {
+    --button-size: var(--md-btn-size);
+  }
+
+  &.large {
+    --button-size: var(--lg-btn-size);
+  }
+
+  p {
+    margin: unset;
+    display: inline-block;
+    width: fit-content;
+
+    white-space: nowrap;
+  }
+
+  .m-button-svg {
+    background-color: inherit;
+
+    &.left {
+      &:not(:only-child) {
+        margin-right: var(--btn-gap);
+      }
+    }
+
+    &.right {
+      &:not(:only-child) {
+        margin-left: var(--btn-gap);
+      }
+    }
+  }
+}
+
+.m-button.neon {
+  position: relative;
+
+  border-color: transparent;
+
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.15), 0 0 0.125em currentColor;
+  background-color: transparent;
+
+  &:hover:enabled,
+  &:focus:enabled {
+    text-shadow: none;
+
+    &:enabled::before,
+    &:enabled::after {
+      opacity: 1;
+    }
+  }
+
+  &::before {
+    content: "";
+
+    position: absolute;
+    top: 110%;
+    left: var(--spacing-0);
+    width: 100%;
+    height: 100%;
+
+    transform: perspective(1.15em) rotateX(40deg) scale(1, 0.4);
+    filter: blur(1em);
+    opacity: 0.7;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: var(--spacing-0);
+    bottom: var(--spacing-0);
+    left: var(--spacing-0);
+    right: var(--spacing-0);
+
+    opacity: 0;
+    transition: opacity var(--transition-duration-fast) linear;
+  }
+}
+
+.m-button.text {
+  background-color: transparent;
+  border-color: transparent;
+}

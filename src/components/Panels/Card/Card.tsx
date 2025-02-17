@@ -3,14 +3,24 @@ import React from "react";
 
 import { CardProps } from "./types";
 
-import "./style.css";
+import "./Card.scss";
 
-const Card = ({ children, variant = "default", className = "", style = {} }: CardProps) => {
-    return (
-        <div style={style} className={classNames("m-card", variant, className)}>
-            {children}
-        </div>
-    );
+/** Simple style card component with various variants, that displays `ReactNode` passed as children props   */
+const Card = ({
+  children,
+  variant = "default",
+  wrapperClassName,
+  className,
+  style = {},
+  wrapperStyle = {},
+}: CardProps) => {
+  return (
+    <div style={wrapperStyle} className={classNames("m-card", wrapperClassName, variant)}>
+      <div style={style} className={classNames("m-card-content", className)}>
+        {children}
+      </div>
+    </div>
+  );
 };
 
 export default Card;

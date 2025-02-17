@@ -1,51 +1,87 @@
-import { ForwardedRef } from "react";
+export type AlertProps = {
+  /** Additional CSS class for styling the alert.
+   * @default undefined */
+  className?: string;
 
-export type AlertProps<T> = {
-    className?: string;
-    header?: Omit<AlertHeaderProps, "onClose">;
-    footer?: Omit<AlertFooterProps<T>, "data">;
-};
+  /** The current open state of the alert. */
+  alertOpen: AlertOpenState;
+
+  /** Function to handle closing the alert. */
+  handleClose: () => void;
+} & Omit<AlertHeaderProps, "onClose"> &
+  AlertFooterProps;
 
 export type AlertBodyProps = {
-    className?: string;
-    alertOpen: `${AlertOpenState}`;
-    onClose: (event: React.MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
+  /** Additional CSS class for styling the alert body.
+   * @default undefined */
+  className?: string;
+
+  /** The current open state of the alert.
+   * - `closed`
+   * - `closing`
+   * - `opened`  */
+  alertOpen: `${AlertOpenState}`;
+
+  /** Function to close the alert when triggered. */
+  onClose: (event: React.MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
 };
 
 export type AlertHeaderProps = {
-    header?: string;
-    onClose: () => void;
+  /** The header text for the alert.
+   * @default undefined */
+  header?: string;
+
+  /** Function to close the alert when triggered. */
+  onClose: () => void;
 };
 
-export type AlertFooterProps<T> = {
-    confirmBtnText?: string;
-    confirmBtnDisabled?: boolean;
-    onConfirmBtnClick?: (data: T) => void;
-    declineBtnText?: string;
-    declineBtnDisabled?: boolean;
-    onDeclineBtnClick?: (data: T) => void;
-    data: T;
+export type AlertFooterProps = {
+  /** Text for the confirm button.
+   * @default "Confirm" */
+  confirmBtnText?: string;
+
+  /** Whether the confirm button is disabled.
+   * @default false */
+  confirmBtnDisabled?: boolean;
+
+  /** Function to execute when the confirm button is clicked. */
+  onConfirm?: () => void;
+
+  /** Text for the decline button.
+   * @default "Close" */
+  declineBtnText?: string;
+
+  /** Whether the decline button is disabled.
+   * @default false */
+  declineBtnDisabled?: boolean;
+
+  /** Function to execute when the decline button is clicked. */
+  onDecline?: () => void;
 };
 
-export type AlertHandler<T = unknown> = {
-    openAlert: (data?: T) => void;
-    closeAlert: () => void;
-};
+export type UseAlertOpenArgs = {
+  /** Function called when the alert opens. */
+  onOpen?: () => void;
 
-export type UseAlertOpenArgs<T> = {
-    ref: ForwardedRef<AlertHandler<T>>;
+  /** Function called when the alert closes. */
+  onClose?: () => void;
 };
-
-export type AlertState<T> = { openState: AlertOpenState; data: T | undefined };
 
 export enum AlertOpenState {
-    CLOSED = "closed",
-    CLOSING = "closing",
-    OPENED = "opened",
+  /** The alert is closed. */
+  CLOSED = "closed",
+
+  /** The alert is in the process of closing. */
+  CLOSING = "closing",
+
+  /** The alert is open. */
+  OPENED = "opened",
 }
 
-export type useAlertOpenResult<T> = {
-    alertOpen: AlertOpenState;
-    data: T | undefined;
-    handleClose: () => void;
-};
+export type UseAlertOpenResult = [
+  /** Function to trigger the opening of the alert. */
+  () => void,
+
+  /** Current state of the alert and the handleClose function. */
+  { alertOpen: AlertOpenState; handleClose: () => void }
+];

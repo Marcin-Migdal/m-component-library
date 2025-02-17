@@ -1,0 +1,76 @@
+.light-mode {
+  /** Background color */
+  --background-color: var(--grey-color-000);
+  --popups-background-color: var(--grey-color-050);
+  --background-hover-color: var(--grey-color-100);
+  --background-active-color: var(--grey-color-125);
+
+  /** Inputs colors */
+  --input-background-color: var(--grey-color-125);
+  --input-hover-background-color: var(--grey-color-175);
+  --input-disabled-background-color: var(--grey-color-050);
+
+  --input-text-color: var(--grey-color-575);
+  --input-hover-color: var(--grey-color-650);
+  --input-disabled-text-color: var(--grey-color-325);
+
+  --input-label-color: var(--grey-color-525);
+  --input-placeholder-color: var(--grey-color-450);
+  --input-hover-placeholder-color: var(--grey-color-525);
+
+  --color-picker-pointer: var(--grey-color-000);
+  --color-picker-dragged-pointer: var(--grey-color-850);
+
+  --input-image-icon-color: var(--grey-color-100);
+
+  --icon-tile-background-color: var(--grey-color-100);
+  --icon-tile-hover-background-color: var(--grey-color-125);
+  --icon-tile-active-background-color: var(--grey-color-150);
+
+  --popups-hover-background-color: var(--grey-color-125);
+  --popups-active-background-color: var(--grey-color-150);
+  --popup-date-button-dimmed-text-color: var(--grey-color-350);
+  --popup-date-button-alt-highlighted-color: var(--grey-color-700);
+
+  /** Buttons */
+  --btn-outlined-background-color: var(--background-color);
+
+  --btn-full-color: var(--background-color);
+
+  --btn-text-background-color: var(--background-color);
+
+  --btn-neon-hover-color: var(--background-color);
+  --btn-neon-background-color: var(--background-color);
+
+  /* Overlay */
+  --overlay-background-color: rgba(145, 145, 145, 0.267);
+
+  /* Tooltip */
+  --tooltip-color: var(--grey-color-000);
+  --tooltip-background-color: var(--grey-color-800);
+
+  /* Alert */
+  --alert-disabled-button-background-color: var(--grey-color-050);
+
+  /* Accordion */
+  --accordion-background: var(--grey-color-075);
+  --accordion-hover-background: var(--grey-color-125);
+  --highlighted-accordion-background: var(--grey-color-175);
+
+  /* Breadcrumb */
+  --crumb-background-color: var(--grey-color-075);
+  --crumb-hover-background-color: var(--grey-color-125);
+
+  /* Dropdown menu */
+  --dropdown-menu-border-color: var(--grey-color-300);
+  --dropdown-menu-background-color: var(--grey-color-050);
+  --dropdown-menu-disabled-background-color: var(--grey-color-225);
+  --dropdown-menu-hover-background-color: var(--grey-color-100);
+  --dropdown-menu-active-background-color: var(--grey-color-150);
+  --dropdown-menu-highlighted-color: var(--grey-color-600);
+
+  /* Common */
+  --icon-color: var(--grey-color-525);
+  --icon-hover-color: var(--grey-color-625);
+  --primary-text-color: var(--grey-color-525);
+}

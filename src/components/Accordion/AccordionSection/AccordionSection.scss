@@ -1,0 +1,27 @@
+.m-accordion {
+  &.default {
+    .m-accordion-section {
+      border-radius: var(--radius-md);
+
+      &:not(:last-child) {
+        margin-bottom: var(--spacing-2);
+      }
+    }
+  }
+
+  &.compact {
+    .m-accordion-section {
+      border-radius: var(--radius-sm);
+
+      &:not(:last-child) {
+        margin-bottom: var(--spacing-1);
+      }
+    }
+  }
+
+  .m-accordion-section {
+    width: 100%;
+    overflow: hidden;
+    transition: var(--transition-duration-normal);
+  }
+}

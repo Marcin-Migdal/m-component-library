@@ -1,0 +1,36 @@
+.m-textarea-container {
+  &.small {
+    --input-height: calc(var(--small-input-height) * 3.5);
+  }
+
+  &.medium {
+    --input-height: calc(var(--medium-input-height) * 3.5);
+  }
+
+  &.large {
+    --input-height: calc(var(--large-input-height) * 3.5);
+  }
+
+  .m-textarea {
+    box-sizing: border-box;
+
+    height: var(--input-height);
+    padding-top: var(--spacing-1);
+    padding-left: var(--input-padding-left);
+    border-radius: var(--radius-md);
+    border: none;
+    outline: none;
+
+    font-size: var(--input-font-size);
+    transition: var(--transition-duration-normal);
+    resize: vertical;
+
+    &:hover {
+      transition: var(--transition-duration-normal);
+    }
+
+    &:active {
+      transition: var(--transition-duration-fast);
+    }
+  }
+}

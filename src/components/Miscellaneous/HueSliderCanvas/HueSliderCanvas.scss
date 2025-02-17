@@ -1,0 +1,25 @@
+@use "./HueSliderCanvas.theme.scss";
+
+.hue-slider-canvas-container {
+  position: relative;
+  height: fit-content;
+  height: 16px;
+
+  canvas {
+    border-radius: var(--radius-sm);
+  }
+
+  .hue-picker-pointer {
+    position: absolute;
+    top: var(--spacing-2);
+
+    width: 0.75rem;
+    height: 0.75rem;
+    border: var(--border-base) solid;
+
+    border-radius: var(--radius-full);
+    pointer-events: none;
+
+    transform: translate(-50%, -5px);
+  }
+}

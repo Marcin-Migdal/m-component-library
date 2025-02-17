@@ -1,0 +1,25 @@
+.common-wrapper-container {
+  .m-image-container {
+    .m-image-input-wrapper {
+      .m-image-placeholder-container {
+        .m-image-placeholder-border {
+          background-color: transparent;
+          border-color: var(--icon-color);
+        }
+
+        .m-image-placeholder {
+          color: var(--icon-color);
+        }
+      }
+    }
+  }
+
+  .m-image-icon {
+    color: var(--input-image-icon-color);
+    background-color: rgba(140, 140, 140, 0.35);
+
+    &:hover {
+      background-color: rgba(140, 140, 140, 0.8);
+    }
+  }
+}

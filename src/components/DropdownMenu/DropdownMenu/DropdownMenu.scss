@@ -1,0 +1,21 @@
+.m-dropdown-menu {
+  position: absolute;
+
+  width: fit-content;
+  padding: unset;
+  margin: unset;
+  border-radius: var(--radius-md);
+
+  font-size: var(--font-size-base);
+  list-style: none;
+
+  transition: opacity var(--transition-duration-fast);
+
+  z-index: 5;
+
+  .m-dropdown-menu-empty-message {
+    width: 150px;
+    padding: var(--spacing-1) var(--spacing-0);
+    text-align: center;
+  }
+}

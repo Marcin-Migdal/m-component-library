@@ -1,0 +1,16 @@
+@use "./Tooltip.theme.scss";
+
+.tooltip {
+  position: absolute;
+  width: fit-content;
+
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-base);
+
+  font-size: var(--font-size-xs);
+  overflow-wrap: break-word !important;
+
+  opacity: 0.85;
+
+  z-index: 10;
+}

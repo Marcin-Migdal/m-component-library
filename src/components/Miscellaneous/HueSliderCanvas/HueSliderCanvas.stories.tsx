@@ -1,20 +1,14 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
-import React from "react";
+import { Meta, StoryObj } from "@storybook/react";
 
-import ThemeWrapper from "../../ThemeWrapper/ThemeWrapper";
 import { HueSliderCanvas } from "./HueSliderCanvas";
 
-export default {
-    title: "M-component-library/Miscellaneous",
-    component: HueSliderCanvas,
-} as ComponentMeta<typeof HueSliderCanvas>;
+const meta: Meta<typeof HueSliderCanvas> = {
+  title: "Components/Miscellaneous/HueSliderCanvas",
+  component: HueSliderCanvas,
+};
 
-const Template: ComponentStory<typeof HueSliderCanvas> = (args) => (
-    <ThemeWrapper darkMode>
-        <div style={{ padding: "1rem" }}>
-            <HueSliderCanvas {...args} />
-        </div>
-    </ThemeWrapper>
-);
+export default meta;
 
-export const hueSlider = Template.bind({});
+type Story = StoryObj<typeof HueSliderCanvas>;
+
+export const hueSlider: Story = {};

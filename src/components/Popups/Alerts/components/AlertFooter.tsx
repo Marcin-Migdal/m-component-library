@@ -2,31 +2,30 @@ import React from "react";
 
 import { AlertFooterProps } from "../types";
 
-export const AlertFooter = <T,>({
-    confirmBtnText = "Confirm",
-    confirmBtnDisabled = false,
-    onConfirmBtnClick,
-    declineBtnText = "Close",
-    declineBtnDisabled = false,
-    onDeclineBtnClick,
-    data,
-}: AlertFooterProps<T>) => {
-    if (!onConfirmBtnClick && !onDeclineBtnClick) {
-        return null;
-    }
+export const AlertFooter = ({
+  confirmBtnText = "Confirm",
+  confirmBtnDisabled = false,
+  onConfirm,
+  declineBtnText = "Close",
+  declineBtnDisabled = false,
+  onDecline,
+}: AlertFooterProps) => {
+  if (!onConfirm && !onDecline) {
+    return null;
+  }
 
-    return (
-        <div className="m-alert-footer">
-            {onConfirmBtnClick && (
-                <button disabled={confirmBtnDisabled} onClick={() => onConfirmBtnClick(data)} className="m-alert-confirm-button">
-                    {confirmBtnText}
-                </button>
-            )}
-            {onDeclineBtnClick && (
-                <button disabled={declineBtnDisabled} onClick={() => onDeclineBtnClick(data)} className="m-alert-decline-button">
-                    {declineBtnText}
-                </button>
-            )}
-        </div>
-    );
+  return (
+    <div className="m-alert-footer">
+      {onConfirm && (
+        <button disabled={confirmBtnDisabled} onClick={onConfirm} className="m-alert-confirm-button">
+          {confirmBtnText}
+        </button>
+      )}
+      {onDecline && (
+        <button disabled={declineBtnDisabled} onClick={onDecline} className="m-alert-decline-button">
+          {declineBtnText}
+        </button>
+      )}
+    </div>
+  );
 };

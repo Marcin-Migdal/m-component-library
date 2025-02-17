@@ -1,0 +1,15 @@
+.common-wrapper-container {
+  .m-checkbox-container {
+    &.disabled {
+      .m-checkbox {
+        color: var(--input-disabled-text-color);
+        border-color: var(--input-disabled-text-color);
+      }
+    }
+
+    .m-checkbox {
+      color: var(--checkbox-color);
+      border-color: var(--checkbox-color);
+    }
+  }
+}
