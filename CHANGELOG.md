@@ -1,3 +1,5 @@
+### Release date ??.??.???? - Release ?.?.?
+
 ### Release date 17.02.2025- Release 2.0.0
 
 - [[#59]](https://github.com/Marcin-Migdal/m-component-library/issues/59) **[MAJOR]** Migrating storybook from v6. to v8.5.1, refactor of all stories, add documentation of stories, styling changed from css to scss. Further refactor of scss files structure, and token design system.
