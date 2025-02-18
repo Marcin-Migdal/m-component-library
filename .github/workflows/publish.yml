@@ -57,6 +57,9 @@ jobs:
         run: |
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
 
+      - name: Debug .npmrc
+        run: cat ~/.npmrc
+
       - name: Build package
         run: npm run rollup
 
@@ -70,7 +73,7 @@ jobs:
           echo "Checking package permissions..."
           curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
               -H "Accept: application/vnd.github.v3+json" \
-              https://api.github.com/user/packages/npm/${{ github.repository }} | jq .
+              https://api.github.com/user | jq .
 
       - name: Publish to GitHub Packages
         run: npm publish
