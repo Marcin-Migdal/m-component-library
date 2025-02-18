@@ -1,6 +1,7 @@
 ### Release date ??.??.???? - Release ?.?.?
 
 - [[#137]](https://github.com/Marcin-Migdal/m-component-library/issues/137) **[PATCH]** Fix breadcrumb onClick behavior
+- [[#139]](https://github.com/Marcin-Migdal/m-component-library/issues/139) **[PATCH]** Add ci/di publish workflow
 
 ### Release date 17.02.2025- Release 2.0.0
 
