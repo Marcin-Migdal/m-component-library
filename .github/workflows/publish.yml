@@ -7,6 +7,10 @@ on:
     types:
       - closed
 
+permissions:
+  packages: write # Uprawnienia do publikowania pakietów
+  contents: write # Uprawnienia do modyfikacji zawartości repo (dla wersjonowania i tagów)
+
 jobs:
   publish:
     if: github.event.pull_request.merged == true
@@ -51,7 +55,7 @@ jobs:
 
       - name: Set up .npmrc for GitHub Packages
         run: |
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
 
       - name: Build package
         run: npm run rollup
