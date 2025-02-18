@@ -3,7 +3,7 @@ name: Publish to GitHub Packages
 on:
   pull_request:
     branches:
-      - develop
+      - master
     types:
       - closed
 
@@ -63,18 +63,6 @@ jobs:
       - name: Build package
         run: npm run rollup
 
-      - name: Display GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
-
-      - name: Check Token Permissions
-        run: |
-          echo "Token permissions:"
-          curl -H "Authorization: token ${{ secrets.GH_PAT }}" \
-              -H "Accept: application/vnd.github.v3+json" \
-              https://api.github.com/repos/${{ github.repository }} | jq .permissions
-
       - name: Publish to GitHub Packages
         run: npm publish
         env:
@@ -83,4 +71,4 @@ jobs:
       - name: Push new version
         run: |
           git fetch --tags
-          git push origin develop --tags
+          git push origin master --tags
