@@ -1,0 +1,60 @@
+name: Publish to GitHub Packages
+
+on:
+  pull_request:
+    branches:
+      - develop
+    types:
+      - closed
+
+jobs:
+  publish:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Determine version type from labels
+        id: version_type
+        run: |
+          VERSION_TYPE="patch"
+          LABELS=$(jq -r '.[].name' <<< '${{ toJson(github.event.pull_request.labels) }}')
+
+          if echo "$LABELS" | grep -q "version: minor"; then
+            VERSION_TYPE="minor"
+          elif echo "$LABELS" | grep -q "version: major"; then
+            VERSION_TYPE="major"
+          fi
+
+          echo "VERSION_TYPE=$VERSION_TYPE" >> $GITHUB_ENV
+
+      - name: Bump version
+        id: versioning
+        run: |
+          npm version $VERSION_TYPE -m "Bump version to %s"
+          echo "VERSION=$(node -p 'require(\"./package.json\").version')" >> $GITHUB_ENV
+
+      - name: Build package
+        run: npm run rollup
+
+      - name: Publish to GitHub Packages
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push new version
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch --tags
+          git push origin develop --tags
