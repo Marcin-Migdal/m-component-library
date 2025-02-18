@@ -38,6 +38,11 @@ jobs:
 
           echo "VERSION_TYPE=$VERSION_TYPE" >> $GITHUB_ENV
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Bump version
         id: versioning
         run: |
@@ -54,7 +59,5 @@ jobs:
 
       - name: Push new version
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git fetch --tags
           git push origin develop --tags
