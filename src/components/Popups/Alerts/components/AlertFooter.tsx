@@ -18,12 +18,20 @@ export function AlertFooter<TData = undefined>({
   return (
     <div className="m-alert-footer">
       {onConfirm && (
-        <button disabled={confirmBtnDisabled} onClick={() => onConfirm(data)} className="m-alert-confirm-button">
+        <button
+          disabled={confirmBtnDisabled}
+          onClick={() => onConfirm(data as unknown as TData)}
+          className="m-alert-confirm-button"
+        >
           {confirmBtnText}
         </button>
       )}
       {onDecline && (
-        <button disabled={declineBtnDisabled} onClick={() => onDecline(data)} className="m-alert-decline-button">
+        <button
+          disabled={declineBtnDisabled}
+          onClick={() => onDecline(data as unknown as TData)}
+          className="m-alert-decline-button"
+        >
           {declineBtnText}
         </button>
       )}
