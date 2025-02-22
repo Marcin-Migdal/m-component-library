@@ -37,7 +37,7 @@ export type AlertHeaderProps = {
 
 export type AlertFooterProps<TData = undefined> = {
   /** Data passed in handleOpenAlert callback from useAlert hook. */
-  data: TData;
+  data?: TData;
 
   /** Text for the confirm button.
    * @default "Confirm" */

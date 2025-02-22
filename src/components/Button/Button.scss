@@ -1,6 +1,11 @@
 @use "./Button.theme.scss";
 
 .m-button {
+  display: inline-flex;
+  align-items: center;
+
+  width: fit-content;
+
   border: var(--border-base) solid;
   border-radius: var(--radius-md);
   padding: var(--btn-padding);
@@ -8,6 +13,8 @@
   font-weight: var(--font-weight-semibold);
   font-size: var(--button-size);
   outline: none;
+
+  height: fit-content;
 
   transition: var(--transition-duration-normal);
 
