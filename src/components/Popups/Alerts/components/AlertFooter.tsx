@@ -2,14 +2,15 @@ import React from "react";
 
 import { AlertFooterProps } from "../types";
 
-export const AlertFooter = ({
+export function AlertFooter<TData = undefined>({
+  data,
   confirmBtnText = "Confirm",
   confirmBtnDisabled = false,
   onConfirm,
   declineBtnText = "Close",
   declineBtnDisabled = false,
   onDecline,
-}: AlertFooterProps) => {
+}: AlertFooterProps<TData>) {
   if (!onConfirm && !onDecline) {
     return null;
   }
@@ -17,15 +18,15 @@ export const AlertFooter = ({
   return (
     <div className="m-alert-footer">
       {onConfirm && (
-        <button disabled={confirmBtnDisabled} onClick={onConfirm} className="m-alert-confirm-button">
+        <button disabled={confirmBtnDisabled} onClick={() => onConfirm(data)} className="m-alert-confirm-button">
           {confirmBtnText}
         </button>
       )}
       {onDecline && (
-        <button disabled={declineBtnDisabled} onClick={onDecline} className="m-alert-decline-button">
+        <button disabled={declineBtnDisabled} onClick={() => onDecline(data)} className="m-alert-decline-button">
           {declineBtnText}
         </button>
       )}
     </div>
   );
-};
+}

@@ -2,6 +2,7 @@
 
 - [[#137]](https://github.com/Marcin-Migdal/m-component-library/issues/137) **[PATCH]** Fix breadcrumb onClick behavior
 - [[#139]](https://github.com/Marcin-Migdal/m-component-library/issues/139) **[PATCH]** Add ci/di publish workflow
+- [[#149]](https://github.com/Marcin-Migdal/m-component-library/issues/149) **[PATCH]** Hot fixes needed in Flaner adjustment for m-component-library 2.0.0
 
 ### Release date 17.02.2025- Release 2.0.0
 

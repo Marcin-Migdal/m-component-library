@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 
 import { OpenStatus, useOpen } from "../../../hooks";
 import { InputLabel } from "../../global-types";
+import { ColorPreviewSquare } from "../../Miscellaneous/ColorPreviewSquare";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
@@ -138,11 +139,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
           ref={inputContainerRef}
           style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
         >
-          <div
-            className="m-color-preview-square"
-            style={{ backgroundColor: hexValue }}
-            onClick={() => !disabled && handleOpen()}
-          />
+          <ColorPreviewSquare color={hexValue} disabled={disabled} onClick={handleOpen} />
 
           <StandAloneTextfield
             className={classNames("m-color-preview", classNamesObj?.input, {

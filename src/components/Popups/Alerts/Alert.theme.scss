@@ -21,7 +21,7 @@
       button {
         background-color: var(--background-color);
         border-top-color: var(--alert-border-color);
-        color: var(--primary-text-color);
+        color: var(--primary-text-color_300);
 
         &:disabled {
           background-color: var(--alert-disabled-button-background-color);

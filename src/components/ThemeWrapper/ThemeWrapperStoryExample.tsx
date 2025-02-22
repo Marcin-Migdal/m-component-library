@@ -165,7 +165,7 @@ export const ThemeWrapperStoryExample = ({
       toggleText: "Alert",
       content: (
         <>
-          <Button text="Open alert" onClick={handleOpen} />
+          <Button text="Open alert" onClick={() => handleOpen()} />
           <Alert
             header="Alert header"
             {...alertProps}
