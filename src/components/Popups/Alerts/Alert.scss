@@ -5,6 +5,8 @@
   flex-direction: column;
 
   width: 400px;
+  max-width: 80vw;
+  max-height: 75vh;
 
   border-top: var(--alert-border-radius) solid;
   border-radius: var(--alert-border-radius);
@@ -53,7 +55,8 @@
   }
 
   .m-alert-content {
-    height: 100%;
+    height: fit-content;
+
     padding: var(--spacing-0) var(--alert-padding);
 
     overflow: auto;

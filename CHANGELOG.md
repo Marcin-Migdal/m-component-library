@@ -1,3 +1,7 @@
+### Release date 22.02.2025 - Release 2.0.7
+
+- [[#157]](https://github.com/Marcin-Migdal/m-component-library/issues/157) **[PATCH]** Second Hot fixes needed in Flaner adjustment for m-component-library 2.0.0
+
 ### Release date 22.02.2025 - Release 2.0.3
 
 - [[#137]](https://github.com/Marcin-Migdal/m-component-library/issues/137) **[PATCH]** Fix breadcrumb onClick behavior
