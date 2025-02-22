@@ -65,7 +65,7 @@ export const ThemeWrapperStoryExample = ({
   const [handleOpen, alertProps] = useAlert();
 
   const [themeHue, setThemeHue] = useState<number | undefined>(undefined);
-  const [expanded, setExpanded] = useState<SectionState>({ "Dropdown Menu": true });
+  const [expanded, setExpanded] = useState<SectionState>({});
 
   const handleHueChange = (hue: number) => setThemeHue(hue);
 
@@ -108,7 +108,6 @@ export const ThemeWrapperStoryExample = ({
       content: (
         <DropdownMenu options={dropdownMenuOptions}>
           <div className="flex">
-            <Dropdown />
             <Button style={{ width: "fit-content" }} text="Currency" icon="money-bill-wave" onClick={() => {}} />
           </div>
         </DropdownMenu>

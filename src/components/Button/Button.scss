@@ -1,8 +1,10 @@
 @use "./Button.theme.scss";
 
 .m-button {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+
+  width: fit-content;
 
   border: var(--border-base) solid;
   border-radius: var(--radius-md);
