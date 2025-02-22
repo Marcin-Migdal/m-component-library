@@ -96,8 +96,11 @@ body {
   --font-size-lg: 1.125rem; /* 18px */
   --font-size-xl: 1.25rem; /* 20px */
   --font-size-2xl: 1.5rem; /* 24px */
-  --font-size-3xl: 1.875rem; /* 30px */
-  --font-size-4xl: 2.25rem; /* 36px */
+  --font-size-3xl: 1.75rem; /* 28px */
+  --font-size-4xl: 1.875rem; /* 30px */
+  --font-size-5xl: 2.25rem; /* 36px */
+  --font-size-5xl: 2.25rem; /* 36px */
+  --font-size-6xl: 2.5rem; /* 40px */
 
   /* Font weights */
   --font-weight-light: 300;
@@ -107,6 +110,7 @@ body {
   --font-weight-bold: 700;
 
   /* Line heights */
+  --line-height-very-tight: 1
   --line-height-tight: 1.25;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.75;
@@ -146,6 +150,8 @@ body {
   --shadow-sm: 0px 0px 3px 1px;
   --shadow-base: 0px 0px 3px 2px;
   --shadow-md: 0px 0px 3px 2px;
+  --shadow-lg: 0px 0px 4px 3px; 
+  --shadow-xl: 0px 0px 6px 3px;
 
   /* Transitions */
   --transition-duration-fast: 150ms;
@@ -193,7 +199,7 @@ body {
   height: 100vh;
 
   background: var(--background-color);
-  color: var(--primary-text-color);
+  color: var(--primary-text-color_300);
 
   overflow-x: hidden;
 }

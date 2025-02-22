@@ -48,7 +48,7 @@ export const Default: Story = {
 
     return (
       <>
-        <Button text="Open alert" onClick={handleOpen} />
+        <Button text="Open alert" onClick={() => handleOpen()} />
         <Alert
           {...alertProps}
           {...args}

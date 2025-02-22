@@ -8,5 +8,5 @@ export const defaultInputPropsValue: Required<Omit<InputProps, "name" | "label" 
   disabled: false,
   readOnly: false,
   disableDefaultMargin: false,
-  floatingInputWidth: 30,
+  floatingInputWidth: 100,
 };
