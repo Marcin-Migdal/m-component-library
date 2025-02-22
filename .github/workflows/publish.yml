@@ -18,6 +18,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -70,5 +73,7 @@ jobs:
 
       - name: Push new version
         run: |
-          git fetch --tags
+          git fetch origin master
+          git checkout master
+          git pull origin master
           git push origin master --tags
