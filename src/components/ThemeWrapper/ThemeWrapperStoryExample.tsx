@@ -107,7 +107,10 @@ export const ThemeWrapperStoryExample = ({
       toggleText: "Dropdown Menu",
       content: (
         <DropdownMenu options={dropdownMenuOptions}>
-          <Button style={{ width: "fit-content" }} text="Currency" icon="money-bill-wave" onClick={() => {}} />
+          <div className="flex">
+            <Dropdown />
+            <Button style={{ width: "fit-content" }} text="Currency" icon="money-bill-wave" onClick={() => {}} />
+          </div>
         </DropdownMenu>
       ),
     },
