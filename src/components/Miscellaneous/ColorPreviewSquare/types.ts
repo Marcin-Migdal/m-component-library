@@ -1,4 +1,5 @@
 import { CSSProperties } from "react";
+import { HslValue, RgbValue } from "../../Inputs";
 
 export type ColorPreviewSquareProps = {
   /** Click event handler. */
@@ -8,5 +9,5 @@ export type ColorPreviewSquareProps = {
   disabled?: boolean;
 
   /** Color of the square. */
-  color: CSSProperties["backgroundColor"];
+  color: RgbValue | HslValue | RgbValue | CSSProperties["backgroundColor"];
 };

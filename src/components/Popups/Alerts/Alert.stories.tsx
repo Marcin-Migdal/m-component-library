@@ -61,7 +61,7 @@ export const Default: Story = {
             console.log("Decline Button Click"); // console log used for documentation
           }}
         >
-          test
+          Alert content
         </Alert>
       </>
     );
