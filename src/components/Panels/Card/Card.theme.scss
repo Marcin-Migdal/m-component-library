@@ -1,7 +1,7 @@
 .common-wrapper-container {
   .m-card {
     background-color: var(--popups-background-color);
-    color: var(--primary-text-color) !important;
+    color: var(--primary-text-color_300) !important;
 
     &.border {
       border: var(--border-base) solid var(--alert-border-color);

@@ -39,7 +39,7 @@
 
       border: var(--border-sm) solid transparent;
 
-      &:not(.m-slider):focus {
+      &:not(.m-slider):not(:read-only):focus {
         box-shadow: var(--shadow-base) var(--box-shadow-color);
       }
     }

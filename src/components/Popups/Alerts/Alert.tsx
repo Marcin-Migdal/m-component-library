@@ -6,14 +6,15 @@ import { AlertHeader } from "./components/AlertHeader";
 import { AlertProps } from "./types";
 
 /** A component for displaying alert messages with customizable header, body, and footer actions. */
-const Alert = ({
+
+function Alert<TData = undefined>({
   children,
   className,
   alertOpen,
   handleClose,
   header,
   ...otherProps
-}: PropsWithChildren<AlertProps>) => {
+}: PropsWithChildren<AlertProps<TData>>) {
   return (
     <AlertBody className={className} alertOpen={alertOpen} onClose={handleClose}>
       <AlertHeader onClose={handleClose} header={header} />
@@ -21,6 +22,6 @@ const Alert = ({
       <AlertFooter {...otherProps} />
     </AlertBody>
   );
-};
+}
 
 export default Alert;

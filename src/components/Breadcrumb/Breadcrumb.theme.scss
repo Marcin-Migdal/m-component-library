@@ -23,7 +23,7 @@
 
         &:not(:last-child) {
           &::after {
-            border-color: transparent var(--current-crumb-background-color) transparent transparent;
+            background-color: inherit;
           }
 
           &:not(.disabled):hover {

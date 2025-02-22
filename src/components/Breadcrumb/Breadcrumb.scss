@@ -18,44 +18,51 @@
     gap: 0.25em;
 
     .m-crumb {
+      --crumb-height: calc((var(--crumb-vertical-padding) * 2) + (1rem * var(--line-height-normal)));
       --crumb-vertical-padding: 0.5em;
       --crumb-horizontal-padding: 1em;
 
-      --pseudo-element-size: calc(var(--crumb-vertical-padding) + 0.7em);
+      --pseudo-element-size: calc(var(--crumb-vertical-padding) + 0.75em);
 
       position: relative;
 
+      height: var(--crumb-height);
       padding: var(--crumb-vertical-padding) var(--crumb-horizontal-padding);
       border-right: none;
 
       transition: background-color var(--transition-duration-normal);
 
-      &:not(:first-child)::before,
-      &:not(:last-child)::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        width: 0;
-        height: 0;
-
-        border-style: solid;
-        border-width: var(--pseudo-element-size) var(--pseudo-element-size) var(--pseudo-element-size) 0;
-
-        transition: var(--transition-duration-normal);
-        transform: rotate(180deg);
-      }
-
       &:not(:first-child) {
         margin-left: var(--pseudo-element-size);
 
         &::before {
+          content: "";
+          position: absolute;
+          top: 0;
           right: 100%;
+          width: 0;
+          height: 0;
+
+          border-style: solid;
+          border-width: var(--pseudo-element-size) var(--pseudo-element-size) var(--pseudo-element-size) 0;
+
+          transition: var(--transition-duration-normal);
+          transform: rotate(180deg);
         }
       }
 
       &:not(:last-child) {
         &::after {
+          --square-size: calc(var(--crumb-height) / 1.414);
+
+          content: "";
+          position: absolute;
           left: 100%;
+
+          width: var(--square-size);
+          height: var(--square-size);
+
+          transform: translateX(-50%) rotate(45deg);
         }
       }
 
@@ -73,6 +80,10 @@
 
       .m-crumb-icon {
         margin-right: var(--spacing-2);
+      }
+
+      .m-crumb-label {
+        height: calc(1rem * var(--line-height-normal));
       }
     }
   }

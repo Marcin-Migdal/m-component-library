@@ -1,4 +1,4 @@
-export type AlertProps = {
+export type AlertProps<TData = undefined> = {
   /** Additional CSS class for styling the alert.
    * @default undefined */
   className?: string;
@@ -9,7 +9,7 @@ export type AlertProps = {
   /** Function to handle closing the alert. */
   handleClose: () => void;
 } & Omit<AlertHeaderProps, "onClose"> &
-  AlertFooterProps;
+  AlertFooterProps<TData>;
 
 export type AlertBodyProps = {
   /** Additional CSS class for styling the alert body.
@@ -35,7 +35,10 @@ export type AlertHeaderProps = {
   onClose: () => void;
 };
 
-export type AlertFooterProps = {
+export type AlertFooterProps<TData = undefined> = {
+  /** Data passed in handleOpenAlert callback from useAlert hook. */
+  data: TData;
+
   /** Text for the confirm button.
    * @default "Confirm" */
   confirmBtnText?: string;
@@ -45,7 +48,7 @@ export type AlertFooterProps = {
   confirmBtnDisabled?: boolean;
 
   /** Function to execute when the confirm button is clicked. */
-  onConfirm?: () => void;
+  onConfirm?: (data: TData) => void;
 
   /** Text for the decline button.
    * @default "Close" */
@@ -56,7 +59,7 @@ export type AlertFooterProps = {
   declineBtnDisabled?: boolean;
 
   /** Function to execute when the decline button is clicked. */
-  onDecline?: () => void;
+  onDecline?: (data: TData) => void;
 };
 
 export type UseAlertOpenArgs = {
@@ -78,10 +81,18 @@ export enum AlertOpenState {
   OPENED = "opened",
 }
 
-export type UseAlertOpenResult = [
+export type UseAlertOpenResult<TData = undefined> = [
   /** Function to trigger the opening of the alert. */
-  () => void,
+  TData extends undefined ? (data?: undefined) => void : (data: TData) => void,
 
   /** Current state of the alert and the handleClose function. */
-  { alertOpen: AlertOpenState; handleClose: () => void }
+  {
+    /** The current open state of the alert. */
+    alertOpen: AlertOpenState;
+
+    /** Function to handle closing the alert. */
+    handleClose: () => void;
+
+    data: TData;
+  }
 ];

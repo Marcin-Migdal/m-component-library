@@ -1,30 +1,43 @@
-# M Component Library
+# M Component Library  
 
-## Description
+## Summary  
 
-This project is a collection of useful components designed to streamline the process of building user interfaces in other projects. With this component package, you can save time and effort by avoiding the need to write each component from scratch for every new project.
+This project is a private collection of reusable UI components designed to streamline the development process in other projects.  
 
-## Installation
+## Demo  
 
-To use this component package, simply clone this repository or download the ZIP package from GitHub. After downloading, unzip the package and navigate to the project directory.
+[Live Preview](https://m-component-library.vercel.app)  
 
-```bash
-git clone https://github.com/Marcin-Migdal/m-component-library.git
-cd m-component-library
-```
+## Description  
 
-Next, install the required dependencies using the following command:
+This component library includes:  
+- A design system with design tokens  
+- Support for dark and light mode  
+- A default (gray) theme and customizable themes  
+- A variety of components, such as:  
+  - Inputs  
+  - Buttons  
+  - Dropdown Menus  
+  - Accordions  
+  - Breadcrumbs  
+  - Hue Sliders  
+  - Icons  
+  - Overlays  
+  - Progress Spinners  
+  - Tooltips  
+  - Cards  
+  - Alerts  
+  - Toasts  
 
-```bash
-npm install
-```
+### Theming  
 
-## Running
+For component styling to work correctly, the entire application should be wrapped in the `ThemeWrapper` component.  
 
-After installing the dependencies, start the project with the following command:
+`ThemeWrapper` accepts the following props:  
+- `children`: `ReactNode` (required)  
+- `darkMode`: `boolean` (default: `false`)  
+- `hue`: `number | undefined` (default: `undefined`)  
 
-```bash
-npm run storybook
-```
-
-This command will launch Storybook, which contains a demo of all available components.
+#### Theme Behavior:  
+- If `hue` is `undefined`, the application uses the default gray theme.  
+- If a `number` is passed to `hue`, a custom theme is enabled, and the primary color of the application is determined by the provided hue value.  

@@ -1,3 +1,4 @@
+export * from "./ColorPreviewSquare";
 export * from "./HueSliderCanvas";
 export * from "./Icon";
 export * from "./Overlay";

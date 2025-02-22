@@ -73,5 +73,10 @@
   /* Common */
   --icon-color: var(--grey-color-100);
   --icon-hover-color: var(--grey-color-000);
-  --primary-text-color: var(--grey-color-100);
+
+  --primary-text-color_000: var(--grey-color-400);
+  --primary-text-color_100: var(--grey-color-300);
+  --primary-text-color_200: var(--grey-color-200);
+  --primary-text-color_300: var(--grey-color-100);
+  --primary-text-color_400: var(--grey-color-000);
 }
