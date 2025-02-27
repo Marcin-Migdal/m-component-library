@@ -1,5 +1,7 @@
 ### Release date ??.??.???? - Release ?.?.?
 
+- [[#160]](https://github.com/Marcin-Migdal/m-component-library/issues/160) **[PATCH]** Add verify ci/cd workflow, delete es lint workflow
+
 ### Release date 22.02.2025 - Release 2.0.8
 
 - [[#157]](https://github.com/Marcin-Migdal/m-component-library/issues/157) **[PATCH]** Second Hot fixes needed in Flaner adjustment for m-component-library 2.0.0

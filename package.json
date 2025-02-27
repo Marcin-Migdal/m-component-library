@@ -15,7 +15,8 @@
     "storybook": "storybook dev -p 6006",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
     "lint-fix": "npm run lint -- --fix",
-    "chromatic": "npx chromatic --project-token=chpt_a2bd54783930572"
+    "chromatic": "npx chromatic --project-token=chpt_a2bd54783930572",
+    "type-check": "tsc --noEmit"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/Marcin-Migdal"
