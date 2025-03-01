@@ -33,7 +33,7 @@ const Textfield = (props: TextfieldProps) => {
     labelWidth = defaultInputPropsValue.labelWidth,
     size = defaultInputPropsValue.size,
     disabled = defaultInputPropsValue.disabled,
-    disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+    marginBottomType = defaultInputPropsValue.marginBottomType,
     floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 
     ...otherProps
@@ -74,7 +74,8 @@ const Textfield = (props: TextfieldProps) => {
       className={classNames("m-textfield-container", classNamesObj?.container)}
       size={size}
       error={error}
-      disableDefaultMargin={disableDefaultMargin}
+      marginBottomType={marginBottomType}
+      labelType={labelType}
     >
       <StandAloneTextfield
         onChange={handleChange}
@@ -82,7 +83,7 @@ const Textfield = (props: TextfieldProps) => {
         onFocus={handleFocus}
         onClick={handleClick}
         placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
-        style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
+        style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
         disabled={disabled}
         className={classNamesObj?.input}
         value={value}
@@ -102,7 +103,7 @@ const Textfield = (props: TextfieldProps) => {
       )}
       {error && (
         <InputError
-          style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
+          style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
           className={classNames("textfield-error", classNamesObj?.error)}
           error={error}
         />

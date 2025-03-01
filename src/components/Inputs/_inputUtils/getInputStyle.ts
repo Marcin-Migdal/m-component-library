@@ -1,11 +1,11 @@
 import { CSSProperties } from "react";
-import { FloatingInputWidth, InputLabel, LabelPercentageWidth, SimpleInputLabel } from "../../global-types";
+import { FloatingInputWidth, InputLabel, LabelPercentageWidth } from "../../global-types";
 
-export function getInputStyle<T extends SimpleInputLabel | InputLabel>(
-  labelType: T,
+export function getInputStyle(
+  labelType: `${InputLabel}`,
   label: string | undefined,
   labelWidth: LabelPercentageWidth,
-  floatingInputWidth: T extends SimpleInputLabel ? undefined : FloatingInputWidth
+  floatingInputWidth: FloatingInputWidth
 ): Pick<CSSProperties, "marginLeft" | "width"> {
   const getMarginLeft = () => {
     if (labelType === InputLabel.LEFT && label) {

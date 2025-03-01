@@ -1,6 +1,6 @@
 import { ArgTypes } from "@storybook/react/*";
-import { ComponentSize, InputLabel, SimpleInputLabel } from "../components/global-types";
-import { InputProps, SimpleInputProps } from "../components/Inputs/_inputsComponents/input-types";
+import { ComponentSize, InputLabel } from "../components/global-types";
+import { InputProps } from "../components/Inputs/_inputsComponents/input-types";
 
 const commonInputArgTypes: Partial<ArgTypes<Omit<InputProps, "floatingInputWidth" | "labelType">>> = {
   size: {
@@ -39,28 +39,17 @@ const commonInputArgTypes: Partial<ArgTypes<Omit<InputProps, "floatingInputWidth
     type: "string",
     description: "Text label displayed for the input.",
   },
-  disableDefaultMargin: {
-    control: "boolean",
-    description: "Whether to disable the default input margin.",
+  marginBottomType: {
+    required: false,
+    control: "radio",
+    table: {
+      type: { summary: "dynamic | large | small | none" },
+    },
   },
   error: {
     control: "text",
     type: "string",
     description: "Error message displayed below the input.",
-  },
-};
-
-//! Simple input
-export const simpleInputArgTypes: Partial<ArgTypes<SimpleInputProps>> = {
-  ...commonInputArgTypes,
-  labelType: {
-    control: "radio",
-    options: Object.values(SimpleInputLabel),
-    description: "Type of label positioning. \n - `left` default label type. \n - `right`",
-    table: {
-      defaultValue: { summary: "left" },
-      type: { summary: "left | right" },
-    },
   },
 };
 

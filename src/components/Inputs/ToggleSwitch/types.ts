@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react";
 
-import { SimpleInputProps } from "../_inputsComponents/input-types";
+import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
+import { InputProps } from "../_inputsComponents/input-types";
 
 type ToggleSwitchClassNames = {
   container?: string;
@@ -10,12 +11,16 @@ type ToggleSwitchClassNames = {
   error?: string;
 };
 
-export type ToggleSwitchProps = SimpleInputProps & {
+export type ToggleSwitchChangeEvent = Omit<ChangeEvent<HTMLInputElement>, "target"> & {
+  target: Omit<ChangeEvent<HTMLInputElement>["target"], "value">;
+} & MInputChangeEvent<boolean>;
+
+export type ToggleSwitchProps = InputProps & {
   /** Whether the toggle is checked. */
   checked?: boolean;
 
   /** Callback function triggered when the toggle switch state changes. */
-  onChange?: (event: ChangeEvent<HTMLInputElement>, value: boolean) => void;
+  onChange?: (event: ToggleSwitchChangeEvent, value: boolean) => void;
 
   /** Custom class names for styling the toggle switch elements. */
   classNamesObj?: ToggleSwitchClassNames;

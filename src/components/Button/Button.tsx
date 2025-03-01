@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 
 import { ComponentSize } from "../global-types";
 import { defaultTooltipConfig, getTooltipPropsConfig, Tooltip } from "../Miscellaneous";
-import { ButtonIconPosition, ButtonProps } from "./types";
+import { ButtonAlignContent, ButtonIconPosition, ButtonProps, ButtonWidth } from "./types";
 
 import "./Button.scss";
 
@@ -29,6 +29,8 @@ const Button = ({
   disabledTooltip = undefined,
   tooltipConfig = defaultTooltipConfig,
   size = ComponentSize.MEDIUM,
+  width = ButtonWidth.FIT,
+  alignContent = ButtonAlignContent.CENTER,
   ...otherProps
 }: ButtonProps) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -39,9 +41,17 @@ const Button = ({
 
   const getRightButtonIcon = () => {
     if (busy) {
-      return <FontAwesomeIcon className="m-button-svg right is-busy-icon" icon="circle-notch" spin />;
+      return (
+        <p className="m-button-icon-container right">
+          <FontAwesomeIcon className="m-button-svg is-busy-icon" icon="circle-notch" spin />
+        </p>
+      );
     } else if (icon && iconPosition === ButtonIconPosition.RIGHT) {
-      return <FontAwesomeIcon className="m-button-svg right" icon={icon} />;
+      return (
+        <p className="m-button-icon-container right">
+          <FontAwesomeIcon className="m-button-svg" icon={icon} />
+        </p>
+      );
     } else {
       return null;
     }
@@ -56,6 +66,9 @@ const Button = ({
         style={style}
         className={classNames("m-button", variant, size, className, {
           "disabled-default-margin": disableDefaultMargin,
+          stretch: width === ButtonWidth.STRETCH,
+          "align-start": alignContent === ButtonAlignContent.START,
+          "align-end": alignContent === ButtonAlignContent.END,
         })}
         onClick={onClick}
         disabled={disabled || busy}
@@ -64,9 +77,11 @@ const Button = ({
       >
         {children}
         {icon && iconPosition === ButtonIconPosition.LEFT && (
-          <FontAwesomeIcon className="m-button-svg left" icon={icon} />
+          <p className="m-button-icon-container left">
+            <FontAwesomeIcon className="m-button-svg" icon={icon} />
+          </p>
         )}
-        {text && text.trim() && <p>{text}</p>}
+        {text && text.trim() && <p className="m-button-text">{text}</p>}
         {getRightButtonIcon()}
       </button>
 

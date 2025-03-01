@@ -3,6 +3,34 @@
 $max-px: 64;
 $max-rem: 32;
 
+.m-auto {
+  margin: auto !important;
+}
+
+.mt-auto {
+  margin-top: auto !important;
+}
+
+.mr-auto {
+  margin-right: auto !important;
+}
+
+.mb-auto {
+  margin-bottom: auto !important;
+}
+
+.ml-auto {
+  margin-left: auto !important;
+}
+
+.mh-auto {
+  margin: unset auto !important;
+}
+
+.mv-auto {
+  margin: auto unset !important;
+}
+
 @include generate-spacing-classes("m", "margin", $max-rem, "px", 1px);
 @include generate-spacing-classes("mt", "margin-top", $max-rem, "px", 1px);
 @include generate-spacing-classes("mb", "margin-bottom", $max-rem, "px", 1px);

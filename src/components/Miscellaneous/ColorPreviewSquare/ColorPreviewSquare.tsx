@@ -1,6 +1,7 @@
 import React, { CSSProperties } from "react";
 
-import { HslValue, rgbToHex, RgbValue, valueToRgb } from "../../Inputs";
+import { rgbToHex, valueToRgb } from "../../Inputs/ColorPicker/helpers";
+import { HslValue, RgbValue } from "../../Inputs/ColorPicker/types";
 import { ColorPreviewSquareProps } from "./types";
 
 import "./ColorPreviewSquare.scss";

@@ -5,7 +5,7 @@ export type TextfieldTypes = "text" | "number" | "password";
 
 export type StandAloneTextfieldProps = Omit<
   InputProps,
-  "labelWidth" | "label" | "disableDefaultMargin" | "error" | "labelType" | "floatingInputWidth"
+  "labelWidth" | "label" | "marginBottomType" | "error" | "labelType" | "floatingInputWidth"
 > & {
   /** The current value of the `TextField`. Can be controlled externally. */
   value?: string;

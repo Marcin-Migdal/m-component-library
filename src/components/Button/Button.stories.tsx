@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { generateHiddenArgTypes } from "../../internalUtils/generateHiddenArgTypes";
 import { ComponentSize } from "../global-types";
 import Button from "./Button";
-import { ButtonIconPosition } from "./types";
+import { ButtonAlignContent, ButtonIconPosition, ButtonWidth } from "./types";
 
 const meta: Meta<typeof Button> = {
   title: "Components/Button",
@@ -39,6 +39,22 @@ const meta: Meta<typeof Button> = {
       options: ["submit", "reset", "button"],
       description: "The type of the button,",
       table: { type: { summary: "submit | reset | button" } },
+    },
+    width: {
+      control: "radio",
+      options: [ButtonWidth.FIT, ButtonWidth.STRETCH],
+      table: {
+        type: { summary: "fit | stretch" },
+        defaultValue: { summary: "fit" },
+      },
+    },
+    alignContent: {
+      control: "radio",
+      options: [ButtonAlignContent.START, ButtonAlignContent.CENTER, ButtonAlignContent.END],
+      table: {
+        type: { summary: "start | center | end" },
+        defaultValue: { summary: "center" },
+      },
     },
   },
 };

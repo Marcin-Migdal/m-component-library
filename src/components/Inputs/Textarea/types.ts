@@ -1,5 +1,6 @@
 import { ChangeEvent, FocusEvent } from "react";
 
+import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
 import { InputProps } from "../_inputsComponents/input-types";
 
 type TextAreaClassNames = {
@@ -9,12 +10,14 @@ type TextAreaClassNames = {
   error?: string;
 };
 
+export type TextareaChangeEvent = ChangeEvent<HTMLTextAreaElement> & MInputChangeEvent;
+
 export type TextareaProps = InputProps & {
   /** The current value of the `TextArea`. Can be controlled externally. */
   value?: string;
 
   /** Callback fired when the `TextArea` value changes. */
-  onChange?: (event: ChangeEvent<HTMLTextAreaElement>, value: string) => void;
+  onChange?: (event: TextareaChangeEvent, value: string) => void;
 
   /** Callback fired when the `TextArea` loses focus. */
   onBlur?: (event: FocusEvent<HTMLTextAreaElement>, value: string) => void;

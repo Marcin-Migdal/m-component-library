@@ -8,6 +8,7 @@ export type SidePanelProps = {
   sidePanelOpen: SidePanelOpenState;
 
   /** Callback function to close the side panel.
+   * If you are not using dedicated handleClose function returned by useSidePanel hook, be sure to wrap function passed in handleClose with useCallback.
    * @default undefined */
   handleClose: () => void;
 

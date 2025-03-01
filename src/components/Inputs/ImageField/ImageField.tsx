@@ -1,10 +1,10 @@
 import classNames from "classnames";
-import React, { ChangeEvent, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { v4 as uuId } from "uuid";
 
-import { SimpleInputLabel } from "../../global-types";
+import { InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
-import { getSimpleInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getSimpleInputsErrorStyle";
+import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
 import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { getAcceptanceDescription } from "./helpers/getAcceptanceDescription";
@@ -35,12 +35,13 @@ export const ImageField = ({
   maxResolution,
   minResolution,
 
-  labelType = defaultInputPropsValue.labelType as SimpleInputLabel,
+  labelType = defaultInputPropsValue.labelType,
   labelWidth = defaultInputPropsValue.labelWidth,
   size = defaultInputPropsValue.size,
   disabled = defaultInputPropsValue.disabled,
   readOnly = defaultInputPropsValue.readOnly,
-  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+  marginBottomType = defaultInputPropsValue.marginBottomType,
+  floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 
   ...otherProps
 }: ImageFieldProps) => {
@@ -72,8 +73,10 @@ export const ImageField = ({
           ...event,
           target: {
             ...event.target,
+            name: name || "",
             value: imageFile,
-            source: "drop",
+            type: "image",
+            checked: false,
           },
         },
         imageFile
@@ -81,7 +84,7 @@ export const ImageField = ({
     !isControlled && setInternalValue(imageFile);
   };
 
-  const handleChange = async (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const imageFile = event.target.files?.[0];
 
     if (!imageFile) {
@@ -101,8 +104,10 @@ export const ImageField = ({
           ...event,
           target: {
             ...event.target,
+            name: name || "",
             value: imageFile,
-            source: "change",
+            type: "image",
+            checked: false,
           },
         },
         imageFile
@@ -114,24 +119,23 @@ export const ImageField = ({
   const clearImage = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     event.stopPropagation();
 
+    !isControlled && setInternalValue(undefined);
     inputRef.current && (inputRef.current.value = "");
 
-    onChange &&
-      onChange(
+    onClear &&
+      onClear(
         {
           ...event,
           target: {
             ...event.target,
+            name: name || "",
             value: undefined,
-            source: "clear",
+            type: "image",
+            checked: false,
           },
         },
         undefined
       );
-
-    onClear && onClear();
-
-    !isControlled && setInternalValue(undefined);
   };
 
   const stopPropagationAndPreventDefault = (event: React.DragEvent<HTMLLabelElement>) => {
@@ -158,9 +162,10 @@ export const ImageField = ({
         className={classNames("m-image-container", classNamesObj?.container)}
         size={size}
         error={error}
-        disableDefaultMargin={disableDefaultMargin}
+        marginBottomType={marginBottomType}
+        labelType={labelType}
       >
-        <div style={getInputStyle(labelType as SimpleInputLabel, label, labelWidth, undefined)}>
+        <div style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}>
           <ImageIcons openZoom={openZoom} clearImage={clearImage} disabled={disabled} value={value} error={error} />
           <label
             onDrop={handleDrop}
@@ -195,12 +200,12 @@ export const ImageField = ({
             labelType={labelType}
             className={classNames("m-image-label", classNamesObj?.label)}
             labelWidth={labelWidth}
-            isFilled={!!value}
+            forceFloating={labelType === InputLabel.FLOATING}
           />
         )}
         {error && (
           <InputError
-            style={getSimpleInputsErrorStyle(labelType, labelWidth)}
+            style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
             className={classNames("image-error", classNamesObj?.error)}
             error={error}
           />

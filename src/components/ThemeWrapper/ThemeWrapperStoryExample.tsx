@@ -7,12 +7,13 @@ import { crumbs } from "../Breadcrumb/Breadcrumb.stories";
 import { Button } from "../Button";
 import { DropdownMenu } from "../DropdownMenu";
 import { dropdownMenuOptions } from "../DropdownMenu/DropdownMenu.stories";
-import { ComponentSize, FloatingInputWidth, InputLabel, LabelPercentageWidth, SimpleInputLabel } from "../global-types";
+import { ComponentSize, FloatingInputWidth, InputLabel, LabelPercentageWidth } from "../global-types";
 import { DateField, Textfield } from "../Inputs";
 import { Checkbox } from "../Inputs/Checkbox";
 import { ColorPicker } from "../Inputs/ColorPicker";
 import { Dropdown } from "../Inputs/Dropdown";
 import { options } from "../Inputs/Dropdown/Dropdown.stories";
+import { DropdownNumberOption } from "../Inputs/Dropdown/types";
 import { IconField } from "../Inputs/IconField";
 import { ImageField } from "../Inputs/ImageField";
 import { Slider } from "../Inputs/Slider";
@@ -71,15 +72,11 @@ export const ThemeWrapperStoryExample = ({
 
   const inputProps = {
     size,
-    label,
     labelType,
     labelWidth,
     disabled,
-    placeholder,
     error,
   };
-
-  const simpleInputLabel: SimpleInputLabel = (labelType === "floating" ? "left" : labelType) as SimpleInputLabel;
 
   const sectionsArray: Section[] = [
     { toggleText: "Breadcrumb", content: <Breadcrumb crumbs={crumbs} /> },
@@ -226,17 +223,62 @@ export const ThemeWrapperStoryExample = ({
       toggleText: "Inputs",
       content: (
         <div>
-          <Textfield {...inputProps} floatingInputWidth={floatingInputWidth} />
-          <Textarea {...inputProps} floatingInputWidth={floatingInputWidth} />
-          <Dropdown {...inputProps} floatingInputWidth={floatingInputWidth} />
-          <Dropdown {...inputProps} floatingInputWidth={floatingInputWidth} clearable options={options} />
-          <DateField {...inputProps} floatingInputWidth={floatingInputWidth} />
-          <IconField {...inputProps} floatingInputWidth={floatingInputWidth} />
-          <ColorPicker {...inputProps} floatingInputWidth={floatingInputWidth} />
-          <ImageField {...inputProps} labelType={simpleInputLabel} />
-          <Slider {...inputProps} min={0} max={100} />
-          <Checkbox {...inputProps} labelType={simpleInputLabel} />
-          <ToggleSwitch {...inputProps} labelType={simpleInputLabel} />
+          <Textfield
+            label={label ? label : "Textfield"}
+            placeholder={placeholder ? placeholder : "Textfield"}
+            {...inputProps}
+            floatingInputWidth={floatingInputWidth}
+          />
+          <Textarea
+            label={label ? label : "Textarea"}
+            placeholder={placeholder ? placeholder : "Textarea"}
+            {...inputProps}
+            floatingInputWidth={floatingInputWidth}
+          />
+          <Dropdown
+            label={label ? label : "Dropdown"}
+            placeholder={placeholder ? placeholder : "Dropdown"}
+            {...inputProps}
+            floatingInputWidth={floatingInputWidth}
+            options={[] as DropdownNumberOption[]}
+          />
+          <Dropdown
+            label={label ? label : "Dropdown"}
+            placeholder={placeholder ? placeholder : "Dropdown"}
+            {...inputProps}
+            floatingInputWidth={floatingInputWidth}
+            clearable
+            options={options}
+          />
+          <DateField
+            label={label ? label : "DateField"}
+            placeholder={placeholder ? placeholder : "DateField"}
+            {...inputProps}
+            range
+            floatingInputWidth={floatingInputWidth}
+          />
+          <DateField
+            label={label ? label : "DateField"}
+            placeholder={placeholder ? placeholder : "DateField"}
+            {...inputProps}
+            floatingInputWidth={floatingInputWidth}
+          />
+          <IconField
+            label={label ? label : "IconField"}
+            placeholder={placeholder ? placeholder : "IconField"}
+            {...inputProps}
+            floatingInputWidth={floatingInputWidth}
+          />
+          <ColorPicker
+            label={label ? label : "ColorPicker"}
+            placeholder={placeholder ? placeholder : "ColorPicker"}
+            {...inputProps}
+            floatingInputWidth={floatingInputWidth}
+          />
+          <ImageField label={label ? label : "ImageField"} {...inputProps} />
+          <Slider label={label ? label : "Slider"} {...inputProps} min={0} max={100} />
+          <Checkbox label={label ? label : "Checkbox"} {...inputProps} />
+          <ToggleSwitch label={label ? label : "ToggleSwitch"} {...inputProps} />
         </div>
       ),
     },

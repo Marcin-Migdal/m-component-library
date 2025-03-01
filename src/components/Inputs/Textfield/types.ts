@@ -1,5 +1,6 @@
 import { ChangeEvent, FocusEvent } from "react";
 
+import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
 import { StandAloneTextfieldProps } from "../_inputsComponents/StandAloneTextfield/types";
 import { InputProps } from "../_inputsComponents/input-types";
 
@@ -10,9 +11,11 @@ type TextFieldClassNames = {
   error?: string;
 };
 
+export type TextFieldChangeEvent = ChangeEvent<HTMLInputElement> & MInputChangeEvent;
+
 export type TextfieldProps = InputProps & {
   /** Callback fired when the `TextField` value changes. */
-  onChange?: (event: ChangeEvent<HTMLInputElement>, value: string) => void;
+  onChange?: (event: TextFieldChangeEvent, value: string) => void;
 
   /** Callback fired when the `TextField` loses focus. */
   onBlur?: (event: FocusEvent<HTMLInputElement>, value: string) => void;

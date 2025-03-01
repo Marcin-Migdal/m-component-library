@@ -1,3 +1,4 @@
+import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
 import { InputProps } from "../_inputsComponents/input-types";
 import { ColorValue } from "../ColorPicker";
 
@@ -8,6 +9,9 @@ type IconFieldClassNames = {
   error?: string;
   popup?: string;
 };
+
+export type IconFieldChangeEvent = React.MouseEvent<HTMLDivElement, MouseEvent> & MInputChangeEvent;
+export type IconFieldClearEvent = React.MouseEvent<SVGSVGElement, MouseEvent> & MInputChangeEvent<undefined>;
 
 export type IconFieldProps = InputProps & {
   /** The current selected icon. */
@@ -26,8 +30,11 @@ export type IconFieldProps = InputProps & {
   onOpen?: () => void;
 
   /** Callback triggered when an icon is selected. */
-  onChange?: (event: { target: { name: string; value: string } }) => void;
+  onChange?: (event: IconFieldChangeEvent, value: string | undefined) => void;
+
+  /** Callback triggered when an icon is cleared. */
+  onClear?: (event: IconFieldClearEvent, value: undefined) => void;
 
   /** Callback triggered when the icon selection popup closes. */
-  onClose?: (value: string) => void;
+  onClose?: (value: string | undefined) => void;
 };

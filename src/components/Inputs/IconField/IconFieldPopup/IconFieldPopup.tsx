@@ -9,7 +9,7 @@ import "./IconFieldPopup.scss";
 
 type IconFieldPopupContentProps = {
   value?: IconName;
-  onChange: (icon: string) => void;
+  onChange: (event: React.MouseEvent<HTMLDivElement, MouseEvent>, icon: string) => void;
 };
 
 export const IconFieldPopupContent = ({ onChange }: IconFieldPopupContentProps) => {
@@ -26,8 +26,8 @@ export const IconFieldPopupContent = ({ onChange }: IconFieldPopupContentProps) 
     setIcons(filteredIcons);
   };
 
-  const handleIconChange = (icon: Icon) => {
-    onChange(icon.value as string);
+  const handleIconChange = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, icon: Icon) => {
+    onChange(event, icon.value as string);
   };
 
   return (
@@ -35,7 +35,7 @@ export const IconFieldPopupContent = ({ onChange }: IconFieldPopupContentProps) 
       <Textfield placeholder="Filter icon" onDebounce={filterIcons} />
       <div className="m-icon-grid-container m-scroll slim-scroll">
         {icons.map((icon) => (
-          <div className="m-icon-tile" onClick={() => handleIconChange(icon)}>
+          <div key={icon.value} className="m-icon-tile" onClick={(event) => handleIconChange(event, icon)}>
             <div className="m-icon-container">
               <FontAwesomeIcon className="m-icon" icon={icon.value} />
             </div>

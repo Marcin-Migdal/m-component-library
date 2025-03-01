@@ -44,7 +44,7 @@ const SidePanel = ({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [closeOnOutsideClick]);
+  }, [closeOnOutsideClick, handleClose]);
 
   if (!alwaysOpen && sidePanelOpen === SidePanelOpenState.CLOSED) {
     return null;

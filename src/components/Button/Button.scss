@@ -3,6 +3,7 @@
 .m-button {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
 
   width: fit-content;
 
@@ -17,6 +18,18 @@
   height: fit-content;
 
   transition: var(--transition-duration-normal);
+
+  &.stretch {
+    width: 100%;
+  }
+
+  &.align-start {
+    justify-content: flex-start;
+  }
+
+  &.align-end {
+    justify-content: flex-end;
+  }
 
   &:active {
     &:enabled {
@@ -57,9 +70,7 @@
     white-space: nowrap;
   }
 
-  .m-button-svg {
-    background-color: inherit;
-
+  .m-button-icon-container {
     &.left {
       &:not(:only-child) {
         margin-right: var(--btn-gap);
@@ -70,6 +81,10 @@
       &:not(:only-child) {
         margin-left: var(--btn-gap);
       }
+    }
+
+    .m-button-svg {
+      background-color: inherit;
     }
   }
 }

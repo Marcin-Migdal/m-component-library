@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { InputType } from "storybook/internal/types";
 import { inputArgTypes } from "../../internalUtils/inputArgTypes";
-import { ComponentSize, InputLabel } from "../global-types";
+import { defaultInputPropsValue } from "../Inputs/_inputUtils/defaultInputPropsValue";
 import { ThemeWrapperStoryExample, ThemeWrapperStoryExampleProps } from "./ThemeWrapperStoryExample";
 
 type ArgTypes = Partial<Record<keyof ThemeWrapperStoryExampleProps, InputType>>;
@@ -20,7 +20,7 @@ const createArgTypes = (argTypes: ArgTypes): ArgTypes => {
   };
 
   for (const [key, value] of Object.entries(argTypes)) {
-    if (!["name", "readOnly", "disableDefaultMargin"].includes(key)) {
+    if (!["name", "readOnly", "marginBottomType"].includes(key)) {
       result[key] = {
         name: `${key} (Custom Story control)`,
         ...value!,
@@ -52,13 +52,11 @@ const meta: Meta<typeof ThemeWrapperStoryExample> = {
   },
   args: {
     darkMode: true,
-    size: ComponentSize.MEDIUM,
-    label: "Input label",
-    labelType: InputLabel.LEFT,
-    labelWidth: 30,
-    floatingInputWidth: 100,
-    disabled: false,
-    placeholder: "Placeholder",
+    size: defaultInputPropsValue.size,
+    labelType: defaultInputPropsValue.labelType,
+    labelWidth: defaultInputPropsValue.labelWidth,
+    floatingInputWidth: defaultInputPropsValue.floatingInputWidth,
+    disabled: defaultInputPropsValue.disabled,
     error: "",
   },
   argTypes,
