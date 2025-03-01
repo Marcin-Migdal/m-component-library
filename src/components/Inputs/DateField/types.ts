@@ -1,5 +1,6 @@
 import { FocusEvent } from "react";
 
+import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
 import { InputProps } from "../_inputsComponents/input-types";
 
 type DateFieldClassNames = {
@@ -10,19 +11,31 @@ type DateFieldClassNames = {
   popup?: string;
 };
 
-export type SingleDate = string | Date;
-export type RangeDate = [SingleDate | undefined, SingleDate | undefined];
-export type DateValue<TRange extends boolean> = TRange extends true ? RangeDate : SingleDate;
+export type ParsableSingleDate = string | Date;
+export type ParsableRangeDate = [ParsableSingleDate | undefined, ParsableSingleDate | undefined];
+export type ParsableDateValue<TRange extends boolean = false> = TRange extends true
+  ? ParsableRangeDate
+  : ParsableSingleDate;
 
-export type InternalRangeDate = [Date | undefined, Date | undefined];
-export type InternalDateValue<TRange extends boolean> = TRange extends true ? InternalRangeDate : Date;
+export type RangeDate = [Date | undefined, Date | undefined];
+export type DateValue<TRange extends boolean = false> = TRange extends true ? RangeDate : Date;
 
-export type DateFieldProps<TRange extends boolean> = InputProps & {
+export type DateFieldChangeEvent<TRange extends boolean = false> = React.MouseEvent<HTMLButtonElement, MouseEvent> &
+  MInputChangeEvent<DateValue<TRange>>;
+
+export type DateFieldCloseEvent<TRange extends boolean = false> = (
+  | React.MouseEvent<HTMLButtonElement, MouseEvent>
+  | MouseEvent
+  | KeyboardEvent
+) &
+  MInputChangeEvent<DateValue<TRange> | undefined>;
+
+export type DateFieldProps<TRange extends boolean = false> = InputProps & {
   /** The currently selected date or date range. */
-  value?: DateValue<TRange>;
+  value?: ParsableDateValue<TRange>;
 
   /** The default date or date range when the component is first rendered. */
-  defaultValue?: DateValue<TRange>;
+  defaultValue?: ParsableDateValue<TRange>;
 
   /** Custom class names for different parts of the component. */
   classNamesObj?: DateFieldClassNames;
@@ -37,7 +50,7 @@ export type DateFieldProps<TRange extends boolean> = InputProps & {
   range?: TRange;
 
   /** Callback triggered when the date selection changes. */
-  onChange?: (value: InternalDateValue<TRange>) => void;
+  onChange?: (event: DateFieldChangeEvent<TRange>, value: DateValue<TRange>) => void;
 
   /** Callback triggered when the `DateField` gains focus. */
   onFocus?: (event: FocusEvent<HTMLInputElement, Element>) => void;
@@ -46,5 +59,5 @@ export type DateFieldProps<TRange extends boolean> = InputProps & {
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 
   /** Callback triggered when the date picker is closed. */
-  onClose?: (value: InternalDateValue<TRange> | undefined) => void;
+  onClose?: (event: DateFieldCloseEvent<TRange>, value: DateValue<TRange> | undefined) => void;
 };

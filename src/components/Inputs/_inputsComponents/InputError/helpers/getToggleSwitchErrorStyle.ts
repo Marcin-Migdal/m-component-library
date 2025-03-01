@@ -1,11 +1,11 @@
 import { CSSProperties } from "react";
 
 import { getCssProperty, getCssPropertyAsNumber } from "../../../../../utils";
-import { LabelPercentageWidth, SimpleInputLabel } from "../../../../global-types";
+import { InputLabel, LabelPercentageWidth } from "../../../../global-types";
 
 export const getToggleSwitchErrorStyle = (
   toggleSwitchContainerElement: HTMLDivElement,
-  labelType: SimpleInputLabel,
+  labelType: `${InputLabel}`,
   labelWidth: LabelPercentageWidth
 ): CSSProperties => {
   const toggleSwitchSizeCalcProperty: string | undefined = getCssProperty(
@@ -35,6 +35,6 @@ export const getToggleSwitchErrorStyle = (
   const additionalDistance: string = `${toggleSwitchWidth + errorIconMargin + 2 * checkboxBorderLineWidth}px`;
 
   return {
-    left: labelType === SimpleInputLabel.LEFT ? `calc(${labelWidth}% + ${additionalDistance})` : additionalDistance,
+    left: labelType === InputLabel.LEFT ? `calc(${labelWidth}% + ${additionalDistance})` : additionalDistance,
   };
 };

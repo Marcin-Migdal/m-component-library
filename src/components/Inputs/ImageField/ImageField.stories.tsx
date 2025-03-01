@@ -1,13 +1,13 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { simpleInputArgTypes } from "../../../internalUtils/inputArgTypes";
+import { inputArgTypes } from "../../../internalUtils/inputArgTypes";
 import { ImageField } from "./ImageField";
 
 const meta: Meta<typeof ImageField> = {
   title: "Components/Inputs/ImageField",
   component: ImageField,
   argTypes: {
-    ...simpleInputArgTypes,
+    ...inputArgTypes,
     value: { table: { type: { summary: "File" } } },
     dropzoneMessage: {
       description: " Messages displayed in the dropzone area.",

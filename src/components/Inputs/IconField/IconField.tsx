@@ -22,6 +22,7 @@ import "./IconField.scss";
 const IconField = ({
   value: externalValue = undefined,
   onChange,
+  onClear,
   name = undefined,
   label = undefined,
   placeholder = undefined,
@@ -36,12 +37,12 @@ const IconField = ({
   disabled = defaultInputPropsValue.disabled,
   readOnly = defaultInputPropsValue.readOnly,
   floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
-  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+  marginBottomType = defaultInputPropsValue.marginBottomType,
 
   onOpen,
   onClose,
 }: IconFieldProps) => {
-  const [internalValue, setInternalValue] = useState<string>("");
+  const [internalValue, setInternalValue] = useState<string | undefined>(undefined);
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const controlled = externalValue !== undefined;
@@ -55,7 +56,16 @@ const IconField = ({
     setIsFocused(false);
   };
 
-  const [handlePopupOpen, alertProps] = useAlert({ onOpen: handleFocus, onClose: handleBlur });
+  const [handlePopupOpen, alertProps] = useAlert({
+    onOpen: handleFocus,
+    onClose: () => {
+      if (onClose) {
+        onClose(value);
+      }
+
+      handleBlur();
+    },
+  });
 
   const handleOpen = () => {
     if (readOnly) {
@@ -72,29 +82,47 @@ const IconField = ({
       return;
     }
 
-    if (onClose) {
-      onClose(value);
-    }
-
     alertProps.handleClose();
   };
 
-  const handleChange = (selectedIcon: string): void => {
+  const handleChange = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, selectedIcon: string): void => {
     !controlled && setInternalValue(selectedIcon);
 
     onChange &&
-      onChange({
-        target: {
-          name: name || "",
-          value: selectedIcon,
+      onChange(
+        {
+          ...event,
+          target: {
+            ...event.target,
+            name: name || "",
+            value: selectedIcon,
+            checked: false,
+            type: "icon",
+          },
         },
-      });
+        selectedIcon
+      );
 
     handleClose();
   };
 
-  const clearValue = () => {
-    handleChange("");
+  const clearValue = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    !controlled && setInternalValue(undefined);
+
+    onClear &&
+      onClear(
+        {
+          ...event,
+          target: {
+            ...event.target,
+            name: name || "",
+            value: undefined,
+            checked: false,
+            type: "icon",
+          },
+        },
+        undefined
+      );
   };
 
   const rgbIconColor: RgbValue | undefined = iconColor ? valueToRgb(iconColor) : undefined;
@@ -106,11 +134,12 @@ const IconField = ({
         className={classNames("m-icon-field-container", classNamesObj?.container)}
         size={size}
         error={error}
-        disableDefaultMargin={disableDefaultMargin}
+        marginBottomType={marginBottomType}
+        labelType={labelType}
       >
         <div
           className="m-icon-preview-container"
-          style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
+          style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
         >
           <div
             className="m-icon-preview-square"
@@ -138,7 +167,7 @@ const IconField = ({
             className={classNames("m-icon-preview", classNamesObj?.input)}
             readOnly
             onClick={() => !disabled && handleOpen()}
-            value={value as string}
+            value={value || ""}
             disabled={disabled}
             placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
             style={{ width: "100%" }}
@@ -156,7 +185,7 @@ const IconField = ({
         )}
         {error && (
           <InputError
-            style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
+            style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
             className={classNames("icon-field-error", classNamesObj?.error)}
             error={error}
           />

@@ -3,7 +3,7 @@ import classNames from "classnames";
 import React, { ChangeEvent, useRef, useState } from "react";
 import { v4 as uuId } from "uuid";
 
-import { SimpleInputLabel } from "../../global-types";
+import { InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getCheckboxErrorStyle } from "../_inputsComponents/InputError/helpers/getCheckboxErrorStyle";
 import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
@@ -21,12 +21,13 @@ const Checkbox = ({
   error,
   classNamesObj,
 
-  labelType = defaultInputPropsValue.labelType as SimpleInputLabel,
+  labelType = defaultInputPropsValue.labelType,
   labelWidth = defaultInputPropsValue.labelWidth,
   size = defaultInputPropsValue.size,
   disabled = defaultInputPropsValue.disabled,
   readOnly = defaultInputPropsValue.readOnly,
-  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+  marginBottomType = defaultInputPropsValue.marginBottomType,
+  floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 
   ...otherProps
 }: CheckboxProps) => {
@@ -44,10 +45,22 @@ const Checkbox = ({
       return;
     }
 
-    const _checked = e.target.checked;
+    const { checked: changedValue, type } = e.target;
 
-    onChange && onChange(e, _checked);
-    !controlled && setInternalChecked(_checked);
+    onChange &&
+      onChange(
+        {
+          ...e,
+          target: {
+            ...e.target,
+            value: changedValue,
+            name: name || "",
+            type,
+          },
+        },
+        changedValue
+      );
+    !controlled && setInternalChecked(changedValue);
   };
 
   return (
@@ -57,9 +70,10 @@ const Checkbox = ({
       className={classNames("m-checkbox-container", classNamesObj?.container)}
       size={size}
       error={error}
-      disableDefaultMargin={disableDefaultMargin}
+      marginBottomType={marginBottomType}
+      labelType={labelType}
     >
-      <div style={getInputStyle(labelType as SimpleInputLabel, label, labelWidth, undefined)}>
+      <div style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}>
         <label className={classNames("m-checkbox-input-wrapper", classNamesObj?.inputWrapper, { checked: checked })}>
           <input
             id={checkboxId}
@@ -84,11 +98,12 @@ const Checkbox = ({
           labelType={labelType}
           className={classNames("m-checkbox-label", classNamesObj?.label)}
           labelWidth={labelWidth}
+          forceFloating={labelType === InputLabel.FLOATING}
         />
       )}
       {error && checkboxContainerRef.current && (
         <InputError
-          style={getCheckboxErrorStyle(checkboxContainerRef.current, labelType as SimpleInputLabel, labelWidth)}
+          style={getCheckboxErrorStyle(checkboxContainerRef.current, labelType, labelWidth)}
           className={classNames("checkbox-error", classNamesObj?.error)}
           error={error}
         />

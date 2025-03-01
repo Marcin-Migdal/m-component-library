@@ -1,6 +1,7 @@
 import { CSSProperties } from "react";
 
-import { SimpleInputProps } from "../_inputsComponents/input-types";
+import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
+import { InputProps } from "../_inputsComponents/input-types";
 
 type ImageFieldClassNames = {
   container?: string;
@@ -10,18 +11,6 @@ type ImageFieldClassNames = {
   error?: string;
 };
 
-type InputEventWithSource = Omit<React.ChangeEvent<HTMLInputElement>, "target"> & {
-  target: Omit<React.ChangeEvent<HTMLInputElement>["target"], "value"> & { source: "change"; value: File };
-};
-
-type DropEventWithSource = React.DragEvent<HTMLLabelElement> & {
-  target: React.DragEvent<HTMLLabelElement>["target"] & { source: "drop"; value: File };
-};
-
-type ClearEventWithSource = React.MouseEvent<SVGSVGElement, MouseEvent> & {
-  target: React.MouseEvent<SVGSVGElement, MouseEvent>["target"] & { source: "clear"; value: undefined };
-};
-
 export type ResolutionValidation = {
   width: number;
   height: number;
@@ -29,11 +18,15 @@ export type ResolutionValidation = {
 
 export type ImageType = ".jpg" | ".jpeg" | ".png" | ".gif" | ".bmp" | ".webp" | ".svg";
 
-export type ImageFieldOnChangeEvent = InputEventWithSource | DropEventWithSource | ClearEventWithSource;
+type ImageFieldCNativeChangeEvent = React.ChangeEvent<HTMLInputElement> | React.DragEvent<HTMLLabelElement>;
 
-export type ImageFieldOnChange = (event: ImageFieldOnChangeEvent, value: File | undefined) => void;
+export type ImageFieldChangeEvent = Omit<ImageFieldCNativeChangeEvent, "target"> & {
+  target: Omit<ImageFieldCNativeChangeEvent["target"], "value">;
+} & MInputChangeEvent<File>;
 
-export type ImageFieldProps = SimpleInputProps & {
+export type ImageFieldClearEvent = React.MouseEvent<SVGSVGElement, MouseEvent> & MInputChangeEvent<undefined>;
+
+export type ImageFieldProps = InputProps & {
   /** The currently selected image file. */
   value?: File | undefined;
 
@@ -70,7 +63,7 @@ export type ImageFieldProps = SimpleInputProps & {
   minResolution?: ResolutionValidation;
 
   /** Callback triggered when an image is selected. */
-  onChange?: ImageFieldOnChange;
+  onChange?: (event: ImageFieldChangeEvent, value: File) => void;
 
   /** Callback triggered when the `ImageField` is clicked. */
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
@@ -79,5 +72,5 @@ export type ImageFieldProps = SimpleInputProps & {
   onError?: (errorMessage: string) => void;
 
   /** Callback triggered when the selected image is cleared. */
-  onClear?: () => void;
+  onClear?: (event: ImageFieldClearEvent, value: undefined) => void;
 };

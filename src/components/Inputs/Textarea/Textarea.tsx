@@ -30,7 +30,7 @@ const Textarea = ({
   size = defaultInputPropsValue.size,
   disabled = defaultInputPropsValue.disabled,
   readOnly = defaultInputPropsValue.readOnly,
-  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+  marginBottomType = defaultInputPropsValue.marginBottomType,
   floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 
   ...otherProps
@@ -52,8 +52,21 @@ const Textarea = ({
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     handleDebounce(e, e.target.value);
-    onChange && onChange(e, e.target.value);
     setInternalValue(e.target.value);
+
+    onChange &&
+      onChange(
+        {
+          ...e,
+          target: {
+            ...e.target,
+            checked: false,
+            type: "textarea",
+            name: name || "",
+          },
+        },
+        e.target.value
+      );
   };
 
   return (
@@ -62,12 +75,13 @@ const Textarea = ({
       className={classNames("m-textarea-container", classNamesObj?.container)}
       size={size}
       error={error}
-      disableDefaultMargin={disableDefaultMargin}
+      marginBottomType={marginBottomType}
+      labelType={labelType}
     >
       <textarea
         readOnly={readOnly}
         name={name}
-        style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
+        style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
         className={classNames("m-input", "m-textarea", "m-scroll", classNamesObj?.input, labelType)}
         value={value}
         onChange={handleChange}
@@ -90,7 +104,7 @@ const Textarea = ({
       )}
       {error && (
         <InputError
-          style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
+          style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
           className={classNames("textarea-error", classNamesObj?.error)}
           error={error}
         />

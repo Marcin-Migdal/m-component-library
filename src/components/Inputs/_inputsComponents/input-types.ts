@@ -3,16 +3,11 @@ import {
   FloatingInputWidth,
   InputLabel,
   LabelPercentageWidth,
-  SimpleInputLabel,
+  MarginBottomType,
 } from "../../global-types";
 
-/**
- * Common props used across many `Input` component.
- * @genericType TLabelType - Type of the label position (defaults to `InputLabel`).
- * - `InputLabel`
- * - `SimpleInputLabel`
- */
-export type InputProps<TLabelType extends string = InputLabel> = {
+/** Common props used across many `Input` component. */
+export type InputProps = {
   /** Size of the input component.
    * @default "medium" */
   size?: `${ComponentSize}`;
@@ -35,19 +30,25 @@ export type InputProps<TLabelType extends string = InputLabel> = {
   /** Text label displayed for the input. */
   label?: string;
 
-  /** Whether to disable the default margin.
+  /** Margin bottom type for inputs.
+   * - `dynamic` depends on the labelType, default marginBottomType.
+   *      - labelType `floating` large
+   *      - labelType `left | right` small
+   * - `large`
+   * - `small`
+   * - `none`
    * @default false */
-  disableDefaultMargin?: boolean;
+  marginBottomType?: MarginBottomType;
 
   /** Error message displayed below the input. */
   error?: string;
 
   /** Type of label positioning.
    * @default "left" */
-  labelType?: `${TLabelType}`;
+  labelType?: `${InputLabel}`;
 
   /** Width of the floating input field. */
   floatingInputWidth?: FloatingInputWidth;
 };
 
-export type SimpleInputProps = Omit<InputProps<SimpleInputLabel>, "floatingInputWidth">;
+export type SimpleInputProps = Omit<InputProps, "floatingInputWidth">;

@@ -2,7 +2,7 @@ import classNames from "classnames";
 import React, { ChangeEvent, useRef, useState } from "react";
 import { v4 as uuId } from "uuid";
 
-import { SimpleInputLabel } from "../../global-types";
+import { InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getToggleSwitchErrorStyle } from "../_inputsComponents/InputError/helpers/getToggleSwitchErrorStyle";
 import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
@@ -20,12 +20,13 @@ const ToggleSwitch = ({
   error,
   classNamesObj,
 
-  labelType = defaultInputPropsValue.labelType as SimpleInputLabel,
+  labelType = defaultInputPropsValue.labelType,
   labelWidth = defaultInputPropsValue.labelWidth,
   size = defaultInputPropsValue.size,
   disabled = defaultInputPropsValue.disabled,
   readOnly = defaultInputPropsValue.readOnly,
-  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+  marginBottomType = defaultInputPropsValue.marginBottomType,
+  floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 
   ...otherProps
 }: ToggleSwitchProps) => {
@@ -43,10 +44,22 @@ const ToggleSwitch = ({
       return;
     }
 
-    const _checked = e.target.checked;
+    const { checked: newValue, type } = e.target;
 
-    onChange && onChange(e, _checked);
-    !controlled && setInternalChecked(_checked);
+    onChange &&
+      onChange(
+        {
+          ...e,
+          target: {
+            ...e.target,
+            value: newValue,
+            name: name || "",
+            type,
+          },
+        },
+        newValue
+      );
+    !controlled && setInternalChecked(newValue);
   };
 
   return (
@@ -56,10 +69,11 @@ const ToggleSwitch = ({
       className={classNames("m-toggle-switch-container", classNamesObj?.container)}
       size={size}
       error={error}
-      disableDefaultMargin={disableDefaultMargin}
+      marginBottomType={marginBottomType}
+      labelType={labelType}
     >
       <div
-        style={getInputStyle(labelType as SimpleInputLabel, label, labelWidth, undefined)}
+        style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
         className={classNames("m-toggle-switch-input-wrapper", classNamesObj?.inputWrapper)}
       >
         <label>
@@ -84,11 +98,12 @@ const ToggleSwitch = ({
           labelType={labelType}
           className={classNames("m-toggle-switch-label", classNamesObj?.label)}
           labelWidth={labelWidth}
+          forceFloating={labelType === InputLabel.FLOATING}
         />
       )}
       {error && toggleSwitchContainerRef.current && (
         <InputError
-          style={getToggleSwitchErrorStyle(toggleSwitchContainerRef.current, labelType as SimpleInputLabel, labelWidth)}
+          style={getToggleSwitchErrorStyle(toggleSwitchContainerRef.current, labelType, labelWidth)}
           className={classNames("checkbox-error", classNamesObj?.error)}
           error={error}
         />

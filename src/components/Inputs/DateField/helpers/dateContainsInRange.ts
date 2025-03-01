@@ -1,8 +1,8 @@
-import { InternalRangeDate } from "../types";
+import { RangeDate } from "../types";
 import { isSameDay } from "./isSameDay";
 import { normalizeDate } from "./normalizeDate";
 
-export const dateContainsInRange = (dateRange: InternalRangeDate, singleDate: Date | undefined): boolean => {
+export const dateContainsInRange = (dateRange: RangeDate, singleDate: Date | undefined): boolean => {
   const [dateRangeStart, dateRangeEnd] = dateRange;
 
   if (!dateRangeStart || !singleDate) {

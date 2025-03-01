@@ -1,6 +1,7 @@
 import { ChangeEvent } from "react";
 
-import { SimpleInputProps } from "../_inputsComponents/input-types";
+import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
+import { InputProps } from "../_inputsComponents/input-types";
 
 type CheckboxClassNames = {
   container?: string;
@@ -11,12 +12,16 @@ type CheckboxClassNames = {
   valuePreview?: string;
 };
 
-export type CheckboxProps = SimpleInputProps & {
+export type CheckboxChangeEvent = Omit<ChangeEvent<HTMLInputElement>, "target"> & {
+  target: Omit<ChangeEvent<HTMLInputElement>["target"], "value">;
+} & MInputChangeEvent<boolean>;
+
+export type CheckboxProps = InputProps & {
   /** Whether the checkbox is checked. */
   checked?: boolean;
 
   /** Callback function triggered when the checkbox state changes. */
-  onChange?: (event: ChangeEvent<HTMLInputElement>, value: boolean) => void;
+  onChange?: (event: CheckboxChangeEvent, value: boolean) => void;
 
   /** Custom class names for styling the checkbox elements. */
   classNamesObj?: CheckboxClassNames;

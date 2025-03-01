@@ -1,5 +1,6 @@
 import React, { ComponentProps, FocusEvent, ReactElement, MouseEvent as ReactMouseEvent } from "react";
 
+import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
 import { GetPositionConfig } from "../../../utils";
 import { InputProps } from "../_inputsComponents/input-types";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
@@ -14,15 +15,19 @@ type DropdownClassNames = {
   clearIcon?: string;
 } & DropdownOptionsClassnames;
 
+export type DropdownChangeEvent<T> = React.MouseEvent<HTMLLIElement, MouseEvent> & MInputChangeEvent<T>;
+
+export type DropdownClearEvent = React.MouseEvent<Element, MouseEvent> & MInputChangeEvent<undefined>;
+
 type DropdownBaseProps<T> = InputProps & {
   /** Currently selected value in the dropdown. */
   value?: DropdownValue<T>;
 
   /** Callback triggered when an option is selected. */
-  onChange?: (event: DropdownChangeEvent<T>, value: DropdownValue<T>) => void;
+  onChange?: (event: DropdownChangeEvent<T>, value: T) => void;
 
   /** Callback triggered when the selection is cleared. */
-  onClear?: (event: DropdownClearEvent<T>, value: DropdownValue<T>) => void;
+  onClear?: (event: DropdownClearEvent, value: undefined) => void;
 
   /** Callback triggered when the dropdown receives focus. */
   onFocus?: (event: FocusEvent<HTMLInputElement> | undefined) => void;
@@ -95,26 +100,12 @@ export type DropdownProps<T> = DropdownBaseProps<T> &
 
 export type DropdownValue<T> = T | undefined;
 
-export type DropdownChangeEvent<T> = React.MouseEvent<HTMLLIElement, MouseEvent> & {
-  target: DropdownChangeEventTarget<T>;
-};
-
-export type DropdownClearEvent<T> = React.MouseEvent<Element, MouseEvent> & {
-  target: DropdownChangeEventTarget<T>;
-};
-
 type LabelValue = {
   /** The actual value of the option. Typically a string or number. */
   value: string | number;
 
   /** The human-readable label associated with the value. */
   label: string;
-};
-
-type DropdownChangeEventTarget<T> = EventTarget & {
-  name?: string;
-  value: DropdownValue<T>;
-  type: "dropdown";
 };
 
 type DropdownOptionsClassnames = {

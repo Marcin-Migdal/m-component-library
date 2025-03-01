@@ -8,22 +8,22 @@ import { Dropdown } from "../../Dropdown";
 import { DropdownChangeEvent, DropdownComponents, DropdownNumberOption } from "../../Dropdown/types";
 import { getDayName, getDaysInMonth, getMonths, getWeekDays, getYears } from "../helpers";
 import { normalizeDate } from "../helpers/normalizeDate";
-import { InternalDateValue, InternalRangeDate } from "../types";
+import { DateValue, RangeDate } from "../types";
 import { DayButton } from "./DayButton/DayButton";
 
 import "./DatePickerPopup.scss";
 
 type DatePickerPopupProps<TRange extends boolean> = {
-  value: InternalDateValue<TRange> | undefined;
-  onChange: (value: InternalDateValue<TRange>) => void;
+  value: DateValue<TRange> | undefined;
+  onChange: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, value: DateValue<TRange>) => void;
   parentElement: HTMLInputElement;
   className: string;
-  handleClose: () => void;
+  handleClose: (event: MouseEvent | KeyboardEvent) => void;
   locale: string;
   range: TRange;
 };
 
-const getStartDate = <TRange extends boolean>(range: TRange, value: InternalDateValue<TRange> | undefined): Date => {
+const getStartDate = <TRange extends boolean>(range: TRange, value: DateValue<TRange> | undefined): Date => {
   if (!value) {
     return new Date();
   }
@@ -104,13 +104,13 @@ export const DatePickerPopup = <TRange extends boolean>({
         !parentElement.contains(target) &&
         !dropdownMenuElement?.contains(target)
       ) {
-        handleClose();
+        handleClose(event);
       }
     };
 
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.code === "Escape") {
-        handleClose();
+        handleClose(event);
       }
     };
 
@@ -148,17 +148,17 @@ export const DatePickerPopup = <TRange extends boolean>({
     yearOptionValue?.value !== undefined && setCurrentYear(yearOptionValue.value);
   };
 
-  const handleChange = (date: Date) => {
+  const handleChange = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, date: Date) => {
     if (range) {
-      const [dateRangeStart, dateRangeEnd] = (value as InternalRangeDate | undefined) || [];
+      const [dateRangeStart, dateRangeEnd] = (value as RangeDate | undefined) || [];
 
       if (Array.isArray(value) && dateRangeEnd === undefined && normalizeDate(dateRangeStart!) <= normalizeDate(date)) {
-        onChange([dateRangeStart, date] as InternalDateValue<TRange>);
+        onChange(event, [dateRangeStart, date] as DateValue<TRange>);
       } else {
-        onChange([date, undefined] as InternalDateValue<TRange>);
+        onChange(event, [date, undefined] as DateValue<TRange>);
       }
     } else {
-      onChange(date as InternalDateValue<TRange>);
+      onChange(event, date as DateValue<TRange>);
     }
   };
 
@@ -289,7 +289,7 @@ export const DatePickerPopup = <TRange extends boolean>({
               dropdownOptions: "date-picker-popup-dropdown-options",
             }}
             optionHeightFit={8}
-            disableDefaultMargin
+            marginBottomType="none"
             components={dropdownComponents}
             menuPositionConfig={{ centerConsumer: true }}
           />
@@ -302,7 +302,7 @@ export const DatePickerPopup = <TRange extends boolean>({
               dropdownOptions: "date-picker-popup-dropdown-options",
             }}
             optionHeightFit={8}
-            disableDefaultMargin
+            marginBottomType="none"
             components={dropdownComponents}
             menuPositionConfig={{ centerConsumer: true }}
           />
@@ -311,7 +311,9 @@ export const DatePickerPopup = <TRange extends boolean>({
       </div>
       <div className="date-picker-popup-week-days-header">
         {weekDays.map((day) => (
-          <span className="date-picker-popup-week-days-header-column truncate-text">{day}</span>
+          <span key={day} className="date-picker-popup-week-days-header-column truncate-text">
+            {day}
+          </span>
         ))}
       </div>
       <div className="date-picker-popup-dates-container">{renderDates()}</div>

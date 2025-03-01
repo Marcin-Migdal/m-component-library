@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react/*";
 import React from "react";
 
-import { generateHiddenArgTypes } from "../../../internalUtils/generateHiddenArgTypes";
 import { Button } from "../../Button";
 import SidePanel from "./SidePanel";
 import { useSidePanel } from "./hooks/useSidePanel";
@@ -10,7 +9,6 @@ const meta: Meta<typeof SidePanel> = {
   title: "Components/Layout/SidePanel",
   component: SidePanel,
   argTypes: {
-    ...generateHiddenArgTypes(["handleClose"]),
     sidePanelOpen: {
       description: "Current state of the side panel `mounted` `opened` `closing` `closed`",
       control: false,
@@ -29,9 +27,16 @@ const meta: Meta<typeof SidePanel> = {
         type: { summary: "string" },
       },
     },
+    handleClose: {
+      description:
+        "Callback function to close the side panel. <br/> <br/> <b>If</b> you are not using dedicated `handleClose` function returned by `useSidePanel` hook <br/> <b>Be sure to wrap function passed in handleClose with useCallback.</b> ",
+      control: false,
+      table: { type: { summary: "() => void" } },
+    },
     position: {
       description: "Position of the side panel \n - `left` default position. \n - `right`",
-      control: false,
+      control: "radio",
+      options: ["left", "right"],
       table: {
         type: { summary: "left | right" },
         defaultValue: { summary: "left" },

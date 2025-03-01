@@ -1,8 +1,7 @@
+import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
 import { InputProps } from "../_inputsComponents/input-types";
 
 export type ColorValue = HslValue | RgbValue | string;
-
-export type ColorPickerOnChange<TValue> = (event: { target: { name: string; value: TValue } }) => void;
 
 type ColorPickerClassNames = {
   container?: string;
@@ -11,6 +10,8 @@ type ColorPickerClassNames = {
   error?: string;
   popup?: string;
 };
+
+export type ColorPickerChangeEvent = MInputChangeEvent<ColorValue>;
 
 export type ColorPickerProps<TReturnedColor extends ReturnedColor> = InputProps & {
   /** Default color value for the picker. */
@@ -29,7 +30,7 @@ export type ColorPickerProps<TReturnedColor extends ReturnedColor> = InputProps 
   returnedColorType?: TReturnedColor;
 
   /** Callback triggered when color changes. */
-  onChange?: ColorPickerOnChange<ColorValue>;
+  onChange?: (event: ColorPickerChangeEvent, value: ColorValue) => void;
 
   /** Callback triggered when the color picker closes. */
   onClose?: (value: ColorValue | undefined) => void;

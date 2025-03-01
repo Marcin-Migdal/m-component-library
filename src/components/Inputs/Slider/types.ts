@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
 import { InputProps } from "../_inputsComponents/input-types";
 
 export type ValuePreviewType = "top-dynamic" | "bottom-dynamic" | "top-static" | "bottom-static" | "none";
@@ -10,6 +11,10 @@ type SliderClassNames = {
   error?: string;
   valuePreview?: string;
 };
+
+export type SliderChangeEvent = Omit<ChangeEvent<HTMLInputElement>, "target"> & {
+  target: Omit<ChangeEvent<HTMLInputElement>["target"], "value">;
+} & MInputChangeEvent<number>;
 
 export type SliderProps = InputProps & {
   /** The current value of the `Slider`. Can be controlled externally. */
@@ -28,10 +33,10 @@ export type SliderProps = InputProps & {
   defaultValue?: number;
 
   /** Callback fired when the `Slider` value changes. */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>, value: number) => void;
+  onChange?: (event: SliderChangeEvent, value: number) => void;
 
   /** Callback fired when the `Slider` value changes and set delay passed. <br/> Delay is controlled by `debounceDelay` props.*/
-  onDebounce?: (event: ChangeEvent<HTMLInputElement>, value: number) => void;
+  onDebounce?: (event: SliderChangeEvent, value: number) => void;
 
   /** debounceDelay controls delay, after which onDebounce is called when `Slider` value changes. */
   debounceDelay?: number;
