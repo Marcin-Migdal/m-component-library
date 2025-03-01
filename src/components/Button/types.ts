@@ -7,6 +7,18 @@ export enum ButtonIconPosition {
   LEFT = "left",
   RIGHT = "right",
 }
+
+export enum ButtonWidth {
+  FIT = "fit",
+  STRETCH = "stretch",
+}
+
+export enum ButtonAlignContent {
+  START = "start",
+  CENTER = "center",
+  END = "end",
+}
+
 export type VariantType = "outlined" | "full" | "text" | "neon";
 
 type ButtonBaseProps = {
@@ -78,6 +90,14 @@ type ButtonBaseProps = {
    * - `large`
    * @default ComponentSize.MEDIUM */
   size?: `${ComponentSize}`;
+
+  /** Button width.
+   * @default undefined */
+  width?: ButtonWidth;
+
+  /** How button aligns its content
+   * @default undefined */
+  alignContent?: ButtonAlignContent;
 };
 
 type UndefinedBtnProps = {

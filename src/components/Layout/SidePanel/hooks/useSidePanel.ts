@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { SidePanelOpenState, UseSidePanelArgs, UseSidePanelResult } from "../types";
 
@@ -7,7 +7,11 @@ export const useSidePanel = (props: UseSidePanelArgs = {}): UseSidePanelResult =
 
   const [sidePanelOpen, setSidePanelOpen] = useState<SidePanelOpenState>(SidePanelOpenState.CLOSED);
 
-  const handleOpen = () => {
+  const handleOpen = useCallback(() => {
+    if (sidePanelOpen !== SidePanelOpenState.CLOSED) {
+      return;
+    }
+
     onOpen && onOpen();
 
     setSidePanelOpen(SidePanelOpenState.MOUNTED);
@@ -17,9 +21,13 @@ export const useSidePanel = (props: UseSidePanelArgs = {}): UseSidePanelResult =
 
       setSidePanelOpen(SidePanelOpenState.OPENED);
     }, 0);
-  };
+  }, [sidePanelOpen]);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
+    if (sidePanelOpen !== SidePanelOpenState.OPENED) {
+      return;
+    }
+
     setSidePanelOpen(SidePanelOpenState.CLOSING);
 
     setTimeout(() => {
@@ -27,7 +35,7 @@ export const useSidePanel = (props: UseSidePanelArgs = {}): UseSidePanelResult =
 
       setSidePanelOpen(SidePanelOpenState.CLOSED);
     }, 200);
-  };
+  }, [sidePanelOpen]);
 
   return [handleOpen, { sidePanelOpen, handleClose }];
 };

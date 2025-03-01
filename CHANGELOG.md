@@ -1,5 +1,6 @@
 ### Release date ??.??.???? - Release ?.?.?
 
+- [[#164]](https://github.com/Marcin-Migdal/m-component-library/issues/164) **[Minor]** Third Hot-Fix patch needed after discovering series of bugs and bad behaviors in Flaner
 - [[#160]](https://github.com/Marcin-Migdal/m-component-library/issues/160) **[PATCH]** Add verify ci/cd workflow, delete es lint workflow
 - [[#162]](https://github.com/Marcin-Migdal/m-component-library/issues/162) **[PATCH]** Fix rollup build Circular dependencies
 

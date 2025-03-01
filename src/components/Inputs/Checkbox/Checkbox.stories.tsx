@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { simpleInputArgTypes } from "../../../internalUtils/inputArgTypes";
+import { inputArgTypes } from "../../../internalUtils/inputArgTypes";
 import Checkbox from "./Checkbox";
 
 const meta: Meta<typeof Checkbox> = {
   title: "Components/Inputs/Checkbox",
   component: Checkbox,
-  argTypes: simpleInputArgTypes,
+  argTypes: inputArgTypes,
 };
 
 export default meta;

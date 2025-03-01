@@ -39,7 +39,7 @@ const defaultComponents: DropdownComponents<any> = {
   IndicatorIcon: (props) => <FontAwesomeIcon {...props} icon="angle-down" />,
   Options: (props) => <DropdownOptionsComponent {...props} />,
   Option: (props) => <DropdownOptionComponent key={props.option[props.valueKey]} {...props} />,
-  EmptyMessage: (props) => <li {...props}>{props.noOptionsMessage}</li>,
+  EmptyMessage: ({ noOptionsMessage, ...otherProps }) => <li {...otherProps}>{noOptionsMessage}</li>,
 };
 
 /** Dropdown is a customizable select component that allows users to choose from a list of options.
@@ -72,7 +72,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
   size = defaultInputPropsValue.size,
   disabled = defaultInputPropsValue.disabled,
   readOnly = defaultInputPropsValue.readOnly,
-  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+  marginBottomType = defaultInputPropsValue.marginBottomType,
   floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 }: DropdownProps<T>) {
   const controlContainerRef = useRef<HTMLInputElement>(null);
@@ -163,8 +163,9 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
         ...e,
         target: {
           ...e.target,
+          name: name || "",
           value: selectedOption,
-          name: name,
+          checked: false,
           type: "dropdown",
         },
       };
@@ -179,9 +180,15 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
     setIsFocused(false);
 
     if (onClear) {
-      const _e: DropdownClearEvent<T> = {
+      const _e: DropdownClearEvent = {
         ...e,
-        target: { ...e.target, value: undefined, name: name, type: "dropdown" },
+        target: {
+          ...e.target,
+          name: name || "",
+          value: undefined,
+          checked: false,
+          type: "dropdown",
+        },
       };
 
       onClear(_e, undefined);
@@ -217,7 +224,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
       "read-only": readOnly,
       filtrable: filter,
     }),
-    style: { ...getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth) },
+    style: { ...getInputStyle(labelType, label, labelWidth, floatingInputWidth) },
   };
 
   const clearIconProps: ClearIconProps = {
@@ -258,8 +265,9 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
       className={classNames("m-dropdown-container", classNamesObj?.container)}
       size={size}
       error={error}
-      disableDefaultMargin={disableDefaultMargin}
       ref={controlContainerRef}
+      marginBottomType={marginBottomType}
+      labelType={labelType}
     >
       {/* input placeholder, displays selected value, also work as a filter input */}
 
@@ -282,7 +290,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
       {/* input icons */}
       {error ? (
         <InputError
-          style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
+          style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
           className={classNames("dropdown-error", classNamesObj?.error)}
           error={error}
         />

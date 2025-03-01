@@ -1,11 +1,3 @@
-/** Defines label positions for simple input components. */
-export enum SimpleInputLabel {
-  /** Label positioned to the left of the input. */
-  LEFT = "left",
-  /** Label positioned to the right of the input. */
-  RIGHT = "right",
-}
-
 /** Defines label positions for input components. */
 export enum InputLabel {
   /** Label positioned to the left of the input. */
@@ -25,6 +17,9 @@ export enum ComponentSize {
   /** Large-sized. */
   LARGE = "large",
 }
+
+/** Margin bottom type for inputs */
+export type MarginBottomType = "dynamic" | "large" | "small" | "none";
 
 /** Defines percentage-based widths for floating input. `15-100`*/
 export type FloatingInputWidth = LabelPercentageWidth | 91 | 92 | 93 | 94 | 95 | 96 | 97 | 98 | 99 | 100;

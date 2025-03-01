@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { OpenStatus, useOpen } from "../../../hooks";
+import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
 import { InputLabel } from "../../global-types";
 import { ColorPreviewSquare } from "../../Miscellaneous/ColorPreviewSquare";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
@@ -34,7 +35,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
   size = defaultInputPropsValue.size,
   disabled = defaultInputPropsValue.disabled,
   readOnly = defaultInputPropsValue.readOnly,
-  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+  marginBottomType = defaultInputPropsValue.marginBottomType,
   floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 
   returnedColorType = "rgb" as TReturnedColor,
@@ -47,8 +48,6 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
   const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
 
   const [value, setValue] = useState<RgbValue | undefined>(defaultValue ? valueToRgb(defaultValue) : undefined);
-
-  const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const hexValue = value ? rgbToHex(value.r, value.g, value.b) : "#ffffff";
 
@@ -95,34 +94,44 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
       return;
     }
 
+    const changeEventTarget: Omit<MInputChangeEvent["target"], "value"> = {
+      name: name || "",
+      checked: false,
+      type: "color",
+    };
+
     switch (returnedColorType) {
       case "rgb":
-        return onChange({
-          target: { name: name || "color-picker", value: newValue },
-        });
+        return onChange(
+          {
+            target: {
+              ...changeEventTarget,
+              value: newValue,
+            },
+          },
+          newValue
+        );
       case "hsl":
-        return onChange({
-          target: {
-            name: name || "color-picker",
-            value: rgbToHsl(newValue.r, newValue.g, newValue.b),
+        return onChange(
+          {
+            target: {
+              ...changeEventTarget,
+              value: rgbToHsl(newValue.r, newValue.g, newValue.b),
+            },
           },
-        });
+          newValue
+        );
       case "hex":
-        return onChange({
-          target: {
-            name: name || "color-picker",
-            value: rgbToHex(newValue.r, newValue.g, newValue.b),
+        return onChange(
+          {
+            target: {
+              ...changeEventTarget,
+              value: rgbToHex(newValue.r, newValue.g, newValue.b),
+            },
           },
-        });
+          newValue
+        );
     }
-  };
-
-  const handleFocus = () => {
-    setIsFocused(true);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
   };
 
   return (
@@ -132,12 +141,13 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
         className={classNames("m-color-picker-container", classNamesObj?.container)}
         size={size}
         error={error}
-        disableDefaultMargin={disableDefaultMargin}
+        marginBottomType={marginBottomType}
+        labelType={labelType}
       >
         <div
           className="m-color-preview-container"
           ref={inputContainerRef}
-          style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
+          style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
         >
           <ColorPreviewSquare color={hexValue} disabled={disabled} onClick={handleOpen} />
 
@@ -146,8 +156,6 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
               "popup-open": openStatus !== OpenStatus.CLOSED,
             })}
             readOnly
-            onBlur={handleBlur}
-            onFocus={handleFocus}
             onClick={() => !disabled && handleOpen()}
             value={hexValue}
             placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
@@ -164,13 +172,12 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
             labelType={labelType}
             className={classNames("m-color-picker-label", classNamesObj?.label)}
             labelWidth={labelWidth}
-            isFocused={isFocused}
-            isFilled={!!value}
+            forceFloating={labelType === InputLabel.FLOATING}
           />
         )}
         {error && (
           <InputError
-            style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
+            style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
             className={classNames("color-picker-error", classNamesObj?.error)}
             error={error}
           />

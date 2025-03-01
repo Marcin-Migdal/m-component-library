@@ -9,8 +9,12 @@
   height: var(--input-height);
   width: 100%;
 
-  &.bottom-margin {
-    margin-bottom: var(--input-margin-bottom);
+  &.margin-bottom-small {
+    margin-bottom: var(--small-input-margin-bottom);
+  }
+
+  &.margin-bottom-large {
+    margin-bottom: var(--large-input-margin-bottom);
   }
 
   &.small {

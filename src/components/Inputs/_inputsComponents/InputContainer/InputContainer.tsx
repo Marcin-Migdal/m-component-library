@@ -1,12 +1,13 @@
 import classNames from "classnames";
-import React, { CSSProperties, forwardRef, PropsWithChildren } from "react";
+import React, { CSSProperties, forwardRef, PropsWithChildren, useMemo } from "react";
 
-import { ComponentSize } from "../../../global-types";
+import { ComponentSize, InputLabel, MarginBottomType } from "../../../global-types";
 
 import "./InputContainer.scss";
 
 type InputContainerProps = {
-  disableDefaultMargin: boolean;
+  marginBottomType: MarginBottomType;
+  labelType: `${InputLabel}`;
   disabled: boolean;
   className: string;
   size: `${ComponentSize}`;
@@ -22,19 +23,30 @@ function InputContainer(
     error,
     style = {},
     disabled,
-    disableDefaultMargin,
+    marginBottomType,
+    labelType,
   }: PropsWithChildren<InputContainerProps>,
   ref?: React.ForwardedRef<HTMLDivElement>
 ) {
+  const marginBottomClassName = useMemo(() => {
+    if (marginBottomType === "none") {
+      return undefined;
+    }
+
+    let marginBottomClassNameSuffix = marginBottomType;
+
+    if (marginBottomType === "dynamic") {
+      marginBottomClassNameSuffix = labelType === "floating" ? "large" : "small";
+    }
+
+    return `margin-bottom-${marginBottomClassNameSuffix}`;
+  }, [marginBottomType, labelType]);
+
   return (
     <div
       ref={ref}
       style={style}
-      className={classNames("m-input-container", className, size, {
-        error,
-        disabled,
-        "bottom-margin": !disableDefaultMargin,
-      })}
+      className={classNames("m-input-container", className, size, marginBottomClassName, { error, disabled })}
     >
       {children}
     </div>

@@ -11,19 +11,19 @@ import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/St
 import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { DatePickerPopup } from "./DatePickerPopup/DatePickerPopup";
-import { DateFieldProps, DateValue, InternalDateValue, SingleDate } from "./types";
+import { DateFieldProps, DateValue, ParsableDateValue, ParsableSingleDate } from "./types";
 
 import "./Datefield.theme.scss";
 
 const getDateFieldValue = <TRange extends boolean>(
   range: TRange,
-  value: DateValue<TRange> | undefined
-): InternalDateValue<TRange> | undefined => {
+  value: ParsableDateValue<TRange> | undefined
+): DateValue<TRange> | undefined => {
   if (!value) {
     return undefined;
   }
 
-  const convertToDateType = (externalDate: SingleDate | undefined): Date | undefined => {
+  const convertToDateType = (externalDate: ParsableSingleDate | undefined): Date | undefined => {
     if (!externalDate) {
       return undefined;
     }
@@ -35,15 +35,15 @@ const getDateFieldValue = <TRange extends boolean>(
   if (range === true && Array.isArray(value)) {
     const [startDate, endDate] = value;
 
-    return [convertToDateType(startDate), convertToDateType(endDate)] as InternalDateValue<TRange>;
+    return [convertToDateType(startDate), convertToDateType(endDate)] as DateValue<TRange>;
   }
 
-  return convertToDateType(value as SingleDate) as InternalDateValue<TRange>;
+  return convertToDateType(value as ParsableSingleDate) as DateValue<TRange>;
 };
 
 /** DateField is an input component that allows users to select a single date or a date range.
  * It supports localization, custom styling, and event handlers for managing user interactions. */
-export const DateField = <TRange extends boolean>(props: DateFieldProps<TRange>) => {
+export const DateField = <TRange extends boolean = false>(props: DateFieldProps<TRange>) => {
   const {
     defaultValue,
     value: externalValue = undefined,
@@ -51,6 +51,7 @@ export const DateField = <TRange extends boolean>(props: DateFieldProps<TRange>)
     onFocus,
     onClick,
     onClose,
+    name,
     placeholder = undefined,
     label = undefined,
     error = undefined,
@@ -63,7 +64,7 @@ export const DateField = <TRange extends boolean>(props: DateFieldProps<TRange>)
     labelWidth = defaultInputPropsValue.labelWidth,
     size = defaultInputPropsValue.size,
     disabled = defaultInputPropsValue.disabled,
-    disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+    marginBottomType = defaultInputPropsValue.marginBottomType,
     floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 
     ...otherProps
@@ -73,7 +74,7 @@ export const DateField = <TRange extends boolean>(props: DateFieldProps<TRange>)
 
   const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
 
-  const [internalValue, setInternalValue] = useState<InternalDateValue<TRange> | undefined>(
+  const [internalValue, setInternalValue] = useState<DateValue<TRange> | undefined>(
     getDateFieldValue(range, defaultValue)
   );
 
@@ -83,25 +84,52 @@ export const DateField = <TRange extends boolean>(props: DateFieldProps<TRange>)
 
   const value = getDateFieldValue(range, externalValue !== undefined ? externalValue : internalValue);
 
-  const handleClose = () => {
-    onClose && onClose(value);
+  const handleClose = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent> | MouseEvent | KeyboardEvent,
+    selectedDate: DateValue<TRange> | undefined = value
+  ) => {
+    onClose &&
+      onClose(
+        {
+          ...event,
+          target: {
+            ...(event.target as HTMLButtonElement),
+            name: name || "",
+            value: selectedDate,
+            checked: false,
+            type: "date",
+          },
+        },
+        value
+      );
 
     handlePopupClose();
   };
 
-  const handleChange = (selectedDate: InternalDateValue<TRange>): void => {
-    onChange && onChange(selectedDate);
+  const handleChange = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    selectedDate: DateValue<TRange>
+  ): void => {
     setInternalValue(selectedDate);
 
-    if (range && Array.isArray(selectedDate)) {
-      if (selectedDate[1]) {
-        handleClose();
-      }
+    if (!range || (range && selectedDate[1] !== undefined)) {
+      onChange &&
+        onChange(
+          {
+            ...event,
+            target: {
+              ...event.target,
+              name: name || "",
+              value: selectedDate,
+              checked: false,
+              type: "date",
+            },
+          },
+          selectedDate
+        );
 
-      return;
+      handleClose(event);
     }
-
-    handleClose();
   };
 
   const handleFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
@@ -127,7 +155,8 @@ export const DateField = <TRange extends boolean>(props: DateFieldProps<TRange>)
       className={classNames("m-datefield-container", classNamesObj?.container)}
       size={size}
       error={error}
-      disableDefaultMargin={disableDefaultMargin}
+      marginBottomType={marginBottomType}
+      labelType={labelType}
     >
       <StandAloneTextfield
         id={uniqueDatefieldId}
@@ -135,7 +164,7 @@ export const DateField = <TRange extends boolean>(props: DateFieldProps<TRange>)
         onFocus={handleFocus}
         onClick={handleClick}
         placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
-        style={getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth)}
+        style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
         disabled={disabled}
         className={classNamesObj?.input}
         value={
@@ -159,7 +188,7 @@ export const DateField = <TRange extends boolean>(props: DateFieldProps<TRange>)
       )}
       {error && (
         <InputError
-          style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
+          style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
           className={classNames("datefield-error", classNamesObj?.error)}
           error={error}
         />

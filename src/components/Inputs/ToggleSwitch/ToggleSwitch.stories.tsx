@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
 
-import { simpleInputArgTypes } from "../../../internalUtils/inputArgTypes";
+import { inputArgTypes } from "../../../internalUtils/inputArgTypes";
 import ToggleSwitch from "./ToggleSwitch";
 
 const meta: Meta<typeof ToggleSwitch> = {
   title: "Components/Inputs/ToggleSwitch",
   component: ToggleSwitch,
-  argTypes: simpleInputArgTypes,
+  argTypes: inputArgTypes,
 };
 
 export default meta;

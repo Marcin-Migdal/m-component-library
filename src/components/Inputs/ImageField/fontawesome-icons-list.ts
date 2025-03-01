@@ -679,26 +679,6 @@ export const fontAwesomeIconsList = [
     value: "battery",
   },
   {
-    label: "Battery0",
-    value: "battery0",
-  },
-  {
-    label: "Battery2",
-    value: "battery2",
-  },
-  {
-    label: "Battery3",
-    value: "battery3",
-  },
-  {
-    label: "Battery4",
-    value: "battery4",
-  },
-  {
-    label: "Battery5",
-    value: "battery5",
-  },
-  {
     label: "Battery Car",
     value: "battery-car",
   },
@@ -2607,14 +2587,6 @@ export const fontAwesomeIconsList = [
     value: "fan",
   },
   {
-    label: "Fast Backward",
-    value: "fast-backward",
-  },
-  {
-    label: "Fast Forward",
-    value: "fast-forward",
-  },
-  {
     label: "Faucet",
     value: "faucet",
   },
@@ -3691,18 +3663,6 @@ export const fontAwesomeIconsList = [
     value: "hourglass",
   },
   {
-    label: "Hourglass1",
-    value: "hourglass1",
-  },
-  {
-    label: "Hourglass2",
-    value: "hourglass2",
-  },
-  {
-    label: "Hourglass3",
-    value: "hourglass3",
-  },
-  {
     label: "Hourglass Empty",
     value: "hourglass-empty",
   },
@@ -4173,10 +4133,6 @@ export const fontAwesomeIconsList = [
   {
     label: "List",
     value: "list",
-  },
-  {
-    label: "List12",
-    value: "list12",
   },
   {
     label: "List Alt",
@@ -6035,10 +5991,6 @@ export const fontAwesomeIconsList = [
     value: "signal",
   },
   {
-    label: "Signal5",
-    value: "signal5",
-  },
-  {
     label: "Signal Perfect",
     value: "signal-perfect",
   },
@@ -6743,26 +6695,6 @@ export const fontAwesomeIconsList = [
     value: "television",
   },
   {
-    label: "Temperature0",
-    value: "temperature0",
-  },
-  {
-    label: "Temperature1",
-    value: "temperature1",
-  },
-  {
-    label: "Temperature2",
-    value: "temperature2",
-  },
-  {
-    label: "Temperature3",
-    value: "temperature3",
-  },
-  {
-    label: "Temperature4",
-    value: "temperature4",
-  },
-  {
     label: "Temperature Arrow Down",
     value: "temperature-arrow-down",
   },
@@ -6873,26 +6805,6 @@ export const fontAwesomeIconsList = [
   {
     label: "Thermometer",
     value: "thermometer",
-  },
-  {
-    label: "Thermometer0",
-    value: "thermometer0",
-  },
-  {
-    label: "Thermometer1",
-    value: "thermometer1",
-  },
-  {
-    label: "Thermometer2",
-    value: "thermometer2",
-  },
-  {
-    label: "Thermometer3",
-    value: "thermometer3",
-  },
-  {
-    label: "Thermometer4",
-    value: "thermometer4",
   },
   {
     label: "Thermometer Empty",
@@ -7735,10 +7647,6 @@ export const fontAwesomeIconsList = [
     value: "wifi",
   },
   {
-    label: "Wifi3",
-    value: "wifi3",
-  },
-  {
     label: "Wifi Strong",
     value: "wifi-strong",
   },
@@ -7841,9 +7749,5 @@ export const fontAwesomeIconsList = [
   {
     label: "Zap",
     value: "zap",
-  },
-  {
-    label: "S",
-    value: "s",
   },
 ] as unknown as Icon[];

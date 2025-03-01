@@ -4,7 +4,7 @@ import { getCssPropertyAsNumber } from "../../../../../utils";
 import { FloatingInputWidth, InputLabel, LabelPercentageWidth } from "../../../../global-types";
 
 export const getInputsErrorStyle = (
-  labelType: InputLabel,
+  labelType: `${InputLabel}`,
   labelWidth: LabelPercentageWidth,
   floatingInputWidth: FloatingInputWidth
 ): CSSProperties => {

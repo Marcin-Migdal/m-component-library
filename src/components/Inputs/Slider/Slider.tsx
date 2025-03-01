@@ -8,7 +8,7 @@ import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/get
 import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { getSliderValueDynamicStyle } from "./getSliderValueDynamicStyle";
-import { SliderProps } from "./types";
+import { SliderChangeEvent, SliderProps } from "./types";
 
 import "./Slider.scss";
 
@@ -33,7 +33,7 @@ const Slider = ({
   size = defaultInputPropsValue.size,
   disabled = defaultInputPropsValue.disabled,
   readOnly = defaultInputPropsValue.readOnly,
-  disableDefaultMargin = defaultInputPropsValue.disableDefaultMargin,
+  marginBottomType = defaultInputPropsValue.marginBottomType,
   floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 }: SliderProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -45,7 +45,7 @@ const Slider = ({
   const controlled = externalValue !== undefined;
   const value = controlled ? externalValue : internalValue;
 
-  let inputStyle = getInputStyle(labelType as InputLabel, label, labelWidth, floatingInputWidth);
+  let inputStyle = getInputStyle(labelType, label, labelWidth, floatingInputWidth);
 
   const [handleDebounce] = useDebounceFunction(onDebounce, debounceDelay);
 
@@ -81,16 +81,27 @@ const Slider = ({
       return;
     }
 
-    const newValue = parseFloat(event.target.value);
+    const parsedValue = parseFloat(event.target.value);
 
-    handleDebounce(event, newValue);
+    const sliderChangeEvent: SliderChangeEvent = {
+      ...event,
+      target: {
+        ...event.target,
+        value: parsedValue,
+        name: name || "",
+        type: event.target.type,
+        checked: false,
+      },
+    };
+
+    handleDebounce(sliderChangeEvent, parsedValue);
 
     if (onChange) {
-      onChange(event, newValue);
+      onChange(sliderChangeEvent, parsedValue);
     }
 
     if (!controlled) {
-      setValue(newValue);
+      setValue(parsedValue);
     }
   };
 
@@ -104,7 +115,8 @@ const Slider = ({
         // @ts-expect-error ts(2353) typescript do not recognize css variables
         "--slider-value": value,
       }}
-      disableDefaultMargin={disableDefaultMargin}
+      marginBottomType={marginBottomType}
+      labelType={labelType}
     >
       <input
         readOnly={readOnly}
@@ -141,7 +153,7 @@ const Slider = ({
       )}
       {error && (
         <InputError
-          style={getInputsErrorStyle(labelType as InputLabel, labelWidth, floatingInputWidth)}
+          style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
           className={classNames("textfield-error", classNamesObj?.error)}
           error={error}
         />
