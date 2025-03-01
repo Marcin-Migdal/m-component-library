@@ -1,4 +1,6 @@
-### Release date ??.??.???? - Release ?.?.?
+### Release date ??.??.?? - Release ?.?.?
+
+### Release date 01.03.2025 - Release 2.1.0
 
 - [[#164]](https://github.com/Marcin-Migdal/m-component-library/issues/164) **[Minor]** Third Hot-Fix patch needed after discovering series of bugs and bad behaviors in Flaner
 - [[#160]](https://github.com/Marcin-Migdal/m-component-library/issues/160) **[PATCH]** Add verify ci/cd workflow, delete es lint workflow
