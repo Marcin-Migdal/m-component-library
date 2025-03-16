@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, { CSSProperties } from "react";
 
 import { rgbToHex, valueToRgb } from "../../Inputs/ColorPicker/helpers";
@@ -10,7 +11,7 @@ import "./ColorPreviewSquare.scss";
  * ColorPreviewSquare component for displaying a color preview square.
  * Supports click event handler.
  */
-const ColorPreviewSquare = ({ onClick, disabled, color }: ColorPreviewSquareProps) => {
+const ColorPreviewSquare = ({ onClick, disabled = false, color, className, style }: ColorPreviewSquareProps) => {
   const getBackgroundColorCssProperty = (
     backgroundColor: RgbValue | HslValue | CSSProperties["backgroundColor"] | undefined
   ) => {
@@ -29,8 +30,13 @@ const ColorPreviewSquare = ({ onClick, disabled, color }: ColorPreviewSquareProp
 
   return (
     <div
-      className="m-color-preview-square"
-      style={{ backgroundColor: getBackgroundColorCssProperty(color) }}
+      className={classNames("m-color-preview-square", className, {
+        clickable: onClick && !disabled,
+      })}
+      style={{
+        backgroundColor: getBackgroundColorCssProperty(color),
+        ...style,
+      }}
       onClick={() => onClick && !disabled && onClick()}
     />
   );

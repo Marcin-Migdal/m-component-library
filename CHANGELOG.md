@@ -1,6 +1,7 @@
 ### Release date ??.??.?? - Release ?.?.?
 
 - [[#173]](https://github.com/Marcin-Migdal/m-component-library/issues/173) **[PATCH]** Fix Breadcrumb covered label, implement responsiveness and tooltip on clipped crumb text,
+- [[#174]](https://github.com/Marcin-Migdal/m-component-library/issues/174) **[PATCH]** Add IconPreviewSquare component, fix alert problem with displaying inputs box-shadow
 
 ### Release date 01.03.2025 - Release 2.1.0
 

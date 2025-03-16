@@ -10,4 +10,12 @@ export type ColorPreviewSquareProps = {
 
   /** Color of the square. */
   color: RgbValue | HslValue | RgbValue | CSSProperties["backgroundColor"];
+
+  /** Additional CSS class for the ColorPreviewSquare.
+   * @default undefined */
+  className?: string;
+
+  /** Additional inline styles for the ColorPreviewSquare.
+   * @default {} */
+  style?: CSSProperties;
 };
