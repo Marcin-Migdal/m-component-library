@@ -3,14 +3,32 @@
 .m-breadcrumb {
   display: flex;
   align-items: center;
+  max-width: 100%;
 
   .m-crumb {
+    position: relative;
+
     display: flex;
     align-items: center;
+
+    flex-shrink: 1;
+    min-width: 0;
+
     cursor: pointer;
+
+    &:last-child,
+    .m-crumb-icon {
+      flex-shrink: 0;
+    }
 
     &.disabled {
       cursor: default;
+    }
+
+    .m-crumb-label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
@@ -32,6 +50,12 @@
 
       transition: background-color var(--transition-duration-normal);
 
+      .m-crumb-icon,
+      .m-crumb-label {
+        position: relative;
+        z-index: 2;
+      }
+
       &:not(:first-child) {
         margin-left: var(--pseudo-element-size);
 
@@ -42,6 +66,7 @@
           right: 100%;
           width: 0;
           height: 0;
+          z-index: 1;
 
           border-style: solid;
           border-width: var(--pseudo-element-size) var(--pseudo-element-size) var(--pseudo-element-size) 0;
@@ -58,6 +83,7 @@
           content: "";
           position: absolute;
           left: 100%;
+          z-index: 1;
 
           width: var(--square-size);
           height: var(--square-size);

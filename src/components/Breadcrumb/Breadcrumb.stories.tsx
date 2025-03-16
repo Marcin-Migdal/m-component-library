@@ -1,13 +1,16 @@
+import React from "react";
+
 import { faFileAlt, faFolder, faHome } from "@fortawesome/free-solid-svg-icons";
 import { Meta, StoryObj } from "@storybook/react";
 import { generateHiddenArgTypes } from "../../internalUtils/generateHiddenArgTypes";
 import { Breadcrumb } from "./Breadcrumb";
-import { BreadcrumbProps, Crumb } from "./types";
+import { BreadcrumbProps, CrumbType } from "./types";
 
-export const crumbs: Crumb[] = [
+export const crumbs: CrumbType[] = [
   { id: 1, label: "Home", path: "/", icon: faHome },
   { id: 2, label: "Folder", path: "/folder", icon: faFolder },
-  { id: 3, label: "File", path: "/folder/file", icon: faFileAlt },
+  { id: 3, label: "Sub Folder", path: "/folder/subFolder", icon: faFolder },
+  { id: 4, label: "File", path: "/folder/subFolder/file", icon: faFileAlt },
 ];
 
 const meta: Meta<BreadcrumbProps> = {
@@ -26,6 +29,13 @@ const meta: Meta<BreadcrumbProps> = {
       },
     },
   },
+  decorators: [
+    (Story) => (
+      <div>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default meta;
