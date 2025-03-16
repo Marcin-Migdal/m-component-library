@@ -20,7 +20,7 @@ function Form<T extends FormikValues>({
   onExternalErrorChange,
   ...otherProps
 }: FormProps<T>) {
-  const formik = useFormik<T>({ initialValues: initialValues, onSubmit: onSubmit, validationSchema: validationSchema });
+  const formik = useFormik<T>({ initialValues, onSubmit, validationSchema });
 
   const _errors = useMemo(() => getFilteredErrors<T>(formik.errors, formik.touched), [formik.errors, formik.touched]);
 

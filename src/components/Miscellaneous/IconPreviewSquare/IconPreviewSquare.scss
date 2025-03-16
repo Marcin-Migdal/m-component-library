@@ -1,5 +1,9 @@
-.m-color-preview-square {
+.m-icon-preview-square {
   --square-size: 2rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   height: var(--square-size);
   aspect-ratio: 1 / 1;

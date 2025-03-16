@@ -4,6 +4,7 @@ import classNames from "classnames";
 import React, { useState } from "react";
 
 import { InputLabel } from "../../global-types";
+import { IconPreviewSquare } from "../../Miscellaneous/IconPreviewSquare";
 import { Alert, AlertOpenState } from "../../Popups";
 import { useAlert } from "../../Popups/Alerts/hooks/useAlert";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
@@ -11,9 +12,6 @@ import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/get
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
 import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
-import { RgbValue, valueToRgb } from "../ColorPicker";
-import { getIconColor } from "./helpers/getIconColor";
-import { getIconPreviewBackgroundColor } from "./helpers/getIconPreviewBackgroundColor";
 import { IconFieldPopupContent } from "./IconFieldPopup/IconFieldPopup";
 import { IconFieldProps } from "./types";
 
@@ -125,8 +123,6 @@ const IconField = ({
       );
   };
 
-  const rgbIconColor: RgbValue | undefined = iconColor ? valueToRgb(iconColor) : undefined;
-
   return (
     <>
       <InputContainer
@@ -141,27 +137,9 @@ const IconField = ({
           className="m-icon-preview-container"
           style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
         >
-          <div
-            className="m-icon-preview-square"
-            style={{
-              backgroundColor: rgbIconColor
-                ? getIconPreviewBackgroundColor(rgbIconColor)
-                : "var(--input-background-color)",
-            }}
-          >
-            {value && (
-              <>
-                <FontAwesomeIcon
-                  icon={value as IconName}
-                  className="m-icon-preview"
-                  style={{
-                    color: rgbIconColor ? getIconColor(rgbIconColor) : "var(--input-color)",
-                  }}
-                />
-                <FontAwesomeIcon icon="x" onClick={clearValue} className="m-clear-icon" />
-              </>
-            )}
-          </div>
+          <IconPreviewSquare icon={value} color={iconColor}>
+            <FontAwesomeIcon icon="x" onClick={clearValue} className="m-clear-icon" />
+          </IconPreviewSquare>
 
           <StandAloneTextfield
             className={classNames("m-icon-preview", classNamesObj?.input)}

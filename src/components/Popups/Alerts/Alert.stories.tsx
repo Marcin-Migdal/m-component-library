@@ -2,6 +2,7 @@ import { Meta, StoryObj } from "@storybook/react/*";
 import React from "react";
 
 import { Button } from "../../Button";
+import { Textfield } from "../../Inputs";
 import Alert from "./Alert";
 import { useAlert } from "./hooks/useAlert";
 
@@ -61,7 +62,7 @@ export const Default: Story = {
             console.log("Decline Button Click"); // console log used for documentation
           }}
         >
-          Alert content
+          <Textfield />
         </Alert>
       </>
     );

@@ -15,13 +15,8 @@
   gap: var(--spacing-2);
 
   .m-icon-preview-square {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    height: var(--input-height);
-    aspect-ratio: 1 / 1;
-    border-radius: var(--radius-md);
+    --square-size: var(--input-height);
+    transition: var(--transition-duration-normal);
 
     &:hover {
       .m-icon-preview {

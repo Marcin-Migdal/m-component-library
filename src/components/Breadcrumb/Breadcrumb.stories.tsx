@@ -1,5 +1,3 @@
-import React from "react";
-
 import { faFileAlt, faFolder, faHome } from "@fortawesome/free-solid-svg-icons";
 import { Meta, StoryObj } from "@storybook/react";
 import { generateHiddenArgTypes } from "../../internalUtils/generateHiddenArgTypes";
@@ -18,7 +16,7 @@ const meta: Meta<BreadcrumbProps> = {
   component: Breadcrumb,
   args: { crumbs },
   argTypes: {
-    ...generateHiddenArgTypes(["onClick"]),
+    ...generateHiddenArgTypes(["onClick", "className"]),
     variant: {
       control: {
         type: "radio",
@@ -29,13 +27,6 @@ const meta: Meta<BreadcrumbProps> = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <div>
-        <Story />
-      </div>
-    ),
-  ],
 };
 
 export default meta;
