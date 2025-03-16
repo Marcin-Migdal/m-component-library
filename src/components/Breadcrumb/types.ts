@@ -1,6 +1,7 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { CSSProperties } from "react";
 
-export type Crumb<TData = unknown> = {
+export type CrumbType<TData = unknown> = {
   id: string | number;
   label: string;
   path: string;
@@ -11,10 +12,10 @@ export type Crumb<TData = unknown> = {
 
 export type BreadcrumbProps = {
   /** List of breadcrumbs to display. */
-  crumbs: Crumb[];
+  crumbs: CrumbType[];
 
   /** Callback function triggered when a crumb is clicked. */
-  onClick?: (crumb: Crumb) => void;
+  onClick?: (crumb: CrumbType) => void;
 
   /** Variant of the breadcrumb.
    * - `default` default variant.
@@ -26,4 +27,12 @@ export type BreadcrumbProps = {
   /** Whether the last crumb should be non-clickable (disabled).
    * @default false */
   disableLastCrumb?: boolean;
+
+  /** Additional CSS class for the breadcrumb.
+   * @default undefined */
+  className?: string;
+
+  /** Additional inline styles for the breadcrumb.
+   * @default {} */
+  style?: CSSProperties;
 };
