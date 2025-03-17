@@ -1,7 +1,11 @@
 import { Meta, StoryObj } from "@storybook/react";
+import React, { useState } from "react";
 
 import { inputArgTypes } from "../../../internalUtils/inputArgTypes";
+import { Button } from "../../Button";
+import { Alert, useAlert } from "../../Popups";
 import ColorPicker from "./ColorPicker";
+import { ColorPickerChangeEvent, ColorValue } from "./types";
 
 const meta: Meta<typeof ColorPicker> = {
   title: "Components/Inputs/ColorPicker",
@@ -44,7 +48,29 @@ export default meta;
 
 type Story = StoryObj<typeof ColorPicker>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  decorators: [
+    (Story) => {
+      const [handleOpen, alertProps] = useAlert();
+      const [color, setColor] = useState<ColorValue | null>(null);
+
+      const handleChange = (event: ColorPickerChangeEvent) => {
+        const { value } = event.target;
+
+        setColor(value);
+      };
+
+      return (
+        <div style={{ width: "300px" }}>
+          <Alert header="Color picker alert" {...alertProps}>
+            <ColorPicker value={color} onChange={handleChange} />
+          </Alert>
+          <Button text="Open" onClick={() => handleOpen()} />
+        </div>
+      );
+    },
+  ],
+};
 export const Label: Story = { args: { label: "Input label", labelType: "left" } };
 export const Size: Story = { args: { size: "small" } };
 export const Error: Story = { args: { error: "Input error" } };

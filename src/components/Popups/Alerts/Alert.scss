@@ -11,6 +11,8 @@
   border-top: var(--alert-border-radius) solid;
   border-radius: var(--alert-border-radius);
 
+  z-index: 100;
+
   &.opened {
     animation: open-alert var(--transition-duration-slow);
   }
