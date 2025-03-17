@@ -60,6 +60,7 @@ const Checkbox = ({
         },
         changedValue
       );
+
     !controlled && setInternalChecked(changedValue);
   };
 
