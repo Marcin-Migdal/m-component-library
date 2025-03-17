@@ -23,6 +23,7 @@ import "./ColorPicker.scss";
  * Provides event handlers for opening, changing, and closing the color selection.
  */
 const ColorPicker = <TReturnedColor extends ReturnedColor>({
+  value: externalValue,
   onChange,
   name = undefined,
   label = undefined,
@@ -47,9 +48,13 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
 
   const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
 
-  const [value, setValue] = useState<RgbValue | undefined>(defaultValue ? valueToRgb(defaultValue) : undefined);
+  const [internalValue, setInternalValue] = useState<RgbValue | null>(defaultValue ? valueToRgb(defaultValue) : null);
 
-  const hexValue = value ? rgbToHex(value.r, value.g, value.b) : "#ffffff";
+  const isControlled = externalValue !== undefined;
+
+  const value = isControlled ? (externalValue ? valueToRgb(externalValue) : null) : internalValue;
+
+  const hexValue = value ? rgbToHex(value.r, value.g, value.b) : undefined;
 
   const colorPreviewElement = inputContainerRef.current?.querySelector(".m-color-preview") as
     | HTMLInputElement
@@ -67,8 +72,8 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
 
   const handleClose = () => {
     if (onClose) {
-      if (value === undefined) {
-        onClose(undefined);
+      if (value === null) {
+        onClose(null);
       } else {
         switch (returnedColorType) {
           case "rgb":
@@ -88,7 +93,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
   };
 
   const handleChange = (newValue: RgbValue): void => {
-    setValue(newValue);
+    !isControlled && setInternalValue(newValue);
 
     if (!onChange) {
       return;
@@ -149,15 +154,19 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
           ref={inputContainerRef}
           style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
         >
-          <ColorPreviewSquare color={hexValue} disabled={disabled} onClick={handleOpen} />
-
+          <ColorPreviewSquare
+            style={!hexValue ? { border: "2px solid var(--box-shadow-color)" } : undefined}
+            color={hexValue}
+            disabled={disabled}
+            onClick={handleOpen}
+          />
           <StandAloneTextfield
             className={classNames("m-color-preview", classNamesObj?.input, {
               "popup-open": openStatus !== OpenStatus.CLOSED,
             })}
             readOnly
             onClick={() => !disabled && handleOpen()}
-            value={hexValue}
+            value={hexValue || ""}
             placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
             style={{
               //@ts-expect-error ts(2353) styles attribute does not expect css variable
