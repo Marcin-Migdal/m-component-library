@@ -13,9 +13,12 @@ import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { ColorPickerPopup } from "./ColorPickerPopup/ColorPickerPopup";
 import { rgbToHex, rgbToHsl, valueToRgb } from "./helpers";
-import { ColorPickerProps, ReturnedColor, RgbValue } from "./types";
+import { ColorPickerProps, ColorValue, ReturnedColor, RgbValue } from "./types";
 
 import "./ColorPicker.scss";
+
+const getValue = (externalValue: ColorValue | null): RgbValue | null =>
+  externalValue ? valueToRgb(externalValue) : null;
 
 /**
  * ColorPicker component allowing users to select and manipulate colors.
@@ -52,7 +55,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
 
   const isControlled = externalValue !== undefined;
 
-  const value = isControlled ? (externalValue ? valueToRgb(externalValue) : null) : internalValue;
+  const value = isControlled ? getValue(externalValue) : internalValue;
 
   const hexValue = value ? rgbToHex(value.r, value.g, value.b) : undefined;
 
