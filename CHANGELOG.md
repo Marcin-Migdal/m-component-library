@@ -3,6 +3,7 @@
 - [[#173]](https://github.com/Marcin-Migdal/m-component-library/issues/173) **[PATCH]** Fix Breadcrumb covered label, implement responsiveness and tooltip on clipped crumb text,
 - [[#174]](https://github.com/Marcin-Migdal/m-component-library/issues/174) **[PATCH]** Add IconPreviewSquare component, fix alert problem with displaying inputs box-shadow
 - [[#177]](https://github.com/Marcin-Migdal/m-component-library/issues/177) **[PATCH]** Add controlled state to ColorPicker component, default value of the ColorPicker component is now null
+- [[#16]](https://github.com/Marcin-Migdal/m-component-library/issues/176) **[PATCH]** Form component refactor, add useForm hook for better Form control
 
 ### Release date 01.03.2025 - Release 2.1.0
 
