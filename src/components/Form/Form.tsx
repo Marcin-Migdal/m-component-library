@@ -1,61 +1,42 @@
 import classNames from "classnames";
-import { FormikValues, useFormik } from "formik";
-import React, { useMemo } from "react";
+import { FormikValues } from "formik";
+import React from "react";
 
-import { getFilteredErrors } from "./helpers/getFilteredErrors";
-import { FormProps, SimpleChangeEvent } from "./types";
+import { FormProps } from "./types";
 
 /**
  * A flexible form component built with Formik for handling form state, validation, and submission.
  * Supports custom value changes and external error handling.
  */
-function Form<T extends FormikValues>({
-  initialValues,
-  onSubmit,
-  className,
-  children,
-  validationSchema,
-  handleValuesChange,
-  externalErrors = {},
-  onExternalErrorChange,
-  ...otherProps
-}: FormProps<T>) {
-  const formik = useFormik<T>({ initialValues, onSubmit, validationSchema });
 
-  const _errors = useMemo(() => getFilteredErrors<T>(formik.errors, formik.touched), [formik.errors, formik.touched]);
+function Form<T extends FormikValues>({ className, children, formik, ...otherProps }: FormProps<T>) {
+  const { values, errors, handleSubmit, handleChange, handleBlur } = formik;
 
-  const _handleChange = (e: SimpleChangeEvent) => {
-    const name = e.target.name;
+  const register = (name: keyof T) => {
+    return {
+      name: name,
+      value: values?.[name],
+      error: errors?.[name],
+      onChange: handleChange,
+      onBlur: handleBlur,
+    };
+  };
 
-    if (handleValuesChange) {
-      const values = handleValuesChange(e, formik);
-      formik.setValues(values, true);
-    } else {
-      formik.handleChange(e);
-    }
-
-    if (formik.touched[name]) {
-      const _touched = { ...formik.touched };
-      delete _touched[name];
-
-      formik.setTouched(_touched);
-    }
-
-    if (onExternalErrorChange && externalErrors[name]) {
-      const _externalErrors = { ...externalErrors };
-      delete _externalErrors[name];
-
-      onExternalErrorChange(_externalErrors);
-    }
+  const registerBlur = (name: keyof T) => {
+    return {
+      name: name,
+      error: errors?.[name],
+      onBlur: handleBlur,
+    };
   };
 
   return (
-    <form onSubmit={formik.handleSubmit} className={classNames("m-form", className)} {...otherProps}>
+    <form onSubmit={handleSubmit} className={classNames("m-form", className)} {...otherProps}>
       {children({
         ...formik,
-        handleChange: _handleChange,
-        errors: { ..._errors, ...externalErrors },
-        isValid: Object.keys(_errors).length === 0,
+        handleChange: handleChange,
+        register,
+        registerBlur,
       })}
     </form>
   );
