@@ -7,7 +7,7 @@ const meta: Meta<typeof ColorPreviewSquare> = {
   title: "Components/Miscellaneous/ColorPreviewSquare",
   component: ColorPreviewSquare,
   argTypes: {
-    ...generateHiddenArgTypes(["onClick", "disabled"]),
+    ...generateHiddenArgTypes(["onClick", "disabled", "className"]),
     color: {
       description: "Color of the square.",
       control: {

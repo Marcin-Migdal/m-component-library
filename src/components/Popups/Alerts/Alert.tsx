@@ -6,7 +6,6 @@ import { AlertHeader } from "./components/AlertHeader";
 import { AlertProps } from "./types";
 
 /** A component for displaying alert messages with customizable header, body, and footer actions. */
-
 function Alert<TData = undefined>({
   children,
   className,

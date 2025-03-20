@@ -12,7 +12,7 @@ import { ColorPickerCanvas } from "./ColorPickerCanvas/ColorPickerCanvas";
 import "./ColorPickerPopup.scss";
 
 type ColorPickerPopupProps = {
-  value: RgbValue | undefined;
+  value: RgbValue | null;
   onChange: (value: RgbValue) => void;
   parentElement: HTMLInputElement;
   className: string;
