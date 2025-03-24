@@ -1,3 +1,5 @@
+import { OverlayProps } from "../../Miscellaneous";
+
 export type AlertProps<TData = undefined> = {
   /** Additional CSS class for styling the alert.
    * @default undefined */
@@ -23,7 +25,10 @@ export type AlertBodyProps = {
   alertOpen: `${AlertOpenState}`;
 
   /** Function to close the alert when triggered. */
-  onClose: (event: React.MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
+  onClose: () => void;
+
+  /** Config of the overlay. */
+  overlayConfig?: OverlayProps;
 };
 
 export type AlertHeaderProps = {

@@ -3,7 +3,10 @@ export type EnableKeysDown = {
   enter?: boolean;
   space?: boolean;
 };
+
 export type OverlayProps = {
   onClick?: (event: React.MouseEvent<HTMLDivElement, globalThis.MouseEvent>) => void;
-  enableKeysDown?: EnableKeysDown;
+  onClose?: (event: React.KeyboardEvent<HTMLDivElement>) => void;
+  enableKeysDown?: EnableKeysDown | true;
+  disableCloseOnEscape?: boolean;
 };

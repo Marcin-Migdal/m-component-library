@@ -5,7 +5,13 @@ import { OverlayProps } from "./types";
 
 import "./Overlay.scss";
 
-const Overlay = ({ children, onClick, enableKeysDown }: PropsWithChildren<OverlayProps>) => {
+const Overlay = ({
+  children,
+  onClick,
+  onClose,
+  enableKeysDown = { tab: false, enter: false, space: false },
+  disableCloseOnEscape = false,
+}: PropsWithChildren<OverlayProps>) => {
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,11 +29,16 @@ const Overlay = ({ children, onClick, enableKeysDown }: PropsWithChildren<Overla
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (
-        (!enableKeysDown?.tab && event.code === "Tab") ||
-        (!enableKeysDown?.enter && event.code === "Enter") ||
-        (!enableKeysDown?.space && event.code === "Space")
+        (enableKeysDown === true && ["Tab", "Enter", "Space"].includes(event.code)) ||
+        (typeof enableKeysDown === "object" &&
+          ((!enableKeysDown.tab && event.code === "Tab") ||
+            (!enableKeysDown.enter && event.code === "Enter") ||
+            (!enableKeysDown.space && event.code === "Space")))
       ) {
-        event.preventDefault();
+        if (!overlayRef.current?.contains(event.target as Node)) {
+          overlayRef.current && overlayRef.current.focus();
+          event.preventDefault();
+        }
       }
     };
 
@@ -47,8 +58,16 @@ const Overlay = ({ children, onClick, enableKeysDown }: PropsWithChildren<Overla
     onClick && onClick(event);
   };
 
+  const onEscPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!onClose || event.code !== "Escape" || disableCloseOnEscape) {
+      return;
+    }
+
+    onClose(event);
+  };
+
   return createPortal(
-    <div tabIndex={0} ref={overlayRef} onMouseDown={handleClick} className="m-overlay">
+    <div tabIndex={-1} ref={overlayRef} onMouseDown={handleClick} onKeyDown={onEscPress} className="m-overlay">
       {children}
     </div>,
     document.body
