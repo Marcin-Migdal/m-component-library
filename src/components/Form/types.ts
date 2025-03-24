@@ -5,17 +5,21 @@ import { SimpleChangeEvent, UseFormikResult } from "./hooks/useForm";
 
 /** Represents the data passed to the `children` render prop function. */
 export type ChildrenFormikDataType<T extends FormikValues> = {
-  register: (name: keyof T) => {
-    name: keyof T;
-    value: T[keyof T];
-    error: FormikErrors<T>[keyof T];
+  register: <TName extends keyof T>(
+    name: TName
+  ) => {
+    name: TName;
+    value: T[TName];
+    error: FormikErrors<T>[TName];
     onChange: (e: SimpleChangeEvent) => void;
     onBlur: (e: SimpleChangeEvent) => void;
   };
 
-  registerBlur: (name: keyof T) => {
-    name: keyof T;
-    error: FormikErrors<T>[keyof T];
+  registerBlur: <TName extends keyof T>(
+    name: TName
+  ) => {
+    name: TName;
+    error: FormikErrors<T>[TName];
     onBlur: (e: SimpleChangeEvent) => void;
   };
 } & UseFormikResult<T>;

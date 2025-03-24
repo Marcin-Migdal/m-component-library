@@ -1,5 +1,7 @@
 ### Release date ??.??.???? - Release ?.?.?
 
+- [[#186]](https://github.com/Marcin-Migdal/m-component-library/issues/186) **[PATCH]** Fix multiple bug 186, 187, 191, export FormErrorsType, Form register and registerBlur type improvement, changeDropdown input optionMenu z-index
+
 ### Release date 20.03.2025 - Release 2.1.1
 
 - [[#173]](https://github.com/Marcin-Migdal/m-component-library/issues/173) **[PATCH]** Fix Breadcrumb covered label, implement responsiveness and tooltip on clipped crumb text,
