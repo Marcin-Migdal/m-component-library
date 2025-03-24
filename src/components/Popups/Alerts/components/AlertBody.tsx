@@ -18,7 +18,7 @@ export const AlertBody = ({
   }
 
   return (
-    <Overlay {...overlayConfig} onClick={onClose} onClose={onClose}>
+    <Overlay {...overlayConfig} onClick={onClose} onClose={onClose} disableCloseOnEscape>
       <div className={classNames("m-alert", alertOpen, className)} onClick={(e) => e.stopPropagation()}>
         {children}
       </div>

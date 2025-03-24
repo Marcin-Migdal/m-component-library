@@ -1,17 +1,18 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
+
 import { AlertOpenState, UseAlertOpenArgs, UseAlertOpenResult } from "../types";
 
 export const useAlert = <TData = undefined>(props: UseAlertOpenArgs = {}): UseAlertOpenResult<TData> => {
   const { onOpen, onClose } = props;
-  const dataRef = useRef<TData | undefined>(undefined);
 
+  const [storedData, setStoredData] = useState<TData | undefined>(undefined);
   const [alertOpen, setAlertOpen] = useState<AlertOpenState>(AlertOpenState.CLOSED);
 
-  const handleOpen = (data: TData) => {
+  const handleOpen = (data: TData | undefined) => {
     onOpen && onOpen();
 
     if (data !== undefined) {
-      dataRef.current = data;
+      setStoredData(data);
     }
 
     setAlertOpen(AlertOpenState.OPENED);
@@ -27,5 +28,5 @@ export const useAlert = <TData = undefined>(props: UseAlertOpenArgs = {}): UseAl
     }, 200);
   };
 
-  return [handleOpen, { alertOpen, handleClose, data: dataRef.current }] as UseAlertOpenResult<TData>;
+  return [handleOpen, { alertOpen, handleClose, data: storedData }] as UseAlertOpenResult<TData>;
 };

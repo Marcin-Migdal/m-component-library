@@ -23,11 +23,11 @@ const Overlay = ({
   }, []);
 
   useEffect(() => {
-    if (overlayRef.current) {
-      overlayRef.current.focus();
-    }
-
     const handleKeyDown = (event: KeyboardEvent) => {
+      if (onClose && event.code === "Escape" && !disableCloseOnEscape) {
+        onClose();
+      }
+
       if (
         (enableKeysDown === true && ["Tab", "Enter", "Space"].includes(event.code)) ||
         (typeof enableKeysDown === "object" &&
@@ -36,7 +36,6 @@ const Overlay = ({
             (!enableKeysDown.space && event.code === "Space")))
       ) {
         if (!overlayRef.current?.contains(event.target as Node)) {
-          overlayRef.current && overlayRef.current.focus();
           event.preventDefault();
         }
       }
@@ -58,16 +57,8 @@ const Overlay = ({
     onClick && onClick(event);
   };
 
-  const onEscPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (!onClose || event.code !== "Escape" || disableCloseOnEscape) {
-      return;
-    }
-
-    onClose(event);
-  };
-
   return createPortal(
-    <div tabIndex={-1} ref={overlayRef} onMouseDown={handleClick} onKeyDown={onEscPress} className="m-overlay">
+    <div ref={overlayRef} onMouseDown={handleClick} className="m-overlay">
       {children}
     </div>,
     document.body

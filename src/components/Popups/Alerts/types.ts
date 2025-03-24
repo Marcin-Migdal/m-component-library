@@ -38,6 +38,9 @@ export type AlertHeaderProps = {
 
   /** Function to close the alert when triggered. */
   onClose: () => void;
+
+  /** If set to true, alert `onClose` callback will not be called when `esc` key is pressed */
+  disableCloseOnEscape?: boolean;
 };
 
 export type AlertFooterProps<TData = undefined> = {
@@ -54,6 +57,9 @@ export type AlertFooterProps<TData = undefined> = {
 
   /** Function to execute when the confirm button is clicked. */
   onConfirm?: (data: TData) => void;
+
+  /** If set to true, alert `onConfirm` callback will not be called when `enter` key is pressed */
+  disableConfirmOnEnter?: boolean;
 
   /** Text for the decline button.
    * @default "Close" */
@@ -86,18 +92,34 @@ export enum AlertOpenState {
   OPENED = "opened",
 }
 
-export type UseAlertOpenResult<TData = undefined> = [
-  /** Function to trigger the opening of the alert. */
-  TData extends undefined ? (data?: undefined) => void : (data: TData) => void,
+export type UseAlertOpenResult<TData = undefined> = TData extends undefined
+  ? [
+      /** Function to trigger the opening of the alert. */
+      (data?: undefined) => void,
 
-  /** Current state of the alert and the handleClose function. */
-  {
-    /** The current open state of the alert. */
-    alertOpen: AlertOpenState;
+      /** Current state of the alert and the handleClose function. */
+      {
+        /** The current open state of the alert. */
+        alertOpen: AlertOpenState;
 
-    /** Function to handle closing the alert. */
-    handleClose: () => void;
+        /** Function to handle closing the alert. */
+        handleClose: () => void;
 
-    data: TData;
-  }
-];
+        data: undefined;
+      }
+    ]
+  : [
+      /** Function to trigger the opening of the alert. */
+      (data: TData) => void,
+
+      /** Current state of the alert and the handleClose function. */
+      {
+        /** The current open state of the alert. */
+        alertOpen: AlertOpenState;
+
+        /** Function to handle closing the alert. */
+        handleClose: () => void;
+
+        data: TData;
+      }
+    ];
