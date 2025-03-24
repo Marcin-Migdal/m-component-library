@@ -19,7 +19,7 @@ export const AlertHeader = ({ header, onClose, disableCloseOnEscape }: AlertHead
   }, []);
 
   return (
-    <div tabIndex={-1} className="m-alert-header" onKeyDown={(e) => console.log(e)}>
+    <div className="m-alert-header">
       {header && <h4>{header}</h4>}
       <Icon onClick={onClose} icon={["fas", "xmark"]} />
     </div>
