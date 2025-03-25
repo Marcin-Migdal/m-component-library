@@ -10,9 +10,10 @@ import "./IconFieldPopup.scss";
 type IconFieldPopupContentProps = {
   value?: IconName;
   onChange: (event: React.MouseEvent<HTMLDivElement, MouseEvent>, icon: string) => void;
+  autoFocusPopupInput: boolean;
 };
 
-export const IconFieldPopupContent = ({ onChange }: IconFieldPopupContentProps) => {
+export const IconFieldPopupContent = ({ onChange, autoFocusPopupInput }: IconFieldPopupContentProps) => {
   const [icons, setIcons] = useState(fontAwesomeIconsList);
 
   const filterIcons = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +33,7 @@ export const IconFieldPopupContent = ({ onChange }: IconFieldPopupContentProps) 
 
   return (
     <div className="m-icon-field-popup-content">
-      <Textfield placeholder="Filter icon" onDebounce={filterIcons} />
+      <Textfield autoFocus={autoFocusPopupInput} placeholder="Filter icon" onDebounce={filterIcons} />
       <div className="m-icon-grid-container m-scroll slim-scroll">
         {icons.map((icon) => (
           <div key={icon.value} className="m-icon-tile" onClick={(event) => handleIconChange(event, icon)}>

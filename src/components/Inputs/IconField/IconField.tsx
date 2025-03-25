@@ -39,6 +39,7 @@ const IconField = ({
 
   onOpen,
   onClose,
+  autoFocusPopupInput = false,
 }: IconFieldProps) => {
   const [internalValue, setInternalValue] = useState<string | undefined>(undefined);
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -170,7 +171,11 @@ const IconField = ({
         )}
       </InputContainer>
       <Alert {...alertProps} className="m-icon-field-popup" header="Icon selector popup">
-        <IconFieldPopupContent onChange={handleChange} value={value as IconName} />
+        <IconFieldPopupContent
+          onChange={handleChange}
+          value={value as IconName}
+          autoFocusPopupInput={autoFocusPopupInput}
+        />
       </Alert>
     </>
   );

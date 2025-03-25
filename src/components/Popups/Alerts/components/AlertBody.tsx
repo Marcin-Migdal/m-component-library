@@ -6,13 +6,19 @@ import { AlertBodyProps, AlertOpenState } from "../types";
 
 import "../Alert.scss";
 
-export const AlertBody = ({ children, className, alertOpen, onClose }: PropsWithChildren<AlertBodyProps>) => {
+export const AlertBody = ({
+  children,
+  className,
+  alertOpen,
+  onClose,
+  overlayConfig,
+}: PropsWithChildren<AlertBodyProps>) => {
   if (alertOpen === AlertOpenState.CLOSED) {
     return null;
   }
 
   return (
-    <Overlay onClick={onClose}>
+    <Overlay {...overlayConfig} onClick={onClose} onClose={onClose} disableCloseOnEscape>
       <div className={classNames("m-alert", alertOpen, className)} onClick={(e) => e.stopPropagation()}>
         {children}
       </div>

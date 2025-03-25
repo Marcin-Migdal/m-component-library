@@ -12,11 +12,12 @@ function Alert<TData = undefined>({
   alertOpen,
   handleClose,
   header,
+  disableCloseOnEscape,
   ...otherProps
 }: PropsWithChildren<AlertProps<TData>>) {
   return (
     <AlertBody className={className} alertOpen={alertOpen} onClose={handleClose}>
-      <AlertHeader onClose={handleClose} header={header} />
+      <AlertHeader onClose={handleClose} header={header} disableCloseOnEscape={disableCloseOnEscape} />
       <div className="m-alert-content m-scroll slim-scroll">{children}</div>
       <AlertFooter {...otherProps} />
     </AlertBody>
