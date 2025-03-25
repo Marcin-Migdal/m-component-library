@@ -24,7 +24,7 @@ type DropdownMenuProps = {
   emptyOptionsMessage: string;
   openEvent: `${OpenEvent}`;
   openPosition: `${OpenPosition}`;
-  hideDisabled: boolean;
+  hideDisabledOptions: boolean;
   openConfig: OpenConfig;
   zIndex: number;
   centerConsumer: boolean;
@@ -41,7 +41,7 @@ export const DropdownMenu = ({
   emptyOptionsMessage,
   openEvent,
   openPosition,
-  hideDisabled,
+  hideDisabledOptions,
   openConfig,
   zIndex,
   centerConsumer,
@@ -156,7 +156,7 @@ DropdownMenuProps) => {
         options.map((option, index) => (
           <DropdownMenuItem
             useIconPlaceholder={optionsHaveIcon}
-            hideDisabled={hideDisabled}
+            hideDisabledOptions={hideDisabledOptions}
             key={option.id ?? index}
             option={option}
             closeMenu={closeMenu}
