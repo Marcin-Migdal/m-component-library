@@ -1,8 +1,9 @@
 import classNames from "classnames";
-import React, { PropsWithChildren, useRef, useState } from "react";
+import React, { PropsWithChildren, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { DropdownMenu } from "./DropdownMenu/DropdownMenu";
+import { hasEnabledOptions } from "./helpers/hasEnabledOptions";
 import { DropdownMenuProps, OpenConfig, OpenEvent, OpenPosition } from "./types";
 
 import "./DropdownMenu.scss";
@@ -12,7 +13,8 @@ const DropdownMenuContainer = ({
   popupClassName,
   children,
   options,
-  hideDisabled = false,
+  hideDisabledOptions = false,
+  hideOnDisabledOptions = false,
   emptyOptionsMessage = "No options",
   openEvent = OpenEvent.CONTEXT_CLICK,
   openPosition = OpenPosition.BOTTOM,
@@ -48,6 +50,18 @@ const DropdownMenuContainer = ({
     onOpen && onOpen();
   };
 
+  const hideDropdown = useMemo(() => {
+    if (!hideOnDisabledOptions) {
+      return false;
+    }
+
+    return !hasEnabledOptions(options);
+  }, [options, hideOnDisabledOptions]);
+
+  if (hideDropdown) {
+    return null;
+  }
+
   return (
     <>
       <div
@@ -55,7 +69,11 @@ const DropdownMenuContainer = ({
         onClick={(event) => openMenu(event, OpenEvent.CLICK)}
         onContextMenu={(event) => openMenu(event, OpenEvent.CONTEXT_CLICK)}
         onMouseEnter={(event) => openMenu(event, OpenEvent.HOVER)}
-        className={classNames("m-dropdown-menu-trigger-container", triggerContainerClassName)}
+        className={classNames(
+          "m-dropdown-menu-trigger-container",
+          triggerContainerClassName,
+          openConfig ? "opened" : "closed"
+        )}
       >
         {children}
       </div>
@@ -68,7 +86,7 @@ const DropdownMenuContainer = ({
             emptyOptionsMessage={emptyOptionsMessage}
             options={options}
             closeMenu={closeMenu}
-            hideDisabled={hideDisabled}
+            hideDisabledOptions={hideDisabledOptions}
             openEvent={openEvent}
             openPosition={openPosition}
             openConfig={openConfig}

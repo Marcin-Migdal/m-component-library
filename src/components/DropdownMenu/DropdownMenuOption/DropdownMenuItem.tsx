@@ -9,7 +9,7 @@ import "./DropdownMenuItem.scss";
 
 type DropdownMenuItemProps = {
   option: DropdownMenuOption;
-  hideDisabled: boolean;
+  hideDisabledOptions: boolean;
   useIconPlaceholder: boolean;
   closeMenu: () => void;
   DropdownSubMenu: (props: DropdownSubMenuProps) => React.JSX.Element;
@@ -17,7 +17,7 @@ type DropdownMenuItemProps = {
 
 export const DropdownMenuItem = ({
   option,
-  hideDisabled,
+  hideDisabledOptions,
   useIconPlaceholder,
   closeMenu,
   DropdownSubMenu,
@@ -47,7 +47,7 @@ export const DropdownMenuItem = ({
     onClick && onClick(event, option);
   };
 
-  if (disabled && hideDisabled) {
+  if (disabled && hideDisabledOptions) {
     return null;
   }
 
@@ -68,7 +68,9 @@ export const DropdownMenuItem = ({
         <p className={classNames("m-dropdown-menu-item-text", { "indicator-present": indicatorPresent })}>{label}</p>
       )}
       {indicatorPresent && <FontAwesomeIcon className="m-dropdown-menu-item-icon indicator" icon="chevron-right" />}
-      {isSubMenuOpen && <DropdownSubMenu options={options!} closeMenu={closeMenu} hideDisabled={hideDisabled} />}
+      {isSubMenuOpen && (
+        <DropdownSubMenu options={options!} closeMenu={closeMenu} hideDisabledOptions={hideDisabledOptions} />
+      )}
     </li>
   );
 };
