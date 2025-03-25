@@ -1,4 +1,4 @@
-import { FormikHelpers, FormikState, FormikValues, useFormik } from "formik";
+import { FormikHelpers, FormikState, FormikTouched, FormikValues, useFormik } from "formik";
 import { useEffect, useMemo } from "react";
 import * as Yup from "yup";
 
@@ -16,6 +16,10 @@ type BaseUseFormArgs<T extends FormikValues> = {
   /** Initial values for the form fields.
    * @default {} */
   initialValues: T;
+
+  /** Initial touched values for the fields.
+   * @default {} */
+  initialTouched?: FormikTouched<T>;
 
   /** Callback function triggered when the form is submitted. */
   onSubmit?: (values: T, formikHelpers: FormikHelpers<T>) => void;
@@ -65,6 +69,7 @@ export type UseFormikResult<T extends FormikValues> = Omit<
 export const useForm = <T extends FormikValues>({
   validateOnMount,
   initialValues,
+  initialTouched = {},
   onSubmit,
   validationSchema,
   onValidChange,
@@ -74,6 +79,7 @@ export const useForm = <T extends FormikValues>({
   const formik = useFormik<T>({
     validateOnMount,
     initialValues,
+    initialTouched,
     onSubmit: onSubmit || (() => {}),
     validationSchema,
   });
@@ -88,6 +94,8 @@ export const useForm = <T extends FormikValues>({
     setTouched,
     validateForm,
     setFormikState,
+    initialTouched: formikInitialTouched,
+    resetForm: formikResetForm,
   } = formik;
 
   const errors = useMemo(() => {
@@ -122,6 +130,11 @@ export const useForm = <T extends FormikValues>({
     }
   };
 
+  const resetForm = (nextState: Partial<FormikState<T>> | undefined = undefined, shouldValidate: boolean = false) => {
+    formikResetForm(nextState);
+    setTouched(formikInitialTouched, shouldValidate);
+  };
+
   const handleBlur = async (e: SimpleChangeEvent) => {
     const { name, value } = e.target;
 
@@ -154,5 +167,6 @@ export const useForm = <T extends FormikValues>({
     handleChange,
     handleBlur,
     formikOrgHandleBlur,
+    resetForm,
   };
 };
