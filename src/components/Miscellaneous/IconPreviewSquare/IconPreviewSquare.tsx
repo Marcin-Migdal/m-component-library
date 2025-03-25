@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import React, { PropsWithChildren } from "react";
 
-import { valueToRgb } from "../../Inputs";
+import { valueToRgb } from "../../Inputs/ColorPicker";
 import { getIconColor } from "./helpers/getIconColor";
 import { getIconPreviewBackgroundColor } from "./helpers/getIconPreviewBackgroundColor";
 import { IconPreviewSquareProps } from "./types";
