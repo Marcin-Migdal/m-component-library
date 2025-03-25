@@ -80,8 +80,6 @@ export const Default: StoryObj<typeof Form> = {
       onSubmit: handleSubmit,
     });
 
-    const { resetForm } = formik;
-
     return (
       <Form formik={formik}>
         {({ isValid, register }) => (
