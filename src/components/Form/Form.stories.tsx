@@ -80,6 +80,8 @@ export const Default: StoryObj<typeof Form> = {
       onSubmit: handleSubmit,
     });
 
+    const { resetForm } = formik;
+
     return (
       <Form formik={formik}>
         {({ isValid, register }) => (
@@ -89,6 +91,7 @@ export const Default: StoryObj<typeof Form> = {
             <Textfield type="password" label="Password" {...register("password")} />
             <Textfield type="password" label="Verify Password" {...register("verifyPassword")} />
             <Button text="Submit" type="submit" variant="full" disabled={!isValid} />
+            <Button text="Clear" onClick={() => formik.resetForm()} />
           </>
         )}
       </Form>
