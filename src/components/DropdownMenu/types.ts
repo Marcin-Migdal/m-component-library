@@ -75,7 +75,12 @@ export type DropdownMenuProps = {
 
   /** Whether to hide disabled options.
    * @default false */
-  hideDisabled?: boolean;
+  hideDisabledOptions?: boolean;
+
+  /** Whether to hide dropdown trigger if all options are disabled.
+   * <b>USING THIS PROPS MAKE SURE THAT `OPTION` PROPS IS NOT DEFINED ON EACH RERENDER, eq. const variable, value passed in options props should be stored in state or returned by useMemo hook</b>
+   * @default false */
+  hideOnDisabledOptions?: boolean;
 
   /** Message to display when there are no options available.
    * @default undefined */

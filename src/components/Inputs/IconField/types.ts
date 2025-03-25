@@ -37,4 +37,7 @@ export type IconFieldProps = InputProps & {
 
   /** Callback triggered when the icon selection popup closes. */
   onClose?: (value: string | undefined) => void;
+
+  /** If set to true then `Textfield` in icon popup will be autoFocused. */
+  autoFocusPopupInput?: boolean;
 };

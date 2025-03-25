@@ -3,7 +3,7 @@ import classNames from "classnames";
 import React, { CSSProperties, useRef } from "react";
 
 import { Placement } from "../../../../utils/getPosition/getPosition-types";
-import { Tooltip } from "../../../Miscellaneous";
+import { Tooltip } from "../../../Miscellaneous/Tooltip";
 
 import "./InputError.scss";
 

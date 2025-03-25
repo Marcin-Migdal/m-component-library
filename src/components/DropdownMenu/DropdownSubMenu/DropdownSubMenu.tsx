@@ -8,10 +8,10 @@ import "./DropdownSubMenu.scss";
 export type DropdownSubMenuProps = {
   options: DropdownMenuOption[];
   closeMenu: () => void;
-  hideDisabled: boolean;
+  hideDisabledOptions: boolean;
 };
 
-export const DropdownSubMenu = ({ options, closeMenu, hideDisabled }: DropdownSubMenuProps) => {
+export const DropdownSubMenu = ({ options, closeMenu, hideDisabledOptions }: DropdownSubMenuProps) => {
   const dropdownSubMenuRef = useRef<HTMLUListElement>(null);
 
   const [subMenuConfig, setSubMenuConfig] = useState<Partial<DropdownMenuConfig>>({ opacity: 0 });
@@ -98,7 +98,7 @@ export const DropdownSubMenu = ({ options, closeMenu, hideDisabled }: DropdownSu
       {options.map((option, index) => (
         <DropdownMenuItem
           useIconPlaceholder={optionsHaveIcon}
-          hideDisabled={hideDisabled}
+          hideDisabledOptions={hideDisabledOptions}
           key={option.id ?? index}
           option={option}
           closeMenu={closeMenu}

@@ -93,11 +93,11 @@ type ButtonBaseProps = {
 
   /** Button width.
    * @default undefined */
-  width?: ButtonWidth;
+  width?: `${ButtonWidth}`;
 
   /** How button aligns its content
    * @default undefined */
-  alignContent?: ButtonAlignContent;
+  alignContent?: `${ButtonAlignContent}`;
 };
 
 type UndefinedBtnProps = {

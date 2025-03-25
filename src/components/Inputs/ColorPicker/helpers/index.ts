@@ -4,6 +4,7 @@ export * from "./fillSliderGradientBackground";
 export * from "./hexToRgb";
 export * from "./hslToHex";
 export * from "./hslToRgb";
+export * from "./isValidColor";
 export * from "./rgbToHex";
 export * from "./rgbToHsl";
 export * from "./valueToRgb";

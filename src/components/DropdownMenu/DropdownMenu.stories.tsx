@@ -33,16 +33,19 @@ export const dropdownMenuOptions: DropdownMenuOption[] = [
             label: "American dollar",
             onClick: handleClick,
             icon: "dollar",
+            disabled: true,
             options: [
               {
                 label: "Full dollar",
                 onClick: handleClick,
                 icon: "dollar",
+                disabled: true,
               },
               {
                 label: "Cent",
                 onClick: handleClick,
                 icon: "dollar",
+                disabled: true,
               },
             ],
           },
@@ -50,6 +53,7 @@ export const dropdownMenuOptions: DropdownMenuOption[] = [
             label: "Canadian dollar",
             onClick: handleClick,
             icon: "dollar",
+            disabled: true,
           },
         ],
       },
@@ -57,6 +61,7 @@ export const dropdownMenuOptions: DropdownMenuOption[] = [
         label: "euro",
         onClick: handleClick,
         icon: "euro",
+        disabled: true,
       },
     ],
   },
@@ -95,7 +100,10 @@ export default {
       control: "object",
       table: { defaultValue: { summary: "DropdownMenuOption[]" } },
     },
-    hideDisabled: {
+    hideDisabledOptions: {
+      control: "boolean",
+    },
+    hideOnDisabledOptions: {
       control: "boolean",
     },
     emptyOptionsMessage: {
@@ -158,8 +166,8 @@ export const NoOptions: StoryObj<typeof DropdownMenu> = {
   args: { options: [] },
 };
 
-export const HideDisabled: StoryObj<typeof DropdownMenu> = {
-  args: { hideDisabled: true },
+export const HideDisabledOptions: StoryObj<typeof DropdownMenu> = {
+  args: { hideDisabledOptions: true },
 };
 
 export const CenterDropdownMenu: StoryObj<typeof DropdownMenu> = {

@@ -12,7 +12,7 @@ import { FormProps } from "./types";
 function Form<T extends FormikValues>({ className, children, formik, ...otherProps }: FormProps<T>) {
   const { values, errors, handleSubmit, handleChange, handleBlur } = formik;
 
-  const register = (name: keyof T) => {
+  const register = <TName extends keyof T>(name: TName) => {
     return {
       name: name,
       value: values?.[name],
@@ -22,7 +22,7 @@ function Form<T extends FormikValues>({ className, children, formik, ...otherPro
     };
   };
 
-  const registerBlur = (name: keyof T) => {
+  const registerBlur = <TName extends keyof T>(name: TName) => {
     return {
       name: name,
       error: errors?.[name],

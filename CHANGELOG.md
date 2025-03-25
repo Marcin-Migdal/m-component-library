@@ -1,3 +1,11 @@
+### Release date 25.03.2025 - Release 2.1.2
+
+- [[#186]](https://github.com/Marcin-Migdal/m-component-library/issues/186) **[PATCH]** Fix multiple bug 186, 187, 191, export FormErrorsType, Form register and registerBlur type improvement, changeDropdown input optionMenu z-index
+- [[#188]](https://github.com/Marcin-Migdal/m-component-library/issues/188) **[PATCH]** Fix overlay disabled key press, add onClose callback that is called on "esc" button press.
+- [[#189]](https://github.com/Marcin-Migdal/m-component-library/issues/189) **[PATCH]** Controlled value of the ColorPicker cannot be null, now for controlled input value has to be clearly and properly defined.
+- [[#192]](https://github.com/Marcin-Migdal/m-component-library/issues/192) **[PATCH]** Touched value returned from useForm is now cleared when using resetForm function.
+- [[#190]](https://github.com/Marcin-Migdal/m-component-library/issues/190) **[PATCH]** Add hideOnDisabledOptions props to DropdownMenu component.
+
 ### Release date 20.03.2025 - Release 2.1.1
 
 - [[#173]](https://github.com/Marcin-Migdal/m-component-library/issues/173) **[PATCH]** Fix Breadcrumb covered label, implement responsiveness and tooltip on clipped crumb text,

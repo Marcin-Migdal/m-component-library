@@ -12,19 +12,31 @@ import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/St
 import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { ColorPickerPopup } from "./ColorPickerPopup/ColorPickerPopup";
-import { rgbToHex, rgbToHsl, valueToRgb } from "./helpers";
+import { isValidColor, rgbToHex, rgbToHsl, valueToRgb } from "./helpers";
 import { ColorPickerProps, ColorValue, ReturnedColor, RgbValue } from "./types";
 
 import "./ColorPicker.scss";
 
-const getValue = (externalValue: ColorValue | null): RgbValue | null =>
-  externalValue ? valueToRgb(externalValue) : null;
+const innerDefaultValue: RgbValue = {
+  r: 255,
+  g: 255,
+  b: 255,
+};
+
+const getValue = (externalValue: ColorValue): RgbValue => {
+  if (!isValidColor(externalValue)) {
+    return innerDefaultValue;
+  }
+
+  return valueToRgb(externalValue);
+};
 
 /**
  * ColorPicker component allowing users to select and manipulate colors.
  * Supports RGB, HSL, and HEX formats.
  * Provides event handlers for opening, changing, and closing the color selection.
  */
+
 const ColorPicker = <TReturnedColor extends ReturnedColor>({
   value: externalValue,
   onChange,
@@ -51,13 +63,15 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
 
   const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
 
-  const [internalValue, setInternalValue] = useState<RgbValue | null>(defaultValue ? valueToRgb(defaultValue) : null);
+  const [internalValue, setInternalValue] = useState<RgbValue>(
+    defaultValue ? valueToRgb(defaultValue) : innerDefaultValue
+  );
 
   const isControlled = externalValue !== undefined;
 
   const value = isControlled ? getValue(externalValue) : internalValue;
 
-  const hexValue = value ? rgbToHex(value.r, value.g, value.b) : undefined;
+  const hexValue = rgbToHex(value.r, value.g, value.b);
 
   const colorPreviewElement = inputContainerRef.current?.querySelector(".m-color-preview") as
     | HTMLInputElement
@@ -75,20 +89,16 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
 
   const handleClose = () => {
     if (onClose) {
-      if (value === null) {
-        onClose(null);
-      } else {
-        switch (returnedColorType) {
-          case "rgb":
-            onClose(value);
-            break;
-          case "hsl":
-            onClose(rgbToHsl(value.r, value.g, value.b));
-            break;
-          case "hex":
-            onClose(rgbToHex(value.r, value.g, value.b));
-            break;
-        }
+      switch (returnedColorType) {
+        case "rgb":
+          onClose(value);
+          break;
+        case "hsl":
+          onClose(rgbToHsl(value.r, value.g, value.b));
+          break;
+        case "hex":
+          onClose(rgbToHex(value.r, value.g, value.b));
+          break;
       }
     }
 
