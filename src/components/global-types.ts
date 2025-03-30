@@ -21,11 +21,23 @@ export enum ComponentSize {
 /** Margin bottom type for inputs */
 export type MarginBottomType = "dynamic" | "large" | "small" | "none";
 
-/** Defines percentage-based widths for floating input. `15-100`*/
-export type FloatingInputWidth = LabelPercentageWidth | 91 | 92 | 93 | 94 | 95 | 96 | 97 | 98 | 99 | 100;
-
-/** Defines percentage-based widths for input label. `15-90`*/
-export type LabelPercentageWidth =
+/** Defines percentage-based value. `0-100`*/
+export type Percentage =
+  | 0
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
   | 15
   | 16
   | 17
@@ -101,4 +113,14 @@ export type LabelPercentageWidth =
   | 87
   | 88
   | 89
-  | 90;
+  | 90
+  | 91
+  | 92
+  | 93
+  | 94
+  | 95
+  | 96
+  | 97
+  | 98
+  | 99
+  | 100;

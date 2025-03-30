@@ -34,7 +34,7 @@ const meta: Meta<typeof ToastsContainer> = {
         type: { summary: "top-left | top-right | bottom-left | bottom-right" },
       },
     },
-    transformToastsContent: {
+    transformContent: {
       control: false,
       description: "Callback to transform the content of the toast before displaying it.",
       table: {
@@ -64,7 +64,13 @@ export const ToastExample: Story = {
           style={{ backgroundColor: "var(--success-color)", borderColor: "var(--success-color)" }}
           variant="full"
           text="Success"
-          onClick={() => toastRef.current?.addToast({ type: "success", message: "Success toast message" })}
+          onClick={() =>
+            toastRef.current?.addToast({
+              disableTransformContent: true,
+              type: "success",
+              message: "Success toast message",
+            })
+          }
         />
         <Button
           icon="circle-xmark"
@@ -88,7 +94,7 @@ export const ToastExample: Story = {
           onClick={() => toastRef.current?.addToast({ type: "information", message: "Information toast message" })}
         />
         <Button icon="times" text="Clear" onClick={() => toastRef.current?.clear()} />
-        <ToastsContainer {...args} ref={toastRef} />
+        <ToastsContainer {...args} ref={toastRef} transformContent={(text) => `${text} test test`} />
       </>
     );
   },

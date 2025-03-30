@@ -13,13 +13,15 @@ export type ToastHandler<T = ToastVariant> = {
 
 export type ToastsPosition = "top-right" | "top-left" | "bottom-right" | "bottom-left";
 export type ToastVariant = "success" | "failure" | "warning" | "information";
+type TransformToastContent = (content: string, type: "title" | "message") => string;
 
 export type AddToastPayload<T> = {
   message: string;
   type?: T;
   title?: string;
   toastDuration?: number;
-  transformToastContent?: (content: string) => string;
+  transformContent?: TransformToastContent;
+  disableTransformContent?: boolean;
 };
 
 export type ToastsContainerBaseProps = {
@@ -34,7 +36,7 @@ export type ToastsContainerBaseProps = {
   toastsPosition?: ToastsPosition;
 
   /** Callback to transform the content of the toast before displaying it. @default undefined */
-  transformToastsContent?: (content: string, type: "title" | "message") => string;
+  transformContent?: TransformToastContent;
 };
 
 export type ToastConfig<TKey extends string> = Record<

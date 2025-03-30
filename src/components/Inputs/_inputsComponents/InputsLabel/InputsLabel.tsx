@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React, { CSSProperties, useLayoutEffect, useMemo, useRef, useState } from "react";
 
-import { InputLabel, LabelPercentageWidth } from "../../../global-types";
+import { InputLabel, Percentage } from "../../../global-types";
 
 import "./InputsLabel.scss";
 
@@ -9,7 +9,7 @@ type InputsLabelProps = {
   label: string;
   labelType: `${InputLabel}`;
   className: string;
-  labelWidth: LabelPercentageWidth;
+  labelWidth: Percentage;
   prefix?: string;
   htmlFor?: string;
 
