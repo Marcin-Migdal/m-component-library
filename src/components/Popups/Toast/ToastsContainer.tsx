@@ -12,7 +12,7 @@ function ToastsContainer<T extends string>(
     autoClose = true,
     toastsPosition = "top-right",
     toastConfig = defaultToastConfig,
-    transformToastsContent,
+    transformContent: transformToastsContent,
     toastsDuration = 2000,
   }: ToastsContainerProps<T>,
   ref: ForwardedRef<ToastHandler<T>>
@@ -38,18 +38,27 @@ function ToastsContainer<T extends string>(
       const toastType: string = payload.type ? payload.type : getDefaultToastType(toastConfig);
 
       const { title: defaultTitle, icon, variant } = (toastConfig as ToastConfig<string>)[toastType];
-      const { toastDuration = toastsDuration, transformToastContent } = payload;
-
-      const transformContent = transformToastContent || transformToastsContent || ((content) => content);
+      const {
+        toastDuration = toastsDuration,
+        transformContent: transformSingleToastContent,
+        disableTransformContent,
+      } = payload;
 
       const newToast: ToastType = {
         id: Date.now(),
-        title: transformContent(payload.title || defaultTitle, "title"),
-        message: transformContent(payload.message, "message"),
+        title: payload.title || defaultTitle,
+        message: payload.message,
         variant: variant,
         icon,
         toastDuration,
       };
+
+      const transformToastContent = transformSingleToastContent || transformToastsContent;
+
+      if (!disableTransformContent && transformToastContent) {
+        newToast.title = transformToastContent(payload.title || defaultTitle, "title");
+        newToast.message = transformToastContent(payload.message, "message");
+      }
 
       setToasts((prevState) => [...prevState, newToast]);
 

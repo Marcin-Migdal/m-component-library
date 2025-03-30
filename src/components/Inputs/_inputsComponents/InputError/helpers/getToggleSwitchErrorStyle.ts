@@ -1,12 +1,12 @@
 import { CSSProperties } from "react";
 
 import { getCssProperty, getCssPropertyAsNumber } from "../../../../../utils";
-import { InputLabel, LabelPercentageWidth } from "../../../../global-types";
+import { InputLabel, Percentage } from "../../../../global-types";
 
 export const getToggleSwitchErrorStyle = (
   toggleSwitchContainerElement: HTMLDivElement,
   labelType: `${InputLabel}`,
-  labelWidth: LabelPercentageWidth
+  labelWidth: Percentage
 ): CSSProperties => {
   const toggleSwitchSizeCalcProperty: string | undefined = getCssProperty(
     toggleSwitchContainerElement,

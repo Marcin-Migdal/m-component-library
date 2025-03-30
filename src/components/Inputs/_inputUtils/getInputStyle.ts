@@ -1,11 +1,11 @@
 import { CSSProperties } from "react";
-import { FloatingInputWidth, InputLabel, LabelPercentageWidth } from "../../global-types";
+import { InputLabel, Percentage } from "../../global-types";
 
 export function getInputStyle(
   labelType: `${InputLabel}`,
   label: string | undefined,
-  labelWidth: LabelPercentageWidth,
-  floatingInputWidth: FloatingInputWidth
+  labelWidth: Percentage,
+  floatingInputWidth: Percentage
 ): Pick<CSSProperties, "marginLeft" | "width"> {
   const getMarginLeft = () => {
     if (labelType === InputLabel.LEFT && label) {

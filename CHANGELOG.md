@@ -1,5 +1,7 @@
 ### Release date ??.??.???? - Release ?.?.?
 
+- [[#201]](https://github.com/Marcin-Migdal/m-component-library/issues/201) **[PATCH]** Apply fixes and changes needed for flaner app, useAlert data: TData | undefined, labelWidth 15-90 changed to percentage 0-100, add disableTransformContent argument to addToast payload, new helper classes w-min w-max h-min h-max
+
 ### Release date 25.03.2025 - Release 2.1.2
 
 - [[#186]](https://github.com/Marcin-Migdal/m-component-library/issues/186) **[PATCH]** Fix multiple bug 186, 187, 191, export FormErrorsType, Form register and registerBlur type improvement, changeDropdown input optionMenu z-index

@@ -2,7 +2,7 @@ import { ArgTypes } from "@storybook/react/*";
 import { ComponentSize, InputLabel } from "../components/global-types";
 import { InputProps } from "../components/Inputs/_inputsComponents/input-types";
 
-const commonInputArgTypes: Partial<ArgTypes<Omit<InputProps, "floatingInputWidth" | "labelType">>> = {
+export const inputArgTypes: Partial<ArgTypes<InputProps>> = {
   size: {
     control: "radio",
     options: Object.values(ComponentSize),
@@ -28,10 +28,10 @@ const commonInputArgTypes: Partial<ArgTypes<Omit<InputProps, "floatingInputWidth
   labelWidth: {
     control: {
       type: "number",
-      min: 15,
-      max: 90,
+      min: 0,
+      max: 100,
     },
-    description: "Width of the label as a percentage. `15` - `90`",
+    description: "Width of the label as a percentage.",
     table: { type: { summary: "number" } },
   },
   label: {
@@ -51,11 +51,6 @@ const commonInputArgTypes: Partial<ArgTypes<Omit<InputProps, "floatingInputWidth
     type: "string",
     description: "Error message displayed below the input.",
   },
-};
-
-//! Input
-export const inputArgTypes: Partial<ArgTypes<InputProps>> = {
-  ...commonInputArgTypes,
   labelType: {
     control: "radio",
     options: Object.values(InputLabel),
@@ -68,10 +63,10 @@ export const inputArgTypes: Partial<ArgTypes<InputProps>> = {
   floatingInputWidth: {
     control: {
       type: "number",
-      min: 15,
+      min: 0,
       max: 100,
     },
-    description: "Width of the label as a percentage. `15` - `100`",
+    description: "Width of the label as a percentage.",
     table: { type: { summary: "number" } },
   },
 };

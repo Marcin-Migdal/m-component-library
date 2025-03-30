@@ -11,3 +11,19 @@ $max-percent: 100;
 @include generate-spacing-classes("h", "height", $max-px, "px", 1px);
 @include generate-spacing-classes("h", "height", $max-rem, "rem", 0.25rem);
 @include generate-spacing-classes("h", "height", $max-percent, "percent", 1%);
+
+@include generate-spacing-classes("w-min", "width", $max-px, "px", 1px);
+@include generate-spacing-classes("w-min", "width", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("w-min", "width", $max-percent, "percent", 1%);
+
+@include generate-spacing-classes("h-min", "height", $max-px, "px", 1px);
+@include generate-spacing-classes("h-min", "height", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("h-min", "height", $max-percent, "percent", 1%);
+
+@include generate-spacing-classes("w-max", "width", $max-px, "px", 1px);
+@include generate-spacing-classes("w-max", "width", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("w-max", "width", $max-percent, "percent", 1%);
+
+@include generate-spacing-classes("h-max", "height", $max-px, "px", 1px);
+@include generate-spacing-classes("h-max", "height", $max-rem, "rem", 0.25rem);
+@include generate-spacing-classes("h-max", "height", $max-percent, "percent", 1%);
