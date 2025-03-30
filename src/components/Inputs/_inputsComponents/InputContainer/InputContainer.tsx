@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React, { CSSProperties, forwardRef, PropsWithChildren, useMemo } from "react";
 
 import { ComponentSize, InputLabel, MarginBottomType } from "../../../global-types";
+import { InputError } from "../InputError/InputError";
 
 import "./InputContainer.scss";
 
@@ -11,7 +12,7 @@ type InputContainerProps = {
   disabled: boolean;
   className: string;
   size: `${ComponentSize}`;
-  error?: string;
+  error?: InputError;
   style?: CSSProperties;
 };
 
