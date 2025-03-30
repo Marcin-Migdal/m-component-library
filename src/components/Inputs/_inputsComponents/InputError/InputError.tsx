@@ -7,14 +7,14 @@ import { Tooltip } from "../../../Miscellaneous/Tooltip";
 
 import "./InputError.scss";
 
-export type InputError = string | { [key: string]: string | InputError };
+export type InputErrorType = string | { [key: string]: string | InputErrorType };
 
-const getErrorContent = (error: InputError): ReactNode => {
+const getErrorContent = (error: InputErrorType): ReactNode => {
   if (typeof error === "string") {
     return error;
   }
 
-  const processErrorObject = (obj: { [key: string]: string | InputError }) => {
+  const processErrorObject = (obj: { [key: string]: string | InputErrorType }) => {
     for (const key in obj) {
       const value = obj[key];
 
@@ -32,7 +32,7 @@ const getErrorContent = (error: InputError): ReactNode => {
 type InputErrorProps = {
   style: CSSProperties;
   className: string;
-  error: InputError;
+  error: InputErrorType;
 };
 
 export const InputError = ({ style, className, error }: InputErrorProps) => {

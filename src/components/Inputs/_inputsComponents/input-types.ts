@@ -1,5 +1,5 @@
 import { ComponentSize, InputLabel, MarginBottomType, Percentage } from "../../global-types";
-import { InputError } from "./InputError/InputError";
+import { InputErrorType } from "./InputError/InputError";
 
 /** Common props used across many `Input` component. */
 export type InputProps = {
@@ -36,7 +36,7 @@ export type InputProps = {
   marginBottomType?: MarginBottomType;
 
   /** Error message displayed below the input. */
-  error?: InputError;
+  error?: InputErrorType;
 
   /** Type of label positioning.
    * @default "left" */
