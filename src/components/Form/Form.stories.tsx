@@ -3,6 +3,8 @@ import React from "react";
 import * as Yup from "yup";
 
 import { Button } from "../Button";
+import { Dropdown } from "../Inputs";
+import { DropdownChangeEvent, DropdownNumberOption } from "../Inputs/Dropdown/types";
 import { Textfield } from "../Inputs/Textfield";
 import Form from "./Form";
 import { useForm } from "./hooks/useForm";
@@ -38,6 +40,7 @@ type SignUpState = {
   userName: string;
   password: string;
   verifyPassword: string;
+  yearOfBirth: DropdownNumberOption | undefined;
 };
 
 const signUpInitialValues: SignUpState = {
@@ -45,9 +48,16 @@ const signUpInitialValues: SignUpState = {
   userName: "",
   password: "",
   verifyPassword: "",
+  yearOfBirth: undefined,
 };
 
 const signUpValidationSchema = Yup.object().shape({
+  yearOfBirth: Yup.object()
+    .shape({
+      label: Yup.string().required("Required"),
+      value: Yup.number().required("Required"),
+    })
+    .required("Required"),
   email: Yup.string().email("Invalid email addres").required("Required"),
   userName: Yup.string()
     .required("Required")
@@ -73,12 +83,18 @@ export const Default: StoryObj<typeof Form> = {
     };
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const formik = useForm({
+    const formik = useForm<SignUpState>({
       initialValues: signUpInitialValues,
       validationSchema: signUpValidationSchema,
-
       onSubmit: handleSubmit,
     });
+
+    const options: DropdownNumberOption[] = [
+      {
+        value: 2000,
+        label: "2000",
+      },
+    ];
 
     return (
       <Form formik={formik}>
@@ -88,6 +104,11 @@ export const Default: StoryObj<typeof Form> = {
             <Textfield label="Email" {...register("email")} />
             <Textfield type="password" label="Password" {...register("password")} />
             <Textfield type="password" label="Verify Password" {...register("verifyPassword")} />
+            <Dropdown
+              label="Year of birth"
+              options={options}
+              {...register<"yearOfBirth", DropdownChangeEvent<DropdownNumberOption>>("yearOfBirth")}
+            />
             <Button text="Submit" type="submit" variant="full" disabled={!isValid} />
             <Button text="Clear" onClick={() => formik.resetForm()} />
           </>

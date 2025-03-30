@@ -1,7 +1,11 @@
-import { FormikErrors, FormikTouched } from "formik";
+import { FormikTouched, FormikValues } from "formik";
+import { FormErrors } from "../hooks/useForm";
 
-export function getFilteredErrors<T>(errors: FormikErrors<T>, touched: FormikTouched<T>): Partial<FormikErrors<T>> {
-  const filteredErrors: Partial<FormikErrors<T>> = {};
+export function getFilteredErrors<T extends FormikValues>(
+  errors: FormErrors<T>,
+  touched: FormikTouched<T>
+): FormErrors<T> {
+  const filteredErrors: FormErrors<T> = {};
 
   Object.keys(errors).forEach((key) => {
     const errorKey = key as keyof T;

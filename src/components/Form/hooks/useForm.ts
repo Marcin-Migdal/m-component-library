@@ -1,4 +1,4 @@
-import { FormikHelpers, FormikState, FormikTouched, FormikValues, useFormik } from "formik";
+import { FormikErrors, FormikHelpers, FormikState, FormikTouched, FormikValues, useFormik } from "formik";
 import { useEffect, useMemo } from "react";
 import * as Yup from "yup";
 
@@ -43,27 +43,30 @@ type BaseUseFormArgs<T extends FormikValues> = {
 };
 
 /** Represents a type for form errors, where each key corresponds to a field name. */
-export type FormErrorsType<T> = { [key in keyof T]?: string };
+export type FormErrors<T> = {
+  [K in keyof T]?: T[K] extends string ? string : FormErrors<T[K]>;
+};
 
 type ErrorUseFormArgs<T extends FormikValues> = Omit<BaseUseFormArgs<T>, "additionalErrors" | "onAdditionalErrors"> & {
   /** Additional errors to display in the form (e.g., API errors), those errors will replace default errors if they exist. */
-  additionalErrors: FormErrorsType<T>;
+  additionalErrors: FormErrors<T>;
 
   /** Callback function triggered when additional errors change, this function will be called when related input is called. */
-  onAdditionalErrors: (errors: FormErrorsType<T>) => void;
+  onAdditionalErrors: (errors: FormErrors<T>) => void;
 };
 
 export type UseFormArgs<T extends FormikValues> = BaseUseFormArgs<T> | ErrorUseFormArgs<T>;
 
 export type UseFormikResult<T extends FormikValues> = Omit<
   ReturnType<typeof useFormik<T>>,
-  "handleChange" | "handleBlur"
+  "handleChange" | "handleBlur" | "errors"
 > & {
   handleChange: (e: SimpleChangeEvent) => void;
   handleBlur: (e: SimpleChangeEvent) => void;
   formikOrgHandleBlur: {
     (e: React.FocusEvent<Element, Element>): void;
   };
+  errors: FormErrors<T>;
 };
 
 export const useForm = <T extends FormikValues>({
@@ -84,9 +87,10 @@ export const useForm = <T extends FormikValues>({
     validationSchema,
   });
 
+  const formikErrors = formik.errors as FormErrors<T>;
+
   const {
     submitCount,
-    errors: formikErrors,
     touched,
     isValid,
     handleChange: formikHandleChange,
@@ -98,12 +102,12 @@ export const useForm = <T extends FormikValues>({
     resetForm: formikResetForm,
   } = formik;
 
-  const errors = useMemo(() => {
+  const errors = useMemo((): FormErrors<T> => {
     if (validateOnMount) {
       return { ...formikErrors, ...additionalErrors };
     }
 
-    return { ...getFilteredErrors<T>(formikErrors, touched), ...additionalErrors };
+    return { ...getFilteredErrors(formikErrors, touched), ...additionalErrors };
   }, [validateOnMount, formikErrors, additionalErrors, touched]);
 
   useEffect(() => {
@@ -147,14 +151,14 @@ export const useForm = <T extends FormikValues>({
     const formikState: FormikState<T> = {
       touched: { ...formik.touched, [name]: true },
       values: values,
-      errors: errors,
+      errors: errors as FormikErrors<T>,
       isSubmitting: false,
       isValidating: false,
       submitCount: submitCount,
     };
 
     if (typeof fieldError === "string") {
-      formikState.errors = { ...errors, [name]: fieldError };
+      formikState.errors = { ...errors, [name]: fieldError } as FormikErrors<T>;
     }
 
     setFormikState(formikState);
@@ -162,7 +166,7 @@ export const useForm = <T extends FormikValues>({
 
   return {
     ...formik,
-    errors,
+    errors: errors,
     isValid: Object.keys(errors).length === 0,
     handleChange,
     handleBlur,

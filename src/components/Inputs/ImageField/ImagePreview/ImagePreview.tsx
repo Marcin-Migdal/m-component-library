@@ -1,11 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
+import { InputErrorType } from "../../_inputsComponents";
+
 import "./ImagePreview.scss";
 
 type ImagePreviewProps = {
   value: File | undefined;
-  error: string | undefined;
+  error: InputErrorType | undefined;
 };
 
 export const ImagePreview = ({ value, error }: ImagePreviewProps) => {
