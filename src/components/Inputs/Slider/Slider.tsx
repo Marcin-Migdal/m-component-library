@@ -154,7 +154,7 @@ const Slider = ({
       {error && (
         <InputError
           style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
-          className={classNames("textfield-error", classNamesObj?.error)}
+          className={classNames("slider-error", classNamesObj?.error)}
           error={error}
         />
       )}
