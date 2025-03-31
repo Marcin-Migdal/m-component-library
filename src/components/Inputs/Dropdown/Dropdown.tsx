@@ -27,6 +27,23 @@ import {
 
 import "./Dropdown.scss";
 
+const filterOptions = <T extends { [key: string]: string | number } = LabelValue>(
+  options: T[],
+  labelKey: string | number,
+  filterValue: string
+): T[] => {
+  if (filterValue.trim().length === 0 || options.length === 0) {
+    return options;
+  }
+
+  return options.filter((option) => {
+    let optionLabel = option[labelKey] as number | string;
+    optionLabel = typeof optionLabel === "string" ? optionLabel : optionLabel.toString();
+
+    return optionLabel.includes(filterValue);
+  });
+};
+
 type LabelValue = {
   value: string | number;
   label: string;
@@ -79,43 +96,18 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
 
   const [internalValue, setInternalValue] = useState<DropdownValue<T>>(undefined);
   const [filterValue, setFilterValue] = useState<string>("");
-  const [dropdownOptions, setDropdownOptions] = useState<T[]>([]);
 
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const [uniqueDropdownId] = useState<string>(uuId());
 
   const value = externalValue || internalValue;
+  const dropdownOptions: T[] = filterOptions(options, labelKey, filterValue);
 
   const currentComponents: DropdownComponents<T> = {
     ...defaultComponents,
     ...components,
   };
-
-  useEffect(() => {
-    const filterOptions = () => {
-      if (!options || options.length === 0) {
-        return;
-      }
-
-      let filteredDropdownOptions: T[] = [];
-
-      if (filterValue) {
-        filteredDropdownOptions = options.filter((option) => {
-          let optionLabel = option[labelKey] as number | string;
-          optionLabel = typeof optionLabel === "string" ? optionLabel : optionLabel.toString();
-
-          return optionLabel.includes(filterValue);
-        });
-      } else {
-        filteredDropdownOptions = options;
-      }
-
-      setDropdownOptions(filteredDropdownOptions);
-    };
-
-    filterOptions();
-  }, [filterValue]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -269,8 +261,6 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
       marginBottomType={marginBottomType}
       labelType={labelType}
     >
-      {/* input placeholder, displays selected value, also work as a filter input */}
-
       {/* input label */}
       {label && (
         <InputsLabel
@@ -285,6 +275,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
         />
       )}
 
+      {/* input placeholder, displays selected value, also work as a filter input */}
       {currentComponents.Control(controlProps)}
 
       {/* input icons */}

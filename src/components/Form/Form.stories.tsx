@@ -3,6 +3,9 @@ import React from "react";
 import * as Yup from "yup";
 
 import { Button } from "../Button";
+import { Dropdown } from "../Inputs";
+import { DropdownChangeEvent, DropdownStringOption } from "../Inputs/Dropdown/types";
+import { NumberField } from "../Inputs/NumberField";
 import { Textfield } from "../Inputs/Textfield";
 import Form from "./Form";
 import { useForm } from "./hooks/useForm";
@@ -38,6 +41,8 @@ type SignUpState = {
   userName: string;
   password: string;
   verifyPassword: string;
+  role: DropdownStringOption | undefined;
+  yearOfBirth: number | null;
 };
 
 const signUpInitialValues: SignUpState = {
@@ -45,9 +50,17 @@ const signUpInitialValues: SignUpState = {
   userName: "",
   password: "",
   verifyPassword: "",
+  role: undefined,
+  yearOfBirth: null,
 };
 
 const signUpValidationSchema = Yup.object().shape({
+  role: Yup.object()
+    .shape({
+      label: Yup.string().required("Required"),
+      value: Yup.string().required("Required"),
+    })
+    .required("Required"),
   email: Yup.string().email("Invalid email addres").required("Required"),
   userName: Yup.string()
     .required("Required")
@@ -63,6 +76,7 @@ const signUpValidationSchema = Yup.object().shape({
     .test("passwords-match", "Passwords must match", function (value) {
       return this.parent.password === value;
     }),
+  yearOfBirth: Yup.number().nullable().min(1900).max(new Date().getFullYear()).required("Required"),
 });
 
 export const Default: StoryObj<typeof Form> = {
@@ -73,12 +87,16 @@ export const Default: StoryObj<typeof Form> = {
     };
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const formik = useForm({
+    const formik = useForm<SignUpState>({
       initialValues: signUpInitialValues,
       validationSchema: signUpValidationSchema,
-
       onSubmit: handleSubmit,
     });
+
+    const options: DropdownStringOption[] = [
+      { value: "1", label: "Developer" },
+      { value: "2", label: "Student" },
+    ];
 
     return (
       <Form formik={formik}>
@@ -88,6 +106,12 @@ export const Default: StoryObj<typeof Form> = {
             <Textfield label="Email" {...register("email")} />
             <Textfield type="password" label="Password" {...register("password")} />
             <Textfield type="password" label="Verify Password" {...register("verifyPassword")} />
+            <NumberField label="Year of birth" {...register("yearOfBirth")} />
+            <Dropdown
+              label="Role"
+              options={options}
+              {...register<"role", DropdownChangeEvent<DropdownStringOption>>("role")}
+            />
             <Button text="Submit" type="submit" variant="full" disabled={!isValid} />
             <Button text="Clear" onClick={() => formik.resetForm()} />
           </>

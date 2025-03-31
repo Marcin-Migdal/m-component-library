@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { FormikValues } from "formik";
 import React from "react";
 
+import { InputErrorType } from "../Inputs/_inputsComponents";
 import { FormProps } from "./types";
 
 /**
@@ -16,7 +17,7 @@ function Form<T extends FormikValues>({ className, children, formik, ...otherPro
     return {
       name: name,
       value: values?.[name],
-      error: errors?.[name],
+      error: errors?.[name] as InputErrorType,
       onChange: handleChange,
       onBlur: handleBlur,
     };
@@ -25,7 +26,7 @@ function Form<T extends FormikValues>({ className, children, formik, ...otherPro
   const registerBlur = <TName extends keyof T>(name: TName) => {
     return {
       name: name,
-      error: errors?.[name],
+      error: errors?.[name] as InputErrorType,
       onBlur: handleBlur,
     };
   };

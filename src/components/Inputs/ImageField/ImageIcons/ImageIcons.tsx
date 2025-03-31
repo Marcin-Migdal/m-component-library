@@ -2,13 +2,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import React from "react";
 
+import { InputErrorType } from "../../_inputsComponents";
+
 import "./ImageIcons.scss";
 
 type ImageIconsProps = {
   openZoom: () => void;
   clearImage: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
   value: File | undefined;
-  error: string | undefined;
+  error: InputErrorType | undefined;
   disabled: boolean;
 };
 

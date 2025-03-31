@@ -1,10 +1,5 @@
-import {
-  ComponentSize,
-  FloatingInputWidth,
-  InputLabel,
-  LabelPercentageWidth,
-  MarginBottomType,
-} from "../../global-types";
+import { ComponentSize, InputLabel, MarginBottomType, Percentage } from "../../global-types";
+import { InputErrorType } from "./InputError/InputError";
 
 /** Common props used across many `Input` component. */
 export type InputProps = {
@@ -25,7 +20,7 @@ export type InputProps = {
 
   /** Width of the label as a percentage.
    * @default 30 */
-  labelWidth?: LabelPercentageWidth;
+  labelWidth?: Percentage;
 
   /** Text label displayed for the input. */
   label?: string;
@@ -41,14 +36,14 @@ export type InputProps = {
   marginBottomType?: MarginBottomType;
 
   /** Error message displayed below the input. */
-  error?: string;
+  error?: InputErrorType;
 
   /** Type of label positioning.
    * @default "left" */
   labelType?: `${InputLabel}`;
 
   /** Width of the floating input field. */
-  floatingInputWidth?: FloatingInputWidth;
+  floatingInputWidth?: Percentage;
 };
 
 export type SimpleInputProps = Omit<InputProps, "floatingInputWidth">;

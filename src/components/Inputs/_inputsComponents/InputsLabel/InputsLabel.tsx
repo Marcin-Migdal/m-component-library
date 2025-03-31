@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React, { CSSProperties, useLayoutEffect, useMemo, useRef, useState } from "react";
 
-import { InputLabel, LabelPercentageWidth } from "../../../global-types";
+import { InputLabel, Percentage } from "../../../global-types";
 
 import "./InputsLabel.scss";
 
@@ -9,7 +9,7 @@ type InputsLabelProps = {
   label: string;
   labelType: `${InputLabel}`;
   className: string;
-  labelWidth: LabelPercentageWidth;
+  labelWidth: Percentage;
   prefix?: string;
   htmlFor?: string;
 
@@ -68,7 +68,9 @@ export const InputsLabel = ({
   useLayoutEffect(() => {
     if (labelType === InputLabel.FLOATING && prefix) {
       const labelElement = labelRef.current;
-      const prefixElement = labelElement?.parentElement?.querySelector(".m-textfield-prefix");
+      const prefixElement =
+        labelElement?.parentElement?.querySelector(".m-textfield-prefix") ||
+        labelElement?.parentElement?.querySelector(".m-numberfield-prefix");
 
       if (labelElement && prefixElement) {
         const labelLeftPadding = parseFloat(window.getComputedStyle(labelElement).paddingLeft);

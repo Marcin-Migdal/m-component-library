@@ -67,3 +67,4 @@ export const Default: Story = {};
 export const Label: Story = { args: { label: "Input label", labelType: "left" } };
 export const Size: Story = { args: { size: "small" } };
 export const Error: Story = { args: { error: "Input error" } };
+export const Filter: Story = { args: { filter: true } };

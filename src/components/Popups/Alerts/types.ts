@@ -120,6 +120,6 @@ export type UseAlertOpenResult<TData = undefined> = TData extends undefined
         /** Function to handle closing the alert. */
         handleClose: () => void;
 
-        data: TData;
+        data: TData | undefined;
       }
     ];
