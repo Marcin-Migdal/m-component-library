@@ -1,0 +1,11 @@
+.m-numberfield-container {
+  .m-input[type="number"]::-webkit-inner-spin-button,
+  .m-input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  .m-input[type="number"] {
+    -moz-appearance: textfield;
+  }
+}

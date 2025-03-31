@@ -44,7 +44,7 @@ type BaseUseFormArgs<T extends FormikValues> = {
 
 /** Represents a type for form errors, where each key corresponds to a field name. */
 export type FormErrors<T> = {
-  [K in keyof T]?: T[K] extends string ? string : FormErrors<T[K]>;
+  [K in keyof T]?: T[K] extends string | number | boolean | undefined | null ? string : FormErrors<T[K]>;
 };
 
 type ErrorUseFormArgs<T extends FormikValues> = Omit<BaseUseFormArgs<T>, "additionalErrors" | "onAdditionalErrors"> & {

@@ -68,7 +68,9 @@ export const InputsLabel = ({
   useLayoutEffect(() => {
     if (labelType === InputLabel.FLOATING && prefix) {
       const labelElement = labelRef.current;
-      const prefixElement = labelElement?.parentElement?.querySelector(".m-textfield-prefix");
+      const prefixElement =
+        labelElement?.parentElement?.querySelector(".m-textfield-prefix") ||
+        labelElement?.parentElement?.querySelector(".m-numberfield-prefix");
 
       if (labelElement && prefixElement) {
         const labelLeftPadding = parseFloat(window.getComputedStyle(labelElement).paddingLeft);
