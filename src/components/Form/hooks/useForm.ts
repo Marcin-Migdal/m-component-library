@@ -5,10 +5,10 @@ import * as Yup from "yup";
 import { getFilteredErrors } from "../helpers/getFilteredErrors";
 
 /** Represents a simple change event with a target containing a name and value. */
-export type SimpleChangeEvent = {
+export type SimpleChangeEvent<T extends FormikValues, K extends keyof T = keyof T> = {
   target: {
     name: string;
-    value: unknown;
+    value: T[K];
   };
 };
 
@@ -61,8 +61,8 @@ export type UseFormikResult<T extends FormikValues> = Omit<
   ReturnType<typeof useFormik<T>>,
   "handleChange" | "handleBlur" | "errors"
 > & {
-  handleChange: (e: SimpleChangeEvent) => void;
-  handleBlur: (e: SimpleChangeEvent) => void;
+  handleChange: (e: SimpleChangeEvent<T>) => void;
+  handleBlur: (e: SimpleChangeEvent<T>) => void;
   formikOrgHandleBlur: {
     (e: React.FocusEvent<Element, Element>): void;
   };
@@ -114,7 +114,7 @@ export const useForm = <T extends FormikValues>({
     onValidChange && onValidChange(isValid);
   }, [isValid]);
 
-  const handleChange = (e: SimpleChangeEvent) => {
+  const handleChange = (e: SimpleChangeEvent<T>) => {
     const name = e.target.name;
 
     formikHandleChange(e);
@@ -139,7 +139,7 @@ export const useForm = <T extends FormikValues>({
     setTouched(formikInitialTouched, shouldValidate);
   };
 
-  const handleBlur = async (e: SimpleChangeEvent) => {
+  const handleBlur = async (e: SimpleChangeEvent<T>) => {
     const { name, value } = e.target;
 
     const values = { ...formik.values, [name]: value };

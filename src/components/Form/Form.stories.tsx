@@ -4,7 +4,7 @@ import * as Yup from "yup";
 
 import { Button } from "../Button";
 import { Dropdown } from "../Inputs";
-import { DropdownChangeEvent, DropdownStringOption } from "../Inputs/Dropdown/types";
+import { DropdownStringOption } from "../Inputs/Dropdown/types";
 import { NumberField } from "../Inputs/NumberField";
 import { Textfield } from "../Inputs/Textfield";
 import Form from "./Form";
@@ -101,7 +101,7 @@ export const Default: StoryObj<typeof Form> = {
 
     return (
       <Form formik={formik}>
-        {({ isValid, register }) => (
+        {({ values, handleChange, isValid, register }) => (
           <>
             <Textfield label="Username" {...register("userName")} />
             <Textfield label="Email" {...register("email")} />
@@ -111,8 +111,11 @@ export const Default: StoryObj<typeof Form> = {
             <Dropdown
               label="Role"
               options={options}
-              {...register<"role", DropdownChangeEvent<DropdownStringOption>>("role")}
+              name="role"
+              onChange={(e) => handleChange(e)}
+              value={values.role}
             />
+            <Dropdown label="Role" options={options} {...register("role")} />
             <Button text="Submit" type="submit" variant="full" disabled={!isValid} />
             <Button text="Clear" onClick={() => formik.resetForm()} />
           </>
