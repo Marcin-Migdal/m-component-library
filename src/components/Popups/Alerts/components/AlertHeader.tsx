@@ -5,8 +5,12 @@ import { AlertHeaderProps } from "../types";
 
 export const AlertHeader = ({ header, onClose, disableCloseOnEscape }: AlertHeaderProps) => {
   useEffect(() => {
+    if (disableCloseOnEscape) {
+      return;
+    }
+
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (onClose && event.code === "Escape" && !disableCloseOnEscape) {
+      if (onClose && event.code === "Escape") {
         onClose();
       }
     };
@@ -14,9 +18,13 @@ export const AlertHeader = ({ header, onClose, disableCloseOnEscape }: AlertHead
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      if (disableCloseOnEscape) {
+        return;
+      }
+
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [disableCloseOnEscape]);
 
   return (
     <div className="m-alert-header">

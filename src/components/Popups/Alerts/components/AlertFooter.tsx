@@ -13,8 +13,12 @@ export function AlertFooter<TData = undefined>({
   onDecline,
 }: AlertFooterProps<TData>) {
   useEffect(() => {
+    if (disableConfirmOnEnter) {
+      return;
+    }
+
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (onConfirm && event.code === "Enter" && !disableConfirmOnEnter) {
+      if (onConfirm && event.code === "Enter") {
         onConfirm(data as unknown as TData);
       }
     };
@@ -22,6 +26,10 @@ export function AlertFooter<TData = undefined>({
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      if (disableConfirmOnEnter) {
+        return;
+      }
+
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);

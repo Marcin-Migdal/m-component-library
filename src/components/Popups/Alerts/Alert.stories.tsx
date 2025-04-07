@@ -35,6 +35,19 @@ const meta: Meta<typeof Alert> = {
         defaultValue: { summary: "false" },
       },
     },
+    disableCloseOnEscape: {
+      description: "If set to true, alert `onClose` callback will not be called when `esc` key is pressed",
+      control: "boolean",
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
+    disableConfirmOnEnter: {
+      control: "boolean",
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
   },
 };
 
