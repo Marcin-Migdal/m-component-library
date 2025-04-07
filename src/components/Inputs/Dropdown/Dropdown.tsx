@@ -101,7 +101,9 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
 
   const [uniqueDropdownId] = useState<string>(uuId());
 
-  const value = externalValue || internalValue;
+  const isControlled = externalValue !== undefined;
+
+  const value: DropdownValue<T> | null = isControlled ? externalValue : internalValue;
   const dropdownOptions: T[] = filterOptions(options, labelKey, filterValue);
 
   const currentComponents: DropdownComponents<T> = {
@@ -146,8 +148,9 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
   };
 
   const handleDropdownChange = (e: ReactMouseEvent<HTMLLIElement, MouseEvent>, selectedOption: T): void => {
+    !isControlled && setInternalValue(selectedOption);
+
     setFilterValue("");
-    setInternalValue(selectedOption);
     setIsFocused(false);
 
     if (onChange) {
@@ -167,8 +170,9 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
   };
 
   const handleClear = (e: ReactMouseEvent<Element, MouseEvent>) => {
+    !isControlled && setInternalValue(undefined);
+
     setFilterValue("");
-    setInternalValue(undefined);
     setIsFocused(false);
 
     if (onClear) {

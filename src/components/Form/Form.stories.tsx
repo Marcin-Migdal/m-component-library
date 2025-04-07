@@ -41,7 +41,7 @@ type SignUpState = {
   userName: string;
   password: string;
   verifyPassword: string;
-  role: DropdownStringOption | undefined;
+  role: DropdownStringOption | null;
   yearOfBirth: number | null;
 };
 
@@ -50,12 +50,13 @@ const signUpInitialValues: SignUpState = {
   userName: "",
   password: "",
   verifyPassword: "",
-  role: undefined,
+  role: null,
   yearOfBirth: null,
 };
 
 const signUpValidationSchema = Yup.object().shape({
   role: Yup.object()
+    .nullable()
     .shape({
       label: Yup.string().required("Required"),
       value: Yup.string().required("Required"),

@@ -21,7 +21,7 @@ export type DropdownClearEvent = React.MouseEvent<Element, MouseEvent> & MInputC
 
 type DropdownBaseProps<T> = InputProps & {
   /** Currently selected value in the dropdown. */
-  value?: DropdownValue<T>;
+  value?: DropdownValue<T> | null;
 
   /** Callback triggered when an option is selected. */
   onChange?: (event: DropdownChangeEvent<T>, value: T) => void;
@@ -119,7 +119,7 @@ export type DropdownOptionsProps<T> = {
   id: string;
   handleDropdownChange: (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: T) => void;
   options: T[];
-  value: T | undefined;
+  value: T | null | undefined;
   valueKey: keyof T;
   labelKey: keyof T;
   classNamesObj?: DropdownOptionsClassnames;
