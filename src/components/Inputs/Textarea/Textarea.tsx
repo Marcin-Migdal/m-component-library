@@ -33,6 +33,8 @@ const Textarea = ({
   marginBottomType = defaultInputPropsValue.marginBottomType,
   floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 
+  enableResize = false,
+
   ...otherProps
 }: TextareaProps) => {
   const [internalValue, setInternalValue] = useState<string>(defaultValue || "");
@@ -82,7 +84,9 @@ const Textarea = ({
         readOnly={readOnly}
         name={name}
         style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
-        className={classNames("m-input", "m-textarea", "m-scroll", classNamesObj?.input, labelType)}
+        className={classNames("m-input", "m-textarea", "m-scroll", classNamesObj?.input, labelType, {
+          "resize-disabled": !enableResize,
+        })}
         value={value}
         onChange={handleChange}
         onFocus={handleFocus}

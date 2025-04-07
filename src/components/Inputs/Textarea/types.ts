@@ -40,4 +40,8 @@ export type TextareaProps = InputProps & {
 
   /** Custom class names for styling different elements of the component. */
   classNamesObj?: TextAreaClassNames;
+
+  /** When `true` `TextArea` can be resized vertically.
+   * @default false */
+  enableResize?: boolean;
 };
