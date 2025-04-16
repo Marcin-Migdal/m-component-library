@@ -24,11 +24,11 @@ export type ImageFieldChangeEvent = Omit<ImageFieldCNativeChangeEvent, "target">
   target: Omit<ImageFieldCNativeChangeEvent["target"], "value">;
 } & MInputChangeEvent<File>;
 
-export type ImageFieldClearEvent = React.MouseEvent<SVGSVGElement, MouseEvent> & MInputChangeEvent<undefined>;
+export type ImageFieldClearEvent = React.MouseEvent<SVGSVGElement, MouseEvent> & MInputChangeEvent<null>;
 
 export type ImageFieldProps = InputProps & {
   /** The currently selected image file. */
-  value?: File | undefined;
+  value?: File | null;
 
   /** Messages displayed in the dropzone area. `[defaultMessage, draggingMessage]` */
   dropzoneMessage?: [string, string];
@@ -65,6 +65,9 @@ export type ImageFieldProps = InputProps & {
   /** Callback triggered when an image is selected. */
   onChange?: (event: ImageFieldChangeEvent, value: File) => void;
 
+  /** Callback triggered when an `ImageField` lose focus. */
+  onBlur?: (event: ImageFieldChangeEvent, value: File) => void;
+
   /** Callback triggered when the `ImageField` is clicked. */
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 
@@ -72,5 +75,5 @@ export type ImageFieldProps = InputProps & {
   onError?: (errorMessage: string) => void;
 
   /** Callback triggered when the selected image is cleared. */
-  onClear?: (event: ImageFieldClearEvent, value: undefined) => void;
+  onClear?: (event: ImageFieldClearEvent, value: null) => void;
 };

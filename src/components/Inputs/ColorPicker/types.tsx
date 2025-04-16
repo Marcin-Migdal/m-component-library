@@ -12,6 +12,7 @@ type ColorPickerClassNames = {
 };
 
 export type ColorPickerChangeEvent = MInputChangeEvent<ColorValue>;
+export type ColorPickerBlurEvent = MInputChangeEvent<ColorValue | null>;
 
 export type ColorPickerProps<TReturnedColor extends ReturnedColor> = InputProps & {
   /** Color value for the picker.
@@ -19,7 +20,7 @@ export type ColorPickerProps<TReturnedColor extends ReturnedColor> = InputProps 
    * - If `undefined` is passed as value, component will be in `uncontrolled` mode.
    * @default undefined
    */
-  value?: ColorValue;
+  value?: ColorValue | null;
 
   /** Default color value for the picker. */
   defaultValue?: ColorValue;
@@ -30,17 +31,14 @@ export type ColorPickerProps<TReturnedColor extends ReturnedColor> = InputProps 
   /** Placeholder text for the color input field. */
   placeholder?: string;
 
-  /** Callback triggered when the color picker opens. */
-  onOpen?: () => void;
-
   /** Format of the returned color. */
   returnedColorType?: TReturnedColor;
 
   /** Callback triggered when color changes. */
   onChange?: (event: ColorPickerChangeEvent, value: ColorValue) => void;
 
-  /** Callback triggered when the color picker closes. */
-  onClose?: (value: ColorValue) => void;
+  /** Callback triggered when `ColorPicker lose focus`. */
+  onBlur?: (event: ColorPickerBlurEvent, value: ColorValue | null) => void;
 };
 
 export type HslValue = {

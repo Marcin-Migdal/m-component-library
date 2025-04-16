@@ -11,11 +11,12 @@ type IconFieldClassNames = {
 };
 
 export type IconFieldChangeEvent = React.MouseEvent<HTMLDivElement, MouseEvent> & MInputChangeEvent;
-export type IconFieldClearEvent = React.MouseEvent<SVGSVGElement, MouseEvent> & MInputChangeEvent<undefined>;
+export type IconFieldBlurEvent = MInputChangeEvent<string | null>;
+export type IconFieldClearEvent = React.MouseEvent<SVGSVGElement, MouseEvent> & MInputChangeEvent<null>;
 
 export type IconFieldProps = InputProps & {
   /** The current selected icon. */
-  value?: string;
+  value?: string | null;
 
   /** Custom class names for different parts of the component. */
   classNamesObj?: IconFieldClassNames;
@@ -26,17 +27,14 @@ export type IconFieldProps = InputProps & {
   /** Color of the displayed icon. */
   iconColor?: ColorValue;
 
-  /** Callback triggered when the icon selection popup opens. */
-  onOpen?: () => void;
+  /** Callback triggered when an `IconField` icon is selected. */
+  onChange?: (event: IconFieldChangeEvent, value: string) => void;
 
-  /** Callback triggered when an icon is selected. */
-  onChange?: (event: IconFieldChangeEvent, value: string | undefined) => void;
+  /** Callback triggered when an `IconField` lose focus. */
+  onBlur?: (event: IconFieldBlurEvent, value: string | null) => void;
 
-  /** Callback triggered when an icon is cleared. */
-  onClear?: (event: IconFieldClearEvent, value: undefined) => void;
-
-  /** Callback triggered when the icon selection popup closes. */
-  onClose?: (value: string | undefined) => void;
+  /** Callback triggered when an `IconField` value is cleared. */
+  onClear?: (event: IconFieldClearEvent, value: null) => void;
 
   /** If set to true then `Textfield` in icon popup will be autoFocused. */
   autoFocusPopupInput?: boolean;

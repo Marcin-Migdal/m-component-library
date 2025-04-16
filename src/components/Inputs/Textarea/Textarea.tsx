@@ -33,12 +33,15 @@ const Textarea = ({
   marginBottomType = defaultInputPropsValue.marginBottomType,
   floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 
+  enableResize = false,
+
   ...otherProps
 }: TextareaProps) => {
   const [internalValue, setInternalValue] = useState<string>(defaultValue || "");
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
-  const value: string = externalValue !== undefined ? externalValue : internalValue;
+  const isControlled = externalValue !== undefined;
+  const value: string = isControlled ? externalValue : internalValue;
 
   const [handleDebounce] = useDebounceFunction(onDebounce, debounceDelay);
 
@@ -52,7 +55,7 @@ const Textarea = ({
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     handleDebounce(e, e.target.value);
-    setInternalValue(e.target.value);
+    !isControlled && setInternalValue(e.target.value);
 
     onChange &&
       onChange(
@@ -82,7 +85,9 @@ const Textarea = ({
         readOnly={readOnly}
         name={name}
         style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
-        className={classNames("m-input", "m-textarea", "m-scroll", classNamesObj?.input, labelType)}
+        className={classNames("m-input", "m-textarea", "m-scroll", classNamesObj?.input, labelType, {
+          "resize-disabled": !enableResize,
+        })}
         value={value}
         onChange={handleChange}
         onFocus={handleFocus}

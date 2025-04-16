@@ -6,7 +6,7 @@ import { InputErrorType } from "../../_inputsComponents";
 import "./ImagePreview.scss";
 
 type ImagePreviewProps = {
-  value: File | undefined;
+  value: File | null;
   error: InputErrorType | undefined;
 };
 

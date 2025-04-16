@@ -28,16 +28,14 @@ const Checkbox = ({
   readOnly = defaultInputPropsValue.readOnly,
   marginBottomType = defaultInputPropsValue.marginBottomType,
   floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
-
-  ...otherProps
 }: CheckboxProps) => {
   const checkboxContainerRef = useRef<HTMLDivElement>(null);
 
   const [internalChecked, setInternalChecked] = useState<boolean>(false);
   const [checkboxId] = useState(uuId());
 
-  const controlled = externalChecked !== undefined;
-  const checked = controlled ? externalChecked : internalChecked;
+  const isControlled = externalChecked !== undefined;
+  const checked = isControlled ? externalChecked : internalChecked;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     if (readOnly) {
@@ -46,6 +44,8 @@ const Checkbox = ({
     }
 
     const { checked: changedValue, type } = e.target;
+
+    !isControlled && setInternalChecked(changedValue);
 
     onChange &&
       onChange(
@@ -60,8 +60,6 @@ const Checkbox = ({
         },
         changedValue
       );
-
-    !controlled && setInternalChecked(changedValue);
   };
 
   return (
@@ -85,7 +83,6 @@ const Checkbox = ({
             onChange={handleChange}
             name={name}
             disabled={disabled}
-            {...otherProps}
           />
           <span className={classNames("m-input", "m-checkbox", classNamesObj?.input, labelType)}>
             <FontAwesomeIcon className="m-checkbox-check-icon" icon="check" />

@@ -8,7 +8,7 @@ import { DropdownChangeEvent, DropdownStringOption } from "../Inputs/Dropdown/ty
 import { NumberField } from "../Inputs/NumberField";
 import { Textfield } from "../Inputs/Textfield";
 import Form from "./Form";
-import { useForm } from "./hooks/useForm";
+import { useForm } from "./hooks/useForm/useForm";
 
 const meta: Meta<typeof Form> = {
   title: "Components/Form",
@@ -41,7 +41,7 @@ type SignUpState = {
   userName: string;
   password: string;
   verifyPassword: string;
-  role: DropdownStringOption | undefined;
+  role: DropdownStringOption | null;
   yearOfBirth: number | null;
 };
 
@@ -50,12 +50,13 @@ const signUpInitialValues: SignUpState = {
   userName: "",
   password: "",
   verifyPassword: "",
-  role: undefined,
+  role: null,
   yearOfBirth: null,
 };
 
 const signUpValidationSchema = Yup.object().shape({
   role: Yup.object()
+    .nullable()
     .shape({
       label: Yup.string().required("Required"),
       value: Yup.string().required("Required"),
@@ -100,13 +101,20 @@ export const Default: StoryObj<typeof Form> = {
 
     return (
       <Form formik={formik}>
-        {({ isValid, register }) => (
+        {({ values, handleChange, isValid, registerChange: register }) => (
           <>
             <Textfield label="Username" {...register("userName")} />
             <Textfield label="Email" {...register("email")} />
             <Textfield type="password" label="Password" {...register("password")} />
             <Textfield type="password" label="Verify Password" {...register("verifyPassword")} />
             <NumberField label="Year of birth" {...register("yearOfBirth")} />
+            <Dropdown
+              label="Role"
+              options={options}
+              name="role"
+              onChange={(e) => handleChange(e)}
+              value={values.role}
+            />
             <Dropdown
               label="Role"
               options={options}
@@ -138,7 +146,7 @@ export const SubmitButtonOutsideForm: StoryObj<typeof Form> = {
     return (
       <>
         <Form formik={formik}>
-          {({ register }) => (
+          {({ registerChange: register }) => (
             <>
               <Textfield label="Username" {...register("userName")} />
               <Textfield label="Email" {...register("email")} />

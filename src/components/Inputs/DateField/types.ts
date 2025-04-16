@@ -12,27 +12,22 @@ type DateFieldClassNames = {
 };
 
 export type ParsableSingleDate = string | Date;
-export type ParsableRangeDate = [ParsableSingleDate | undefined, ParsableSingleDate | undefined];
+export type ParsableRangeDate = [ParsableSingleDate | null, ParsableSingleDate | null];
 export type ParsableDateValue<TRange extends boolean = false> = TRange extends true
   ? ParsableRangeDate
   : ParsableSingleDate;
 
-export type RangeDate = [Date | undefined, Date | undefined];
+export type RangeDate = [Date | null, Date | null];
 export type DateValue<TRange extends boolean = false> = TRange extends true ? RangeDate : Date;
 
 export type DateFieldChangeEvent<TRange extends boolean = false> = React.MouseEvent<HTMLButtonElement, MouseEvent> &
   MInputChangeEvent<DateValue<TRange>>;
 
-export type DateFieldCloseEvent<TRange extends boolean = false> = (
-  | React.MouseEvent<HTMLButtonElement, MouseEvent>
-  | MouseEvent
-  | KeyboardEvent
-) &
-  MInputChangeEvent<DateValue<TRange> | undefined>;
+export type DateFieldBlurEvent<TRange extends boolean = false> = MInputChangeEvent<DateValue<TRange> | null>;
 
 export type DateFieldProps<TRange extends boolean = false> = InputProps & {
   /** The currently selected date or date range. */
-  value?: ParsableDateValue<TRange>;
+  value?: ParsableDateValue<TRange> | null;
 
   /** The default date or date range when the component is first rendered. */
   defaultValue?: ParsableDateValue<TRange>;
@@ -58,6 +53,6 @@ export type DateFieldProps<TRange extends boolean = false> = InputProps & {
   /** Callback triggered when the `DateField` is clicked. */
   onClick?: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 
-  /** Callback triggered when the date picker is closed. */
-  onClose?: (event: DateFieldCloseEvent<TRange>, value: DateValue<TRange> | undefined) => void;
+  /** Callback fired when the `DateField` loses focus. */
+  onBlur?: (event: DateFieldBlurEvent<TRange>, value: DateValue<TRange> | null) => void;
 };

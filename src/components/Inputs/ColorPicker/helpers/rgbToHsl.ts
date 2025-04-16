@@ -1,6 +1,14 @@
-import { HslValue } from "../types";
+import { HslValue, RgbValue } from "../types";
 
-export const rgbToHsl = (r: number, g: number, b: number): HslValue => {
+export const rgbToHsl = <TRgbValue extends RgbValue | null>(
+  rgb: TRgbValue
+): TRgbValue extends null ? null : HslValue => {
+  if (rgb === null) {
+    return null as TRgbValue extends null ? null : HslValue;
+  }
+
+  let { r, g, b } = rgb;
+
   r /= 255;
   g /= 255;
   b /= 255;
@@ -32,5 +40,7 @@ export const rgbToHsl = (r: number, g: number, b: number): HslValue => {
     h *= 60;
   }
 
-  return { h: Math.round(h), s: Math.round(s * 100), l: Math.round(l * 100) };
+  return { h: Math.round(h), s: Math.round(s * 100), l: Math.round(l * 100) } as TRgbValue extends null
+    ? null
+    : HslValue;
 };

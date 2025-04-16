@@ -16,6 +16,7 @@ export const StandAloneTextfield = ({
   name = undefined,
   disabled = false,
   readOnly = false,
+  disableSubmitOnEnter = false,
   id = undefined,
   idPrefix = "textfield",
 
@@ -95,6 +96,11 @@ export const StandAloneTextfield = ({
         onClick={onClick}
         autoFocus={autoFocus}
         placeholder={placeholder}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" && disableSubmitOnEnter) {
+            e.preventDefault();
+          }
+        }}
       />
     </div>
   );

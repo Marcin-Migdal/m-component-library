@@ -14,13 +14,14 @@ import { ImageDropzone } from "./ImageDropzone/ImageDropzone";
 import { ImageIcons } from "./ImageIcons/ImageIcons";
 import { ImagePreview } from "./ImagePreview/ImagePreview";
 import { ImagePreviewZoom } from "./ImagePreviewZoom/ImagePreviewZoom";
-import { ImageFieldProps } from "./types";
+import { ImageFieldChangeEvent, ImageFieldProps } from "./types";
 
 import "./ImageField.scss";
 
 export const ImageField = ({
   value: externalValue = undefined,
   onChange,
+  onBlur,
   onError,
   onClear,
   name,
@@ -48,11 +49,11 @@ export const ImageField = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [imageFieldId] = useState(uuId());
-  const [internalValue, setInternalValue] = useState<File | undefined>(undefined);
+  const [internalValue, setInternalValue] = useState<File | null>(null);
   const [zoomVisible, setZoomVisible] = useState<boolean>(false);
 
   const isControlled = externalValue !== undefined;
-  const value: File | undefined = isControlled ? externalValue : internalValue;
+  const value: File | null = isControlled ? externalValue : internalValue;
 
   const handleDrop = async (event: React.DragEvent<HTMLLabelElement>) => {
     event.stopPropagation();
@@ -67,21 +68,21 @@ export const ImageField = ({
       return;
     }
 
-    onChange &&
-      onChange(
-        {
-          ...event,
-          target: {
-            ...event.target,
-            name: name || "",
-            value: imageFile,
-            type: "image",
-            checked: false,
-          },
-        },
-        imageFile
-      );
     !isControlled && setInternalValue(imageFile);
+
+    const imageFIeldEvent: ImageFieldChangeEvent = {
+      ...event,
+      target: {
+        ...event.target,
+        name: name || "",
+        value: imageFile,
+        type: "image",
+        checked: false,
+      },
+    };
+
+    onChange && onChange(imageFIeldEvent, imageFile);
+    onBlur && onBlur(imageFIeldEvent, imageFile);
   };
 
   const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,29 +99,28 @@ export const ImageField = ({
       return;
     }
 
-    onChange &&
-      onChange(
-        {
-          ...event,
-          target: {
-            ...event.target,
-            name: name || "",
-            value: imageFile,
-            type: "image",
-            checked: false,
-          },
-        },
-        imageFile
-      );
-
     !isControlled && setInternalValue(imageFile);
+
+    const imageFIeldEvent: ImageFieldChangeEvent = {
+      ...event,
+      target: {
+        ...event.target,
+        name: name || "",
+        value: imageFile,
+        type: "image",
+        checked: false,
+      },
+    };
+
+    onChange && onChange(imageFIeldEvent, imageFile);
+    onBlur && onBlur(imageFIeldEvent, imageFile);
   };
 
   const clearImage = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     event.stopPropagation();
-
-    !isControlled && setInternalValue(undefined);
     inputRef.current && (inputRef.current.value = "");
+
+    !isControlled && setInternalValue(null);
 
     onClear &&
       onClear(
@@ -129,12 +129,12 @@ export const ImageField = ({
           target: {
             ...event.target,
             name: name || "",
-            value: undefined,
+            value: null,
             type: "image",
             checked: false,
           },
         },
-        undefined
+        null
       );
   };
 
