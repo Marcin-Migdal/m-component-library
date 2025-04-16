@@ -1,4 +1,6 @@
-### Release date ??.??.???? - Release ?.?.?
+### Release date 16.04.2025 - Release 2.1.4
+
+- [[#216]](https://github.com/Marcin-Migdal/m-component-library/issues/216) **[PATCH]** Flaner bug fixes patch, details in the github issue
 
 ### Release date 31.03.2025 - Release 2.1.3
 

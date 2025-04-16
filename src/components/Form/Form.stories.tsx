@@ -4,7 +4,7 @@ import * as Yup from "yup";
 
 import { Button } from "../Button";
 import { Dropdown } from "../Inputs";
-import { DropdownStringOption } from "../Inputs/Dropdown/types";
+import { DropdownChangeEvent, DropdownStringOption } from "../Inputs/Dropdown/types";
 import { NumberField } from "../Inputs/NumberField";
 import { Textfield } from "../Inputs/Textfield";
 import Form from "./Form";
@@ -115,7 +115,11 @@ export const Default: StoryObj<typeof Form> = {
               onChange={(e) => handleChange(e)}
               value={values.role}
             />
-            <Dropdown label="Role" options={options} {...register("role")} />
+            <Dropdown
+              label="Role"
+              options={options}
+              {...register<"role", DropdownChangeEvent<DropdownStringOption>>("role")}
+            />
             <Button text="Submit" type="submit" variant="full" disabled={!isValid} />
             <Button text="Clear" onClick={() => formik.resetForm()} />
           </>
