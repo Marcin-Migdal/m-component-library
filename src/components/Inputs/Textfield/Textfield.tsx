@@ -42,15 +42,17 @@ const Textfield = (props: TextfieldProps) => {
   const [internalValue, setInternalValue] = useState<string>(defaultValue || "");
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
-  const value: string = externalValue !== undefined ? externalValue : internalValue;
+  const isControlled = externalValue !== undefined;
+  const value: string = externalValue ? externalValue : internalValue;
 
   const [handleDebounce] = useDebounceFunction(onDebounce, debounceDelay);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     handleDebounce(e, e.target.value);
 
+    !isControlled && setInternalValue(e.target.value);
+
     onChange && onChange(e, e.target.value);
-    setInternalValue(e.target.value);
   };
 
   const handleFocus = (e: FocusEvent<HTMLInputElement, Element>) => {

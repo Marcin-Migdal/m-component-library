@@ -8,7 +8,7 @@ import "./ImagePreviewZoom.scss";
 
 type ImagePreviewZoomProps = {
   zoomVisible: boolean;
-  value: File | undefined;
+  value: File | null;
   closeZoom: () => void;
   overlayConfig?: OverlayProps;
 };

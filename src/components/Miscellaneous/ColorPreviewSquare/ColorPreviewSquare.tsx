@@ -25,7 +25,7 @@ const ColorPreviewSquare = ({ onClick, disabled = false, color, className, style
 
     const rgb = valueToRgb(backgroundColor);
 
-    return rgbToHex(rgb.r, rgb.g, rgb.b);
+    return rgbToHex(rgb);
   };
 
   return (

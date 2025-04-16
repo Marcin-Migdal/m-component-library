@@ -12,7 +12,7 @@
   padding: var(--date-picker-popup-padding);
 
   transition: var(--transition-duration-slow);
-  z-index: 3;
+  z-index: 100;
 
   &.mounted,
   &.closing {

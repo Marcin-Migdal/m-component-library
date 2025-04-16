@@ -27,16 +27,6 @@ const meta: Meta<typeof ColorPicker> = {
         "Callback triggered when color changes. Format of the value is controlled by `returnedColorType` props.",
       table: { type: { summary: "(event: { target: { name: string; value: ColorValue } }) => void" } },
     },
-    onClose: {
-      control: false,
-      description:
-        "Callback triggered when the color picker closes. Format of the value is controlled by `returnedColorType` props.",
-      table: {
-        type: {
-          summary: "(value: ColorValue | undefined) => void",
-        },
-      },
-    },
   },
 };
 

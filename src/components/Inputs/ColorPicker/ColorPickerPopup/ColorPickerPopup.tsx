@@ -23,7 +23,7 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
   const popupRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState<Position | undefined>(undefined);
 
-  const [hueSliderValue, setHueSliderValue] = useState<number>(value ? rgbToHsl(value.r, value.g, value.b).h : 0);
+  const [hueSliderValue, setHueSliderValue] = useState<number>(value ? rgbToHsl(value).h : 0);
   const [rgbValue, setRgbValue] = useState<RgbValue>(value ? { ...value } : { r: 255, g: 255, b: 255 });
 
   useLayoutEffect(() => {
@@ -70,7 +70,7 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
   };
 
   const handleHueSliderChange = (hue: number) => {
-    const { s, l } = rgbToHsl(rgbValue.r, rgbValue.g, rgbValue.b);
+    const { s, l } = rgbToHsl(rgbValue);
 
     setHueSliderValue(hue);
     setRgbValue(hslToRgb(hue, s, l));
@@ -82,7 +82,7 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
     const newRgbValue: RgbValue = { ...rgbValue, [event.target.name as keyof RgbValue]: parseInt(event.target.value) };
 
     setRgbValue(newRgbValue);
-    setHueSliderValue(rgbToHsl(newRgbValue.r, newRgbValue.g, newRgbValue.b).h);
+    setHueSliderValue(rgbToHsl(newRgbValue).h);
 
     onChange(newRgbValue);
   };
