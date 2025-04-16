@@ -45,7 +45,13 @@ export const HueSliderCanvas = ({ hue, onChange, readOnly = false }: HueSliderCa
 
     setIndicatorPosition({ x: clampedX, y: 0 });
 
-    onChange(rgbToHsl(imageData[0], imageData[1], imageData[2]).h);
+    onChange(
+      rgbToHsl({
+        r: imageData[0],
+        g: imageData[1],
+        b: imageData[2],
+      }).h
+    );
   });
 
   useEffect(() => {

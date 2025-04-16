@@ -24,6 +24,10 @@ export type StandAloneTextfieldProps = Omit<
    * @default false */
   autoFocus?: boolean;
 
+  /** Whether `StandAloneTextfield` have disabled form submitting with enter key press .
+   * @default false */
+  disableSubmitOnEnter?: boolean;
+
   /** Additional CSS class names for custom styling. */
   className?: string;
 

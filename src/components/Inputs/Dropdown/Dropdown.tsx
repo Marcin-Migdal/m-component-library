@@ -16,6 +16,7 @@ import { DropdownOptionsComponent } from "./DropdownOptionsComponent/DropdownOpt
 
 import {
   ClearIconProps,
+  DropdownBlurEvent,
   DropdownChangeEvent,
   DropdownClearEvent,
   DropdownComponents,
@@ -67,6 +68,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
   onChange,
   onClear,
   onFocus,
+  onBlur,
   name = undefined,
   placeholder,
   label,
@@ -83,6 +85,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
   filter = false,
   components,
   menuPositionConfig,
+  disableSubmitOnEnter = false,
 
   labelType = defaultInputPropsValue.labelType,
   labelWidth = defaultInputPropsValue.labelWidth,
@@ -94,19 +97,35 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
 }: DropdownProps<T>) {
   const controlContainerRef = useRef<HTMLInputElement>(null);
 
-  const [internalValue, setInternalValue] = useState<DropdownValue<T>>(undefined);
+  const [internalValue, setInternalValue] = useState<DropdownValue<T>>(null);
   const [filterValue, setFilterValue] = useState<string>("");
 
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const [uniqueDropdownId] = useState<string>(uuId());
 
-  const value = externalValue || internalValue;
+  const isControlled = externalValue !== undefined;
+
+  const value: DropdownValue<T> = isControlled ? externalValue : internalValue;
   const dropdownOptions: T[] = filterOptions(options, labelKey, filterValue);
 
   const currentComponents: DropdownComponents<T> = {
     ...defaultComponents,
     ...components,
+  };
+
+  const handleBlur = (selectedDate: DropdownValue<T> | null) => {
+    const _e: DropdownBlurEvent<DropdownValue<T>> = {
+      target: {
+        name: name || "",
+        value: selectedDate,
+        checked: false,
+        type: "dropdown",
+      },
+    };
+
+    setIsFocused(false);
+    onBlur && onBlur(_e);
   };
 
   useEffect(() => {
@@ -118,17 +137,26 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
       }
 
       if (
+        isFocused &&
         (!controlContainerRef.current.contains(target) ||
           (typeof target?.className === "string" && target?.className.includes("m-dropdown-container"))) &&
         (!target.id || !target.id.endsWith(uniqueDropdownId))
       ) {
-        setIsFocused(false);
+        handleBlur(value);
       }
     };
 
     const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.code === "Escape") {
-        setIsFocused(false);
+      if (event.code === "Escape" && isFocused) {
+        handleBlur(value);
+
+        const dropdownControlElement = controlContainerRef.current?.querySelector(
+          `#dropdown-controller-${uniqueDropdownId}`
+        ) as HTMLInputElement | null;
+
+        if (dropdownControlElement && document.activeElement === dropdownControlElement) {
+          dropdownControlElement.blur();
+        }
       }
     };
 
@@ -139,16 +167,16 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, []);
+  }, [isFocused]);
 
   const handleFilterChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setFilterValue(e.target.value);
   };
 
   const handleDropdownChange = (e: ReactMouseEvent<HTMLLIElement, MouseEvent>, selectedOption: T): void => {
+    !isControlled && setInternalValue(selectedOption);
+
     setFilterValue("");
-    setInternalValue(selectedOption);
-    setIsFocused(false);
 
     if (onChange) {
       const _e: DropdownChangeEvent<T> = {
@@ -164,11 +192,13 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
 
       onChange(_e, selectedOption as T);
     }
+
+    handleBlur(selectedOption);
   };
 
   const handleClear = (e: ReactMouseEvent<Element, MouseEvent>) => {
-    setFilterValue("");
-    setInternalValue(undefined);
+    !isControlled && setInternalValue(null);
+
     setIsFocused(false);
 
     if (onClear) {
@@ -177,13 +207,13 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
         target: {
           ...e.target,
           name: name || "",
-          value: undefined,
+          value: null,
           checked: false,
           type: "dropdown",
         },
       };
 
-      onClear(_e, undefined);
+      onClear(_e, null);
     }
   };
 
@@ -207,6 +237,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
     id: uniqueDropdownId,
     idPrefix: "dropdown-controller",
     readOnly: readOnly || !filter,
+    disableSubmitOnEnter: disableSubmitOnEnter,
     value: filter && isFocused ? filterValue : value?.[labelKey].toString() || "",
     onChange: handleFilterChange,
     onFocus: handleFocus,

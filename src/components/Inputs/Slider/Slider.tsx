@@ -16,6 +16,7 @@ const Slider = ({
   defaultValue,
   value: externalValue,
   onChange,
+  onBlur,
   onDebounce,
   name = undefined,
   label,
@@ -38,12 +39,12 @@ const Slider = ({
 }: SliderProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const [internalValue, setValue] = useState<number>(defaultValue || min);
+  const [internalValue, setInternalValue] = useState<number>(defaultValue || min);
 
   const [sliderValueDynamicStyle, setSliderValueDynamicStyle] = useState<CSSProperties>({});
 
-  const controlled = externalValue !== undefined;
-  const value = controlled ? externalValue : internalValue;
+  const isControlled = externalValue !== undefined;
+  const value = isControlled ? externalValue : internalValue;
 
   let inputStyle = getInputStyle(labelType, label, labelWidth, floatingInputWidth);
 
@@ -96,13 +97,30 @@ const Slider = ({
 
     handleDebounce(sliderChangeEvent, parsedValue);
 
+    !isControlled && setInternalValue(parsedValue);
+
     if (onChange) {
       onChange(sliderChangeEvent, parsedValue);
     }
+  };
 
-    if (!controlled) {
-      setValue(parsedValue);
-    }
+  const handleSliderRelease = (
+    event: React.MouseEvent<HTMLInputElement, MouseEvent> | React.TouchEvent<HTMLInputElement>
+  ) => {
+    onBlur &&
+      onBlur(
+        {
+          ...event,
+          target: {
+            ...event.target,
+            value: value,
+            name: name || "",
+            type: "range",
+            checked: false,
+          },
+        },
+        value
+      );
   };
 
   return (
@@ -129,6 +147,8 @@ const Slider = ({
         step={step}
         value={value}
         onChange={handleChange}
+        onMouseUp={handleSliderRelease}
+        onTouchEnd={handleSliderRelease}
         style={inputStyle}
         className={classNames("m-input m-slider", classNamesObj?.input)}
       />

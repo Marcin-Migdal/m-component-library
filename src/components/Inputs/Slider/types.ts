@@ -16,6 +16,8 @@ export type SliderChangeEvent = Omit<ChangeEvent<HTMLInputElement>, "target"> & 
   target: Omit<ChangeEvent<HTMLInputElement>["target"], "value">;
 } & MInputChangeEvent<number>;
 
+export type SliderBlurEvent = MInputChangeEvent<number>;
+
 export type SliderProps = InputProps & {
   /** The current value of the `Slider`. Can be controlled externally. */
   value?: number;
@@ -34,6 +36,9 @@ export type SliderProps = InputProps & {
 
   /** Callback fired when the `Slider` value changes. */
   onChange?: (event: SliderChangeEvent, value: number) => void;
+
+  /** Callback fired when the `Slider` lose focus. */
+  onBlur?: (event: SliderBlurEvent, value: number) => void;
 
   /** Callback fired when the `Slider` value changes and set delay passed. <br/> Delay is controlled by `debounceDelay` props.*/
   onDebounce?: (event: SliderChangeEvent, value: number) => void;

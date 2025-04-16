@@ -8,22 +8,22 @@ import { Dropdown } from "../../Dropdown";
 import { DropdownChangeEvent, DropdownComponents, DropdownNumberOption } from "../../Dropdown/types";
 import { getDayName, getDaysInMonth, getMonths, getWeekDays, getYears } from "../helpers";
 import { normalizeDate } from "../helpers/normalizeDate";
-import { DateValue, RangeDate } from "../types";
+import { DateValue } from "../types";
 import { DayButton } from "./DayButton/DayButton";
 
 import "./DatePickerPopup.scss";
 
 type DatePickerPopupProps<TRange extends boolean> = {
-  value: DateValue<TRange> | undefined;
+  value: DateValue<TRange> | null;
   onChange: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, value: DateValue<TRange>) => void;
   parentElement: HTMLInputElement;
   className: string;
-  handleClose: (event: MouseEvent | KeyboardEvent) => void;
+  handleBlur: (selectedDate: DateValue<TRange> | null) => void;
   locale: string;
   range: TRange;
 };
 
-const getStartDate = <TRange extends boolean>(range: TRange, value: DateValue<TRange> | undefined): Date => {
+const getStartDate = <TRange extends boolean>(range: TRange, value: DateValue<TRange> | null): Date => {
   if (!value) {
     return new Date();
   }
@@ -50,7 +50,7 @@ export const DatePickerPopup = <TRange extends boolean>({
   onChange,
   parentElement,
   className,
-  handleClose,
+  handleBlur,
   locale,
   range,
 }: DatePickerPopupProps<TRange>) => {
@@ -104,13 +104,13 @@ export const DatePickerPopup = <TRange extends boolean>({
         !parentElement.contains(target) &&
         !dropdownMenuElement?.contains(target)
       ) {
-        handleClose(event);
+        handleBlur(value);
       }
     };
 
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.code === "Escape") {
-        handleClose(event);
+        handleBlur(value);
       }
     };
 
@@ -150,12 +150,17 @@ export const DatePickerPopup = <TRange extends boolean>({
 
   const handleChange = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, date: Date) => {
     if (range) {
-      const [dateRangeStart, dateRangeEnd] = (value as RangeDate | undefined) || [];
+      const [dateRangeStart, dateRangeEnd] = (value as DateValue<true>) || [];
 
-      if (Array.isArray(value) && dateRangeEnd === undefined && normalizeDate(dateRangeStart!) <= normalizeDate(date)) {
+      if (
+        Array.isArray(value) &&
+        dateRangeStart !== null &&
+        dateRangeEnd === null &&
+        normalizeDate(dateRangeStart) <= normalizeDate(date)
+      ) {
         onChange(event, [dateRangeStart, date] as DateValue<TRange>);
       } else {
-        onChange(event, [date, undefined] as DateValue<TRange>);
+        onChange(event, [date, null] as DateValue<TRange>);
       }
     } else {
       onChange(event, date as DateValue<TRange>);
@@ -164,7 +169,7 @@ export const DatePickerPopup = <TRange extends boolean>({
 
   const handleHoverDaySet = useCallback(
     (date: Date | undefined) => {
-      if (!Array.isArray(value) || value[0] === undefined || value[1] !== undefined || (date && date <= value[0]!)) {
+      if (!Array.isArray(value) || value[0] === null || value[1] !== null || (date && date <= value[0]!)) {
         if (internalRangeHoverDate !== undefined) {
           setInternalRangeHoverDate(undefined);
         }

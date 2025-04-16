@@ -4,7 +4,7 @@ import { ColorValue } from "../../Inputs";
 export type IconPreviewSquareProps = {
   /** Icon displayed in icon preview square component.
    * @default undefined */
-  icon?: string;
+  icon?: string | null;
 
   /** Color of the icon background and icon itself.
    * @default undefined */

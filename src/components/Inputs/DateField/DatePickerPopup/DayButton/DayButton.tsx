@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 
 import { isSameDay } from "../../helpers";
 import { dateContainsInRange } from "../../helpers/dateContainsInRange";
-import { DateValue, RangeDate } from "../../types";
+import { DateValue } from "../../types";
 
 import "./DayButton.scss";
 
@@ -12,7 +12,7 @@ type DayButtonProps<TRange extends boolean> = {
   onChange: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, date: Date) => void;
   dimmed?: boolean;
   range: TRange;
-  value: DateValue<TRange> | undefined;
+  value: DateValue<TRange> | null;
   onHoverDaySet: (date: Date | undefined) => void;
   internalRangeHoverDate: Date | undefined;
 };
@@ -28,13 +28,13 @@ export const DayButton = <TRange extends boolean>({
 }: DayButtonProps<TRange>) => {
   const className = useMemo(() => {
     if (range && Array.isArray(value)) {
-      const [dateRangeStart, dateRangeEnd] = value as RangeDate;
+      const [dateRangeStart, dateRangeEnd] = value;
 
       if (isSameDay(dateRangeStart, date)) {
         return classNames("start-date", "in-range");
       } else if (isSameDay(dateRangeEnd, date)) {
         return classNames("end-date", "in-range");
-      } else if (dateContainsInRange(value as RangeDate, date)) {
+      } else if (dateContainsInRange(value, date)) {
         return "in-range";
       } else if (
         dateRangeStart &&

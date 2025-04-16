@@ -17,19 +17,19 @@ import "./Datefield.theme.scss";
 
 const getDateFieldValue = <TRange extends boolean>(
   range: TRange,
-  value: ParsableDateValue<TRange> | undefined
-): DateValue<TRange> | undefined => {
+  value: ParsableDateValue<TRange> | null | undefined
+): DateValue<TRange> | null => {
   if (!value) {
-    return undefined;
+    return null;
   }
 
-  const convertToDateType = (externalDate: ParsableSingleDate | undefined): Date | undefined => {
+  const convertToDateType = (externalDate: ParsableSingleDate | null): Date | null => {
     if (!externalDate) {
-      return undefined;
+      return null;
     }
 
     const date = new Date(externalDate);
-    return !isNaN(date.getTime()) ? date : undefined;
+    return !isNaN(date.getTime()) ? date : null;
   };
 
   if (range === true && Array.isArray(value)) {
@@ -50,7 +50,7 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
     onChange,
     onFocus,
     onClick,
-    onClose,
+    onBlur,
     name,
     placeholder = undefined,
     label = undefined,
@@ -74,62 +74,63 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
 
   const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
 
-  const [internalValue, setInternalValue] = useState<DateValue<TRange> | undefined>(
-    getDateFieldValue(range, defaultValue)
-  );
+  const [internalValue, setInternalValue] = useState<DateValue<TRange> | null>(getDateFieldValue(range, defaultValue));
 
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const [uniqueDatefieldId] = useState<string>(uuId());
 
-  const value = getDateFieldValue(range, externalValue !== undefined ? externalValue : internalValue);
+  const isControlled = externalValue !== undefined;
 
-  const handleClose = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent> | MouseEvent | KeyboardEvent,
-    selectedDate: DateValue<TRange> | undefined = value
-  ) => {
-    onClose &&
-      onClose(
+  const value = isControlled ? getDateFieldValue(range, externalValue) : internalValue;
+
+  const handleBlur = (selectedDate: DateValue<TRange> | null) => {
+    setIsFocused(false);
+
+    handlePopupClose();
+
+    onBlur &&
+      onBlur(
         {
-          ...event,
           target: {
-            ...(event.target as HTMLButtonElement),
             name: name || "",
             value: selectedDate,
             checked: false,
             type: "date",
           },
         },
-        value
+        selectedDate
       );
-
-    handlePopupClose();
   };
 
   const handleChange = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     selectedDate: DateValue<TRange>
   ): void => {
-    setInternalValue(selectedDate);
+    !isControlled && setInternalValue(selectedDate);
 
-    if (!range || (range && selectedDate[1] !== undefined)) {
-      onChange &&
-        onChange(
-          {
-            ...event,
-            target: {
-              ...event.target,
-              name: name || "",
-              value: selectedDate,
-              checked: false,
-              type: "date",
-            },
-          },
-          selectedDate
-        );
+    if (!range || selectedDate[1] !== null) {
+      handleBlur(selectedDate);
 
-      handleClose(event);
+      if (onBlur) {
+        return;
+      }
     }
+
+    onChange &&
+      onChange(
+        {
+          ...event,
+          target: {
+            ...event.target,
+            name: name || "",
+            value: selectedDate,
+            checked: false,
+            type: "date",
+          },
+        },
+        selectedDate
+      );
   };
 
   const handleFocus = (e: FocusEvent<HTMLInputElement, Element>) => {
@@ -140,10 +141,6 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
   const handleClick = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     toggleOpenStatus();
     onClick && onClick(event);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
   };
 
   const datefieldElement = document.getElementById(`textfield-${uniqueDatefieldId}`) as HTMLInputElement | null;
@@ -160,7 +157,6 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
     >
       <StandAloneTextfield
         id={uniqueDatefieldId}
-        onBlur={handleBlur}
         onFocus={handleFocus}
         onClick={handleClick}
         placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
@@ -204,7 +200,7 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
             onChange={handleChange}
             className={classNames(openStatus, classNamesObj?.popup)}
             parentElement={datefieldElement}
-            handleClose={handleClose}
+            handleBlur={handleBlur}
           />,
           document.body
         )}
