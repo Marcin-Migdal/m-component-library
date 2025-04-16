@@ -9,7 +9,7 @@ import "./ImageIcons.scss";
 type ImageIconsProps = {
   openZoom: () => void;
   clearImage: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
-  value: File | undefined;
+  value: File | null;
   error: InputErrorType | undefined;
   disabled: boolean;
 };

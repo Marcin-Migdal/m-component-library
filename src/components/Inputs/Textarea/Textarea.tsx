@@ -40,7 +40,8 @@ const Textarea = ({
   const [internalValue, setInternalValue] = useState<string>(defaultValue || "");
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
-  const value: string = externalValue !== undefined ? externalValue : internalValue;
+  const isControlled = externalValue !== undefined;
+  const value: string = isControlled ? externalValue : internalValue;
 
   const [handleDebounce] = useDebounceFunction(onDebounce, debounceDelay);
 
@@ -54,7 +55,7 @@ const Textarea = ({
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     handleDebounce(e, e.target.value);
-    setInternalValue(e.target.value);
+    !isControlled && setInternalValue(e.target.value);
 
     onChange &&
       onChange(

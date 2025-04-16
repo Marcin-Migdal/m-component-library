@@ -20,6 +20,7 @@ import "./IconField.scss";
 const IconField = ({
   value: externalValue = undefined,
   onChange,
+  onBlur,
   onClear,
   name = undefined,
   label = undefined,
@@ -37,55 +38,48 @@ const IconField = ({
   floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
   marginBottomType = defaultInputPropsValue.marginBottomType,
 
-  onOpen,
-  onClose,
   autoFocusPopupInput = false,
 }: IconFieldProps) => {
-  const [internalValue, setInternalValue] = useState<string | undefined>(undefined);
+  const [internalValue, setInternalValue] = useState<string | null>(null);
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
-  const controlled = externalValue !== undefined;
-  const value = controlled ? externalValue : internalValue;
+  const isControlled = externalValue !== undefined;
+  const value = isControlled ? externalValue : internalValue;
 
-  const handleFocus = () => {
-    setIsFocused(true);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
-  };
-
-  const [handlePopupOpen, alertProps] = useAlert({
-    onOpen: handleFocus,
-    onClose: () => {
-      if (onClose) {
-        onClose(value);
-      }
-
-      handleBlur();
-    },
-  });
+  const [handlePopupOpen, alertProps] = useAlert();
 
   const handleOpen = () => {
     if (readOnly) {
       return;
     }
 
-    onOpen && onOpen();
-
     handlePopupOpen();
   };
 
-  const handleClose = () => {
+  const handleBlur = (selectedIcon: string | null = value) => {
     if (alertProps.alertOpen !== AlertOpenState.OPENED) {
       return;
     }
 
+    setIsFocused(false);
     alertProps.handleClose();
+
+    onBlur &&
+      onBlur(
+        {
+          target: {
+            name: name || "",
+            value: selectedIcon,
+            checked: false,
+            type: "icon",
+          },
+        },
+        selectedIcon
+      );
   };
 
   const handleChange = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, selectedIcon: string): void => {
-    !controlled && setInternalValue(selectedIcon);
+    !isControlled && setInternalValue(selectedIcon);
 
     onChange &&
       onChange(
@@ -102,11 +96,11 @@ const IconField = ({
         selectedIcon
       );
 
-    handleClose();
+    handleBlur(selectedIcon);
   };
 
   const clearValue = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
-    !controlled && setInternalValue(undefined);
+    !isControlled && setInternalValue(null);
 
     onClear &&
       onClear(
@@ -115,12 +109,12 @@ const IconField = ({
           target: {
             ...event.target,
             name: name || "",
-            value: undefined,
+            value: null,
             checked: false,
             type: "icon",
           },
         },
-        undefined
+        null
       );
   };
 
@@ -170,10 +164,10 @@ const IconField = ({
           />
         )}
       </InputContainer>
-      <Alert {...alertProps} className="m-icon-field-popup" header="Icon selector popup">
+      <Alert {...alertProps} handleClose={handleBlur} className="m-icon-field-popup" header="Icon selector popup">
         <IconFieldPopupContent
           onChange={handleChange}
-          value={value as IconName}
+          value={value as IconName | null}
           autoFocusPopupInput={autoFocusPopupInput}
         />
       </Alert>

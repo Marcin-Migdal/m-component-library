@@ -29,7 +29,7 @@ export const AlertHeader = ({ header, onClose, disableCloseOnEscape }: AlertHead
   return (
     <div className="m-alert-header">
       {header && <h4>{header}</h4>}
-      <Icon onClick={onClose} icon={["fas", "xmark"]} />
+      <Icon onClick={() => onClose()} icon={["fas", "xmark"]} />
     </div>
   );
 };

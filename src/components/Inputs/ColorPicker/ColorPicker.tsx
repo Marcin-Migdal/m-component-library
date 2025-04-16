@@ -23,12 +23,18 @@ const innerDefaultValue: RgbValue = {
   b: 255,
 };
 
-const getValue = (externalValue: ColorValue): RgbValue => {
-  if (!isValidColor(externalValue)) {
-    return innerDefaultValue;
+const getValue = <TExternalValue extends ColorValue | null>(
+  externalValue: TExternalValue
+): TExternalValue extends null ? null : RgbValue => {
+  if (externalValue === null) {
+    return null as TExternalValue extends null ? null : RgbValue;
   }
 
-  return valueToRgb(externalValue);
+  if (!isValidColor(externalValue)) {
+    return innerDefaultValue as TExternalValue extends null ? null : RgbValue;
+  }
+
+  return valueToRgb(externalValue) as TExternalValue extends null ? null : RgbValue;
 };
 
 /**
@@ -40,6 +46,7 @@ const getValue = (externalValue: ColorValue): RgbValue => {
 const ColorPicker = <TReturnedColor extends ReturnedColor>({
   value: externalValue,
   onChange,
+  onBlur,
   name = undefined,
   label = undefined,
   placeholder = undefined,
@@ -56,22 +63,19 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
 
   returnedColorType = "rgb" as TReturnedColor,
   defaultValue,
-  onOpen,
-  onClose,
 }: ColorPickerProps<TReturnedColor>) => {
   const inputContainerRef = useRef<HTMLDivElement>(null);
 
   const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
 
-  const [internalValue, setInternalValue] = useState<RgbValue>(
-    defaultValue ? valueToRgb(defaultValue) : innerDefaultValue
-  );
+  const [internalValue, setInternalValue] = useState<RgbValue | null>(defaultValue ? valueToRgb(defaultValue) : null);
 
   const isControlled = externalValue !== undefined;
 
   const value = isControlled ? getValue(externalValue) : internalValue;
+  const displayValue = getValue(value || innerDefaultValue);
 
-  const hexValue = rgbToHex(value.r, value.g, value.b);
+  const hexValue = rgbToHex(displayValue);
 
   const colorPreviewElement = inputContainerRef.current?.querySelector(".m-color-preview") as
     | HTMLInputElement
@@ -83,30 +87,58 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
       return;
     }
 
-    onOpen && onOpen();
     toggleOpenStatus();
   };
 
-  const handleClose = () => {
-    if (onClose) {
-      switch (returnedColorType) {
-        case "rgb":
-          onClose(value);
-          break;
-        case "hsl":
-          onClose(rgbToHsl(value.r, value.g, value.b));
-          break;
-        case "hex":
-          onClose(rgbToHex(value.r, value.g, value.b));
-          break;
-      }
+  const handleBlur = () => {
+    handlePopupClose();
+
+    if (!onBlur) {
+      return;
     }
 
-    handlePopupClose();
+    const changeEventTarget: Omit<MInputChangeEvent["target"], "value"> = {
+      name: name || "",
+      checked: false,
+      type: "color",
+    };
+
+    switch (returnedColorType) {
+      case "rgb":
+        return onBlur(
+          {
+            target: {
+              ...changeEventTarget,
+              value: value,
+            },
+          },
+          value
+        );
+      case "hsl":
+        return onBlur(
+          {
+            target: {
+              ...changeEventTarget,
+              value: value ? rgbToHsl(value) : null,
+            },
+          },
+          value
+        );
+      case "hex":
+        return onBlur(
+          {
+            target: {
+              ...changeEventTarget,
+              value: rgbToHex(value),
+            },
+          },
+          value
+        );
+    }
   };
 
-  const handleChange = (newValue: RgbValue): void => {
-    !isControlled && setInternalValue(newValue);
+  const handleChange = (pickedColor: RgbValue): void => {
+    !isControlled && setInternalValue(pickedColor);
 
     if (!onChange) {
       return;
@@ -124,30 +156,30 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
           {
             target: {
               ...changeEventTarget,
-              value: newValue,
+              value: pickedColor,
             },
           },
-          newValue
+          pickedColor
         );
       case "hsl":
         return onChange(
           {
             target: {
               ...changeEventTarget,
-              value: rgbToHsl(newValue.r, newValue.g, newValue.b),
+              value: rgbToHsl(pickedColor),
             },
           },
-          newValue
+          pickedColor
         );
       case "hex":
         return onChange(
           {
             target: {
               ...changeEventTarget,
-              value: rgbToHex(newValue.r, newValue.g, newValue.b),
+              value: rgbToHex(pickedColor),
             },
           },
-          newValue
+          pickedColor
         );
     }
   };
@@ -179,7 +211,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
             })}
             readOnly
             onClick={() => !disabled && handleOpen()}
-            value={hexValue || ""}
+            value={value === null ? "" : hexValue}
             placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
             style={{
               //@ts-expect-error ts(2353) styles attribute does not expect css variable
@@ -213,7 +245,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
             onChange={handleChange}
             className={classNames(openStatus, classNamesObj?.popup)}
             parentElement={colorPreviewElement}
-            handleClose={handleClose}
+            handleClose={handleBlur}
           />,
           document.body
         )}

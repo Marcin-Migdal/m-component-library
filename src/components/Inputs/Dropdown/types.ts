@@ -16,8 +16,8 @@ type DropdownClassNames = {
 } & DropdownOptionsClassnames;
 
 export type DropdownChangeEvent<T> = React.MouseEvent<HTMLLIElement, MouseEvent> & MInputChangeEvent<T>;
-
-export type DropdownClearEvent = React.MouseEvent<Element, MouseEvent> & MInputChangeEvent<undefined>;
+export type DropdownBlurEvent<T> = MInputChangeEvent<DropdownValue<T>>;
+export type DropdownClearEvent = React.MouseEvent<Element, MouseEvent> & MInputChangeEvent<null>;
 
 type DropdownBaseProps<T> = InputProps & {
   /** Currently selected value in the dropdown. */
@@ -27,10 +27,13 @@ type DropdownBaseProps<T> = InputProps & {
   onChange?: (event: DropdownChangeEvent<T>, value: T) => void;
 
   /** Callback triggered when the selection is cleared. */
-  onClear?: (event: DropdownClearEvent, value: undefined) => void;
+  onClear?: (event: DropdownClearEvent, value: null) => void;
 
   /** Callback triggered when the dropdown receives focus. */
-  onFocus?: (event: FocusEvent<HTMLInputElement> | undefined) => void;
+  onFocus?: (event: FocusEvent<HTMLInputElement> | null) => void;
+
+  /** Callback fired when the `Dropdown` loses focus. */
+  onBlur?: (event: DropdownBlurEvent<DropdownValue<T>>) => void;
 
   /** Placeholder text for the input field. */
   placeholder?: string;
@@ -40,6 +43,10 @@ type DropdownBaseProps<T> = InputProps & {
 
   /** Whether options should be filtered based on input. */
   filter?: boolean;
+
+  /** Whether input have disabled form submitting with enter key press .
+   * @default false */
+  disableSubmitOnEnter?: boolean;
 
   /** Custom class names for styling different parts of the component. */
   classNamesObj?: DropdownClassNames;
@@ -98,7 +105,7 @@ export type DropdownCustomProps<T> = {
 export type DropdownProps<T> = DropdownBaseProps<T> &
   (T extends LabelValue ? Partial<DropdownCustomProps<T>> : DropdownCustomProps<T>);
 
-export type DropdownValue<T> = T | undefined;
+export type DropdownValue<T> = T | null;
 
 type LabelValue = {
   /** The actual value of the option. Typically a string or number. */
@@ -119,7 +126,7 @@ export type DropdownOptionsProps<T> = {
   id: string;
   handleDropdownChange: (e: React.MouseEvent<HTMLLIElement, MouseEvent>, selectedOption: T) => void;
   options: T[];
-  value: T | null | undefined;
+  value: T | null;
   valueKey: keyof T;
   labelKey: keyof T;
   classNamesObj?: DropdownOptionsClassnames;

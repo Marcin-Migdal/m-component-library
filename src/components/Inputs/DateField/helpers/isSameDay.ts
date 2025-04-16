@@ -1,4 +1,4 @@
-export const isSameDay = (dateA?: Date, dateB?: Date): boolean => {
+export const isSameDay = (dateA?: Date | null, dateB?: Date | null): boolean => {
   if (!dateA || !dateB) {
     return false;
   }

@@ -1,5 +1,5 @@
 import { FormikTouched, FormikValues } from "formik";
-import { FormErrors } from "../hooks/useForm";
+import { FormErrors } from "../hooks/useForm/useForm.types";
 
 export function getFilteredErrors<T extends FormikValues>(
   errors: FormErrors<T>,

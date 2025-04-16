@@ -35,8 +35,8 @@ const ToggleSwitch = ({
   const [internalChecked, setInternalChecked] = useState<boolean>(false);
   const [toggleSwitchId] = useState(uuId());
 
-  const controlled = externalChecked !== undefined;
-  const checked = controlled ? externalChecked : internalChecked;
+  const isControlled = externalChecked !== undefined;
+  const checked = isControlled ? externalChecked : internalChecked;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     if (readOnly) {
@@ -45,6 +45,8 @@ const ToggleSwitch = ({
     }
 
     const { checked: newValue, type } = e.target;
+
+    !isControlled && setInternalChecked(newValue);
 
     onChange &&
       onChange(
@@ -59,7 +61,6 @@ const ToggleSwitch = ({
         },
         newValue
       );
-    !controlled && setInternalChecked(newValue);
   };
 
   return (

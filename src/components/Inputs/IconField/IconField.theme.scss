@@ -2,14 +2,13 @@
   .m-icon-grid-container {
     .m-icon-tile {
       background-color: var(--icon-tile-background-color);
-    }
 
-    .m-icon-tile {
-      &:hover {
+      &:hover:not(&:active):not(.selected) {
         background-color: var(--icon-tile-hover-background-color);
       }
 
-      &:active {
+      &:active,
+      &.selected {
         background-color: var(--icon-tile-active-background-color);
       }
     }

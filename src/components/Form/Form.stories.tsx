@@ -8,7 +8,7 @@ import { DropdownStringOption } from "../Inputs/Dropdown/types";
 import { NumberField } from "../Inputs/NumberField";
 import { Textfield } from "../Inputs/Textfield";
 import Form from "./Form";
-import { useForm } from "./hooks/useForm";
+import { useForm } from "./hooks/useForm/useForm";
 
 const meta: Meta<typeof Form> = {
   title: "Components/Form",
@@ -101,7 +101,7 @@ export const Default: StoryObj<typeof Form> = {
 
     return (
       <Form formik={formik}>
-        {({ values, handleChange, isValid, register }) => (
+        {({ values, handleChange, isValid, registerChange: register }) => (
           <>
             <Textfield label="Username" {...register("userName")} />
             <Textfield label="Email" {...register("email")} />
@@ -142,7 +142,7 @@ export const SubmitButtonOutsideForm: StoryObj<typeof Form> = {
     return (
       <>
         <Form formik={formik}>
-          {({ register }) => (
+          {({ registerChange: register }) => (
             <>
               <Textfield label="Username" {...register("userName")} />
               <Textfield label="Email" {...register("email")} />
