@@ -90,7 +90,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
     toggleOpenStatus();
   };
 
-  const handleBlur = () => {
+  const handleBlur = (rgbValue: RgbValue) => {
     handlePopupClose();
 
     if (!onBlur) {
@@ -109,7 +109,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
           {
             target: {
               ...changeEventTarget,
-              value: value,
+              value: rgbValue,
             },
           },
           value
@@ -119,7 +119,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
           {
             target: {
               ...changeEventTarget,
-              value: value ? rgbToHsl(value) : null,
+              value: value ? rgbToHsl(rgbValue) : null,
             },
           },
           value
@@ -129,7 +129,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
           {
             target: {
               ...changeEventTarget,
-              value: rgbToHex(value),
+              value: rgbToHex(rgbValue),
             },
           },
           value
