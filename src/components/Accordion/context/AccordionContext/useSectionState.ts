@@ -3,52 +3,46 @@ import { useEffect, useMemo, useState } from "react";
 import { deepCopy } from "../../../../utils";
 import { AccordionMode, SectionId, SectionState, SectionStateChangeHandler } from "../../types";
 
+const getInitialState = (mode: AccordionMode | undefined): SectionState<AccordionMode> => {
+  return (mode === AccordionMode.MULTIPLE ? {} : null) as SectionState<AccordionMode>;
+};
+
 const getMode = (
   externalMode: AccordionMode | undefined,
-  externalSectionState: SectionState | undefined,
-  onSectionStateChange: SectionStateChangeHandler | undefined
+  externalSectionState: SectionState<AccordionMode> | undefined,
+  onSectionStateChange: SectionStateChangeHandler<AccordionMode> | undefined
 ): AccordionMode | undefined => {
-  if (externalMode) {
-    return externalMode;
-  }
-
-  if (externalSectionState === undefined && onSectionStateChange === undefined) {
-    return undefined;
-  }
-
-  if (externalSectionState !== null && typeof externalSectionState === "object") {
-    return AccordionMode.MULTIPLE;
-  }
+  if (externalMode) return externalMode;
+  if (externalSectionState === undefined && onSectionStateChange === undefined) return undefined;
+  if (externalSectionState !== null && typeof externalSectionState === "object") return AccordionMode.MULTIPLE;
 
   return AccordionMode.SINGLE;
 };
 
 export const useSectionState = (
   externalMode: AccordionMode | undefined,
-  externalSectionState: SectionState | undefined,
-  onSectionStateChange: SectionStateChangeHandler | undefined
-): [AccordionMode | undefined, SectionState, (sectionId: SectionId) => void] => {
-  const [internalSectionState, setInternalSectionState] = useState<SectionState>(
-    externalMode === AccordionMode.MULTIPLE ? {} : null
-  );
-
-  const sectionStateControlled = externalSectionState !== undefined;
-  const sectionState = sectionStateControlled ? externalSectionState : internalSectionState;
-
+  externalSectionState: SectionState<AccordionMode> | undefined,
+  onSectionStateChange: SectionStateChangeHandler<AccordionMode> | undefined
+): [AccordionMode | undefined, SectionState<AccordionMode>, (sectionId: SectionId) => void] => {
   const mode = useMemo(() => {
     return getMode(externalMode, externalSectionState, onSectionStateChange);
   }, [externalMode, externalSectionState, !onSectionStateChange]);
 
+  const [internalSectionState, setInternalSectionState] = useState<SectionState<AccordionMode>>(getInitialState(mode));
+
+  const sectionStateControlled = externalSectionState !== undefined;
+  const sectionState = sectionStateControlled ? externalSectionState : internalSectionState;
+
   useEffect(() => {
     if (!sectionStateControlled) {
-      const newInitValue = externalMode === AccordionMode.MULTIPLE ? {} : null;
+      const newInitValue: SectionState<AccordionMode> = getInitialState(mode);
 
       newInitValue !== internalSectionState && setInternalSectionState(newInitValue);
     }
   }, [mode]);
 
   const handleSectionState = (sectionId: SectionId) => {
-    let newSectionState: SectionState = null;
+    let newSectionState: SectionState<AccordionMode> = null;
 
     switch (mode) {
       case undefined: {
@@ -64,7 +58,7 @@ export const useSectionState = (
           return;
         }
 
-        newSectionState = sectionState === sectionId ? null : sectionId;
+        newSectionState = (sectionState === sectionId ? null : sectionId) as SectionState<AccordionMode>;
         break;
       }
 
