@@ -28,7 +28,7 @@ import {
 
 import "./Dropdown.scss";
 
-const filterOptions = <T extends { [key: string]: string | number } = LabelValue>(
+const filterOptions = <T extends { [key: string]: unknown } = LabelValue>(
   options: T[],
   labelKey: string | number,
   filterValue: string
@@ -43,6 +43,22 @@ const filterOptions = <T extends { [key: string]: string | number } = LabelValue
 
     return optionLabel.includes(filterValue);
   });
+};
+
+const getControlValue = <T extends { [key: string]: unknown } = LabelValue>(
+  filter: boolean,
+  isFocused: boolean,
+  filterValue: string,
+  labelKey: string,
+  value: DropdownValue<T>
+) => {
+  if (filter && isFocused) {
+    return filterValue;
+  }
+
+  return typeof value?.[labelKey] === "string" || typeof value?.[labelKey] === "number"
+    ? value?.[labelKey].toString()
+    : "";
 };
 
 type LabelValue = {
@@ -63,7 +79,7 @@ const defaultComponents: DropdownComponents<any> = {
 /** Dropdown is a customizable select component that allows users to choose from a list of options.
  * The component can display icons, nested options, and custom templates for option rendering.
  * Additional features include positioning control, z-index management, and event handlers for open/close states. */
-function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
+function Dropdown<T extends { [key: string]: unknown } = LabelValue>({
   value: externalValue = undefined,
   onChange,
   onClear,
@@ -77,7 +93,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
 
   prefix,
   options = [],
-  labelKey = "label",
+  labelKey: optionalLabelKey,
   valueKey = "value",
   noOptionsMessage = "No options",
   optionHeightFit = 6,
@@ -95,6 +111,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
   marginBottomType = defaultInputPropsValue.marginBottomType,
   floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 }: DropdownProps<T>) {
+  const labelKey = optionalLabelKey ?? "label";
   const controlContainerRef = useRef<HTMLInputElement>(null);
 
   const [internalValue, setInternalValue] = useState<DropdownValue<T>>(null);
@@ -238,7 +255,7 @@ function Dropdown<T extends { [key: string]: string | number } = LabelValue>({
     idPrefix: "dropdown-controller",
     readOnly: readOnly || !filter,
     disableSubmitOnEnter: disableSubmitOnEnter,
-    value: filter && isFocused ? filterValue : value?.[labelKey].toString() || "",
+    value: getControlValue(filter, isFocused, filterValue, labelKey, value),
     onChange: handleFilterChange,
     onFocus: handleFocus,
     placeholder: labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : ""),

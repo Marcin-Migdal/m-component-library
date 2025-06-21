@@ -5,10 +5,15 @@ import { Optionalize } from "../../types";
 export type SectionId = string | number;
 
 /** Represents the selected/expanded state of an accordion section. */
-export type SectionState = SectionId | Record<SectionId, boolean> | null;
+export type SectionStateSingle = SectionId | null;
+export type SectionStateMultiple = Record<SectionId, boolean> | null;
+
+export type SectionState<M extends AccordionMode> = M extends AccordionMode.SINGLE
+  ? SectionStateSingle
+  : SectionStateMultiple;
 
 /** Callback function triggered when the accordion selected/expanded state changes. */
-export type SectionStateChangeHandler = (selected: SectionState) => void;
+export type SectionStateChangeHandler<M extends AccordionMode> = (selected: SectionState<M>) => void;
 
 /** Defines the available modes for accordion selection and expansion. */
 export enum AccordionMode {
@@ -22,28 +27,28 @@ export enum AccordionMode {
 /** Defines the position of the toggle icon within an accordion toggle. */
 export type ToggleIconPosition = "none" | "left" | "right";
 
-type AccordionSelectProps = {
+type AccordionSelectProps<M extends AccordionMode> = {
   /** The currently selected accordion section. */
-  selected?: SectionState;
+  selected?: SectionState<M>;
 
   /** Callback function triggered when a selection is made. */
-  onSelect: SectionStateChangeHandler;
+  onSelect: SectionStateChangeHandler<M>;
 };
 
-type AccordionExpandProps = {
+type AccordionExpandProps<M extends AccordionMode> = {
   /** The currently expanded accordion section. */
-  expanded?: SectionState;
+  expanded?: SectionState<M>;
 
   /** Callback function triggered when a section is expanded/collapsed. */
-  onExpand: SectionStateChangeHandler;
+  onExpand: SectionStateChangeHandler<M>;
 };
 
-export type AccordionProps = {
+export type AccordionProps<MSelect extends AccordionMode, MExpand extends AccordionMode> = {
   /** Defines whether selection is allowed and in what mode. */
-  selectionMode?: `${AccordionMode}`;
+  selectionMode?: `${MSelect}`;
 
   /** Defines whether expansion is allowed and in what mode. */
-  expansionMode?: `${AccordionMode}`;
+  expansionMode?: `${MExpand}`;
 
   /** Additional CSS class for styling the accordion.
    * @default undefined */
@@ -72,5 +77,5 @@ export type AccordionProps = {
   /** Changes expand/collapse behavior, if `expandOnIconClick` === `true` then expand/collapse event is called only on toggle icon click.
    * @default false */
   expandOnIconClick?: boolean;
-} & Optionalize<AccordionSelectProps> &
-  Optionalize<AccordionExpandProps>;
+} & Optionalize<AccordionSelectProps<MSelect>> &
+  Optionalize<AccordionExpandProps<MExpand>>;

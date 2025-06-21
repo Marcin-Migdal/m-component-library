@@ -94,9 +94,13 @@ export type DropdownComponents<T> = {
   Options: (props: DropdownOptionsProps<T>) => ReactElement;
 } & DropdownOptionsComponents<T>;
 
+type PresentableKeys<T> = {
+  [K in keyof T]: T[K] extends string | number ? K : never;
+}[keyof T];
+
 export type DropdownCustomProps<T> = {
   /** The keyof options/value object that represents the label to be displayed. */
-  labelKey: keyof T;
+  labelKey: PresentableKeys<T>;
 
   /** The keyof options/value object that represents the value associated with the option. */
   valueKey: keyof T;

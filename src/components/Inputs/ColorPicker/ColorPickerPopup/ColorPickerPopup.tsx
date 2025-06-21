@@ -16,7 +16,7 @@ type ColorPickerPopupProps = {
   onChange: (value: RgbValue) => void;
   parentElement: HTMLInputElement;
   className: string;
-  handleClose: () => void;
+  handleClose: (value: RgbValue) => void;
 };
 
 export const ColorPickerPopup = ({ value, onChange, parentElement, className, handleClose }: ColorPickerPopupProps) => {
@@ -39,13 +39,13 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
       }
 
       if (!popupRef.current.contains(target) && !parentElement.contains(target)) {
-        handleClose();
+        handleClose(rgbValue);
       }
     };
 
     const handleKeyPress = (event: KeyboardEvent) => {
       if (event.code === "Escape") {
-        handleClose();
+        handleClose(rgbValue);
       }
     };
 
