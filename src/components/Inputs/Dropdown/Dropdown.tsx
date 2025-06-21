@@ -56,7 +56,9 @@ const getControlValue = <T extends { [key: string]: unknown } = LabelValue>(
     return filterValue;
   }
 
-  return typeof value?.[labelKey] === "string" ? value?.[labelKey].toString() : "";
+  return typeof value?.[labelKey] === "string" || typeof value?.[labelKey] === "number"
+    ? value?.[labelKey].toString()
+    : "";
 };
 
 type LabelValue = {
