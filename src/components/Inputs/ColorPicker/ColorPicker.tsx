@@ -13,7 +13,14 @@ import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { ColorPickerPopup } from "./ColorPickerPopup/ColorPickerPopup";
 import { isValidColor, rgbToHex, rgbToHsl, valueToRgb } from "./helpers";
-import { ColorPickerProps, ColorValue, ReturnedColor, RgbValue } from "./types";
+import {
+  ColorPickerBlurEvent,
+  ColorPickerChangeEvent,
+  ColorPickerProps,
+  ColorValue,
+  ReturnedColor,
+  RgbValue,
+} from "./types";
 
 import "./ColorPicker.scss";
 
@@ -43,7 +50,7 @@ const getValue = <TExternalValue extends ColorValue | null>(
  * Provides event handlers for opening, changing, and closing the color selection.
  */
 
-const ColorPicker = <TReturnedColor extends ReturnedColor>({
+const ColorPicker = <TReturnedColor extends ReturnedColor = ReturnedColor.RGB>({
   value: externalValue,
   onChange,
   onBlur,
@@ -104,36 +111,36 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
     };
 
     switch (returnedColorType) {
-      case "rgb":
-        return onBlur(
-          {
-            target: {
-              ...changeEventTarget,
-              value: rgbValue,
-            },
+      case "rgb": {
+        const event = {
+          target: {
+            ...changeEventTarget,
+            value: rgbValue,
           },
-          value
-        );
-      case "hsl":
-        return onBlur(
-          {
-            target: {
-              ...changeEventTarget,
-              value: value ? rgbToHsl(rgbValue) : null,
-            },
+        } as ColorPickerBlurEvent<TReturnedColor>;
+
+        return onBlur(event, value);
+      }
+      case "hsl": {
+        const event = {
+          target: {
+            ...changeEventTarget,
+            value: value ? rgbToHsl(rgbValue) : null,
           },
-          value
-        );
-      case "hex":
-        return onBlur(
-          {
-            target: {
-              ...changeEventTarget,
-              value: rgbToHex(rgbValue),
-            },
+        } as ColorPickerBlurEvent<TReturnedColor>;
+
+        return onBlur(event, value);
+      }
+      case "hex": {
+        const event = {
+          target: {
+            ...changeEventTarget,
+            value: rgbToHex(rgbValue),
           },
-          value
-        );
+        } as ColorPickerBlurEvent<TReturnedColor>;
+
+        return onBlur(event, value);
+      }
     }
   };
 
@@ -151,36 +158,36 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
     };
 
     switch (returnedColorType) {
-      case "rgb":
-        return onChange(
-          {
-            target: {
-              ...changeEventTarget,
-              value: pickedColor,
-            },
+      case ReturnedColor.RGB: {
+        const event = {
+          target: {
+            ...changeEventTarget,
+            value: pickedColor,
           },
-          pickedColor
-        );
-      case "hsl":
-        return onChange(
-          {
-            target: {
-              ...changeEventTarget,
-              value: rgbToHsl(pickedColor),
-            },
+        } as ColorPickerChangeEvent<TReturnedColor>;
+
+        return onChange(event, pickedColor);
+      }
+      case ReturnedColor.HSL: {
+        const event = {
+          target: {
+            ...changeEventTarget,
+            value: rgbToHsl(pickedColor),
           },
-          pickedColor
-        );
-      case "hex":
-        return onChange(
-          {
-            target: {
-              ...changeEventTarget,
-              value: rgbToHex(pickedColor),
-            },
+        } as ColorPickerChangeEvent<TReturnedColor>;
+
+        return onChange(event, pickedColor);
+      }
+      case ReturnedColor.HEX: {
+        const event = {
+          target: {
+            ...changeEventTarget,
+            value: rgbToHex(pickedColor),
           },
-          pickedColor
-        );
+        } as ColorPickerChangeEvent<TReturnedColor>;
+
+        return onChange(event, pickedColor);
+      }
     }
   };
 

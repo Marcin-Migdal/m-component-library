@@ -11,8 +11,17 @@ type ColorPickerClassNames = {
   popup?: string;
 };
 
-export type ColorPickerChangeEvent = MInputChangeEvent<ColorValue>;
-export type ColorPickerBlurEvent = MInputChangeEvent<ColorValue | null>;
+export type ColorPickerChangeEvent<TReturnedColor extends ReturnedColor> = TReturnedColor extends ReturnedColor.RGB
+  ? MInputChangeEvent<RgbValue>
+  : TReturnedColor extends ReturnedColor.HSL
+  ? MInputChangeEvent<HslValue>
+  : MInputChangeEvent<string>;
+
+export type ColorPickerBlurEvent<TReturnedColor extends ReturnedColor> = TReturnedColor extends ReturnedColor.RGB
+  ? MInputChangeEvent<RgbValue | null>
+  : TReturnedColor extends ReturnedColor.HSL
+  ? MInputChangeEvent<HslValue | null>
+  : MInputChangeEvent<string | null>;
 
 export type ColorPickerProps<TReturnedColor extends ReturnedColor> = InputProps & {
   /** Color value for the picker.
@@ -35,10 +44,10 @@ export type ColorPickerProps<TReturnedColor extends ReturnedColor> = InputProps 
   returnedColorType?: TReturnedColor;
 
   /** Callback triggered when color changes. */
-  onChange?: (event: ColorPickerChangeEvent, value: ColorValue) => void;
+  onChange?: (event: ColorPickerChangeEvent<TReturnedColor>, value: ColorValue) => void;
 
   /** Callback triggered when `ColorPicker lose focus`. */
-  onBlur?: (event: ColorPickerBlurEvent, value: ColorValue | null) => void;
+  onBlur?: (event: ColorPickerBlurEvent<TReturnedColor>, value: ColorValue | null) => void;
 };
 
 export type HslValue = {
@@ -59,7 +68,11 @@ export const defaultColorPickerValue: RgbValue = {
   b: 0,
 };
 
-export type ReturnedColor = "rgb" | "hsl" | "hex";
+export enum ReturnedColor {
+  RGB = "rgb",
+  HSL = "hsl",
+  HEX = "hex",
+}
 
 export type CanvasCoordinates = {
   x: number;
