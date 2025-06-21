@@ -66,7 +66,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
 }: ColorPickerProps<TReturnedColor>) => {
   const inputContainerRef = useRef<HTMLDivElement>(null);
 
-  const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
+  const { openStatus, handleOpen: handlePopupOpen, handleClose: handlePopupClose } = useOpen({ delay: 100 });
 
   const [internalValue, setInternalValue] = useState<RgbValue | null>(defaultValue ? valueToRgb(defaultValue) : null);
 
@@ -83,11 +83,11 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
     | undefined;
 
   const handleOpen = () => {
-    if (readOnly) {
+    if (readOnly || openStatus === OpenStatus.OPENED) {
       return;
     }
 
-    toggleOpenStatus();
+    handlePopupOpen();
   };
 
   const handleBlur = (rgbValue: RgbValue) => {

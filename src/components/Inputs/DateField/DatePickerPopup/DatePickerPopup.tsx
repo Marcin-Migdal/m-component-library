@@ -11,6 +11,7 @@ import { normalizeDate } from "../helpers/normalizeDate";
 import { DateValue } from "../types";
 import { DayButton } from "./DayButton/DayButton";
 
+import { useKeyboardClose, useOutsideClick } from "../../../../hooks";
 import "./DatePickerPopup.scss";
 
 type DatePickerPopupProps<TRange extends boolean> = {
@@ -56,6 +57,21 @@ export const DatePickerPopup = <TRange extends boolean>({
 }: DatePickerPopupProps<TRange>) => {
   const popupRef = useRef<HTMLDivElement>(null);
 
+  useKeyboardClose(() => handleBlur(value));
+  useOutsideClick(popupRef, () => handleBlur(value), {
+    additionalOutsideClickTriggerCondition: ({ event, originalOutsideClickTriggerCondition }) => {
+      const target: HTMLElement = event.target as HTMLElement;
+
+      const dropdownMenuElement = document.querySelector(".m-dropdown-options") as HTMLUListElement | null;
+
+      return (
+        originalOutsideClickTriggerCondition &&
+        !parentElement.contains(target) &&
+        !dropdownMenuElement?.contains(target)
+      );
+    },
+  });
+
   const { weekDays, monthsOptions } = useMemo(() => {
     const months = getMonths(locale);
 
@@ -90,41 +106,11 @@ export const DatePickerPopup = <TRange extends boolean>({
       setPosition(getPosition(parentElement, popupRef.current));
     };
 
-    const handleClickOutside = (event: MouseEvent) => {
-      const target: HTMLElement = event.target as HTMLElement;
-
-      if (!popupRef.current) {
-        return;
-      }
-
-      const dropdownMenuElement = document.querySelector(".m-dropdown-options") as HTMLUListElement | null;
-
-      if (
-        !popupRef.current.contains(target) &&
-        !parentElement.contains(target) &&
-        !dropdownMenuElement?.contains(target)
-      ) {
-        handleBlur(value);
-      }
-    };
-
-    const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.code === "Escape") {
-        handleBlur(value);
-      }
-    };
-
     const resizeObserver = new ResizeObserver(calculatePopupPosition);
     resizeObserver.observe(document.body);
 
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleKeyPress);
-
     return () => {
       resizeObserver.disconnect();
-
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyPress);
     };
   }, []);
 

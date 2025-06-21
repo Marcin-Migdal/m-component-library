@@ -9,6 +9,7 @@ import { hslToRgb, rgbToHsl } from "../helpers";
 import { RgbValue } from "../types";
 import { ColorPickerCanvas } from "./ColorPickerCanvas/ColorPickerCanvas";
 
+import { useKeyboardClose, useOutsideClick } from "../../../../hooks";
 import "./ColorPickerPopup.scss";
 
 type ColorPickerPopupProps = {
@@ -21,45 +22,35 @@ type ColorPickerPopupProps = {
 
 export const ColorPickerPopup = ({ value, onChange, parentElement, className, handleClose }: ColorPickerPopupProps) => {
   const popupRef = useRef<HTMLDivElement>(null);
+
   const [position, setPosition] = useState<Position | undefined>(undefined);
 
   const [hueSliderValue, setHueSliderValue] = useState<number>(value ? rgbToHsl(value).h : 0);
   const [rgbValue, setRgbValue] = useState<RgbValue>(value ? { ...value } : { r: 255, g: 255, b: 255 });
+
+  useKeyboardClose(() => handleClose(rgbValue));
+  useOutsideClick(popupRef, () => handleClose(rgbValue), {
+    additionalOutsideClickTriggerCondition: ({ event, originalOutsideClickTriggerCondition }) => {
+      const target: HTMLElement = event.target as HTMLElement;
+
+      return (
+        originalOutsideClickTriggerCondition &&
+        !parentElement.contains(target) &&
+        !(target.className.includes("m-color-preview-square") || target.className.includes("m-color-preview"))
+      );
+    },
+  });
 
   useLayoutEffect(() => {
     const calculatePopupPosition = () => {
       setPosition(getPosition(parentElement, popupRef.current));
     };
 
-    const handleClickOutside = (event: MouseEvent) => {
-      const target: HTMLElement = event.target as HTMLElement;
-
-      if (!popupRef.current) {
-        return;
-      }
-
-      if (!popupRef.current.contains(target) && !parentElement.contains(target)) {
-        handleClose(rgbValue);
-      }
-    };
-
-    const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.code === "Escape") {
-        handleClose(rgbValue);
-      }
-    };
-
     const resizeObserver = new ResizeObserver(calculatePopupPosition);
     resizeObserver.observe(document.body);
 
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleKeyPress);
-
     return () => {
       resizeObserver.disconnect();
-
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyPress);
     };
   }, [value]);
 

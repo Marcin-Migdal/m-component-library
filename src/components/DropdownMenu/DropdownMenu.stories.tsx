@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
 import { Button } from "../Button";
-import DropdownMenu from "./DropdownMenu";
+import DropdownMenu from "./DropdownMenuContainer";
 import { DropdownMenuOption, OpenEvent as OpenEventEnum, OpenPosition as OpenPositionEnum } from "./types";
 
 const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>, option: DropdownMenuOption) => {
