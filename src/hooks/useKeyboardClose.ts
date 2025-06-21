@@ -35,5 +35,5 @@ export const useKeyboardClose = (onClose: () => void, config?: Config) => {
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, [internalConfig.additionalCondition]);
+  }, [internalConfig.additionalCondition, internalConfig.keys]);
 };
