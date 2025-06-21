@@ -1,0 +1,17 @@
+.m-accordion {
+  &:not(.background-transparent) {
+    .m-accordion-toggle {
+      background-color: var(--accordion-background);
+      transition: background-color var(--transition-duration-normal);
+
+      &:not(.expanded):not(.selected):hover {
+        background-color: var(--accordion-hover-background);
+      }
+
+      &.selected,
+      &.expanded {
+        background-color: var(--highlighted-accordion-background);
+      }
+    }
+  }
+}

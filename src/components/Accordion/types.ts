@@ -57,6 +57,10 @@ export type AccordionProps<MSelect extends AccordionMode, MExpand extends Accord
   /** The variant of the accordion.
    * @default "default" */
   variant?: "default" | "compact";
+  /** The variant of the accordion.
+   *
+   * @default "default" */
+  backgroundVariant?: "default" | "transparent";
 
   /** Defines the animation type when expanding/collapsing sections.
    * @default "smooth" */

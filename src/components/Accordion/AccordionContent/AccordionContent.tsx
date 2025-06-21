@@ -5,6 +5,7 @@ import { useAccordion, useAccordionSection } from "../hooks";
 import { AccordionContentProps } from "./types";
 
 import "./AccordionContent.scss";
+import "./AccordionContent.theme.scss";
 
 export const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>> = ({
   children,
