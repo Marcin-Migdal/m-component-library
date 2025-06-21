@@ -8,10 +8,6 @@
     &.expanded {
       max-height: var(--content-height);
     }
-
-    .m-accordion-content {
-      background-color: var(--accordion-background);
-    }
   }
 
   &.default {

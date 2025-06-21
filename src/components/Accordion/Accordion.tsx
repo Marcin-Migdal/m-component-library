@@ -26,6 +26,7 @@ const Accordion = <
   onExpand,
 
   variant = "default",
+  backgroundVariant = "default",
   expandAnimation = "smooth",
   className,
   style,
@@ -41,7 +42,8 @@ const Accordion = <
         `${expandAnimation}-expand-animation`,
         className,
         instanceClassName,
-        variant
+        variant,
+        `background-${backgroundVariant}`
       )}
       style={style}
     >
