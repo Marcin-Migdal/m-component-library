@@ -12,9 +12,17 @@ const getMode = (
   externalSectionState: SectionState<AccordionMode> | undefined,
   onSectionStateChange: SectionStateChangeHandler<AccordionMode> | undefined
 ): AccordionMode | undefined => {
-  if (externalMode) {return externalMode;}
-  if (externalSectionState === undefined && onSectionStateChange === undefined) {return undefined;}
-  if (externalSectionState !== null && typeof externalSectionState === "object") {return AccordionMode.MULTIPLE;}
+  if (externalMode) {
+    return externalMode;
+  }
+
+  if (externalSectionState === undefined && onSectionStateChange === undefined) {
+    return undefined;
+  }
+
+  if (externalSectionState !== null && typeof externalSectionState === "object") {
+    return AccordionMode.MULTIPLE;
+  }
 
   return AccordionMode.SINGLE;
 };
