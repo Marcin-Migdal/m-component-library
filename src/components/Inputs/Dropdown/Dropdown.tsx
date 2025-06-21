@@ -45,6 +45,20 @@ const filterOptions = <T extends { [key: string]: unknown } = LabelValue>(
   });
 };
 
+const getControlValue = <T extends { [key: string]: unknown } = LabelValue>(
+  filter: boolean,
+  isFocused: boolean,
+  filterValue: string,
+  labelKey: string,
+  value: DropdownValue<T>
+) => {
+  if (filter && isFocused) {
+    return filterValue;
+  }
+
+  return typeof value?.[labelKey] === "string" ? value?.[labelKey].toString() : "";
+};
+
 type LabelValue = {
   value: string | number;
   label: string;
@@ -239,8 +253,7 @@ function Dropdown<T extends { [key: string]: unknown } = LabelValue>({
     idPrefix: "dropdown-controller",
     readOnly: readOnly || !filter,
     disableSubmitOnEnter: disableSubmitOnEnter,
-    value:
-      filter && isFocused ? filterValue : typeof value?.[labelKey] === "string" ? value?.[labelKey].toString() : "",
+    value: getControlValue(filter, isFocused, filterValue, labelKey, value),
     onChange: handleFilterChange,
     onFocus: handleFocus,
     placeholder: labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : ""),
