@@ -64,6 +64,7 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
     labelWidth = defaultInputPropsValue.labelWidth,
     size = defaultInputPropsValue.size,
     disabled = defaultInputPropsValue.disabled,
+    readOnly = defaultInputPropsValue.readOnly,
     marginBottomType = defaultInputPropsValue.marginBottomType,
     floatingInputWidth = defaultInputPropsValue.floatingInputWidth,
 
@@ -72,7 +73,7 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
 
   const dateFieldContainerRef = useRef<HTMLDivElement>(null);
 
-  const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
+  const { openStatus, handleOpen: handlePopupOpen, handleClose: handlePopupClose } = useOpen({ delay: 100 });
 
   const [internalValue, setInternalValue] = useState<DateValue<TRange> | null>(getDateFieldValue(range, defaultValue));
 
@@ -138,8 +139,12 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
     setIsFocused(true);
   };
 
-  const handleClick = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-    toggleOpenStatus();
+  const handleOpen = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+    if (readOnly || openStatus === OpenStatus.OPENED) {
+      return;
+    }
+
+    handlePopupOpen();
     onClick && onClick(event);
   };
 
@@ -158,7 +163,7 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
       <StandAloneTextfield
         id={uniqueDatefieldId}
         onFocus={handleFocus}
-        onClick={handleClick}
+        onClick={handleOpen}
         placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
         style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
         disabled={disabled}
@@ -169,8 +174,8 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
             : value?.toLocaleDateString(locale) || ""
         }
         size={size}
-        {...otherProps}
         readOnly
+        {...otherProps}
       />
       {label && (
         <InputsLabel

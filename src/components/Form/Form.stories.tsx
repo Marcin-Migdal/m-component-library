@@ -42,6 +42,7 @@ type SignUpState = {
   password: string;
   verifyPassword: string;
   role: DropdownStringOption | null;
+  superior: DropdownStringOption | null;
   yearOfBirth: number | null;
 };
 
@@ -51,11 +52,19 @@ const signUpInitialValues: SignUpState = {
   password: "",
   verifyPassword: "",
   role: null,
+  superior: null,
   yearOfBirth: null,
 };
 
 const signUpValidationSchema = Yup.object().shape({
   role: Yup.object()
+    .nullable()
+    .shape({
+      label: Yup.string().required("Required"),
+      value: Yup.string().required("Required"),
+    })
+    .required("Required"),
+  superior: Yup.object()
     .nullable()
     .shape({
       label: Yup.string().required("Required"),
@@ -94,9 +103,14 @@ export const Default: StoryObj<typeof Form> = {
       onSubmit: handleSubmit,
     });
 
-    const options: DropdownStringOption[] = [
+    const roleOptions: DropdownStringOption[] = [
       { value: "1", label: "Developer" },
       { value: "2", label: "Student" },
+    ];
+
+    const superiorOptions: DropdownStringOption[] = [
+      { value: "1", label: "John" },
+      { value: "2", label: "Paul" },
     ];
 
     return (
@@ -110,15 +124,15 @@ export const Default: StoryObj<typeof Form> = {
             <NumberField label="Year of birth" {...register("yearOfBirth")} />
             <Dropdown
               label="Role"
-              options={options}
-              name="role"
-              onChange={(e) => handleChange(e)}
-              value={values.role}
+              options={roleOptions}
+              {...register<"role", DropdownChangeEvent<DropdownStringOption>>("role")}
             />
             <Dropdown
-              label="Role"
-              options={options}
-              {...register<"role", DropdownChangeEvent<DropdownStringOption>>("role")}
+              label="Superior"
+              options={superiorOptions}
+              name="superior"
+              onChange={(e) => handleChange(e)}
+              value={values.superior}
             />
             <Button text="Submit" type="submit" variant="full" disabled={!isValid} />
             <Button text="Clear" onClick={() => formik.resetForm()} />

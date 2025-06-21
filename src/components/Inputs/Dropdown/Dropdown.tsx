@@ -1,9 +1,10 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
-import React, { ChangeEvent, FocusEvent, MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, FocusEvent, MouseEvent as ReactMouseEvent, useCallback, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
 
+import { useKeyboardClose, useOutsideClick } from "../../../hooks";
 import { InputLabel } from "../../global-types";
 import { InputContainer, InputError, InputsLabel } from "../_inputsComponents";
 import { getInputsErrorStyle } from "../_inputsComponents/InputError/helpers/getInputsErrorStyle";
@@ -145,46 +146,46 @@ function Dropdown<T extends { [key: string]: unknown } = LabelValue>({
     onBlur && onBlur(_e);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const target: HTMLElement = event.target as HTMLElement;
+  const additionalOutsideClickTriggerCondition = useCallback(
+    ({ originalOutsideClickTriggerCondition, event }) => {
+      const target = event.target as HTMLElement;
 
-      if (!controlContainerRef.current) {
-        return;
+      if (!isFocused) {
+        return false;
       }
 
-      if (
-        isFocused &&
-        (!controlContainerRef.current.contains(target) ||
-          (typeof target?.className === "string" && target?.className.includes("m-dropdown-container"))) &&
-        (!target.id || !target.id.endsWith(uniqueDropdownId))
-      ) {
-        handleBlur(value);
+      const clickedOnThisDropdownInstance = !target.id || !target.id.endsWith(uniqueDropdownId);
+
+      if (!clickedOnThisDropdownInstance) {
+        return false;
       }
-    };
 
-    const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.code === "Escape" && isFocused) {
-        handleBlur(value);
+      // When Dropdown has label, user can click on background and label, thats not a control component.
+      // In that case dropdown menu should be closed
+      const clickedOnDropdownContainerBackground =
+        typeof target?.className === "string" && target.className.includes("m-dropdown-container");
 
-        const dropdownControlElement = controlContainerRef.current?.querySelector(
-          `#dropdown-controller-${uniqueDropdownId}`
-        ) as HTMLInputElement | null;
+      // originalOutsideClickTriggerCondition checks if user clicked outside the whole Dropdown container, not just Dropdown Menu
+      return originalOutsideClickTriggerCondition || clickedOnDropdownContainerBackground;
+    },
+    [isFocused, uniqueDropdownId]
+  );
 
-        if (dropdownControlElement && document.activeElement === dropdownControlElement) {
-          dropdownControlElement.blur();
-        }
-      }
-    };
+  const onOutsideClick = () => handleBlur(value);
+  const onKeyboardClose = () => {
+    handleBlur(value);
 
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleKeyPress);
+    const dropdownControlElement = controlContainerRef.current?.querySelector(
+      `#dropdown-controller-${uniqueDropdownId}`
+    ) as HTMLInputElement | null;
 
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [isFocused]);
+    if (dropdownControlElement && document.activeElement === dropdownControlElement) {
+      dropdownControlElement.blur();
+    }
+  };
+
+  useOutsideClick(controlContainerRef, onOutsideClick, { additionalOutsideClickTriggerCondition });
+  useKeyboardClose(onKeyboardClose, { additionalCondition: isFocused });
 
   const handleFilterChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setFilterValue(e.target.value);
