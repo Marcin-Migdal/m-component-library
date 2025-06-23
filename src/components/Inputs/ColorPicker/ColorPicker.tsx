@@ -111,7 +111,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor = ReturnedColor.RGB>({
     };
 
     switch (returnedColorType) {
-      case "rgb": {
+       case ReturnedColor.RGB: {
         const event = {
           target: {
             ...changeEventTarget,
@@ -121,7 +121,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor = ReturnedColor.RGB>({
 
         return onBlur(event, value);
       }
-      case "hsl": {
+       case ReturnedColor.HSL: {
         const event = {
           target: {
             ...changeEventTarget,
@@ -131,7 +131,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor = ReturnedColor.RGB>({
 
         return onBlur(event, value);
       }
-      case "hex": {
+       case ReturnedColor.HEX: {
         const event = {
           target: {
             ...changeEventTarget,
