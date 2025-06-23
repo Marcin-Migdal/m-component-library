@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { OpenStatus, useOpen } from "../../../hooks";
@@ -58,7 +58,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor = ReturnedColor.RGB>({
   label = undefined,
   placeholder = undefined,
   error = undefined,
-  classNamesObj,
+  classNamesObj = {},
 
   labelType = defaultInputPropsValue.labelType,
   labelWidth = defaultInputPropsValue.labelWidth,
@@ -84,18 +84,13 @@ const ColorPicker = <TReturnedColor extends ReturnedColor = ReturnedColor.RGB>({
 
   const hexValue = rgbToHex(displayValue);
 
-  const colorPreviewElement = inputContainerRef.current?.querySelector(".m-color-preview") as
-    | HTMLInputElement
-    | null
-    | undefined;
-
-  const handleOpen = () => {
+  const handleOpen = useCallback(() => {
     if (readOnly || openStatus === OpenStatus.OPENED) {
       return;
     }
 
     handlePopupOpen();
-  };
+  }, [readOnly, openStatus]);
 
   const handleBlur = (rgbValue: RgbValue) => {
     handlePopupClose();
@@ -191,47 +186,58 @@ const ColorPicker = <TReturnedColor extends ReturnedColor = ReturnedColor.RGB>({
     }
   };
 
+  const { containerClassName, labelClassName, errorClassName, popupClassName, ...standAloneTextfieldClassNames } =
+    classNamesObj;
+
+  const memoColorPreviewSquare = useMemo(
+    () => (
+      <ColorPreviewSquare
+        style={!hexValue ? { border: "2px solid var(--box-shadow-color)" } : undefined}
+        color={hexValue}
+        disabled={disabled}
+        onClick={handleOpen}
+      />
+    ),
+    [hexValue, disabled, handleOpen]
+  );
+
   return (
     <>
       <InputContainer
+        ref={inputContainerRef}
         disabled={disabled}
-        className={classNames("m-color-picker-container", classNamesObj?.container)}
+        className={classNames("m-color-picker-container", containerClassName)}
         size={size}
         error={error}
         marginBottomType={marginBottomType}
         labelType={labelType}
       >
-        <div
-          className="m-color-preview-container"
-          ref={inputContainerRef}
-          style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
-        >
-          <ColorPreviewSquare
-            style={!hexValue ? { border: "2px solid var(--box-shadow-color)" } : undefined}
-            color={hexValue}
-            disabled={disabled}
-            onClick={handleOpen}
-          />
-          <StandAloneTextfield
-            className={classNames("m-color-preview", classNamesObj?.input, {
+        <StandAloneTextfield
+          style={{
+            ...getInputStyle(labelType, label, labelWidth, floatingInputWidth),
+            //@ts-expect-error ts(2353) styles attribute does not expect css variable
+            "--box-shadow-color": hexValue,
+          }}
+          classNamesObj={{
+            prefixClassName: standAloneTextfieldClassNames.prefixClassName,
+            standAloneTextfieldContainerClassName: `${standAloneTextfieldClassNames.standAloneTextfieldContainerClassName} flex g-2-rem`,
+            inputClassName: classNames("m-color-preview", standAloneTextfieldClassNames.inputClassName, {
               "popup-open": openStatus !== OpenStatus.CLOSED,
-            })}
-            readOnly
-            onClick={() => !disabled && handleOpen()}
-            value={value === null ? "" : hexValue}
-            placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
-            style={{
-              //@ts-expect-error ts(2353) styles attribute does not expect css variable
-              "--box-shadow-color": hexValue,
-              width: "100%",
-            }}
-          />
-        </div>
+            }),
+          }}
+          readOnly
+          onClick={() => !disabled && handleOpen()}
+          value={value === null ? "" : hexValue}
+          placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
+          standAloneTextfieldChildren={memoColorPreviewSquare}
+          standAloneTextfieldChildrenPosition="left"
+        />
+
         {label && (
           <InputsLabel
             label={label}
             labelType={labelType}
-            className={classNames("m-color-picker-label", classNamesObj?.label)}
+            className={classNames("m-color-picker-label", labelClassName)}
             labelWidth={labelWidth}
             forceFloating={labelType === InputLabel.FLOATING}
           />
@@ -239,19 +245,19 @@ const ColorPicker = <TReturnedColor extends ReturnedColor = ReturnedColor.RGB>({
         {error && (
           <InputError
             style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
-            className={classNames("color-picker-error", classNamesObj?.error)}
+            className={classNames("color-picker-error", errorClassName)}
             error={error}
           />
         )}
       </InputContainer>
-      {colorPreviewElement &&
+      {inputContainerRef.current &&
         openStatus !== OpenStatus.CLOSED &&
         createPortal(
           <ColorPickerPopup
             value={value}
             onChange={handleChange}
-            className={classNames(openStatus, classNamesObj?.popup)}
-            parentElement={colorPreviewElement}
+            className={classNames(openStatus, popupClassName)}
+            parentElement={inputContainerRef.current}
             handleClose={handleBlur}
           />,
           document.body

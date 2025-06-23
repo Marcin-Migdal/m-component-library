@@ -2,14 +2,14 @@ import { FocusEvent } from "react";
 
 import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
 import { InputProps } from "../_inputsComponents/input-types";
+import { StandAloneTextfieldClassNames } from "../_inputsComponents/StandAloneTextfield/types";
 
 type DateFieldClassNames = {
-  container?: string;
-  input?: string;
-  label?: string;
-  error?: string;
-  popup?: string;
-};
+  containerClassName?: string;
+  labelClassName?: string;
+  errorClassName?: string;
+  popupClassName?: string;
+} & StandAloneTextfieldClassNames;
 
 export type ParsableSingleDate = string | Date;
 export type ParsableRangeDate = [ParsableSingleDate | null, ParsableSingleDate | null];

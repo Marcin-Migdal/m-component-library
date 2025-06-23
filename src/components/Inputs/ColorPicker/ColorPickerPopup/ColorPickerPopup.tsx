@@ -10,12 +10,13 @@ import { RgbValue } from "../types";
 import { ColorPickerCanvas } from "./ColorPickerCanvas/ColorPickerCanvas";
 
 import { useKeyboardClose, useOutsideClick } from "../../../../hooks";
+
 import "./ColorPickerPopup.scss";
 
 type ColorPickerPopupProps = {
   value: RgbValue | null;
   onChange: (value: RgbValue) => void;
-  parentElement: HTMLInputElement;
+  parentElement: HTMLDivElement;
   className: string;
   handleClose: (value: RgbValue) => void;
 };
@@ -35,7 +36,6 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
 
       return (
         originalOutsideClickTriggerCondition &&
-        !parentElement.contains(target) &&
         !(target.className.includes("m-color-preview-square") || target.className.includes("m-color-preview"))
       );
     },
@@ -43,7 +43,7 @@ export const ColorPickerPopup = ({ value, onChange, parentElement, className, ha
 
   useLayoutEffect(() => {
     const calculatePopupPosition = () => {
-      setPosition(getPosition(parentElement, popupRef.current));
+      setPosition(getPosition(parentElement.querySelector(".m-color-preview-square"), popupRef.current));
     };
 
     const resizeObserver = new ResizeObserver(calculatePopupPosition);

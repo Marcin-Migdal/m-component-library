@@ -276,8 +276,8 @@ export const DatePickerPopup = <TRange extends boolean>({
             onChange={handleMonthChange}
             options={monthsOptions}
             classNamesObj={{
-              container: "date-picker-popup-dropdown-container",
-              dropdownOptions: "date-picker-popup-dropdown-options",
+              containerClassName: "date-picker-popup-dropdown-container",
+              dropdownOptionsClassName: "date-picker-popup-dropdown-options",
             }}
             optionHeightFit={8}
             marginBottomType="none"
@@ -289,8 +289,8 @@ export const DatePickerPopup = <TRange extends boolean>({
             onChange={handleYearChange}
             options={yearsOptions}
             classNamesObj={{
-              container: "date-picker-popup-dropdown-container",
-              dropdownOptions: "date-picker-popup-dropdown-options",
+              containerClassName: "date-picker-popup-dropdown-container",
+              dropdownOptionsClassName: "date-picker-popup-dropdown-options",
             }}
             optionHeightFit={8}
             marginBottomType="none"

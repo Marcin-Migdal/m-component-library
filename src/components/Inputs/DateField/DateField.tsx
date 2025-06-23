@@ -55,7 +55,7 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
     placeholder = undefined,
     label = undefined,
     error = undefined,
-    classNamesObj,
+    classNamesObj = {},
 
     locale = "en-US",
     range = false as TRange,
@@ -150,11 +150,14 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
 
   const datefieldElement = document.getElementById(`textfield-${uniqueDatefieldId}`) as HTMLInputElement | null;
 
+  const { containerClassName, labelClassName, errorClassName, popupClassName, ...standAloneTextfieldClassNames } =
+    classNamesObj;
+
   return (
     <InputContainer
       ref={dateFieldContainerRef}
       disabled={disabled}
-      className={classNames("m-datefield-container", classNamesObj?.container)}
+      className={classNames("m-datefield-container", containerClassName)}
       size={size}
       error={error}
       marginBottomType={marginBottomType}
@@ -167,7 +170,7 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
         placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
         style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
         disabled={disabled}
-        className={classNamesObj?.input}
+        classNamesObj={standAloneTextfieldClassNames}
         value={
           Array.isArray(value)
             ? `${value[0]?.toLocaleDateString(locale) ?? ""} - ${value[1]?.toLocaleDateString(locale) ?? ""}`
@@ -181,7 +184,7 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
         <InputsLabel
           label={label}
           labelType={labelType}
-          className={classNames("m-datefield-label", classNamesObj?.label)}
+          className={classNames("m-datefield-label", labelClassName)}
           labelWidth={labelWidth}
           isFocused={isFocused}
           isFilled={!!value}
@@ -190,7 +193,7 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
       {error && (
         <InputError
           style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
-          className={classNames("datefield-error", classNamesObj?.error)}
+          className={classNames("datefield-error", errorClassName)}
           error={error}
         />
       )}
@@ -203,7 +206,7 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
             locale={locale}
             value={value}
             onChange={handleChange}
-            className={classNames(openStatus, classNamesObj?.popup)}
+            className={classNames(openStatus, popupClassName)}
             parentElement={datefieldElement}
             handleBlur={handleBlur}
           />,
