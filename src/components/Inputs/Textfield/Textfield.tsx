@@ -26,7 +26,7 @@ const Textfield = (props: TextfieldProps) => {
     placeholder = undefined,
     label = undefined,
     error = undefined,
-    classNamesObj,
+    classNamesObj = {},
     debounceDelay = 300,
 
     labelType = defaultInputPropsValue.labelType,
@@ -70,10 +70,12 @@ const Textfield = (props: TextfieldProps) => {
     onBlur && onBlur(e, e.target.value);
   };
 
+  const { containerClassName, labelClassName, errorClassName, ...standAloneTextfieldClassNames } = classNamesObj;
+
   return (
     <InputContainer
       disabled={disabled}
-      className={classNames("m-textfield-container", classNamesObj?.container)}
+      className={classNames("m-textfield-container", containerClassName)}
       size={size}
       error={error}
       marginBottomType={marginBottomType}
@@ -87,7 +89,7 @@ const Textfield = (props: TextfieldProps) => {
         placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
         style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
         disabled={disabled}
-        className={classNamesObj?.input}
+        classNamesObj={standAloneTextfieldClassNames}
         value={value}
         size={size}
         {...otherProps}
@@ -96,7 +98,7 @@ const Textfield = (props: TextfieldProps) => {
         <InputsLabel
           label={label}
           labelType={labelType}
-          className={classNames("m-textfield-label", classNamesObj?.label)}
+          className={classNames("m-textfield-label", labelClassName)}
           labelWidth={labelWidth}
           isFocused={isFocused}
           isFilled={!!value}
@@ -106,7 +108,7 @@ const Textfield = (props: TextfieldProps) => {
       {error && (
         <InputError
           style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
-          className={classNames("textfield-error", classNamesObj?.error)}
+          className={classNames("textfield-error", errorClassName)}
           error={error}
         />
       )}

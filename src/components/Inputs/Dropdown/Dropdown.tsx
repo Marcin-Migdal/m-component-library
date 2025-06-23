@@ -90,7 +90,7 @@ function Dropdown<T extends { [key: string]: unknown } = LabelValue>({
   placeholder,
   label,
   error,
-  classNamesObj,
+  classNamesObj = {},
 
   prefix,
   options = [],
@@ -250,6 +250,20 @@ function Dropdown<T extends { [key: string]: unknown } = LabelValue>({
     | null
     | undefined;
 
+  const {
+    controlClassName,
+    clearIconClassName,
+    dropdownIndicatorIconClassName,
+    dropdownOptionsClassName,
+    dropdownOptionClassName,
+    emptyDropdownOptionClassName,
+    containerClassName,
+    labelClassName,
+    errorClassName,
+    standAloneTextfieldContainerClassName,
+    prefixClassName,
+  } = classNamesObj;
+
   const controlProps: StandAloneTextfieldProps = {
     disabled: disabled,
     id: uniqueDropdownId,
@@ -261,20 +275,24 @@ function Dropdown<T extends { [key: string]: unknown } = LabelValue>({
     onFocus: handleFocus,
     placeholder: labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : ""),
     prefix: prefix,
-    className: classNames("m-dropdown-control", classNamesObj?.control, labelType, {
-      "read-only": readOnly,
-      filtrable: filter,
-    }),
+    classNamesObj: {
+      inputClassName: classNames("m-dropdown-control", controlClassName, labelType, {
+        "read-only": readOnly,
+        filtrable: filter,
+      }),
+      standAloneTextfieldContainerClassName,
+      prefixClassName,
+    },
     style: { ...getInputStyle(labelType, label, labelWidth, floatingInputWidth) },
   };
 
   const clearIconProps: ClearIconProps = {
-    className: classNames("m-dropdown-icon", "m-dropdown-clear-icon", classNamesObj?.clearIcon),
+    className: classNames("m-dropdown-icon", "m-dropdown-clear-icon", clearIconClassName),
     onClick: handleClear,
   };
 
   const indicatorIconProps: IndicatorIconProps = {
-    className: classNames("m-dropdown-icon", "m-dropdown-indicator-icon", classNamesObj?.dropdownIndicatorIcon),
+    className: classNames("m-dropdown-icon", "m-dropdown-indicator-icon", dropdownIndicatorIconClassName),
     onClick: () => setIsFocused(!isFocused),
   };
 
@@ -294,16 +312,16 @@ function Dropdown<T extends { [key: string]: unknown } = LabelValue>({
     EmptyMessage: currentComponents.EmptyMessage,
 
     classNamesObj: {
-      dropdownOptions: classNamesObj?.dropdownOptions,
-      dropdownOption: classNamesObj?.dropdownOption,
-      emptyDropdownOption: classNamesObj?.emptyDropdownOption,
+      dropdownOptionsClassName,
+      dropdownOptionClassName,
+      emptyDropdownOptionClassName,
     },
   };
 
   return (
     <InputContainer
       disabled={disabled}
-      className={classNames("m-dropdown-container", classNamesObj?.container)}
+      className={classNames("m-dropdown-container", containerClassName)}
       size={size}
       error={error}
       ref={controlContainerRef}
@@ -315,7 +333,7 @@ function Dropdown<T extends { [key: string]: unknown } = LabelValue>({
         <InputsLabel
           label={label}
           labelType={labelType}
-          className={classNames("m-dropdown-label", classNamesObj?.label)}
+          className={classNames("m-dropdown-label", labelClassName)}
           labelWidth={labelWidth}
           isFocused={isFocused}
           isFilled={!!value}
@@ -331,7 +349,7 @@ function Dropdown<T extends { [key: string]: unknown } = LabelValue>({
       {error ? (
         <InputError
           style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
-          className={classNames("dropdown-error", classNamesObj?.error)}
+          className={classNames("dropdown-error", errorClassName)}
           error={error}
         />
       ) : (

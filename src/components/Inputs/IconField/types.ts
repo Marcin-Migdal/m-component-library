@@ -1,14 +1,14 @@
 import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
 import { InputProps } from "../_inputsComponents/input-types";
+import { StandAloneTextfieldClassNames } from "../_inputsComponents/StandAloneTextfield/types";
 import { ColorValue } from "../ColorPicker";
 
 type IconFieldClassNames = {
-  container?: string;
-  input?: string;
-  label?: string;
-  error?: string;
-  popup?: string;
-};
+  containerClassName?: string;
+  labelClassName?: string;
+  errorClassName?: string;
+  popupClassName?: string;
+} & StandAloneTextfieldClassNames;
 
 export type IconFieldChangeEvent = React.MouseEvent<HTMLDivElement, MouseEvent> & MInputChangeEvent;
 export type IconFieldBlurEvent = MInputChangeEvent<string | null>;

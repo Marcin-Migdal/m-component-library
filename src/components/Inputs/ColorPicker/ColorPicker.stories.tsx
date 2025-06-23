@@ -34,7 +34,7 @@ export default meta;
 
 type Story = StoryObj<typeof ColorPicker>;
 
-export const Default: Story = { args: { value: "red" } };
+export const Default: Story = { args: {} };
 export const Label: Story = { args: { label: "Input label", labelType: "left" } };
 export const Size: Story = { args: { size: "small" } };
 export const Error: Story = { args: { error: "Input error" } };

@@ -1,15 +1,15 @@
 import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
 import { InputProps } from "../_inputsComponents/input-types";
+import { StandAloneTextfieldClassNames } from "../_inputsComponents/StandAloneTextfield/types";
 
 export type ColorValue = HslValue | RgbValue | string;
 
 type ColorPickerClassNames = {
-  container?: string;
-  input?: string;
-  label?: string;
-  error?: string;
-  popup?: string;
-};
+  containerClassName?: string;
+  labelClassName?: string;
+  errorClassName?: string;
+  popupClassName?: string;
+} & StandAloneTextfieldClassNames;
 
 export type ColorPickerChangeEvent<TReturnedColor extends ReturnedColor> = TReturnedColor extends ReturnedColor.RGB
   ? MInputChangeEvent<RgbValue>
