@@ -128,9 +128,16 @@ export default {
     zIndex: {
       control: "number",
     },
-    centerConsumer: {
-      control: "boolean",
+    positionAlignment: {
+      control: {
+        type: "radio",
+        options: ["start", "center", "end"],
+      },
+      table: {
+        type: { summary: "start | center | end" },
+      },
     },
+
     optionHeightFit: {
       control: "number",
     },
@@ -171,5 +178,5 @@ export const HideDisabledOptions: StoryObj<typeof DropdownMenu> = {
 };
 
 export const CenterDropdownMenu: StoryObj<typeof DropdownMenu> = {
-  args: { centerConsumer: true },
+  args: { positionAlignment: "center" },
 };

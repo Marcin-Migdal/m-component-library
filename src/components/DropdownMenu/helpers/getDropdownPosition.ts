@@ -1,14 +1,18 @@
-import { getPosition } from "../../../utils";
+import { getPosition, SecondaryPlacement } from "../../../utils";
 import { DropdownMenuPosition } from "../types";
 
 export const getDropdownPosition = (
   parentElement: HTMLDivElement,
   dropdownMenuElement: HTMLUListElement,
-  placement: "top" | "bottom",
+  primaryPlacement: "top" | "bottom",
   autoPosition: boolean,
-  centerConsumer: boolean
+  secondaryPlacement: `${SecondaryPlacement}`
 ): DropdownMenuPosition => {
-  const positionResponse = getPosition(parentElement, dropdownMenuElement, { placement, autoPosition, centerConsumer });
+  const positionResponse = getPosition(parentElement, dropdownMenuElement, {
+    primaryPlacement,
+    autoPosition,
+    secondaryPlacement,
+  });
 
   return {
     top: positionResponse.top,

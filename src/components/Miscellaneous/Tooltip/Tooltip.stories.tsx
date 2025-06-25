@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tooltip } from ".";
-import { Placement } from "../../../utils";
+import { PrimaryPlacement } from "../../../utils";
 
 const meta: Meta<typeof Tooltip> = {
   title: "Components/Miscellaneous/Tooltip",
@@ -28,9 +28,9 @@ const meta: Meta<typeof Tooltip> = {
         type: { summary: "ReactNode" },
       },
     },
-    placement: {
+    primaryPlacement: {
       control: "radio",
-      options: [Placement.BOTTOM, Placement.LEFT, Placement.RIGHT, Placement.TOP],
+      options: [PrimaryPlacement.BOTTOM, PrimaryPlacement.LEFT, PrimaryPlacement.RIGHT, PrimaryPlacement.TOP],
       description: "The position of the tooltip relative to the target element.",
       table: {
         type: { summary: "top | bottom | right | left" },

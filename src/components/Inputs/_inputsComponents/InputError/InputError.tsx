@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import React, { CSSProperties, ReactNode, useMemo, useRef } from "react";
 
-import { Placement } from "../../../../utils/getPosition/getPosition-types";
+import { PrimaryPlacement } from "../../../../utils/getPosition/getPosition-types";
 import { Tooltip } from "../../../Miscellaneous/Tooltip";
 
 import "./InputError.scss";
@@ -48,7 +48,7 @@ export const InputError = ({ style, className, error }: InputErrorProps) => {
         className={classNames("error-icon", className)}
         style={style}
       />
-      <Tooltip targetRef={tooltipRef} placement={Placement.RIGHT}>
+      <Tooltip targetRef={tooltipRef} primaryPlacement={PrimaryPlacement.RIGHT}>
         {errorContent}
       </Tooltip>
     </>

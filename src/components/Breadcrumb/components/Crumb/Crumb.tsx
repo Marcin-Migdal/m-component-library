@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import React, { useLayoutEffect, useRef, useState } from "react";
 
-import { Placement } from "../../../../utils";
+import { PrimaryPlacement } from "../../../../utils";
 import { Tooltip } from "../../../Miscellaneous";
 import { CrumbType } from "../../types";
 
@@ -59,7 +59,7 @@ export const Crumb = ({ zIndex, crumb, onClick }: CrumbProps) => {
         <a className="m-crumb-label">{label}</a>
       </div>
       {showTooltip && (
-        <Tooltip openDelay={100} targetRef={targetRef} placement={Placement.BOTTOM}>
+        <Tooltip openDelay={100} targetRef={targetRef} primaryPlacement={PrimaryPlacement.BOTTOM}>
           {label}
         </Tooltip>
       )}

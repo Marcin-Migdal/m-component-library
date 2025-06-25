@@ -1,8 +1,8 @@
-import { Placement } from "../../../../utils/getPosition/getPosition-types";
+import { PrimaryPlacement } from "../../../../utils/getPosition/getPosition-types";
 import { TooltipConfig } from "../types";
 
 export const defaultTooltipConfig: TooltipConfig = {
-  placement: Placement.BOTTOM,
+  primaryPlacement: PrimaryPlacement.BOTTOM,
   openDelay: 250,
 };
 

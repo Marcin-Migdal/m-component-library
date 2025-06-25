@@ -1,5 +1,13 @@
-import { CalculatedPosition, GetPositionConfig, Placement, Position } from "./getPosition-types";
 import { getBottomPlacement, getLeftPlacement, getRightPlacement, getTopPlacement } from "./placements";
+
+import {
+  CalculatedPosition,
+  GetPositionConfig,
+  Position,
+  PrimaryPlacement,
+  SecondaryPlacement,
+} from "./getPosition-types";
+
 import {
   invalidTopPlacement,
   validateBottomPlacement,
@@ -10,8 +18,8 @@ import {
 const defaultConfig: GetPositionConfig = {
   autoPosition: true,
   consumerHasParentWidth: false,
-  centerConsumer: false,
-  placement: Placement.BOTTOM,
+  secondaryPlacement: SecondaryPlacement.START,
+  primaryPlacement: PrimaryPlacement.BOTTOM,
   margin: 8,
   browserDeadZone: 8,
 };
@@ -41,11 +49,11 @@ export function getPosition(
 
   const {
     autoPosition,
-    placement,
+    primaryPlacement,
     margin,
     browserDeadZone,
     consumerHasParentWidth,
-    centerConsumer,
+    secondaryPlacement,
   }: GetPositionConfig = {
     ...defaultConfig,
     ...externalConfig,
@@ -57,12 +65,12 @@ export function getPosition(
   const targetRect = targetElement.getBoundingClientRect();
   const consumerRect = consumerElement.getBoundingClientRect();
 
-  switch (placement) {
-    case Placement.TOP: {
-      position = getTopPlacement(targetRect, consumerRect, margin, centerConsumer, false);
+  switch (primaryPlacement) {
+    case PrimaryPlacement.TOP: {
+      position = getTopPlacement(targetRect, consumerRect, margin, secondaryPlacement, false);
 
       if (autoPosition && invalidTopPlacement(position, browserDeadZone)) {
-        position = getBottomPlacement(targetRect, consumerRect, margin, centerConsumer, true);
+        position = getBottomPlacement(targetRect, consumerRect, margin, secondaryPlacement, true);
 
         if (validateBottomPlacement(position, consumerRect, browserDeadZone)) {
           position = {
@@ -76,11 +84,11 @@ export function getPosition(
       break;
     }
 
-    case Placement.BOTTOM: {
-      position = getBottomPlacement(targetRect, consumerRect, margin, centerConsumer, false);
+    case PrimaryPlacement.BOTTOM: {
+      position = getBottomPlacement(targetRect, consumerRect, margin, secondaryPlacement, false);
 
       if (autoPosition && validateBottomPlacement(position, consumerRect, browserDeadZone)) {
-        position = getTopPlacement(targetRect, consumerRect, margin, centerConsumer, true);
+        position = getTopPlacement(targetRect, consumerRect, margin, secondaryPlacement, true);
 
         if (invalidTopPlacement(position, browserDeadZone)) {
           position = {
@@ -94,11 +102,11 @@ export function getPosition(
       break;
     }
 
-    case Placement.RIGHT: {
-      position = getRightPlacement(targetRect, consumerRect, margin, centerConsumer, false);
+    case PrimaryPlacement.RIGHT: {
+      position = getRightPlacement(targetRect, consumerRect, margin, secondaryPlacement, false);
 
       if (autoPosition && validateRightPlacement(position, consumerRect, browserDeadZone)) {
-        position = getLeftPlacement(targetRect, consumerRect, margin, centerConsumer, true);
+        position = getLeftPlacement(targetRect, consumerRect, margin, secondaryPlacement, true);
 
         if (validateLeftPlacement(position, browserDeadZone)) {
           position = {
@@ -112,11 +120,11 @@ export function getPosition(
       break;
     }
 
-    case Placement.LEFT: {
-      position = getLeftPlacement(targetRect, consumerRect, margin, centerConsumer, false);
+    case PrimaryPlacement.LEFT: {
+      position = getLeftPlacement(targetRect, consumerRect, margin, secondaryPlacement, false);
 
       if (autoPosition && validateLeftPlacement(position, browserDeadZone)) {
-        position = getRightPlacement(targetRect, consumerRect, margin, centerConsumer, true);
+        position = getRightPlacement(targetRect, consumerRect, margin, secondaryPlacement, true);
 
         if (validateRightPlacement(position, consumerRect, browserDeadZone)) {
           position = {
@@ -136,7 +144,7 @@ export function getPosition(
   }
 
   if (!consumerHasParentWidth) {
-    return { ...position };
+    return position;
   }
 
   return { ...position, width: targetRect.width };
