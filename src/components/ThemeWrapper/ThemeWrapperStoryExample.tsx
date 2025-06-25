@@ -135,7 +135,7 @@ export const ThemeWrapperStoryExample = ({
       content: (
         <div>
           <FontAwesomeIcon ref={iconRef} icon="plus" />
-          <Tooltip placement="right" targetRef={iconRef}>
+          <Tooltip primaryPlacement="right" targetRef={iconRef}>
             Tooltip content
           </Tooltip>
         </div>

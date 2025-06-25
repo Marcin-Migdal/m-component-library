@@ -2,7 +2,7 @@ import React, { CSSProperties, PropsWithChildren, useEffect, useRef, useState } 
 import { createPortal } from "react-dom";
 
 import { getPosition } from "../../../utils";
-import { Placement } from "../../../utils/getPosition/getPosition-types";
+import { PrimaryPlacement, SecondaryPlacement } from "../../../utils/getPosition/getPosition-types";
 import { TooltipContent } from "./TooltipContent/TooltipContent";
 import { TargetElementType, TooltipProps } from "./types";
 
@@ -14,7 +14,8 @@ const Tooltip = ({
   children = undefined,
   className,
   style = {},
-  placement = Placement.BOTTOM,
+  primaryPlacement = PrimaryPlacement.BOTTOM,
+  secondaryPlacement = SecondaryPlacement.CENTER,
   openDelay = 0,
 }: PropsWithChildren<TooltipProps>) => {
   const tooltipRef = useRef<HTMLDivElement>(null);
@@ -70,10 +71,7 @@ const Tooltip = ({
       if (tooltipElement) {
         // calculates tooltip position using refs and returns it as a style
         setTooltipStyle({
-          ...getPosition(targetElement, tooltipRef.current, {
-            placement,
-            centerConsumer: true,
-          }),
+          ...getPosition(targetElement, tooltipRef.current, { primaryPlacement, secondaryPlacement }),
           ...style,
         });
       }

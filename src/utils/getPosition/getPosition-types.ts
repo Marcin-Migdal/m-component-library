@@ -1,8 +1,14 @@
-export enum Placement {
+export enum PrimaryPlacement {
   TOP = "top",
   BOTTOM = "bottom",
   RIGHT = "right",
   LEFT = "left",
+}
+
+export enum SecondaryPlacement {
+  START = "start",
+  CENTER = "center",
+  END = "end",
 }
 
 export enum CalculatedPosition {
@@ -28,10 +34,10 @@ export type Position = {
 };
 
 export type GetPositionConfig = {
-  autoPosition: boolean;
   consumerHasParentWidth: boolean;
-  centerConsumer: boolean;
-  placement: `${Placement}`;
+  autoPosition: boolean;
+  primaryPlacement: `${PrimaryPlacement}`;
+  secondaryPlacement: `${SecondaryPlacement}`;
   margin: number;
   browserDeadZone: number;
 };

@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React, { useLayoutEffect, useRef, useState } from "react";
 
 import { useKeyboardClose, useOutsideClick } from "../../../hooks";
+import { SecondaryPlacement } from "../../../utils";
 import { DropdownMenuItem } from "../DropdownMenuOption/DropdownMenuItem";
 import { DropdownSubMenu } from "../DropdownSubMenu/DropdownSubMenu";
 import { getDropdownPosition } from "../helpers/getDropdownPosition";
@@ -28,7 +29,7 @@ type DropdownMenuProps = {
   hideDisabledOptions: boolean;
   openConfig: OpenConfig;
   zIndex: number;
-  centerConsumer: boolean;
+  positionAlignment: `${SecondaryPlacement}`;
   // optionHeightFit: number;
 };
 
@@ -45,7 +46,7 @@ export const DropdownMenu = ({
   hideDisabledOptions,
   openConfig,
   zIndex,
-  centerConsumer,
+  positionAlignment,
 }: // optionHeightFit = 6,
 DropdownMenuProps) => {
   const [dropdownMenuConfig, setDropdownMenuConfig] = useState<Partial<DropdownMenuConfig>>(initDropdownMenuConfig);
@@ -83,7 +84,7 @@ DropdownMenuProps) => {
             dropdownMenuElement,
             openPosition.includes("top") ? "top" : "bottom",
             openPosition.includes("auto"),
-            centerConsumer
+            positionAlignment
           );
 
           break;

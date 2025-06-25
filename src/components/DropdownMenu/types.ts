@@ -1,5 +1,6 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { CSSProperties, ReactElement } from "react";
+import { SecondaryPlacement } from "../../utils";
 
 /** Represents an individual option within the dropdown menu. */
 export type DropdownMenuOption = {
@@ -106,9 +107,9 @@ export type DropdownMenuProps = {
    * @default 1 */
   zIndex?: number;
 
-  /** Whether the `dropdown menu` should be centered relative to its `trigger`.
-   * @default false */
-  centerConsumer?: boolean;
+  /** Whether the `dropdown menu` position should be at the start | centered | end relative to its `trigger`.
+   * @default "start" */
+  positionAlignment?: `${SecondaryPlacement}`;
 
   /** Number of `options` to fit in `dropdown menu` when calculating height.
    * @default 6 */

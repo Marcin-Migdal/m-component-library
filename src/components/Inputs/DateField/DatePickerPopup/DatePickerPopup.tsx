@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import React, { ReactElement, useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 
+import { useKeyboardClose, useOutsideClick } from "../../../../hooks";
 import { getPosition } from "../../../../utils";
 import { Position } from "../../../../utils/getPosition/getPosition-types";
 import { Dropdown } from "../../Dropdown";
@@ -11,7 +12,6 @@ import { normalizeDate } from "../helpers/normalizeDate";
 import { DateValue } from "../types";
 import { DayButton } from "./DayButton/DayButton";
 
-import { useKeyboardClose, useOutsideClick } from "../../../../hooks";
 import "./DatePickerPopup.scss";
 
 type DatePickerPopupProps<TRange extends boolean> = {
@@ -282,7 +282,7 @@ export const DatePickerPopup = <TRange extends boolean>({
             optionHeightFit={8}
             marginBottomType="none"
             components={dropdownComponents}
-            menuPositionConfig={{ centerConsumer: true }}
+            menuPositionConfig={{ secondaryPlacement: "center" }}
           />
           <Dropdown
             value={currentYearOption}
@@ -295,7 +295,7 @@ export const DatePickerPopup = <TRange extends boolean>({
             optionHeightFit={8}
             marginBottomType="none"
             components={dropdownComponents}
-            menuPositionConfig={{ centerConsumer: true }}
+            menuPositionConfig={{ secondaryPlacement: "center" }}
           />
         </div>
         <FontAwesomeIcon className="date-picker-popup-month-icon" icon="chevron-right" onClick={goToNextMonth} />
