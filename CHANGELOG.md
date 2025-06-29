@@ -1,6 +1,13 @@
 ### Release date 16.04.2025 - Release 2.1.4
 
 - [[#216]](https://github.com/Marcin-Migdal/m-component-library/issues/216) **[PATCH]** Flaner bug fixes patch, details in the github issue
+- [[#241]](https://github.com/Marcin-Migdal/m-component-library/issues/241) **[PATCH]** Add secondaryPosition setting to getPosition helper function
+- [[#170]](https://github.com/Marcin-Migdal/m-component-library/issues/170) **[PATCH]** Passing children props to the StandAloneTextfield component, using this enhancement in ColorPicker and DatePicker components
+- [[#235]](https://github.com/Marcin-Migdal/m-component-library/issues/235) **[PATCH]** Fix ColorPicker onBlur not working
+- [[#237]](https://github.com/Marcin-Migdal/m-component-library/issues/237) **[PATCH]** Add useOutsideClick and useKeyboardClose, replace redundant logic in the whole project, using those hooks
+- [[#238]](https://github.com/Marcin-Migdal/m-component-library/issues/238) **[PATCH]** Add transparent backgroundColor variant to Accordion component
+- [[#223]](https://github.com/Marcin-Migdal/m-component-library/issues/223) **[PATCH]** Enhance ColorPicker type handling, depending on returnedColorType
+- [[#172]](https://github.com/Marcin-Migdal/m-component-library/issues/172) **[PATCH]** Add Design system and Utils classes documentation
 
 ### Release date 31.03.2025 - Release 2.1.3
 
