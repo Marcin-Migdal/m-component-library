@@ -9,57 +9,48 @@ import { hslToRgb, rgbToHsl } from "../helpers";
 import { RgbValue } from "../types";
 import { ColorPickerCanvas } from "./ColorPickerCanvas/ColorPickerCanvas";
 
+import { useKeyboardClose, useOutsideClick } from "../../../../hooks";
+
 import "./ColorPickerPopup.scss";
 
 type ColorPickerPopupProps = {
   value: RgbValue | null;
   onChange: (value: RgbValue) => void;
-  parentElement: HTMLInputElement;
+  parentElement: HTMLDivElement;
   className: string;
-  handleClose: () => void;
+  handleClose: (value: RgbValue) => void;
 };
 
 export const ColorPickerPopup = ({ value, onChange, parentElement, className, handleClose }: ColorPickerPopupProps) => {
   const popupRef = useRef<HTMLDivElement>(null);
+
   const [position, setPosition] = useState<Position | undefined>(undefined);
 
   const [hueSliderValue, setHueSliderValue] = useState<number>(value ? rgbToHsl(value).h : 0);
   const [rgbValue, setRgbValue] = useState<RgbValue>(value ? { ...value } : { r: 255, g: 255, b: 255 });
 
-  useLayoutEffect(() => {
-    const calculatePopupPosition = () => {
-      setPosition(getPosition(parentElement, popupRef.current));
-    };
-
-    const handleClickOutside = (event: MouseEvent) => {
+  useKeyboardClose(() => handleClose(rgbValue));
+  useOutsideClick(popupRef, () => handleClose(rgbValue), {
+    additionalOutsideClickTriggerCondition: ({ event, originalOutsideClickTriggerCondition }) => {
       const target: HTMLElement = event.target as HTMLElement;
 
-      if (!popupRef.current) {
-        return;
-      }
+      return (
+        originalOutsideClickTriggerCondition &&
+        !(target.className.includes("m-color-preview-square") || target.className.includes("m-color-preview"))
+      );
+    },
+  });
 
-      if (!popupRef.current.contains(target) && !parentElement.contains(target)) {
-        handleClose();
-      }
-    };
-
-    const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.code === "Escape") {
-        handleClose();
-      }
+  useLayoutEffect(() => {
+    const calculatePopupPosition = () => {
+      setPosition(getPosition(parentElement.querySelector(".m-color-preview-square"), popupRef.current));
     };
 
     const resizeObserver = new ResizeObserver(calculatePopupPosition);
     resizeObserver.observe(document.body);
 
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleKeyPress);
-
     return () => {
       resizeObserver.disconnect();
-
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyPress);
     };
   }, [value]);
 

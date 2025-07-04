@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import React, { useRef, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 import { OpenStatus, useOpen } from "../../../hooks";
@@ -13,7 +13,14 @@ import { defaultInputPropsValue } from "../_inputUtils/defaultInputPropsValue";
 import { getInputStyle } from "../_inputUtils/getInputStyle";
 import { ColorPickerPopup } from "./ColorPickerPopup/ColorPickerPopup";
 import { isValidColor, rgbToHex, rgbToHsl, valueToRgb } from "./helpers";
-import { ColorPickerProps, ColorValue, ReturnedColor, RgbValue } from "./types";
+import {
+  ColorPickerBlurEvent,
+  ColorPickerChangeEvent,
+  ColorPickerProps,
+  ColorValue,
+  ReturnedColor,
+  RgbValue,
+} from "./types";
 
 import "./ColorPicker.scss";
 
@@ -43,7 +50,7 @@ const getValue = <TExternalValue extends ColorValue | null>(
  * Provides event handlers for opening, changing, and closing the color selection.
  */
 
-const ColorPicker = <TReturnedColor extends ReturnedColor>({
+const ColorPicker = <TReturnedColor extends ReturnedColor = ReturnedColor.RGB>({
   value: externalValue,
   onChange,
   onBlur,
@@ -51,7 +58,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
   label = undefined,
   placeholder = undefined,
   error = undefined,
-  classNamesObj,
+  classNamesObj = {},
 
   labelType = defaultInputPropsValue.labelType,
   labelWidth = defaultInputPropsValue.labelWidth,
@@ -66,7 +73,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
 }: ColorPickerProps<TReturnedColor>) => {
   const inputContainerRef = useRef<HTMLDivElement>(null);
 
-  const { openStatus, toggleOpenStatus, handleClose: handlePopupClose } = useOpen({ delay: 100 });
+  const { openStatus, handleOpen: handlePopupOpen, handleClose: handlePopupClose } = useOpen({ delay: 100 });
 
   const [internalValue, setInternalValue] = useState<RgbValue | null>(defaultValue ? valueToRgb(defaultValue) : null);
 
@@ -77,20 +84,15 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
 
   const hexValue = rgbToHex(displayValue);
 
-  const colorPreviewElement = inputContainerRef.current?.querySelector(".m-color-preview") as
-    | HTMLInputElement
-    | null
-    | undefined;
-
-  const handleOpen = () => {
-    if (readOnly) {
+  const handleOpen = useCallback(() => {
+    if (readOnly || openStatus === OpenStatus.OPENED) {
       return;
     }
 
-    toggleOpenStatus();
-  };
+    handlePopupOpen();
+  }, [readOnly, openStatus]);
 
-  const handleBlur = () => {
+  const handleBlur = (rgbValue: RgbValue) => {
     handlePopupClose();
 
     if (!onBlur) {
@@ -104,36 +106,36 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
     };
 
     switch (returnedColorType) {
-      case "rgb":
-        return onBlur(
-          {
-            target: {
-              ...changeEventTarget,
-              value: value,
-            },
+      case ReturnedColor.RGB: {
+        const event = {
+          target: {
+            ...changeEventTarget,
+            value: rgbValue,
           },
-          value
-        );
-      case "hsl":
-        return onBlur(
-          {
-            target: {
-              ...changeEventTarget,
-              value: value ? rgbToHsl(value) : null,
-            },
+        } as ColorPickerBlurEvent<TReturnedColor>;
+
+        return onBlur(event, value);
+      }
+      case ReturnedColor.HSL: {
+        const event = {
+          target: {
+            ...changeEventTarget,
+            value: value ? rgbToHsl(rgbValue) : null,
           },
-          value
-        );
-      case "hex":
-        return onBlur(
-          {
-            target: {
-              ...changeEventTarget,
-              value: rgbToHex(value),
-            },
+        } as ColorPickerBlurEvent<TReturnedColor>;
+
+        return onBlur(event, value);
+      }
+      case ReturnedColor.HEX: {
+        const event = {
+          target: {
+            ...changeEventTarget,
+            value: rgbToHex(rgbValue),
           },
-          value
-        );
+        } as ColorPickerBlurEvent<TReturnedColor>;
+
+        return onBlur(event, value);
+      }
     }
   };
 
@@ -151,80 +153,91 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
     };
 
     switch (returnedColorType) {
-      case "rgb":
-        return onChange(
-          {
-            target: {
-              ...changeEventTarget,
-              value: pickedColor,
-            },
+      case ReturnedColor.RGB: {
+        const event = {
+          target: {
+            ...changeEventTarget,
+            value: pickedColor,
           },
-          pickedColor
-        );
-      case "hsl":
-        return onChange(
-          {
-            target: {
-              ...changeEventTarget,
-              value: rgbToHsl(pickedColor),
-            },
+        } as ColorPickerChangeEvent<TReturnedColor>;
+
+        return onChange(event, pickedColor);
+      }
+      case ReturnedColor.HSL: {
+        const event = {
+          target: {
+            ...changeEventTarget,
+            value: rgbToHsl(pickedColor),
           },
-          pickedColor
-        );
-      case "hex":
-        return onChange(
-          {
-            target: {
-              ...changeEventTarget,
-              value: rgbToHex(pickedColor),
-            },
+        } as ColorPickerChangeEvent<TReturnedColor>;
+
+        return onChange(event, pickedColor);
+      }
+      case ReturnedColor.HEX: {
+        const event = {
+          target: {
+            ...changeEventTarget,
+            value: rgbToHex(pickedColor),
           },
-          pickedColor
-        );
+        } as ColorPickerChangeEvent<TReturnedColor>;
+
+        return onChange(event, pickedColor);
+      }
     }
   };
+
+  const { containerClassName, labelClassName, errorClassName, popupClassName, ...standAloneTextfieldClassNames } =
+    classNamesObj;
+
+  const memoColorPreviewSquare = useMemo(
+    () => (
+      <ColorPreviewSquare
+        style={!hexValue ? { border: "2px solid var(--box-shadow-color)" } : undefined}
+        color={hexValue}
+        disabled={disabled}
+        onClick={handleOpen}
+      />
+    ),
+    [hexValue, disabled, handleOpen]
+  );
 
   return (
     <>
       <InputContainer
+        ref={inputContainerRef}
         disabled={disabled}
-        className={classNames("m-color-picker-container", classNamesObj?.container)}
+        className={classNames("m-color-picker-container", containerClassName)}
         size={size}
         error={error}
         marginBottomType={marginBottomType}
         labelType={labelType}
       >
-        <div
-          className="m-color-preview-container"
-          ref={inputContainerRef}
-          style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
-        >
-          <ColorPreviewSquare
-            style={!hexValue ? { border: "2px solid var(--box-shadow-color)" } : undefined}
-            color={hexValue}
-            disabled={disabled}
-            onClick={handleOpen}
-          />
-          <StandAloneTextfield
-            className={classNames("m-color-preview", classNamesObj?.input, {
+        <StandAloneTextfield
+          style={{
+            ...getInputStyle(labelType, label, labelWidth, floatingInputWidth),
+            //@ts-expect-error ts(2353) styles attribute does not expect css variable
+            "--box-shadow-color": hexValue,
+          }}
+          classNamesObj={{
+            prefixClassName: standAloneTextfieldClassNames.prefixClassName,
+            standAloneTextfieldContainerClassName: `${standAloneTextfieldClassNames.standAloneTextfieldContainerClassName} flex g-2-rem`,
+            inputClassName: classNames("m-color-preview", standAloneTextfieldClassNames.inputClassName, {
               "popup-open": openStatus !== OpenStatus.CLOSED,
-            })}
-            readOnly
-            onClick={() => !disabled && handleOpen()}
-            value={value === null ? "" : hexValue}
-            placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
-            style={{
-              //@ts-expect-error ts(2353) styles attribute does not expect css variable
-              "--box-shadow-color": hexValue,
-              width: "100%",
-            }}
-          />
-        </div>
+            }),
+          }}
+          readOnly
+          onClick={() => !disabled && handleOpen()}
+          value={value === null ? "" : hexValue}
+          placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
+          standAloneTextfieldChildren={memoColorPreviewSquare}
+          standAloneTextfieldChildrenPosition="left"
+        />
+
         {label && (
           <InputsLabel
             label={label}
             labelType={labelType}
-            className={classNames("m-color-picker-label", classNamesObj?.label)}
+            className={classNames("m-color-picker-label", labelClassName)}
             labelWidth={labelWidth}
             forceFloating={labelType === InputLabel.FLOATING}
           />
@@ -232,19 +245,19 @@ const ColorPicker = <TReturnedColor extends ReturnedColor>({
         {error && (
           <InputError
             style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
-            className={classNames("color-picker-error", classNamesObj?.error)}
+            className={classNames("color-picker-error", errorClassName)}
             error={error}
           />
         )}
       </InputContainer>
-      {colorPreviewElement &&
+      {inputContainerRef.current &&
         openStatus !== OpenStatus.CLOSED &&
         createPortal(
           <ColorPickerPopup
             value={value}
             onChange={handleChange}
-            className={classNames(openStatus, classNamesObj?.popup)}
-            parentElement={colorPreviewElement}
+            className={classNames(openStatus, popupClassName)}
+            parentElement={inputContainerRef.current}
             handleClose={handleBlur}
           />,
           document.body

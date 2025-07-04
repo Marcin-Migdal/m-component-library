@@ -7,6 +7,7 @@ import { AccordionIndicatorIcon } from "./AccordionIndicatorIcon";
 import { AccordionToggleProps } from "./types";
 
 import "./AccordionToggle.scss";
+import "./AccordionToggle.theme.scss";
 
 export const AccordionToggle: React.FC<PropsWithChildren<AccordionToggleProps>> = ({
   children,

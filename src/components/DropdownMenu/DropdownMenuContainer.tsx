@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React, { PropsWithChildren, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
+import { SecondaryPlacement } from "../../utils";
 import { DropdownMenu } from "./DropdownMenu/DropdownMenu";
 import { hasEnabledOptions } from "./helpers/hasEnabledOptions";
 import { DropdownMenuProps, OpenConfig, OpenEvent, OpenPosition } from "./types";
@@ -19,7 +20,7 @@ const DropdownMenuContainer = ({
   openEvent = OpenEvent.CONTEXT_CLICK,
   openPosition = OpenPosition.BOTTOM,
   zIndex = 1,
-  centerConsumer = false,
+  positionAlignment = SecondaryPlacement.START,
   // optionHeightFit = 6,
   onOpen,
   onClose,
@@ -91,7 +92,7 @@ const DropdownMenuContainer = ({
             openPosition={openPosition}
             openConfig={openConfig}
             zIndex={zIndex}
-            centerConsumer={centerConsumer}
+            positionAlignment={positionAlignment}
             // optionHeightFit={optionHeightFit}
           />,
           document.body

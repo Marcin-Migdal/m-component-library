@@ -1,5 +1,11 @@
-import React, { ChangeEvent, CSSProperties, FocusEvent } from "react";
+import React, { ChangeEvent, CSSProperties, FocusEvent, ReactNode } from "react";
 import { InputProps } from "../input-types";
+
+export type StandAloneTextfieldClassNames = {
+  standAloneTextfieldContainerClassName?: string;
+  inputClassName?: string;
+  prefixClassName?: string;
+};
 
 export type TextfieldTypes = "text" | "number" | "password";
 
@@ -28,8 +34,8 @@ export type StandAloneTextfieldProps = Omit<
    * @default false */
   disableSubmitOnEnter?: boolean;
 
-  /** Additional CSS class names for custom styling. */
-  className?: string;
+  /** Custom class names for styling different elements of the component. */
+  classNamesObj?: StandAloneTextfieldClassNames;
 
   /** Optional text displayed before value in `TextField`. */
   prefix?: string;
@@ -55,4 +61,7 @@ export type StandAloneTextfieldProps = Omit<
   /** Prefix for the id attributes in `StandAloneTextfieldProps`.
    * @default "textfield" */
   idPrefix?: string;
+
+  standAloneTextfieldChildren?: ReactNode;
+  standAloneTextfieldChildrenPosition?: "left" | "right";
 };

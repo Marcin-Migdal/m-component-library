@@ -1,7 +1,7 @@
 import { IconName } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
-import React, { useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 
 import { InputLabel } from "../../global-types";
 import { IconPreviewSquare } from "../../Miscellaneous/IconPreviewSquare";
@@ -26,7 +26,7 @@ const IconField = ({
   label = undefined,
   placeholder = undefined,
   error = undefined,
-  classNamesObj,
+  classNamesObj = {},
 
   iconColor,
 
@@ -99,58 +99,71 @@ const IconField = ({
     handleBlur(selectedIcon);
   };
 
-  const clearValue = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
-    !isControlled && setInternalValue(null);
+  const clearValue = useCallback(
+    (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+      !isControlled && setInternalValue(null);
 
-    onClear &&
-      onClear(
-        {
-          ...event,
-          target: {
-            ...event.target,
-            name: name || "",
-            value: null,
-            checked: false,
-            type: "icon",
+      onClear &&
+        onClear(
+          {
+            ...event,
+            target: {
+              ...event.target,
+              name: name || "",
+              value: null,
+              checked: false,
+              type: "icon",
+            },
           },
-        },
-        null
-      );
-  };
+          null
+        );
+    },
+    [isControlled]
+  );
+
+  const { containerClassName, labelClassName, errorClassName, popupClassName, ...standAloneTextfieldClassNames } =
+    classNamesObj;
+
+  const memoIconPreviewSquare = useMemo(
+    () => (
+      <IconPreviewSquare icon={value} color={iconColor}>
+        <FontAwesomeIcon icon="x" onClick={clearValue} className="m-clear-icon" />
+      </IconPreviewSquare>
+    ),
+    [value, iconColor, clearValue]
+  );
 
   return (
     <>
       <InputContainer
         disabled={disabled}
-        className={classNames("m-icon-field-container", classNamesObj?.container)}
+        className={classNames("m-icon-field-container", containerClassName)}
         size={size}
         error={error}
         marginBottomType={marginBottomType}
         labelType={labelType}
       >
-        <div
-          className="m-icon-preview-container"
+        <StandAloneTextfield
+          classNamesObj={{
+            standAloneTextfieldContainerClassName: `${standAloneTextfieldClassNames.standAloneTextfieldContainerClassName} flex g-2-rem`,
+            prefixClassName: standAloneTextfieldClassNames.prefixClassName,
+            inputClassName: classNames("m-icon-preview", standAloneTextfieldClassNames.inputClassName),
+          }}
+          readOnly
+          onClick={() => !disabled && handleOpen()}
+          value={value || ""}
+          disabled={disabled}
+          placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
           style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
-        >
-          <IconPreviewSquare icon={value} color={iconColor}>
-            <FontAwesomeIcon icon="x" onClick={clearValue} className="m-clear-icon" />
-          </IconPreviewSquare>
+          standAloneTextfieldChildren={memoIconPreviewSquare}
+          standAloneTextfieldChildrenPosition="left"
+        />
 
-          <StandAloneTextfield
-            className={classNames("m-icon-preview", classNamesObj?.input)}
-            readOnly
-            onClick={() => !disabled && handleOpen()}
-            value={value || ""}
-            disabled={disabled}
-            placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
-            style={{ width: "100%" }}
-          />
-        </div>
         {label && (
           <InputsLabel
             label={label}
             labelType={labelType}
-            className={classNames("m-icon-field-label", classNamesObj?.label)}
+            className={classNames("m-icon-field-label", labelClassName)}
             labelWidth={labelWidth}
             isFocused={isFocused || alertProps.alertOpen === AlertOpenState.OPENED}
             isFilled={!!value}
@@ -159,12 +172,17 @@ const IconField = ({
         {error && (
           <InputError
             style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
-            className={classNames("icon-field-error", classNamesObj?.error)}
+            className={classNames("icon-field-error", errorClassName)}
             error={error}
           />
         )}
       </InputContainer>
-      <Alert {...alertProps} handleClose={handleBlur} className="m-icon-field-popup" header="Icon selector popup">
+      <Alert
+        {...alertProps}
+        handleClose={handleBlur}
+        className={classNames("m-icon-field-popup", popupClassName)}
+        header="Icon selector popup"
+      >
         <IconFieldPopupContent
           onChange={handleChange}
           value={value as IconName | null}

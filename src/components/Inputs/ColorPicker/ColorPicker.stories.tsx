@@ -1,7 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 
+import { ComponentCssVariableTable } from "../../../internalUtils/components/ComponentCssVariableTable";
 import { inputArgTypes } from "../../../internalUtils/inputArgTypes";
 import ColorPicker from "./ColorPicker";
+import { cssVariablesData } from "./ColorPicker.stories.consts";
 
 const meta: Meta<typeof ColorPicker> = {
   title: "Components/Inputs/ColorPicker",
@@ -34,7 +37,10 @@ export default meta;
 
 type Story = StoryObj<typeof ColorPicker>;
 
-export const Default: Story = { args: { value: "red" } };
+export const Default: Story = { args: {} };
 export const Label: Story = { args: { label: "Input label", labelType: "left" } };
 export const Size: Story = { args: { size: "small" } };
 export const Error: Story = { args: { error: "Input error" } };
+export const CSSVariables: Story = {
+  render: () => <ComponentCssVariableTable data={cssVariablesData} />,
+};

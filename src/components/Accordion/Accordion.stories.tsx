@@ -1,7 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
+import { ComponentCssVariableTable } from "../../internalUtils/components/ComponentCssVariableTable";
 import Accordion from "./Accordion";
+import { cssVariablesData } from "./Accordion.stories.consts";
 import { AccordionMode } from "./types";
 
 const meta: Meta<typeof Accordion> = {
@@ -261,6 +263,31 @@ export const CompactVariant: StoryObj<typeof Accordion> = {
   },
 };
 
+export const TransparentVariant: StoryObj<typeof Accordion> = {
+  args: {
+    backgroundVariant: "transparent",
+    expansionMode: "multiple",
+    children: (
+      <>
+        <Accordion.Section sectionId="1">
+          <Accordion.Toggle>Toggle 1</Accordion.Toggle>
+          <Accordion.Content>
+            <Accordion.Item>Item 1 | 1</Accordion.Item>
+            <Accordion.Item>Item 1 | 2</Accordion.Item>
+          </Accordion.Content>
+        </Accordion.Section>
+        <Accordion.Section sectionId="2">
+          <Accordion.Toggle>Toggle 2</Accordion.Toggle>
+          <Accordion.Content>
+            <Accordion.Item>Item 2 | 1</Accordion.Item>
+            <Accordion.Item>Item 2 | 2</Accordion.Item>
+          </Accordion.Content>
+        </Accordion.Section>
+      </>
+    ),
+  },
+};
+
 export const InstantAnimation: StoryObj<typeof Accordion> = {
   args: {
     expandAnimation: "instant",
@@ -334,4 +361,8 @@ export const expandOnIconClick: StoryObj<typeof Accordion> = {
       </>
     ),
   },
+};
+
+export const CSSVariables: StoryObj = {
+  render: () => <ComponentCssVariableTable data={cssVariablesData} />,
 };

@@ -1,8 +1,11 @@
 import { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 
+import { ComponentCssVariableTable } from "../../internalUtils/components/ComponentCssVariableTable";
 import { generateHiddenArgTypes } from "../../internalUtils/generateHiddenArgTypes";
 import { ComponentSize } from "../global-types";
 import Button from "./Button";
+import { cssVariablesData } from "./Button.stories.consts";
 import { ButtonAlignContent, ButtonIconPosition, ButtonWidth } from "./types";
 
 const meta: Meta<typeof Button> = {
@@ -91,4 +94,8 @@ export const Tooltip: StoryObj<typeof Button> = {
   args: {
     tooltip: "Tooltip content",
   },
+};
+
+export const CSSVariables: StoryObj = {
+  render: () => <ComponentCssVariableTable data={cssVariablesData} />,
 };

@@ -33,7 +33,7 @@ const NumberField = (props: NumberFieldProps) => {
     placeholder = undefined,
     label = undefined,
     error = undefined,
-    classNamesObj,
+    classNamesObj = {},
     debounceDelay = 300,
     name,
     persistEvent = false,
@@ -113,10 +113,12 @@ const NumberField = (props: NumberFieldProps) => {
     onBlur(convertedEvent, parsedValue);
   };
 
+  const { containerClassName, labelClassName, errorClassName, ...standAloneTextfieldClassNames } = classNamesObj;
+
   return (
     <InputContainer
       disabled={disabled}
-      className={classNames("m-numberfield-container", classNamesObj?.container)}
+      className={classNames("m-numberfield-container", containerClassName)}
       size={size}
       error={error}
       marginBottomType={marginBottomType}
@@ -132,7 +134,7 @@ const NumberField = (props: NumberFieldProps) => {
         placeholder={labelType === InputLabel.FLOATING ? undefined : placeholder || (label ? `${label}...` : "")}
         style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}
         disabled={disabled}
-        className={classNamesObj?.input}
+        classNamesObj={standAloneTextfieldClassNames}
         value={displayValue}
         size={size}
         type="number"
@@ -142,7 +144,7 @@ const NumberField = (props: NumberFieldProps) => {
         <InputsLabel
           label={label}
           labelType={labelType}
-          className={classNames("m-numberfield-label", classNamesObj?.label)}
+          className={classNames("m-numberfield-label", labelClassName)}
           labelWidth={labelWidth}
           isFocused={isFocused}
           isFilled={!!displayValue}
@@ -152,7 +154,7 @@ const NumberField = (props: NumberFieldProps) => {
       {error && (
         <InputError
           style={getInputsErrorStyle(labelType, labelWidth, floatingInputWidth)}
-          className={classNames("numberfield-error", classNamesObj?.error)}
+          className={classNames("numberfield-error", errorClassName)}
           error={error}
         />
       )}

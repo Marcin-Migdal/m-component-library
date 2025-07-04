@@ -1,8 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
+import { ComponentCssVariableTable } from "../../internalUtils/components/ComponentCssVariableTable";
 import { Button } from "../Button";
-import DropdownMenu from "./DropdownMenu";
+import { cssVariablesData } from "./DropdownMenu.stories.consts";
+import DropdownMenu from "./DropdownMenuContainer";
 import { DropdownMenuOption, OpenEvent as OpenEventEnum, OpenPosition as OpenPositionEnum } from "./types";
 
 const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>, option: DropdownMenuOption) => {
@@ -128,9 +130,16 @@ export default {
     zIndex: {
       control: "number",
     },
-    centerConsumer: {
-      control: "boolean",
+    positionAlignment: {
+      control: {
+        type: "radio",
+        options: ["start", "center", "end"],
+      },
+      table: {
+        type: { summary: "start | center | end" },
+      },
     },
+
     optionHeightFit: {
       control: "number",
     },
@@ -171,5 +180,9 @@ export const HideDisabledOptions: StoryObj<typeof DropdownMenu> = {
 };
 
 export const CenterDropdownMenu: StoryObj<typeof DropdownMenu> = {
-  args: { centerConsumer: true },
+  args: { positionAlignment: "center" },
+};
+
+export const CSSVariables: StoryObj = {
+  render: () => <ComponentCssVariableTable data={cssVariablesData} />,
 };

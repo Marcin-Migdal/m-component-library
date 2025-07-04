@@ -4,16 +4,20 @@ import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
 import { GetPositionConfig } from "../../../utils";
 import { InputProps } from "../_inputsComponents/input-types";
 import { StandAloneTextfield } from "../_inputsComponents/StandAloneTextfield/StandAloneTextfield";
-import { StandAloneTextfieldProps } from "../_inputsComponents/StandAloneTextfield/types";
+import {
+  StandAloneTextfieldClassNames,
+  StandAloneTextfieldProps,
+} from "../_inputsComponents/StandAloneTextfield/types";
 
 type DropdownClassNames = {
-  container?: string;
-  control?: string;
-  label?: string;
-  error?: string;
-  dropdownIndicatorIcon?: string;
-  clearIcon?: string;
-} & DropdownOptionsClassnames;
+  containerClassName?: string;
+  controlClassName?: string;
+  labelClassName?: string;
+  errorClassName?: string;
+  dropdownIndicatorIconClassName?: string;
+  clearIconClassName?: string;
+} & DropdownOptionsClassnames &
+  Omit<StandAloneTextfieldClassNames, "inputClassName">;
 
 export type DropdownChangeEvent<T> = React.MouseEvent<HTMLLIElement, MouseEvent> & MInputChangeEvent<T>;
 export type DropdownBlurEvent<T> = MInputChangeEvent<DropdownValue<T>>;
@@ -94,9 +98,13 @@ export type DropdownComponents<T> = {
   Options: (props: DropdownOptionsProps<T>) => ReactElement;
 } & DropdownOptionsComponents<T>;
 
+type PresentableKeys<T> = {
+  [K in keyof T]: T[K] extends string | number ? K : never;
+}[keyof T];
+
 export type DropdownCustomProps<T> = {
   /** The keyof options/value object that represents the label to be displayed. */
-  labelKey: keyof T;
+  labelKey: PresentableKeys<T>;
 
   /** The keyof options/value object that represents the value associated with the option. */
   valueKey: keyof T;
@@ -116,9 +124,9 @@ type LabelValue = {
 };
 
 type DropdownOptionsClassnames = {
-  dropdownOptions?: string;
-  dropdownOption?: string;
-  emptyDropdownOption?: string;
+  dropdownOptionsClassName?: string;
+  dropdownOptionClassName?: string;
+  emptyDropdownOptionClassName?: string;
 };
 
 export type DropdownOptionsProps<T> = {

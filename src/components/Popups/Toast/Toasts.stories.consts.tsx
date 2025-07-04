@@ -1,0 +1,128 @@
+import { CssVariableData } from "../../../internalUtils/components/ComponentCssVariableTable";
+
+export const cssVariablesData: CssVariableData[] = [
+  {
+    variable: "--toast-color",
+    description: "Main color for toast border and icon (variant based)",
+    defaultValue: "var(--success-color)",
+    rootValue: "hsl(150, 70%, 39%)",
+  },
+  {
+    variable: "--toast-color-hue",
+    description: "Hue for toast color (variant based)",
+    defaultValue: "var(--success-color-hue)",
+    rootValue: "150",
+  },
+  {
+    variable: "--toast-background-color-saturation",
+    description: "Saturation for toast background",
+    defaultValue: "50% (light) / 15% (dark)",
+    rootValue: "50% / 15%",
+  },
+  {
+    variable: "--toast-background-color-lighting",
+    description: "Lighting for toast background",
+    defaultValue: "90% (light) / 20% (dark)",
+    rootValue: "90% / 20%",
+  },
+  {
+    variable: "--toast-background-color-opacity",
+    description: "Opacity for toast background",
+    defaultValue: "0.7 (light) / 0.9 (dark)",
+    rootValue: "0.7 / 0.9",
+  },
+  { variable: "--success-color-hue", description: "Hue for success variant", defaultValue: "150", rootValue: "150" },
+  {
+    variable: "--success-color",
+    description: "Color for success variant",
+    defaultValue: "hsl(150, 70%, 39%)",
+    rootValue: "hsl(150, 70%, 39%)",
+  },
+  { variable: "--failure-color-hue", description: "Hue for failure variant", defaultValue: "0", rootValue: "0" },
+  {
+    variable: "--failure-color",
+    description: "Color for failure variant",
+    defaultValue: "hsl(0, 90%, 59%)",
+    rootValue: "hsl(0, 90%, 59%)",
+  },
+  { variable: "--warning-color-hue", description: "Hue for warning variant", defaultValue: "46", rootValue: "46" },
+  {
+    variable: "--warning-color",
+    description: "Color for warning variant",
+    defaultValue: "hsl(46, 79%, 60%)",
+    rootValue: "hsl(46, 79%, 60%)",
+  },
+  {
+    variable: "--information-color-hue",
+    description: "Hue for information variant",
+    defaultValue: "239",
+    rootValue: "239",
+  },
+  {
+    variable: "--information-color",
+    description: "Color for information variant",
+    defaultValue: "hsl(239, 90%, 67%)",
+    rootValue: "hsl(239, 90%, 67%)",
+  },
+  {
+    variable: "--spacing-4",
+    description: "Large spacing for toast margin and padding",
+    defaultValue: "1rem",
+    rootValue: "16px",
+  },
+  {
+    variable: "--transition-duration-slow",
+    description: "Slow transition for toast animation and shadow",
+    defaultValue: "350ms",
+    rootValue: "350ms",
+  },
+  {
+    variable: "--radius-md",
+    description: "Medium border radius for toast box",
+    defaultValue: "0.375rem",
+    rootValue: "6px",
+  },
+  { variable: "--spacing-1", description: "Small spacing for toast margin", defaultValue: "0.25rem", rootValue: "4px" },
+  {
+    variable: "--font-size-sm",
+    description: "Small font size for toast text",
+    defaultValue: "0.875rem",
+    rootValue: "14px",
+  },
+  {
+    variable: "--font-size-base",
+    description: "Base font size for toast title",
+    defaultValue: "1rem",
+    rootValue: "16px",
+  },
+  {
+    variable: "--font-weight-semibold",
+    description: "Font weight for toast title",
+    defaultValue: "600",
+    rootValue: "600",
+  },
+  {
+    variable: "--spacing-3",
+    description: "Medium spacing for toast padding",
+    defaultValue: "0.75rem",
+    rootValue: "12px",
+  },
+  {
+    variable: "--radius-full",
+    description: "Full border radius for round icons",
+    defaultValue: "9999px",
+    rootValue: "9999px",
+  },
+  {
+    variable: "--transition-duration-normal",
+    description: "Normal transition for close icon hover",
+    defaultValue: "250ms",
+    rootValue: "250ms",
+  },
+  {
+    variable: "--spacing-2",
+    description: "Small spacing for close icon position",
+    defaultValue: "0.5rem",
+    rootValue: "8px",
+  },
+];

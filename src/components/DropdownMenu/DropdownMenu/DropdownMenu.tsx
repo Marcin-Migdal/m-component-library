@@ -1,6 +1,8 @@
 import classNames from "classnames";
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 
+import { useKeyboardClose, useOutsideClick } from "../../../hooks";
+import { SecondaryPlacement } from "../../../utils";
 import { DropdownMenuItem } from "../DropdownMenuOption/DropdownMenuItem";
 import { DropdownSubMenu } from "../DropdownSubMenu/DropdownSubMenu";
 import { getDropdownPosition } from "../helpers/getDropdownPosition";
@@ -27,7 +29,7 @@ type DropdownMenuProps = {
   hideDisabledOptions: boolean;
   openConfig: OpenConfig;
   zIndex: number;
-  centerConsumer: boolean;
+  positionAlignment: `${SecondaryPlacement}`;
   // optionHeightFit: number;
 };
 
@@ -44,13 +46,16 @@ export const DropdownMenu = ({
   hideDisabledOptions,
   openConfig,
   zIndex,
-  centerConsumer,
+  positionAlignment,
 }: // optionHeightFit = 6,
 DropdownMenuProps) => {
   const [dropdownMenuConfig, setDropdownMenuConfig] = useState<Partial<DropdownMenuConfig>>(initDropdownMenuConfig);
 
   const dropdownMenuContainerRef = useRef<HTMLUListElement>(null);
   const optionsHaveIcon = options.some((option) => !!option.icon);
+
+  useOutsideClick(dropdownMenuContainerRef, closeMenu);
+  useKeyboardClose(closeMenu);
 
   useLayoutEffect(() => {
     const calculateDropdownMenuPosition = (dropdownMenuElement: HTMLUListElement) => {
@@ -79,7 +84,7 @@ DropdownMenuProps) => {
             dropdownMenuElement,
             openPosition.includes("top") ? "top" : "bottom",
             openPosition.includes("auto"),
-            centerConsumer
+            positionAlignment
           );
 
           break;
@@ -112,38 +117,6 @@ DropdownMenuProps) => {
 
     dropdownMenuContainerRef.current && calculateDropdownMenuPosition(dropdownMenuContainerRef.current);
   }, []);
-
-  useEffect(() => {
-    if (!dropdownMenuConfig) {
-      return;
-    }
-
-    const handleClickOutside = (event: MouseEvent) => {
-      const target: HTMLElement = event.target as HTMLElement;
-
-      if (!dropdownMenuContainerRef.current) {
-        return;
-      }
-
-      if (!dropdownMenuContainerRef.current.contains(target)) {
-        closeMenu();
-      }
-    };
-
-    const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.code === "Escape") {
-        closeMenu();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleKeyPress);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [dropdownMenuConfig]);
 
   return (
     <ul

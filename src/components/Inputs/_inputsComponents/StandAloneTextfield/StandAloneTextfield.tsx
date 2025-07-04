@@ -11,6 +11,20 @@ type PrefixStyleProperties = {
   prefixLeftPosition?: string;
 };
 
+const getChildrenComponentWidth = (leftChildrenComponent: HTMLElement | null): number => {
+  if (leftChildrenComponent === null) {
+    return 0;
+  }
+
+  const leftChildrenComponentStyles = window.getComputedStyle(leftChildrenComponent);
+
+  return (
+    parseFloat(leftChildrenComponentStyles.width) +
+    parseFloat(leftChildrenComponentStyles.marginLeft) +
+    parseFloat(leftChildrenComponentStyles.marginRight)
+  );
+};
+
 export const StandAloneTextfield = ({
   value = undefined,
   name = undefined,
@@ -20,7 +34,7 @@ export const StandAloneTextfield = ({
   id = undefined,
   idPrefix = "textfield",
 
-  className,
+  classNamesObj = {},
   placeholder = undefined,
 
   onChange,
@@ -32,6 +46,8 @@ export const StandAloneTextfield = ({
   autoFocus = false,
   prefix = "",
   size = ComponentSize.MEDIUM,
+  standAloneTextfieldChildren,
+  standAloneTextfieldChildrenPosition = "right",
 }: StandAloneTextfieldProps) => {
   const textfieldWrapperRef = useRef<HTMLDivElement>(null);
 
@@ -56,28 +72,38 @@ export const StandAloneTextfield = ({
 
       const inputStyles = window.getComputedStyle(inputElement);
 
-      const paddingLeft = prefixStyleProperties.prefixLeftPosition
-        ? prefixStyleProperties.prefixLeftPosition
-        : inputStyles.paddingLeft;
+      const inputPaddingLeft = inputStyles.paddingLeft;
+
+      const leftChildrenComponentWidth: number = getChildrenComponentWidth(
+        textfieldWrapperElement.querySelector(".standalone-textfield-children-wrapper.left")
+      );
 
       setPrefixStyleProperties({
-        inputPaddingLeft: parseInt(paddingLeft) * 2 + prefixWidth,
-        prefixLeftPosition: paddingLeft,
+        inputPaddingLeft: parseInt(inputPaddingLeft) * 2 + prefixWidth,
+        prefixLeftPosition: `${parseFloat(inputPaddingLeft) + leftChildrenComponentWidth}px`,
       });
     };
 
     prefix && calculateStyle();
-  }, [prefix, size]);
+  }, [prefix, size, standAloneTextfieldChildrenPosition, standAloneTextfieldChildren]);
+
+  const { standAloneTextfieldContainerClassName, prefixClassName, inputClassName } = classNamesObj;
 
   return (
     <div
       id={id ? `${idPrefix}-wrapper-${id}` : undefined}
       style={style}
       ref={textfieldWrapperRef}
-      className="standalone-textfield-wrapper"
+      className={classNames("standalone-textfield-wrapper", standAloneTextfieldContainerClassName)}
     >
+      {standAloneTextfieldChildrenPosition === "left" && (
+        <div className="standalone-textfield-children-wrapper left">{standAloneTextfieldChildren}</div>
+      )}
       {prefix && (
-        <span className="m-textfield-prefix" style={{ left: prefixStyleProperties.prefixLeftPosition }}>
+        <span
+          className={classNames("m-textfield-prefix", prefixClassName)}
+          style={{ left: prefixStyleProperties.prefixLeftPosition }}
+        >
           {prefix}
         </span>
       )}
@@ -86,7 +112,7 @@ export const StandAloneTextfield = ({
         readOnly={readOnly}
         disabled={disabled}
         name={name}
-        className={classNames("m-input", "m-textfield", className)}
+        className={classNames("m-input", "m-textfield", inputClassName)}
         type={type}
         style={prefix ? { paddingLeft: prefixStyleProperties.inputPaddingLeft } : undefined}
         value={value}
@@ -102,6 +128,9 @@ export const StandAloneTextfield = ({
           }
         }}
       />
+      {standAloneTextfieldChildrenPosition === "right" && (
+        <div className="standalone-textfield-children-wrapper right">{standAloneTextfieldChildren}</div>
+      )}
     </div>
   );
 };

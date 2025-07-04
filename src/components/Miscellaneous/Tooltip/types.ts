@@ -1,5 +1,5 @@
 import { CSSProperties, RefObject } from "react";
-import { Placement } from "../../../utils/getPosition/getPosition-types";
+import { PrimaryPlacement, SecondaryPlacement } from "../../../utils/getPosition/getPosition-types";
 
 export type TooltipProps = {
   /** A reference to the target element the tooltip is associated with. */
@@ -13,8 +13,11 @@ export type TooltipProps = {
    * @default undefined */
   style?: CSSProperties;
 
-  /** The position of the tooltip relative to the target element. */
-  placement?: `${Placement}`;
+  /** Primary position of the tooltip relative to the target element. */
+  primaryPlacement?: `${PrimaryPlacement}`;
+
+  /** Secondary position of the tooltip relative to the target element. */
+  secondaryPlacement?: `${SecondaryPlacement}`;
 
   /** Delay (in milliseconds) before the tooltip opens.
    * @default 0 */

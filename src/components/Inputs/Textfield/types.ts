@@ -1,15 +1,18 @@
 import { ChangeEvent, FocusEvent } from "react";
 
+import {
+  StandAloneTextfieldClassNames,
+  StandAloneTextfieldProps,
+} from "../_inputsComponents/StandAloneTextfield/types";
+
 import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
-import { StandAloneTextfieldProps } from "../_inputsComponents/StandAloneTextfield/types";
 import { InputProps } from "../_inputsComponents/input-types";
 
 type TextFieldClassNames = {
-  container?: string;
-  input?: string;
-  label?: string;
-  error?: string;
-};
+  containerClassName?: string;
+  labelClassName?: string;
+  errorClassName?: string;
+} & StandAloneTextfieldClassNames;
 
 export type TextFieldChangeEvent = ChangeEvent<HTMLInputElement> & MInputChangeEvent;
 

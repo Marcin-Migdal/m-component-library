@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import React, { ReactElement, useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 
+import { useKeyboardClose, useOutsideClick } from "../../../../hooks";
 import { getPosition } from "../../../../utils";
 import { Position } from "../../../../utils/getPosition/getPosition-types";
 import { Dropdown } from "../../Dropdown";
@@ -56,6 +57,21 @@ export const DatePickerPopup = <TRange extends boolean>({
 }: DatePickerPopupProps<TRange>) => {
   const popupRef = useRef<HTMLDivElement>(null);
 
+  useKeyboardClose(() => handleBlur(value));
+  useOutsideClick(popupRef, () => handleBlur(value), {
+    additionalOutsideClickTriggerCondition: ({ event, originalOutsideClickTriggerCondition }) => {
+      const target: HTMLElement = event.target as HTMLElement;
+
+      const dropdownMenuElement = document.querySelector(".m-dropdown-options") as HTMLUListElement | null;
+
+      return (
+        originalOutsideClickTriggerCondition &&
+        !parentElement.contains(target) &&
+        !dropdownMenuElement?.contains(target)
+      );
+    },
+  });
+
   const { weekDays, monthsOptions } = useMemo(() => {
     const months = getMonths(locale);
 
@@ -90,41 +106,11 @@ export const DatePickerPopup = <TRange extends boolean>({
       setPosition(getPosition(parentElement, popupRef.current));
     };
 
-    const handleClickOutside = (event: MouseEvent) => {
-      const target: HTMLElement = event.target as HTMLElement;
-
-      if (!popupRef.current) {
-        return;
-      }
-
-      const dropdownMenuElement = document.querySelector(".m-dropdown-options") as HTMLUListElement | null;
-
-      if (
-        !popupRef.current.contains(target) &&
-        !parentElement.contains(target) &&
-        !dropdownMenuElement?.contains(target)
-      ) {
-        handleBlur(value);
-      }
-    };
-
-    const handleKeyPress = (event: KeyboardEvent) => {
-      if (event.code === "Escape") {
-        handleBlur(value);
-      }
-    };
-
     const resizeObserver = new ResizeObserver(calculatePopupPosition);
     resizeObserver.observe(document.body);
 
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleKeyPress);
-
     return () => {
       resizeObserver.disconnect();
-
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyPress);
     };
   }, []);
 
@@ -290,26 +276,26 @@ export const DatePickerPopup = <TRange extends boolean>({
             onChange={handleMonthChange}
             options={monthsOptions}
             classNamesObj={{
-              container: "date-picker-popup-dropdown-container",
-              dropdownOptions: "date-picker-popup-dropdown-options",
+              containerClassName: "date-picker-popup-dropdown-container",
+              dropdownOptionsClassName: "date-picker-popup-dropdown-options",
             }}
             optionHeightFit={8}
             marginBottomType="none"
             components={dropdownComponents}
-            menuPositionConfig={{ centerConsumer: true }}
+            menuPositionConfig={{ secondaryPlacement: "center" }}
           />
           <Dropdown
             value={currentYearOption}
             onChange={handleYearChange}
             options={yearsOptions}
             classNamesObj={{
-              container: "date-picker-popup-dropdown-container",
-              dropdownOptions: "date-picker-popup-dropdown-options",
+              containerClassName: "date-picker-popup-dropdown-container",
+              dropdownOptionsClassName: "date-picker-popup-dropdown-options",
             }}
             optionHeightFit={8}
             marginBottomType="none"
             components={dropdownComponents}
-            menuPositionConfig={{ centerConsumer: true }}
+            menuPositionConfig={{ secondaryPlacement: "center" }}
           />
         </div>
         <FontAwesomeIcon className="date-picker-popup-month-icon" icon="chevron-right" onClick={goToNextMonth} />

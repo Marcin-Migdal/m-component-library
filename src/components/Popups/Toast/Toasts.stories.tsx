@@ -1,7 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react/*";
 import React, { useRef } from "react";
 
+import { ComponentCssVariableTable } from "../../../internalUtils/components/ComponentCssVariableTable";
 import { Button } from "../../Button";
+import { cssVariablesData } from "./Toasts.stories.consts";
 import ToastsContainer from "./ToastsContainer";
 import { ToastHandler } from "./types";
 
@@ -98,4 +100,8 @@ export const ToastExample: Story = {
       </>
     );
   },
+};
+
+export const CSSVariables = {
+  render: () => <ComponentCssVariableTable data={cssVariablesData} />,
 };

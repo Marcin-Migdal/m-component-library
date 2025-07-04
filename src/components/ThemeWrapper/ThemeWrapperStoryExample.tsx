@@ -1,7 +1,7 @@
 import React, { ReactNode, useRef, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Accordion, SectionState } from "../Accordion";
+import { Accordion, SectionStateMultiple } from "../Accordion";
 import { Breadcrumb } from "../Breadcrumb";
 import { crumbs } from "../Breadcrumb/Breadcrumb.stories";
 import { Button } from "../Button";
@@ -66,7 +66,7 @@ export const ThemeWrapperStoryExample = ({
   const [handleOpen, alertProps] = useAlert();
 
   const [themeHue, setThemeHue] = useState<number | undefined>(undefined);
-  const [expanded, setExpanded] = useState<SectionState>({});
+  const [expanded, setExpanded] = useState<SectionStateMultiple>({});
 
   const handleHueChange = (hue: number) => setThemeHue(hue);
 
@@ -135,7 +135,7 @@ export const ThemeWrapperStoryExample = ({
       content: (
         <div>
           <FontAwesomeIcon ref={iconRef} icon="plus" />
-          <Tooltip placement="right" targetRef={iconRef}>
+          <Tooltip primaryPlacement="right" targetRef={iconRef}>
             Tooltip content
           </Tooltip>
         </div>
@@ -284,12 +284,12 @@ export const ThemeWrapperStoryExample = ({
     },
   ];
 
-  const handleExpand = (newExpanded: SectionState) => {
+  const handleExpand = (newExpanded: SectionStateMultiple) => {
     setExpanded(newExpanded);
   };
 
   const handleExpandAll = () => {
-    const allExpanded: SectionState = {};
+    const allExpanded: SectionStateMultiple = {};
 
     sectionsArray.forEach(({ toggleText }) => {
       allExpanded[toggleText] = true;

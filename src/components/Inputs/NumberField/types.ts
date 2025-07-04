@@ -1,15 +1,18 @@
 import { ChangeEvent, FocusEvent } from "react";
 
 import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
-import { StandAloneTextfieldProps } from "../_inputsComponents/StandAloneTextfield/types";
 import { InputProps } from "../_inputsComponents/input-types";
 
+import {
+  StandAloneTextfieldClassNames,
+  StandAloneTextfieldProps,
+} from "../_inputsComponents/StandAloneTextfield/types";
+
 type NumberFieldClassNames = {
-  container?: string;
-  input?: string;
-  label?: string;
-  error?: string;
-};
+  containerClassName?: string;
+  labelClassName?: string;
+  errorClassName?: string;
+} & StandAloneTextfieldClassNames;
 
 export type NumberFieldChangeEvent = ChangeEvent<HTMLInputElement> & MInputChangeEvent<number | null>;
 

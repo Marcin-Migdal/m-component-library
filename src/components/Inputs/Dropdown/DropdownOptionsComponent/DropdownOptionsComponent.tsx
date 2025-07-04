@@ -80,7 +80,7 @@ export const DropdownOptionsComponent = <T,>({
 
   const emptyMessageProps: EmptyMessageComponentProps = {
     id,
-    className: classNames("m-dropdown-option empty-message", classNamesObj?.emptyDropdownOption),
+    className: classNames("m-dropdown-option empty-message", classNamesObj?.emptyDropdownOptionClassName),
     noOptionsMessage,
   };
 
@@ -88,13 +88,13 @@ export const DropdownOptionsComponent = <T,>({
     <ul
       id={`dropdown-option-${id}`}
       ref={ref}
-      className={classNames("m-dropdown-options", "m-scroll slim-scroll", classNamesObj?.dropdownOptions)}
+      className={classNames("m-dropdown-options", "m-scroll slim-scroll", classNamesObj?.dropdownOptionsClassName)}
       style={dropdownOptionsStyles}
     >
       {options && options.length > 0
         ? options.map((option) => {
             const optionProps: DropdownOptionComponentProps<T> = {
-              className: classNames("m-dropdown-option", "truncate-text", classNamesObj?.dropdownOption, {
+              className: classNames("m-dropdown-option", "truncate-text", classNamesObj?.dropdownOptionClassName, {
                 selected: option[valueKey] === value?.[valueKey],
               }),
               option,

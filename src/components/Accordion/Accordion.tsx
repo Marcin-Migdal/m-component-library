@@ -1,22 +1,20 @@
 import classNames from "classnames";
 import React, { PropsWithChildren } from "react";
 
-import { AccordionContent, AccordionContentProps } from "./AccordionContent";
-import { AccordionItem, AccordionItemProps } from "./AccordionItem";
-import { AccordionSection, AccordionSectionProps } from "./AccordionSection";
-import { AccordionToggle, AccordionToggleProps } from "./AccordionToggle";
+import { AccordionContent } from "./AccordionContent";
+import { AccordionItem } from "./AccordionItem";
+import { AccordionSection } from "./AccordionSection";
+import { AccordionToggle } from "./AccordionToggle";
 import { AccordionContextProvider } from "./context";
 import { AccordionMode, AccordionProps } from "./types";
 
 import "./Accordion.scss";
 
 /** A compound component for creating an interactive, expandable accordion structure. */
-const Accordion: React.FC<PropsWithChildren<AccordionProps>> & {
-  Section: React.FC<PropsWithChildren<AccordionSectionProps>>;
-  Toggle: React.FC<PropsWithChildren<AccordionToggleProps>>;
-  Content: React.FC<PropsWithChildren<AccordionContentProps>>;
-  Item: React.FC<PropsWithChildren<AccordionItemProps>>;
-} = ({
+const Accordion = <
+  MSelect extends AccordionMode = AccordionMode.SINGLE,
+  MExpand extends AccordionMode = AccordionMode.SINGLE
+>({
   children,
 
   selectionMode = undefined,
@@ -28,6 +26,7 @@ const Accordion: React.FC<PropsWithChildren<AccordionProps>> & {
   onExpand,
 
   variant = "default",
+  backgroundVariant = "default",
   expandAnimation = "smooth",
   className,
   style,
@@ -35,7 +34,7 @@ const Accordion: React.FC<PropsWithChildren<AccordionProps>> & {
   instanceClassName,
   icon = "left",
   expandOnIconClick,
-}) => {
+}: PropsWithChildren<AccordionProps<MSelect, MExpand>>) => {
   return (
     <div
       className={classNames(
@@ -43,7 +42,8 @@ const Accordion: React.FC<PropsWithChildren<AccordionProps>> & {
         `${expandAnimation}-expand-animation`,
         className,
         instanceClassName,
-        variant
+        variant,
+        `background-${backgroundVariant}`
       )}
       style={style}
     >

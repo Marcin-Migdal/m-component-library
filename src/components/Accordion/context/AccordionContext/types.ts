@@ -2,12 +2,12 @@ import { AccordionMode, SectionId, SectionState, SectionStateChangeHandler } fro
 
 export type AccordionContextProviderProps = {
   selectionMode: AccordionMode | undefined;
-  selected: SectionState | undefined;
-  onSelect: SectionStateChangeHandler | undefined;
+  selected: SectionState<AccordionMode> | undefined;
+  onSelect: SectionStateChangeHandler<AccordionMode> | undefined;
 
   expansionMode: AccordionMode | undefined;
-  expanded: SectionState | undefined;
-  onExpand: SectionStateChangeHandler | undefined;
+  expanded: SectionState<AccordionMode> | undefined;
+  onExpand: SectionStateChangeHandler<AccordionMode> | undefined;
   expandAnimation: "smooth" | "instant";
 
   instanceClassName: string | undefined;
@@ -17,11 +17,11 @@ export type AccordionContextProviderProps = {
 
 export type AccordionContextType = {
   selectionMode: AccordionMode | undefined;
-  selected: SectionState;
+  selected: SectionState<AccordionMode>;
   handleSelect: (sectionId: SectionId) => void;
 
   expansionMode: AccordionMode | undefined;
-  expanded: SectionState;
+  expanded: SectionState<AccordionMode>;
   handleExpand: (sectionId: SectionId) => void;
 
   expandAnimation: "smooth" | "instant";

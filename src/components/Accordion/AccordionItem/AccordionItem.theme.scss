@@ -1,0 +1,7 @@
+.m-accordion {
+  &:not(.background-transparent) {
+    .m-accordion-item {
+      background-color: var(--accordion-item-background);
+    }
+  }
+}
