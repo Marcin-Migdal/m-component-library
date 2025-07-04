@@ -1,0 +1,7 @@
+.transition-example {
+  background-color: black !important;
+
+  &:hover {
+    background-color: red !important;
+  }
+}

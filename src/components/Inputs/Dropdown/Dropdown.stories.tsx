@@ -1,7 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 
+import { ComponentCssVariableTable } from "../../../internalUtils/components/ComponentCssVariableTable";
 import { inputArgTypes } from "../../../internalUtils/inputArgTypes";
 import Dropdown from "./Dropdown";
+import { cssVariablesData } from "./Dropdown.stories.consts";
 import { DropdownNumberOption } from "./types";
 
 export const options: DropdownNumberOption[] = [
@@ -68,3 +71,6 @@ export const Label: Story = { args: { label: "Input label", labelType: "left" } 
 export const Size: Story = { args: { size: "small" } };
 export const Error: Story = { args: { error: "Input error" } };
 export const Filter: Story = { args: { filter: true } };
+export const CSSVariables: Story = {
+  render: () => <ComponentCssVariableTable data={cssVariablesData} />,
+};

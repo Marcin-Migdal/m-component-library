@@ -1,7 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 
+import { ComponentCssVariableTable } from "../../../internalUtils/components/ComponentCssVariableTable";
 import { inputArgTypes } from "../../../internalUtils/inputArgTypes";
 import { ImageField } from "./ImageField";
+import { cssVariablesData } from "./ImageField.stories.consts";
 
 const meta: Meta<typeof ImageField> = {
   title: "Components/Inputs/ImageField",
@@ -37,4 +40,8 @@ export const ResolutionConstrain: Story = {
     minResolution: { width: 400, height: 300 },
     maxResolution: { width: 3840, height: 2160 },
   },
+};
+
+export const CSSVariables: Story = {
+  render: () => <ComponentCssVariableTable data={cssVariablesData} />,
 };

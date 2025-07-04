@@ -3,7 +3,9 @@ import React, { useRef } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tooltip } from ".";
+import { ComponentCssVariableTable } from "../../../internalUtils/components/ComponentCssVariableTable";
 import { PrimaryPlacement } from "../../../utils";
+import { cssVariablesData } from "./Tooltip.stories.consts";
 
 const meta: Meta<typeof Tooltip> = {
   title: "Components/Miscellaneous/Tooltip",
@@ -64,4 +66,8 @@ export const tooltip: Story = {
       </>
     );
   },
+};
+
+export const CSSVariables = {
+  render: () => <ComponentCssVariableTable data={cssVariablesData} />,
 };

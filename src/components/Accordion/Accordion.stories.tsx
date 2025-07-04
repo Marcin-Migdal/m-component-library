@@ -1,7 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
+import { ComponentCssVariableTable } from "../../internalUtils/components/ComponentCssVariableTable";
 import Accordion from "./Accordion";
+import { cssVariablesData } from "./Accordion.stories.consts";
 import { AccordionMode } from "./types";
 
 const meta: Meta<typeof Accordion> = {
@@ -359,4 +361,8 @@ export const expandOnIconClick: StoryObj<typeof Accordion> = {
       </>
     ),
   },
+};
+
+export const CSSVariables: StoryObj = {
+  render: () => <ComponentCssVariableTable data={cssVariablesData} />,
 };
