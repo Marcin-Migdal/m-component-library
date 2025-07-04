@@ -1,0 +1,98 @@
+export const TEXTFIELD_CSS_VARIABLES = [
+  {
+    variable: "--input-height",
+    description: "Height of the textfield input, varies by size variant",
+    defaultValue: "var(--medium-input-height)",
+    rootValue: "34px (medium size)",
+  },
+  {
+    variable: "--input-padding-left",
+    description: "Left padding for textfield content, varies by size variant",
+    defaultValue: "var(--medium-input-padding-left)",
+    rootValue: "8px (medium size)",
+  },
+  {
+    variable: "--radius-md",
+    description: "Border radius for textfield corners",
+    defaultValue: "0.375rem",
+    rootValue: "6px",
+  },
+  {
+    variable: "--input-font-size",
+    description: "Font size for textfield text, varies by size variant",
+    defaultValue: "var(--font-size-base)",
+    rootValue: "16px (medium size)",
+  },
+  {
+    variable: "--transition-duration-normal",
+    description: "Transition duration for hover effects",
+    defaultValue: "250ms",
+    rootValue: "250ms",
+  },
+  {
+    variable: "--transition-duration-fast",
+    description: "Transition duration for focus states",
+    defaultValue: "150ms",
+    rootValue: "150ms",
+  },
+  {
+    variable: "--input-placeholder-color",
+    description: "Color for placeholder text",
+    defaultValue: "var(--grey-color-450)",
+    rootValue: "hsl(0, 0%, 47%) (light mode) / hsl(0, 0%, 65%) (dark mode)",
+  },
+  {
+    variable: "--small-input-height",
+    description: "Height for small size textfield variant",
+    defaultValue: "24px",
+    rootValue: "24px",
+  },
+  {
+    variable: "--medium-input-height",
+    description: "Height for medium size textfield variant",
+    defaultValue: "34px",
+    rootValue: "34px",
+  },
+  {
+    variable: "--large-input-height",
+    description: "Height for large size textfield variant",
+    defaultValue: "41px",
+    rootValue: "41px",
+  },
+  {
+    variable: "--small-input-padding-left",
+    description: "Left padding for small size textfield",
+    defaultValue: "6px",
+    rootValue: "6px",
+  },
+  {
+    variable: "--medium-input-padding-left",
+    description: "Left padding for medium size textfield",
+    defaultValue: "var(--spacing-2)",
+    rootValue: "8px",
+  },
+  {
+    variable: "--large-input-padding-left",
+    description: "Left padding for large size textfield",
+    defaultValue: "10px",
+    rootValue: "10px",
+  },
+  {
+    variable: "--font-size-sm",
+    description: "Font size for small size textfield",
+    defaultValue: "0.875rem",
+    rootValue: "14px",
+  },
+  {
+    variable: "--font-size-base",
+    description: "Font size for medium size textfield",
+    defaultValue: "1rem",
+    rootValue: "16px",
+  },
+  {
+    variable: "--font-size-lg",
+    description: "Font size for large size textfield",
+    defaultValue: "1.125rem",
+    rootValue: "18px",
+  },
+];

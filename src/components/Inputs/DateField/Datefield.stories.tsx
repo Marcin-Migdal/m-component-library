@@ -1,7 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
+import React from "react";
 
 import { DateField } from ".";
+import { ComponentCssVariableTable } from "../../../internalUtils/components/ComponentCssVariableTable";
 import { inputArgTypes } from "../../../internalUtils/inputArgTypes";
+import { cssVariablesData } from "./Datefield.stories.consts";
 
 const meta: Meta<typeof DateField> = {
   title: "Components/Inputs/DateField",
@@ -38,3 +41,6 @@ export const Locale: Story = { args: { locale: "pl-PL" } };
 export const Label: Story = { args: { label: "Input label", labelType: "left" } };
 export const Size: Story = { args: { size: "small" } };
 export const Error: Story = { args: { error: "Input error" } };
+export const CSSVariables: Story = {
+  render: () => <ComponentCssVariableTable data={cssVariablesData} />,
+};

@@ -7,8 +7,10 @@ export const checkboxCssVariables: CssVariableData[] = [
   {
     variable: "--checkbox-input-size",
     description: "Size of the checkbox input (depends on size prop)",
-    defaultValue: "calc(var(--input-height) - 6px) | -8px | -10px",
-    rootValue: "Depends on --input-height (theme variable)",
+    defaultValue:
+      "calc(var(--input-height) - 6px) [small] | calc(var(--input-height) - 8px) [medium] | calc(var(--input-height) - 10px) [large]",
+    rootValue:
+      "18px [small] | 26px [medium] | 31px [large] (using --small-input-height: 24px, --medium-input-height: 34px, --large-input-height: 41px)",
   },
   {
     variable: "--checkbox-color",
@@ -27,25 +29,25 @@ export const checkboxCssVariables: CssVariableData[] = [
   {
     variable: "--radius-md",
     description: "Border radius for checkbox",
-    defaultValue: "theme value",
-    rootValue: "theme value",
+    defaultValue: "0.375rem",
+    rootValue: "6px",
   },
   {
     variable: "--border-base",
     description: "Border width for checkbox",
-    defaultValue: "theme value",
-    rootValue: "theme value",
+    defaultValue: "max(2px, 0.125em)",
+    rootValue: "2px",
   },
   {
     variable: "--transition-duration-normal",
     description: "Transition duration for checkbox",
-    defaultValue: "theme value",
-    rootValue: "theme value",
+    defaultValue: "250ms",
+    rootValue: "250ms",
   },
   {
     variable: "--transition-duration-fast",
     description: "Transition duration for check icon",
-    defaultValue: "theme value",
-    rootValue: "theme value",
+    defaultValue: "150ms",
+    rootValue: "150ms",
   },
 ];
