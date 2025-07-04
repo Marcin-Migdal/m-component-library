@@ -1,7 +1,10 @@
 import { faFileAlt, faFolder, faHome } from "@fortawesome/free-solid-svg-icons";
 import { Meta, StoryObj } from "@storybook/react";
+import React from "react";
+import { ComponentCssVariableTable } from "../../internalUtils/components/ComponentCssVariableTable";
 import { generateHiddenArgTypes } from "../../internalUtils/generateHiddenArgTypes";
 import { Breadcrumb } from "./Breadcrumb";
+import { cssVariablesData } from "./Breadcrumb.stories.consts";
 import { BreadcrumbProps, CrumbType } from "./types";
 
 export const crumbs: CrumbType[] = [
@@ -45,4 +48,8 @@ export const WithDisabledCrumbs: Story = {
       { id: 3, label: "File", path: "/folder/file", icon: faFileAlt },
     ],
   },
+};
+
+export const CSSVariables: StoryObj = {
+  render: () => <ComponentCssVariableTable data={cssVariablesData} />,
 };

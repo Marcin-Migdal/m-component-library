@@ -31,6 +31,9 @@ import {
   initFilledAlertInputsState,
 } from "./Alert.stories-schemas";
 
+import { ComponentCssVariableTable } from "../../../internalUtils/components/ComponentCssVariableTable";
+import { cssVariablesData } from "./Alert.stories.consts";
+
 const meta: Meta<typeof Alert> = {
   title: "Components/Popups/Alert",
   component: Alert,
@@ -295,4 +298,8 @@ export const AlertWithInputs: Story = {
       </>
     );
   },
+};
+
+export const CSSVariables = {
+  render: () => <ComponentCssVariableTable data={cssVariablesData} />,
 };

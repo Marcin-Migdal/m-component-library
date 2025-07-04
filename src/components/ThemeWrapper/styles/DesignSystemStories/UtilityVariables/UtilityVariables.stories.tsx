@@ -1,7 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
-import { ExampleList } from "../components/ExampleList/ExampleList";
+import { ExampleList } from "../../../../../internalUtils/components/ExampleList/ExampleList";
+
 import {
   borderRadiusVariables,
   borderVariables,

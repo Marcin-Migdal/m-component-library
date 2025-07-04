@@ -1,7 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 
+import { ComponentCssVariableTable } from "../../internalUtils/components/ComponentCssVariableTable";
 import { Button } from "../Button";
+import { cssVariablesData } from "./DropdownMenu.stories.consts";
 import DropdownMenu from "./DropdownMenuContainer";
 import { DropdownMenuOption, OpenEvent as OpenEventEnum, OpenPosition as OpenPositionEnum } from "./types";
 
@@ -179,4 +181,8 @@ export const HideDisabledOptions: StoryObj<typeof DropdownMenu> = {
 
 export const CenterDropdownMenu: StoryObj<typeof DropdownMenu> = {
   args: { positionAlignment: "center" },
+};
+
+export const CSSVariables: StoryObj = {
+  render: () => <ComponentCssVariableTable data={cssVariablesData} />,
 };

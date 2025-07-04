@@ -1,7 +1,7 @@
 import React from "react";
 
+import { ExampleList } from "../../../../../../internalUtils/components/ExampleList/ExampleList";
 import { Accordion } from "../../../../../Accordion";
-import { ExampleList } from "../../components/ExampleList/ExampleList";
 import { ColorTokenType } from "../types";
 
 export const ColorAccordion = ({

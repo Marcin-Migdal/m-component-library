@@ -1,4 +1,4 @@
-import { VariableDetails } from "../components/ExampleList/VariableDetails";
+import { VariableDetails } from "../../../../../internalUtils/components/ExampleList/VariableDetails";
 
 export const fontSizes: VariableDetails[] = [
   { cssVariable: "--font-size-2xs", values: ["0.75rem", "12px"] },

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import { ExampleList } from "../components/ExampleList/ExampleList";
+import { ExampleList } from "../../../../../internalUtils/components/ExampleList/ExampleList";
 import { fontSizes, fontWeights, lineHeights } from "./consts";
 
 const meta: Meta = {

@@ -1,4 +1,4 @@
-import { VariableDetails } from "../components/ExampleList/VariableDetails";
+import { VariableDetails } from "../../../../../internalUtils/components/ExampleList/VariableDetails";
 
 export const spacingVariables: VariableDetails[] = [
   { cssVariable: "--spacing-0", values: ["0"] },

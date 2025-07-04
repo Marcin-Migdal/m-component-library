@@ -1,4 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
+import React from "react";
+import { ComponentCssVariableTable } from "../../../internalUtils/components/ComponentCssVariableTable";
+import { cssVariablesData } from "./ProgressSpinner.stories.consts";
 
 import ProgressSpinner from "./ProgressSpinner";
 
@@ -22,3 +25,7 @@ export default meta;
 type Story = StoryObj<typeof ProgressSpinner>;
 
 export const progressSpinner: Story = {};
+
+export const CSSVariables = {
+  render: () => <ComponentCssVariableTable data={cssVariablesData} />,
+};

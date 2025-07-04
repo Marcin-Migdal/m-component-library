@@ -1,4 +1,5 @@
 import React, { CSSProperties } from "react";
+
 import { CopyableCode } from "../CopyableCode";
 
 export type VariableDetails = {
