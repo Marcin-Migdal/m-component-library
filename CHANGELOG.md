@@ -7,7 +7,7 @@
 - [[#237]](https://github.com/Marcin-Migdal/m-component-library/issues/237) **[PATCH]** Add useOutsideClick and useKeyboardClose, replace redundant logic in the whole project, using those hooks
 - [[#238]](https://github.com/Marcin-Migdal/m-component-library/issues/238) **[PATCH]** Add transparent backgroundColor variant to Accordion component
 - [[#223]](https://github.com/Marcin-Migdal/m-component-library/issues/223) **[PATCH]** Enhance ColorPicker type handling, depending on returnedColorType
-- [[#172]](https://github.com/Marcin-Migdal/m-component-library/issues/172) **[PATCH]** Add Design system and Utils classes documentation
+- [[#172]](https://github.com/Marcin-Migdal/m-component-library/issues/172) **[PATCH]** Add Design system, utils classes and components css variables documentation
 
 ### Release date 31.03.2025 - Release 2.1.3
 
