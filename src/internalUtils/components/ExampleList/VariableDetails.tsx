@@ -24,10 +24,10 @@ export const VariableDetails = ({ calculatedWidth, cssVariableDetail }: Variable
           (
           {values.map((value, index) => {
             return (
-              <>
+              <React.Fragment key={index}>
                 <span>{value}</span>
                 {values.length - 1 !== index && <span style={{ marginRight: "0.25rem" }}>,</span>}
-              </>
+              </React.Fragment>
             );
           })}
           )

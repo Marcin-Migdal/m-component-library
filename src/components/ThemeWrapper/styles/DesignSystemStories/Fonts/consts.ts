@@ -11,7 +11,6 @@ export const fontSizes: VariableDetails[] = [
   { cssVariable: "--font-size-3xl", values: ["1.75rem", "28px"] },
   { cssVariable: "--font-size-4xl", values: ["1.875rem", "30px"] },
   { cssVariable: "--font-size-5xl", values: ["2.25rem", "36px"] },
-  { cssVariable: "--font-size-5xl", values: ["2.25rem", "36px"] },
   { cssVariable: "--font-size-6xl", values: ["2.5rem", "40px"] },
 ];
 

@@ -14,7 +14,7 @@ export const ColorAccordion = ({
   return (
     <Accordion expansionMode="multiple">
       {Object.entries(colorTokens).map(([key, value]) => {
-        const lowTextContrast = value[0].cssVariable.startsWith("--grey-color") || forceBorder;
+        const lowTextContrast = value[0]?.cssVariable.startsWith("--grey-color") || forceBorder;
 
         return (
           <Accordion.Section sectionId={key} key={key}>

@@ -44,7 +44,11 @@ export const ExampleList = ({ cssVariableDetails, children }: ExampleListProps) 
   return (
     <ul style={{ listStyle: "none", paddingLeft: "unset" }} ref={exampleListRef}>
       {cssVariableDetails.map((cssVariableDetail) => (
-        <li id="example-list" style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "0.5rem" }}>
+        <li
+          key={cssVariableDetail.cssVariable}
+          id="example-list"
+          style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "0.5rem" }}
+        >
           <VariableDetails calculatedWidth={calculatedWidth} cssVariableDetail={cssVariableDetail} />
           {children({ cssVariable: cssVariableDetail.cssVariable })}
         </li>
