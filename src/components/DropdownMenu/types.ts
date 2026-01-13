@@ -1,5 +1,5 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { CSSProperties, ReactElement } from "react";
+import { CSSProperties, ReactElement, ReactNode } from "react";
 import { SecondaryPlacement } from "../../utils";
 
 /** Represents an individual option within the dropdown menu. */
@@ -29,6 +29,7 @@ export type DropdownMenuOption = {
     option: DropdownMenuOption;
     handleClick: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void;
     closeMenu: () => void;
+    SubMenu: ReactNode;
   }) => ReactElement;
 };
 

@@ -186,3 +186,36 @@ export const CenterDropdownMenu: StoryObj<typeof DropdownMenu> = {
 export const CSSVariables: StoryObj = {
   render: () => <ComponentCssVariableTable data={cssVariablesData} />,
 };
+
+export const CustomTemplateWithSubMenu: StoryObj<typeof DropdownMenu> = {
+  args: {
+    options: [
+      {
+        label: "Custom Item 1",
+        options: [
+          {
+            label: "Nested Item 1",
+            onClick: handleClick,
+          },
+          {
+            label: "Nested Item 2",
+            onClick: handleClick,
+          },
+        ],
+        template: ({ option, handleClick, className, SubMenu }) => (
+          <li className={className} onClick={handleClick} style={{ border: "1px solid red", padding: "10px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span style={{ fontWeight: "bold" }}>⭐ {option.label}</span>
+              <span>{option.options ? "➡" : ""}</span>
+            </div>
+            {SubMenu}
+          </li>
+        ),
+      },
+      {
+        label: "Normal Item",
+        onClick: handleClick,
+      },
+    ],
+  },
+};

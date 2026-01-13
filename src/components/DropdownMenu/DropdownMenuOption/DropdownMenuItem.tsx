@@ -57,8 +57,13 @@ export const DropdownMenuItem = ({
     "item-active": isSubMenuOpen,
   });
 
+  const SubMenu =
+    isSubMenuOpen && indicatorPresent ? (
+      <DropdownSubMenu options={options!} closeMenu={closeMenu} hideDisabledOptions={hideDisabledOptions} />
+    ) : null;
+
   if (template) {
-    return template({ className, indicatorPresent, option, handleClick, closeMenu });
+    return template({ className, indicatorPresent, option, handleClick, closeMenu, SubMenu });
   }
 
   return (
@@ -68,9 +73,7 @@ export const DropdownMenuItem = ({
         <p className={classNames("m-dropdown-menu-item-text", { "indicator-present": indicatorPresent })}>{label}</p>
       )}
       {indicatorPresent && <FontAwesomeIcon className="m-dropdown-menu-item-icon indicator" icon="chevron-right" />}
-      {isSubMenuOpen && (
-        <DropdownSubMenu options={options!} closeMenu={closeMenu} hideDisabledOptions={hideDisabledOptions} />
-      )}
+      {SubMenu}
     </li>
   );
 };
