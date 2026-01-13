@@ -1,13 +1,11 @@
-import { SectionId } from "../../types";
-
 export type AccordionSectionContextProviderProps = {
-  sectionId: SectionId;
+  sectionId: string;
   isSelected: boolean;
   isExpanded: boolean;
 };
 
 export type AccordionSectionContextType = {
-  sectionId: SectionId;
+  sectionId: string;
   isSelected: boolean;
   isExpanded: boolean;
 };

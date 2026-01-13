@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 
 import { deepCopy } from "../../../../utils";
-import { AccordionMode, SectionId, SectionState, SectionStateChangeHandler } from "../../types";
+import { AccordionMode, SectionState, SectionStateChangeHandler } from "../../types";
 
 const getInitialState = (mode: AccordionMode | undefined): SectionState<AccordionMode> => {
   return (mode === AccordionMode.MULTIPLE ? {} : null) as SectionState<AccordionMode>;
@@ -31,7 +31,7 @@ export const useSectionState = (
   externalMode: AccordionMode | undefined,
   externalSectionState: SectionState<AccordionMode> | undefined,
   onSectionStateChange: SectionStateChangeHandler<AccordionMode> | undefined
-): [AccordionMode | undefined, SectionState<AccordionMode>, (sectionId: SectionId) => void] => {
+): [AccordionMode | undefined, SectionState<AccordionMode>, (sectionId: string) => void] => {
   const mode = useMemo(() => {
     return getMode(externalMode, externalSectionState, onSectionStateChange);
   }, [externalMode, externalSectionState, !onSectionStateChange]);
@@ -49,7 +49,7 @@ export const useSectionState = (
     }
   }, [mode]);
 
-  const handleSectionState = (sectionId: SectionId) => {
+  const handleSectionState = (sectionId: string) => {
     let newSectionState: SectionState<AccordionMode> = null;
 
     switch (mode) {
@@ -61,7 +61,7 @@ export const useSectionState = (
         if (sectionState !== null && typeof sectionState === "object") {
           // eslint-disable-next-line no-console
           console.warn(
-            "Wrong controlled value, passed value is an object, you are trying to change object mode SINGLE, pass string | number | null as a value"
+            "Wrong controlled value, passed value is an object, you are trying to change object mode SINGLE, pass string | null as a value"
           );
           return;
         }

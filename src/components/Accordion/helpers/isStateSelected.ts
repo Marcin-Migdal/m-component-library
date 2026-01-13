@@ -1,6 +1,6 @@
-import { AccordionMode, SectionId, SectionState } from "../types";
+import { AccordionMode, SectionState } from "../types";
 
-export const isStateSelected = <M extends AccordionMode>(state: SectionState<M>, sectionId: SectionId): boolean => {
+export const isStateSelected = <M extends AccordionMode>(state: SectionState<M>, sectionId: string): boolean => {
   if (!state) {
     return false;
   }
