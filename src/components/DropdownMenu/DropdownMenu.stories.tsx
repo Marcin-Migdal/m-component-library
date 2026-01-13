@@ -5,7 +5,12 @@ import { ComponentCssVariableTable } from "../../internalUtils/components/Compon
 import { Button } from "../Button";
 import { cssVariablesData } from "./DropdownMenu.stories.consts";
 import DropdownMenu from "./DropdownMenuContainer";
-import { DropdownMenuOption, OpenEvent as OpenEventEnum, OpenPosition as OpenPositionEnum } from "./types";
+import {
+  DropdownMenuOption,
+  DropdownMenuOptionTemplate,
+  OpenEvent as OpenEventEnum,
+  OpenPosition as OpenPositionEnum,
+} from "./types";
 
 const handleClick = (event: React.MouseEvent<HTMLElement, MouseEvent>, option: DropdownMenuOption) => {
   // eslint-disable-next-line no-console
@@ -187,6 +192,16 @@ export const CSSVariables: StoryObj = {
   render: () => <ComponentCssVariableTable data={cssVariablesData} />,
 };
 
+const template: DropdownMenuOptionTemplate = ({ option, handleClick, className, SubMenu }) => (
+  <li className={className} onClick={handleClick} style={{ border: "1px solid red", padding: "10px" }}>
+    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <span style={{ fontWeight: "bold" }}>⭐ {option.label}</span>
+      <span>{option.options ? "➡" : ""}</span>
+    </div>
+    {SubMenu}
+  </li>
+);
+
 export const CustomTemplateWithSubMenu: StoryObj<typeof DropdownMenu> = {
   args: {
     options: [
@@ -196,25 +211,32 @@ export const CustomTemplateWithSubMenu: StoryObj<typeof DropdownMenu> = {
           {
             label: "Nested Item 1",
             onClick: handleClick,
+            template,
           },
           {
             label: "Nested Item 2",
             onClick: handleClick,
+            template,
+            options: [
+              {
+                label: "Nested Item 2.1",
+                onClick: handleClick,
+                template,
+              },
+              {
+                label: "Nested Item 2.2",
+                onClick: handleClick,
+                template,
+              },
+            ],
           },
         ],
-        template: ({ option, handleClick, className, SubMenu }) => (
-          <li className={className} onClick={handleClick} style={{ border: "1px solid red", padding: "10px" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <span style={{ fontWeight: "bold" }}>⭐ {option.label}</span>
-              <span>{option.options ? "➡" : ""}</span>
-            </div>
-            {SubMenu}
-          </li>
-        ),
+        template,
       },
       {
         label: "Normal Item",
         onClick: handleClick,
+        template,
       },
     ],
   },

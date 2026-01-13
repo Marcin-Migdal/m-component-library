@@ -8,7 +8,6 @@ module.exports = {
   rules: {
     curly: "error",
     "@typescript-eslint/no-use-before-define": "error",
-    "@typescript-eslint/no-shadow": "error",
     "no-console": "warn",
     "react/jsx-no-useless-fragment": "error",
     eqeqeq: "error",
