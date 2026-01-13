@@ -58,7 +58,13 @@ DropdownMenuProps) => {
   useKeyboardClose(closeMenu);
 
   useLayoutEffect(() => {
-    const calculateDropdownMenuPosition = (dropdownMenuElement: HTMLUListElement) => {
+    const element = dropdownMenuContainerRef.current;
+
+    if (!element) {
+      return;
+    }
+
+    const calculateDropdownMenuPosition = () => {
       if (openEvent === OpenEvent.HOVER && dropdownMenuConfig.opacity === 1) {
         return;
       }
@@ -81,7 +87,7 @@ DropdownMenuProps) => {
         default: {
           dropdownPosition = getDropdownPosition(
             parentElement,
-            dropdownMenuElement,
+            element,
             openPosition.includes("top") ? "top" : "bottom",
             openPosition.includes("auto"),
             positionAlignment
@@ -89,12 +95,6 @@ DropdownMenuProps) => {
 
           break;
         }
-      }
-
-      const element = dropdownMenuContainerRef.current;
-
-      if (!element) {
-        return;
       }
 
       // const children = Array.from(element.children) as HTMLLIElement[];
@@ -115,7 +115,21 @@ DropdownMenuProps) => {
       });
     };
 
-    dropdownMenuContainerRef.current && calculateDropdownMenuPosition(dropdownMenuContainerRef.current);
+    const resizeObserver = new ResizeObserver(() => {
+      calculateDropdownMenuPosition();
+    });
+
+    if (parentElement) {
+      resizeObserver.observe(parentElement);
+    }
+
+    resizeObserver.observe(document.documentElement);
+
+    calculateDropdownMenuPosition();
+
+    return () => {
+      resizeObserver.disconnect();
+    };
   }, []);
 
   return (
