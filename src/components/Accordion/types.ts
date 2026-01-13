@@ -1,12 +1,9 @@
 import { CSSProperties } from "react";
 import { Optionalize } from "../../types";
 
-/** Represents a unique identifier for an accordion section. */
-export type SectionId = string | number;
-
 /** Represents the selected/expanded state of an accordion section. */
-export type SectionStateSingle = SectionId | null;
-export type SectionStateMultiple = Record<SectionId, boolean> | null;
+export type SectionStateSingle = string | null;
+export type SectionStateMultiple = Record<string, boolean> | null;
 
 export type SectionState<M extends AccordionMode> = M extends AccordionMode.SINGLE
   ? SectionStateSingle
