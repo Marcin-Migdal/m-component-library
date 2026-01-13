@@ -1,10 +1,9 @@
 import React, { createContext, PropsWithChildren } from "react";
 
-import { SectionId } from "../../types";
 import { AccordionSectionContextProviderProps, AccordionSectionContextType } from "./types";
 
 export const AccordionSectionContext = createContext<AccordionSectionContextType>({
-  sectionId: undefined as unknown as SectionId,
+  sectionId: "",
   isSelected: false,
   isExpanded: false,
 });
