@@ -167,6 +167,7 @@ export const Default: StoryObj<typeof DropdownMenu> = {};
 export const OpenEvent: StoryObj<typeof DropdownMenu> = {
   args: {
     openEvent: "hover",
+    openPosition: "auto-bottom",
   },
 };
 
