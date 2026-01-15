@@ -36,3 +36,5 @@ export type BreadcrumbProps = {
    * @default {} */
   style?: CSSProperties;
 };
+
+export type InternalVariant = "full" | "no-icons" | "collapsed";
