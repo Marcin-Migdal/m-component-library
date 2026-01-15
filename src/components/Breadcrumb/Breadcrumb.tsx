@@ -35,13 +35,17 @@ export const Breadcrumb = ({
     const container = containerRef.current;
     const hiddenContainer = hiddenContainerRef.current;
 
-    if (!container || !hiddenContainer) return;
+    if (!container || !hiddenContainer) {
+      return;
+    }
 
     const observer = new ResizeObserver((entries) => {
       const containerWidth = entries[0].contentRect.width;
       const fullBreadcrumbWidth = hiddenContainer.scrollWidth;
 
-      if (fullBreadcrumbWidth === 0) return;
+      if (fullBreadcrumbWidth === 0) {
+        return;
+      }
 
       const ratio = containerWidth / fullBreadcrumbWidth;
 
