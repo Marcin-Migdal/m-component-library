@@ -12,7 +12,6 @@ export const crumbs: CrumbType[] = [
   { id: 2, label: "Folder", path: "/folder", icon: faFolder },
   { id: 3, label: "Sub Folder", path: "/folder/subFolder", icon: faFolder },
   { id: 4, label: "File", path: "/folder/subFolder/file", icon: faFileAlt },
-  { id: 5, label: "SubFile", path: "/folder/subFolder/file/subPath", icon: faFileAlt },
 ];
 
 const meta: Meta<BreadcrumbProps> = {
@@ -54,14 +53,14 @@ export const WithDisabledCrumbs: Story = {
 export const Responsive: Story = {
   render: (args) => (
     <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-      {/* <div style={{ width: "100%", border: "1px dashed #ccc", padding: "10px" }}>
+      <div style={{ width: "100%", border: "1px dashed #ccc", padding: "10px" }}>
         <p>Full Width (&gt; 90%)</p>
         <Breadcrumb {...args} />
       </div>
       <div style={{ width: "400px", border: "1px dashed #ccc", padding: "10px" }}>
         <p>Constrained Width (~80% - Expect No Icons)</p>
         <Breadcrumb {...args} />
-      </div> */}
+      </div>
       <div style={{ width: "250px", border: "1px dashed #ccc", padding: "10px" }}>
         <p>Very Constrained Width (&lt; 70% - Expect First & Last)</p>
         <Breadcrumb {...args} />

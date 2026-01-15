@@ -19,7 +19,7 @@ export const Crumb = ({ zIndex, crumb, onClick, hiddenCrumb = false }: CrumbProp
   const { disabled, icon, label } = crumb;
 
   const [showTooltip, setShowTooltip] = useState(false);
-  ``;
+
   const targetRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {

@@ -5,21 +5,23 @@
 
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   &:not(.hidden-crumb) {
     flex-shrink: 1;
     min-width: 0;
   }
 
-  cursor: pointer;
-
-  &:last-child,
-  .m-crumb-icon {
+  &:last-child {
     flex-shrink: 0;
   }
 
   &.disabled {
     cursor: default;
+  }
+
+  .m-crumb-icon {
+    flex-shrink: 0;
   }
 
   .m-crumb-label {
