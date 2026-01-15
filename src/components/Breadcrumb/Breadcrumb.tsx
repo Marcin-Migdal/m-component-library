@@ -1,11 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
-import React from "react";
+import React, { useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 
 import { Crumb } from "./components/Crumb/Crumb";
-import { BreadcrumbProps } from "./types";
+import { BreadcrumbProps, CrumbType, InternalVariant } from "./types";
 
 import "./Breadcrumb.scss";
+
+const separatorCrumb: CrumbType = {
+  id: "separator-id",
+  label: "...",
+  path: "",
+  disabled: true,
+};
 
 /**
  * A breadcrumb component used for navigation, displaying a list of links (crumbs) to show the current location in a hierarchy.
@@ -19,29 +26,100 @@ export const Breadcrumb = ({
   className,
   style,
 }: BreadcrumbProps) => {
-  const crumbsLength = crumbs.length;
+  const [internalVariant, setInternalVariant] = useState<InternalVariant>("full");
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const hiddenContainerRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    const container = containerRef.current;
+    const hiddenContainer = hiddenContainerRef.current;
+
+    if (!container || !hiddenContainer) {
+      return;
+    }
+
+    const observer = new ResizeObserver((entries) => {
+      const containerWidth = entries[0].contentRect.width;
+      const fullBreadcrumbWidth = hiddenContainer.scrollWidth;
+
+      if (fullBreadcrumbWidth === 0) {
+        return;
+      }
+
+      const ratio = containerWidth / fullBreadcrumbWidth;
+
+      if (ratio < 0.7) {
+        setInternalVariant("collapsed");
+      } else if (ratio < 0.95) {
+        setInternalVariant("no-icons");
+      } else {
+        setInternalVariant("full");
+      }
+    });
+
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [crumbs]);
+
+  const visibleCrumbs = useMemo(() => {
+    if (internalVariant === "collapsed" && crumbs.length > 2) {
+      const firstCrumb = crumbs[0];
+      const lastCrumb = crumbs[crumbs.length - 1];
+
+      return [firstCrumb, separatorCrumb, lastCrumb];
+    }
+
+    return crumbs.map((crumb) => ({
+      ...crumb,
+      icon: internalVariant === "no-icons" ? undefined : crumb.icon,
+    }));
+  }, [crumbs, internalVariant]);
+
+  const renderCrumb = useCallback(
+    (crumb: CrumbType, index: number, crumbsLength: number, isHidden: boolean) => {
+      const isLast = index === crumbsLength - 1;
+
+      return (
+        <React.Fragment key={crumb.id}>
+          <Crumb
+            hiddenCrumb={isHidden}
+            zIndex={crumbsLength - index}
+            crumb={{
+              ...crumb,
+              disabled: isLast && disableLastCrumb === true ? true : crumb.disabled,
+            }}
+            onClick={isHidden ? undefined : onClick}
+          />
+          {variant === "compact" && !isLast && (
+            <FontAwesomeIcon className="m-crumb-indicator-icon" icon="chevron-right" />
+          )}
+        </React.Fragment>
+      );
+    },
+    [disableLastCrumb, onClick, variant]
+  );
 
   return (
-    <div style={style} className={classNames("m-breadcrumb", className, variant)}>
-      {crumbs.map((crumb, index) => {
-        const isLast = index === crumbs.length - 1;
+    <div ref={containerRef} style={style} className={classNames("m-breadcrumb", className, variant)}>
+      {/* Hidden container for measurement */}
+      <div
+        ref={hiddenContainerRef}
+        className={classNames("m-breadcrumb", variant)}
+        style={{
+          position: "absolute",
+          visibility: "hidden",
+          height: 0,
+          overflow: "hidden",
+          whiteSpace: "nowrap",
+          width: "auto",
+        }}
+        aria-hidden="true"
+      >
+        {crumbs.map((crumb, index) => renderCrumb(crumb, index, crumbs.length, true))}
+      </div>
 
-        return (
-          <React.Fragment key={crumb.id}>
-            <Crumb
-              zIndex={crumbsLength - index}
-              crumb={{
-                ...crumb,
-                disabled: isLast && disableLastCrumb === true ? true : crumb.disabled,
-              }}
-              onClick={onClick}
-            />
-            {variant === "compact" && !isLast && (
-              <FontAwesomeIcon className="m-crumb-indicator-icon" icon="chevron-right" />
-            )}
-          </React.Fragment>
-        );
-      })}
+      {visibleCrumbs.map((crumb, index) => renderCrumb(crumb, index, visibleCrumbs.length, false))}
     </div>
   );
 };

@@ -50,6 +50,25 @@ export const WithDisabledCrumbs: Story = {
   },
 };
 
+export const Responsive: Story = {
+  render: (args) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+      <div style={{ width: "100%", border: "1px dashed #ccc", padding: "10px" }}>
+        <p>Full Width (&gt; 90%)</p>
+        <Breadcrumb {...args} />
+      </div>
+      <div style={{ width: "400px", border: "1px dashed #ccc", padding: "10px" }}>
+        <p>Constrained Width (~80% - Expect No Icons)</p>
+        <Breadcrumb {...args} />
+      </div>
+      <div style={{ width: "250px", border: "1px dashed #ccc", padding: "10px" }}>
+        <p>Very Constrained Width (&lt; 70% - Expect First & Last)</p>
+        <Breadcrumb {...args} />
+      </div>
+    </div>
+  ),
+};
+
 export const CSSVariables: StoryObj = {
   render: () => <ComponentCssVariableTable data={cssVariablesData} />,
 };
