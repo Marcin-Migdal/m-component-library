@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 
+import React from "react";
 import { inputArgTypes } from "../../../internalUtils/inputArgTypes";
+import { Dropdown } from "../Dropdown";
 import NumberField from "./NumberField";
 
 const meta: Meta<typeof NumberField> = {
@@ -32,3 +34,4 @@ export const Default: Story = {};
 export const Label: Story = { args: { label: "Input label", labelType: "left" } };
 export const Size: Story = { args: { size: "small" } };
 export const Error: Story = { args: { error: "Input error" } };
+export const InputWithChilrenInput: Story = { args: { standAloneTextfieldChildren: <Dropdown /> } };

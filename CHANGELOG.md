@@ -4,6 +4,7 @@
 - [[#245]](https://github.com/Marcin-Migdal/m-component-library/issues/245) **[PATCH]** Delete number form Accordion sectionId type, simplify logic
 - [[#232]](https://github.com/Marcin-Migdal/m-component-library/issues/232) **[PATCH]** Add Responsive behavior to the Breadcrumb when it does not fit in its container
 - [[#249]](https://github.com/Marcin-Migdal/m-component-library/issues/249) **[PATCH]** DropdownMenu position calculation on window resize
+- [[#246]](https://github.com/Marcin-Migdal/m-component-library/issues/246) **[PATCH]** Fix StandAloneTextfield component styling when passing children props to the component
 
 ### Release date 04.07.2025 - Release 2.1.5
 

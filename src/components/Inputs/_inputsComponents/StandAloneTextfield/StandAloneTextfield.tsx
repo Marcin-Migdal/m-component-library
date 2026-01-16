@@ -94,7 +94,9 @@ export const StandAloneTextfield = ({
       id={id ? `${idPrefix}-wrapper-${id}` : undefined}
       style={style}
       ref={textfieldWrapperRef}
-      className={classNames("standalone-textfield-wrapper", standAloneTextfieldContainerClassName)}
+      className={classNames("standalone-textfield-wrapper", standAloneTextfieldContainerClassName, {
+        "flex g-2-rem": !!standAloneTextfieldChildren,
+      })}
     >
       {standAloneTextfieldChildrenPosition === "left" && (
         <div className="standalone-textfield-children-wrapper left">{standAloneTextfieldChildren}</div>
