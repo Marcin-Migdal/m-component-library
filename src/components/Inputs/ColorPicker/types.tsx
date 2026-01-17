@@ -44,13 +44,10 @@ export type ColorPickerProps<TReturnedColor extends ReturnedColor> = InputProps 
   returnedColorType?: TReturnedColor;
 
   /** Callback triggered when color changes. */
-  onChange?: (
-    event: ColorPickerChangeEvent<TReturnedColor>,
-    value: ColorPickerChangeEvent<TReturnedColor>["target"]["value"],
-  ) => void;
+  onChange?: (event: ColorPickerChangeEvent<TReturnedColor>, value: RgbValue) => void;
 
   /** Callback triggered when `ColorPicker lose focus`. */
-  onBlur?: (event: ColorPickerBlurEvent<TReturnedColor>, value: ColorValue | null) => void;
+  onBlur?: (event: ColorPickerBlurEvent<TReturnedColor>, value: RgbValue | null) => void;
 };
 
 export type HslValue = {

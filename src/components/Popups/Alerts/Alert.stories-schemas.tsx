@@ -43,7 +43,8 @@ export const emptyAlertInputsStateSchema = Yup.object().shape({
       label: Yup.string().required("Required"),
       value: Yup.string().required("Required"),
     })
-    .default({ value: "1", label: "John" }),
+    .nullable()
+    .required("Required"),
   role: Yup.object()
     .shape({
       label: Yup.string().required("Required"),
