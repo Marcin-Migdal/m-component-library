@@ -10,7 +10,7 @@
   padding: var(--spacing-4);
 
   background-color: var(--background-hover-color);
-  z-index: 2;
+  z-index: var(--z-index-drawer);
 
   transition: transform var(--transition-duration-normal) ease-in-out;
 

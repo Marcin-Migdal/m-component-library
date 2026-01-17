@@ -14,14 +14,14 @@ type ColorPickerClassNames = {
 export type ColorPickerChangeEvent<TReturnedColor extends ReturnedColor> = TReturnedColor extends ReturnedColor.RGB
   ? MInputChangeEvent<RgbValue>
   : TReturnedColor extends ReturnedColor.HSL
-  ? MInputChangeEvent<HslValue>
-  : MInputChangeEvent<string>;
+    ? MInputChangeEvent<HslValue>
+    : MInputChangeEvent<string>;
 
 export type ColorPickerBlurEvent<TReturnedColor extends ReturnedColor> = TReturnedColor extends ReturnedColor.RGB
   ? MInputChangeEvent<RgbValue | null>
   : TReturnedColor extends ReturnedColor.HSL
-  ? MInputChangeEvent<HslValue | null>
-  : MInputChangeEvent<string | null>;
+    ? MInputChangeEvent<HslValue | null>
+    : MInputChangeEvent<string | null>;
 
 export type ColorPickerProps<TReturnedColor extends ReturnedColor> = InputProps & {
   /** Color value for the picker.
@@ -44,10 +44,10 @@ export type ColorPickerProps<TReturnedColor extends ReturnedColor> = InputProps 
   returnedColorType?: TReturnedColor;
 
   /** Callback triggered when color changes. */
-  onChange?: (event: ColorPickerChangeEvent<TReturnedColor>, value: ColorValue) => void;
+  onChange?: (event: ColorPickerChangeEvent<TReturnedColor>, value: RgbValue) => void;
 
   /** Callback triggered when `ColorPicker lose focus`. */
-  onBlur?: (event: ColorPickerBlurEvent<TReturnedColor>, value: ColorValue | null) => void;
+  onBlur?: (event: ColorPickerBlurEvent<TReturnedColor>, value: RgbValue | null) => void;
 };
 
 export type HslValue = {

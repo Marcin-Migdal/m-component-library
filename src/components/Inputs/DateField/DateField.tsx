@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import React, { FocusEvent, useRef, useState } from "react";
-import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
 
 import { OpenStatus, useOpen } from "../../../hooks";
@@ -17,7 +16,7 @@ import "./Datefield.theme.scss";
 
 const getDateFieldValue = <TRange extends boolean>(
   range: TRange,
-  value: ParsableDateValue<TRange> | null | undefined
+  value: ParsableDateValue<TRange> | null | undefined,
 ): DateValue<TRange> | null => {
   if (!value) {
     return null;
@@ -100,13 +99,13 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
             type: "date",
           },
         },
-        selectedDate
+        selectedDate,
       );
   };
 
   const handleChange = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-    selectedDate: DateValue<TRange>
+    selectedDate: DateValue<TRange>,
   ): void => {
     !isControlled && setInternalValue(selectedDate);
 
@@ -130,7 +129,7 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
             type: "date",
           },
         },
-        selectedDate
+        selectedDate,
       );
   };
 
@@ -198,20 +197,17 @@ export const DateField = <TRange extends boolean = false>(props: DateFieldProps<
         />
       )}
 
-      {datefieldElement &&
-        openStatus !== OpenStatus.CLOSED &&
-        createPortal(
-          <DatePickerPopup
-            range={range}
-            locale={locale}
-            value={value}
-            onChange={handleChange}
-            className={classNames(openStatus, popupClassName)}
-            parentElement={datefieldElement}
-            handleBlur={handleBlur}
-          />,
-          document.body
-        )}
+      {datefieldElement && openStatus !== OpenStatus.CLOSED && (
+        <DatePickerPopup
+          range={range}
+          locale={locale}
+          value={value}
+          onChange={handleChange}
+          className={classNames(openStatus, popupClassName)}
+          parentElement={datefieldElement}
+          handleBlur={handleBlur}
+        />
+      )}
     </InputContainer>
   );
 };

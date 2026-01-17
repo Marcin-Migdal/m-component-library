@@ -11,7 +11,7 @@
 
   transition: opacity var(--transition-duration-fast);
 
-  z-index: 1000;
+  z-index: var(--z-index-dropdown);
 
   .m-dropdown-menu-empty-message {
     width: 150px;

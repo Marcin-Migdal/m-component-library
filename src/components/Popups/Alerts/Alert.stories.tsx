@@ -129,6 +129,11 @@ export const AlertWithEmptyControlledInputsInForm: Story = {
       onClose: () => formik.resetForm(),
     });
 
+    const superiorOptions: DropdownStringOption[] = [
+      { value: "1", label: "John" },
+      { value: "2", label: "David" },
+    ];
+
     const options: DropdownStringOption[] = [
       { value: "1", label: "Developer" },
       { value: "2", label: "Student" },
@@ -152,6 +157,13 @@ export const AlertWithEmptyControlledInputsInForm: Story = {
                 <>
                   <Textfield label="name" {...registerChange("name")} />
                   <Textarea label="description" {...registerChange("description")} />
+                  <Dropdown
+                    clearable
+                    options={superiorOptions}
+                    label="superior"
+                    onClear={handleClear}
+                    {...registerBlur<"superior", DropdownChangeEvent<DropdownStringOption>>("superior")}
+                  />
                   <Dropdown
                     clearable
                     options={options}
@@ -204,7 +216,12 @@ export const AlertWithFilledControlledInputsInForm: Story = {
       onClose: () => formik.resetForm(),
     });
 
-    const options: DropdownStringOption[] = [
+    const superiorOptions: DropdownStringOption[] = [
+      { value: "1", label: "John" },
+      { value: "2", label: "David" },
+    ];
+
+    const roleOptions: DropdownStringOption[] = [
       { value: "1", label: "Developer" },
       { value: "2", label: "Student" },
     ];
@@ -229,7 +246,14 @@ export const AlertWithFilledControlledInputsInForm: Story = {
                   <Textarea label="description" {...registerChange("description")} />
                   <Dropdown
                     clearable
-                    options={options}
+                    options={superiorOptions}
+                    label="superior"
+                    onClear={handleClear}
+                    {...registerBlur<"superior", DropdownChangeEvent<DropdownStringOption>>("superior")}
+                  />
+                  <Dropdown
+                    clearable
+                    options={roleOptions}
                     label="role"
                     onClear={handleClear}
                     {...registerBlur<"role", DropdownChangeEvent<DropdownStringOption>>("role")}
@@ -302,4 +326,47 @@ export const AlertWithInputs: Story = {
 
 export const CSSVariables = {
   render: () => <ComponentCssVariableTable data={cssVariablesData} />,
+};
+
+export const NestedAlerts: Story = {
+  render: (args) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [handleOpen1, alertProps1] = useAlert();
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [handleOpen2, alertProps2] = useAlert();
+
+    return (
+      <>
+        <Button text="Open Alert 1" onClick={() => handleOpen1()} />
+        <Alert
+          {...alertProps1}
+          {...args}
+          header="Level 1 Alert"
+          onDecline={alertProps1.handleClose}
+          declineBtnText="Close Level 1"
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <p>This is the first level alert.</p>
+            <p>Click the button below to open a nested alert.</p>
+            <Button text="Open Nested Alert (Level 2)" onClick={() => handleOpen2()} />
+
+            <Alert
+              {...alertProps2}
+              {...args}
+              header="Level 2 Alert"
+              onDecline={alertProps2.handleClose}
+              declineBtnText="Close Level 2"
+            >
+              <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                <p>This is the second level alert.</p>
+                <p>It should be displayed ABOVE the first alert.</p>
+                <p>Interact with inputs here to verify nothing is blocked.</p>
+                <Textfield label="Nested Input" />
+              </div>
+            </Alert>
+          </div>
+        </Alert>
+      </>
+    );
+  },
 };

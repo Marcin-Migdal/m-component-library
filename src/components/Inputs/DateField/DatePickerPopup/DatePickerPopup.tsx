@@ -5,6 +5,7 @@ import React, { ReactElement, useCallback, useLayoutEffect, useMemo, useRef, use
 import { useKeyboardClose, useOutsideClick } from "../../../../hooks";
 import { getPosition } from "../../../../utils";
 import { Position } from "../../../../utils/getPosition/getPosition-types";
+import { Portal } from "../../../Portal/Portal";
 import { Dropdown } from "../../Dropdown";
 import { DropdownChangeEvent, DropdownComponents, DropdownNumberOption } from "../../Dropdown/types";
 import { getDayName, getDaysInMonth, getMonths, getWeekDays, getYears } from "../helpers";
@@ -93,7 +94,7 @@ export const DatePickerPopup = <TRange extends boolean>({
   });
 
   const [currentMonthOption, setCurrentMonthOption] = useState<DropdownNumberOption>(
-    monthsOptions[getStartDate(range, value).getMonth()]
+    monthsOptions[getStartDate(range, value).getMonth()],
   );
 
   const [internalRangeHoverDate, setInternalRangeHoverDate] = useState<Date | undefined>(undefined);
@@ -165,7 +166,7 @@ export const DatePickerPopup = <TRange extends boolean>({
 
       setInternalRangeHoverDate(date);
     },
-    [range, value]
+    [range, value],
   );
 
   const renderDates = useCallback(() => {
@@ -196,7 +197,7 @@ export const DatePickerPopup = <TRange extends boolean>({
             onHoverDaySet={handleHoverDaySet}
             key={buttonDate.toISOString()}
             date={buttonDate}
-          />
+          />,
         );
       }
     }
@@ -213,7 +214,7 @@ export const DatePickerPopup = <TRange extends boolean>({
           onHoverDaySet={handleHoverDaySet}
           key={buttonDate.toISOString()}
           date={buttonDate}
-        />
+        />,
       );
     }
 
@@ -236,7 +237,7 @@ export const DatePickerPopup = <TRange extends boolean>({
             onHoverDaySet={handleHoverDaySet}
             key={buttonDate.toISOString()}
             date={buttonDate}
-          />
+          />,
         );
       }
     }
@@ -267,47 +268,49 @@ export const DatePickerPopup = <TRange extends boolean>({
   };
 
   return (
-    <div ref={popupRef} className={classNames("date-picker-popup", className)} style={{ ...position }}>
-      <div className="date-picker-popup-month-selector">
-        <FontAwesomeIcon className="date-picker-popup-month-icon" icon="chevron-left" onClick={goToPrevMonth} />
-        <div className="date-picker-popup-month-text truncate-text">
-          <Dropdown
-            value={currentMonthOption}
-            onChange={handleMonthChange}
-            options={monthsOptions}
-            classNamesObj={{
-              containerClassName: "date-picker-popup-dropdown-container",
-              dropdownOptionsClassName: "date-picker-popup-dropdown-options",
-            }}
-            optionHeightFit={8}
-            marginBottomType="none"
-            components={dropdownComponents}
-            menuPositionConfig={{ secondaryPlacement: "center" }}
-          />
-          <Dropdown
-            value={currentYearOption}
-            onChange={handleYearChange}
-            options={yearsOptions}
-            classNamesObj={{
-              containerClassName: "date-picker-popup-dropdown-container",
-              dropdownOptionsClassName: "date-picker-popup-dropdown-options",
-            }}
-            optionHeightFit={8}
-            marginBottomType="none"
-            components={dropdownComponents}
-            menuPositionConfig={{ secondaryPlacement: "center" }}
-          />
+    <Portal>
+      <div ref={popupRef} className={classNames("date-picker-popup", className)} style={{ ...position }}>
+        <div className="date-picker-popup-month-selector">
+          <FontAwesomeIcon className="date-picker-popup-month-icon" icon="chevron-left" onClick={goToPrevMonth} />
+          <div className="date-picker-popup-month-text truncate-text">
+            <Dropdown
+              value={currentMonthOption}
+              onChange={handleMonthChange}
+              options={monthsOptions}
+              classNamesObj={{
+                containerClassName: "date-picker-popup-dropdown-container",
+                dropdownOptionsClassName: "date-picker-popup-dropdown-options",
+              }}
+              optionHeightFit={8}
+              marginBottomType="none"
+              components={dropdownComponents}
+              menuPositionConfig={{ secondaryPlacement: "center" }}
+            />
+            <Dropdown
+              value={currentYearOption}
+              onChange={handleYearChange}
+              options={yearsOptions}
+              classNamesObj={{
+                containerClassName: "date-picker-popup-dropdown-container",
+                dropdownOptionsClassName: "date-picker-popup-dropdown-options",
+              }}
+              optionHeightFit={8}
+              marginBottomType="none"
+              components={dropdownComponents}
+              menuPositionConfig={{ secondaryPlacement: "center" }}
+            />
+          </div>
+          <FontAwesomeIcon className="date-picker-popup-month-icon" icon="chevron-right" onClick={goToNextMonth} />
         </div>
-        <FontAwesomeIcon className="date-picker-popup-month-icon" icon="chevron-right" onClick={goToNextMonth} />
+        <div className="date-picker-popup-week-days-header">
+          {weekDays.map((day) => (
+            <span key={day} className="date-picker-popup-week-days-header-column truncate-text">
+              {day}
+            </span>
+          ))}
+        </div>
+        <div className="date-picker-popup-dates-container">{renderDates()}</div>
       </div>
-      <div className="date-picker-popup-week-days-header">
-        {weekDays.map((day) => (
-          <span key={day} className="date-picker-popup-week-days-header-column truncate-text">
-            {day}
-          </span>
-        ))}
-      </div>
-      <div className="date-picker-popup-dates-container">{renderDates()}</div>
-    </div>
+    </Portal>
   );
 };

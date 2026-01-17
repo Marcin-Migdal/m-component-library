@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React, { useCallback, useMemo, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+
+import { Portal } from "../../Portal/Portal";
 
 import { OpenStatus, useOpen } from "../../../hooks";
 import { MInputChangeEvent } from "../../../types/MInputChangeEvent";
@@ -31,7 +32,7 @@ const innerDefaultValue: RgbValue = {
 };
 
 const getValue = <TExternalValue extends ColorValue | null>(
-  externalValue: TExternalValue
+  externalValue: TExternalValue,
 ): TExternalValue extends null ? null : RgbValue => {
   if (externalValue === null) {
     return null as TExternalValue extends null ? null : RgbValue;
@@ -198,7 +199,7 @@ const ColorPicker = <TReturnedColor extends ReturnedColor = ReturnedColor.RGB>({
         onClick={handleOpen}
       />
     ),
-    [hexValue, disabled, handleOpen]
+    [hexValue, disabled, handleOpen],
   );
 
   return (
@@ -250,18 +251,17 @@ const ColorPicker = <TReturnedColor extends ReturnedColor = ReturnedColor.RGB>({
           />
         )}
       </InputContainer>
-      {inputContainerRef.current &&
-        openStatus !== OpenStatus.CLOSED &&
-        createPortal(
+      {inputContainerRef.current && openStatus !== OpenStatus.CLOSED && (
+        <Portal>
           <ColorPickerPopup
             value={value}
             onChange={handleChange}
             className={classNames(openStatus, popupClassName)}
             parentElement={inputContainerRef.current}
             handleClose={handleBlur}
-          />,
-          document.body
-        )}
+          />
+        </Portal>
+      )}
     </>
   );
 };
