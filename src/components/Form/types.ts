@@ -15,7 +15,7 @@ type BaseRegisterResult<
   disableSubmitOnEnter: boolean;
 };
 // Specific register result types for each config type
-export type ControlledChangeRegisterResult<
+export type ControlledRegisterChangeResult<
   TName extends keyof TFormState,
   TChangeEvent extends SimpleChangeEvent<TFormState>,
   TFormState extends FormikValues
@@ -24,7 +24,7 @@ export type ControlledChangeRegisterResult<
   onChange: (e: TChangeEvent) => void;
 } & BaseRegisterResult<TName, TChangeEvent, TFormState>;
 
-export type ChangeRegisterResult<
+export type UncontrolledRegisterChangeResult<
   TName extends keyof TFormState,
   TChangeEvent extends SimpleChangeEvent<TFormState>,
   TFormState extends FormikValues
@@ -32,7 +32,7 @@ export type ChangeRegisterResult<
   onChange: (e: TChangeEvent) => void;
 } & BaseRegisterResult<TName, TChangeEvent, TFormState>;
 
-export type ControlledBlurRegisterResult<
+export type ControlledRegisterBlurResult<
   TName extends keyof TFormState,
   TChangeEvent extends SimpleChangeEvent<TFormState>,
   TFormState extends FormikValues
@@ -40,7 +40,7 @@ export type ControlledBlurRegisterResult<
   value: TFormState[TName];
 } & BaseRegisterResult<TName, TChangeEvent, TFormState>;
 
-export type BlurRegisterResult<
+export type UncontrolledRegisterBlurResult<
   TName extends keyof TFormState,
   TChangeEvent extends SimpleChangeEvent<TFormState>,
   TFormState extends FormikValues
@@ -53,8 +53,8 @@ export type RegisterChangeResult<
   TControlled extends boolean,
   TFormState extends FormikValues
 > = TControlled extends true
-  ? ControlledChangeRegisterResult<TName, TChangeEvent, TFormState>
-  : ChangeRegisterResult<TName, TChangeEvent, TFormState>;
+  ? ControlledRegisterChangeResult<TName, TChangeEvent, TFormState>
+  : UncontrolledRegisterChangeResult<TName, TChangeEvent, TFormState>;
 
 export type RegisterBlurResult<
   TName extends keyof TFormState,
@@ -62,8 +62,8 @@ export type RegisterBlurResult<
   TControlled extends boolean,
   TFormState extends FormikValues
 > = TControlled extends true
-  ? ControlledBlurRegisterResult<TName, TChangeEvent, TFormState>
-  : BlurRegisterResult<TName, TChangeEvent, TFormState>;
+  ? ControlledRegisterBlurResult<TName, TChangeEvent, TFormState>
+  : UncontrolledRegisterBlurResult<TName, TChangeEvent, TFormState>;
 
 /** Represents the data passed to the `children` render prop function. */
 export type ChildrenFormikDataType<TFormState extends FormikValues> = {

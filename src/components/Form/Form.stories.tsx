@@ -3,7 +3,7 @@ import React from "react";
 import * as Yup from "yup";
 
 import { Button } from "../Button";
-import { Dropdown } from "../Inputs";
+import { Dropdown, Textarea } from "../Inputs";
 import { DropdownChangeEvent, DropdownStringOption } from "../Inputs/Dropdown/types";
 import { NumberField } from "../Inputs/NumberField";
 import { Textfield } from "../Inputs/Textfield";
@@ -41,6 +41,7 @@ type SignUpState = {
   userName: string;
   password: string;
   verifyPassword: string;
+  userDescription: string;
   role: DropdownStringOption | null;
   superior: DropdownStringOption | null;
   yearOfBirth: number | null;
@@ -51,6 +52,7 @@ const signUpInitialValues: SignUpState = {
   userName: "",
   password: "",
   verifyPassword: "",
+  userDescription: "",
   role: null,
   superior: null,
   yearOfBirth: null,
@@ -86,6 +88,7 @@ const signUpValidationSchema = Yup.object().shape({
     .test("passwords-match", "Passwords must match", function (value) {
       return this.parent.password === value;
     }),
+  userDescription: Yup.string().required("Required"),
   yearOfBirth: Yup.number().nullable().min(1900).max(new Date().getFullYear()).required("Required"),
 });
 
@@ -115,17 +118,19 @@ export const Default: StoryObj<typeof Form> = {
 
     return (
       <Form formik={formik}>
-        {({ values, handleChange, isValid, registerChange: register }) => (
+        {({ values, handleChange, isValid, registerChange }) => (
           <>
-            <Textfield label="Username" {...register("userName")} />
-            <Textfield label="Email" {...register("email")} />
-            <Textfield type="password" label="Password" {...register("password")} />
-            <Textfield type="password" label="Verify Password" {...register("verifyPassword")} />
-            <NumberField label="Year of birth" {...register("yearOfBirth")} />
+            <Textfield label="Username" {...registerChange("userName")} />
+            <Textfield label="Email" {...registerChange("email")} />
+            <Textfield type="password" label="Password" {...registerChange("password")} />
+            <Textfield type="password" label="Verify Password" {...registerChange("verifyPassword")} />
+
+            <Textarea label="User description" {...registerChange("userDescription")} />
+            <NumberField label="Year of birth" {...registerChange("yearOfBirth")} />
             <Dropdown
               label="Role"
               options={roleOptions}
-              {...register<"role", DropdownChangeEvent<DropdownStringOption>>("role")}
+              {...registerChange<"role", DropdownChangeEvent<DropdownStringOption>>("role")}
             />
             <Dropdown
               label="Superior"

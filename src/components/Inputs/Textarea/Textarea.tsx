@@ -72,6 +72,8 @@ const Textarea = ({
       );
   };
 
+  delete otherProps["disableSubmitOnEnter"];
+
   return (
     <InputContainer
       disabled={disabled}
