@@ -12,7 +12,7 @@
   height: 100%;
   width: 100%;
 
-  z-index: 10;
+  z-index: var(--z-index-overlay);
 }
 
 .body-no-scroll {

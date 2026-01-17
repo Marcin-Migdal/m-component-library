@@ -5,7 +5,7 @@
   width: fit-content;
   max-height: 100vh;
   overflow: hidden auto;
-  z-index: 1000;
+  z-index: var(--z-index-toast);
 
   &.top-left,
   &.top-right {
@@ -52,7 +52,9 @@
 
     font-size: var(--font-size-sm);
 
-    transition: transform var(--transition-duration-slow), opacity var(--transition-duration-slow),
+    transition:
+      transform var(--transition-duration-slow),
+      opacity var(--transition-duration-slow),
       box-shadow var(--transition-duration-slow) ease-in-out;
 
     &.success {

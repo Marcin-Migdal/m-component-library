@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
 import React, { ChangeEvent, FocusEvent, MouseEvent as ReactMouseEvent, useCallback, useRef, useState } from "react";
-import { createPortal } from "react-dom";
 import { v4 as uuId } from "uuid";
+
+import { Portal } from "../../Portal/Portal";
 
 import { useKeyboardClose, useOutsideClick } from "../../../hooks";
 import { InputLabel } from "../../global-types";
@@ -32,7 +33,7 @@ import "./Dropdown.scss";
 const filterOptions = <T extends { [key: string]: unknown } = LabelValue>(
   options: T[],
   labelKey: string | number,
-  filterValue: string
+  filterValue: string,
 ): T[] => {
   if (filterValue.trim().length === 0 || options.length === 0) {
     return options;
@@ -51,7 +52,7 @@ const getControlValue = <T extends { [key: string]: unknown } = LabelValue>(
   isFocused: boolean,
   filterValue: string,
   labelKey: string,
-  value: DropdownValue<T>
+  value: DropdownValue<T>,
 ) => {
   if (filter && isFocused) {
     return filterValue;
@@ -168,7 +169,7 @@ function Dropdown<T extends { [key: string]: unknown } = LabelValue>({
       // originalOutsideClickTriggerCondition checks if user clicked outside the whole Dropdown container, not just Dropdown Menu
       return originalOutsideClickTriggerCondition || clickedOnDropdownContainerBackground;
     },
-    [isFocused, uniqueDropdownId]
+    [isFocused, uniqueDropdownId],
   );
 
   const onOutsideClick = () => handleBlur(value);
@@ -176,7 +177,7 @@ function Dropdown<T extends { [key: string]: unknown } = LabelValue>({
     handleBlur(value);
 
     const dropdownControlElement = controlContainerRef.current?.querySelector(
-      `#dropdown-controller-${uniqueDropdownId}`
+      `#dropdown-controller-${uniqueDropdownId}`,
     ) as HTMLInputElement | null;
 
     if (dropdownControlElement && document.activeElement === dropdownControlElement) {
@@ -359,7 +360,7 @@ function Dropdown<T extends { [key: string]: unknown } = LabelValue>({
       {clearable && value && currentComponents.ClearIcon(clearIconProps)}
 
       {/* dropdown items */}
-      {isFocused && controlElement && createPortal(currentComponents.Options(optionsProps), document.body)}
+      {isFocused && controlElement && <Portal>{currentComponents.Options(optionsProps)}</Portal>}
     </InputContainer>
   );
 }

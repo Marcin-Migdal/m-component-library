@@ -22,7 +22,7 @@
   &.floating {
     padding-left: var(--input-padding-left);
 
-    z-index: 2;
+    z-index: 1;
 
     &.forced-floating,
     &.filled,
