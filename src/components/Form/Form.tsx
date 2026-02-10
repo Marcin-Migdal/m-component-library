@@ -3,7 +3,9 @@ import { FormikValues } from "formik";
 import React from "react";
 
 import { InputErrorType } from "../Inputs/_inputsComponents";
+import { translateErrors } from "./helpers/translateErrors";
 import { SimpleChangeEvent } from "./hooks/useForm/useForm.types";
+
 import {
   ControlledRegisterBlurResult,
   ControlledRegisterChangeResult,
@@ -19,26 +21,30 @@ import {
  * Supports custom value changes and external error handling.
  */
 function Form<TFormState extends FormikValues>({
+  t,
   className,
   children,
   formik,
   disableSubmitOnEnter = false,
   ...otherProps
 }: FormProps<TFormState>) {
-  const { values, errors, handleSubmit, handleChange, handleBlur } = formik;
+  const { values, errors: formErrors, handleSubmit, handleChange, handleBlur } = formik;
 
   const registerChange = <
     TName extends keyof TFormState,
     TChangeEvent extends SimpleChangeEvent<TFormState> = SimpleChangeEvent<TFormState>,
-    TControlled extends boolean = true
+    TControlled extends boolean = true,
   >(
     name: TName,
-    controlled: TControlled = true as TControlled
+    controlled: TControlled = true as TControlled,
   ): RegisterChangeResult<TName, TChangeEvent, TControlled, TFormState> => {
+    const fieldErrors = formErrors?.[name] as InputErrorType | undefined;
+    const translatedFieldErrors = t && fieldErrors ? translateErrors(fieldErrors, t) : fieldErrors;
+
     if (controlled) {
       const controlledChangeRegisterResult: ControlledRegisterChangeResult<TName, TChangeEvent, TFormState> = {
         name,
-        error: errors?.[name] as InputErrorType,
+        error: translatedFieldErrors,
         onBlur: handleBlur,
         value: values?.[name],
         onChange: handleChange,
@@ -50,7 +56,7 @@ function Form<TFormState extends FormikValues>({
 
     const changeRegisterResult: UncontrolledRegisterChangeResult<TName, TChangeEvent, TFormState> = {
       name,
-      error: errors?.[name] as InputErrorType,
+      error: translatedFieldErrors,
       onBlur: handleBlur,
       onChange: handleChange,
       disableSubmitOnEnter,
@@ -62,15 +68,18 @@ function Form<TFormState extends FormikValues>({
   const registerBlur = <
     TName extends keyof TFormState,
     TBlurEvent extends SimpleChangeEvent<TFormState>,
-    TControlled extends boolean
+    TControlled extends boolean,
   >(
     name: TName,
-    controlled: TControlled = true as TControlled
+    controlled: TControlled = true as TControlled,
   ): RegisterBlurResult<TName, TBlurEvent, TControlled, TFormState> => {
+    const fieldErrors = formErrors?.[name] as InputErrorType | undefined;
+    const translatedFieldErrors = t && fieldErrors ? translateErrors(fieldErrors, t) : fieldErrors;
+
     if (controlled) {
       const controlledBlurRegisterResult: ControlledRegisterBlurResult<TName, TBlurEvent, TFormState> = {
         name,
-        error: errors?.[name] as InputErrorType,
+        error: translatedFieldErrors,
         onBlur: handleBlur,
         value: values?.[name],
         disableSubmitOnEnter,
@@ -81,7 +90,7 @@ function Form<TFormState extends FormikValues>({
 
     const blurRegisterResult: UncontrolledRegisterBlurResult<TName, TBlurEvent, TFormState> = {
       name,
-      error: errors?.[name] as InputErrorType,
+      error: translatedFieldErrors,
       onBlur: handleBlur,
       disableSubmitOnEnter,
     };

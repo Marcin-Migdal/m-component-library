@@ -2,7 +2,7 @@ import classNames from "classnames";
 import React, { CSSProperties, forwardRef, PropsWithChildren, useMemo } from "react";
 
 import { ComponentSize, InputLabel, MarginBottomType } from "../../../global-types";
-import { InputErrorType } from "../InputError/InputError";
+import { InputErrorType } from "../InputError/types";
 
 import "./InputContainer.scss";
 
@@ -27,7 +27,7 @@ function InputContainer(
     marginBottomType,
     labelType,
   }: PropsWithChildren<InputContainerProps>,
-  ref?: React.ForwardedRef<HTMLDivElement>
+  ref?: React.ForwardedRef<HTMLDivElement>,
 ) {
   const marginBottomClassName = useMemo(() => {
     if (marginBottomType === "none") {
@@ -57,7 +57,7 @@ function InputContainer(
 type ToastsContainerForwardRefType = (
   props: PropsWithChildren<InputContainerProps> & {
     ref?: React.ForwardedRef<HTMLDivElement>;
-  }
+  },
 ) => ReturnType<typeof InputContainer>;
 
 export default forwardRef(InputContainer) as ToastsContainerForwardRefType;
