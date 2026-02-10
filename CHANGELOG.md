@@ -7,7 +7,7 @@
 - [[#246]](https://github.com/Marcin-Migdal/m-component-library/issues/246) **[PATCH]** Fix StandAloneTextfield component styling when passing children props to the component
 - [[#247]](https://github.com/Marcin-Migdal/m-component-library/issues/247) **[PATCH]** Delete unsupported prop from Textarea input props object
 - [[#234]](https://github.com/Marcin-Migdal/m-component-library/issues/234) **[PATCH]** Small refactor of all component logic related to z-index property
-- [[#234]](https://github.com/Marcin-Migdal/m-component-library/issues/234) **[PATCH]** Add translation prop to Form component
+- [[#234]](https://github.com/Marcin-Migdal/m-component-library/issues/248) **[PATCH]** Add translation prop to Form component
 
 ### Release date 04.07.2025 - Release 2.1.5
 
