@@ -5,17 +5,17 @@ export const translateErrors = (error: InputErrorType, t: (key: string) => strin
     return t(error);
   }
 
-  const translateAllErrors = (obj: { [key: string]: InputErrorType }): InputErrorType => {
-    return Object.fromEntries(
-      Object.entries(obj).map(([key, value]) => {
-        if (typeof value === "string") {
-          return [key, t(value)];
-        }
+  if (Array.isArray(error)) {
+    return error.map((item) => (item ? translateErrors(item, t) : item)) as InputErrorType;
+  }
 
-        return [key, translateAllErrors(value)];
-      }),
-    );
-  };
+  return Object.fromEntries(
+    Object.entries(error).map(([key, value]) => {
+      if (typeof value === "string") {
+        return [key, t(value)];
+      }
 
-  return translateAllErrors(error);
+      return [key, translateErrors(value, t)];
+    }),
+  );
 };

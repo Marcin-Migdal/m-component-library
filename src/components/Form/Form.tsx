@@ -16,6 +16,14 @@ import {
   UncontrolledRegisterChangeResult,
 } from "./types";
 
+const validateErrorType = (error: unknown): InputErrorType | undefined => {
+  if (Array.isArray(error) || (error && typeof error === "object") || typeof error === "string") {
+    return error as InputErrorType;
+  }
+
+  return undefined;
+};
+
 /**
  * A flexible form component built with Formik for handling form state, validation, and submission.
  * Supports custom value changes and external error handling.
@@ -38,7 +46,10 @@ function Form<TFormState extends FormikValues>({
     name: TName,
     controlled: TControlled = true as TControlled,
   ): RegisterChangeResult<TName, TChangeEvent, TControlled, TFormState> => {
-    const fieldErrors = formErrors?.[name] as InputErrorType | undefined;
+    const rawError = formErrors?.[name] as unknown;
+
+    const fieldErrors = validateErrorType(rawError);
+
     const translatedFieldErrors = t && fieldErrors ? translateErrors(fieldErrors, t) : fieldErrors;
 
     if (controlled) {
@@ -73,7 +84,9 @@ function Form<TFormState extends FormikValues>({
     name: TName,
     controlled: TControlled = true as TControlled,
   ): RegisterBlurResult<TName, TBlurEvent, TControlled, TFormState> => {
-    const fieldErrors = formErrors?.[name] as InputErrorType | undefined;
+    const rawError = formErrors?.[name] as unknown;
+    const fieldErrors = validateErrorType(rawError);
+
     const translatedFieldErrors = t && fieldErrors ? translateErrors(fieldErrors, t) : fieldErrors;
 
     if (controlled) {

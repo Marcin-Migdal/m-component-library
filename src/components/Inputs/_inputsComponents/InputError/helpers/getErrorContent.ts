@@ -6,17 +6,29 @@ export const getErrorContent = (error: InputErrorType): ReactNode => {
     return error;
   }
 
-  const processErrorObject = (obj: { [key: string]: InputErrorType }) => {
-    for (const key in obj) {
-      const value = obj[key];
+  if (Array.isArray(error)) {
+    for (const item of error) {
+      if (item) {
+        const result = getErrorContent(item);
 
-      if (typeof value === "string") {
-        return value;
-      } else {
-        return processErrorObject(value);
+        if (result) {
+          return result;
+        }
       }
     }
-  };
 
-  return processErrorObject(error);
+    return undefined;
+  }
+
+  const obj = error as { [key: string]: InputErrorType };
+
+  for (const key in obj) {
+    const result = getErrorContent(obj[key]);
+
+    if (result) {
+      return result;
+    }
+  }
+
+  return undefined;
 };

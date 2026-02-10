@@ -1,1 +1,1 @@
-export type InputErrorType = string | { [key: string]: string | InputErrorType };
+export type InputErrorType = string | { [key: string]: InputErrorType } | InputErrorType[];
