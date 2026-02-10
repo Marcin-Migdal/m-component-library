@@ -1,5 +1,5 @@
 import { ComponentSize, InputLabel, MarginBottomType, Percentage } from "../../global-types";
-import { InputErrorType } from "./InputError/InputError";
+import { InputErrorType } from "./InputError/types";
 
 /** Common props used across many `Input` component. */
 export type InputProps = {
