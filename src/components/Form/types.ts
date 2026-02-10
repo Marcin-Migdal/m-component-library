@@ -7,10 +7,10 @@ import { SimpleChangeEvent, UseFormikResult } from "./hooks/useForm/useForm.type
 type BaseRegisterResult<
   TName extends keyof TFormState,
   TChangeEvent extends SimpleChangeEvent<TFormState>,
-  TFormState extends FormikValues
+  TFormState extends FormikValues,
 > = {
   name: TName;
-  error: InputErrorType;
+  error: InputErrorType | undefined;
   onBlur: (e: TChangeEvent) => void;
   disableSubmitOnEnter: boolean;
 };
@@ -18,7 +18,7 @@ type BaseRegisterResult<
 export type ControlledRegisterChangeResult<
   TName extends keyof TFormState,
   TChangeEvent extends SimpleChangeEvent<TFormState>,
-  TFormState extends FormikValues
+  TFormState extends FormikValues,
 > = {
   value: TFormState[TName];
   onChange: (e: TChangeEvent) => void;
@@ -27,7 +27,7 @@ export type ControlledRegisterChangeResult<
 export type UncontrolledRegisterChangeResult<
   TName extends keyof TFormState,
   TChangeEvent extends SimpleChangeEvent<TFormState>,
-  TFormState extends FormikValues
+  TFormState extends FormikValues,
 > = {
   onChange: (e: TChangeEvent) => void;
 } & BaseRegisterResult<TName, TChangeEvent, TFormState>;
@@ -35,7 +35,7 @@ export type UncontrolledRegisterChangeResult<
 export type ControlledRegisterBlurResult<
   TName extends keyof TFormState,
   TChangeEvent extends SimpleChangeEvent<TFormState>,
-  TFormState extends FormikValues
+  TFormState extends FormikValues,
 > = {
   value: TFormState[TName];
 } & BaseRegisterResult<TName, TChangeEvent, TFormState>;
@@ -43,7 +43,7 @@ export type ControlledRegisterBlurResult<
 export type UncontrolledRegisterBlurResult<
   TName extends keyof TFormState,
   TChangeEvent extends SimpleChangeEvent<TFormState>,
-  TFormState extends FormikValues
+  TFormState extends FormikValues,
 > = BaseRegisterResult<TName, TChangeEvent, TFormState>;
 
 // Type that resolves to the correct return type based on the config type parameter
@@ -51,7 +51,7 @@ export type RegisterChangeResult<
   TName extends keyof TFormState,
   TChangeEvent extends SimpleChangeEvent<TFormState>,
   TControlled extends boolean,
-  TFormState extends FormikValues
+  TFormState extends FormikValues,
 > = TControlled extends true
   ? ControlledRegisterChangeResult<TName, TChangeEvent, TFormState>
   : UncontrolledRegisterChangeResult<TName, TChangeEvent, TFormState>;
@@ -60,7 +60,7 @@ export type RegisterBlurResult<
   TName extends keyof TFormState,
   TChangeEvent extends SimpleChangeEvent<TFormState>,
   TControlled extends boolean,
-  TFormState extends FormikValues
+  TFormState extends FormikValues,
 > = TControlled extends true
   ? ControlledRegisterBlurResult<TName, TChangeEvent, TFormState>
   : UncontrolledRegisterBlurResult<TName, TChangeEvent, TFormState>;
@@ -70,19 +70,19 @@ export type ChildrenFormikDataType<TFormState extends FormikValues> = {
   registerChange: <
     TName extends keyof TFormState,
     TChangeEvent extends SimpleChangeEvent<TFormState> = SimpleChangeEvent<TFormState>,
-    TControlled extends boolean = true
+    TControlled extends boolean = true,
   >(
     name: TName,
-    controlled?: TControlled
+    controlled?: TControlled,
   ) => RegisterChangeResult<TName, TChangeEvent, TControlled, TFormState>;
 
   registerBlur: <
     TName extends keyof TFormState,
     TBlurEvent extends SimpleChangeEvent<TFormState> = SimpleChangeEvent<TFormState>,
-    TControlled extends boolean = true
+    TControlled extends boolean = true,
   >(
     name: TName,
-    controlled?: TControlled
+    controlled?: TControlled,
   ) => RegisterBlurResult<TName, TBlurEvent, TControlled, TFormState>;
 } & UseFormikResult<TFormState>;
 
@@ -100,4 +100,6 @@ export type FormProps<TFormState extends FormikValues> = {
   /** Whether inputs have disabled form submitting with enter key press. Its good to set this props to true when using Form and inputs inside alert that handles submit on confirm.
    * @default false */
   disableSubmitOnEnter?: boolean;
+
+  t?: (string: string) => string;
 };
