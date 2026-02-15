@@ -6,13 +6,16 @@ import { PrimaryPlacement } from "../../../../utils";
 import { Tooltip } from "../../../Miscellaneous";
 import { CrumbType } from "../../types";
 
+import "./Crumb.scss";
+
 type CrumbProps = {
   crumb: CrumbType;
   zIndex: number;
   onClick?: (crumb: CrumbType) => void;
+  hiddenCrumb?: boolean;
 };
 
-export const Crumb = ({ zIndex, crumb, onClick }: CrumbProps) => {
+export const Crumb = ({ zIndex, crumb, onClick, hiddenCrumb = false }: CrumbProps) => {
   const { disabled, icon, label } = crumb;
 
   const [showTooltip, setShowTooltip] = useState(false);
@@ -52,7 +55,10 @@ export const Crumb = ({ zIndex, crumb, onClick }: CrumbProps) => {
       <div
         ref={targetRef}
         style={{ zIndex }}
-        className={classNames("m-crumb", { disabled })}
+        className={classNames("m-crumb", {
+          disabled,
+          "hidden-crumb": hiddenCrumb,
+        })}
         onClick={() => onClick && !disabled && onClick(crumb)}
       >
         {icon && <FontAwesomeIcon className="m-crumb-icon" icon={icon} />}

@@ -1,5 +1,6 @@
 import React, { CSSProperties, PropsWithChildren, useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+
+import { Portal } from "../../Portal/Portal";
 
 import { getPosition } from "../../../utils";
 import { PrimaryPlacement, SecondaryPlacement } from "../../../utils/getPosition/getPosition-types";
@@ -89,11 +90,12 @@ const Tooltip = ({
     return null;
   }
 
-  return createPortal(
-    <TooltipContent tooltipRef={tooltipRef} style={tooltipStyle} className={className}>
-      {children}
-    </TooltipContent>,
-    document.body
+  return (
+    <Portal>
+      <TooltipContent tooltipRef={tooltipRef} style={tooltipStyle} className={className}>
+        {children}
+      </TooltipContent>
+    </Portal>
   );
 };
 

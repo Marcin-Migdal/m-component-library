@@ -6,7 +6,7 @@
   margin: unset;
 
   list-style: none;
-  z-index: 1000;
+  z-index: var(--z-index-dropdown);
 
   overflow: auto;
 

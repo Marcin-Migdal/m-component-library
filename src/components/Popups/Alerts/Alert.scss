@@ -11,7 +11,7 @@
   border-top: var(--alert-border-radius) solid;
   border-radius: var(--alert-border-radius);
 
-  z-index: 100;
+  z-index: var(--z-index-modal);
 
   &.opened {
     animation: open-alert var(--transition-duration-slow);
@@ -88,10 +88,18 @@
 
     .m-alert-confirm-button {
       border-bottom-left-radius: var(--alert-border-radius);
+
+      &:only-child {
+        border-bottom-right-radius: var(--alert-border-radius);
+      }
     }
 
     .m-alert-decline-button {
       border-bottom-right-radius: var(--alert-border-radius);
+
+      &:only-child {
+        border-bottom-left-radius: var(--alert-border-radius);
+      }
     }
   }
 }

@@ -6,6 +6,7 @@ import { DropdownStringOption } from "../../Inputs/Dropdown/types";
 export type EmptyAlertInputsState = {
   name: string;
   description: string;
+  superior: DropdownStringOption | null;
   role: DropdownStringOption | null;
 
   currentDate: Date | null;
@@ -21,6 +22,7 @@ export type EmptyAlertInputsState = {
 export const initEmptyAlertInputsState: EmptyAlertInputsState = {
   name: "",
   description: "",
+  superior: null,
   role: null,
 
   currentDate: null,
@@ -36,6 +38,13 @@ export const initEmptyAlertInputsState: EmptyAlertInputsState = {
 export const emptyAlertInputsStateSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
   description: Yup.string().default("").required("Description is required"),
+  superior: Yup.object()
+    .shape({
+      label: Yup.string().required("Required"),
+      value: Yup.string().required("Required"),
+    })
+    .nullable()
+    .required("Required"),
   role: Yup.object()
     .shape({
       label: Yup.string().required("Required"),
@@ -71,6 +80,7 @@ export type EmptyAlertInputsSubmitState = InferSchemaType<typeof emptyAlertInput
 export type FilledAlertInputsState = {
   name: string;
   description: string;
+  superior: DropdownStringOption;
   role: DropdownStringOption;
 
   currentDate: Date;
@@ -86,6 +96,7 @@ export type FilledAlertInputsState = {
 export const initFilledAlertInputsState: FilledAlertInputsState = {
   name: "Test",
   description: "Test",
+  superior: { value: "1", label: "John" },
   role: { value: "1", label: "Developer" },
 
   currentDate: new Date("2015-04-15"),
@@ -101,6 +112,12 @@ export const initFilledAlertInputsState: FilledAlertInputsState = {
 export const filledAlertInputsStateSchema = Yup.object().shape({
   name: Yup.string().default("Test"),
   description: Yup.string().default("Test"),
+  superior: Yup.object()
+    .shape({
+      label: Yup.string().required("Required"),
+      value: Yup.string().required("Required"),
+    })
+    .default({ value: "1", label: "John" }),
   role: Yup.object()
     .shape({
       label: Yup.string().required("Required"),

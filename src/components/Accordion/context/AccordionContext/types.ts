@@ -1,4 +1,4 @@
-import { AccordionMode, SectionId, SectionState, SectionStateChangeHandler } from "../../types";
+import { AccordionMode, SectionState, SectionStateChangeHandler } from "../../types";
 
 export type AccordionContextProviderProps = {
   selectionMode: AccordionMode | undefined;
@@ -18,11 +18,11 @@ export type AccordionContextProviderProps = {
 export type AccordionContextType = {
   selectionMode: AccordionMode | undefined;
   selected: SectionState<AccordionMode>;
-  handleSelect: (sectionId: SectionId) => void;
+  handleSelect: (sectionId: string) => void;
 
   expansionMode: AccordionMode | undefined;
   expanded: SectionState<AccordionMode>;
-  handleExpand: (sectionId: SectionId) => void;
+  handleExpand: (sectionId: string) => void;
 
   expandAnimation: "smooth" | "instant";
   instanceClassName: string | undefined;

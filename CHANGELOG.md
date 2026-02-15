@@ -1,3 +1,15 @@
+### Release date 15.02.2026 - Release 2.1.6
+
+- [[#250]](https://github.com/Marcin-Migdal/m-component-library/issues/250) **[PATCH]** Improve DropdownMenu to use DropdownSubMenu with template
+- [[#245]](https://github.com/Marcin-Migdal/m-component-library/issues/245) **[PATCH]** Delete number form Accordion sectionId type, simplify logic
+- [[#232]](https://github.com/Marcin-Migdal/m-component-library/issues/232) **[PATCH]** Add Responsive behavior to the Breadcrumb when it does not fit in its container
+- [[#249]](https://github.com/Marcin-Migdal/m-component-library/issues/249) **[PATCH]** DropdownMenu position calculation on window resize
+- [[#246]](https://github.com/Marcin-Migdal/m-component-library/issues/246) **[PATCH]** Fix StandAloneTextfield component styling when passing children props to the component
+- [[#247]](https://github.com/Marcin-Migdal/m-component-library/issues/247) **[PATCH]** Delete unsupported prop from Textarea input props object
+- [[#234]](https://github.com/Marcin-Migdal/m-component-library/issues/234) **[PATCH]** Small refactor of all component logic related to z-index property
+- [[#248]](https://github.com/Marcin-Migdal/m-component-library/issues/248) **[PATCH]** Add translation prop to Form component
+- [[#259]](https://github.com/Marcin-Migdal/m-component-library/issues/259) **[PATCH]** Add useBreakpoint hook with support for selective breakpoint checking and active breakpoint detection
+
 ### Release date 04.07.2025 - Release 2.1.5
 
 - [[#241]](https://github.com/Marcin-Migdal/m-component-library/issues/241) **[PATCH]** Add secondaryPosition setting to getPosition helper function
@@ -11,6 +23,13 @@
 ### Release date 16.04.2025 - Release 2.1.4
 
 - [[#216]](https://github.com/Marcin-Migdal/m-component-library/issues/216) **[PATCH]** Flaner bug fixes patch, details in the github issue
+- [[#241]](https://github.com/Marcin-Migdal/m-component-library/issues/241) **[PATCH]** Add secondaryPosition setting to getPosition helper function
+- [[#170]](https://github.com/Marcin-Migdal/m-component-library/issues/170) **[PATCH]** Passing children props to the StandAloneTextfield component, using this enhancement in ColorPicker and DatePicker components
+- [[#235]](https://github.com/Marcin-Migdal/m-component-library/issues/235) **[PATCH]** Fix ColorPicker onBlur not working
+- [[#237]](https://github.com/Marcin-Migdal/m-component-library/issues/237) **[PATCH]** Add useOutsideClick and useKeyboardClose, replace redundant logic in the whole project, using those hooks
+- [[#238]](https://github.com/Marcin-Migdal/m-component-library/issues/238) **[PATCH]** Add transparent backgroundColor variant to Accordion component
+- [[#223]](https://github.com/Marcin-Migdal/m-component-library/issues/223) **[PATCH]** Enhance ColorPicker type handling, depending on returnedColorType
+- [[#172]](https://github.com/Marcin-Migdal/m-component-library/issues/172) **[PATCH]** Add Design system, utils classes and components css variables documentation
 
 ### Release date 31.03.2025 - Release 2.1.3
 

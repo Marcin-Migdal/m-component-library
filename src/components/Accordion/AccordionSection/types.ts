@@ -1,6 +1,4 @@
-import { SectionId } from "../types";
-
 export type AccordionSectionProps = {
-  sectionId: SectionId;
+  sectionId: string;
   className?: string;
 };
