@@ -1,4 +1,4 @@
-### Release date ??.??.???? - Release ?.?.?
+### Release date 15.02.2026 - Release 2.1.6
 
 - [[#250]](https://github.com/Marcin-Migdal/m-component-library/issues/250) **[PATCH]** Improve DropdownMenu to use DropdownSubMenu with template
 - [[#245]](https://github.com/Marcin-Migdal/m-component-library/issues/245) **[PATCH]** Delete number form Accordion sectionId type, simplify logic
