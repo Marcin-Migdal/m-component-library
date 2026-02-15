@@ -8,6 +8,7 @@
 - [[#247]](https://github.com/Marcin-Migdal/m-component-library/issues/247) **[PATCH]** Delete unsupported prop from Textarea input props object
 - [[#234]](https://github.com/Marcin-Migdal/m-component-library/issues/234) **[PATCH]** Small refactor of all component logic related to z-index property
 - [[#248]](https://github.com/Marcin-Migdal/m-component-library/issues/248) **[PATCH]** Add translation prop to Form component
+- [[#259]](https://github.com/Marcin-Migdal/m-component-library/issues/259) **[PATCH]** Add useBreakpoint hook with support for selective breakpoint checking and active breakpoint detection
 
 ### Release date 04.07.2025 - Release 2.1.5
 
