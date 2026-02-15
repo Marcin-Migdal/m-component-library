@@ -5,7 +5,7 @@ type BreakpointKey = "sm" | "md" | "lg" | "xl";
 type BreakpointMap = Record<BreakpointKey, boolean>;
 
 const queries: Record<BreakpointKey, string> = {
-  sm: "(min-width: 520px) and (max-width: 768px)",
+  sm: "(max-width: 768px)",
   md: "(min-width: 768px) and (max-width: 992px)",
   lg: "(min-width: 992px) and (max-width: 1200px)",
   xl: "(min-width: 1200px)",

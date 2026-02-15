@@ -8,7 +8,7 @@
   --xl-gap: 1rem;
 }
 
-@media (min-width: 520px) and (max-width: 768px) {
+@media (max-width: 768px) {
   .m-grid-row.sm-gap {
     gap: var(--sm-gap);
   }
