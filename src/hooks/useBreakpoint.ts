@@ -75,7 +75,6 @@ export function useBreakpoint(breakpointsToCheck: Partial<Record<BreakpointKey, 
         mediaQueryLists[key].removeEventListener("change", updateBreakpoints);
       });
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(keys)]);
 
   return [breakpoints, activeBreakpoint];
