@@ -15,26 +15,26 @@ export function AlertFooter<TData = undefined>({
   onDecline,
 }: AlertFooterProps<TData>) {
   useEffect(() => {
-    if (disableConfirmOnEnter) {
-      return;
-    }
-
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (onConfirm && event.code === "Enter") {
-        onConfirm(data as unknown as TData);
+      if (event.code === "Enter") {
+        if (confirmBtnBusy || confirmBtnDisabled || disableConfirmOnEnter) {
+          return;
+        }
+
+        if (onConfirm) {
+          event.preventDefault();
+          event.stopPropagation();
+          onConfirm(data as unknown as TData);
+        }
       }
     };
 
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      if (disableConfirmOnEnter) {
-        return;
-      }
-
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [disableConfirmOnEnter, onConfirm, data, confirmBtnBusy, confirmBtnDisabled]);
 
   if (!onConfirm && !onDecline) {
     return null;
