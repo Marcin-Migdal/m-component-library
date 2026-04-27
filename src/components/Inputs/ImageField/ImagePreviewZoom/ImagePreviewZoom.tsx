@@ -9,20 +9,23 @@ import "./ImagePreviewZoom.scss";
 type ImagePreviewZoomProps = {
   zoomVisible: boolean;
   value: File | null;
+  src?: string;
   closeZoom: () => void;
   overlayConfig?: OverlayProps;
 };
 
-export const ImagePreviewZoom = ({ zoomVisible, value, closeZoom, overlayConfig }: ImagePreviewZoomProps) => {
-  if (!zoomVisible || !value) {
+export const ImagePreviewZoom = ({ zoomVisible, value, src, closeZoom, overlayConfig }: ImagePreviewZoomProps) => {
+  if (!zoomVisible || (!value && !src)) {
     return null;
   }
+
+  const imageSrc = value ? URL.createObjectURL(value) : src;
 
   return (
     <Overlay {...overlayConfig} onClick={closeZoom} onClose={closeZoom}>
       <div className="m-zoom-image-preview-container">
         <FontAwesomeIcon onClick={closeZoom} icon="x" className={classNames("m-image-icon", "m-image-close-zooms")} />
-        <img src={URL.createObjectURL(value)} className="m-zoom-image-preview" />
+        <img src={imageSrc} className="m-zoom-image-preview" />
       </div>
     </Overlay>
   );

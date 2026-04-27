@@ -1,5 +1,6 @@
 ### Release date ??.??.???? - Release ?.?.?
 
+- [[#265]](https://github.com/Marcin-Migdal/m-component-library/issues/265) **[PATCH]** Imagefield add src prop to pass image url that should be displayed
 - [[#266]](https://github.com/Marcin-Migdal/m-component-library/issues/266) **[PATCH]** Add busy icon to the confirm btn in alert footer
 
 ### Release date 15.02.2026 - Release 2.1.6
