@@ -1,5 +1,7 @@
 ### Release date ??.??.???? - Release ?.?.?
 
+- [[#266]](https://github.com/Marcin-Migdal/m-component-library/issues/266) **[PATCH]** Add busy icon to the confirm btn in alert footer
+
 ### Release date 15.02.2026 - Release 2.1.6
 
 - [[#250]](https://github.com/Marcin-Migdal/m-component-library/issues/250) **[PATCH]** Improve DropdownMenu to use DropdownSubMenu with template
