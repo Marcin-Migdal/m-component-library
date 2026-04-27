@@ -87,7 +87,17 @@
     }
 
     .m-alert-confirm-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       border-bottom-left-radius: var(--alert-border-radius);
+
+      .m-alert-confirm-button-busy-icon {
+        margin-right: var(--spacing-2);
+        width: 1rem;
+        height: 1rem;
+      }
 
       &:only-child {
         border-bottom-right-radius: var(--alert-border-radius);

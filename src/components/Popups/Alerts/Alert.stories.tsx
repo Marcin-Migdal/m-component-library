@@ -53,6 +53,11 @@ const meta: Meta<typeof Alert> = {
         defaultValue: { summary: "false" },
       },
     },
+    confirmBtnBusy: {
+      table: {
+        defaultValue: { summary: "false" },
+      },
+    },
     declineBtnText: {
       table: {
         defaultValue: { summary: "Close" },
