@@ -10,23 +10,26 @@ type ImageIconsProps = {
   openZoom: () => void;
   clearImage: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
   value: File | null;
+  src?: string;
   error: InputErrorType | undefined;
   disabled: boolean;
 };
 
-export const ImageIcons = ({ openZoom, clearImage, value, error, disabled }: ImageIconsProps) => {
-  if (!value || !!error) {
+export const ImageIcons = ({ openZoom, clearImage, value, src, error, disabled }: ImageIconsProps) => {
+  if (!src && !!error) {
     return null;
   }
 
   return (
     <div className="icons-container">
-      <FontAwesomeIcon
-        onClick={openZoom}
-        icon="magnifying-glass"
-        className={classNames("m-image-icon", "m-image-zoom")}
-      />
-      {!disabled && (
+      {(!!src || !!value) && (
+        <FontAwesomeIcon
+          onClick={openZoom}
+          icon="magnifying-glass"
+          className={classNames("m-image-icon", "m-image-zoom")}
+        />
+      )}
+      {!disabled && !!value && (
         <FontAwesomeIcon onClick={clearImage} icon="x" className={classNames("m-image-icon", "m-image-delete")} />
       )}
     </div>

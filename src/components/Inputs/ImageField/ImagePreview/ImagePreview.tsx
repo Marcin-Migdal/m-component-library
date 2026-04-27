@@ -7,12 +7,15 @@ import "./ImagePreview.scss";
 
 type ImagePreviewProps = {
   value: File | null;
+  src?: string;
   error: InputErrorType | undefined;
 };
 
-export const ImagePreview = ({ value, error }: ImagePreviewProps) => {
-  if (value && !error) {
-    return <img src={URL.createObjectURL(value)} className="m-image-preview" />;
+export const ImagePreview = ({ value, src, error }: ImagePreviewProps) => {
+  const imagePreviewSrc = value ? URL.createObjectURL(value) : src;
+
+  if (imagePreviewSrc && !error) {
+    return <img src={imagePreviewSrc} className="m-image-preview" />;
   }
 
   return (

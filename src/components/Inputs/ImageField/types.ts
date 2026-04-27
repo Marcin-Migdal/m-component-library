@@ -30,6 +30,9 @@ export type ImageFieldProps = InputProps & {
   /** The currently selected image file. */
   value?: File | null;
 
+  /** URL of an image to display when no file is selected. */
+  src?: string;
+
   /** Messages displayed in the dropzone area. `[defaultMessage, draggingMessage]` */
   dropzoneMessage?: [string, string];
 
