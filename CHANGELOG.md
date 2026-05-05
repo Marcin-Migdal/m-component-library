@@ -1,5 +1,6 @@
 ### Release date ??.??.???? - Release ?.?.?
 
+- [[#264]](https://github.com/Marcin-Migdal/m-component-library/issues/264) **[PATCH]** Add checked property to Form's controlled register change result
 - [[#265]](https://github.com/Marcin-Migdal/m-component-library/issues/265) **[PATCH]** Imagefield add src prop to pass image url that should be displayed
 - [[#266]](https://github.com/Marcin-Migdal/m-component-library/issues/266) **[PATCH]** Add busy icon to the confirm btn in alert footer
 
