@@ -6,6 +6,8 @@ export const AccordionSectionContext = createContext<AccordionSectionContextType
   sectionId: "",
   isSelected: false,
   isExpanded: false,
+  disableSelection: false,
+  disableExpansion: false,
 });
 
 export const AccordionSectionContextProvider = ({
@@ -13,6 +15,8 @@ export const AccordionSectionContextProvider = ({
   sectionId,
   isSelected,
   isExpanded,
+  disableSelection,
+  disableExpansion,
 }: PropsWithChildren<AccordionSectionContextProviderProps>) => {
   return (
     <AccordionSectionContext.Provider
@@ -20,6 +24,8 @@ export const AccordionSectionContextProvider = ({
         sectionId,
         isSelected,
         isExpanded,
+        disableSelection,
+        disableExpansion,
       }}
     >
       {children}
