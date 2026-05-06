@@ -53,11 +53,15 @@ function Form<TFormState extends FormikValues>({
     const translatedFieldErrors = t && fieldErrors ? translateErrors(fieldErrors, t) : fieldErrors;
 
     if (controlled) {
+      const value = values?.[name];
+      const checked = typeof value === "boolean" ? value : false;
+
       const controlledChangeRegisterResult: ControlledRegisterChangeResult<TName, TChangeEvent, TFormState> = {
         name,
         error: translatedFieldErrors,
         onBlur: handleBlur,
-        value: values?.[name],
+        value,
+        checked,
         onChange: handleChange,
         disableSubmitOnEnter,
       };

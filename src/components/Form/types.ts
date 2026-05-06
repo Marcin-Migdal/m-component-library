@@ -21,6 +21,7 @@ export type ControlledRegisterChangeResult<
   TFormState extends FormikValues,
 > = {
   value: TFormState[TName];
+  checked: boolean;
   onChange: (e: TChangeEvent) => void;
 } & BaseRegisterResult<TName, TChangeEvent, TFormState>;
 

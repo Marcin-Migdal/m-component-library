@@ -58,6 +58,10 @@ export type AlertFooterProps<TData = undefined> = {
   /** Function to execute when the confirm button is clicked. */
   onConfirm?: (data: TData) => void;
 
+  /** Whether the confirm button is in a "busy" state.
+   * @default false */
+  confirmBtnBusy?: boolean;
+
   /** If set to true, alert `onConfirm` callback will not be called when `enter` key is pressed */
   disableConfirmOnEnter?: boolean;
 
@@ -106,7 +110,7 @@ export type UseAlertOpenResult<TData = undefined> = TData extends undefined
         handleClose: () => void;
 
         data: undefined;
-      }
+      },
     ]
   : [
       /** Function to trigger the opening of the alert. */
@@ -121,5 +125,5 @@ export type UseAlertOpenResult<TData = undefined> = TData extends undefined
         handleClose: () => void;
 
         data: TData | undefined;
-      }
+      },
     ];

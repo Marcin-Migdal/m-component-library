@@ -20,6 +20,7 @@ import "./ImageField.scss";
 
 export const ImageField = ({
   value: externalValue = undefined,
+  src,
   onChange,
   onBlur,
   onError,
@@ -156,7 +157,7 @@ export const ImageField = ({
 
   return (
     <>
-      <ImagePreviewZoom zoomVisible={zoomVisible} value={value} closeZoom={closeZoom} />
+      <ImagePreviewZoom zoomVisible={zoomVisible} value={value} src={src} closeZoom={closeZoom} />
       <InputContainer
         disabled={disabled}
         className={classNames("m-image-container", classNamesObj?.container)}
@@ -166,7 +167,7 @@ export const ImageField = ({
         labelType={labelType}
       >
         <div style={getInputStyle(labelType, label, labelWidth, floatingInputWidth)}>
-          <ImageIcons openZoom={openZoom} clearImage={clearImage} disabled={disabled} value={value} error={error} />
+          <ImageIcons openZoom={openZoom} clearImage={clearImage} disabled={disabled} value={value} src={src} error={error} />
           <label
             onDrop={handleDrop}
             onDragOver={stopPropagationAndPreventDefault}
@@ -184,7 +185,7 @@ export const ImageField = ({
               accept={accept.join(", ")}
               {...otherProps}
             />
-            <ImagePreview value={value} error={error} />
+            <ImagePreview value={value} src={src} error={error} />
             <ImageDropzone
               dropzoneMessage={dropzoneMessage}
               mappedAcceptFormats={mappedAcceptFormats}

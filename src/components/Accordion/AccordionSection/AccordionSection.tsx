@@ -12,6 +12,8 @@ export const AccordionSection: React.FC<PropsWithChildren<AccordionSectionProps>
   children,
   sectionId,
   className,
+  disableSelection,
+  disableExpansion,
 }) => {
   const { selected, expanded, instanceClassName } = useAccordion();
 
@@ -24,7 +26,13 @@ export const AccordionSection: React.FC<PropsWithChildren<AccordionSectionProps>
         [`${instanceClassName}-section`]: !!instanceClassName,
       })}
     >
-      <AccordionSectionContextProvider sectionId={sectionId} isSelected={isSelected} isExpanded={isExpanded}>
+      <AccordionSectionContextProvider
+        sectionId={sectionId}
+        isSelected={isSelected}
+        isExpanded={isExpanded}
+        disableSelection={disableSelection}
+        disableExpansion={disableExpansion}
+      >
         {children}
       </AccordionSectionContextProvider>
     </div>

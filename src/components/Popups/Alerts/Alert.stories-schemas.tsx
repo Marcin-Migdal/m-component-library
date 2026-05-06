@@ -106,7 +106,7 @@ export const initFilledAlertInputsState: FilledAlertInputsState = {
   image: null,
   percentage: 30,
   remember: false,
-  darkMode: false,
+  darkMode: true,
 };
 
 export const filledAlertInputsStateSchema = Yup.object().shape({
@@ -141,7 +141,7 @@ export const filledAlertInputsStateSchema = Yup.object().shape({
   image: Yup.mixed<File>().nullable().required("Image is required"),
   percentage: Yup.number().min(20, "Percentage must be at least 20").default(30),
   remember: Yup.boolean().default(false),
-  darkMode: Yup.boolean().default(false),
+  darkMode: Yup.boolean().default(true),
 });
 
 export type FilledAlertInputsSubmitState = InferSchemaType<typeof filledAlertInputsStateSchema>;

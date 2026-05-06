@@ -363,6 +363,39 @@ export const expandOnIconClick: StoryObj<typeof Accordion> = {
   },
 };
 
+export const DisabledSections: StoryObj<typeof Accordion> = {
+  args: {
+    expansionMode: "multiple",
+    selectionMode: "multiple",
+    children: (
+      <>
+        <h2>Accordion expands on icon click</h2>
+        <Accordion.Section sectionId="1" disableSelection>
+          <Accordion.Toggle expandOnIconClick>Selection Disabled</Accordion.Toggle>
+          <Accordion.Content>
+            <Accordion.Item>Item 1 | 1</Accordion.Item>
+            <Accordion.Item>Item 1 | 2</Accordion.Item>
+          </Accordion.Content>
+        </Accordion.Section>
+        <Accordion.Section sectionId="2" disableExpansion>
+          <Accordion.Toggle expandOnIconClick>Expansion Disabled</Accordion.Toggle>
+          <Accordion.Content>
+            <Accordion.Item>Item 2 | 1</Accordion.Item>
+            <Accordion.Item>Item 2 | 2</Accordion.Item>
+          </Accordion.Content>
+        </Accordion.Section>
+        <Accordion.Section sectionId="3" disableSelection disableExpansion>
+          <Accordion.Toggle expandOnIconClick>Both Disabled</Accordion.Toggle>
+          <Accordion.Content>
+            <Accordion.Item>Item 3 | 1</Accordion.Item>
+            <Accordion.Item>Item 3 | 2</Accordion.Item>
+          </Accordion.Content>
+        </Accordion.Section>
+      </>
+    ),
+  },
+};
+
 export const CSSVariables: StoryObj = {
   render: () => <ComponentCssVariableTable data={cssVariablesData} />,
 };
