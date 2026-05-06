@@ -1,5 +1,6 @@
 ### Release date ??.??.???? - Release ?.?.?
 
+- [[#274]](https://github.com/Marcin-Migdal/m-component-library/issues/274) **[PATCH]** Add stopPropagation to DropdownMenu click to prevent external event capture
 - [[#272]](https://github.com/Marcin-Migdal/m-component-library/issues/272) **[PATCH]** Add disableSelection and disableExpansion props to Accordion component
 - [[#264]](https://github.com/Marcin-Migdal/m-component-library/issues/264) **[PATCH]** Add checked property to Form's controlled register change result
 - [[#265]](https://github.com/Marcin-Migdal/m-component-library/issues/265) **[PATCH]** Imagefield add src prop to pass image url that should be displayed

@@ -138,6 +138,7 @@ DropdownMenuProps) => {
       data-z-index={1}
       ref={dropdownMenuContainerRef}
       style={dropdownMenuConfig}
+      onClick={(e) => e.stopPropagation()}
     >
       {options.length > 0 ? (
         options.map((option, index) => (
