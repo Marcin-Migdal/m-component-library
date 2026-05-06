@@ -28,18 +28,18 @@ export const AccordionToggle: React.FC<PropsWithChildren<AccordionToggleProps>> 
     globalExpandOnIconClick,
   } = useAccordion();
 
-  const { sectionId, isExpanded, isSelected } = useAccordionSection();
+  const { sectionId, isExpanded, isSelected, disableSelection, disableExpansion } = useAccordionSection();
 
   const icon: ToggleIconPosition = expansionMode === undefined ? "none" : localIcon ?? globalIcon;
   const expandOnIconClick = localExpandOnIconClick ?? globalExpandOnIconClick ?? false;
 
   const handleToggleClick = () => {
-    !expandOnIconClick && handleExpand(sectionId);
-    handleSelect(sectionId);
+    !disableExpansion && !expandOnIconClick && handleExpand(sectionId);
+    !disableSelection && handleSelect(sectionId);
   };
 
   const handleToggleIconClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
-    if (expandOnIconClick) {
+    if (expandOnIconClick && !disableExpansion) {
       event.stopPropagation();
       handleExpand(sectionId);
     }
@@ -52,6 +52,8 @@ export const AccordionToggle: React.FC<PropsWithChildren<AccordionToggleProps>> 
         [`${instanceClassName}-toggle`]: !!instanceClassName,
         selected: isSelected,
         responsive: selectionMode !== undefined || expansionMode !== undefined,
+        "selection-disabled": disableSelection,
+        "expansion-disabled": disableExpansion,
       })}
       onClick={handleToggleClick}
     >

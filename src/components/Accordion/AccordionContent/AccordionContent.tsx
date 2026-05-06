@@ -15,7 +15,7 @@ export const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>
   const ref = useRef<HTMLDivElement>(null);
 
   const { instanceClassName, expandAnimation } = useAccordion();
-  const { isExpanded } = useAccordionSection();
+  const { isExpanded, disableSelection, disableExpansion } = useAccordionSection();
 
   const [contentHeight, setContentHeight] = useState<number | undefined>(undefined);
 
@@ -58,6 +58,8 @@ export const AccordionContent: React.FC<PropsWithChildren<AccordionContentProps>
         ref={ref}
         className={classNames("m-accordion-content", className, {
           [`${instanceClassName}-content`]: !!instanceClassName,
+          "selection-disabled": disableSelection,
+          "expansion-disabled": disableExpansion,
         })}
       >
         {children}
