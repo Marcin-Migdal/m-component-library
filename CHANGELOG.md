@@ -1,5 +1,7 @@
 ### Release date ??.??.???? - Release ?.?.?
 
+### Release date 07.05.2026 - Release 2.1.7
+
 - [[#274]](https://github.com/Marcin-Migdal/m-component-library/issues/274) **[PATCH]** Add stopPropagation to DropdownMenu click to prevent external event capture
 - [[#272]](https://github.com/Marcin-Migdal/m-component-library/issues/272) **[PATCH]** Add disableSelection and disableExpansion props to Accordion component
 - [[#264]](https://github.com/Marcin-Migdal/m-component-library/issues/264) **[PATCH]** Add checked property to Form's controlled register change result
